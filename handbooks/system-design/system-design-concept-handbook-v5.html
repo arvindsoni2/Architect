@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>System Design Concept Handbook v5</title>
+<style>
+:root{--bg:#0b1020;--panel:#11182b;--panel2:#151e34;--text:#eaf0ff;--muted:#9facbf;--line:#27334e;--accent:#72e2c4;--accent2:#8fb5ff;--warn:#ffd37a;--danger:#ff9c9c;--max:1040px}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+a{color:var(--accent2)} .layout{display:grid;grid-template-columns:310px 1fr;min-height:100vh}
+aside{position:sticky;top:0;height:100vh;overflow:auto;border-right:1px solid var(--line);padding:24px 18px;background:#0d1425}
+.brand{font-weight:800;font-size:18px;margin-bottom:3px} .sub{color:var(--muted);font-size:13px;margin-bottom:18px}
+.search{width:100%;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--panel);color:var(--text);margin-bottom:14px}
+nav a{display:flex;gap:10px;align-items:flex-start;text-decoration:none;color:#ccd6eb;padding:8px 8px;border-radius:8px;font-size:13px;line-height:1.3}
+nav a:hover{background:var(--panel2);color:white} nav a span{color:var(--accent);font-weight:800;min-width:22px}
+.progressbox{margin-top:18px;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.bar{height:7px;background:#222c43;border-radius:8px;overflow:hidden;margin-top:7px} .bar i{display:block;height:100%;background:var(--accent);width:0}
+main{min-width:0} .hero{padding:70px max(28px,calc((100vw - 310px - var(--max))/2));border-bottom:1px solid var(--line);background:radial-gradient(circle at 80% 20%,#182b4a 0,transparent 38%)}
+.hero .kicker{color:var(--accent);font-weight:800;letter-spacing:.11em;text-transform:uppercase;font-size:12px} h1{font-size:clamp(38px,6vw,72px);line-height:1.02;letter-spacing:-.045em;margin:.18em 0}
+.hero p{max-width:760px;color:#bdc8dc;font-size:18px} .badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px} .badge{padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:#cdd7eb;font-size:12px;background:#10182b}
+.wrap{max-width:var(--max);margin:auto;padding:42px 28px 100px} .audit{border:1px solid #365068;background:#101b2c;border-radius:16px;padding:22px;margin-bottom:28px}
+.audit h2{margin-top:0} .audit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px} .audit-card{background:#0d1525;border:1px solid var(--line);border-radius:12px;padding:15px}
+.chapter{margin:28px 0 36px;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 16px 50px #0003}
+.chapter-head{display:flex;gap:15px;align-items:center;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px} .num{font-size:26px;font-weight:900;color:var(--accent);border:1px solid #315a57;border-radius:12px;padding:5px 10px}
+.eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-size:11px;font-weight:800} h2{margin:2px 0;font-size:28px;line-height:1.2} h3{font-size:16px;margin-top:0}
+.concept p{margin:12px 0} .example,.formula{padding:14px 16px;border-left:3px solid var(--accent2);background:#0d1526;border-radius:8px;margin:16px 0} .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border-left-color:var(--accent)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px} .exercise,.challenge{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:17px} ol{padding-left:22px} label{font-size:13px;color:var(--muted)} details{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px} summary{cursor:pointer;font-weight:800;color:var(--accent2)}
+.section-title{margin-top:56px} .matrix{width:100%;border-collapse:collapse;font-size:14px} .matrix th,.matrix td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} .matrix th{color:var(--accent)}
+.refs li{margin:8px 0} footer{border-top:1px solid var(--line);padding:30px;color:var(--muted);font-size:13px}
+.hidden{display:none!important}
+@media(max-width:900px){.layout{display:block} aside{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)} nav{display:none} .hero{padding:50px 24px} .grid2,.audit-grid{grid-template-columns:1fr} .wrap{padding:28px 18px 70px}}
+@media print{aside{display:none} .layout{display:block} body{background:white;color:#111} .chapter,.audit{break-inside:avoid;background:white;color:#111;box-shadow:none} .hero{background:white;color:#111;padding:30px} a{color:#111}}
+</style>
+</head>
+<body>
+<div class="layout">
+<aside>
+<div class="brand">System Design Handbook</div><div class="sub">v5 · concept → component → system · 11 Aug 2026</div>
+<input class="search" id="search" placeholder="Search concepts…"/>
+<nav>
+<div style="margin:14px 8px 5px;color:#9facbf;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Part I · Concepts</div>
+<a href="#c01"><span>01</span>Start With Requirements, Not Components</a>
+<a href="#c02"><span>02</span>Capacity Estimation &amp; Bottleneck Thinking</a>
+<a href="#c03"><span>03</span>Latency, Throughput &amp; Little’s Law</a>
+<a href="#c04"><span>04</span>Horizontal Scaling, Statelessness &amp; Load Balancing</a>
+<a href="#c05"><span>05</span>Caching: Placement, Policy &amp; Invalidation</a>
+<a href="#c06"><span>06</span>Partitioning, Sharding &amp; Consistent Hashing</a>
+<a href="#c07"><span>07</span>Replication, Quorums &amp; Consistency</a>
+<a href="#c08"><span>08</span>CAP &amp; PACELC Without the Mythology</a>
+<a href="#c09"><span>09</span>Database Selection by Access Pattern</a>
+<a href="#c10"><span>10</span>Queues, Streams &amp; Asynchronous Work</a>
+<a href="#c11"><span>11</span>Delivery Semantics, Idempotency &amp; the Outbox</a>
+<a href="#c12"><span>12</span>API Design &amp; Synchronous Communication</a>
+<a href="#c13"><span>13</span>Reliability: Timeouts, Retries, Backoff &amp; Jitter</a>
+<a href="#c14"><span>14</span>Circuit Breakers, Bulkheads &amp; Graceful Degradation</a>
+<a href="#c15"><span>15</span>Rate Limiting, Load Shedding &amp; Backpressure</a>
+<a href="#c16"><span>16</span>SLOs, Error Budgets &amp; Observability</a>
+<a href="#c17"><span>17</span>Multi-Region, Failure Domains, RPO &amp; RTO</a>
+<a href="#c18"><span>18</span>Architecture Decisions, C4 &amp; Evolution</a>
+<div style="margin:14px 8px 5px;color:#9facbf;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Part II · Labs</div>
+<a href="#l01"><span>L01</span>Distributed Rate Limiter</a>
+<a href="#l02"><span>L02</span>Consistent Hashing &amp; Distributed Cache</a>
+<a href="#l03"><span>L03</span>Distributed Key-Value Store</a>
+<a href="#l04"><span>L04</span>Distributed Unique ID Generator</a>
+<a href="#l05"><span>L05</span>Distributed Message Queue</a>
+<a href="#l06"><span>L06</span>Metrics &amp; Alerting Platform</a>
+<a href="#l07"><span>L07</span>Object Storage</a>
+<a href="#l08"><span>L08</span>Search Autocomplete</a>
+<div style="margin:14px 8px 5px;color:#9facbf;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase">Part III · Cases</div>
+<a href="#case-01"><span>C01</span>URL Shortener</a>
+<a href="#case-02"><span>C02</span>Notification Platform</a>
+<a href="#case-03"><span>C03</span>Web Crawler</a>
+<a href="#case-04"><span>C04</span>News Feed</a>
+<a href="#case-05"><span>C05</span>Chat System</a>
+<a href="#case-06"><span>C06</span>Video Platform</a>
+<a href="#case-07"><span>C07</span>Drive / File Sync</a>
+<a href="#case-08"><span>C08</span>Proximity Service</a>
+<a href="#case-09"><span>C09</span>Payment System</a>
+<a href="#case-10"><span>C10</span>Digital Wallet</a>
+<a href="#case-11"><span>C11</span>Stock Exchange</a>
+<a href="#case-12"><span>C12</span>Ride Sharing Capstone</a>
+</nav>
+<div class="progressbox"><b>Practice progress</b><div class="sub" id="ptxt">0 / 18 practised</div><div class="bar"><i id="pbar"></i></div></div>
+</aside>
+<main>
+<header class="hero">
+<div class="kicker">Concept → trade-off → failure → practice</div>
+<h1>System Design<br/>Concept Handbook</h1>
+<p>A grounded, practice-first system design handbook: learn the mechanism, build the component, design the complete system, then break it on purpose.</p>
+<div class="badges"><span class="badge">18 core concepts</span><span class="badge">8 component labs</span><span class="badge">12 case studies</span><span class="badge">failure injection</span><span class="badge">architecture evolution</span><span class="badge">grounded references</span></div>
+</header>
+<div class="wrap">
+<section class="audit">
+<h2>Audit of the earlier material</h2>
+<p>v5 keeps the technically stronger concept layer from v4 and adds a second learning axis inspired by the liquidslr repository: component laboratories and complete system-design cases. The repository is used as a coverage/practice map, not as the sole authority for distributed-systems claims.</p>
+<div class="audit-grid">
+<div class="audit-card"><b>Kept</b><br/>Requirements and quality attributes; estimation; scaling; caching; CAP/PACELC; resilience; APIs; messaging; data architecture; observability; C4/ADR; practical systems.</div>
+<div class="audit-card"><b>Corrected</b><br/>Removed the over-general “most systems choose AP” framing; removed workload-independent server-QPS heuristics; replaced simplistic protocol-selection rules with trade-off criteria.</div>
+<div class="audit-card"><b>Added</b><br/>Little’s Law; consistency-model distinctions; hot partitions; quorum caveats; idempotency/outbox; overload control; failure domains; RPO/RTO; error budgets; per-operation CAP reasoning.</div>
+<div class="audit-card"><b>Learning upgrade</b><br/>Every concept now has a mental model, concrete example, three exercises, one open design challenge, and a recall prompt. This creates retrieval practice rather than passive reading.</div>
+</div>
+</section>
+<section>
+<h2>How to use it</h2>
+<p>For each chapter: <b>read for 10–15 minutes → close the text and explain it from memory → do the three short exercises → solve the design challenge on paper → compare your design against the trade-offs and failure modes</b>. Mark the chapter practised only after you can defend a decision, not merely define the term.</p>
+<table class="matrix">
+<tr><th>Pass</th><th>What to do</th><th>Evidence of learning</th></tr>
+<tr><td>1 · Understand</td><td>Read concept + example</td><td>You can explain the mechanism.</td></tr>
+<tr><td>2 · Retrieve</td><td>90-second recall without notes</td><td>You remember the important constraints.</td></tr>
+<tr><td>3 · Apply</td><td>Complete micro-exercises</td><td>You can use the concept in a bounded problem.</td></tr>
+<tr><td>4 · Judge</td><td>Do the design challenge</td><td>You can compare alternatives and failure modes.</td></tr>
+<tr><td>5 · Integrate</td><td>Use it in a full system design</td><td>You can show where the concept changes architecture.</td></tr>
+</table>
+</section>
+<h2 class="section-title">Part I · Core concepts and building blocks</h2>
+<article class="chapter" data-group="foundations" data-title="start with requirements, not components" id="c01">
+<div class="chapter-head"><span class="num">01</span><div><div class="eyebrow">Foundations</div><h2>Start With Requirements, Not Components</h2></div></div>
+<section class="concept">System design starts by turning an ambiguous product idea into a bounded contract. Separate <b>functional requirements</b> (what the system must do) from <b>quality attributes</b> (how well it must do it), constraints, assumptions, and explicit non-goals.
+<p><b>Core mental model:</b> architecture is a response to forces. If the forces are vague, the design is guesswork.</p>
+<div class="example"><b>Example — URL shortener.</b> Functional: create a short URL and redirect it. Quality attributes: p95 redirect latency &lt; 50 ms, 99.99% availability, 100M stored mappings, links retained for 5 years. Non-goal: real-time analytics in v1.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Write 5 functional requirements and 5 non-functional requirements for a food-delivery app.</li><li>Convert “fast”, “highly available” and “secure” into measurable scenarios.</li><li>List 3 non-goals that prevent scope creep.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Given a chat application, explain which requirement would change your architecture most: 10K users, 10M users, end-to-end encryption, or 7-year message retention — and why.</p><label><input class="done" data-id="c01" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Start With Requirements, Not Components</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="foundations" data-title="capacity estimation &amp; bottleneck thinking" id="c02">
+<div class="chapter-head"><span class="num">02</span><div><div class="eyebrow">Foundations</div><h2>Capacity Estimation &amp; Bottleneck Thinking</h2></div></div>
+<section class="concept">Back-of-envelope estimation is not fortune-telling. It turns scale into orders of magnitude so you can identify likely bottlenecks.
+<p>Estimate <b>requests/sec, read:write ratio, payload size, daily storage growth, retention, bandwidth, concurrency, and peak multiplier</b>. State every assumption.</p>
+<div class="formula">Average QPS = daily requests ÷ 86,400<br/>Peak QPS = average QPS × assumed peak factor<br/>Storage/year = writes/day × bytes/write × 365 × replication factor</div>
+<div class="example"><b>Example.</b> 20M image views/day ≈ 231 average views/sec. With a 10× peak factor, design around ~2.3K views/sec before cache/CDN effects. The number is useful because the assumption is visible.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Estimate peak QPS for 50M API calls/day using 5× and 20× peak factors.</li><li>Estimate storage for 5M 2-KB records/day retained for 3 years with 3× replication.</li><li>Name the first measurement you would validate in production.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Why is “a server handles 50K QPS” a poor system-design assumption? Give four workload variables that can change the answer.</p><label><input class="done" data-id="c02" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Capacity Estimation &amp; Bottleneck Thinking</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="foundations" data-title="latency, throughput &amp; little’s law" id="c03">
+<div class="chapter-head"><span class="num">03</span><div><div class="eyebrow">Foundations</div><h2>Latency, Throughput &amp; Little’s Law</h2></div></div>
+<section class="concept">Latency and throughput are different. A system can have high throughput and poor tail latency. Users often experience the tail, so design around percentiles such as p95/p99 rather than averages.
+<p><b>Little’s Law:</b> in a stable system, average concurrency ≈ throughput × average time in system.</p>
+<div class="formula">L = λW<br/>Example: 2,000 requests/sec × 0.2 sec ≈ 400 concurrent in-flight requests</div>
+<p>Queues, locks, GC pauses, network hops, cold starts and downstream calls often dominate tail latency.</p></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>For 8K RPS and 150 ms average latency, estimate concurrency.</li><li>Explain why adding a queue may improve reliability but worsen end-to-end latency.</li><li>Identify three places where p99 latency can appear in a request path.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>A service has 20 ms database latency but 800 ms p99 API latency. Sketch a debugging hypothesis tree.</p><label><input class="done" data-id="c03" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Latency, Throughput &amp; Little’s Law</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="scale" data-title="horizontal scaling, statelessness &amp; load balancing" id="c04">
+<div class="chapter-head"><span class="num">04</span><div><div class="eyebrow">Scale</div><h2>Horizontal Scaling, Statelessness &amp; Load Balancing</h2></div></div>
+<section class="concept">Horizontal scaling adds instances; vertical scaling adds capacity to one instance. Horizontal scaling is usually easier when request-serving compute is stateless.
+<p>State still exists — move authoritative state to appropriate stores rather than pretending it disappears.</p>
+<div class="example"><b>Load balancing choices.</b> Round-robin is simple; least-connections can help uneven request duration; consistent hashing is useful when affinity or distributed ownership matters. Health checks and overload handling matter as much as the algorithm.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Turn a stateful web session design into a horizontally scalable version.</li><li>Compare sticky sessions with external session storage.</li><li>Explain what happens when 20% of instances fail during peak traffic.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Design the request path for a global read-heavy API using DNS/Anycast, regional load balancers and stateless application instances.</p><label><input class="done" data-id="c04" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Horizontal Scaling, Statelessness &amp; Load Balancing</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="scale" data-title="caching: placement, policy &amp; invalidation" id="c05">
+<div class="chapter-head"><span class="num">05</span><div><div class="eyebrow">Scale</div><h2>Caching: Placement, Policy &amp; Invalidation</h2></div></div>
+<section class="concept">Caching trades freshness and complexity for latency, throughput and cost. Decide <b>what</b> to cache, <b>where</b>, <b>for how long</b>, and <b>how it becomes correct again</b>.
+<p>Common layers: browser/device → CDN/edge → reverse proxy → application cache → database buffer/index caches.</p>
+<div class="example"><b>Cache-aside.</b> Read cache → on miss read database → populate cache. It is simple, but stale reads, cache stampedes and invalidation must be designed.</div>
+<p>Useful controls include TTLs, versioned keys, request coalescing, negative caching and jittered expiries.</p></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Choose a cache strategy for product catalogue, bank balance and feature flags.</li><li>Explain cache stampede and two mitigations.</li><li>Design invalidation after a product price changes.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Your cache hit rate falls from 95% to 60% after a deploy. What system-level effects do you expect, and what would you inspect first?</p><label><input class="done" data-id="c05" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Caching: Placement, Policy &amp; Invalidation</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="data" data-title="partitioning, sharding &amp; consistent hashing" id="c06">
+<div class="chapter-head"><span class="num">06</span><div><div class="eyebrow">Data</div><h2>Partitioning, Sharding &amp; Consistent Hashing</h2></div></div>
+<section class="concept">Partitioning divides data or work so it can scale. Good partition keys distribute load while preserving the access patterns you need.
+<p><b>Range partitioning</b> supports scans but can hotspot. <b>Hash partitioning</b> balances better but makes range access harder. <b>Directory-based routing</b> is flexible but adds metadata dependency.</p>
+<div class="example"><b>Hot-key problem.</b> Partitioning social posts by celebrity_id can overload one shard. Mitigations may include key salting, read caching, fan-out strategies or separating hot entities.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Pick partition keys for telemetry events, user profiles and orders.</li><li>Explain rebalancing when nodes are added.</li><li>Show why consistent hashing reduces remapping compared with modulo hashing.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Design a sharding scheme for a multi-tenant SaaS where one tenant generates 35% of all traffic.</p><label><input class="done" data-id="c06" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Partitioning, Sharding &amp; Consistent Hashing</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="data" data-title="replication, quorums &amp; consistency" id="c07">
+<div class="chapter-head"><span class="num">07</span><div><div class="eyebrow">Data</div><h2>Replication, Quorums &amp; Consistency</h2></div></div>
+<section class="concept">Replication improves availability, read scale and durability, but introduces coordination and consistency questions.
+<p>Leader/follower replication simplifies ordering but introduces leader failover. Multi-leader and leaderless approaches can improve locality or availability while increasing conflict-handling complexity.</p>
+<div class="formula">For N replicas, quorum-style reasoning often uses R + W &gt; N to create overlap — but actual guarantees depend on the datastore’s protocol, failure model and consistency semantics.</div>
+<p>Always distinguish <b>linearizability, serializability, snapshot isolation, causal consistency and eventual convergence</b>; they are not synonyms.</p></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Explain read-your-writes and monotonic reads using a social profile update.</li><li>Compare synchronous vs asynchronous replication.</li><li>Identify which operations in a bank require stronger consistency than a social feed.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>A user updates their password and is immediately routed to another region. Which consistency guarantee matters and how would you provide it?</p><label><input class="done" data-id="c07" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Replication, Quorums &amp; Consistency</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="data" data-title="cap &amp; pacelc without the mythology" id="c08">
+<div class="chapter-head"><span class="num">08</span><div><div class="eyebrow">Data</div><h2>CAP &amp; PACELC Without the Mythology</h2></div></div>
+<section class="concept">CAP says that when a network partition prevents communication, a distributed system cannot simultaneously guarantee the theorem’s definitions of consistency and availability for the affected operations. It is <b>not</b> “pick any two forever.”
+<p>PACELC adds the everyday question: if there is no partition, replicated systems still trade latency against consistency.</p>
+<div class="example"><b>Architectural use.</b> For a “like” counter, accepting temporary divergence may be fine. For allocating the final airline seat, an invariant may require coordination even if that costs latency or availability.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Classify three operations in e-commerce by tolerance for stale data.</li><li>Explain why CAP availability differs from a marketing claim of “99.99% availability”.</li><li>Write one invariant that requires coordination.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>During a cross-region partition, should checkout, product browsing, reviews and loyalty points behave the same way? Design per-operation behavior.</p><label><input class="done" data-id="c08" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>CAP &amp; PACELC Without the Mythology</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="data" data-title="database selection by access pattern" id="c09">
+<div class="chapter-head"><span class="num">09</span><div><div class="eyebrow">Data</div><h2>Database Selection by Access Pattern</h2></div></div>
+<section class="concept">Choose data stores from access patterns, invariants and operations — not from product categories.
+<p>Ask: What are the primary keys? Query shapes? Transaction boundaries? Ordering needs? Cardinality? Update frequency? Retention? Search requirements? Analytical scans?</p>
+<div class="example"><b>Polyglot persistence is a cost.</b> PostgreSQL plus Redis plus OpenSearch can be justified, but every additional store adds backup, observability, security, consistency and skill overhead.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Choose storage for orders, session tokens, full-text search, metrics and graph relationships.</li><li>For each choice, name one reason not to use it.</li><li>Redesign a system using fewer storage technologies.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Why might PostgreSQL + indexes + JSONB + pgvector be a better v1 than four specialised databases? When would you split them later?</p><label><input class="done" data-id="c09" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Database Selection by Access Pattern</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="messaging" data-title="queues, streams &amp; asynchronous work" id="c10">
+<div class="chapter-head"><span class="num">10</span><div><div class="eyebrow">Messaging</div><h2>Queues, Streams &amp; Asynchronous Work</h2></div></div>
+<section class="concept">Asynchrony decouples time: producers can continue without waiting for all downstream work. It improves load absorption and independence, but introduces delay, duplicates, reordering and operational state.
+<p><b>Queue</b> usually models work to be consumed; <b>log/stream</b> models an ordered history that multiple consumers can independently process.</p>
+<div class="example"><b>Queue-based load leveling.</b> A checkout API accepts an order, persists it, and places work onto a durable queue. Workers process payment/fulfilment at a sustainable rate rather than forcing the API to synchronously absorb every downstream spike.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Choose queue vs stream for email jobs, audit events and clickstream analytics.</li><li>Explain consumer lag and backpressure.</li><li>Design a dead-letter policy that does not become a data graveyard.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Traffic spikes 50× for 10 minutes. Show how a queue protects the database, and calculate the backlog drain time under two worker capacities.</p><label><input class="done" data-id="c10" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Queues, Streams &amp; Asynchronous Work</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="messaging" data-title="delivery semantics, idempotency &amp; the outbox" id="c11">
+<div class="chapter-head"><span class="num">11</span><div><div class="eyebrow">Messaging</div><h2>Delivery Semantics, Idempotency &amp; the Outbox</h2></div></div>
+<section class="concept">Distributed messaging commonly produces duplicates. “Exactly once” is often a scoped property provided by a particular platform or transaction boundary, not a magic end-to-end guarantee.
+<p>Build consumers so repeated delivery produces the same externally visible result. Use idempotency keys, uniqueness constraints, processed-event records, or naturally idempotent state transitions.</p>
+<div class="example"><b>Transactional outbox.</b> Write business state and an outbox record in one database transaction; a relay publishes the outbox to the broker. This closes the classic “DB committed but event publish failed” gap.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Make a payment-create API idempotent.</li><li>Draw the dual-write failure window without an outbox.</li><li>Design retry behavior when a consumer crashes after committing but before acknowledging.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Can you guarantee that a customer is charged exactly once? Distinguish message delivery, processing and external side effects.</p><label><input class="done" data-id="c11" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Delivery Semantics, Idempotency &amp; the Outbox</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="interfaces" data-title="api design &amp; synchronous communication" id="c12">
+<div class="chapter-head"><span class="num">12</span><div><div class="eyebrow">Interfaces</div><h2>API Design &amp; Synchronous Communication</h2></div></div>
+<section class="concept">Protocol choice follows interaction shape. REST/HTTP is broadly interoperable; gRPC offers strongly typed RPC and streaming; GraphQL gives clients flexible data selection; asynchronous APIs/events decouple producers and consumers in time.
+<p>Avoid simplistic rules such as “REST public, gRPC internal.” Consider client ecosystems, latency, streaming, schema evolution, observability, intermediaries, browser support and organisational skills.</p>
+<div class="example"><b>API quality.</b> Define resource identity, idempotency, pagination, errors, timeouts, versioning, rate limits and backwards compatibility before debating frameworks.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Design create/get/list APIs for orders including pagination and idempotency.</li><li>Choose REST, gRPC or events for three service interactions and justify.</li><li>Design an error response that is useful without leaking internals.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>A mobile client on poor networks needs resumable uploads and live progress. Choose protocols and explain failure recovery.</p><label><input class="done" data-id="c12" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>API Design &amp; Synchronous Communication</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="reliability" data-title="reliability: timeouts, retries, backoff &amp; jitter" id="c13">
+<div class="chapter-head"><span class="num">13</span><div><div class="eyebrow">Reliability</div><h2>Reliability: Timeouts, Retries, Backoff &amp; Jitter</h2></div></div>
+<section class="concept">Every remote call can fail slowly or fail partially. Set timeouts from an end-to-end latency budget, retry only faults likely to be transient, bound retries, and use backoff with jitter to avoid synchronized retry storms.
+<p>Retries multiply load. Three layers each retrying three times can produce a large amplification against a failing dependency.</p>
+<div class="example"><b>Safe retry rule.</b> Retry reads freely only when semantics allow; retry writes only when they are idempotent or protected by an idempotency mechanism.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Create a 1-second latency budget across gateway, service and database.</li><li>Compute worst-case attempts for three nested layers with 3 tries each.</li><li>Add retry rules to a payment workflow.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>A dependency starts timing out because it is overloaded. Explain why immediate retries can turn degradation into an outage.</p><label><input class="done" data-id="c13" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Reliability: Timeouts, Retries, Backoff &amp; Jitter</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="reliability" data-title="circuit breakers, bulkheads &amp; graceful degradation" id="c14">
+<div class="chapter-head"><span class="num">14</span><div><div class="eyebrow">Reliability</div><h2>Circuit Breakers, Bulkheads &amp; Graceful Degradation</h2></div></div>
+<section class="concept">A circuit breaker stops repeatedly calling a dependency likely to fail. A bulkhead isolates resource pools so one failure does not consume everything. Graceful degradation keeps the most valuable functions alive.
+<p>These patterns manage <b>blast radius</b>; they do not repair the underlying dependency.</p>
+<div class="example"><b>E-commerce.</b> If recommendations fail, product pages should still render. If inventory confirmation fails, checkout may need to stop or enter a pending state because the invariant is more important.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Define circuit states and transition signals.</li><li>Partition thread/connection pools for two dependencies.</li><li>Create a degradation matrix for an e-commerce homepage.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Which features should fail open, fail closed, or degrade when identity, recommendation, search and payment services fail?</p><label><input class="done" data-id="c14" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Circuit Breakers, Bulkheads &amp; Graceful Degradation</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="reliability" data-title="rate limiting, load shedding &amp; backpressure" id="c15">
+<div class="chapter-head"><span class="num">15</span><div><div class="eyebrow">Reliability</div><h2>Rate Limiting, Load Shedding &amp; Backpressure</h2></div></div>
+<section class="concept">Capacity protection is part of correctness. Rate limiting controls admission; load shedding rejects lower-value work during overload; backpressure tells upstream producers to slow down.
+<p>Algorithms include token bucket, leaky bucket, fixed window and sliding-window variants. Choose based on burst tolerance, fairness, distributed coordination cost and precision.</p>
+<div class="example"><b>Priority shedding.</b> During severe overload, preserve authenticated checkout and health traffic before recommendation refreshes or batch exports.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Design per-user and global limits for an API.</li><li>Compare token bucket with fixed window for burst traffic.</li><li>Define overload signals that trigger shedding.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Your service can safely process 20K RPS but receives 60K RPS. Design admission control so latency does not collapse for everyone.</p><label><input class="done" data-id="c15" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Rate Limiting, Load Shedding &amp; Backpressure</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="operations" data-title="slos, error budgets &amp; observability" id="c16">
+<div class="chapter-head"><span class="num">16</span><div><div class="eyebrow">Operations</div><h2>SLOs, Error Budgets &amp; Observability</h2></div></div>
+<section class="concept">Reliability becomes actionable when expressed as user-facing indicators and objectives.
+<p><b>SLI</b>: measured behavior such as successful request ratio or latency. <b>SLO</b>: target for that indicator. <b>Error budget</b>: tolerated unreliability implied by the SLO. SLA is a contractual/business commitment and should not be confused with the internal engineering target.</p>
+<p>Correlate <b>metrics, logs and traces</b>; instrument boundaries; propagate request/trace identifiers; alert on symptoms and budget burn rather than every internal anomaly.</p></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Define two SLIs and SLOs for a search API.</li><li>Calculate monthly error budget for 99.9% and 99.99%.</li><li>Design a trace for an API → service → DB → queue path.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>CPU is 90% but users are unaffected. Separately, p99 latency is violating the SLO while CPU is 40%. Which should page an operator and why?</p><label><input class="done" data-id="c16" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>SLOs, Error Budgets &amp; Observability</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="operations" data-title="multi-region, failure domains, rpo &amp; rto" id="c17">
+<div class="chapter-head"><span class="num">17</span><div><div class="eyebrow">Operations</div><h2>Multi-Region, Failure Domains, RPO &amp; RTO</h2></div></div>
+<section class="concept">High availability is built by identifying failure domains and deciding how much redundancy is justified.
+<p><b>RPO</b> is the maximum tolerable data loss measured in time. <b>RTO</b> is the maximum tolerable recovery time. These should drive replication, backup and failover design.</p>
+<div class="example"><b>Trade-off.</b> Active-active can reduce regional failover time and improve locality, but increases data-consistency, routing, testing and operational complexity. Active-passive can be simpler and cheaper but may have longer recovery.</div></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Set RPO/RTO for chat messages, bank ledger and analytics reports.</li><li>Compare active-active with active-passive for a global SaaS.</li><li>List five failure modes beyond “a region goes down”.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Design regional failure behavior for an order system: what happens to new orders, in-flight payment, inventory reservation and customer status?</p><label><input class="done" data-id="c17" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Multi-Region, Failure Domains, RPO &amp; RTO</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+<article class="chapter" data-group="practice" data-title="architecture decisions, c4 &amp; evolution" id="c18">
+<div class="chapter-head"><span class="num">18</span><div><div class="eyebrow">Practice</div><h2>Architecture Decisions, C4 &amp; Evolution</h2></div></div>
+<section class="concept">A system design is incomplete if nobody can understand why it exists or how it may change.
+<p>Use the C4 model for hierarchical structural views: system context, containers, components and — only when useful — code. Record consequential decisions with ADRs: context, decision, alternatives and consequences.</p>
+<p>Prefer designs that can evolve through observable, reversible steps. Architecture fitness functions can automate important constraints such as dependency direction, latency budgets, security rules or schema compatibility.</p></section>
+<div class="grid2">
+<section class="exercise"><h3>Deliberate practice</h3><ol><li>Draw C4 Context and Container views for your current practice system.</li><li>Write an ADR for database choice including two rejected options.</li><li>Define one automated architecture fitness function.</li></ol></section>
+<section class="challenge"><h3>Design challenge</h3><p>Your monolith is becoming difficult to deploy. What evidence would justify extracting a service, and what would make extraction premature?</p><label><input class="done" data-id="c18" type="checkbox"/> Mark practised</label></section>
+</div>
+<details><summary>Recall check</summary><p>Without looking back, explain <b>Architecture Decisions, C4 &amp; Evolution</b> in 90 seconds, name one trade-off, one failure mode, and one metric that would tell you whether your design is working.</p></details>
+</article>
+
+<section id="component-labs"><h2 class="section-title">Part II · Component design laboratories</h2>
+<p>These laboratories convert isolated concepts into mechanisms you can actually design. Their sequence is inspired by the strongest progression in the liquidslr notes — rate limiting → consistent hashing → KV store → IDs → queues → monitoring → storage → autocomplete — while the explanations remain independently grounded.</p>
+<article class="chapter lab" data-title="distributed rate limiter" id="l01">
+<div class="chapter-head"><span class="num">L01</span><div><div class="eyebrow">Component laboratory</div><h2>Distributed Rate Limiter</h2></div></div>
+<p>Token bucket, sliding windows, Redis/Lua, global vs per-user limits, fail-open/fail-closed.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Clarify scope: API gateway, service or client-side?</li><li>Estimate request/cardinality and state size.</li><li>Compare token bucket vs sliding-window log/counter.</li><li>Design atomic counter updates and TTLs.</li><li>Handle Redis failure and multi-region limits.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: Redis latency rises to 500 ms during an attack. Decide whether each endpoint fails open, fails closed, or uses a local emergency limiter.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article><article class="chapter lab" data-title="consistent hashing &amp; distributed cache" id="l02">
+<div class="chapter-head"><span class="num">L02</span><div><div class="eyebrow">Component laboratory</div><h2>Consistent Hashing &amp; Distributed Cache</h2></div></div>
+<p>Hash rings, virtual nodes, rebalancing, hot keys, replication and cache ownership.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Model modulo hashing when nodes change.</li><li>Add virtual nodes and compare key movement.</li><li>Choose replication factor.</li><li>Design hot-key mitigation.</li><li>Plan cache warm-up after node loss.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: one celebrity key produces 20% of reads while a cache node is replaced.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article><article class="chapter lab" data-title="distributed key-value store" id="l03">
+<div class="chapter-head"><span class="num">L03</span><div><div class="eyebrow">Component laboratory</div><h2>Distributed Key-Value Store</h2></div></div>
+<p>Partitioning, replication, quorum reasoning, conflict resolution, hinted handoff and repair.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Define put/get API and consistency needs.</li><li>Pick partitioning and replication.</li><li>Reason about R/W/N without overclaiming guarantees.</li><li>Choose conflict-resolution strategy.</li><li>Design anti-entropy/repair.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: a partition separates 2 of 5 replicas while clients continue writing on both sides.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article><article class="chapter lab" data-title="distributed unique id generator" id="l04">
+<div class="chapter-head"><span class="num">L04</span><div><div class="eyebrow">Component laboratory</div><h2>Distributed Unique ID Generator</h2></div></div>
+<p>Uniqueness, ordering, clock dependence, coordination, availability and bit allocation.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Compare DB sequence, UUID and Snowflake-style IDs.</li><li>Allocate timestamp/node/sequence bits.</li><li>Estimate lifetime and per-node throughput.</li><li>Handle clock rollback.</li><li>Plan node-ID allocation.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: two generators accidentally receive the same worker ID after an autoscaling event.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article><article class="chapter lab" data-title="distributed message queue" id="l05">
+<div class="chapter-head"><span class="num">L05</span><div><div class="eyebrow">Component laboratory</div><h2>Distributed Message Queue</h2></div></div>
+<p>Partitions, ordering, consumer groups, retention, acknowledgement, replay and backpressure.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Define producer/consumer contracts.</li><li>Choose partition key.</li><li>Specify ordering scope.</li><li>Design ack/retry/DLQ semantics.</li><li>Measure consumer lag and drain time.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: consumers fall 45 minutes behind while producers continue at 3× normal rate.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article><article class="chapter lab" data-title="metrics &amp; alerting platform" id="l06">
+<div class="chapter-head"><span class="num">L06</span><div><div class="eyebrow">Component laboratory</div><h2>Metrics &amp; Alerting Platform</h2></div></div>
+<p>High-cardinality ingestion, time-series storage, aggregation, retention, querying and alert evaluation.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Estimate samples/sec and storage.</li><li>Define metric identity and labels.</li><li>Choose aggregation/downsampling.</li><li>Design hot/cold retention.</li><li>Create SLO burn-rate alerts.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: a new deployment adds user_id as a metric label and cardinality explodes.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article><article class="chapter lab" data-title="object storage" id="l07">
+<div class="chapter-head"><span class="num">L07</span><div><div class="eyebrow">Component laboratory</div><h2>Object Storage</h2></div></div>
+<p>Metadata vs blob data, multipart upload, durability, checksums, replication and lifecycle policies.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Define PUT/GET/list semantics.</li><li>Separate metadata and object data paths.</li><li>Design multipart upload.</li><li>Add checksum/integrity verification.</li><li>Plan replication and lifecycle tiers.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: metadata commits but one object chunk fails to replicate before an AZ outage.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article><article class="chapter lab" data-title="search autocomplete" id="l08">
+<div class="chapter-head"><span class="num">L08</span><div><div class="eyebrow">Component laboratory</div><h2>Search Autocomplete</h2></div></div>
+<p>Trie/prefix indexing, ranking, freshness, caching, aggregation and abuse controls.</p>
+<div class="grid2"><section class="exercise"><h3>Guided build</h3><ol><li>Define latency/freshness targets.</li><li>Choose prefix data structure.</li><li>Design offline/streaming aggregation.</li><li>Rank suggestions.</li><li>Handle trending terms and cache invalidation.</li></ol></section>
+<section class="challenge"><h3>Failure injection</h3><p>Inject: a breaking event changes query popularity 100× within five minutes.</p><p><b>Required answer:</b> expected behaviour → invariant at risk → containment → recovery → metric/alert.</p></section></div>
+<details><summary>Architecture evolution prompt</summary><p>Start with one region and modest traffic. Now increase traffic 100×, add a second region, and impose a strict availability or compliance requirement. State what changes, what stays, and why.</p></details>
+</article></section><section id="case-studies"><h2 class="section-title">Part III · End-to-end system design case studies</h2>
+<p>Do not memorise a finished diagram. Use the same reasoning loop every time: <b>requirements → estimates → contracts → state → architecture → bottleneck → failure → trade-off → evolution</b>.</p>
+<article class="chapter case" data-title="url shortener" id="case-01">
+<div class="chapter-head"><span class="num">C01</span><div><div class="eyebrow">Case study · Beginner</div><h2>URL Shortener</h2></div></div>
+<p><b>Design brief.</b> 100M links, 100K redirect RPS peak, p95 &lt;50 ms. Separate redirect correctness from asynchronous analytics.</p>
+<div class="example"><b>Primary muscles:</b> Estimation · key generation · cache · redirects · analytics</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="notification platform" id="case-02">
+<div class="chapter-head"><span class="num">C02</span><div><div class="eyebrow">Case study · Intermediate</div><h2>Notification Platform</h2></div></div>
+<p><b>Design brief.</b> Email/SMS/push with user preferences, provider fallback, deduplication and delivery tracking.</p>
+<div class="example"><b>Primary muscles:</b> Queues · fan-out · retries · preferences · provider failure</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="web crawler" id="case-03">
+<div class="chapter-head"><span class="num">C03</span><div><div class="eyebrow">Case study · Intermediate</div><h2>Web Crawler</h2></div></div>
+<p><b>Design brief.</b> Large-scale crawl with per-host politeness, URL normalization, duplicate detection and recrawl policy.</p>
+<div class="example"><b>Primary muscles:</b> Frontier · politeness · dedupe · DNS · storage</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="news feed" id="case-04">
+<div class="chapter-head"><span class="num">C04</span><div><div class="eyebrow">Case study · Advanced</div><h2>News Feed</h2></div></div>
+<p><b>Design brief.</b> Home timeline for ordinary users and celebrities; explicitly compare fan-out-on-write and fan-out-on-read.</p>
+<div class="example"><b>Primary muscles:</b> Fan-out · cache · hot users · ranking · eventual consistency</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="chat system" id="case-05">
+<div class="chapter-head"><span class="num">C05</span><div><div class="eyebrow">Case study · Advanced</div><h2>Chat System</h2></div></div>
+<p><b>Design brief.</b> 1:1 and group chat with per-conversation ordering, reconnect, sync and push notifications.</p>
+<div class="example"><b>Primary muscles:</b> WebSockets · ordering · presence · offline delivery · multi-device</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="video platform" id="case-06">
+<div class="chapter-head"><span class="num">C06</span><div><div class="eyebrow">Case study · Advanced</div><h2>Video Platform</h2></div></div>
+<p><b>Design brief.</b> Large uploads, resumability, asynchronous encoding ladder, global playback and popularity spikes.</p>
+<div class="example"><b>Primary muscles:</b> Upload · object storage · transcoding · CDN · metadata</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="drive / file sync" id="case-07">
+<div class="chapter-head"><span class="num">C07</span><div><div class="eyebrow">Case study · Advanced</div><h2>Drive / File Sync</h2></div></div>
+<p><b>Design brief.</b> Cross-device file sync with large-file chunking, version history, conflict resolution and offline edits.</p>
+<div class="example"><b>Primary muscles:</b> Chunks · metadata · delta sync · conflict handling · notifications</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="proximity service" id="case-08">
+<div class="chapter-head"><span class="num">C08</span><div><div class="eyebrow">Case study · Advanced</div><h2>Proximity Service</h2></div></div>
+<p><b>Design brief.</b> Nearby businesses/places with location updates, radius queries and uneven geographic density.</p>
+<div class="example"><b>Primary muscles:</b> Geospatial index · partitioning · read-heavy traffic · freshness</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="payment system" id="case-09">
+<div class="chapter-head"><span class="num">C09</span><div><div class="eyebrow">Case study · Expert</div><h2>Payment System</h2></div></div>
+<p><b>Design brief.</b> Treat provider and internal ledger states explicitly; design pending/failed/succeeded transitions and reconciliation.</p>
+<div class="example"><b>Primary muscles:</b> Ledger · idempotency · reconciliation · webhooks · saga</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="digital wallet" id="case-10">
+<div class="chapter-head"><span class="num">C10</span><div><div class="eyebrow">Case study · Expert</div><h2>Digital Wallet</h2></div></div>
+<p><b>Design brief.</b> Transfers must preserve conservation of value, support retries and produce an auditable history.</p>
+<div class="example"><b>Primary muscles:</b> Double-entry ledger · concurrency · invariants · audit</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="stock exchange" id="case-11">
+<div class="chapter-head"><span class="num">C11</span><div><div class="eyebrow">Case study · Expert</div><h2>Stock Exchange</h2></div></div>
+<p><b>Design brief.</b> Separate deterministic order matching from downstream market-data distribution and analytics.</p>
+<div class="example"><b>Primary muscles:</b> Matching engine · ordering · low latency · market data · durability</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article><article class="chapter case" data-title="ride sharing capstone" id="case-12">
+<div class="chapter-head"><span class="num">C12</span><div><div class="eyebrow">Case study · Expert</div><h2>Ride Sharing Capstone</h2></div></div>
+<p><b>Design brief.</b> Integrate the entire handbook: rider/driver location, matching, trip state, ETA, pricing, payment and regional failure.</p>
+<div class="example"><b>Primary muscles:</b> Geo · streaming · matching · payments · multi-region · SLOs</div>
+<div class="grid2"><section class="exercise"><h3>60-minute design sequence</h3><ol>
+<li>0–8 min: clarify requirements, invariants and non-goals.</li><li>8–15 min: estimate scale and identify the likely bottleneck.</li>
+<li>15–25 min: define API/events and data model.</li><li>25–40 min: draw high-level architecture and critical read/write paths.</li>
+<li>40–50 min: deep-dive the hardest component.</li><li>50–57 min: inject failures, overload and regional issues.</li>
+<li>57–60 min: summarise trade-offs and the next evolution trigger.</li></ol></section>
+<section class="challenge"><h3>Evidence pack</h3><p>Produce: C4 Container view, one critical sequence diagram, capacity assumptions, one ADR, failure matrix, SLOs and a 2-minute verbal defence.</p></section></div>
+</article></section>
+<section id="practice-ladder">
+<h2 class="section-title">Integrated practice ladder</h2>
+<p>Use this progression to turn isolated mechanisms into increasingly complete system designs.</p>
+<table class="matrix">
+<tr><th>Level</th><th>System</th><th>Primary concepts to exercise</th><th>Required output</th></tr>
+<tr><td>1</td><td>URL Shortener</td><td>requirements, estimation, caching, database, partitioning</td><td>API + data model + capacity estimate + C4 container view</td></tr>
+<tr><td>2</td><td>Rate Limiter</td><td>token bucket, distributed counters, consistency, hot keys</td><td>algorithm + storage choice + failure behavior</td></tr>
+<tr><td>3</td><td>Notification Platform</td><td>queues, retries, idempotency, DLQ, backpressure</td><td>event flow + retry policy + SLOs</td></tr>
+<tr><td>4</td><td>E-commerce Checkout</td><td>sagas, outbox, inventory invariant, graceful degradation</td><td>sequence diagrams + ADR + failure matrix</td></tr>
+<tr><td>5</td><td>Chat / Messaging</td><td>ordering, fan-out, presence, multi-region, consistency</td><td>data partitioning + message flow + capacity</td></tr>
+<tr><td>6</td><td>Video / Social Feed</td><td>CDN, caching, fan-out, ranking, async pipelines</td><td>read/write paths + cache strategy + overload plan</td></tr>
+<tr><td>7</td><td>Ride Sharing</td><td>geospatial partitioning, streaming, matching, regional resilience</td><td>end-to-end architecture + 5 ADRs + RPO/RTO</td></tr>
+</table>
+</section>
+<section>
+<h2 class="section-title">Reusable system-design review checklist</h2>
+<table class="matrix">
+<tr><th>Question</th><th>What a strong answer contains</th></tr>
+<tr><td>What are we designing?</td><td>Actors, use cases, non-goals, measurable quality attributes.</td></tr>
+<tr><td>How large is it?</td><td>Assumptions, QPS, payloads, storage, bandwidth, peak factor.</td></tr>
+<tr><td>Where is state?</td><td>Source of truth, data model, indexes, partition key, replication.</td></tr>
+<tr><td>What must be consistent?</td><td>Business invariants and operation-specific consistency.</td></tr>
+<tr><td>What is synchronous?</td><td>Latency budget, dependencies, timeouts, idempotency.</td></tr>
+<tr><td>What is asynchronous?</td><td>Queue/stream semantics, ordering, retries, duplicates, DLQ.</td></tr>
+<tr><td>How does it fail?</td><td>Dependency, node, AZ, region, slow failure, overload, data corruption.</td></tr>
+<tr><td>How is blast radius limited?</td><td>Bulkheads, circuit breakers, rate limiting, shedding, cells/regions.</td></tr>
+<tr><td>How do we know it works?</td><td>SLIs, SLOs, traces, metrics, logs, synthetic tests, error budgets.</td></tr>
+<tr><td>How does it evolve?</td><td>ADRs, compatibility, migration path, rollback, ownership.</td></tr>
+</table>
+</section>
+<section>
+<h2 class="section-title">Grounded references</h2>
+<p>References intentionally favour standards, original research, official cloud architecture guidance and canonical architecture sources. Use books such as <i>Designing Data-Intensive Applications</i>, <i>Release It!</i>, <i>Fundamentals of Software Architecture</i> and <i>Enterprise Integration Patterns</i> for deeper treatment.</p>
+<ol class="refs"><li><b>ISO.</b> <a href="https://www.iso.org/standard/78176.html" rel="noopener" target="_blank">ISO/IEC 25010:2023 — Systems and software engineering — Product quality model</a></li><li><b>Gilbert &amp; Lynch.</b> <a href="https://groups.csail.mit.edu/tds/papers/Gilbert/Brewer2.pdf" rel="noopener" target="_blank">Perspectives on the CAP Theorem / formal CAP literature</a></li><li><b>Daniel Abadi.</b> <a href="https://www.cs.umd.edu/~abadi/papers/abadi-pacelc.pdf" rel="noopener" target="_blank">Consistency Tradeoffs in Modern Distributed Database System Design (PACELC)</a></li><li><b>AWS Builders’ Library.</b> <a href="https://aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/" rel="noopener" target="_blank">Timeouts, retries, and backoff with jitter</a></li><li><b>AWS Well-Architected.</b> <a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_limit_retries.html" rel="noopener" target="_blank">REL05-BP03 — Control and limit retry calls</a></li><li><b>AWS Well-Architected.</b> <a href="https://docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/rel_mitigate_interaction_failure_graceful_degradation.html" rel="noopener" target="_blank">REL05-BP01 — Implement graceful degradation</a></li><li><b>Microsoft Azure Architecture Center.</b> <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/" rel="noopener" target="_blank">Cloud Design Patterns</a></li><li><b>Google Cloud.</b> <a href="https://docs.cloud.google.com/architecture/framework" rel="noopener" target="_blank">Well-Architected Framework</a></li><li><b>Google Cloud.</b> <a href="https://docs.cloud.google.com/architecture/framework/reliability/horizontal-scalability" rel="noopener" target="_blank">Reliability — horizontal scalability</a></li><li><b>OpenTelemetry.</b> <a href="https://opentelemetry.io/docs/" rel="noopener" target="_blank">OpenTelemetry documentation/specifications</a></li><li><b>C4 Model.</b> <a href="https://c4model.com/" rel="noopener" target="_blank">Official C4 model for visualising software architecture</a></li><li><b>Martin Fowler.</b> <a href="https://martinfowler.com/ieeeSoftware/whoNeedsArchitect.pdf" rel="noopener" target="_blank">Who Needs an Architect?</a></li><li><b>Chris Richardson.</b> <a href="https://microservices.io/patterns/" rel="noopener" target="_blank">Microservices patterns catalogue</a></li><li><b>GitHub / Donne Martin.</b> <a href="https://github.com/donnemartin/system-design-primer" rel="noopener" target="_blank">System Design Primer</a></li><li><b>liquidslr.</b> <a href="https://github.com/liquidslr/system-design-notes" rel="noopener" target="_blank">System Design Notes — curriculum/case-study map based on System Design Interview Vol. 1 &amp; 2</a></li></ol>
+</section>
+</div>
+<footer>System Design Concept Handbook v5 · 11 August 2026 · standalone HTML · concept → component → system → failure → evolution.</footer>
+</main>
+</div>
+<script>
+const boxes=[...document.querySelectorAll('.done')];
+function refresh(){
+ let n=boxes.filter(b=>b.checked).length;
+ document.getElementById('ptxt').textContent=`${n} / 18 practised`;
+ document.getElementById('pbar').style.width=(100*n/18)+'%';
+ boxes.forEach(b=>localStorage.setItem('sd-'+b.dataset.id,b.checked?'1':'0'));
+}
+boxes.forEach(b=>{b.checked=localStorage.getItem('sd-'+b.dataset.id)==='1';b.addEventListener('change',refresh)});
+refresh();
+document.getElementById('search').addEventListener('input',e=>{
+ const q=e.target.value.toLowerCase().trim();
+ document.querySelectorAll('.chapter').forEach(c=>c.classList.toggle('hidden',q && !c.innerText.toLowerCase().includes(q)));
+});
+</script>
+</body>
+</html>
