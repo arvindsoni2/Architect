@@ -1,0 +1,1897 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The AI Engineering Handbook v3.0 — reviewed September 2026</title>
+<meta name="description" content="A consolidated, Pareto-pruned, Feynman-structured reference for production AI engineering. Edition v3.0, reviewed September 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- design tokens ---------- */
+  :root{
+    --ink:#1a1814;
+    --ink-soft:#3a3530;
+    --paper:#f5efe4;
+    --paper-warm:#ede5d3;
+    --rule:#1a1814;
+    --accent:#c8442a;      /* rust red */
+    --accent-soft:#e89074;
+    --highlight:#f5d76e;   /* lemon */
+    --ok:#3a7a3a;
+    --bad:#a82a2a;
+    --shadow: 0 1px 0 rgba(26,24,20,.08), 0 8px 24px -8px rgba(26,24,20,.18);
+    --max: 1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter Tight', system-ui, sans-serif;
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  /* paper grain texture */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none; z-index:0;
+    opacity:.35;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(120,90,40,.06) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(120,90,40,.05) 0, transparent 40%);
+    mix-blend-mode:multiply;
+  }
+  ::selection{background:var(--highlight); color:var(--ink)}
+
+  /* ---------- masthead ---------- */
+  .masthead{
+    border-bottom:2px solid var(--ink);
+    padding:18px 32px;
+    background:var(--paper);
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(8px);
+    background:rgba(245,239,228,.95);
+  }
+  .masthead-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    display:flex; align-items:baseline; justify-content:space-between; gap:24px;
+    flex-wrap:wrap;
+  }
+  .mast-title{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-variation-settings:"opsz" 96;
+    font-size:clamp(20px, 2.2vw, 26px);
+    line-height:1;
+    letter-spacing:-.02em;
+    margin:0;
+  }
+  .mast-title em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--accent);
+    font-variation-settings:"opsz" 144;
+  }
+  .mast-meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:var(--ink-soft);
+    display:flex; gap:18px; flex-wrap:wrap;
+  }
+  .mast-meta span{ white-space:nowrap }
+  .mast-meta b{ color:var(--accent); font-weight:700 }
+
+  /* ---------- hero ---------- */
+  .hero{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:64px 32px 32px;
+    position:relative;
+    z-index:1;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    color:var(--accent);
+    margin-bottom:24px;
+    display:flex; align-items:center; gap:12px;
+  }
+  .eyebrow::after{
+    content:"";
+    flex:1; height:1px; background:var(--ink); opacity:.3;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-variation-settings:"opsz" 144;
+    font-weight:900;
+    font-size:clamp(48px, 7vw, 96px);
+    line-height:.92;
+    letter-spacing:-.035em;
+    margin:0 0 24px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:400;
+    color:var(--accent);
+  }
+  .lede{
+    font-family:'Fraunces', serif;
+    font-variation-settings:"opsz" 24;
+    font-size:clamp(18px, 1.5vw, 22px);
+    line-height:1.45;
+    color:var(--ink-soft);
+    max-width:62ch;
+    font-weight:400;
+  }
+  .lede strong{ color:var(--ink); font-weight:500 }
+
+  .hero-stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(160px,1fr));
+    gap:0;
+    margin-top:56px;
+    border-top:2px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+  .stat{
+    padding:20px 18px;
+    border-right:1px solid var(--ink);
+  }
+  .stat:last-child{ border-right:none }
+  .stat-num{
+    font-family:'Fraunces', serif;
+    font-variation-settings:"opsz" 144;
+    font-weight:900;
+    font-size:36px;
+    line-height:1;
+    color:var(--accent);
+    display:block;
+    margin-bottom:6px;
+  }
+  .stat-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- tabs ---------- */
+  .tabs{
+    position:sticky;
+    top:62px;
+    z-index:40;
+    background:var(--paper);
+    border-bottom:1px solid var(--ink);
+    margin-top:48px;
+  }
+  .tabs-inner{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 16px;
+    display:flex;
+    gap:0;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .tabs-inner::-webkit-scrollbar{ display:none }
+  .tab{
+    background:none;
+    border:none;
+    padding:18px 20px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    cursor:pointer;
+    white-space:nowrap;
+    border-bottom:3px solid transparent;
+    transition:all .15s ease;
+    position:relative;
+  }
+  .tab:hover{ color:var(--ink) }
+  .tab.active{
+    color:var(--ink);
+    border-bottom-color:var(--accent);
+  }
+  .tab-num{
+    display:inline-block;
+    font-size:9px;
+    background:var(--ink);
+    color:var(--paper);
+    padding:2px 6px;
+    border-radius:2px;
+    margin-right:8px;
+    vertical-align:middle;
+  }
+  .tab.active .tab-num{ background:var(--accent) }
+
+  /* ---------- sections ---------- */
+  main{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:48px 32px 96px;
+    position:relative; z-index:1;
+  }
+  section.panel{ display:none }
+  section.panel.active{ display:block; animation:fade .4s ease }
+  @keyframes fade{ from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none} }
+
+  h2.section-title{
+    font-family:'Fraunces', serif;
+    font-variation-settings:"opsz" 144;
+    font-weight:700;
+    font-size:clamp(36px, 4.5vw, 56px);
+    line-height:.95;
+    letter-spacing:-.025em;
+    margin:0 0 12px;
+  }
+  h2.section-title em{ font-style:italic; color:var(--accent); font-weight:400 }
+  .section-sub{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--ink-soft);
+    margin-bottom:48px;
+    padding-bottom:24px;
+    border-bottom:1px solid var(--ink);
+  }
+
+  h3{
+    font-family:'Fraunces', serif;
+    font-variation-settings:"opsz" 48;
+    font-weight:700;
+    font-size:28px;
+    letter-spacing:-.015em;
+    margin:48px 0 16px;
+    line-height:1.15;
+  }
+  h4{
+    font-family:'Inter Tight', sans-serif;
+    font-weight:600;
+    font-size:16px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+    color:var(--ink);
+    margin:32px 0 12px;
+  }
+  p{ margin:0 0 16px; max-width:72ch }
+  a{ color:var(--accent); text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:1px }
+  a:hover{ background:var(--highlight); color:var(--ink); text-decoration:none }
+  code{
+    font-family:'JetBrains Mono', monospace;
+    font-size:.88em;
+    background:var(--paper-warm);
+    padding:1px 6px;
+    border-radius:2px;
+    border:1px solid rgba(26,24,20,.08);
+  }
+  ul, ol{ padding-left:1.2em; max-width:72ch }
+  li{ margin-bottom:8px }
+  li::marker{ color:var(--accent) }
+  blockquote{
+    border-left:3px solid var(--accent);
+    margin:24px 0;
+    padding:8px 0 8px 20px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--ink-soft);
+    max-width:64ch;
+  }
+
+  /* ---------- callout cards ---------- */
+  .callout{
+    border:1px solid var(--ink);
+    background:var(--paper-warm);
+    padding:20px 24px;
+    margin:20px 0;
+    position:relative;
+  }
+  .callout-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.14em;
+    color:var(--accent);
+    font-weight:700;
+    margin-bottom:8px;
+  }
+  .callout.feynman{ background:#fdf6e3; border-color:#b8941a }
+  .callout.feynman .callout-label{ color:#8a6a0a }
+  .callout.pareto{ background:#fff; border-color:var(--accent); border-left-width:4px }
+  .callout.warn{ background:#fef0ee; border-color:var(--bad) }
+  .callout.warn .callout-label{ color:var(--bad) }
+
+  /* ---------- grid ---------- */
+  .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:32px; margin:24px 0 }
+  .grid-3{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin:24px 0 }
+  @media (max-width:780px){
+    .grid-2, .grid-3{ grid-template-columns:1fr }
+  }
+
+  /* ---------- table ---------- */
+  .table-wrap{ overflow-x:auto; margin:24px 0; border:1px solid var(--ink) }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:14px;
+    background:var(--paper);
+  }
+  th, td{
+    padding:12px 16px;
+    text-align:left;
+    border-bottom:1px solid rgba(26,24,20,.15);
+    vertical-align:top;
+  }
+  th{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    background:var(--ink);
+    color:var(--paper);
+    font-weight:500;
+    border-bottom:none;
+  }
+  tr:last-child td{ border-bottom:none }
+  tr:hover td{ background:var(--paper-warm) }
+  td strong{ color:var(--accent) }
+
+  /* ---------- week / module card ---------- */
+  .week{
+    border:1px solid var(--ink);
+    margin:16px 0;
+    background:var(--paper);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .week:hover{ box-shadow:var(--shadow) }
+  .week-head{
+    display:flex; align-items:center; gap:20px;
+    padding:18px 24px;
+    cursor:pointer;
+    user-select:none;
+    border-bottom:1px solid transparent;
+  }
+  .week[open] .week-head{ border-bottom:1px solid var(--ink); background:var(--paper-warm) }
+  .week-num{
+    font-family:'Fraunces', serif;
+    font-variation-settings:"opsz" 144;
+    font-weight:900;
+    font-style:italic;
+    font-size:48px;
+    line-height:1;
+    color:var(--accent);
+    flex-shrink:0;
+    width:64px;
+  }
+  .week-title{
+    flex:1;
+  }
+  .week-title h4{
+    margin:0;
+    font-family:'Fraunces', serif;
+    font-variation-settings:"opsz" 36;
+    text-transform:none;
+    letter-spacing:-.01em;
+    font-size:22px;
+    font-weight:700;
+    line-height:1.2;
+  }
+  .week-title .meta{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .week-toggle{
+    font-family:'Fraunces', serif;
+    font-size:28px;
+    color:var(--ink-soft);
+    transition:transform .2s ease;
+  }
+  .week[open] .week-toggle{ transform:rotate(45deg); color:var(--accent) }
+  .week-body{
+    padding:24px;
+    display:none;
+  }
+  .week[open] .week-body{ display:block }
+
+  /* ---------- tier badge ---------- */
+  .tier{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    padding:2px 8px;
+    border:1px solid var(--ink);
+    border-radius:2px;
+    font-weight:500;
+    margin-right:6px;
+  }
+  .tier.t1{ background:var(--accent); color:var(--paper); border-color:var(--accent) }
+  .tier.t2{ background:var(--highlight); border-color:#b8941a; color:#5a4408 }
+  .tier.t3{ background:var(--paper); color:var(--ink-soft) }
+  .tier.essential{ background:var(--ok); color:#fff; border-color:var(--ok) }
+  .tier.high{ background:var(--accent); color:#fff; border-color:var(--accent) }
+  .tier.medium{ background:var(--highlight); color:#5a4408; border-color:#b8941a }
+  .tier.low{ background:var(--paper); color:var(--ink-soft) }
+
+  /* ---------- ascii diagram ---------- */
+  .ascii{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    line-height:1.4;
+    background:var(--ink);
+    color:var(--paper);
+    padding:20px 24px;
+    overflow-x:auto;
+    border-radius:0;
+    margin:20px 0;
+    white-space:pre;
+  }
+  .ascii .red{ color:var(--accent-soft) }
+  .ascii .yellow{ color:var(--highlight) }
+
+  /* ---------- pill ---------- */
+  .pill{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    padding:3px 10px;
+    border:1px solid var(--ink);
+    border-radius:99px;
+    margin:2px 4px 2px 0;
+    background:var(--paper);
+  }
+  .pill.do{ background:#dff0d8; border-color:var(--ok) }
+  .pill.skip{ background:#fde0dc; border-color:var(--bad); text-decoration:line-through; opacity:.7 }
+
+  /* ---------- footnote / source ---------- */
+  .source-ribbon{
+    background:var(--ink);
+    color:var(--paper);
+    padding:32px;
+    margin-top:64px;
+    border-radius:0;
+  }
+  .source-ribbon h3{
+    color:var(--highlight);
+    font-style:italic;
+    margin-top:0;
+  }
+  .source-ribbon a{ color:var(--highlight) }
+  .source-ribbon a:hover{ background:var(--highlight); color:var(--ink) }
+  .source-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px,1fr));
+    gap:24px;
+    margin-top:24px;
+  }
+  .source-grid h4{ color:var(--paper); margin-bottom:8px }
+  .source-grid ul{ list-style:none; padding:0; font-size:13px }
+  .source-grid li{ margin-bottom:6px; font-family:'JetBrains Mono', monospace; font-size:12px }
+  .source-grid li::before{ content:"→ "; color:var(--accent-soft) }
+
+  /* ---------- search ---------- */
+  .search-wrap{
+    position:relative;
+    margin-bottom:32px;
+  }
+  .search{
+    width:100%;
+    padding:14px 18px 14px 44px;
+    border:2px solid var(--ink);
+    background:var(--paper);
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    border-radius:0;
+    outline:none;
+  }
+  .search:focus{ background:#fff }
+  .search-wrap::before{
+    content:"⌕";
+    position:absolute;
+    left:14px;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:20px;
+    color:var(--accent);
+    font-weight:700;
+  }
+  mark{ background:var(--highlight); color:var(--ink); padding:0 2px }
+
+  /* ---------- scenario chooser ---------- */
+  .scenario-buttons{
+    display:flex; gap:8px; margin:16px 0 24px; flex-wrap:wrap;
+  }
+  .scenario-btn{
+    background:var(--paper);
+    border:1px solid var(--ink);
+    padding:8px 16px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    cursor:pointer;
+    transition:all .15s;
+  }
+  .scenario-btn:hover{ background:var(--paper-warm) }
+  .scenario-btn.active{ background:var(--ink); color:var(--paper); border-color:var(--ink) }
+  .scenario-content{ display:none }
+  .scenario-content.active{ display:block }
+
+  /* ---------- decision tree ---------- */
+  .tree{
+    font-family:'JetBrains Mono', monospace;
+    background:var(--paper-warm);
+    border:1px solid var(--ink);
+    padding:24px;
+    margin:24px 0;
+    font-size:13px;
+    line-height:1.7;
+  }
+  .tree .q{ color:var(--accent); font-weight:700 }
+  .tree .a{ color:var(--ok); font-weight:700 }
+  .tree .arrow{ color:var(--ink-soft) }
+
+  /* ---------- footer ---------- */
+  footer{
+    border-top:2px solid var(--ink);
+    padding:32px;
+    text-align:center;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    color:var(--ink-soft);
+    margin-top:48px;
+  }
+  footer em{ color:var(--accent); font-style:italic; font-family:'Fraunces', serif }
+
+  /* ---------- print ---------- */
+  @media print{
+    body{ background:#fff; font-size:11pt }
+    body::before{ display:none }
+    .masthead, .tabs, footer{ display:none }
+    section.panel{ display:block !important; page-break-before:always }
+    section.panel:first-of-type{ page-break-before:auto }
+    .week-body{ display:block !important }
+    .week-toggle{ display:none }
+    .ascii{ background:#f0f0f0 !important; color:#000 !important }
+    .source-ribbon{ background:#fff; color:#000; border:1px solid #000 }
+    .source-ribbon h3, .source-ribbon h4{ color:#000 }
+    .source-ribbon a{ color:#000 }
+    a{ color:#000 !important; text-decoration:underline }
+    .tab, .tabs{ display:none }
+  }
+
+  /* edge case: hide tab nav, show all sections */
+  body.all-open section.panel{ display:block !important }
+  body.all-open section.panel + section.panel{ margin-top:96px; border-top:2px solid var(--ink); padding-top:48px }
+
+  /* mobile tweaks */
+  @media (max-width:640px){
+    .hero{ padding:32px 20px 16px }
+    .masthead{ padding:14px 20px }
+    main{ padding:32px 20px 64px }
+    .tabs-inner{ padding:0 8px }
+    .tab{ padding:14px 12px }
+    .week-num{ font-size:36px; width:48px }
+    .week-title h4{ font-size:18px }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ MASTHEAD ============================ -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1 class="mast-title">The AI Engineering <em>Handbook</em></h1>
+    <div class="mast-meta">
+      <span><b>v3.0</b> · May 2026 · reviewed Sep 2026</span>
+      <span>Consolidated from 19 files</span>
+      <span>Pareto · Feynman</span>
+      <button onclick="window.print()" style="background:none; border:1px solid var(--ink); padding:4px 10px; font:inherit; cursor:pointer">Print / PDF</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<div class="hero">
+  <div class="eyebrow">Single source of truth · Reviewed 3 September 2026</div>
+  <h1>Six months of <em>notes,</em><br>compressed.</h1>
+  <p class="lede">
+    Nineteen markdown files. Roughly fifty thousand words. Overlapping curricula, expired links, models that no longer exist. This handbook is what survived the cull — <strong>one place to look</strong> when you need the 20% that actually ships products in 2026. Eighty percent of the volume, gone. None of the load-bearing ideas.
+  </p>
+
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">19→1</span><span class="stat-label">Files consolidated</span></div>
+    <div class="stat"><span class="stat-num">10wk</span><span class="stat-label">Mastery roadmap</span></div>
+    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Core architectures</span></div>
+    <div class="stat"><span class="stat-num">85%</span><span class="stat-label">Word reduction</span></div>
+  </div>
+</div>
+
+<!-- ============================ TABS ============================ -->
+<nav class="tabs" role="tablist">
+  <div class="tabs-inner">
+    <button class="tab active" data-target="t-roadmap" role="tab"><span class="tab-num">01</span>Roadmap</button>
+    <button class="tab" data-target="t-skills" role="tab"><span class="tab-num">02</span>Skills Matrix</button>
+    <button class="tab" data-target="t-architecture" role="tab"><span class="tab-num">03</span>Architecture</button>
+    <button class="tab" data-target="t-stack" role="tab"><span class="tab-num">04</span>Stack &amp; Decisions</button>
+    <button class="tab" data-target="t-eval" role="tab"><span class="tab-num">05</span>Evaluation</button>
+    <button class="tab" data-target="t-interview" role="tab"><span class="tab-num">06</span>Interview Playbook</button>
+    <button class="tab" data-target="t-landscape" role="tab"><span class="tab-num">07</span>Landscape · Sep 2026</button>
+    <button class="tab" data-target="t-sources" role="tab"><span class="tab-num">08</span>Sources</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============================================================== -->
+<!-- 01 · ROADMAP                                                    -->
+<!-- ============================================================== -->
+<section class="panel active" id="t-roadmap">
+
+<h2 class="section-title">The <em>ten-week</em> roadmap.</h2>
+<p class="section-sub">10–15 hours per week · outcome-driven · build before reading</p>
+
+<div class="callout pareto">
+  <div class="callout-label">⚡ Philosophy</div>
+  <p style="margin-bottom:8px"><strong>Pareto:</strong> One framework (LangGraph). One protocol (MCP). One vector store (pgvector). One observability stack (Langfuse). One deployment pattern (Docker + FastAPI). Everything else is optional.</p>
+  <p style="margin:0"><strong>Feynman:</strong> Every week ends with a <em>Teach-It-Back</em> checkpoint. If you can't explain it in plain English with a diagram, you haven't mastered it.</p>
+</div>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Phase</th><th>Weeks</th><th>Focus</th><th>Outcome</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Foundation</strong></td><td>1–2</td><td>LLM mechanics, tool use, prompts</td><td>Working tool-calling agent</td></tr>
+    <tr><td><strong>Retrieval</strong></td><td>3–4</td><td>Naive → Advanced → Agentic RAG</td><td>Production RAG pipeline with eval</td></tr>
+    <tr><td><strong>Agent core</strong></td><td>5–6</td><td>LangGraph, memory, MCP</td><td>Stateful agent + tool ecosystem</td></tr>
+    <tr><td><strong>Production</strong></td><td>7–8</td><td>Evaluation, observability, safety</td><td>Instrumented, guarded deployment</td></tr>
+    <tr><td><strong>Integration</strong></td><td>9–10</td><td>Multi-agent, capstone, portfolio</td><td>Shippable capstone + interview-ready</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- WEEK CARDS -->
+<details class="week" open>
+  <summary class="week-head">
+    <div class="week-num">01</div>
+    <div class="week-title">
+      <h4>LLM Mechanics &amp; Tool Use</h4>
+      <div class="meta">Foundation · The atomic loop</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>Attention as retrieval:</strong> You don't need the math. Context window = RAM. Attention = similarity search across that RAM.</li>
+      <li><strong>The atomic loop:</strong> <code>User → LLM → JSON → Tool → Result → LLM → Answer</code>. Every agentic system is this loop, repeated.</li>
+      <li><strong>Structured output:</strong> JSON mode + Pydantic parsing turns stochastic text into reliable software interfaces.</li>
+    </ul>
+
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"An LLM is a probabilistic autocomplete engine. Tool calling forces it to emit a JSON function call instead of prose. The magic is in the loop, not the model."</em>
+    </div>
+
+    <h4>Build: Atomic Agent</h4>
+    <p>A 100-line Python script that takes a user query, decides between three tools (web search, calculator, weather), executes the chosen tool, returns structured JSON.</p>
+    <p><strong>Success criteria:</strong> Handles 10 diverse queries without schema violations.</p>
+
+    <h4>Resources &amp; Skip-list</h4>
+    <span class="pill do">Anthropic tool-use docs</span>
+    <span class="pill do">promptingguide.ai</span>
+    <span class="pill skip">Transformer math proofs</span>
+    <span class="pill skip">Training from scratch</span>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">02</div>
+    <div class="week-title">
+      <h4>Prompt &amp; Context Engineering</h4>
+      <div class="meta">Foundation · Prompts are code</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>Six-block template:</strong> Role → Context → Task → Format → Rules → Examples. Use it as a starting structure, then test which blocks materially improve the task.</li>
+      <li><strong>Reasoning support:</strong> Ask for explicit plans, checks, evidence, or intermediate artifacts when the task needs them; evaluate the final result rather than assuming visible reasoning guarantees correctness.</li>
+      <li><strong>Context = RAM:</strong> What you put in (retrieved docs, memory, tool schemas) matters more than how you phrase the question.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"Prompts are code, not prose. We version them, test them, deploy them through CI/CD. A prompt change is a code change."</em>
+    </div>
+    <h4>Build: Prompt Versioning System</h4>
+    <p>Git-tracked prompt registry. Jinja2 or YAML templates separate from code. A/B test two variants against a 20-example eval set. Measure correctness, latency, token cost.</p>
+    <h4>Resources</h4>
+    <span class="pill do">Anthropic prompt-engineering docs</span>
+    <span class="pill skip">Jailbreak research</span>
+    <span class="pill skip">Emotional prompting studies</span>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">03</div>
+    <div class="week-title">
+      <h4>RAG Foundations</h4>
+      <div class="meta">Retrieval · Runtime knowledge injection</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>Chunking:</strong> A 512-token chunk with modest overlap is a baseline experiment, not a default. Iterate using retrieval and end-task evaluation.</li>
+      <li><strong>Embeddings:</strong> <code>text-embedding-3-large</code> (cloud) or <code>bge-large-en-v1.5</code> (open). The embedding model matters less than chunk quality.</li>
+      <li><strong>Hybrid search:</strong> Compare dense, sparse (BM25), and fused retrieval on the actual corpus; hybrid retrieval is valuable when lexical precision and semantic similarity are both needed.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"RAG is runtime knowledge injection. Instead of asking the LLM to remember everything, we Google our own documents at query time and paste the top results into the prompt."</em>
+    </div>
+    <h4>Build: Document Q&amp;A Pipeline</h4>
+    <p>Ingest 20 PDFs → chunk → embed into pgvector. FastAPI endpoint retrieves top-5 chunks and generates an answer with citation markers. <strong>Success criteria:</strong> 80%+ groundedness measured by LLM-as-judge.</p>
+    <h4>Resources</h4>
+    <span class="pill do">LlamaIndex RAG docs</span>
+    <span class="pill skip">GraphRAG (later)</span>
+    <span class="pill skip">Multi-modal RAG (later)</span>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">04</div>
+    <div class="week-title">
+      <h4>Agentic RAG &amp; Memory</h4>
+      <div class="meta">Retrieval · Self-evaluating loops</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>Agentic loop:</strong> Retrieve → Evaluate sufficiency → Reformulate → Re-retrieve (max 3 iterations) → Generate. The agent decides when it knows enough.</li>
+      <li><strong>Three memory tiers:</strong> Short-term (conversation), Semantic (user facts in vector DB), Episodic (past decisions as few-shot). Procedural is nice-to-have.</li>
+      <li><strong>Query reformulation:</strong> HyDE (Hypothetical Document Embedding) and step-back prompting actually move the needle. Most other tricks don't.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"Static RAG retrieves once and hopes. Agentic RAG asks: 'Is this enough?' If not, search again with a better query. It's a researcher checking sources before writing."</em>
+    </div>
+    <h4>Build: Self-Evaluating Research Agent</h4>
+    <p>Extend Week 3. Add sufficiency-evaluator node, query reformulation, semantic memory in pgvector. Evaluate on a 30-question test set measuring retrieval recall, faithfulness, latency.</p>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">05</div>
+    <div class="week-title">
+      <h4>LangGraph Deep Dive</h4>
+      <div class="meta">Agent core · State machines over chat loops</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <div class="callout">
+      <div class="callout-label">📌 September 2026 status</div>
+      <p style="margin:0">LangGraph 1.2.11 was the current PyPI release on 3 September 2026. Its maintainers describe it as a low-level orchestration framework for long-running, stateful agents, with production users including Klarna, Replit, and Elastic. <strong>Treat it as one mature option, not a universal default: select it when explicit state, durable execution, and controlled orchestration fit the workload.</strong></p>
+    </div>
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>State machines, not chat loops:</strong> Explicit nodes (functions) and edges (transitions) make agents debuggable.</li>
+      <li><strong>Checkpointing:</strong> Persistence turns a script into a product. Users can resume, rewind, inspect.</li>
+      <li><strong>Human-in-the-loop:</strong> <code>interrupt</code> nodes for approval. Non-negotiable for any agent with write access.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"LangGraph forces you to draw the flowchart before you write the code. If you can't draw the state machine on a whiteboard, your agent will fail in production."</em>
+    </div>
+    <h4>Build: Approval-Required Agent</h4>
+    <p>Plans a multi-step task (research → write → send). Pauses at "send" for human approval via a simple web UI. Resumes or aborts based on input. Persists state to PostgreSQL. <strong>Success criteria:</strong> kill the process mid-task, restart, it resumes correctly.</p>
+    <span class="pill do">Current LangGraph concepts and versioning docs</span>
+    <span class="pill skip">CrewAI deep dive (prototyping only)</span>
+    <span class="pill skip">AutoGen / Semantic Kernel deep dives (use Microsoft migration guidance if inherited)</span>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">06</div>
+    <div class="week-title">
+      <h4>MCP &amp; the Tool Ecosystem</h4>
+      <div class="meta">Agent core · USB-C for AI</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <div class="callout">
+      <div class="callout-label">📌 September 2026 status</div>
+      <p style="margin:0">MCP is governed through the Linux Foundation's Agentic AI Foundation. Anthropic's December 2025 donation announcement reported 10,000+ active public servers and 97M+ monthly Python and TypeScript SDK downloads; treat those as dated adoption figures, not live counters. The latest specification on 3 September 2026 was 2026-07-28. <strong>MCP is a widely adopted open standard for connecting AI applications to tools and context.</strong></p>
+    </div>
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>MCP is USB-C for AI:</strong> One standard for tools. Learn once, use everywhere.</li>
+      <li><strong>Build &gt; consume:</strong> Building one MCP server teaches you more than consuming ten.</li>
+      <li><strong>Schema-first design:</strong> Typed tool interfaces make agent-tool integration failures easier to detect, test, and contain.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"MCP is a contract. The server says 'I have a calculator tool that takes two numbers.' The client says 'I need to calculate something.' MCP translates so any LLM can use any tool."</em>
+    </div>
+    <h4>Build: MCP Server + Client</h4>
+    <p>An MCP server exposing a SQLite database (product catalog). Connect to your LangGraph agent from Week 5. Connect the same server to Claude Desktop. Document the schema with OpenAPI-style descriptions.</p>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">07</div>
+    <div class="week-title">
+      <h4>Evaluation &amp; Observability</h4>
+      <div class="meta">Production · Eval-driven development</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>EDD:</strong> Define your eval set before your agent. If you can't measure it, you can't ship it.</li>
+      <li><strong>Three-level eval:</strong> Outcome (did it finish?), Trajectory (was the path reasonable?), Per-step (was each tool call correct?).</li>
+      <li><strong>Langfuse:</strong> Self-hostable, OpenTelemetry-native, LangGraph-aware. The pragmatic choice for solo developers and small teams.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"Evaluation is the entire game. Anyone can get a demo working. The engineer who can prove it works at scale — with numbers — is the one who gets hired."</em>
+    </div>
+    <h4>Build: Eval Harness</h4>
+    <p>30 (input, expected_output) pairs as a golden dataset. LLM-as-judge scoring (faithfulness, relevance). Langfuse tracing on every node. CI script fails if faithfulness &lt; 85%.</p>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">08</div>
+    <div class="week-title">
+      <h4>Safety, Guardrails &amp; Cost Control</h4>
+      <div class="meta">Production · Defense in depth</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>Defense in depth:</strong> Input validation → Output guardrails → Budget limits → Audit logs. No single layer suffices.</li>
+      <li><strong>Cost is a feature:</strong> Eval-qualified routing can reduce cost by using expensive models only where they improve accepted-task outcomes.</li>
+      <li><strong>Prompt injection:</strong> The SQL injection of AI. Mitigate with privilege separation and tool allow-listing, not prompt cleverness.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"Safety isn't a bolt-on; it's architecture. You don't secure a bank by hiring better tellers; you secure it with vaults, cameras, and alarms."</em>
+    </div>
+    <h4>Build: Hardened Agent</h4>
+    <p>Add to Week 6 agent: input regex guard, output PII redaction, token budget per session (10K in / 2K out), cost dashboard, audit log of every tool call and approval.</p>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">09</div>
+    <div class="week-title">
+      <h4>Multi-Agent &amp; Capstone Design</h4>
+      <div class="meta">Integration · When (not) to multiply agents</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>Multi-agent is a scaling tool, not a default.</strong> Compare against a strong single-agent baseline and use multiple agents only when decomposition or independent review creates measured value.</li>
+      <li><strong>Supervisor pattern:</strong> One coordinator, specialist workers. Easiest to debug, easiest to scale.</li>
+      <li><strong>Plan-and-execute:</strong> Capable model plans, cheap model executes. The single best cost-optimization pattern.</li>
+    </ul>
+    <div class="callout feynman">
+      <div class="callout-label">🧠 Feynman checkpoint</div>
+      <em>"Multi-agent is hiring a team. If one person can do the job well, more people creates meetings, miscommunication, delay. Only go multi-agent when the work genuinely requires different expertise."</em>
+    </div>
+    <h4>Capstone: Enterprise Research Agent</h4>
+    <p>Planner → Research Agent (MCP search) → Writer Agent → Review Agent → Human Approval → Output. LangGraph state, Langfuse tracing, cost tracking.</p>
+  </div>
+</details>
+
+<details class="week">
+  <summary class="week-head">
+    <div class="week-num">10</div>
+    <div class="week-title">
+      <h4>Deployment, Portfolio &amp; Interview Prep</h4>
+      <div class="meta">Integration · Ship it · sell it</div>
+    </div>
+    <div class="week-toggle">+</div>
+  </summary>
+  <div class="week-body">
+    <h4>Pareto Focus</h4>
+    <ul>
+      <li><strong>Containerize or it didn't happen:</strong> Docker + docker-compose is the minimum viable production standard.</li>
+      <li><strong>Portfolio &gt; credentials:</strong> Two polished GitHub repos with READMEs, architecture diagrams, and demo videos beat ten certificates.</li>
+      <li><strong>STAR stories:</strong> Five quantified outcomes. Specifics pass senior loops; generics fail.</li>
+    </ul>
+    <h4>Whiteboard checklist</h4>
+    <ol>
+      <li>RAG architecture (naive vs agentic)</li>
+      <li>LangGraph state machine for any use case they hand you</li>
+      <li>MCP flow (host → client → server → tool)</li>
+      <li>Cost optimization (caching, routing, quantization)</li>
+      <li>Safety layers for a high-stakes agent</li>
+    </ol>
+  </div>
+</details>
+
+<h3>Capstone Specification</h3>
+<div class="callout pareto">
+  <div class="callout-label">🎯 Enterprise Research Agent</div>
+  <p style="margin-bottom:8px"><strong>Business case:</strong> "Reduce analyst research time from 4 hours to 10 minutes while maintaining citation accuracy."</p>
+  <div class="grid-2">
+    <div>
+      <h4 style="margin-top:8px">Technical requirements</h4>
+      <ol style="font-size:14px">
+        <li>LangGraph orchestration with explicit state machine</li>
+        <li>MCP-connected research tools</li>
+        <li>Agentic RAG with sufficiency evaluation</li>
+        <li>Semantic memory for user preferences</li>
+        <li>Human-in-the-loop approval before output</li>
+        <li>Langfuse tracing + cost dashboard</li>
+        <li>Dockerized deployment</li>
+        <li>30+ test query eval harness</li>
+      </ol>
+    </div>
+    <div>
+      <h4 style="margin-top:8px">Success metrics</h4>
+      <ul style="font-size:14px">
+        <li>85%+ answer correctness on eval set</li>
+        <li>90%+ groundedness (claims trace to sources)</li>
+        <li>p95 latency &lt; 15s per brief</li>
+        <li>&lt; $0.10 average cost per brief</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 02 · SKILLS MATRIX                                              -->
+<!-- ============================================================== -->
+<section class="panel" id="t-skills">
+
+<h2 class="section-title">The skills <em>matrix.</em></h2>
+<p class="section-sub">Tiered by hiring impact · 2026 expectations</p>
+
+<p>AI engineering in 2026 is systems engineering with probabilistic components. You are a software engineer first; AI is a specialty layer. The matrix below ranks skills by hiring impact — the 20% in Tier 1 is what gets you through senior loops.</p>
+
+<h3>Tier 1 · Non-negotiable</h3>
+<p style="font-size:14px; color:var(--ink-soft)">The 20% that gets you hired. If you're missing any of these, fix that before anything else.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Skill</th><th>Why it matters</th><th>Validate by</th></tr></thead>
+<tbody>
+<tr><td><strong>Python 3.11+</strong></td><td>The lingua franca. Type hints, async, pytest, packaging (uv).</td><td>Shipping typed, tested, async code</td></tr>
+<tr><td><strong>LLM tool calling</strong></td><td>The atomic unit of agentic systems.</td><td>Building a multi-tool agent from scratch</td></tr>
+<tr><td><strong>RAG pipelines</strong></td><td>A common pattern when answers must be grounded in changing or private knowledge.</td><td>End-to-end ingestion → retrieval → generation</td></tr>
+<tr><td><strong>LangGraph</strong></td><td>Production state management. Industry-settled choice.</td><td>Checkpointed, human-in-the-loop workflow</td></tr>
+<tr><td><strong>MCP</strong></td><td>Widely adopted open protocol under AAIF / Linux Foundation governance.</td><td>Building <em>and</em> consuming an MCP server</td></tr>
+<tr><td><strong>Evaluation harness</strong></td><td>Separates demos from products.</td><td>CI-gated eval suite with 30+ test cases</td></tr>
+<tr><td><strong>Docker + FastAPI</strong></td><td>Minimum viable production.</td><td>Containerized API with health checks</td></tr>
+<tr><td><strong>pgvector + SQL</strong></td><td>Data is the foundation; vector search is table stakes.</td><td>Hybrid search (dense + sparse) query</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Tier 2 · High-impact differentiators</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Skill</th><th>When you need it</th></tr></thead>
+<tbody>
+<tr><td><span class="tier t2">T2</span> Model routing</td><td>Cost optimization (cheap first, expensive fallback)</td></tr>
+<tr><td><span class="tier t2">T2</span> Quantization</td><td>On-prem or edge (INT8/INT4 via llama.cpp, vLLM)</td></tr>
+<tr><td><span class="tier t2">T2</span> Prompt versioning</td><td>Team-scale prompt management (Git-tracked)</td></tr>
+<tr><td><span class="tier t2">T2</span> Multi-agent patterns</td><td>Complex workflows requiring genuine specialization</td></tr>
+<tr><td><span class="tier t2">T2</span> Cost dashboards</td><td>High-volume production ($/task, $/user)</td></tr>
+<tr><td><span class="tier t2">T2</span> EU AI Act fluency</td><td>UK / EU work — AI Omnibus in force; Annex III high-risk rules apply from 2 Dec 2027</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Tier 3 · Specialized (learn when needed)</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Skill</th><th>Context</th></tr></thead>
+<tbody>
+<tr><td><span class="tier t3">T3</span> Fine-tuning (LoRA / QLoRA)</td><td>Only when RAG + prompting demonstrably fails</td></tr>
+<tr><td><span class="tier t3">T3</span> RLHF / DPO</td><td>Research or alignment-specialist roles</td></tr>
+<tr><td><span class="tier t3">T3</span> CUDA / Triton</td><td>ML infrastructure or training-focused roles</td></tr>
+<tr><td><span class="tier t3">T3</span> GraphRAG</td><td>Complex multi-hop reasoning over knowledge graphs</td></tr>
+<tr><td><span class="tier t3">T3</span> SLM deployment</td><td>Edge / IoT (Ollama, ONNX Runtime)</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>2023 vs 2026 — what changed</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Layer</th><th>2023 expected</th><th>2026 expects</th></tr></thead>
+<tbody>
+<tr><td>Programming</td><td>Python, Git, tests</td><td>Python + one more, async, type hints, modern tooling (uv, ruff)</td></tr>
+<tr><td>ML / DL</td><td>Classical ML + some DL</td><td>Transfer learning first, PyTorch fluency, one DL specialism</td></tr>
+<tr><td>LLMs</td><td>Prompting basics</td><td>Agentic patterns, RAG evolution, MCP, fine-tuning trade-offs</td></tr>
+<tr><td>MLOps</td><td>Docker, CI/CD</td><td>LLMOps: prompt versioning, eval CI, cost dashboards, observability</td></tr>
+<tr><td>Cloud</td><td>One cloud basics</td><td>One cloud at production depth + managed LLM service fluency</td></tr>
+<tr><td>Ethics</td><td>"Be aware of bias"</td><td>EU AI Act compliance, threat modelling, audit trails, governance</td></tr>
+<tr><td>Soft skills</td><td>Communication</td><td>Communication + EDD mindset + ROI articulation</td></tr>
+</tbody>
+</table>
+</div>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 03 · ARCHITECTURE                                               -->
+<!-- ============================================================== -->
+<section class="panel" id="t-architecture">
+
+<h2 class="section-title">Five core <em>architectures.</em></h2>
+<p class="section-sub">Every production agentic system is one of these — or a composition</p>
+
+<h3>1 · Single agent with tools</h3>
+<div class="ascii">User → Agent → Tools → APIs → Results</div>
+<p><strong>Use for:</strong> Assistants, coding tools, research agents, support bots. <br>
+<strong>Framework:</strong> OpenAI Agents SDK (fastest), LangGraph (most control).</p>
+
+<h3>2 · Planner – Executor</h3>
+<div class="ascii">User → <span class="red">Planner</span> (capable model) → Task list → <span class="yellow">Executor</span> (cheap model) → Tools</div>
+<p><strong>Use for:</strong> Report generation, complex research, structured workflows. <br>
+<strong>Benefit:</strong> Potentially lower cost per accepted result when routing quality is proven by evaluation. <br>
+<strong>Framework:</strong> LangGraph (natural fit), CrewAI Hierarchical Process.</p>
+
+<h3>3 · Multi-agent collaboration</h3>
+<div class="ascii">User → <span class="red">Manager Agent</span> → Specialist Agents → Results</div>
+<p><strong>Use for:</strong> AI dev teams, content pipelines, complex cross-domain tasks. <br>
+<strong>Caveat:</strong> Coordination adds latency, cost, and failure modes. Use it only when decomposition or independent verification beats a strong single-agent baseline.</p>
+
+<h3>4 · Event-driven</h3>
+<div class="ascii">Event (CRM lead, ticket, alert) → Agent → Decision → Action</div>
+<p><strong>Use for:</strong> Sales automation, DevOps, ops workflows. <br>
+<strong>Framework:</strong> n8n (no-code), LangGraph + Redis/Kafka (code-first), Temporal (durable).</p>
+
+<h3>5 · Self-improving (bounded)</h3>
+<div class="ascii">Agent → Action → Feedback → Memory update → Agent</div>
+<p><strong>Use for:</strong> Personal assistants, long-running research, recommendation systems. <br>
+<strong>Reality check:</strong> Most "self-improving" production systems are human-curated refinement loops. Full autonomy remains research-grade.</p>
+
+<h3>The four-layer production platform</h3>
+<div class="ascii">┌─────────────────────────────────────┐
+│ <span class="yellow">Application Layer</span>                    │  UIs · APIs · messaging · AG-UI
+├─────────────────────────────────────┤
+│ <span class="yellow">Agent Intelligence Layer</span>             │  Reasoning · planning · memory · reflection
+├─────────────────────────────────────┤
+│ <span class="yellow">Agent Runtime Layer</span>                  │  Scheduling · state · checkpointing
+├─────────────────────────────────────┤
+│ <span class="yellow">Infrastructure Layer</span>                 │  GPUs · model APIs · vector DBs · MCP servers
+└─────────────────────────────────────┘</div>
+
+<div class="grid-2">
+<div>
+<h4>Infrastructure Layer</h4>
+<ul>
+<li><strong>Model APIs:</strong> Claude (Fable 5.1, Opus 5, Sonnet 5, Haiku 4.5), GPT, Gemini, DeepSeek, open-weight via vLLM/Ollama</li>
+<li><strong>Vector DBs:</strong> pgvector (SQL-familiar), Pinecone (managed), Qdrant (performance)</li>
+<li><strong>MCP servers:</strong> Your tool ecosystem, standard protocol</li>
+</ul>
+</div>
+<div>
+<h4>Runtime Layer</h4>
+<ul>
+<li><strong>Loop:</strong> <code>perceive → reason → act → observe → persist → repeat</code></li>
+<li><strong>Options:</strong> LangGraph Platform, AWS Bedrock AgentCore, Temporal + adapters</li>
+</ul>
+</div>
+<div>
+<h4>Intelligence Layer</h4>
+<ul>
+<li><strong>Planning:</strong> Hierarchical decomposition, dynamic replanning on failure</li>
+<li><strong>Memory:</strong> Semantic (facts) · Episodic (experiences) · Procedural (evolving prompts)</li>
+<li><strong>Reflection:</strong> Self-critique before final output</li>
+</ul>
+</div>
+<div>
+<h4>Application Layer</h4>
+<ul>
+<li><strong>AG-UI</strong> (CopilotKit) for real-time streaming to frontends</li>
+<li>Streaming responses, HITL checkpoints, session management</li>
+</ul>
+</div>
+</div>
+
+<h3>Three unsolved problems · 2026</h3>
+<p>These remain the primary barriers to fully autonomous production agents. Recognizing them keeps you honest in interviews.</p>
+
+<div class="grid-3">
+<div class="callout warn">
+<div class="callout-label">⚠ Unsolved · 01</div>
+<h4 style="margin-top:0">Long-term memory</h4>
+<p style="font-size:14px"><strong>Problem:</strong> Agents forget across sessions. Context windows are expensive and degrade with length.</p>
+<p style="font-size:14px"><strong>Practical baseline:</strong> Hybrid — hot-path context + vector semantic memory + background consolidation.</p>
+<p style="font-size:14px; margin:0"><strong>Gap:</strong> Cross-agent memory sharing, provenance tracking, contamination prevention.</p>
+</div>
+
+<div class="callout warn">
+<div class="callout-label">⚠ Unsolved · 02</div>
+<h4 style="margin-top:0">Reliable planning</h4>
+<p style="font-size:14px"><strong>Problem:</strong> Agents lose track of progress, replan poorly on failure, or over-decompose trivial tasks.</p>
+<p style="font-size:14px"><strong>Practical baseline:</strong> Explicit task graphs (LangGraph), execution monitoring, plan verification via a second model.</p>
+<p style="font-size:14px; margin:0"><strong>Gap:</strong> Hours-long autonomous workflows with reliable replanning.</p>
+</div>
+
+<div class="callout warn">
+<div class="callout-label">⚠ Unsolved · 03</div>
+<h4 style="margin-top:0">Observability at scale</h4>
+<p style="font-size:14px"><strong>Problem:</strong> We can trace everything, but interpreting traces — "why is this agent slowly degrading?" — is largely manual.</p>
+<p style="font-size:14px"><strong>Practical baseline:</strong> Langfuse / OpenTelemetry traces, model-based judging for sampled grading.</p>
+<p style="font-size:14px; margin:0"><strong>Gap:</strong> Automated root-cause analysis for agent failures.</p>
+</div>
+</div>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 04 · STACK & DECISIONS                                          -->
+<!-- ============================================================== -->
+<section class="panel" id="t-stack">
+
+<h2 class="section-title">Stack &amp; <em>decisions.</em></h2>
+<p class="section-sub">By scenario · with decision trees</p>
+
+<h3>Pick a stack by scenario</h3>
+<div class="scenario-buttons">
+  <button class="scenario-btn active" data-scenario="solo">Solo / Portfolio</button>
+  <button class="scenario-btn" data-scenario="enterprise">Enterprise Azure</button>
+  <button class="scenario-btn" data-scenario="edge">Edge / Privacy-first</button>
+</div>
+
+<div class="scenario-content active" data-scenario="solo">
+<div class="table-wrap">
+<table>
+<thead><tr><th>Layer</th><th>Choice</th><th>Rationale</th></tr></thead>
+<tbody>
+<tr><td>Framework</td><td><strong>LangGraph 1.2.11</strong></td><td>Free, open-source, production-stable; pin and re-evaluate for each project</td></tr>
+<tr><td>LLM</td><td><strong>Claude Sonnet 5</strong> + an eval-qualified lower-cost route</td><td>Start with measured task quality and cost; escalate to Opus 5 or Fable 5.1 only when evals justify it</td></tr>
+<tr><td>Vector DB</td><td><strong>pgvector + PostgreSQL</strong></td><td>One database for everything</td></tr>
+<tr><td>Eval</td><td>DeepEval + custom harness</td><td>Pytest-native, free</td></tr>
+<tr><td>Observability</td><td><strong>Langfuse (self-hosted)</strong></td><td>MIT license, LangGraph-native</td></tr>
+<tr><td>Deploy</td><td>Docker + Render / Railway / Hetzner</td><td>Cheap, simple</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="scenario-content" data-scenario="enterprise">
+<div class="table-wrap">
+<table>
+<thead><tr><th>Layer</th><th>Choice</th><th>Rationale</th></tr></thead>
+<tbody>
+<tr><td>Framework</td><td>LangGraph + Azure AI Foundry</td><td>Native Azure integration</td></tr>
+<tr><td>LLM</td><td>Azure OpenAI + Claude via Bedrock / Foundry</td><td>Compliance + capability blend</td></tr>
+<tr><td>Vector DB</td><td>Azure AI Search (vector mode)</td><td>Managed, integrated</td></tr>
+<tr><td>Protocol</td><td>MCP (industry default) + A2A for cross-org</td><td>Standard + future-proof</td></tr>
+<tr><td>Observability</td><td>LangSmith or Azure Monitor</td><td>Enterprise support</td></tr>
+<tr><td>Deploy</td><td>Azure Container Apps / AWS Bedrock AgentCore</td><td>Managed, scalable, audit-friendly</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div class="scenario-content" data-scenario="edge">
+<div class="table-wrap">
+<table>
+<thead><tr><th>Layer</th><th>Choice</th><th>Rationale</th></tr></thead>
+<tbody>
+<tr><td>Model</td><td>Eval-qualified open-weight model sized for the target hardware</td><td>Avoid pinning the architecture to a fast-moving model leaderboard</td></tr>
+<tr><td>Runtime</td><td>Ollama + llama.cpp / vLLM</td><td>Consumer hardware compatible</td></tr>
+<tr><td>Vector DB</td><td>Chroma (local) or SQLite + sqlite-vec</td><td>Zero external dependencies</td></tr>
+<tr><td>Deploy</td><td>ONNX Runtime / OpenVINO</td><td>Cross-platform inference</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<h3>Protocol stack at a glance</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Protocol</th><th>Layer</th><th>Status · September 2026</th><th>Learn priority</th></tr></thead>
+<tbody>
+<tr><td><strong>MCP</strong></td><td>Agent ↔ Tools</td><td>AAIF / Linux Foundation governance · specification 2026-07-28</td><td><span class="tier essential">Essential</span></td></tr>
+<tr><td><strong>A2A</strong></td><td>Agent ↔ Agent</td><td>Open interoperability protocol; verify the profile and implementation maturity</td><td><span class="tier high">High</span></td></tr>
+<tr><td><strong>AG-UI</strong></td><td>Agent ↔ Frontend</td><td>Open event protocol; implementation maturity varies by stack</td><td><span class="tier high">High</span></td></tr>
+<tr><td><strong>MCP Apps</strong></td><td>Interactive UI in MCP responses</td><td>Optional extension in the 2026-07-28 MCP specification</td><td><span class="tier medium">Medium</span></td></tr>
+<tr><td><strong>ANP</strong></td><td>Decentralized discovery</td><td>Experimental</td><td><span class="tier low">Low</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Decision trees</h3>
+
+<h4>RAG vs Fine-tuning</h4>
+<div class="tree">
+<span class="q">Can better prompting solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
+  ↓ NO
+<span class="q">Can RAG solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
+  ↓ NO
+<span class="q">Can few-shot examples solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
+  ↓ NO
+<span class="q">Consider fine-tuning (LoRA)</span> with 1K+ high-quality examples.
+</div>
+
+<h4>Single agent vs Multi-agent</h4>
+<div class="tree">
+<span class="q">Task is deterministic with clear steps?</span> <span class="arrow">→</span> Workflow (LangGraph DAG)
+  ↓
+<span class="q">Task needs reasoning + 2–5 tool calls?</span> <span class="arrow">→</span> Single Agent (ReAct)
+  ↓
+<span class="q">Task decomposes into distinct expertise domains?</span> <span class="arrow">→</span> Multi-Agent (Supervisor)
+  ↓
+<span class="q">Task requires debate / consensus?</span> <span class="arrow">→</span> Peer-to-Peer (research only)
+</div>
+
+<h4>Cloud vs Edge deployment</h4>
+<div class="tree">
+<span class="q">Latency &lt; 200ms?</span> <span class="arrow">→</span> Edge (SLM on-device)
+<span class="q">Data cannot leave premises?</span> <span class="arrow">→</span> Edge or private cloud
+<span class="q">Complex reasoning required?</span> <span class="arrow">→</span> Cloud (frontier LLM)
+<span class="q">High volume, cost-sensitive?</span> <span class="arrow">→</span> Hybrid (SLM edge + LLM cloud fallback)
+</div>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 05 · EVALUATION                                                 -->
+<!-- ============================================================== -->
+<section class="panel" id="t-eval">
+
+<h2 class="section-title">Evaluation <em>pyramid.</em></h2>
+<p class="section-sub">Build from the bottom up · most teams skip the cheap layers</p>
+
+<p>Most teams skip the cheap layers and go straight to LLM-as-judge, then wonder why evals are noisy and expensive. Build bottom-up.</p>
+
+<div class="ascii">                    ┌──────────────────┐
+                    │   <span class="yellow">Human eval</span>     │   ← Periodic calibration (quarterly)
+                    │   (gold standard)│
+                    └──────────────────┘
+                  ┌──────────────────────┐
+                  │   <span class="yellow">LLM-as-judge</span>       │   ← Every PR / model change
+                  │   (RAGAS, G-Eval)    │
+                  └──────────────────────┘
+              ┌──────────────────────────────┐
+              │   <span class="yellow">Schema validation</span>           │   ← Every commit
+              │   Exact match, code exec     │      Fast, cheap, deterministic
+              │   Structural assertions      │
+              └──────────────────────────────┘</div>
+
+<h3>Layer 1 · Structural validation (commit-level)</h3>
+<ul>
+<li>JSON schema compliance (Pydantic validators)</li>
+<li>Tool-call signature verification</li>
+<li>Regex guards for format compliance</li>
+<li>Code-execution tests for code-gen agents</li>
+</ul>
+
+<h3>Layer 2 · LLM-as-judge (PR-level)</h3>
+<ul>
+<li><strong>RAGAS:</strong> faithfulness, answer relevance, context precision / recall</li>
+<li><strong>DeepEval G-Eval:</strong> chain-of-thought reasoning before scoring</li>
+</ul>
+<div class="callout warn">
+<div class="callout-label">⚠ Calibration rule</div>
+<p style="margin:0">Do not trust an LLM judge until it has been calibrated against a representative human-labelled set with an agreement threshold appropriate to the decision risk.</p>
+</div>
+
+<h3>Layer 3 · Human evaluation (quarterly)</h3>
+<ul>
+<li>Likert ratings on a sampled subset</li>
+<li>Error-taxonomy tagging (retrieval failure, reasoning error, hallucination, tool misuse)</li>
+<li>Inter-annotator agreement (κ &gt; 0.6 is the bar)</li>
+</ul>
+
+<h3>The three-level agent eval</h3>
+<p>Evaluate at all three levels or you'll miss critical failure modes.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Level</th><th>Question</th><th>Metrics</th><th>Tools</th></tr></thead>
+<tbody>
+<tr><td><strong>Outcome</strong></td><td>Did the task complete successfully?</td><td>Task success rate, CSAT, deflection rate</td><td>Production analytics</td></tr>
+<tr><td><strong>Trajectory</strong></td><td>Was the path reasonable?</td><td>Steps to completion, tool selection accuracy, loop detection</td><td>Langfuse traces</td></tr>
+<tr><td><strong>Per-step</strong></td><td>Was each individual action correct?</td><td>Tool param accuracy, retrieval precision@k, latency</td><td>Custom assertions</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Anti-patterns to avoid</h4>
+<ul>
+<li><strong>Outcome-only eval:</strong> misses agents that get lucky or take inefficient paths</li>
+<li><strong>Trajectory-only eval:</strong> punishes valid creative paths</li>
+<li><strong>Static eval sets:</strong> your data drifts; your eval set should too. Refresh monthly.</li>
+</ul>
+
+<h3>Production checklist</h3>
+<div class="grid-2">
+<div>
+<h4>Before shipping</h4>
+<ul style="font-size:14px">
+<li>☐ Eval harness passes on golden dataset (threshold defined)</li>
+<li>☐ Schema validation on 100% of outputs</li>
+<li>☐ Cost per task estimated and budgeted</li>
+<li>☐ P95 latency measured and within SLA</li>
+<li>☐ Human-in-the-loop defined for high-stakes actions</li>
+<li>☐ Rollback plan documented (feature flag or model version pin)</li>
+<li>☐ PII redaction tested</li>
+<li>☐ Prompt-injection probes pass (regex + output guardrails)</li>
+</ul>
+</div>
+<div>
+<h4>After shipping</h4>
+<ul style="font-size:14px">
+<li>☐ Langfuse / OpenTelemetry tracing live</li>
+<li>☐ Cost dashboard tracking $/task and $/user</li>
+<li>☐ Canary deployment 1% → 5% → 25% → 100%</li>
+<li>☐ Alert on faithfulness degradation &gt; 10% vs baseline</li>
+<li>☐ Weekly error-taxonomy review</li>
+<li>☐ Monthly eval set refresh</li>
+</ul>
+</div>
+</div>
+
+<h3>Cost estimation template</h3>
+<div class="ascii">Monthly cost = input tokens × input price + output tokens × output price
+
+Reviewed example · 10K queries/day · 2K input + 500 output · Claude Sonnet 5
+Input:  300K queries × 2K tokens = 600M × $2/M  = $1,200
+Output: 300K queries × 500 tokens = 150M × $10/M = $1,500
+Baseline: <span class="yellow">$2,700/month</span> before caching, batch discounts, tools, retrieval, or retries
+
+Optimization levers:
+  Cache stable repeated prefixes
+  Route only eval-qualified tasks to cheaper models
+  Reduce unnecessary context without discarding evidence
+  Batch asynchronous workloads when the provider supports it
+
+Recalculate with current provider pricing and measured workload data; do not copy a generic savings percentage.</div>
+
+<h3>Metric selection guide</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Problem type</th><th>Primary metric</th><th>Guardrail metrics</th></tr></thead>
+<tbody>
+<tr><td>Classification (balanced)</td><td>F1, ROC-AUC</td><td>Latency, calibration</td></tr>
+<tr><td>Classification (imbalanced)</td><td>PR-AUC, F-beta</td><td>False positive rate</td></tr>
+<tr><td>RAG</td><td>Faithfulness, answer relevance</td><td>Retrieval recall@k, latency</td></tr>
+<tr><td>Agent</td><td>Task success rate</td><td>Steps to completion, cost/task</td></tr>
+<tr><td>Ranking / Recsys</td><td>NDCG@k, MRR</td><td>Diversity, coverage</td></tr>
+</tbody>
+</table>
+</div>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 06 · INTERVIEW PLAYBOOK                                         -->
+<!-- ============================================================== -->
+<section class="panel" id="t-interview">
+
+<h2 class="section-title">The interview <em>playbook.</em></h2>
+<p class="section-sub">Five questions that separate read-the-docs from shipped-in-prod</p>
+
+<details class="week" open>
+<summary class="week-head">
+<div class="week-num">Q1</div>
+<div class="week-title"><h4>Walk me through naive RAG → advanced RAG → agentic RAG.</h4><div class="meta">Tests RAG depth · retrieval reasoning</div></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<h4>Strong answer structure</h4>
+<ol>
+<li><strong>Naive:</strong> embed → vector search → stuff into prompt → generate. Fast, simple, fails on complex queries.</li>
+<li><strong>Advanced:</strong> add hybrid search (BM25 + dense), reranking (cross-encoder), query rewriting. Better recall, still static.</li>
+<li><strong>Agentic:</strong> agent evaluates sufficiency, reformulates query, iterates retrieval (max N times), then generates with citations. Dynamic, slower, higher quality.</li>
+</ol>
+<blockquote>Senior signal: mentions latency trade-offs, cost per query, and when each tier is appropriate.</blockquote>
+</div>
+</details>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">Q2</div>
+<div class="week-title"><h4>Your RAG hallucinates despite good retrieval. Debug it.</h4><div class="meta">Tests systematic thinking</div></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<h4>Strong answer · ordered</h4>
+<ol>
+<li>Verify retrieval is actually correct (log chunks, measure recall@k).</li>
+<li>Check prompt instructions: "Answer ONLY from context."</li>
+<li>Check context positioning (lost-in-the-middle; move best chunks to start/end).</li>
+<li>Check chunk granularity (too large dilutes signal; too small fragments facts).</li>
+<li>Add faithfulness check (LLM-as-judge or NLI model) before returning the answer.</li>
+<li>If all fail, the question likely isn't answerable from the corpus.</li>
+</ol>
+</div>
+</details>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">Q3</div>
+<div class="week-title"><h4>When do you NOT use an agent?</h4><div class="meta">Tests judgment · anti-agent-washing</div></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<h4>Strong answer</h4>
+<ul>
+<li>Deterministic workflow → use a DAG / state machine.</li>
+<li>Sub-second latency budget → agent loops add seconds.</li>
+<li>High cost of failure (finance, medical) without HITL → too risky.</li>
+<li>Simple RAG or single tool call suffices → don't over-engineer.</li>
+<li>A strong single-agent baseline already meets the acceptance target and the task does not decompose cleanly → multi-agent complexity is unlikely to earn its cost.</li>
+</ul>
+</div>
+</details>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">Q4</div>
+<div class="week-title"><h4>How do you cut LLM costs by 50% without quality regression?</h4><div class="meta">Tests optimization · economics</div></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<h4>Strong answer · three tiers</h4>
+<ol>
+<li><strong>Don't call the LLM:</strong> semantic + exact caching, trivial query classification to non-LLM paths.</li>
+<li><strong>Call a cheaper LLM:</strong> route tasks that pass an eval-backed confidence threshold; use the larger model as a controlled fallback.</li>
+<li><strong>Make each call cheaper:</strong> prompt compression, shorter contexts, output token limits, quantization, batch inference, prompt caching.</li>
+</ol>
+<div class="callout warn">
+<div class="callout-label">Critical</div>
+<p style="margin:0">Validate every change against the eval harness. Cost cuts without measurement are just quality cuts in disguise.</p>
+</div>
+</div>
+</details>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">Q5</div>
+<div class="week-title"><h4>Explain MCP in 60 seconds.</h4><div class="meta">Tests current-state knowledge</div></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<h4>Strong answer</h4>
+<blockquote>"MCP is an open interface for AI applications to access tools and data — like USB-C for AI. Its server primitives are <strong>Tools</strong> (execute functions), <strong>Resources</strong> (expose context), and <strong>Prompts</strong> (reusable templates). A server exposes capabilities; a client consumes them. Compatible hosts can reuse the same capability boundary instead of building a bespoke integration for each tool. MCP moved under the Linux Foundation's Agentic AI Foundation in December 2025; the latest specification reviewed here is 2026-07-28."</blockquote>
+</div>
+</details>
+
+<h3>System design scenarios</h3>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">A</div>
+<div class="week-title"><h4>Customer support chatbot · 100k QPS · &lt; 2s latency</h4><div class="meta">High-volume RAG + tool use</div></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<h4>Architecture</h4>
+<ol>
+<li><strong>Intent classifier</strong> (small model, &lt; 50ms) routes simple FAQs to cached responses.</li>
+<li><strong>RAG pipeline</strong> (hybrid search + rerank, &lt; 200ms) for complex queries.</li>
+<li><strong>LLM</strong> (quantized open-weight or API) with constrained JSON output.</li>
+<li><strong>Tool layer</strong> (order lookup, refund) via MCP with HITL for write operations.</li>
+<li><strong>Guardrails:</strong> input filtering, output PII redaction, toxicity detection.</li>
+<li><strong>Fallback:</strong> confidence threshold routes to human with full context.</li>
+</ol>
+<h4>Key trade-offs</h4>
+<ul>
+<li><strong>Latency vs quality:</strong> reranking adds latency but may improve precision; measure both on the target corpus.</li>
+<li><strong>Cost vs coverage:</strong> use an eval-qualified open-weight model for suitable routine traffic and a stronger API model for defined edge cases.</li>
+</ul>
+</div>
+</details>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">B</div>
+<div class="week-title"><h4>Real-time fraud detection · &lt; 50ms</h4><div class="meta">Why an LLM is the wrong tool</div></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<h4>Architecture</h4>
+<ol>
+<li><strong>Feature pipeline:</strong> Kafka → Flink for real-time aggregations.</li>
+<li><strong>Model:</strong> XGBoost or LightGBM — not an LLM. Deterministic, fast, explainable.</li>
+<li><strong>Inference:</strong> ONNX Runtime, co-located with feature store.</li>
+<li><strong>Decision:</strong> score → policy engine (allow / step-up / block).</li>
+<li><strong>Explainability:</strong> SHAP values surfaced to analysts.</li>
+</ol>
+<blockquote>Why not an LLM? Latency budget and deterministic requirements. Use the right tool for the job.</blockquote>
+</div>
+</details>
+
+<h3>Behavioral · STAR templates</h3>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">S1</div>
+<div class="week-title"><h4>Tell me about a model that failed in production.</h4></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<div class="ascii"><span class="yellow">Situation:</span> At [Company], our demand-forecasting model's MAPE jumped from
+9% to 17% overnight after a deployment.
+
+<span class="yellow">Task:</span> I owned the ML pipeline and had to diagnose and fix it before
+the weekly replenishment run.
+
+<span class="yellow">Action:</span>
+  1. Rolled back via feature flag within 15 minutes.
+  2. Checked data drift — PSI on input features showed an upstream
+     schema change (new POS field mapping).
+  3. Fixed the ingestion pipeline, added schema validation
+     (Great Expectations), and retrained.
+  4. Added a canary stage (1% traffic) to the deployment pipeline.
+
+<span class="yellow">Result:</span> Zero business impact due to fast rollback. Schema validation
+now blocks known incompatible changes before they hit the model.
+Post-mortem became our template for incident response.</div>
+</div>
+</details>
+
+<details class="week">
+<summary class="week-head">
+<div class="week-num">S2</div>
+<div class="week-title"><h4>How do you handle ambiguity?</h4></div>
+<div class="week-toggle">+</div>
+</summary>
+<div class="week-body">
+<div class="ascii"><span class="yellow">Situation:</span> Stakeholders asked for an "AI assistant" without defining
+success metrics or scope.
+
+<span class="yellow">Task:</span> Create clarity and a viable 6-week plan.
+
+<span class="yellow">Action:</span>
+  1. Ran a 2-day discovery workshop with 5 stakeholders.
+  2. Defined the primary metric (deflection rate) and guardrails
+     (CSAT, escalation rate).
+  3. Scoped a 2-week MVP (RAG over 500 FAQs) to validate feasibility.
+  4. Wrote a one-pager with architecture, risks, and go/no-go criteria.
+
+<span class="yellow">Result:</span> MVP achieved 40% deflection rate. Stakeholders approved
+full build. The one-pager became our project charter.</div>
+</div>
+</details>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 07 · LANDSCAPE                                                  -->
+<!-- ============================================================== -->
+<section class="panel" id="t-landscape">
+
+<h2 class="section-title">The landscape — <em>September 2026.</em></h2>
+<p class="section-sub">What changed since the original notes · what to track</p>
+
+<div class="callout pareto">
+<div class="callout-label">⚡ The headline shifts</div>
+<ul style="margin:0">
+<li><strong>Claude's active lineup changed.</strong> Anthropic now lists Fable 5.1, Opus 5, Sonnet 5, and Haiku 4.5. Select by eval results and workload economics rather than treating one model as a permanent default.</li>
+<li><strong>MCP matured.</strong> It remains under the Linux Foundation's Agentic AI Foundation; the latest specification reviewed on 3 September 2026 is 2026-07-28 and includes optional extensions for tasks, skills, and MCP Apps.</li>
+<li><strong>LangGraph stayed on the 1.2 line.</strong> PyPI listed 1.2.11, released 11 August 2026. It is a mature low-level option for explicit, long-running stateful orchestration—not an automatic choice for every agent.</li>
+<li><strong>The EU AI Omnibus entered into force on 27 July 2026.</strong> Annex III high-risk rules now apply from 2 December 2027; Annex I product-embedded high-risk rules apply from 2 August 2028.</li>
+<li><strong>Agent protocols are separating concerns.</strong> MCP covers tools and context, A2A covers agent interoperability, and AG-UI covers agent-to-frontend events. Treat each implementation as a maturity and security decision.</li>
+<li><strong>Microsoft Agent Framework 1.0 is production-ready.</strong> Microsoft directs inherited AutoGen and Semantic Kernel users to its migration guidance; new projects should compare it with LangGraph and other runtimes against explicit requirements.</li>
+</ul>
+</div>
+
+<h3>Model snapshot · Anthropic only</h3>
+<p style="font-size:14px; color:var(--ink-soft)">For context — OpenAI, Google, DeepSeek lineups move similarly fast. This is the line most relevant to LangGraph + MCP work.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Model</th><th>ID</th><th>Role</th><th>Context / max output</th><th>Input / Output (per 1M)</th></tr></thead>
+<tbody>
+<tr><td><strong>Fable 5.1</strong></td><td><code>claude-fable-5-1</code></td><td>Demanding reasoning and long-horizon agentic work</td><td>1M / 128K</td><td>$10 / $50</td></tr>
+<tr><td><strong>Opus 5</strong></td><td><code>claude-opus-5</code></td><td>Starting point for complex agentic coding and enterprise work</td><td>1M / 128K</td><td>$5 / $25</td></tr>
+<tr><td><strong>Sonnet 5</strong></td><td><code>claude-sonnet-5</code></td><td>Speed and intelligence balance</td><td>1M / 128K</td><td>$2 / $10</td></tr>
+<tr><td><strong>Haiku 4.5</strong></td><td><code>claude-haiku-4-5-20251001</code></td><td>Fast, lower-cost routing and simple tasks</td><td>200K / 64K</td><td>$1 / $5</td></tr>
+</tbody>
+</table>
+</div>
+<p style="font-size:13px; color:var(--ink-soft); margin-top:8px"><em>API list prices and limits verified against Anthropic's model overview on 3 September 2026. Re-check before making a production or budget decision.</em></p>
+
+<h3>What was pruned from the original 19 files</h3>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Pruned</th><th>Reason</th></tr></thead>
+<tbody>
+<tr><td>Deep transformer math</td><td>Operational intuition suffices; proofs don't ship products</td></tr>
+<tr><td>Fine-tuning / LoRA deep dives</td><td>Specialist optimisation path; first establish whether retrieval, tools, prompting, or workflow controls solve the measured failure</td></tr>
+<tr><td>Constitutional AI, RLHF, DPO theory</td><td>Research-grade; not required for applied engineering roles</td></tr>
+<tr><td>CrewAI deep dive</td><td>Useful option, but one framework is enough for this Pareto-focused track</td></tr>
+<tr><td>AutoGen / Semantic Kernel</td><td>Microsoft now provides migration guidance toward Agent Framework 1.0; retain only when inherited systems require it</td></tr>
+<tr><td>Personal-agent product research</td><td>Niche and product-specific; outside this engineering track</td></tr>
+<tr><td>20+ arXiv paper summaries</td><td>Permanent identifiers — linked in resources instead</td></tr>
+<tr><td>AI PM curriculum</td><td>Out of scope for engineering track</td></tr>
+<tr><td>Cognizant-specific certification (AI-102) prep</td><td>Too narrow; generalized to "pick one cloud cert"</td></tr>
+<tr><td>12-module academic curriculum</td><td>Cognitive overload; 10 focused weeks beats 12 scattered modules</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Quarterly refresh checklist</h3>
+<p>This handbook will go stale. To keep it current, run this loop every quarter:</p>
+<ol>
+<li>Verify current model IDs and pricing against the official Anthropic / OpenAI / Google docs.</li>
+<li>Check LangGraph version (PyPI) and re-pin dependencies.</li>
+<li>Re-read the latest MCP spec changelog at <code>modelcontextprotocol.io</code>.</li>
+<li>Re-check the EU AI Act implementation timeline and any subsequent amendments against official EU sources.</li>
+<li>Skim Anthropic's <a href="https://applied-llms.org/">applied-llms.org</a> and the LangChain blog for new patterns.</li>
+<li>Audit external links (link rot is real on personal blogs and vendor startup sites).</li>
+</ol>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 08 · SOURCES                                                    -->
+<!-- ============================================================== -->
+<section class="panel" id="t-sources">
+
+<h2 class="section-title">Verified <em>sources.</em></h2>
+<p class="section-sub">Every link below checked 3 September 2026 · grouped by purpose</p>
+
+<div class="search-wrap">
+  <input type="text" class="search" id="src-search" placeholder="filter sources… (e.g. 'mcp', 'langgraph', 'eval')" />
+</div>
+
+<div class="source-grid" id="src-grid">
+
+<div data-tag="protocols frameworks">
+<h4 style="color:var(--ink)">Frameworks &amp; Protocols</h4>
+<ul>
+<li><a href="https://docs.langchain.com/oss/python/langgraph/overview">LangGraph docs</a> — official concepts and current guidance</li>
+<li><a href="https://github.com/langchain-ai/langgraph">LangGraph GitHub</a> — MIT license, active</li>
+<li><a href="https://docs.langchain.com/langsmith/agent-server-changelog">Agent Server changelog</a> — release-pace tracker</li>
+<li><a href="https://modelcontextprotocol.io/specification/latest">Model Context Protocol</a> — latest official specification</li>
+<li><a href="https://github.com/modelcontextprotocol">MCP GitHub org</a> — reference servers, SDKs</li>
+<li><a href="https://www.anthropic.com/news/donating-the-model-context-protocol-and-establishing-of-the-agentic-ai-foundation">MCP → Linux Foundation announcement</a></li>
+<li><a href="https://docs.crewai.com/">CrewAI docs</a> — for prototyping; not production-first</li>
+<li><a href="https://openai.github.io/openai-agents-python/">OpenAI Agents SDK</a></li>
+<li><a href="https://docs.ag-ui.com/">AG-UI docs</a> — agent → frontend</li>
+</ul>
+</div>
+
+<div data-tag="anthropic claude">
+<h4 style="color:var(--ink)">Anthropic / Claude</h4>
+<ul>
+<li><a href="https://docs.anthropic.com/">docs.anthropic.com</a> — API, models, tool use</li>
+<li><a href="https://platform.claude.com/docs/en/models/overview">Models overview</a> — current IDs, pricing, limits, and lifecycle links</li>
+<li><a href="https://platform.claude.com/docs/en/models/fable-5-1/overview">Fable 5.1</a> — demanding reasoning and long-horizon agentic work</li>
+<li><a href="https://platform.claude.com/docs/en/models/opus-5/overview">Opus 5</a> — complex agentic coding and enterprise work</li>
+<li><a href="https://platform.claude.com/docs/en/models/sonnet-5/overview">Sonnet 5</a> — speed and intelligence balance</li>
+<li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt-engineering guide</a></li>
+</ul>
+</div>
+
+<div data-tag="learning courses">
+<h4 style="color:var(--ink)">Learning</h4>
+<ul>
+<li><a href="https://www.promptingguide.ai/">promptingguide.ai</a> — DAIR.AI, maintained</li>
+<li><a href="https://www.deeplearning.ai/">deeplearning.ai</a> — short courses (Agents, RAG, LangGraph)</li>
+<li><a href="https://applied-llms.org/">applied-llms.org</a> — "What we learned from a year of building with LLMs"</li>
+<li><a href="https://arxiv.org/list/cs.AI/recent">arXiv cs.AI feed</a></li>
+<li><a href="https://arxiv.org/list/cs.LG/recent">arXiv cs.LG feed</a></li>
+</ul>
+</div>
+
+<div data-tag="eval observability">
+<h4 style="color:var(--ink)">Evaluation &amp; Observability</h4>
+<ul>
+<li><a href="https://www.deepeval.com/">DeepEval</a> — pytest-native LLM eval</li>
+<li><a href="https://docs.ragas.io/">RAGAS docs</a> — RAG-specific metrics</li>
+<li><a href="https://langfuse.com/">Langfuse</a> — open source, self-hostable</li>
+<li><a href="https://github.com/Arize-ai/phoenix">Arize Phoenix</a> — OSS observability alternative</li>
+<li><a href="https://docs.smith.langchain.com/">LangSmith</a> — paid, LangChain-native</li>
+<li><a href="https://opentelemetry.io/">OpenTelemetry</a> — standard tracing</li>
+</ul>
+</div>
+
+<div data-tag="vector data infra">
+<h4 style="color:var(--ink)">Vector / Data / Infra</h4>
+<ul>
+<li><a href="https://github.com/pgvector/pgvector">pgvector</a> — Postgres extension</li>
+<li><a href="https://github.com/qdrant/qdrant">Qdrant</a> — performance vector DB</li>
+<li><a href="https://docs.trychroma.com/">Chroma</a> — local-first</li>
+<li><a href="https://docs.pinecone.io/">Pinecone</a> — fully managed</li>
+<li><a href="https://docs.vllm.ai/">vLLM</a> — high-throughput inference</li>
+<li><a href="https://github.com/ollama/ollama">Ollama</a> — local model runtime</li>
+</ul>
+</div>
+
+<div data-tag="safety security regulation">
+<h4 style="color:var(--ink)">Safety, Security, Regulation</h4>
+<ul>
+<li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP Top 10 for LLMs</a></li>
+<li><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act">EU AI Act timeline</a> — official</li>
+<li><a href="https://www.guardrailsai.com/">Guardrails AI</a> — output validation</li>
+<li><a href="https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force">AI Omnibus entry into force</a> — official July 2026 timeline update</li>
+</ul>
+</div>
+
+<div data-tag="cost deployment">
+<h4 style="color:var(--ink)">Cost / Deployment</h4>
+<ul>
+<li><a href="https://modal.com/">Modal</a> — serverless GPU</li>
+<li><a href="https://www.bentoml.com/">BentoML</a> — model serving</li>
+<li><a href="https://e2b.dev/">E2B</a> — code-execution sandbox for agents</li>
+<li><a href="https://render.com/">Render</a> · <a href="https://railway.app/">Railway</a> · <a href="https://www.hetzner.com/cloud">Hetzner</a> — cheap deploys</li>
+</ul>
+</div>
+
+<div data-tag="canonical reading">
+<h4 style="color:var(--ink)">Canonical reading</h4>
+<ul>
+<li>📕 <strong>AI Engineering</strong> — Chip Huyen (O'Reilly, 2025) — the canonical text</li>
+<li>📕 <strong>Designing Machine Learning Systems</strong> — Chip Huyen — pre-LLM but still relevant for MLOps</li>
+<li>📄 <strong>"What we learned from a year of building with LLMs"</strong> — applied-llms.org</li>
+<li>📄 <strong>Anthropic Prompt-Engineering Guide</strong> — docs.anthropic.com</li>
+<li>📄 <strong>MCP Specification</strong> — modelcontextprotocol.io — short, precise, essential</li>
+</ul>
+</div>
+
+</div>
+
+<div class="source-ribbon">
+<h3>Links that were <em>removed</em></h3>
+<p style="font-size:14px">From the earlier corpus, the following were dropped due to link rot, project archive, or relevance:</p>
+<div class="source-grid">
+<div>
+<h4>Dropped</h4>
+<ul>
+<li><code>github.com/openai/swarm</code> — superseded by Agents SDK</li>
+<li><code>github.com/VRSEN/agency-swarm</code> — maintenance unclear</li>
+<li><code>openclaw.ai</code> — niche product research outside this track</li>
+<li>Microsoft AutoGen / Semantic Kernel deep dives — use Agent Framework migration guidance for inherited systems</li>
+<li>Various LinkedIn-Learning links — auth-walled, expire</li>
+<li><code>a2a.dev</code> — canonical URL migrated under Linux Foundation</li>
+</ul>
+</div>
+<div>
+<h4>Replaced</h4>
+<ul>
+<li>OpenAI Swarm → OpenAI Agents SDK</li>
+<li>Microsoft Agent Framework preview → Agent Framework 1.0 documentation</li>
+<li>OpenClaw research → SLM section reference only</li>
+<li>Generic "fine-tuning" guides → Pareto note: avoid until necessary</li>
+</ul>
+</div>
+</div>
+</div>
+
+</section>
+
+</main>
+
+<footer>
+  Compiled <em>May 2026</em> · reviewed <em>3 September 2026</em> · Pareto-pruned · Feynman-structured · 19 files → 1 reference
+</footer>
+
+<!-- ============================ SCRIPT ============================ -->
+<script>
+  // tab switching
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('section.panel');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      tabs.forEach(x => x.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      t.classList.add('active');
+      const target = document.getElementById(t.dataset.target);
+      if (target) target.classList.add('active');
+      // scroll to top of main on tab change
+      const main = document.querySelector('main');
+      main.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  // scenario chooser
+  document.querySelectorAll('.scenario-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('section');
+      parent.querySelectorAll('.scenario-btn').forEach(b => b.classList.remove('active'));
+      parent.querySelectorAll('.scenario-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      const target = parent.querySelector(`.scenario-content[data-scenario="${btn.dataset.scenario}"]`);
+      if (target) target.classList.add('active');
+    });
+  });
+
+  // source filter
+  const srcSearch = document.getElementById('src-search');
+  const srcGrid = document.getElementById('src-grid');
+  if (srcSearch && srcGrid) {
+    const cards = Array.from(srcGrid.children);
+    const originalHTML = cards.map(c => c.innerHTML);
+    srcSearch.addEventListener('input', e => {
+      const q = e.target.value.toLowerCase().trim();
+      cards.forEach((c, i) => {
+        c.innerHTML = originalHTML[i]; // reset highlights
+        const text = c.textContent.toLowerCase();
+        const tag = (c.dataset.tag || '').toLowerCase();
+        const match = !q || text.includes(q) || tag.includes(q);
+        c.style.display = match ? '' : 'none';
+        if (q && match) {
+          // highlight in links
+          c.querySelectorAll('a, h4').forEach(el => {
+            const re = new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');
+            el.innerHTML = el.innerHTML.replace(re, '<mark>$1</mark>');
+          });
+        }
+      });
+    });
+  }
+
+  // expand/collapse all helper via keyboard (a key)
+  document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'a' && (e.ctrlKey || e.metaKey)) return;
+    if (e.key === 'e') {
+      document.querySelectorAll('details.week').forEach(d => d.open = true);
+    }
+    if (e.key === 'c') {
+      document.querySelectorAll('details.week').forEach(d => d.open = false);
+    }
+  });
+
+  // deep-link via hash
+  if (location.hash) {
+    const id = location.hash.slice(1);
+    const tab = document.querySelector(`.tab[data-target="${id}"]`);
+    if (tab) tab.click();
+  }
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      history.replaceState(null, '', '#' + t.dataset.target);
+    });
+  });
+</script>
+
+</body>
+</html>
