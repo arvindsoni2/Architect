@@ -1,0 +1,1287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forward Deployed AI Engineer Handbook v1.3</title>
+<meta name="description" content="A field guide for taking enterprise AI systems from ambiguous customer problems to safe, measurable production outcomes.">
+<style>
+:root{
+  --bg:#0b1020; --panel:#11182a; --panel2:#151f35; --text:#e8edf7; --muted:#aab7cf;
+  --accent:#7dd3fc; --accent2:#a7f3d0; --warn:#fcd34d; --danger:#fca5a5; --line:#26344f;
+  --code:#08101e; --good:#34d399;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:var(--accent)}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr);min-height:100vh}
+nav{
+  position:sticky;top:0;height:100vh;overflow:auto;padding:22px 16px;border-right:1px solid var(--line);
+  background:linear-gradient(180deg,#0c1324,#0a1020)
+}
+.brand{padding:6px 8px 18px;border-bottom:1px solid var(--line);margin-bottom:14px}
+.brand h1{font-size:18px;line-height:1.25;margin:0 0 6px}
+.brand small{color:var(--muted)}
+.nav-group{margin:16px 0 6px;color:#d7e4fb;font-size:12px;text-transform:uppercase;letter-spacing:.11em;font-weight:800}
+nav a{display:block;text-decoration:none;color:var(--muted);padding:7px 9px;border-radius:8px;font-size:14px}
+nav a:hover{background:var(--panel2);color:var(--text)}
+main{max-width:1180px;padding:44px 54px 100px}
+.hero{padding:34px;border:1px solid var(--line);border-radius:18px;background:
+radial-gradient(circle at 80% 20%,rgba(125,211,252,.14),transparent 33%),
+linear-gradient(135deg,#111a2e,#0f1729)}
+.eyebrow{color:var(--accent2);font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:46px;line-height:1.07;margin:10px 0 14px;max-width:880px}
+.hero p{font-size:19px;color:#cbd6e9;max-width:900px}
+.badges{display:flex;gap:9px;flex-wrap:wrap;margin-top:19px}
+.badge{border:1px solid #334568;background:#101a2e;border-radius:999px;padding:6px 10px;font-size:13px;color:#dce7fa}
+section{padding-top:42px}
+h2{font-size:31px;line-height:1.2;margin:0 0 17px;border-bottom:1px solid var(--line);padding-bottom:9px}
+h3{font-size:22px;margin-top:30px;margin-bottom:10px}
+h4{font-size:17px;margin-top:22px;margin-bottom:8px;color:#dbeafe}
+p{max-width:920px}
+.lead{font-size:18px;color:#ccd7ea}
+.grid2,.grid3,.grid4{display:grid;gap:14px;margin:18px 0}
+.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.grid4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:17px}
+.card h3,.card h4{margin-top:0}
+.card p:last-child{margin-bottom:0}
+.kpi{font-size:31px;font-weight:850;color:var(--accent2);line-height:1}
+.kpi-label{font-size:13px;color:var(--muted);margin-top:5px}
+.callout{border-left:4px solid var(--accent);background:#0f192c;padding:14px 17px;border-radius:0 10px 10px 0;margin:17px 0}
+.callout.warn{border-color:var(--warn)}
+.callout.danger{border-color:var(--danger)}
+.callout.good{border-color:var(--good)}
+.fieldnote,.decision,.redflag,.checkcard,.interview-signal{
+  border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:16px 0;background:#0f182a
+}
+.fieldnote::before,.decision::before,.redflag::before,.checkcard::before,.interview-signal::before{
+  display:block;font-size:11px;font-weight:900;letter-spacing:.12em;margin-bottom:7px
+}
+.fieldnote::before{content:"FIELD NOTE";color:var(--accent)}
+.decision::before{content:"DECISION RULE";color:var(--accent2)}
+.redflag::before{content:"RED FLAG";color:var(--danger)}
+.checkcard::before{content:"CHECKLIST";color:var(--warn)}
+.interview-signal::before{content:"INTERVIEW SIGNAL";color:#c4b5fd}
+.field-check{list-style:none;padding-left:0;margin-bottom:0}
+.field-check li{margin:7px 0;padding-left:1.4em;position:relative}
+.field-check li::before{content:"□";position:absolute;left:0;color:var(--accent2);font-weight:900}
+.script{background:#0a1323;border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:12px 0}
+.script .speaker{font-size:12px;font-weight:900;letter-spacing:.08em;color:var(--accent2);text-transform:uppercase}
+.script p{margin:6px 0 12px}
+.gates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.gate{background:#101a2d;border:1px solid var(--line);border-radius:13px;padding:15px}
+.gate strong{display:block;color:var(--accent2);font-size:17px;margin-bottom:5px}
+@media(max-width:900px){.gates{grid-template-columns:1fr}}
+pre{background:var(--code);border:1px solid var(--line);padding:16px;border-radius:12px;overflow:auto;color:#dbeafe}
+table{width:100%;border-collapse:collapse;margin:17px 0 24px;font-size:14px}
+th,td{border:1px solid var(--line);padding:10px 11px;vertical-align:top}
+th{background:#142039;text-align:left}
+tr:nth-child(even) td{background:#0e1627}
+ul,ol{max-width:950px}
+li{margin:5px 0}
+.check{list-style:none;padding-left:0}
+.check li::before{content:"□";display:inline-block;width:1.4em;color:var(--accent2);font-weight:900}
+.pill{display:inline-block;border:1px solid #3b4d6b;border-radius:999px;padding:2px 8px;margin:2px;font-size:12px}
+.level{font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--accent2)}
+.assignment{border:1px solid #35516d;background:linear-gradient(145deg,#111b2f,#0e1729);padding:20px;border-radius:15px;margin:18px 0}
+.assignment h3{margin-top:0}
+.rubric td:first-child{font-weight:750;width:25%}
+.meter{height:8px;background:#26344f;border-radius:99px;overflow:hidden}
+.meter span{display:block;height:100%;background:linear-gradient(90deg,#7dd3fc,#a7f3d0)}
+.diagram{border:1px solid var(--line);background:#0b1425;border-radius:14px;padding:16px;margin:18px 0}
+.diagram svg{width:100%;height:auto}
+.resource{padding:11px 0;border-bottom:1px solid var(--line)}
+.resource strong{display:block}
+.resource span{font-size:13px;color:var(--muted)}
+.quote{font-size:21px;line-height:1.4;color:#e3eefc;padding:10px 0 10px 18px;border-left:4px solid var(--accent2);max-width:900px}
+.small{font-size:13px;color:var(--muted)}
+.tag-must{color:#86efac}.tag-good{color:#7dd3fc}.tag-ref{color:#c4b5fd}
+details{background:#0e1728;border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:9px 0}
+summary{cursor:pointer;font-weight:750}
+.toplink{font-size:12px;float:right}
+.footer{margin-top:70px;border-top:1px solid var(--line);padding-top:22px;color:var(--muted);font-size:13px}
+@media(max-width:900px){
+ .layout{display:block} nav{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+ main{padding:28px 20px 70px}.hero h1{font-size:35px}.grid2,.grid3,.grid4{grid-template-columns:1fr}
+}
+@media print{
+ nav{display:none}.layout{display:block}main{max-width:none;padding:0 20px}.hero{break-after:page}
+ body{background:white;color:#111}
+ .hero,.card,.assignment,.callout,.diagram,pre,details,.fieldnote,.decision,.redflag,.checkcard,.interview-signal,.gate,.script{background:white!important;color:#111!important;border-color:#bbb!important}
+ .hero p,.lead,.resource span,.small,.kpi-label{color:#333!important}
+ th{background:#e9edf3!important;color:#111!important} tr:nth-child(even) td{background:#f5f7fa!important;color:#111!important}
+ h2{break-before:page} a{color:#114488}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+<nav>
+  <div class="brand">
+    <h1>FDE Handbook v1.3</h1>
+    <small>Forward Deployed AI Engineering<br>Audited field edition • 4 Sep 2026</small>
+  </div>
+  <div class="nav-group">Start</div>
+  <a href="#intro">0. How to use this handbook</a>
+  <a href="#role">1. What an FDE actually is</a>
+  <a href="#market">2. Why the role matters now</a>
+  <a href="#competency">3. Competency model</a>
+  <a href="#roadmap">4. Transition roadmap</a>
+
+  <div class="nav-group">Engineering Core</div>
+  <a href="#software">5. Software engineering</a>
+  <a href="#systems">6. System design</a>
+  <a href="#ai">7. LLM & agent engineering</a>
+  <a href="#evals">8. Evals & reliability</a>
+  <a href="#platform">9. Cloud, platform & LLMOps</a>
+  <a href="#security">10. Security & governance</a>
+
+  <div class="nav-group">Forward-Deployed Craft</div>
+  <a href="#discovery">11. Discovery & problem framing</a>
+  <a href="#delivery">12. FDE delivery loop</a>
+  <a href="#production-gates">12A. Six production gates</a>
+  <a href="#adoption">12B. Adoption engineering</a>
+  <a href="#value">13. Outcomes & business value</a>
+  <a href="#failure">14. Failure modes</a>
+
+  <div class="nav-group">Practice</div>
+  <a href="#assignments">15. Assignment ladder</a>
+  <a href="#projects">16. Portfolio projects</a>
+  <a href="#capstone">17. Capstone simulation</a>
+  <a href="#interviews">18. Interview preparation</a>
+  <a href="#readiness">19. Readiness scorecard</a>
+  <a href="#fieldkit">Field kit: scripts & checklists</a>
+
+  <div class="nav-group">Reference</div>
+  <a href="#resources">20. Curated resources</a>
+  <a href="#cert">21. Certification mapping</a>
+  <a href="#sources">22. Research source register</a>
+</nav>
+
+<main>
+<header class="hero" id="intro">
+  <div class="eyebrow">Forward Deployed AI Engineering</div>
+  <h1>From ambiguous enterprise problem to measurable production outcome.</h1>
+  <p>This handbook treats FDE as a craft, not a job title. The core skill is the ability to enter a messy customer environment, discover the real constraint, build and deploy the smallest useful system, prove it passes the value, quality, safety, operability, economics and adoption gates, then codify the pattern so the next deployment is faster.</p>
+  <div class="badges">
+    <span class="badge">Production engineering</span><span class="badge">Enterprise architecture</span>
+    <span class="badge">Agent systems</span><span class="badge">Evals & observability</span>
+    <span class="badge">Customer discovery</span><span class="badge">Outcome ownership</span>
+  </div>
+</header>
+
+<section>
+<h2>0. How to use this handbook <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="lead">Do not read this cover-to-cover as a certification book. Use it as a build–review–build field guide.</p>
+<div class="grid3">
+  <div class="card"><div class="level">Learn</div><h3>Understand the invariant</h3><p>Study principles that survive framework churn: idempotency, authorization, eval design, deployment safety, customer discovery and measurable outcomes.</p></div>
+  <div class="card"><div class="level">Build</div><h3>Produce artifacts</h3><p>Every major chapter points toward something you can build, measure or explain: code, architecture, eval sets, runbooks, discovery maps and outcome reports.</p></div>
+  <div class="card"><div class="level">Prove</div><h3>Demonstrate judgment</h3><p>FDE interviews and real engagements test trade-offs under ambiguity. Your portfolio should show why you chose a design, what failed and how you measured success.</p></div>
+</div>
+<div class="callout good"><strong>The FDE learning rule:</strong> 40% study, 60% implementation. If a resource does not improve something you can design, deploy, debug, measure or explain, it is probably secondary.</div>
+<div class="callout"><strong>Freshness note:</strong> this edition was audited against primary sources available on 4 September 2026. Role postings and vendor programs are dated evidence, not permanent definitions. Protocol versions, platform deprecations and emerging observability conventions are called out explicitly so durable principles remain separate from time-sensitive implementation choices.</div>
+</section>
+
+<section id="role">
+<h2>1. What an FDE actually is <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="quote">An FDE owns the uncomfortable middle between “the model/platform can do this” and “the customer runs this reliably in production.”</p>
+
+<div class="diagram">
+<svg viewBox="0 0 1100 260" role="img" aria-label="FDE operating loop">
+<defs><style>.b{fill:#13213b;stroke:#4d6b94;stroke-width:2}.t{fill:#e8edf7;font:700 20px system-ui}.s{fill:#aab7cf;font:14px system-ui}.a{stroke:#7dd3fc;stroke-width:3;fill:none;marker-end:url(#m)}</style>
+<marker id="m" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#7dd3fc"/></marker></defs>
+<rect class="b" x="25" y="70" rx="16" width="155" height="105"/><text class="t" x="102" y="112" text-anchor="middle">Discover</text><text class="s" x="102" y="140" text-anchor="middle">workflow • pain</text>
+<rect class="b" x="205" y="70" rx="16" width="155" height="105"/><text class="t" x="282" y="112" text-anchor="middle">Frame</text><text class="s" x="282" y="140" text-anchor="middle">MVP • metric</text>
+<rect class="b" x="385" y="70" rx="16" width="155" height="105"/><text class="t" x="462" y="112" text-anchor="middle">Build</text><text class="s" x="462" y="140" text-anchor="middle">code • agents</text>
+<rect class="b" x="565" y="70" rx="16" width="155" height="105"/><text class="t" x="642" y="112" text-anchor="middle">Deploy</text><text class="s" x="642" y="140" text-anchor="middle">security • ops</text>
+<rect class="b" x="745" y="70" rx="16" width="155" height="105"/><text class="t" x="822" y="112" text-anchor="middle">Measure</text><text class="s" x="822" y="140" text-anchor="middle">quality • value</text>
+<rect class="b" x="925" y="70" rx="16" width="150" height="105"/><text class="t" x="1000" y="112" text-anchor="middle">Codify</text><text class="s" x="1000" y="140" text-anchor="middle">pattern • playbook</text>
+<line class="a" x1="180" y1="122" x2="200" y2="122"/><line class="a" x1="360" y1="122" x2="380" y2="122"/>
+<line class="a" x1="540" y1="122" x2="560" y2="122"/><line class="a" x1="720" y1="122" x2="740" y2="122"/>
+<line class="a" x1="900" y1="122" x2="920" y2="122"/>
+</svg>
+</div>
+
+<h3>How current employers describe the role</h3>
+<table>
+<thead><tr><th>Organisation</th><th>What the role emphasizes</th><th>Implication</th></tr></thead>
+<tbody>
+<tr><td>OpenAI</td><td>Discovery, architecture, hands-on implementation, customer-specific evals, production launch, adoption and handoff. Current hiring spans general FDE/FDSE roles plus regulated verticals such as healthcare, legal and government.</td><td>Production engineering remains central, while domain and regulatory depth are becoming differentiators.</td></tr>
+<tr><td>Anthropic</td><td>FDEs build production applications and reusable MCP, sub-agent and skill artifacts inside customer systems. Separate Technical Deployment Lead and Applied AI Architect postings distinguish engineering, delivery orchestration and pre-sales architecture.</td><td>Read responsibilities, not titles; adjacent roles can share discovery and architecture while differing sharply in coding ownership.</td></tr>
+<tr><td>Accenture</td><td>Embedded production engineers operate in industry-aligned crews or pods, combining platform, workflow, engineering and change capability around measurable outcomes.</td><td>Forward deployment is becoming an organisational operating model, not only an individual role.</td></tr>
+<tr><td>Palantir</td><td>Long-established forward-deployed model: work directly with customers, understand operational problems, design and implement solutions with measurable impact.</td><td>FDE predates GenAI; AI is accelerating an existing operating model.</td></tr>
+</tbody>
+</table>
+
+<h3>FDE is a role family, not a single standard title</h3>
+<table>
+<thead><tr><th>Role</th><th>Primary ownership</th><th>Typical failure if confused with FDE</th></tr></thead>
+<tbody>
+<tr><td>Solution / Applied AI Architect</td><td>Architecture, technical fit and customer advisory; often pre-sales</td><td>Great design, insufficient code or production ownership</td></tr>
+<tr><td>AI Engineer / Applied AI Engineer</td><td>Model and application implementation; the strongest customer-facing variants may substantially overlap with FDE</td><td>Title alone does not reveal discovery, deployment or outcome ownership</td></tr>
+<tr><td>Forward Deployed Software Engineer</td><td>Deep full-stack implementation in customer environments</td><td>May be a narrower engineering-heavy point on the same spectrum, not a different profession</td></tr>
+<tr><td>Technical Deployment / Delivery Lead</td><td>SOW, sequencing, stakeholders, dependencies, value measurement and engagement operations</td><td>Can own technical direction without writing production code</td></tr>
+<tr><td>Management Consultant</td><td>Problem framing, transformation, recommendations</td><td>Good strategy, no production system</td></tr>
+<tr><td><strong>Engineering-heavy FDE</strong></td><td><strong>Customer problem through code, production evidence, adoption and reusable pattern</strong></td><td><strong>Must bridge the seams while still making substantial personal engineering contributions</strong></td></tr>
+</tbody>
+</table>
+<div class="decision"><strong>Vacancy test:</strong> look for production code, debugging, evaluation, integration, deployment and measurable adoption. If the evidence is mainly workshops, account support, recommendations or pipeline influence, the role is adjacent even when the title says “FDE.”</div>
+</section>
+
+<section id="market">
+<h2>2. Why the role matters now <a class="toplink" href="#intro">↑ top</a></h2>
+<p>The 2026 signal is not merely more job titles. On 4 September, OpenAI's filtered careers page showed 20 FDE-related openings across general engineering, regulated verticals, international markets, management and technical deployment leadership. Anthropic and Accenture evidence the same broader pattern: organisations are building dedicated teams, role specialisations and partner practices around the hard middle between model access and production value.</p>
+<div class="grid4">
+  <div class="card"><div class="kpi">AI → Ops</div><div class="kpi-label">Pilot-to-production gap</div><p>Customers can access strong models. The hard part is fitting them safely into real workflows.</p></div>
+  <div class="card"><div class="kpi">Field → Product</div><div class="kpi-label">Learning loop</div><p>FDEs turn customer-specific friction into reusable platform patterns and roadmap input.</p></div>
+  <div class="card"><div class="kpi">Domain</div><div class="kpi-label">Specialisation</div><p>Regulated verticals increasingly require workflow, data, integration and control knowledge alongside AI engineering.</p></div>
+  <div class="card"><div class="kpi">Outcome</div><div class="kpi-label">Unit of accountability</div><p>Reliability, adoption, cost, time-to-value and business impact beat “project completed.”</p></div>
+</div>
+<div class="callout warn"><strong>Career warning:</strong> the title is expanding faster than the definition. Evaluate a vacancy by its responsibilities. A genuine FDE role should contain meaningful engineering, customer proximity and production outcome ownership.</div>
+<div class="fieldnote"><strong>The unit of deployment is often a pod.</strong> Mature forward-deployed motions combine engineering, domain expertise, delivery leadership, security/risk partnership and change capability. One FDE still needs broad judgment, but should not be mistaken for a permanently heroic single-person delivery model.</div>
+</section>
+
+<section id="competency">
+<h2>3. The FDE competency model <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="lead">Think of FDE capability as a ten-part system. Weakness in one part can block an otherwise strong deployment.</p>
+<div class="callout"><strong>These domains are not equally weighted.</strong> In forward-deployed work, discovery and outcome ownership determine whether you are solving the right problem, while authorization and side-effect boundaries determine whether the system is safe enough to deploy. Infrastructure literacy is essential, but it supports those higher-leverage decisions rather than replacing them.</div>
+<table>
+<thead><tr><th>Domain</th><th>Minimum credible capability</th><th>Advanced signal</th></tr></thead>
+<tbody>
+<tr><td>1. Customer discovery</td><td>Map workflow, actors, pain, constraints, baseline and decision owner.</td><td>Find the problem behind the requested feature.</td></tr>
+<tr><td>2. Software engineering</td><td>Python/TypeScript, APIs, tests, Git, debugging, async basics, production hygiene.</td><td>Can enter an unfamiliar codebase and ship safely.</td></tr>
+<tr><td>3. System design</td><td>Data stores, APIs, queues, caching, identity, tenancy, failure handling.</td><td>Reason quantitatively about scale, consistency and failure.</td></tr>
+<tr><td>4. LLM engineering</td><td>Prompting, structured output, tool use, context, model selection.</td><td>Model routing, caching, latency/cost optimisation, provider abstraction.</td></tr>
+<tr><td>5. Agent engineering</td><td>Workflow vs agent choice, tools, approvals, state, MCP, failure boundaries.</td><td>Durable asynchronous execution, cancellation, mid-flight input and recovery.</td></tr>
+<tr><td>6. Evals</td><td>Golden sets, deterministic tests, model graders, human review.</td><td>Online/offline eval loop connected to release gates and production traces.</td></tr>
+<tr><td>7. Cloud/platform</td><td>Docker, CI/CD, managed cloud services, secrets, observability.</td><td>Kubernetes/IaC, multi-environment deploy, SLOs, incident recovery.</td></tr>
+<tr><td>8. Security/governance</td><td>AuthN/AuthZ, data handling, least privilege, auditability, approvals.</td><td>Threat modelling for tool-using agents, supply chains and cross-task abuse in regulated environments.</td></tr>
+<tr><td>9. Delivery judgment</td><td>Scope MVP, sequence critical path, manage uncertainty.</td><td>Trade scope/speed/quality without losing trust.</td></tr>
+<tr><td>10. Business value</td><td>Define success metric before build.</td><td>Translate quality/latency/adoption into economic or operational value.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section id="roadmap">
+<h2>4. Transition roadmap <a class="toplink" href="#intro">↑ top</a></h2>
+<p>This roadmap assumes an experienced enterprise professional moving toward hands-on applied AI. It deliberately avoids a “learn every framework” trap.</p>
+
+<div class="callout good"><strong>If you are coming from delivery, product or enterprise architecture rather than software engineering:</strong> do not spend the first phase collecting more discovery or stakeholder frameworks. Keep those strengths, but bias your first investment toward hands-on engineering: Python services, tests, APIs, persistence, debugging, containers and one deployed AI workflow. Your goal is to become the person who can carry a customer problem through implementation, not merely frame it well.</div>
+
+<h3>Phase A — Engineering credibility</h3>
+<ul class="check">
+<li>Build and test a Python API service with typed models, persistence and external integrations.</li>
+<li>Be comfortable reading TypeScript and shipping a small full-stack feature.</li>
+<li>Debug a failing service using logs/traces rather than trial-and-error prompting.</li>
+<li>Explain idempotency, retries, timeouts, queues, transactions and concurrency from examples.</li>
+</ul>
+
+<h3>Phase B — Production AI credibility</h3>
+<ul class="check">
+<li>Build a model-agnostic LLM service with structured output, tool calls and fallback.</li>
+<li>Create an eval dataset before optimising prompts.</li>
+<li>Add RAG only where retrieval is actually required; measure retrieval separately from generation.</li>
+<li>Instrument latency, cost, failure categories and tool execution.</li>
+<li>Implement an approval boundary for consequential side effects.</li>
+<li>Persist long-running task state; implement cancellation, re-entry and idempotent resume.</li>
+<li>Enforce user/workload identity and tool permissions outside the model.</li>
+</ul>
+
+<h3>Phase C — Forward-deployed credibility</h3>
+<ul class="check">
+<li>Run discovery from an intentionally ambiguous brief.</li>
+<li>Write a one-page engagement framing: current state, target outcome, MVP, assumptions, risks and metrics.</li>
+<li>Ship a production-like deployment with runbook and operational dashboard.</li>
+<li>Demonstrate a failure, recovery and post-incident improvement.</li>
+<li>Produce a reusable pattern/playbook from the engagement.</li>
+</ul>
+
+<h3>Phase D — Interview and market readiness</h3>
+<ul class="check">
+<li>Two strong deployment case studies.</li>
+<li>One agent/eval-heavy case study.</li>
+<li>One brownfield enterprise integration case study.</li>
+<li>System-design interview practice plus coding fluency.</li>
+<li>Customer discovery / ambiguity case drills.</li>
+</ul>
+</section>
+
+<section id="software">
+<h2>5. Software engineering core <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="lead">An FDE does not need to win competitive programming contests. They do need to build, read, modify, test and debug production software under time pressure.</p>
+
+<h3>Python: must be comfortable, not merely familiar</h3>
+<div class="grid2">
+<div class="card"><h4>Language</h4><ul><li>collections, comprehensions, iterators</li><li>typing, dataclasses / Pydantic models</li><li>exceptions and error taxonomy</li><li>context managers</li><li>async/await and concurrency basics</li></ul></div>
+<div class="card"><h4>Application engineering</h4><ul><li>FastAPI or equivalent</li><li>HTTP clients, timeouts, retries</li><li>SQL and migrations</li><li>pytest, fixtures, mocks</li><li>structured logging</li></ul></div>
+</div>
+
+<h3>TypeScript: enough to operate across the product boundary</h3>
+<p>Current frontier-lab FDE descriptions commonly value Python plus another production language. TypeScript is especially useful because customer-facing AI systems often require APIs, web interfaces, SDK integration and tool servers.</p>
+
+<h3>The debugging hierarchy</h3>
+<pre>symptom
+  ↓
+reproduce
+  ↓
+isolate boundary
+  ↓
+inspect logs / traces / state
+  ↓
+form hypothesis
+  ↓
+smallest falsifying test
+  ↓
+fix
+  ↓
+regression test
+  ↓
+operational guardrail</pre>
+
+<h3>Assignment 5A — “Unreliable upstream”</h3>
+<div class="assignment">
+<div class="level">2–4 hours</div>
+<h3>Build a resilient integration service</h3>
+<p>Create a small API that calls a deliberately unreliable upstream dependency.</p>
+<ul>
+<li>Implement timeout, bounded retry with backoff, circuit-breaking or fail-fast policy, idempotent request handling and typed errors.</li>
+<li>Add unit tests for transient failure, permanent failure, timeout and duplicated request.</li>
+<li>Expose trace/correlation IDs in logs.</li>
+</ul>
+<p><strong>Pass condition:</strong> you can explain exactly which failures are retried, which are not, and what the caller sees.</p>
+</div>
+</section>
+
+<section id="systems">
+<h2>6. System design for FDEs <a class="toplink" href="#intro">↑ top</a></h2>
+<p>FDE system design is usually brownfield: existing identity, databases, message buses, approvals, regulations and operational expectations already exist. “Start from a blank whiteboard” is the exception.</p>
+
+<h3>Questions to ask before drawing boxes</h3>
+<ol>
+<li>What is the authoritative system of record?</li>
+<li>Which action is reversible? Which is not?</li>
+<li>What can safely happen twice?</li>
+<li>What happens after a process crashes halfway through?</li>
+<li>Where is identity established and authorization enforced?</li>
+<li>What data may cross the model boundary?</li>
+<li>Which part needs synchronous UX and which can be asynchronous?</li>
+<li>What is the expected volume, burst pattern and latency budget?</li>
+<li>What evidence must exist for audit or incident investigation?</li>
+</ol>
+
+<h3>Architecture primitives worth mastering</h3>
+<table>
+<thead><tr><th>Primitive</th><th>Know when to use it</th><th>FDE failure mode</th></tr></thead>
+<tbody>
+<tr><td>Queue / event stream</td><td>Decouple, absorb bursts, async work</td><td>Using it without idempotency or dead-letter strategy</td></tr>
+<tr><td>Cache</td><td>Reduce latency/cost for reusable data</td><td>Serving stale or unauthorized context</td></tr>
+<tr><td>Relational DB</td><td>Strong integrity, transactions, rich queries</td><td>Model-generated writes without transaction boundaries</td></tr>
+<tr><td>Object store</td><td>Documents, artifacts, durable blobs</td><td>Mixing raw and processed data without provenance</td></tr>
+<tr><td>Vector retrieval</td><td>Semantic search over unstructured material</td><td>Assuming “vector DB” equals correct retrieval</td></tr>
+<tr><td>Workflow runtime</td><td>Long-lived or retryable multi-step work</td><td>Keeping critical state only in process memory</td></tr>
+</tbody>
+</table>
+
+<div class="callout"><strong>FDE interview habit:</strong> state the invariant before the technology. “A commit side effect must execute at most once” is stronger reasoning than “I’ll use Kafka.”</div>
+</section>
+
+<section id="ai">
+<h2>7. LLM & agent engineering <a class="toplink" href="#intro">↑ top</a></h2>
+<h3>7.1 Choose the simplest control structure that works</h3>
+<pre>Deterministic code
+      ↓ if interpretation/generation needed
+Single LLM call
+      ↓ if external capability needed
+Tool-using workflow
+      ↓ if dynamic decomposition is needed
+Agent
+      ↓ only if independent specialists add measurable value
+Multi-agent system</pre>
+
+<h3>7.2 Production model interaction</h3>
+<ul>
+<li>Structured output with schema validation and explicit repair/failure handling.</li>
+<li>Model/provider abstraction only where it serves a real fallback, cost, sovereignty or capability need.</li>
+<li>Timeouts, rate-limit handling and admission control.</li>
+<li>Prompt/version identifiers attached to traces.</li>
+<li>Context budgeting: what is required, relevant, trusted and fresh?</li>
+<li>Cost and latency budgets by workflow, not merely per model call.</li>
+<li>Durable task identifiers, persisted state, cancellation and idempotent resume for long-running work.</li>
+</ul>
+
+<h3>7.3 Tool use and MCP</h3>
+<p>MCP is an important interoperability layer, but an FDE should understand the boundary rather than merely install servers. The 2026-07-28 specification is stateless at the protocol layer: version and capability information travels in request metadata rather than a required initialization handshake. Long-running work is handled through an optional Tasks extension, not assumed session state. Treat every tool invocation as a versioned, security-sensitive distributed-systems operation.</p>
+
+<ul>
+<li>Pin the protocol version and compatibility-test clients, servers and gateways before rollout.</li>
+<li>Use durable application state or the Tasks extension for polling, cancellation, retries and re-entry.</li>
+<li>Support multi-round-trip input when a task enters <code>input_required</code>; never confuse waiting for input with success.</li>
+<li>Treat server metadata and tool descriptions as untrusted unless the server and its supply chain are trusted.</li>
+</ul>
+
+<div class="fieldnote"><strong>MCP is a protocol, not an architecture waiver.</strong> The application still owns identity, authorization, tenancy, idempotency, audit, failure recovery and user consent. Separate those durable controls from any one MCP implementation or protocol version.</div>
+
+<div class="callout danger"><strong>Never confuse “the model selected a tool” with “the model is authorized to execute the action.”</strong> Policy and authority belong outside the model.</div>
+
+<h3>7.4 RAG decomposition</h3>
+<pre>User question
+   ↓
+query understanding
+   ↓
+retrieval candidate generation
+   ↓
+filtering / authorization
+   ↓
+reranking
+   ↓
+context assembly
+   ↓
+generation
+   ↓
+citation / evidence checks</pre>
+<p>Evaluate the stages separately. A perfect model cannot recover a document the retriever never supplied.</p>
+
+<h3>Assignment 7A — Agent with an irreversible edge</h3>
+<div class="assignment">
+<div class="level">6–10 hours</div>
+<h3>Build an approval-gated action agent</h3>
+<p>Create an agent that can read records and propose an update, but cannot commit the update without an external approval token.</p>
+<ul>
+<li>Separate <code>plan</code> from <code>commit</code>.</li>
+<li>Persist the proposed payload and its hash.</li>
+<li>Invalidate approval if the payload changes.</li>
+<li>Make the commit idempotent.</li>
+<li>Trace model call → tool decision → approval → side effect.</li>
+</ul>
+<p><strong>Failure injection:</strong> crash after the external side effect but before local acknowledgement. Reconcile safely.</p>
+</div>
+</section>
+
+<section id="evals">
+<h2>8. Evals & reliability <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="lead">The most reliable signal that someone has moved beyond demos is that they can define, implement and operate an eval loop.</p>
+
+<h3>The FDE eval pyramid</h3>
+<div class="grid4">
+<div class="card"><h4>Deterministic</h4><p>Schema, regex, exact values, tool args, latency, cost, policy checks.</p></div>
+<div class="card"><h4>Reference-based</h4><p>Expected facts, retrieved evidence, known answer sets.</p></div>
+<div class="card"><h4>Model grader</h4><p>Rubric-based quality where deterministic scoring is insufficient.</p></div>
+<div class="card"><h4>Human</h4><p>High-value, ambiguous, sensitive and calibration samples.</p></div>
+</div>
+
+<h3>Define success before prompt optimisation</h3>
+<table>
+<thead><tr><th>Dimension</th><th>Example metric</th><th>Example release gate</th></tr></thead>
+<tbody>
+<tr><td>Task success</td><td>Correct resolution / completed workflow</td><td>Threshold derived from baseline, error cost and risk tolerance</td></tr>
+<tr><td>Groundedness</td><td>Claims supported by approved source</td><td>0 unsupported critical claims</td></tr>
+<tr><td>Tool correctness</td><td>Correct tool + arguments + sequence</td><td>All deterministic commit-path policy tests pass; statistical threshold set by risk owner</td></tr>
+<tr><td>Safety</td><td>Unauthorized side effects</td><td>0</td></tr>
+<tr><td>Latency</td><td>p50 / p95 end-to-end</td><td>Within workflow budget</td></tr>
+<tr><td>Cost</td><td>Cost per successful task</td><td>Below business threshold</td></tr>
+</tbody>
+</table>
+
+<div class="fieldnote"><strong>Do not copy release thresholds from a handbook.</strong> Establish a representative baseline, segment by consequence and failure mode, then set gates with the workflow and risk owners. Also track accepted outcome, human interventions, repair iterations, wall-clock duration and cost per successful task; a single aggregate accuracy score can hide an unusable workflow.</div>
+
+<h3>Failure taxonomy</h3>
+<pre>MODEL          hallucination • instruction failure • refusal
+CONTEXT        missing • stale • unauthorized • too large
+RETRIEVAL      no-hit • bad rank • wrong filter
+TOOL           bad selection • invalid args • external error
+WORKFLOW       retry bug • lost state • duplicate side effect
+POLICY         over-block • under-block • stale approval
+PLATFORM       timeout • rate limit • deploy/config drift
+USER           ambiguous intent • missing permission • changed objective</pre>
+
+<div class="callout warn"><strong>OpenAI Evals retirement is now an operational deadline.</strong> OpenAI announced the Evals platform deprecation on <strong>3 June 2026</strong>. Existing evals become <strong>read-only on 31 October 2026</strong>, and the Evals dashboard/API are scheduled to <strong>shut down on 30 November 2026</strong>. Do not start Assignment A6 by coupling your eval harness to that retiring platform. Build the dataset, rubric, graders and release gates as portable application assets; use a maintained harness or your own code so the evaluation design survives vendor-tool changes.</div>
+</section>
+
+<section id="platform">
+<h2>9. Cloud, platform & LLMOps <a class="toplink" href="#intro">↑ top</a></h2>
+<h3>Minimum production stack literacy</h3>
+<table>
+<thead><tr><th>Area</th><th>Expected literacy</th></tr></thead>
+<tbody>
+<tr><td>Containers</td><td>Dockerfile, image hygiene, health checks, config/secrets, resource limits.</td></tr>
+<tr><td>CI/CD</td><td>Test → build → scan → deploy → rollback; environment promotion.</td></tr>
+<tr><td>Cloud</td><td>Compute, managed DB, object storage, queues/events, IAM, networking, secrets.</td></tr>
+<tr><td>Kubernetes</td><td>Enough to reason about deployments, services, ingress, config/secrets, autoscaling and failure.</td></tr>
+<tr><td>IaC</td><td>Terraform or equivalent for repeatable environments.</td></tr>
+<tr><td>Observability</td><td>Logs + metrics + traces + correlation + domain events.</td></tr>
+<tr><td>AI telemetry</td><td>Model/provider, latency, token/cost, tool calls, eval score, prompt/version, retrieval evidence.</td></tr>
+</tbody>
+</table>
+
+<h3>Observe a task, not just a request</h3>
+<p>Agentic systems may span many model calls, tools and retries. Correlate the whole user task or workflow so an operator can answer: what was attempted, why, by which version, against what data, with which tools, what changed externally, and what the final outcome was.</p>
+
+<div class="fieldnote"><strong>Keep GenAI telemetry behind a translation layer.</strong> OpenTelemetry moved its GenAI semantic conventions to a dedicated repository in 2026, and many attributes remain in Development status. Capture stable internal events, map them to the deployed convention version and regression-test that mapping. Default to metadata-only telemetry; prompt, response, tool-argument and tool-result content should be opt-in, access-controlled and redacted because it may contain secrets or regulated data.</div>
+
+<h3>9.1 Deployment sovereignty spectrum</h3>
+<p>Model hosting is an architectural choice, not an ideological one. Choose the least operationally expensive deployment that satisfies data, regulatory, latency, model-custody and network constraints.</p>
+
+<pre>Public model API
+      ↓
+Regional API / residency controls
+      ↓
+Managed model + private endpoint
+      ↓
+Dedicated inference environment
+      ↓
+Self-hosted open-weight model
+      ↓
+On-premises
+      ↓
+Air-gapped</pre>
+
+<table>
+<thead><tr><th>More control gives you</th><th>But you inherit</th></tr></thead>
+<tbody>
+<tr><td>Data-location control, model custody, network isolation, customization, predictable change windows</td><td>GPU capacity planning, model lifecycle, patching, throughput engineering, observability, security hardening, incident ownership and upgrade burden</td></tr>
+</tbody>
+</table>
+
+<div class="decision"><strong>Self-host because a constraint requires it, not because open-weight automatically means cheaper or safer.</strong> Compare full cost per successful task, operational skill, availability requirements, hardware utilization and security responsibilities.</div>
+
+<div class="fieldnote">Tooling changes quickly. As of September 2026, Hugging Face documents TGI as maintenance-only and recommends alternatives such as vLLM or SGLang. vLLM publishes a production Kubernetes stack. Treat inference engines as replaceable implementation choices behind a stable application/model gateway.</div>
+
+<h3>Assignment 9A — Production hardening sprint</h3>
+<div class="assignment">
+<div class="level">6–8 hours</div>
+<h3>Turn a working demo into an operable service</h3>
+<ul>
+<li>Containerize it.</li><li>Add health/readiness endpoints.</li><li>Add structured logs and distributed tracing.</li>
+<li>Track model latency, token usage, tool failures and outcome.</li><li>Add CI tests and a deployment workflow.</li>
+<li>Create a one-page runbook: known failures, diagnosis and rollback.</li>
+</ul>
+<p><strong>Pass condition:</strong> another engineer can diagnose a failed workflow without reading the source code first.</p>
+</div>
+</section>
+
+<section id="security">
+<h2>10. Security & governance <a class="toplink" href="#intro">↑ top</a></h2>
+<h3>The FDE security model</h3>
+<pre>User / service identity
+        ↓
+Authorization policy
+        ↓
+Workflow capability
+        ↓
+Model proposes action
+        ↓
+Tool gateway validates
+        ↓
+Approval when required
+        ↓
+Side effect
+        ↓
+Audit evidence</pre>
+
+<h3>Threats to explicitly design for</h3>
+<ul>
+<li>Prompt injection through retrieved or tool-returned content.</li>
+<li>Excessive tool permissions.</li>
+<li>Cross-tenant context leakage.</li>
+<li>Secrets in prompts, traces or debug logs.</li>
+<li>Model-induced data exfiltration.</li>
+<li>Approval replay or approval applied to a changed payload.</li>
+<li>Unbounded autonomous loops / spend.</li>
+<li>Unsafe code execution or shell/tool access.</li>
+<li>Untraceable model/provider/prompt changes.</li>
+<li>Compromised or stale tools, skills, MCP servers, plugins, dependencies or descriptions.</li>
+<li>Credential misuse that becomes visible only across tasks, sessions or accounts.</li>
+</ul>
+
+<div class="callout good"><strong>Good production default:</strong> read is easier than write; reversible is easier than irreversible; low-value is easier than high-value; bounded is easier than open-ended. Increase autonomy only when evidence supports it.</div>
+
+<h3>10.1 Security is a design partnership, not a late-stage gate</h3>
+<p>An FDE should be able to explain the system in the language of risk owners: intended use, data classes, identity, authority, network path, retention, human oversight, measurable controls, incident response and residual risk. NIST AI RMF's <strong>Govern → Map → Measure → Manage</strong> model is a useful durable vocabulary for structuring that conversation.</p>
+
+<div class="decision">Do not frame the task as “convincing the CISO.” Bring security, privacy, legal and compliance into the design early enough that requirements become architecture inputs rather than launch surprises.</div>
+
+<h3>10.2 One-page AI Risk Brief</h3>
+<table>
+<thead><tr><th>Area</th><th>Question the FDE should answer</th></tr></thead>
+<tbody>
+<tr><td>Use case</td><td>What decision or action is AI influencing, and what is explicitly out of scope?</td></tr>
+<tr><td>Data</td><td>What classifications enter model context? What must be redacted, tokenized or excluded?</td></tr>
+<tr><td>Identity</td><td>Which human/service principal invokes the workflow?</td></tr>
+<tr><td>Authorization</td><td>What may the workflow read, propose and commit? Where is policy enforced?</td></tr>
+<tr><td>Model boundary</td><td>Public API, regional service, private endpoint, dedicated or self-hosted?</td></tr>
+<tr><td>Retention</td><td>What is logged/stored, where, for how long, and who can access it?</td></tr>
+<tr><td>Tools</td><td>Which systems can be read or changed? Are allowlists and least privilege enforced?</td></tr>
+<tr><td>Human oversight</td><td>Where is review mandatory? What triggers escalation?</td></tr>
+<tr><td>Evals</td><td>What proves acceptable quality and control performance?</td></tr>
+<tr><td>Failure</td><td>What happens when the model, retrieval layer or tool is wrong/unavailable?</td></tr>
+<tr><td>Monitoring</td><td>Which events indicate unsafe, anomalous or unauthorized behaviour?</td></tr>
+<tr><td>Incident</td><td>How can actions, credentials, tools or model access be stopped quickly?</td></tr>
+<tr><td>Residual risk</td><td>Who is authorized to accept the remaining risk?</td></tr>
+</tbody>
+</table>
+
+<h3>10.3 Security pre-flight patterns</h3>
+<div class="checkcard">
+<ul class="field-check">
+<li>Data minimization applied before model invocation.</li>
+<li>Sensitive data detection/redaction/tokenization tested where required.</li>
+<li>Private connectivity used where network policy requires it; for example, managed model services can expose private endpoints rather than public internet paths.</li>
+<li>Managed workload identities or equivalent used instead of long-lived embedded credentials.</li>
+<li>Tool permissions follow least privilege and tenant boundaries are enforced before retrieval/action.</li>
+<li>Tools, skills, plugins and servers are allowlisted, version-pinned and backed by provenance and compatibility checks.</li>
+<li>Consequential writes pass deterministic policy and, where required, external approval.</li>
+<li>Prompt/tool output is treated as untrusted input; injection cannot expand authority.</li>
+<li>Logs/traces avoid secrets and prohibited sensitive content.</li>
+<li>Monitoring correlates suspicious credential and tool activity across tasks where policy and privacy requirements allow it.</li>
+<li>Customer-controlled storage, keys and audit boundaries are used where sovereignty or regulatory requirements demand them.</li>
+<li>Required security/privacy/risk reviews are complete and residual risks have an authorized owner.</li>
+</ul>
+</div>
+</section>
+
+
+<section id="discovery">
+<h2>11. Customer discovery & problem framing <a class="toplink" href="#intro">↑ top</a></h2>
+<p>Discovery is not “collect requirements.” The FDE tries to understand the actual workflow, constraints and value mechanism before committing to a technical design.</p>
+
+<h3>The 8-question discovery sheet</h3>
+<ol>
+<li><strong>Trigger:</strong> what starts this workflow?</li>
+<li><strong>Actor:</strong> who performs it and who owns the outcome?</li>
+<li><strong>Current path:</strong> what happens today, step by step?</li>
+<li><strong>Pain:</strong> where is time, quality, risk or money lost?</li>
+<li><strong>Volume:</strong> how often and at what scale?</li>
+<li><strong>Constraints:</strong> security, regulation, systems, data, latency, policy?</li>
+<li><strong>Decision:</strong> where is judgment required and who is allowed to make it?</li>
+<li><strong>Success:</strong> what measurable change would make the deployment worthwhile?</li>
+</ol>
+
+<h3>Problem statement template</h3>
+<pre>For [actor],
+when [trigger],
+the current workflow [baseline],
+causing [measurable pain].
+
+We believe [smallest intervention]
+can improve [metric]
+from [baseline] to [target]
+without violating [critical constraint].
+
+We will know this is false if [falsification condition].</pre>
+
+<h3>Assignment 11A — Reject the requested solution</h3>
+<div class="assignment">
+<div class="level">90 minutes</div>
+<h3>Discovery from a misleading brief</h3>
+<p>Start with: “We need a multi-agent RAG chatbot for our operations team.” You are not allowed to accept the requested architecture.</p>
+<ul>
+<li>Write 15 discovery questions.</li>
+<li>Invent realistic answers and map the current workflow.</li>
+<li>Find at least two simpler interventions.</li>
+<li>Define an MVP with one primary metric and two safety constraints.</li>
+</ul>
+<p><strong>Scoring:</strong> you lose points for every technology choice that appears before a validated problem constraint.</p>
+</div>
+</section>
+
+<section id="delivery">
+<h2>12. The FDE delivery loop <a class="toplink" href="#intro">↑ top</a></h2>
+
+<div id="production-gates">
+<h3>12A. The Six Production Gates</h3>
+<p class="lead">A technically impressive deployment should not scale until it has evidence across all six gates. A failure in any one gate can make the whole system unfit for production.</p>
+
+<div class="gates">
+  <div class="gate"><strong>1. VALUE</strong>Does solving this workflow matter enough to justify the intervention?</div>
+  <div class="gate"><strong>2. QUALITY</strong>Does the system perform the intended task at an acceptable level?</div>
+  <div class="gate"><strong>3. SAFETY</strong>Is the system authorized, bounded and governed for what it can influence?</div>
+  <div class="gate"><strong>4. OPERABILITY</strong>Can operators deploy, observe, debug, recover and change it safely?</div>
+  <div class="gate"><strong>5. ECONOMICS</strong>Is cost per successful outcome viable at expected scale?</div>
+  <div class="gate"><strong>6. ADOPTION</strong>Will the real workflow use, trust and improve the system?</div>
+</div>
+
+<pre>VALUE → QUALITY → SAFETY → OPERABILITY → ECONOMICS → ADOPTION
+  │        │         │          │             │           │
+why?     works?    allowed?    runnable?     viable?     used?</pre>
+
+<div class="redflag"><strong>Do not compensate for one failed gate by polishing another.</strong> Better prompting does not fix a useless workflow; stronger infrastructure does not fix unsafe authority; low token cost does not fix zero adoption.</div>
+</div>
+<h3>12.1 Discover</h3><p>Observe the workflow and gather evidence. Separate what users say happens from what telemetry/process data shows actually happens.</p>
+<h3>12.2 Frame</h3><p>Choose an MVP that can falsify the value hypothesis quickly. Write explicit non-goals.</p>
+<h3>12.3 Build</h3><p>Prefer a thin vertical slice across real systems to a polished isolated prototype.</p>
+<h3>12.4 Deploy</h3><p>Identity, observability, failure handling, data governance and adoption are part of the solution, not “hardening later.”</p>
+<h3>12.5 Measure</h3><p>Measure both system quality and workflow outcome. A high eval score with zero adoption is not success.</p>
+
+<h3>12.6 Accept and hand off</h3><p>Treat production acceptance as an explicit gate: named service and workflow owners, runbook and escalation path, access and credential transfer, support boundaries, rollback drill, acceptance evidence and a dated scale / hold / stop decision.</p>
+
+<h3>12.7 Codify</h3><p>Turn the deployment into reusable assets: reference architecture, tool adapter, eval harness, migration checklist, discovery template, runbook or product feedback.</p>
+
+<div id="adoption">
+<h3>12B. Adoption engineering: land autonomy progressively</h3>
+<p>Adoption is partly a people problem and partly an architecture problem. A staged rollout lets users build trust while the team collects real disagreement, override and failure data before expanding authority.</p>
+
+<pre>SHADOW
+AI runs in background; human remains authoritative
+        ↓ evidence
+ASSIST
+AI recommends; human accepts/rejects
+        ↓ evidence
+SUPERVISED ACTION
+AI executes only after explicit approval
+        ↓ evidence
+BOUNDED AUTONOMY
+AI acts inside narrow policy/amount/tool limits
+        ↓ evidence
+EXPANDED AUTONOMY
+only where measured risk and value justify it</pre>
+
+<h4>Adoption roles</h4>
+<table>
+<thead><tr><th>Actor</th><th>What you need from them</th></tr></thead>
+<tbody>
+<tr><td>Champion users</td><td>Fast feedback, workflow reality, examples of trust/friction.</td></tr>
+<tr><td>Workflow owner</td><td>Outcome metric, policy decisions, process redesign authority.</td></tr>
+<tr><td>Security / risk / privacy</td><td>Constraints and acceptance criteria early enough to shape the solution.</td></tr>
+<tr><td>Operations / support</td><td>Runbook ownership, escalation path, incident feedback.</td></tr>
+<tr><td>Executive sponsor</td><td>Priority, cross-functional unblock and explicit decision on scale/stop.</td></tr>
+</tbody>
+</table>
+
+<div class="checkcard">
+<ul class="field-check">
+<li>Representative users were involved before launch.</li>
+<li>Baseline workflow friction is documented.</li>
+<li>Rollout stage is explicit: shadow, assist, supervised or bounded autonomy.</li>
+<li>Users know when not to trust the system and how to escalate.</li>
+<li>Overrides, edits, abandonment and manual fallback are measurable.</li>
+<li>A champion group and feedback cadence exist.</li>
+<li>Expansion criteria are based on evidence, not enthusiasm.</li>
+</ul>
+</div>
+</div>
+
+<h3>12C. FDE engagement rhythms</h3>
+<p>There is no universal “30% meetings / 40% coding” split. The work changes with the engagement stage.</p>
+<div class="grid4">
+<div class="card"><h4>Discovery rhythm</h4><p>Workflow observation, stakeholder interviews, data/integration investigation, rapid prototypes, value hypothesis.</p></div>
+<div class="card"><h4>Build rhythm</h4><p>Coding, pairing, integration, eval construction, debugging, architecture iteration.</p></div>
+<div class="card"><h4>Launch rhythm</h4><p>Security/risk review, failure testing, observability, training, rollout and operational handoff.</p></div>
+<div class="card"><h4>Scale rhythm</h4><p>Production traces, adoption data, eval regressions, economics, optimization and codification.</p></div>
+</div>
+
+<div class="callout"><strong>High-agency does not mean uncontrolled improvisation.</strong> High-agency FDEs move quickly because they make assumptions explicit, shorten feedback loops and preserve critical invariants.</div>
+</section>
+
+
+<section id="value">
+<h2>13. Outcomes & business value <a class="toplink" href="#intro">↑ top</a></h2>
+<h3>Use an outcome tree</h3>
+<pre>Business outcome
+   ↓
+Operational metric
+   ↓
+Workflow behavior
+   ↓
+System capability
+   ↓
+AI quality metric</pre>
+<p>Example: “reduce claim handling cost” → “reduce manual review minutes” → “automatically prepare evidence packet” → “retrieve + summarise approved records” → “retrieval recall / grounded answer score.”</p>
+
+<h3>Useful metrics</h3>
+<table>
+<thead><tr><th>Category</th><th>Examples</th></tr></thead>
+<tbody>
+<tr><td>Value</td><td>hours saved, cycle-time reduction, cost avoided, revenue enabled, incidents reduced</td></tr>
+<tr><td>Adoption</td><td>eligible workflows using system, weekly active operators, accepted suggestions</td></tr>
+<tr><td>Quality</td><td>task success, false positive/negative, groundedness, escalation rate</td></tr>
+<tr><td>Reliability</td><td>workflow success, recovery time, duplicate actions, unavailable dependencies</td></tr>
+<tr><td>Economics</td><td>cost per completed task, cost per accepted outcome, support burden</td></tr>
+</tbody>
+</table>
+
+<h3>13.1 AI unit economics</h3>
+<p>The useful denominator is not “per API call.” Measure the cost of achieving a successful workflow outcome.</p>
+
+<pre>Cost per successful outcome
+=
+model inference
++ retrieval / reranking
++ tool / external API cost
++ infrastructure
++ retries / failed attempts
++ human review / correction
++ observability
++ support / operations</pre>
+
+<div class="decision"><strong>Route to the least expensive architecture that passes the required eval and risk gate.</strong> A cheaper model can be more expensive overall if it creates retries, escalations, rework or poor adoption.</div>
+
+<h4>Cost optimization order</h4>
+<ol>
+<li>Do not invoke an LLM where deterministic code is sufficient.</li>
+<li>Remove context the task does not need.</li>
+<li>Reuse safe deterministic/prefix/prompt-cacheable computation where available.</li>
+<li>Route simpler tasks to smaller/cheaper models only after eval evidence.</li>
+<li>Batch work that does not require interactive latency.</li>
+<li>Bound retries, agent loops, output length and tool fan-out.</li>
+<li>Optimize retrieval and external tool calls, not just model tokens.</li>
+<li>Measure cost per successful task and project it at expected volume.</li>
+<li>Compare self-hosted inference on full utilization + operations cost, not GPU price alone.</li>
+</ol>
+
+<div class="redflag"><strong>Semantic caching is not automatically safe.</strong> Permission-sensitive, tenant-specific, personalized or rapidly changing answers can make semantic reuse a correctness or authorization defect. Treat cache keys, freshness and authorization scope as part of the security model.</div>
+
+<h3>13.2 Scale projection worksheet</h3>
+<pre>monthly eligible tasks        = ______
+expected adoption             = ______ %
+successful task rate          = ______ %
+avg model/tool cost / attempt = ______
+avg attempts / task           = ______
+human review minutes / task   = ______
+ops/support allocation        = ______
+
+→ estimated cost / successful outcome = ______
+→ estimated monthly run cost          = ______
+→ expected operational/business value = ______
+→ value / cost ratio                  = ______</pre>
+</section>
+
+
+<section id="failure">
+<h2>14. Common FDE failure modes <a class="toplink" href="#intro">↑ top</a></h2>
+<table>
+<thead><tr><th>Failure</th><th>Why it happens</th><th>Better move</th></tr></thead>
+<tbody>
+<tr><td>Framework-first design</td><td>Agent framework becomes the architecture.</td><td>Start from state, authority, tool boundaries and failure semantics.</td></tr>
+<tr><td>Demo success = production readiness</td><td>Happy path hides operational failure.</td><td>Failure injection, evals, recovery, runbook, telemetry.</td></tr>
+<tr><td>RAG as universal answer</td><td>Retrieval is added without a retrieval problem.</td><td>Identify authoritative context and retrieval requirement first.</td></tr>
+<tr><td>Model-as-policy-engine</td><td>LLM decides whether it is allowed to act.</td><td>External policy/control plane.</td></tr>
+<tr><td>Metric after the build</td><td>Team cannot prove value.</td><td>Baseline + target before implementation.</td></tr>
+<tr><td>Hero engineer</td><td>Fast deployment only works while one person is present.</td><td>Codify pattern, transfer ownership, automate operations.</td></tr>
+<tr><td>Over-autonomy</td><td>Agent acts broadly because it can.</td><td>Progressive autonomy based on evidence and risk.</td></tr>
+<tr><td>No brownfield respect</td><td>New solution ignores identity, governance and existing workflows.</td><td>Integrate with enterprise constraints from day one.</td></tr>
+
+</tbody>
+</table>
+
+<h3>14.1 Field scenarios — synthetic</h3>
+<p class="small">These are deliberately constructed teaching scenarios, not claims about real customer incidents.</p>
+
+<div class="fieldnote"><strong>Model-as-policy-engine.</strong> A support workflow tells the model in a prompt that refunds above a threshold require approval. The model produces a valid-looking larger refund after manipulated context. The defect is architectural: the rule existed as language, not deterministic authorization. Move the limit into policy code/tool gateway and treat the model output as a proposal.</div>
+
+<div class="fieldnote"><strong>Hero-engineer deployment.</strong> A pilot performs well while its author is present, but support staff cannot explain why a request failed. The fix is not a better prompt; it is task-level correlation, failure taxonomy, runbook ownership and an operable rollback path.</div>
+
+<div class="fieldnote"><strong>Economically successful demo.</strong> A premium model reaches excellent quality on a small pilot. At full workload, cost grows beyond the value of the process being automated. Preserve the quality baseline, then test routing, context reduction, batching and smaller models against the same eval gate.</div>
+</section>
+
+<section id="assignments">
+<h2>15. Assignment ladder <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="lead">The assignments deliberately progress from engineering fundamentals to ambiguous, customer-facing deployment.</p>
+
+<table>
+<thead><tr><th>#</th><th>Assignment</th><th>Primary skill</th><th>Evidence produced</th></tr></thead>
+<tbody>
+<tr><td>A1</td><td>Unreliable upstream integration</td><td>Software reliability</td><td>API + tests + failure policy</td></tr>
+<tr><td>A2</td><td>Brownfield architecture review</td><td>System design</td><td>ADR + migration slice</td></tr>
+<tr><td>A3</td><td>Structured-output service</td><td>LLM reliability</td><td>Schema + repair + error taxonomy</td></tr>
+<tr><td>A4</td><td>Retrieval diagnostic</td><td>RAG evaluation</td><td>Retrieval test set + metrics</td></tr>
+<tr><td>A5</td><td>Approval-gated action agent</td><td>Agent safety</td><td>Tool gateway + approval proof</td></tr>
+<tr><td>A6</td><td>Eval harness</td><td>Quality engineering</td><td>Golden set + graders + release gate</td></tr>
+<tr><td>A7</td><td>Production hardening sprint</td><td>LLMOps</td><td>Container + telemetry + runbook</td></tr>
+<tr><td>A8</td><td>Discovery from misleading brief</td><td>Problem framing</td><td>Workflow map + MVP hypothesis</td></tr>
+<tr><td>A9</td><td>Value review</td><td>Outcome ownership</td><td>Baseline/target + cost model</td></tr>
+<tr><td>A10</td><td>Post-deployment codification</td><td>Leverage</td><td>Reusable pattern/playbook</td></tr>
+</tbody>
+</table>
+
+<h3>A2 — Brownfield architecture review</h3>
+<div class="assignment">
+<p>Take an existing application with a synchronous API, relational database and manual back-office workflow. Add an AI-assisted capability without replacing the existing system of record.</p>
+<ul>
+<li>Draw current-state and target-state architecture.</li>
+<li>Identify the write authority boundary.</li>
+<li>Choose synchronous vs asynchronous steps.</li>
+<li>Define state/retry semantics.</li>
+<li>Write two ADRs: one accepted decision, one rejected tempting design.</li>
+</ul>
+</div>
+
+<h3>A4 — Retrieval diagnostic</h3>
+<div class="assignment">
+<p>Given 50–100 documents and 25 representative questions, build a retrieval baseline.</p>
+<ul>
+<li>Measure whether the correct source appears in top-k.</li>
+<li>Compare at least two chunking/search strategies.</li>
+<li>Separate retrieval failure from generation failure.</li>
+<li>Add authorization filtering and test that unauthorized sources never enter context.</li>
+</ul>
+</div>
+
+<h3>A6 — Eval harness</h3>
+<div class="assignment">
+<p>Create a test suite that runs on every prompt/model/workflow change.</p>
+<ul>
+<li>20+ representative normal cases.</li>
+<li>10+ adversarial or edge cases.</li>
+<li>Deterministic assertions where possible.</li>
+<li>Rubric-based model grading only where needed.</li>
+<li>Calibration sample manually reviewed by a human.</li>
+</ul>
+</div>
+</section>
+
+<section id="projects">
+<h2>16. Portfolio project ladder <a class="toplink" href="#intro">↑ top</a></h2>
+<p>Do not build five unrelated “AI apps.” Build three projects that prove increasing deployment maturity.</p>
+
+<div class="assignment">
+<div class="level">Project 1 • Foundation</div>
+<h3>Operations Triage Copilot</h3>
+<p><strong>Scenario:</strong> support/operations staff manually inspect incoming incidents or requests and decide routing, severity and next action.</p>
+<p><strong>Build:</strong> ingestion API, classification/extraction, evidence retrieval, structured recommendation, operator review UI, audit log.</p>
+<p><strong>Must prove:</strong> deterministic schema, confidence/escalation, eval set, latency/cost, no autonomous side effects.</p>
+<p><strong>Portfolio story:</strong> “I turned an unstructured workflow into a measurable assisted-decision system.”</p>
+</div>
+
+<div class="assignment">
+<div class="level">Project 2 • Production AI</div>
+<h3>Enterprise Knowledge + Action Agent</h3>
+<p><strong>Scenario:</strong> an internal team needs answers from controlled documentation and occasionally wants a safe action executed in another system.</p>
+<p><strong>Build:</strong> authorized retrieval, citations, MCP or typed tools, plan/commit separation, approval gate, idempotency, observability.</p>
+<p><strong>Must prove:</strong> retrieval quality, tool correctness, permission boundary, failure recovery, audit evidence.</p>
+<p><strong>Portfolio story:</strong> “I built an agent that could act, but designed authority outside the model.”</p>
+</div>
+
+<div class="assignment">
+<div class="level">Project 3 • Brownfield FDE</div>
+<h3>Legacy Workflow Modernisation</h3>
+<p><strong>Scenario:</strong> a customer has a legacy service/application and wants AI-assisted code modernisation or workflow automation without rewriting everything.</p>
+<p><strong>Build:</strong> current-state assessment, incremental architecture, code assistant/agent workflow, regression tests, deployment gate, rollback path.</p>
+<p><strong>Must prove:</strong> safe change, compatibility, measurable engineering or operational improvement, handoff playbook.</p>
+<p><strong>Portfolio story:</strong> “I improved a real system without pretending the enterprise was greenfield.”</p>
+</div>
+
+<h3>Project rubric</h3>
+<table class="rubric">
+<thead><tr><th>Dimension</th><th>0</th><th>1</th><th>2</th><th>3</th></tr></thead>
+<tbody>
+<tr><td>Problem framing</td><td>Feature idea</td><td>Persona/pain</td><td>Baseline + target</td><td>Validated workflow + falsifiable value hypothesis</td></tr>
+<tr><td>Engineering</td><td>Notebook/demo</td><td>App works</td><td>Tests + deployment</td><td>Failure/recovery + operability</td></tr>
+<tr><td>AI quality</td><td>Prompt feels good</td><td>Sample outputs</td><td>Eval set</td><td>Release gates + production feedback loop</td></tr>
+<tr><td>Security</td><td>None</td><td>Basic auth</td><td>Permissions + secrets</td><td>Threat model + approval/audit boundaries</td></tr>
+<tr><td>Outcome</td><td>No metric</td><td>Technical metric</td><td>Workflow metric</td><td>Business value + adoption metric</td></tr>
+<tr><td>Economics</td><td>Ignored</td><td>Token/API cost</td><td>Cost per completed task</td><td>Cost per successful outcome + scale projection</td></tr>
+<tr><td>Adoption</td><td>Demo only</td><td>User feedback</td><td>Rollout stage + override metrics</td><td>Evidence-based expansion criteria + workflow ownership</td></tr>
+<tr><td>Leverage</td><td>One-off</td><td>README</td><td>Reusable module</td><td>Pattern/playbook usable in next engagement</td></tr>
+</tbody>
+</table>
+<p><strong>Target:</strong> a credible FDE portfolio project should average at least 2.3/3 and score 3 on either engineering/reliability or outcome ownership.</p>
+</section>
+
+<section id="capstone">
+<h2>17. Capstone: simulated forward-deployed engagement <a class="toplink" href="#intro">↑ top</a></h2>
+<div class="assignment">
+<div class="level">20–30 focused hours</div>
+<h3>“From SOW to production proof”</h3>
+<p><strong>Brief:</strong> A regulated enterprise says: “We want an AI agent to reduce the time our analysts spend processing complex requests. It must integrate with our knowledge base and case-management system. We need something we can pilot quickly, but security will not permit uncontrolled writes.”</p>
+
+<h4>Deliverable 1 — Discovery pack</h4>
+<ul><li>workflow map</li><li>stakeholder map</li><li>assumptions</li><li>constraints</li><li>baseline and success metric</li><li>explicit non-goals</li></ul>
+
+<h4>Deliverable 2 — Architecture</h4>
+<ul><li>context/data boundaries</li><li>system of record</li><li>model/tool boundary</li><li>approval/authorization boundary</li><li>state/retry/recovery design</li><li>telemetry</li></ul>
+
+<h4>Deliverable 3 — Vertical slice</h4>
+<ul><li>realistic API</li><li>retrieval or context integration</li><li>structured model interaction</li><li>safe tool action</li><li>operator review</li></ul>
+
+<h4>Deliverable 4 — Eval & reliability evidence</h4>
+<ul><li>golden dataset</li><li>task success metric</li><li>tool correctness test</li><li>prompt injection/security case</li><li>failure injection</li></ul>
+
+<h4>Deliverable 5 — Production proof</h4>
+<ul><li>containerised deployment</li><li>tracing and dashboard</li><li>runbook</li><li>rollback/recovery demonstration</li></ul>
+
+<h4>Deliverable 6 — Executive closeout</h4>
+<ul><li>what changed</li><li>metric movement</li><li>risks</li><li>what not to scale yet</li><li>next 30-day recommendation</li></ul>
+
+<h4>Deliverable 7 — Scale decision</h4>
+<ul>
+<li>Six Production Gates score: value, quality, safety, operability, economics and adoption</li>
+<li>cost per successful outcome and expected-volume projection</li>
+<li>rollout stage and expansion criteria</li>
+<li>required security/privacy/risk approvals</li>
+<li>explicit GO / HOLD / STOP recommendation with evidence</li>
+</ul>
+
+</div>
+
+<div class="callout good"><strong>Capstone standard:</strong> your final demo should spend less time showing the chat UI and more time showing the workflow, evidence, failure recovery, metrics and decisions.</div>
+<div class="callout danger"><strong>How the capstone fails:</strong> (1) the requested “agent” architecture is accepted before discovery; (2) the demo works only on the happy path; (3) the model can authorize its own consequential action; (4) the eval set is created after prompt tuning and therefore only proves the tuned examples; (5) observability shows model calls but cannot reconstruct the end-to-end task; (6) the executive closeout reports model quality without adoption, workflow or economic impact; or (7) the solution cannot be operated by someone other than its author. Any one of these is a reason to revise the capstone before calling it FDE-ready.</div>
+</section>
+
+<section id="interviews">
+<h2>18. FDE interview preparation <a class="toplink" href="#intro">↑ top</a></h2>
+<p>Exact interview loops vary by company, but the current role specifications imply a consistent set of signals: coding, system design, applied AI, debugging, customer ambiguity and communication.</p>
+
+<h3>18.1 Coding / practical engineering</h3>
+<details><summary>Q1. Implement a rate-limited concurrent API client.</summary><p>Look for bounded concurrency, timeout, retry policy, error handling, testability and observability—not clever syntax.</p></details>
+<details><summary>Q2. An upstream API occasionally returns success after your client times out. How do you prevent duplicate writes?</summary><p>Discuss idempotency keys, operation identity, external status reconciliation and unknown-outcome handling.</p></details>
+<details><summary>Q3. Review a Python service that retries every exception five times.</summary><p>Classify transient/permanent errors, retry budget, backoff/jitter, deadlines and observability.</p></details>
+
+<h3>18.2 System design</h3>
+<details><summary>Q4. Design an AI-assisted claims workflow used by 5,000 operators.</summary><p>Start with system of record, authorization, workflow steps and SLAs before model choice.</p></details>
+<details><summary>Q5. Design a long-running agent that may wait 24 hours for human approval.</summary><p>Persist state, durable waiting, fresh authorization, retries, deadlines, fencing/idempotency and audit.</p></details>
+<details><summary>Q6. How would you deploy across customers with different data residency requirements?</summary><p>Discuss tenancy, regional deployment, provider/model options, data flow, key management and operational complexity.</p></details>
+
+<h3>18.3 AI / agent engineering</h3>
+<details><summary>Q7. When should you not use an agent?</summary><p>When deterministic workflow or single model call gives sufficient flexibility with lower reliability/operational risk.</p></details>
+<details><summary>Q8. Your RAG answer quality is poor. What do you inspect first?</summary><p>Build labeled examples; separate retrieval from generation; inspect source freshness, authorization filters, chunking, query formulation, ranking and context assembly.</p></details>
+<details><summary>Q9. How do you evaluate a tool-using agent?</summary><p>Task outcome, tool selection, argument correctness, sequence, policy compliance, side-effect integrity, latency/cost and recovery.</p></details>
+
+<h3>18.4 Customer ambiguity</h3>
+<details><summary>Q10. The customer insists on multi-agent architecture. What do you do?</summary><p>Understand the desired capability and why they believe multi-agent is necessary; propose a falsifiable simpler baseline and compare on quality/latency/cost/operability.</p></details>
+<details><summary>Q11. The executive sponsor wants production in two weeks; security says six months.</summary><p>Find a low-risk vertical slice, constrain data/actions, use sandbox/read-only or approval-gated mode, define evidence required to expand.</p></details>
+<details><summary>Q12. Your prototype works but users do not adopt it.</summary><p>Investigate workflow friction, trust, incentives, timing, UX and whether the solved problem was actually valuable; do not simply tune the model.</p></details>
+
+<h3>18.5 Behavioural signals</h3>
+<ul>
+<li>A time you entered an ambiguous situation and created clarity.</li>
+<li>A time you changed your technical design after customer evidence.</li>
+<li>A failure in production and how you improved the system afterwards.</li>
+<li>A time you pushed back on a senior stakeholder using evidence.</li>
+<li>A case where speed mattered and you deliberately accepted technical debt.</li>
+<li>A reusable pattern you created from a one-off delivery.</li>
+</ul>
+
+<h3>Answer structure: EVIDENCE</h3>
+<pre>E — Environment / customer context
+V — Value or outcome at stake
+I — Invariant / constraint
+D — Decision and alternatives
+E — Engineering action
+N — Negative case / failure considered
+C — Concrete result
+E — Extraction: reusable lesson or pattern</pre>
+</section>
+
+<section id="readiness">
+<h2>19. Readiness scorecard <a class="toplink" href="#intro">↑ top</a></h2>
+<p>Score each item 0–3: 0 = no exposure, 1 = study/tutorial, 2 = built independently, 3 = operated or defended under real/realistic constraints.</p>
+<table>
+<thead><tr><th>Competency</th><th>0–3</th><th>Evidence required for a 3</th></tr></thead>
+<tbody>
+<tr><td>Python production coding</td><td>__</td><td>Service shipped, tested, debugged</td></tr>
+<tr><td>TypeScript / full-stack literacy</td><td>__</td><td>Feature shipped across API/UI boundary</td></tr>
+<tr><td>System design</td><td>__</td><td>Can defend trade-offs + failure semantics</td></tr>
+<tr><td>Cloud deployment</td><td>__</td><td>Repeatable deployment + rollback</td></tr>
+<tr><td>Agent/tool engineering</td><td>__</td><td>Tool-using workflow with safe authority model</td></tr>
+<tr><td>RAG/context</td><td>__</td><td>Measured retrieval quality</td></tr>
+<tr><td>Evals</td><td>__</td><td>Eval-driven release/change decision</td></tr>
+<tr><td>Observability</td><td>__</td><td>Diagnosed failure from telemetry</td></tr>
+<tr><td>Security/governance</td><td>__</td><td>Threat model + enforced controls</td></tr>
+<tr><td>Customer discovery</td><td>__</td><td>Problem reframed using workflow evidence</td></tr>
+<tr><td>Outcome ownership</td><td>__</td><td>Technical work tied to measurable business/operational outcome</td></tr>
+<tr><td>Codification</td><td>__</td><td>Reusable playbook/pattern derived from delivery</td></tr>
+</tbody>
+</table>
+
+<h3>Interpretation</h3>
+<ul>
+<li><strong>0–14:</strong> build technical foundations; do not optimise for the FDE title yet.</li>
+<li><strong>15–23:</strong> credible applied-AI / solutions-architecture transition; build deployment evidence.</li>
+<li><strong>24–29:</strong> start applying selectively to FDE and adjacent deployment roles.</li>
+<li><strong>30–36:</strong> strong FDE portfolio signal if scores are backed by evidence rather than self-rating.</li>
+</ul>
+
+<div class="callout warn">This is a preparation heuristic, not a hiring prediction. Different employers weight coding depth, industry background and customer experience differently.</div>
+</section>
+
+<section id="fieldkit">
+<h2>Field Kit — scripts & deployment cards <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="lead">These are designed to be used during an engagement, not memorized.</p>
+
+<h3>Field script 1 — “Just make it autonomous”</h3>
+<div class="script"><div class="speaker">Customer</div><p>“We don't want people reviewing this. Make the agent autonomous.”</p>
+<div class="speaker">FDE</div><p>“Let's separate where autonomy creates value from where it creates irreversible risk. For the first deployment, I recommend the agent run the whole workflow but require approval at the commit boundary. That gives us production data on quality, latency and intervention rate. If approvals become unnecessary in almost all eligible cases and the risk gate remains green, we have evidence for increasing autonomy.”</p></div>
+
+<h3>Field script 2 — “We need multi-agent”</h3>
+<div class="script"><div class="speaker">Customer</div><p>“Our architecture must be multi-agent.”</p>
+<div class="speaker">FDE</div><p>“What capability do you expect multiple agents to unlock that one workflow cannot? I suggest we establish a simpler baseline first, then compare decomposition only if it improves task success, latency, cost or maintainability. That gives us evidence rather than making topology the requirement.”</p></div>
+
+<h3>Field script 3 — “Security won't allow an external model”</h3>
+<div class="script"><div class="speaker">Security</div><p>“No enterprise data can go to a public AI endpoint.”</p>
+<div class="speaker">FDE</div><p>“Understood. Let's identify the exact data and network constraints first. We can evaluate regional/private managed endpoints, a dedicated environment or self-hosted inference. I’ll document the data path, retention, identity and egress controls so we can choose the least operationally expensive option that satisfies the policy.”</p></div>
+
+<h3>Field script 4 — “The demo looks accurate; why do we need evals?”</h3>
+<div class="script"><div class="speaker">Sponsor</div><p>“We've tried twenty examples and it works. Why slow down for evals?”</p>
+<div class="speaker">FDE</div><p>“Those twenty examples are evidence, but they are not a release gate. We'll turn representative normal and failure cases into a small repeatable suite. That lets us change prompts, models or retrieval later without rediscovering quality problems in production.”</p></div>
+
+<h3>Field script 5 — “Use the biggest model everywhere”</h3>
+<div class="script"><div class="speaker">Team</div><p>“Quality matters, so route everything to the strongest model.”</p>
+<div class="speaker">FDE</div><p>“We'll use the strongest model to establish the quality ceiling. Then we'll test smaller routes against the same eval set. Anything cheaper only ships if it still passes the task and risk gates. The decision metric is cost per successful outcome, not model price alone.”</p></div>
+
+<h3>Production pre-flight</h3>
+<div class="checkcard">
+<ul class="field-check">
+<li><strong>Value:</strong> workflow owner, baseline, target and eligible volume documented.</li>
+<li><strong>Quality:</strong> representative eval set passes the release threshold.</li>
+<li><strong>Authority:</strong> read/write scopes, approval boundaries and idempotency verified.</li>
+<li><strong>Data:</strong> classifications, tenant boundaries, retention and sensitive-data handling verified.</li>
+<li><strong>Reliability:</strong> timeouts/retries bounded; failure injection and rollback completed.</li>
+<li><strong>Observability:</strong> end-to-end task correlation, model/tool versions, cost and latency visible.</li>
+<li><strong>Security/governance:</strong> required reviews complete; residual risk has an authorized owner.</li>
+<li><strong>Economics:</strong> cost per successful outcome and expected-scale projection reviewed.</li>
+<li><strong>Adoption:</strong> rollout stage, champion users, feedback and escalation paths defined.</li>
+<li><strong>Operations:</strong> runbook owner can diagnose and recover the service without the original author.</li>
+</ul>
+</div>
+
+<h3>Engagement closeout card</h3>
+<div class="checkcard">
+<ul class="field-check">
+<li>What changed in the user workflow?</li>
+<li>Which Six Production Gates passed, failed or remain uncertain?</li>
+<li>What production evidence supports the conclusion?</li>
+<li>What should not be automated or scaled yet?</li>
+<li>What did users override, distrust or work around?</li>
+<li>What is the current cost per successful outcome?</li>
+<li>What reusable architecture, tool, eval or playbook came out of the engagement?</li>
+<li>What is the next GO / HOLD / STOP decision and who owns it?</li>
+</ul>
+</div>
+</section>
+
+<section id="resources">
+<h2>20. Curated resource path <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="lead">A deliberately small set. Finish core resources and build; use the rest as references when the work demands them.</p>
+
+<h3>20.1 Software engineering</h3>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> Python official tutorial + typing docs</strong><span>Language fluency; pair with a real API project. https://docs.python.org/3/</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> FastAPI documentation</strong><span>Typed production API patterns. https://fastapi.tiangolo.com/</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> TypeScript Handbook</strong><span>Enough TS to work across modern AI product stacks. https://www.typescriptlang.org/docs/handbook/</span></div>
+<div class="resource"><strong><span class="tag-ref">[REFERENCE]</span> pytest documentation</strong><span>Test fixtures, parametrisation, failure isolation. https://docs.pytest.org/</span></div>
+
+<h3>20.2 System design</h3>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> Designing Data-Intensive Applications — Martin Kleppmann</strong><span>Durable distributed-systems concepts: data models, replication, partitioning, transactions, streams.</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> AWS Architecture Center / Well-Architected</strong><span>Production architecture and operational trade-offs. https://aws.amazon.com/architecture/</span></div>
+<div class="resource"><strong><span class="tag-ref">[REFERENCE]</span> Azure Architecture Center</strong><span>Excellent pattern catalogue even if Azure is not your primary cloud. https://learn.microsoft.com/azure/architecture/</span></div>
+
+<h3>20.3 Agents, tools and context</h3>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> Anthropic Claude Platform docs + Cookbook</strong><span>Prompting, tools, evals, production patterns. https://docs.anthropic.com/</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> OpenAI — A practical guide to building agents</strong><span>Useful current implementation guidance. Generalise the principles around choosing agentic vs deterministic workflows, tool design, incremental orchestration, layered guardrails and human intervention; treat OpenAI SDK/API examples as vendor-specific. https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/</span></div>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> Model Context Protocol specification</strong><span>The 2026-07-28 release changes lifecycle assumptions: stateless core requests carry version/capability metadata, while durable Tasks are an extension. Pin versions and compatibility-test rather than treating MCP as magic. https://modelcontextprotocol.io/specification/2026-07-28</span></div>
+<div class="resource"><strong><span class="tag-ref">[REFERENCE]</span> OpenAI background mode</strong><span>Concrete vendor-specific example of asynchronous long-running model work. Generalise the durable lessons: status, cancellation, polling or callbacks, re-entry and explicit retention/security choices. https://developers.openai.com/api/docs/guides/background</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> OpenAI Agents SDK docs</strong><span>Concrete reference for tool loops, tracing and server-owned control. https://openai.github.io/openai-agents-python/</span></div>
+
+<h3>20.4 Evals</h3>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> Anthropic — Define success criteria and build evaluations</strong><span>Strong conceptual starting point. https://docs.anthropic.com/en/docs/build-with-claude/develop-tests</span></div>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> OpenAI — Evaluation best practices</strong><span>Design principles for variable model behaviour. https://developers.openai.com/api/docs/guides/evaluation-best-practices</span></div>
+<div class="resource"><strong><span class="tag-ref">[REFERENCE — RETIRING PLATFORM]</span> OpenAI Evals docs</strong><span>The concepts remain useful, but do not build a new long-lived harness against this platform: deprecation announced 3 Jun 2026; existing evals become read-only 31 Oct 2026; dashboard/API shutdown scheduled for 30 Nov 2026. https://developers.openai.com/api/docs/guides/evals</span></div>
+
+<h3>20.5 Cloud, runtime and observability</h3>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> Docker Get Started</strong><span>https://docs.docker.com/get-started/</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> Kubernetes Basics</strong><span>https://kubernetes.io/docs/tutorials/kubernetes-basics/</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> Terraform tutorials</strong><span>https://developer.hashicorp.com/terraform/tutorials</span></div>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> OpenTelemetry GenAI semantic conventions</strong><span>Agent/model/tool telemetry. <strong>Caveat:</strong> the conventions moved to a dedicated repository in 2026 and many <code>gen_ai.*</code> values remain <em>Development</em>, not Stable; isolate attribute mapping/versioning and keep sensitive content capture opt-in. https://github.com/open-telemetry/semantic-conventions-genai</span></div>
+
+
+<h3>20.6 Security & governance</h3>
+<div class="resource"><strong><span class="tag-must">[CORE]</span> OWASP GenAI Security Project</strong><span>Threat vocabulary and mitigations. https://genai.owasp.org/</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> OWASP Agentic Security Initiative</strong><span>Current agent-control, secure-MCP and agentic-application guidance; use it to threat-model authority, tool supply chains and multi-step autonomy. https://genai.owasp.org/initiatives/agentic-security-initiative/</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> NIST AI Risk Management Framework</strong><span>Use Govern / Map / Measure / Manage as a durable risk conversation model; note that AI RMF 1.0 is currently being revised. https://airc.nist.gov/airmf-resources/airmf/</span></div>
+<div class="resource"><strong><span class="tag-ref">[REFERENCE]</span> AWS Bedrock PrivateLink guidance</strong><span>Concrete example of a managed model service accessed privately through VPC interface endpoints without a public internet path. https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html</span></div>
+
+<h3>20.7 Sovereign / self-hosted inference</h3>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> vLLM Production Stack</strong><span>Current reference implementation for Kubernetes-based vLLM serving, routing and observability. https://docs.vllm.ai/en/latest/deployment/integrations/production-stack/</span></div>
+<div class="resource"><strong><span class="tag-ref">[REFERENCE]</span> Hugging Face TGI migration guidance</strong><span>TGI entered maintenance mode in Dec 2025; useful as a reminder to keep inference engines replaceable and consult current serving guidance. https://huggingface.co/docs/inference-endpoints/en/engines/tgi</span></div>
+
+<h3>20.8 Enterprise adoption / change</h3>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> OpenAI — How enterprises are scaling AI</strong><span>Current enterprise evidence on workflow redesign, trust, adoption and early involvement of security/legal/compliance. https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai/</span></div>
+
+<h3>20.9 Customer / product discovery</h3>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> The Mom Test — Rob Fitzpatrick</strong><span>Practical customer questioning that avoids validation-seeking interviews.</span></div>
+<div class="resource"><strong><span class="tag-good">[GOOD]</span> Continuous Discovery Habits — Teresa Torres</strong><span>Useful workflow for connecting opportunities, assumptions and experiments.</span></div>
+</section>
+
+<section id="cert">
+<h2>21. Certification mapping <a class="toplink" href="#intro">↑ top</a></h2>
+<p>Public Anthropic material confirms that Claude Certified Architect — Foundations (CCAR-F) launched for partners in March 2026 and that certifications are held by individuals through the Partner Academy. The public evidence reviewed does not establish a stable four-certification catalog or open access. Verify the current catalog, eligibility and access in the Partner Academy before investing; treat any certification as supplementary evidence beside real deployment competence.</p>
+
+<table>
+<thead><tr><th>Certification topic</th><th>FDE relevance</th><th>Handbook area</th></tr></thead>
+<tbody>
+<tr><td>Vendor architecture / platform</td><td>Useful vendor depth</td><td>§7, §20.3</td></tr>
+<tr><td>Prompt/context design</td><td>Core applied AI skill</td><td>§7</td></tr>
+<tr><td>MCP / tools</td><td>Directly relevant to modern FDE work</td><td>§7, §10</td></tr>
+<tr><td>Evals</td><td>Critical production signal</td><td>§8</td></tr>
+<tr><td>Claude Code / developer workflow</td><td>Useful implementation acceleration</td><td>§5, projects</td></tr>
+<tr><td>Enterprise architecture</td><td>Important but broader than one vendor</td><td>§6, §9, §10</td></tr>
+</tbody>
+</table>
+<div class="callout"><strong>Preparation rule:</strong> verify the active exam catalog, eligibility and access directly in the Partner Academy. If a relevant credential is available, prepare efficiently; do not let exam preparation displace production coding, system design, evals or deployment projects.</div>
+</section>
+
+<section id="sources">
+<h2>22. Research source register <a class="toplink" href="#intro">↑ top</a></h2>
+<p class="small">Research checked on 4 September 2026. Job postings, product features and protocol details change; use the linked pages as dated evidence, not permanent requirements.</p>
+
+<h3>Current role evidence</h3>
+<ol>
+<li>OpenAI — Applied AI Engineer, London: https://openai.com/careers/applied-ai-engineer-london-uk/</li>
+<li>OpenAI — FDE career search: https://openai.com/careers/search/?q=forward+deployed+engineer</li>
+<li>OpenAI — Forward Deployed Engineer, Government: https://openai.com/careers/forward-deployed-engineer-gov-washington-dc/</li>
+<li>OpenAI — Forward Deployed Engineer, Healthcare: https://openai.com/careers/forward-deployed-engineer-(fde)-healthcare-nyc-new-york-city/</li>
+<li>Anthropic — Forward Deployed Engineer (current posting surfaced Aug 2026): https://job-boards.greenhouse.io/anthropic/jobs/5391016008</li>
+<li>Anthropic — Technical Deployment Lead, London: https://job-boards.greenhouse.io/anthropic/jobs/5391108008</li>
+<li>Anthropic — Applied AI Architect, Industries: https://www.anthropic.com/careers/jobs/4461444008</li>
+<li>Anthropic — Applied AI careers listing: https://www.anthropic.com/careers/jobs</li>
+<li>Accenture — Forward Deployed Engineer, UK: https://www.accenture.com/gb-en/careers/jobdetails?id=R00344052_en</li>
+<li>Accenture — AI Native Software Engineering / FDE path, UK: https://www.accenture.com/in-en/careers/jobdetails?id=R00344728_en</li>
+<li>Accenture + Microsoft — FDE practice launch, 18 Mar 2026: https://newsroom.accenture.com/news/2026/accenture-launches-microsoft-forward-deployed-engineering-practice-to-help-organizations-scale-ai-across-the-enterprise</li>
+<li>Accenture + ServiceNow — FDE program launch, 6 May 2026: https://newsroom.accenture.com/news/2026/servicenow-and-accenture-launch-forward-deployed-engineering-program-to-scale-agentic-ai-across-the-enterprise</li>
+<li>Palantir — UK careers / forward-deployed description: https://www.palantir.com/uk/careers/</li>
+<li>Palantir — “Escaping the Cargo Cult”, history of forward deployment: https://blog.palantir.com/escaping-the-cargo-cult-4953e65e9ee1</li>
+</ol>
+
+<h3>Certification evidence</h3>
+<ol>
+<li>Anthropic — Claude Partner Network and CCAR-F launch, 12 Mar 2026: https://www.anthropic.com/news/claude-partner-network</li>
+<li>Anthropic — Services Track / Partner Hub, 3 Jun 2026: https://www.anthropic.com/news/services-track-partner-hub</li>
+</ol>
+
+<h3>Technical standards and guidance</h3>
+<ol>
+<li>MCP Specification 2026-07-28: https://modelcontextprotocol.io/specification/2026-07-28</li>
+<li>MCP 2026-07-28 changelog: https://modelcontextprotocol.io/specification/2026-07-28/changelog</li>
+<li>OpenTelemetry — dedicated GenAI semantic-conventions repository: https://github.com/open-telemetry/semantic-conventions-genai</li>
+<li>OpenTelemetry — GenAI observability, 14 May 2026: https://opentelemetry.io/blog/2026/genai-observability/</li>
+<li>Anthropic — evaluation guidance: https://docs.anthropic.com/en/docs/build-with-claude/develop-tests</li>
+<li>Anthropic Cookbook: https://docs.anthropic.com/en/docs/resources/cookbook</li>
+<li>OpenAI — Agent guidance: https://developers.openai.com/api/docs/guides/agents</li>
+<li>OpenAI — Evaluation best practices: https://developers.openai.com/api/docs/guides/evaluation-best-practices</li>
+<li>OpenAI — API deprecations (Evals timeline, announced 3 Jun 2026): https://developers.openai.com/api/docs/deprecations</li>
+<li>OpenAI — Background mode for long-running tasks: https://developers.openai.com/api/docs/guides/background</li>
+<li>OpenTelemetry — GenAI semantic-convention registry / Development stability: https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/</li>
+<li>OWASP — Top 10 for LLM Applications 2025: https://genai.owasp.org/llm-top-10/</li>
+<li>OWASP — Agentic AI Security Initiative: https://genai.owasp.org/initiatives/agentic-security-initiative/</li>
+<li>Anthropic — Enterprise Frontier Safeguards, 1 Sep 2026: https://www.anthropic.com/news/enterprise-frontier-safeguards</li>
+<li>OpenAI — How enterprises are scaling AI, 11 May 2026: https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai/</li>
+<li>OpenAI — Partner Network, enterprise adoption/change-management rationale, 14 Jun 2026: https://openai.com/index/introducing-openai-partner-network/</li>
+<li>NIST AIRC — AI RMF Core (Govern, Map, Measure, Manage; AI RMF 1.0 revision status): https://airc.nist.gov/airmf-resources/airmf/5-sec-core/</li>
+<li>AWS — Amazon Bedrock VPC interface endpoints / PrivateLink: https://docs.aws.amazon.com/bedrock/latest/userguide/vpc-interface-endpoints.html</li>
+<li>Hugging Face — TGI maintenance mode / migration alternatives: https://huggingface.co/docs/inference-endpoints/en/engines/tgi</li>
+<li>vLLM — Production Stack: https://docs.vllm.ai/en/latest/deployment/integrations/production-stack/</li>
+</ol>
+
+<div class="footer">
+<strong>Editorial principle.</strong> This handbook prioritises enduring engineering and deployment principles over framework memorisation. Vendor-specific tools are included when they illuminate current practice, but assignments are intentionally designed so they can be implemented with different model providers and orchestration stacks.<br><br>
+Version 1.3 • Research cut: 4 September 2026 • Audited field revision: current role taxonomy; durable asynchronous agent execution; MCP 2026-07-28 compatibility; risk-derived eval gates; GenAI telemetry stability and content controls; agent/tool supply-chain security; explicit production handoff; certification evidence correction • Standalone HTML, print-friendly.
+</div>
+</section>
+
+</main>
+</div>
+</body>
+</html>

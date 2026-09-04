@@ -9,6 +9,7 @@ This is the authoritative index of current material in the repository.
 | AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.0.html](handbooks/ai-engineering/ai-engineering-handbook-v3.0.html) | HTML | Current | v3.0 | 2026-09-03 |
 | Software Architect Curriculum Guide | Software architecture | [learning-paths/software-architect/software-architect-curriculum-guide-v3.md](learning-paths/software-architect/software-architect-curriculum-guide-v3.md) | Markdown | Current | v3 | 2026-09-04 |
 | Software Architect Grooming Programme | Software architecture | [learning-paths/software-architect/software-architect-grooming-programme-v5.html](learning-paths/software-architect/software-architect-grooming-programme-v5.html) | HTML | Current | v5 | 2026-09-04 |
+| Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.3.html](handbooks/fde/fde-handbook-v1.3.html) | HTML | Current | v1.3 | 2026-09-04 |
 
 ## Status values
 
@@ -21,8 +22,7 @@ This is the authoritative index of current material in the repository.
 
 These candidates are intentionally not listed as current until each receives a separate public-safety, freshness, provenance, and canonical-version review:
 
-1. **FDE Handbook v1.2** — migrate the saved final edition as the next handbook.
-2. **AI Architect's Handbook** — reconcile the existing v1.0 publication assets with the approved v1.2 revisions, then establish one canonical public edition.
-3. **Interview Resource Accelerator v4.3** — review time-sensitive resources and determine its long-term learning-path placement.
-4. **Modular Markdown extraction** — extract focused notes from the five current artifacts without duplicating their full published editions.
-5. **Focused architecture notes** — distil enduring material from the reasoning-model guide, CS336 model/inference notebook, CS329A self-improving-agent notes, and relevant course or certification material. Complete AWS certification packs remain outside repository scope.
+1. **AI Architect's Handbook** — reconcile the existing v1.0 publication assets with the approved v1.2 revisions, then establish one canonical public edition.
+2. **Interview Resource Accelerator v4.3** — review time-sensitive resources and determine its long-term learning-path placement.
+3. **Modular Markdown extraction** — extract focused notes from the six current artifacts without duplicating their full published editions.
+4. **Focused architecture notes** — distil enduring material from the reasoning-model guide, CS336 model/inference notebook, CS329A self-improving-agent notes, and relevant course or certification material. Complete AWS certification packs remain outside repository scope.
