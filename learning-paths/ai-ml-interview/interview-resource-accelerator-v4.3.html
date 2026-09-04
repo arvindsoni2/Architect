@@ -1,0 +1,2384 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="AI/ML interview resource accelerator v4.3 with 16 domains, 76 curated resources and targeted Feynman practice." name="description"/>
+<title>AI/ML Interview Resource Accelerator v4.3 — Recent Resource Audit</title>
+<style>
+    :root {
+      --bg: #07111f;
+      --surface: #0d1b2d;
+      --surface-2: #12243a;
+      --surface-3: #172c45;
+      --text: #edf5ff;
+      --muted: #a9bdd2;
+      --line: rgba(192, 218, 243, .14);
+      --cyan: #58d5d3;
+      --blue: #7da5ff;
+      --violet: #b69cff;
+      --orange: #ffb66e;
+      --green: #73df9f;
+      --red: #ff8d9b;
+      --shadow: 0 22px 60px rgba(0,0,0,.28);
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(88,213,211,.13), transparent 31rem),
+        radial-gradient(circle at 88% 10%, rgba(182,156,255,.12), transparent 29rem),
+        radial-gradient(circle at 50% 100%, rgba(255,182,110,.07), transparent 32rem),
+        var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+    .shell { width: min(1500px, calc(100% - 32px)); margin: 0 auto; }
+    .hero {
+      padding: 76px 0 34px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 480px; height: 480px;
+      border: 1px solid rgba(125,165,255,.16);
+      border-radius: 50%;
+      right: -180px; top: -210px;
+      box-shadow: 0 0 0 80px rgba(125,165,255,.025), 0 0 0 160px rgba(88,213,211,.018);
+      pointer-events: none;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--cyan);
+      border: 1px solid rgba(88,213,211,.25);
+      background: rgba(88,213,211,.08);
+      border-radius: 999px;
+      padding: 7px 12px;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 1040px;
+      margin: 20px 0 18px;
+      font-size: clamp(2.7rem, 7vw, 6.4rem);
+      line-height: .95;
+      letter-spacing: -.065em;
+    }
+    h1 span {
+      background: linear-gradient(100deg, var(--cyan), var(--blue) 48%, var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lead {
+      max-width: 920px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      margin: 0;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .primary-btn, .secondary-btn {
+      text-decoration: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .primary-btn { background: linear-gradient(120deg, var(--cyan), var(--blue)); color: #06111d; }
+    .secondary-btn { background: rgba(255,255,255,.04); border-color: var(--line); color: var(--text); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 40px;
+    }
+    .stat {
+      background: rgba(13,27,45,.76);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      backdrop-filter: blur(10px);
+    }
+    .stat strong { display: block; font-size: 1.65rem; line-height: 1; margin-bottom: 7px; }
+    .stat span { color: var(--muted); font-size: .9rem; }
+    .method, .changes {
+      margin: 24px auto 30px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(18,36,58,.96), rgba(13,27,45,.93));
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+    .section-label { color: var(--orange); font-weight: 800; text-transform: uppercase; letter-spacing: .1em; font-size: .78rem; }
+    .method h2, .changes h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 6px 0 7px; letter-spacing: -.04em; }
+    .method-intro { color: var(--muted); max-width: 980px; margin-top: 0; }
+    .loop, .change-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .change-grid { grid-template-columns: repeat(3, 1fr); }
+    .loop-step, .change-card {
+      background: rgba(7,17,31,.5);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 17px;
+    }
+    .loop-step .num {
+      display: inline-grid;
+      place-items: center;
+      width: 30px; height: 30px;
+      border-radius: 10px;
+      background: rgba(88,213,211,.13);
+      color: var(--cyan);
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+    .loop-step h3, .change-card h3 { margin: 0 0 5px; font-size: 1rem; }
+    .loop-step p, .change-card p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .change-card span {
+      display: inline-block;
+      color: var(--cyan);
+      font-weight: 900;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 9px;
+    }
+    .rule {
+      margin-top: 16px;
+      border-left: 4px solid var(--orange);
+      padding: 10px 14px;
+      background: rgba(255,182,110,.07);
+      border-radius: 0 12px 12px 0;
+    }
+    .sprint {
+      margin: 0 auto 30px;
+      display: grid;
+      grid-template-columns: 1.1fr 1.9fr;
+      gap: 14px;
+    }
+    .sprint-card {
+      border: 1px solid var(--line);
+      background: rgba(13,27,45,.82);
+      border-radius: 20px;
+      padding: 24px;
+    }
+    .sprint-card h2, .sprint-card h3 { margin-top: 0; letter-spacing: -.03em; }
+    .sprint-card p { color: var(--muted); }
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+    }
+    .week {
+      padding: 12px 10px;
+      border-radius: 13px;
+      min-height: 116px;
+      border: 1px solid var(--line);
+      background: rgba(7,17,31,.5);
+    }
+    .week b { color: var(--cyan); font-size: .8rem; }
+    .week span { display: block; font-weight: 800; margin: 8px 0 5px; }
+    .week small { color: var(--muted); }
+    .controls-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7,17,31,.88);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+    .controls {
+      width: min(1500px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 12px 0;
+      display: grid;
+      grid-template-columns: minmax(220px, 1fr) auto minmax(210px, .55fr);
+      gap: 12px;
+      align-items: center;
+    }
+    .search {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      outline: none;
+    }
+    .search:focus { border-color: rgba(88,213,211,.6); box-shadow: 0 0 0 3px rgba(88,213,211,.08); }
+    .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+    .filter-btn, .reset-btn {
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 11px;
+      cursor: pointer;
+      font-size: .82rem;
+      font-weight: 800;
+    }
+    .filter-btn.active { color: #06111d; background: var(--cyan); border-color: transparent; }
+    .progress-block { display: grid; grid-template-columns: 1fr auto; gap: 7px 10px; align-items: center; }
+    .progress-track { height: 8px; background: rgba(255,255,255,.07); border-radius: 999px; overflow: hidden; }
+    .progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, var(--cyan), var(--violet)); transition: width .2s ease; }
+    .progress-text { color: var(--muted); font-size: .8rem; white-space: nowrap; }
+    .learning-layout {
+      display: grid;
+      grid-template-columns: 285px minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+      margin-top: 18px;
+    }
+    .topic-tabs-panel {
+      position: sticky;
+      top: 86px;
+      z-index: 10;
+      max-height: calc(100vh - 110px);
+      overflow: auto;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(13,27,45,.95), rgba(9,21,36,.95));
+      border-radius: 22px;
+      padding: 14px;
+      box-shadow: 0 18px 44px rgba(0,0,0,.18);
+      scrollbar-width: thin;
+    }
+    .tabs-kicker {
+      color: var(--orange);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .11em;
+      font-size: .72rem;
+      margin: 2px 4px 12px;
+    }
+    .topic-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .topic-tabs a {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      width: 100%;
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.035);
+      border-radius: 14px;
+      padding: 10px 11px;
+      color: var(--muted);
+      font-size: .88rem;
+      font-weight: 800;
+      line-height: 1.25;
+      transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+    }
+    .topic-tabs a:hover {
+      color: var(--text);
+      border-color: rgba(88,213,211,.42);
+      transform: translateX(2px);
+    }
+    .topic-tabs a.active-tab {
+      color: #06111d;
+      background: linear-gradient(120deg, var(--cyan), var(--blue));
+      border-color: transparent;
+      box-shadow: 0 10px 30px rgba(88,213,211,.13);
+    }
+    .topic-tabs a span {
+      display: inline-grid;
+      place-items: center;
+      width: 26px;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 9px;
+      background: rgba(255,255,255,.06);
+    }
+    .topic-tabs a.active-tab span { background: rgba(7,17,31,.12); }
+    .topic-content-panel { min-width: 0; }
+    main { padding: 0 0 70px; }
+    .topic-section:not(.active-topic) { display: none; }
+    .topic-section {
+      scroll-margin-top: 92px;
+      margin: 34px 0;
+      padding: 30px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(13,27,45,.94), rgba(9,21,36,.94));
+      border-radius: 26px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.18);
+    }
+    .topic-header {
+      display: grid;
+      grid-template-columns: 66px 1fr;
+      gap: 18px;
+      align-items: start;
+      margin-bottom: 20px;
+    }
+    .topic-number {
+      display: grid;
+      place-items: center;
+      width: 62px; height: 62px;
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(88,213,211,.16), rgba(125,165,255,.12));
+      border: 1px solid rgba(88,213,211,.22);
+      color: var(--cyan);
+      font-weight: 950;
+      font-size: 1.15rem;
+    }
+    .eyebrow { color: var(--orange); text-transform: uppercase; letter-spacing: .11em; font-weight: 900; font-size: .72rem; margin: 2px 0 3px; }
+    .topic-header h2 { margin: 0; font-size: clamp(1.7rem, 4vw, 2.7rem); letter-spacing: -.045em; }
+    .topic-tagline { color: var(--muted); margin: 4px 0 0; }
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .focus-panel, .feynman-panel, .prompt-panel {
+      border: 1px solid var(--line);
+      background: rgba(7,17,31,.45);
+      border-radius: 17px;
+      padding: 17px;
+    }
+    .focus-panel h3, .feynman-panel h3, .prompt-panel h3 {
+      margin: 0 0 9px;
+      font-size: .88rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--blue);
+    }
+    .focus-panel ul, .prompt-panel ol { padding-left: 20px; margin: 0; color: var(--muted); font-size: .9rem; }
+    .focus-panel li + li, .prompt-panel li + li { margin-top: 6px; }
+    .feynman-panel p { margin: 0 0 10px; color: var(--muted); font-size: .92rem; }
+    .feynman-notes {
+      width: 100%;
+      min-height: 88px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      background: rgba(5,13,24,.72);
+      color: var(--text);
+      border-radius: 11px;
+      padding: 10px;
+      outline: none;
+    }
+    .feynman-notes:focus { border-color: rgba(182,156,255,.55); }
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 13px;
+    }
+    .resource-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      min-height: 270px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      background: rgba(18,36,58,.62);
+      border-radius: 18px;
+      transition: transform .18s ease, border-color .18s ease, opacity .18s ease;
+    }
+    .resource-card:hover { transform: translateY(-2px); border-color: rgba(125,165,255,.4); }
+    .resource-card.completed { opacity: .58; }
+    .resource-card.completed h3 { text-decoration: line-through; }
+    .resource-top { display: grid; grid-template-columns: auto 1fr; gap: 12px; }
+    .resource-heading h3 { margin: 9px 0 0; font-size: 1.17rem; line-height: 1.28; letter-spacing: -.02em; }
+    .badges { display: flex; flex-wrap: wrap; gap: 5px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: .69rem;
+      font-weight: 900;
+      letter-spacing: .035em;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      background: rgba(255,255,255,.035);
+    }
+    .p-anchor { color: var(--cyan); background: rgba(88,213,211,.08); }
+    .p-practice { color: var(--green); background: rgba(115,223,159,.08); }
+    .p-reference { color: var(--blue); background: rgba(125,165,255,.08); }
+    .p-deep { color: var(--violet); background: rgba(182,156,255,.08); }
+    .effort { color: var(--orange); }
+    .check-wrap { display: block; width: 28px; height: 28px; cursor: pointer; }
+    .check-wrap input { position: absolute; opacity: 0; pointer-events: none; }
+    .fake-check {
+      display: grid;
+      place-items: center;
+      width: 28px; height: 28px;
+      border: 1px solid rgba(88,213,211,.35);
+      border-radius: 9px;
+      color: transparent;
+      background: rgba(88,213,211,.04);
+      font-weight: 950;
+    }
+    .check-wrap input:checked + .fake-check { background: var(--cyan); color: #07111f; border-color: var(--cyan); }
+    .why, .slice { color: var(--muted); font-size: .9rem; margin: 15px 0 0; }
+    .slice { padding-top: 12px; border-top: 1px dashed var(--line); }
+    .why strong { color: var(--text); }
+    .slice strong { color: var(--orange); }
+    .resource-link {
+      margin-top: auto;
+      padding-top: 15px;
+      color: var(--cyan);
+      text-decoration: none;
+      font-weight: 850;
+      font-size: .88rem;
+    }
+    .resource-link:hover { text-decoration: underline; }
+    .empty-state {
+      display: none;
+      margin: 22px 0;
+      padding: 18px;
+      text-align: center;
+      color: var(--muted);
+      border: 1px dashed var(--line);
+      border-radius: 16px;
+    }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 30px 0 60px;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+    footer strong { color: var(--text); }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; }
+    .small-note { font-size: .78rem; opacity: .86; }
+    .hidden { display: none !important; }
+    @media (max-width: 1180px) {
+      .stats, .loop { grid-template-columns: repeat(2, 1fr); }
+      .change-grid { grid-template-columns: repeat(2, 1fr); }
+      .sprint { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: repeat(4, 1fr); }
+      .controls { grid-template-columns: 1fr 1fr; }
+      .progress-block { grid-column: 1 / -1; }
+      .topic-grid { grid-template-columns: 1fr 1fr; }
+      .prompt-panel { grid-column: 1 / -1; }
+    }
+    @media (max-width: 740px) {
+      .shell, .controls { width: min(100% - 20px, 1500px); }
+      .hero { padding-top: 50px; }
+      .stats, .loop, .change-grid, .timeline, .resource-grid, .topic-grid, .footer-grid { grid-template-columns: 1fr; }
+      .controls { grid-template-columns: 1fr; }
+      .progress-block { grid-column: auto; }
+      .learning-layout { grid-template-columns: 1fr; }
+      .topic-tabs-panel { position: static; max-height: none; }
+      .topic-tabs { display: grid; grid-template-columns: 1fr; }
+      .topic-section, .method, .changes { padding: 18px; border-radius: 20px; }
+      .topic-header { grid-template-columns: 48px 1fr; gap: 12px; }
+      .topic-number { width: 46px; height: 46px; border-radius: 13px; font-size: .92rem; }
+      .resource-card { min-height: 0; }
+      h1 { font-size: clamp(2.5rem, 15vw, 4.5rem); }
+    }
+    @media print {
+      :root { --bg: #fff; --text: #111; --muted: #444; --surface: #fff; --line: #ccc; }
+      body { background: #fff; color: #111; }
+      .controls-wrap, .hero-actions, .topic-tabs-panel, .feynman-notes, .check-wrap, .resource-link { display: none !important; }
+      .hero { padding-top: 20px; }
+      .method, .changes, .topic-section, .sprint-card, .resource-card, .focus-panel, .feynman-panel, .prompt-panel, .change-card {
+        color: #111; background: #fff; box-shadow: none; break-inside: avoid;
+      }
+      .learning-layout { display: block; }
+      .topic-section { display: block !important; page-break-before: always; }
+      .topic-section:first-of-type { page-break-before: auto; }
+    }
+
+    .trend-map {
+      margin: 24px auto 30px;
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(18,36,58,.96), rgba(13,27,45,.93));
+      border-radius: 24px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+    .trend-map h2 { font-size: clamp(1.8rem, 4vw, 3rem); margin: 6px 0 7px; letter-spacing: -.04em; }
+    .trend-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-top: 22px; }
+    .trend-card { background: rgba(7,17,31,.5); border: 1px solid var(--line); border-radius: 16px; padding: 17px; }
+    .trend-card h3 { margin: 9px 0 6px; font-size: 1rem; }
+    .trend-card p { margin: 0; color: var(--muted); font-size: .91rem; }
+    .trend-card a { display: inline-block; margin-top: 12px; color: var(--cyan); text-decoration: none; font-size: .8rem; font-weight: 850; }
+    .trend-card a:hover { text-decoration: underline; }
+    .trend-status { display: inline-flex; border-radius: 999px; padding: 4px 8px; font-size: .68rem; font-weight: 900; letter-spacing: .05em; text-transform: uppercase; border: 1px solid var(--line); }
+    .trend-status.foundation { color: var(--blue); background: rgba(125,165,255,.08); }
+    .trend-status.domain { color: var(--green); background: rgba(115,223,159,.08); }
+    .trend-status.concept { color: var(--orange); background: rgba(255,182,110,.08); }
+    @media (max-width: 1180px) { .trend-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 740px) { .trend-map { padding: 18px; border-radius: 20px; } .trend-grid { grid-template-columns: 1fr; } }
+    @media print { .trend-map, .trend-card { color: #111; background: #fff; box-shadow: none; break-inside: avoid; } }
+
+    .topic-group-label {
+      margin: 10px 4px 2px;
+      padding-top: 10px;
+      border-top: 1px solid var(--line);
+      color: var(--orange);
+      font-size: .68rem;
+      font-weight: 900;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .topic-group-label:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+    .learning-path-note {
+      margin: 0 auto 14px;
+      border: 1px solid rgba(88,213,211,.2);
+      background: rgba(88,213,211,.055);
+      border-radius: 16px;
+      padding: 13px 16px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .learning-path-note strong { color: var(--cyan); }
+
+    .secondary-resource-link {
+      margin-top: 4px !important;
+      padding-top: 4px !important;
+      color: var(--blue) !important;
+    }
+    .practice-spine {
+      border-color: rgba(88,213,211,.25);
+    }
+    .practice-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .practice-grid .num {
+      width: 36px;
+    }
+    .spine-actions {
+      margin-top: 18px;
+    }
+    @media (max-width: 900px) {
+      .practice-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 620px) {
+      .practice-grid { grid-template-columns: 1fr; }
+    }
+</style>
+</head>
+<body>
+<header class="hero">
+<div class="shell">
+<div class="kicker">Version 4.3 · Recent Resource Audit · 21 August 2026</div>
+<h1>AI/ML Interview<br/><span>Resource Accelerator</span></h1>
+<p class="lead">A grounded AI/ML interview curriculum arranged as a progressive learning path. v4.3 audits newly released 2026 learning material and updates only the resources that improve depth, recency or hands-on transfer without expanding the topic taxonomy.</p>
+<div class="hero-actions"><a class="primary-btn" href="#trend-map">See the grounded trend map</a><a class="secondary-btn" href="#harness">Jump to harness engineering</a><a class="secondary-btn" href="#orchestration">Jump to workflow graphs</a><button class="secondary-btn" onclick="window.print()">Print / save as PDF</button></div>
+<div class="stats">
+<div class="stat"><strong>16</strong><span>interview domains</span></div>
+<div class="stat"><strong>76</strong><span>curated resources</span></div>
+<div class="stat"><strong>3–5</strong><span>maximum per topic</span></div>
+<div class="stat"><strong>35 days</strong><span>suggested first pass</span></div>
+</div>
+</div>
+</header>
+<div class="shell">
+<section class="changes" id="changes"><div class="section-label">Version 4.3 resource audit</div><h2>Recent resources: what actually earned a place</h2><p class="method-intro">The audit used four filters: authority or transparent primary material, technical depth, hands-on transfer, and incremental value over resources already in the guide. Recent does not automatically mean better.</p><div class="change-grid"><article class="change-card"><span>Added</span><h3>AI Engineering from Scratch</h3><p>Verified as a useful optional practice spine. It complements specialist sources but does not replace them.</p></article><article class="change-card"><span>Added</span><h3>Berkeley CS 185/285 — LLM RL</h3><p>The Spring 2026 course adds rigorous LLM post-training depth: LLM RL lecture, section, homework and project.</p></article><article class="change-card"><span>Updated</span><h3>MCP 2026-07-28</h3><p>The old 2025 specification link is replaced with the current stateless core, extensions and authorization model.</p></article><article class="change-card"><span>Updated</span><h3>Modern inference reading</h3><p>A broad vLLM system-anatomy article replaces a narrower duplicate PagedAttention design resource.</p></article><article class="change-card"><span>Kept</span><h3>Core books/courses</h3><p>DDIA 2e, AI Engineering, CS336, LLMs From Scratch, Google SRE and the primary security/eval sources remain stronger anchors.</p></article><article class="change-card"><span>Rule</span><h3>No resource inflation</h3><p>The 16 domains and 76 topic resources stay fixed; new material must replace overlap or live as an optional cross-domain spine.</p></article></div></section><section class="trend-map" id="trend-map">
+<div class="section-label">Terminology without hype</div>
+<h2>How the current labels fit together</h2>
+<p class="method-intro">Treat these as layers of one system, not competing replacements. The interview value lies in the design decisions beneath the label.</p>
+<div class="trend-grid">
+<article class="trend-card"><span class="trend-status foundation">Foundation</span><h3>Prompt engineering</h3><p>Instructions, examples and output framing for a model interaction.</p></article>
+<article class="trend-card"><span class="trend-status domain">Grounded domain</span><h3>Context engineering</h3><p>Select and maintain the highest-signal prompts, tools, history, retrieved data and memory for each inference step.</p><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" rel="noopener noreferrer" target="_blank">Primary source ↗</a></article>
+<article class="trend-card"><span class="trend-status domain">New v4 domain</span><h3>Harness engineering</h3><p>Build the runtime and environment around the model: tools, state, sandboxes, skills, tests, telemetry and policies.</p><a href="https://openai.com/index/harness-engineering/" rel="noopener noreferrer" target="_blank">Primary source ↗</a></article>
+<article class="trend-card"><span class="trend-status concept">Included concept</span><h3>Loop engineering</h3><p>Design the repeating control cycle that acts, observes, verifies, budgets, stops or escalates.</p><a href="https://www.langchain.com/blog/the-art-of-loop-engineering" rel="noopener noreferrer" target="_blank">Practitioner framing ↗</a></article>
+<article class="trend-card"><span class="trend-status concept">Existing domain</span><h3>Graph engineering</h3><p>Make the topology explicit: nodes, edges, routing, parallel branches, shared state and checkpoints.</p><a href="https://www.langchain.com/blog/3-years-of-graph-engineering-with-langgraph" rel="noopener noreferrer" target="_blank">Practitioner framing ↗</a></article>
+</div>
+<div class="rule"><strong>Audit rule:</strong> a new label becomes a standalone topic only when it introduces a distinct body of design decisions, failure modes and transferable interview skills.</div>
+</section>
+<section class="method" id="method">
+<div class="section-label">The operating system</div>
+<h2>Pareto selection × Feynman compression</h2>
+<p class="method-intro">
+        The goal is not to finish books. The goal is to form accurate mental models, retrieve them under pressure,
+        and apply them to design or debugging. Every study block should produce an explanation, artefact or interview answer.
+      </p>
+<div class="loop">
+<article class="loop-step">
+<span class="num">1</span>
+<h3>Frame the question</h3>
+<p>Start with an interview prompt. List what a strong answer must decide, measure and trade off.</p>
+</article>
+<article class="loop-step">
+<span class="num">2</span>
+<h3>Consume the 20%</h3>
+<p>Use the recommended slice. Stop when you can solve the original prompt—not when the chapter ends.</p>
+</article>
+<article class="loop-step">
+<span class="num">3</span>
+<h3>Explain from memory</h3>
+<p>Close the source. Teach it in plain language, draw it, then expose every vague word and missing step.</p>
+</article>
+<article class="loop-step">
+<span class="num">4</span>
+<h3>Prove transfer</h3>
+<p>Implement a tiny example, compare alternatives, answer aloud and revisit after 1, 3 and 7 days.</p>
+</article>
+</div>
+<div class="rule"><strong>Stop rule:</strong> per topic, complete one Anchor resource, one Practice artefact and the three interview prompts before opening a Deep dive.</div>
+</section><section class="method practice-spine" id="practice-spine"><div class="section-label">Optional cross-domain practice spine</div><h2>AI Engineering from Scratch — use selectively, not linearly</h2><p class="method-intro">This open-source 2026 curriculum is valuable because lessons pair first-principles implementation with runnable code, tests and reusable artifacts. But hundreds of lessons is the opposite of Pareto if read end-to-end. Use its placement quiz or topic router and pull only the lesson needed to reinforce a weak interview domain.</p><div class="loop practice-grid"><article class="loop-step"><span class="num">10</span><h3>LLMs from Scratch</h3><p>Use only if tokenizer, attention or pretraining internals are still weak.</p></article><article class="loop-step"><span class="num">11</span><h3>LLM Engineering</h3><p>High-value supplement for inference, adaptation and application engineering.</p></article><article class="loop-step"><span class="num">13</span><h3>Tools &amp; Protocols</h3><p>Target function/tool calling, MCP and integration mechanics.</p></article><article class="loop-step"><span class="num">14</span><h3>Agent Engineering</h3><p>Useful build-it-by-hand reinforcement for loops, tools, memory and control.</p></article><article class="loop-step"><span class="num">17</span><h3>Infrastructure &amp; Production</h3><p>Use selectively for deployment, serving, reliability and production concerns.</p></article><article class="loop-step"><span class="num">18</span><h3>Ethics &amp; Alignment</h3><p>Use as a practical safety/alignment supplement, not a governance authority.</p></article></div><div class="hero-actions spine-actions"><a class="primary-btn" href="https://aiengineeringfromscratch.com/" rel="noopener noreferrer" target="_blank">Open curriculum ↗</a><a class="secondary-btn" href="https://github.com/rohitg00/ai-engineering-from-scratch" rel="noopener noreferrer" target="_blank">Open GitHub ↗</a></div><div class="rule"><strong>Pareto rule:</strong> Do not attempt every lesson for interview preparation. Use the placement quiz or /course-guide, complete one targeted lesson/artifact, then return to the interview prompts in this workbook.</div></section>
+<div class="learning-path-note"><strong>How to use the order:</strong> move left-to-right through the learning stages. Later topics assume the mental models built earlier; revisit earlier tabs only when a Feynman explanation exposes a gap.</div><section class="sprint">
+<article class="sprint-card">
+<div class="section-label">Recommended rhythm</div>
+<h2>90-minute study block</h2>
+<p><strong>10 min</strong> retrieve yesterday’s model · <strong>35 min</strong> selected source ·
+        <strong>25 min</strong> build or diagram · <strong>15 min</strong> answer aloud ·
+        <strong>5 min</strong> write the remaining confusion.</p>
+<p class="small-note">At least half of total time should be active recall, implementation, design or explanation—not passive reading.</p>
+</article>
+<article class="sprint-card">
+<div class="section-label">Fast first pass</div>
+<h3>35-day sequence</h3><div class="timeline"><div class="week"><b>Days 1–5</b><span>Foundations</span><small>Python → ML/statistics → deep-learning fundamentals</small></div><div class="week"><b>Days 6–10</b><span>LLM Architecture</span><small>Transformers, tokenisation, attention and model internals</small></div><div class="week"><b>Days 11–15</b><span>Model Engineering</span><small>Fine-tuning/post-training → inference cost and latency</small></div><div class="week"><b>Days 16–20</b><span>LLM Applications</span><small>RAG/search → evaluation and regression thinking</small></div><div class="week"><b>Days 21–25</b><span>Agent Engineering</span><small>Tool use → harness/context → durable orchestration</small></div><div class="week"><b>Days 26–30</b><span>Production Reliability</span><small>Observability → security → MLOps lifecycle</small></div><div class="week"><b>Days 31–35</b><span>Architecture + Interview</span><small>System design → AWS → behavioural story rehearsal</small></div></div></article>
+</section>
+</div>
+<div class="controls-wrap">
+<div class="controls">
+<input aria-label="Search resources" class="search" id="search" placeholder="Search title, concept or resource…" type="search"/>
+<div aria-label="Filter resources" class="filters">
+<button class="filter-btn active" data-filter="all">All</button>
+<button class="filter-btn" data-filter="anchor">Anchor</button>
+<button class="filter-btn" data-filter="practice">Practice</button>
+<button class="filter-btn" data-filter="reference">Reference</button>
+<button class="filter-btn" data-filter="deep dive">Deep dive</button>
+<button class="reset-btn" id="reset">Reset progress</button>
+</div>
+<div class="progress-block">
+<div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+<span class="progress-text" id="progressText">0 / 76 complete</span>
+</div>
+</div>
+</div>
+<div class="shell">
+<div class="learning-layout">
+<aside aria-label="Topic navigation" class="topic-tabs-panel">
+<div class="tabs-kicker">Topics</div>
+<nav aria-label="Topic navigation" class="topic-tabs"><div class="topic-group-label">1 · Foundations</div><a href="#python"><span>🐍</span>Python</a><a href="#ml"><span>📈</span>Machine Learning</a><a href="#transformers"><span>🧠</span>Deep Learning &amp; LLMs</a><div class="topic-group-label">2 · Model Engineering</div><a href="#finetuning"><span>🎛️</span>Fine-tuning &amp; Post-training</a><a href="#inference"><span>⚡</span>LLM Inference &amp; Optimisation</a><div class="topic-group-label">3 · LLM Application Engineering</div><a href="#rag"><span>🔎</span>RAG, Search &amp; Retrieval</a><a href="#evals"><span>🧪</span>LLM &amp; Agent Evaluation</a><div class="topic-group-label">4 · Agent Engineering</div><a href="#agents"><span>🛠️</span>Agent Patterns &amp; Tool Use</a><a href="#harness"><span>🧰</span>Harness &amp; Context Engineering</a><a href="#orchestration"><span>🔀</span>Workflow Graphs &amp; Orchestration</a><div class="topic-group-label">5 · Production Reliability</div><a href="#observability"><span>📡</span>AI Observability &amp; Reliability</a><a href="#security"><span>🛡️</span>AI Security &amp; Guardrails</a><a href="#mlops"><span>🚀</span>MLOps &amp; Production</a><div class="topic-group-label">6 · Architecture &amp; Cloud</div><a href="#system-design"><span>🏗️</span>AI System Design &amp; Data</a><a href="#aws"><span>☁️</span>AWS Architecture</a><div class="topic-group-label">7 · Interview Delivery</div><a href="#behavioural"><span>🗣️</span>Behavioural &amp; Leadership</a></nav>
+</aside>
+<div class="topic-content-panel">
+<div class="empty-state" id="emptyState">No resources match this filter in this topic.</div>
+<main>
+<section class="topic-section" data-topic="python &amp; software engineering" id="python">
+<div class="topic-header">
+<div class="topic-number">01</div>
+<div>
+<p class="eyebrow">🐍 Interview domain</p>
+<h2>Python &amp; Software Engineering</h2>
+<p class="topic-tagline">Write production-quality Python, explain internals, and defend design choices.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Python data model: identity, mutability, hashing, iterators, descriptors</li><li>Typing, error handling, testing, concurrency and async</li><li>Boundaries, dependency inversion and maintainable architecture</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Explain to a junior engineer why Python’s data model matters more than memorising syntax. Use one example involving mutability, hashing or iteration.</p>
+<textarea aria-label="Notes for Python &amp; Software Engineering" class="feynman-notes" data-note="python" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>When would asyncio outperform threads, and when would it not?</li><li>How would you restructure a tightly coupled Python service for testability?</li><li>What makes an object hashable, and why can mutable keys break dictionaries?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="effective python, 3rd edition book high-density guidance on idiomatic, robust and performant modern python. read items on comprehensions, functions, classes, concurrency, typing, testing and performance. skip niche metaprogramming until needed.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-python-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">6h selective</span>
+</div>
+<h3>Effective Python, 3rd Edition</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> High-density guidance on idiomatic, robust and performant modern Python.</p>
+<p class="slice"><strong>80/20 slice:</strong> Read items on comprehensions, functions, classes, concurrency, typing, testing and performance. Skip niche metaprogramming until needed.</p>
+<a class="resource-link" href="https://effectivepython.com/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="fluent python, 2nd edition book best bridge from ‘can code in python’ to understanding how the language behaves. prioritise the data model, sequences, mappings, functions as objects, protocols and concurrency.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-python-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">6h selective</span>
+</div>
+<h3>Fluent Python, 2nd Edition</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Best bridge from ‘can code in Python’ to understanding how the language behaves.</p>
+<p class="slice"><strong>80/20 slice:</strong> Prioritise the data model, sequences, mappings, functions as objects, protocols and concurrency.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="architecture patterns with python free book turns architecture vocabulary into concrete python patterns and testable services. focus on repository, service layer, unit of work, events and dependency inversion. rebuild one small feature.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-python-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Free book</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h + kata</span>
+</div>
+<h3>Architecture Patterns with Python</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Turns architecture vocabulary into concrete Python patterns and testable services.</p>
+<p class="slice"><strong>80/20 slice:</strong> Focus on repository, service layer, unit of work, events and dependency inversion. Rebuild one small feature.</p>
+<a class="resource-link" href="https://www.cosmicpython.com/book/preface.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="python testing with pytest, 2nd edition book gives practical fluency for fixtures, parametrisation, mocks and test organisation. read fixtures, parametrisation, markers, mocking and coverage; write tests around one existing service.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-python-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">3h selective</span>
+</div>
+<h3>Python Testing with pytest, 2nd Edition</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Gives practical fluency for fixtures, parametrisation, mocks and test organisation.</p>
+<p class="slice"><strong>80/20 slice:</strong> Read fixtures, parametrisation, markers, mocking and coverage; write tests around one existing service.</p>
+<a class="resource-link" href="https://pragprog.com/titles/bopytest2/python-testing-with-pytest-second-edition/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="python official data model reference docs primary source for precise answers on object behaviour, protocols and language semantics. bookmark the data model, asyncio and typing pages. use them to verify claims rather than reading linearly.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-python-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">2h guided</span>
+</div>
+<h3>Python Official Data Model Reference</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Primary source for precise answers on object behaviour, protocols and language semantics.</p>
+<p class="slice"><strong>80/20 slice:</strong> Bookmark the data model, asyncio and typing pages. Use them to verify claims rather than reading linearly.</p>
+<a class="resource-link" href="https://docs.python.org/3/reference/datamodel.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="machine learning &amp; statistics" id="ml">
+<div class="topic-header">
+<div class="topic-number">02</div>
+<div>
+<p class="eyebrow">📈 Interview domain</p>
+<h2>Machine Learning &amp; Statistics</h2>
+<p class="topic-tagline">Reason from data, assumptions and metrics instead of reciting algorithms.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Bias–variance, regularisation, leakage and distribution shift</li><li>Metric selection, calibration, thresholds and imbalanced data</li><li>Experiment design, uncertainty and error analysis</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Teach precision, recall, ROC-AUC, PR-AUC and calibration using a fraud-detection example. State which metric you would optimise and why.</p>
+<textarea aria-label="Notes for Machine Learning &amp; Statistics" class="feynman-notes" data-note="ml" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>Why can cross-validation still give an optimistic estimate?</li><li>How would you choose a threshold when false negatives cost ten times more?</li><li>A model’s offline score improves but production outcomes worsen. Diagnose it.</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="an introduction to statistical learning with python free book clear mathematical intuition with enough practical depth for interviews. prioritise resampling, linear models, classification, regularisation, trees and unsupervised learning.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-ml-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Free book</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">8h selective</span>
+</div>
+<h3>An Introduction to Statistical Learning with Python</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Clear mathematical intuition with enough practical depth for interviews.</p>
+<p class="slice"><strong>80/20 slice:</strong> Prioritise resampling, linear models, classification, regularisation, trees and unsupervised learning.</p>
+<a class="resource-link" href="https://www.statlearning.com/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="google machine learning crash course course fast refresh of core concepts with exercises and production-oriented framing. complete the modules on loss, overfitting, classification, embeddings and production ml.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-ml-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>Google Machine Learning Crash Course</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Fast refresh of core concepts with exercises and production-oriented framing.</p>
+<p class="slice"><strong>80/20 slice:</strong> Complete the modules on loss, overfitting, classification, embeddings and production ML.</p>
+<a class="resource-link" href="https://developers.google.com/machine-learning/crash-course" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="hands-on machine learning, 3rd edition book connects theory to scikit-learn and deep-learning implementation. use the end-to-end project, evaluation, pipelines, ensembles and tuning chapters as coding drills.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-ml-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">6h selective</span>
+</div>
+<h3>Hands-On Machine Learning, 3rd Edition</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Connects theory to scikit-learn and deep-learning implementation.</p>
+<p class="slice"><strong>80/20 slice:</strong> Use the end-to-end project, evaluation, pipelines, ensembles and tuning chapters as coding drills.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/hands-on-machine-learning/9781098125967/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="statquest video index videos excellent just-in-time explanations when a statistical concept remains fuzzy. watch only concepts you cannot explain unaided; immediately redraw the idea from memory.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-ml-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Videos</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">3h targeted</span>
+</div>
+<h3>StatQuest Video Index</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Excellent just-in-time explanations when a statistical concept remains fuzzy.</p>
+<p class="slice"><strong>80/20 slice:</strong> Watch only concepts you cannot explain unaided; immediately redraw the idea from memory.</p>
+<a class="resource-link" href="https://statquest.org/video-index/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="deep learning, transformers &amp; llm architecture" id="transformers">
+<div class="topic-header">
+<div class="topic-number">03</div>
+<div>
+<p class="eyebrow">🧠 Interview domain</p>
+<h2>Deep Learning, Transformers &amp; LLM Architecture</h2>
+<p class="topic-tagline">Understand the computation, training loop and trade-offs behind modern language models. Use the optional practice spine only for implementation gaps.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Backpropagation, optimisation, normalisation, residual paths and transformer architecture</li><li>Tokens, tokenisation, context windows, attention, positional information and decoding</li><li>System prompts, temperature/top-p sampling, hallucination behaviour and small-vs-large model trade-offs</li><li>Pre-training, instruction tuning, alignment, scaling, structured generation and inference</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Derive self-attention on a three-token sentence without matrix jargon first, then map the explanation to Q, K, V and softmax.</p>
+<textarea aria-label="Notes for Deep Learning, Transformers &amp; LLM Architecture" class="feynman-notes" data-note="transformers" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>Why does attention scale quadratically, and what mitigations exist?</li><li>What do temperature and top-p actually change, and what do they not change?</li><li>Compare pre-training, supervised fine-tuning, preference optimisation and inference-time reasoning.</li><li>When would you choose a smaller/open model versus a larger managed model?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="build a large language model from scratch book + code the fastest route from abstract transformer knowledge to a working gpt-style model. implement tokenisation, attention, the transformer block, pre-training loop and fine-tuning. explain every tensor shape.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-transformers-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book + code</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">10h build</span>
+</div>
+<h3>Build a Large Language Model From Scratch</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> The fastest route from abstract transformer knowledge to a working GPT-style model.</p>
+<p class="slice"><strong>80/20 slice:</strong> Implement tokenisation, attention, the transformer block, pre-training loop and fine-tuning. Explain every tensor shape.</p>
+<a class="resource-link" href="https://www.manning.com/books/build-a-large-language-model-from-scratch" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="llms from scratch github repository code companion implementation for turning architecture into working code. run a chapter notebook, alter one model/configuration, and explain the effect on loss, speed and memory.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-transformers-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Code</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">6h build</span>
+</div>
+<h3>LLMs From Scratch GitHub Repository</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Companion implementation for turning architecture into working code.</p>
+<p class="slice"><strong>80/20 slice:</strong> Run a chapter notebook, alter one model/configuration, and explain the effect on loss, speed and memory.</p>
+<a class="resource-link" href="https://github.com/rasbt/LLMs-from-scratch" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="anchor" data-search="neural networks: zero to hero videos + code builds first-principles intuition for gradients, language modelling and transformers. do micrograd, makemore and the gpt lecture. recreate key pieces without copying.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-transformers-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Videos + code</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">8h selective</span>
+</div>
+<h3>Neural Networks: Zero to Hero</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Builds first-principles intuition for gradients, language modelling and transformers.</p>
+<p class="slice"><strong>80/20 slice:</strong> Do micrograd, makemore and the GPT lecture. Recreate key pieces without copying.</p>
+<a class="resource-link" href="https://karpathy.ai/zero-to-hero.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="stanford cs336: language modeling from scratch course current, rigorous coverage of data, systems, scaling, evaluation and alignment. use lectures and assignments as an advanced map; focus on systems and scaling trade-offs.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-transformers-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">10h selective</span>
+</div>
+<h3>Stanford CS336: Language Modeling from Scratch</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Current, rigorous coverage of data, systems, scaling, evaluation and alignment.</p>
+<p class="slice"><strong>80/20 slice:</strong> Use lectures and assignments as an advanced map; focus on systems and scaling trade-offs.</p>
+<a class="resource-link" href="https://cs336.stanford.edu/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="hugging face llm course free course practical fluency with tokenisers, transformer libraries, fine-tuning and model sharing. complete transformer basics, tokenisers, datasets and fine-tuning; build one small classifier or generator.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-transformers-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Free course</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">5h selective</span>
+</div>
+<h3>Hugging Face LLM Course</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Practical fluency with tokenisers, transformer libraries, fine-tuning and model sharing.</p>
+<p class="slice"><strong>80/20 slice:</strong> Complete transformer basics, tokenisers, datasets and fine-tuning; build one small classifier or generator.</p>
+<a class="resource-link" href="https://huggingface.co/learn/llm-course/en/chapter1/1" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="fine-tuning, transfer learning &amp; post-training" id="finetuning">
+<div class="topic-header">
+<div class="topic-number">04</div>
+<div>
+<p class="eyebrow">🎛️ Interview domain</p>
+<h2>Fine-tuning, Transfer Learning &amp; Post-training</h2>
+<p class="topic-tagline">Know when to adapt model weights, when to retrieve context, and when prompting is enough.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Prompting vs RAG vs fine-tuning: choose the cheapest mechanism that changes the right failure mode</li><li>SFT, LoRA, QLoRA, DPO, RLHF/GRPO and knowledge distillation at interview depth</li><li>Teacher → student transfer, quantisation vs distillation, and quality/cost/latency trade-offs</li><li>Dataset quality, eval gates, overfitting, catastrophic forgetting and deployment cost</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Explain to a product manager why wrong factual answers usually need retrieval, not fine-tuning. Then compare full fine-tuning, LoRA/QLoRA, knowledge distillation and quantisation to an engineer.</p>
+<textarea aria-label="Notes for Fine-tuning, Transfer Learning &amp; Post-training" class="feynman-notes" data-note="finetuning" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>A support bot keeps using the wrong tone. Would you use prompting, RAG or fine-tuning?</li><li>How would you prepare a fine-tuning dataset and prevent memorisation or regressions?</li><li>What does LoRA change compared with full fine-tuning, and why does QLoRA reduce memory pressure?</li><li>Distillation and quantisation can both reduce serving cost. How do they differ?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="fine-tuning &amp; rl for llms: intro to post-training course modern overview of post-training, fine-tuning, rlhf, reward modelling, ppo/grpo, lora, evals and red teaming. prioritise lifecycle placement, data preparation, fine-tuning math, reward models, grpo and evaluation/error analysis.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-finetuning-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">6h</span>
+</div>
+<h3>Fine-tuning &amp; RL for LLMs: Intro to Post-training</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Modern overview of post-training, fine-tuning, RLHF, reward modelling, PPO/GRPO, LoRA, evals and red teaming.</p>
+<p class="slice"><strong>80/20 slice:</strong> Prioritise lifecycle placement, data preparation, fine-tuning math, reward models, GRPO and evaluation/error analysis.</p>
+<a class="resource-link" href="https://www.deeplearning.ai/courses/fine-tuning-and-reinforcement-learning-for-llms-intro-to-post-training" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="distilling the knowledge in a neural network paper foundational knowledge distillation teacher student transfer smaller deployment model soft targets temperature compression">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-2-finetuning-distillation" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Paper</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">2h selective</span>
+</div>
+<h3>Distilling the Knowledge in a Neural Network</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Foundational paper for the teacher → student idea behind knowledge distillation and smaller deployment models.</p>
+<p class="slice"><strong>80/20 slice:</strong> Read the motivation, soft-target/temperature idea and student-training setup; explain how distillation differs from quantisation and fine-tuning.</p>
+<a class="resource-link" href="https://arxiv.org/abs/1503.02531" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="hugging face peft / lora docs docs + code primary practical reference for parameter-efficient fine-tuning and adapter-based workflows. build one lora adapter, compare trainable parameters, and explain why only a small parameter subset changes.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-finetuning-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs + code</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h prototype</span>
+</div>
+<h3>Hugging Face PEFT / LoRA Docs</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Primary practical reference for parameter-efficient fine-tuning and adapter-based workflows.</p>
+<p class="slice"><strong>80/20 slice:</strong> Build one LoRA adapter, compare trainable parameters, and explain why only a small parameter subset changes.</p>
+<a class="resource-link" href="https://huggingface.co/docs/peft/en/package_reference/lora" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="hugging face trl: sft and dpo trainers docs + code covers practical supervised fine-tuning and preference optimisation implementation. run or inspect sfttrainer and dpotrainer examples; explain dataset format and evaluation gates.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-finetuning-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs + code</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">5h prototype</span>
+</div>
+<h3>Hugging Face TRL: SFT and DPO Trainers</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Covers practical supervised fine-tuning and preference optimisation implementation.</p>
+<p class="slice"><strong>80/20 slice:</strong> Run or inspect SFTTrainer and DPOTrainer examples; explain dataset format and evaluation gates.</p>
+<a class="resource-link" href="https://huggingface.co/docs/trl/en/index" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="uc berkeley cs 185 285 spring 2026 deep reinforcement learning sergey levine llm rl rlhf grpo policy gradients actor critic homework 4 post training">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-3-finetuning-berkeley-llm-rl" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course + video</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">5h selective</span>
+</div>
+<h3>UC Berkeley CS 185/285 (Spring 2026) — LLM Reinforcement Learning</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Sergey Levine’s current Berkeley deep-RL course now includes a dedicated LLM RL lecture, discussion section, homework and LLM-RL project, giving stronger first-principles depth for RLHF/GRPO-style post-training.</p>
+<p class="slice"><strong>80/20 slice:</strong> Watch Lecture 14 (LLM RL) and Section 7 (IRL and LLM RL), inspect Homework 4, and backfill Policy Gradients / Actor-Critic lectures only if the derivation is unclear.</p>
+<a class="resource-link" href="https://rail.eecs.berkeley.edu/deeprlcourse/" rel="noopener noreferrer" target="_blank">Open resource ↗</a>
+<a class="resource-link secondary-resource-link" href="https://www.youtube.com/playlist?list=PLKq1TCpsv3Y4" rel="noopener noreferrer" target="_blank">Watch Spring 2026 YouTube playlist ↗</a></article>
+</div>
+</section><section class="topic-section" data-topic="llm inference, cost &amp; latency optimisation" id="inference">
+<div class="topic-header">
+<div class="topic-number">05</div>
+<div>
+<p class="eyebrow">⚡ Interview domain</p>
+<h2>LLM Inference, Cost &amp; Latency Optimisation</h2>
+<p class="topic-tagline">Make AI systems fast, cheap and reliable without silently degrading quality.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Token budgets; prompt, semantic and response caching; KV cache; prefill vs decode; batching</li><li>Quantisation, speculative decoding, prefix caching, model routing/fallbacks and cold-start behaviour</li><li>Throughput, GPU utilisation, latency budgets, cost per query/user and capacity planning</li><li>Backpressure, admission control, load shedding and graceful degraded-mode UX</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Explain why long prompts are expensive twice: once during prefill and again through memory pressure. Then explain prompt caching, KV caching and batching without using vendor names.</p>
+<textarea aria-label="Notes for LLM Inference, Cost &amp; Latency Optimisation" class="feynman-notes" data-note="inference" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>How would you reduce LLM cost by 50% without silently reducing product quality?</li><li>Explain prefill versus decode latency and why they optimise differently.</li><li>When can quantisation hurt quality, and how would you detect it before release?</li><li>Traffic doubles suddenly. How would batching, admission control, backpressure and load shedding interact?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="vllm documentation docs + serving primary practical source for high-throughput open-model serving. study pagedattention, scheduling, prefix caching, quantisation and deployment examples.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-inference-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs + serving</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">5h prototype</span>
+</div>
+<h3>vLLM Documentation</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Primary practical source for high-throughput open-model serving.</p>
+<p class="slice"><strong>80/20 slice:</strong> Study PagedAttention, scheduling, prefix caching, quantisation and deployment examples.</p>
+<a class="resource-link" href="https://docs.vllm.ai/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="vllm anatomy high throughput inference scheduling continuous batching paged attention chunked prefill prefix caching speculative decoding distributed serving benchmarks">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-inference-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Systems deep dive</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">4h selective</span>
+</div>
+<h3>Inside vLLM: Anatomy of a High-Throughput LLM Inference System</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> A broader production-serving mental model than a PagedAttention-only reading: scheduling, continuous batching, chunked prefill, prefix caching, speculative decoding, distributed execution and benchmarking.</p>
+<p class="slice"><strong>80/20 slice:</strong> Read the engine/scheduler overview, advanced features and benchmarking sections. Be able to explain how scheduling, KV-cache management and batching trade latency against throughput.</p>
+<a class="resource-link" href="https://vllm.ai/blog/2025-09-05-anatomy-of-vllm" rel="noopener noreferrer" target="_blank">Open resource ↗</a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="openai prompt caching vendor docs directly relevant to cost and latency for repeated system prompts, tool specs and long context. rewrite one prompt layout so static content appears first; estimate cacheable input tokens.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-inference-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Vendor docs</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>OpenAI Prompt Caching</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Directly relevant to cost and latency for repeated system prompts, tool specs and long context.</p>
+<p class="slice"><strong>80/20 slice:</strong> Rewrite one prompt layout so static content appears first; estimate cacheable input tokens.</p>
+<a class="resource-link" href="https://developers.openai.com/api/docs/guides/prompt-caching" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="nvidia tensorrt-llm documentation docs deep reference for kv cache, speculative decoding, throughput benchmarking and production serving. use it to understand high-end gpu serving concepts even if your own hardware is cpu/local.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-inference-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">4h selective</span>
+</div>
+<h3>NVIDIA TensorRT-LLM Documentation</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Deep reference for KV cache, speculative decoding, throughput benchmarking and production serving.</p>
+<p class="slice"><strong>80/20 slice:</strong> Use it to understand high-end GPU serving concepts even if your own hardware is CPU/local.</p>
+<a class="resource-link" href="https://nvidia.github.io/TensorRT-LLM/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="efficient memory management for llm serving with pagedattention paper foundational paper behind vllm; useful for explaining memory bottlenecks in interviews. focus on the problem, pagedattention idea, throughput claims and where the design helps most.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-inference-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Paper</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">3h</span>
+</div>
+<h3>Efficient Memory Management for LLM Serving with PagedAttention</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Foundational paper behind vLLM; useful for explaining memory bottlenecks in interviews.</p>
+<p class="slice"><strong>80/20 slice:</strong> Focus on the problem, PagedAttention idea, throughput claims and where the design helps most.</p>
+<a class="resource-link" href="https://arxiv.org/abs/2309.06180" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="rag, search &amp; retrieval" id="rag">
+<div class="topic-header">
+<div class="topic-number">06</div>
+<div>
+<p class="eyebrow">🔎 Interview domain</p>
+<h2>RAG, Search &amp; Retrieval</h2>
+<p class="topic-tagline">Design retrieval systems that are measurable, debuggable and appropriate for the data.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Embeddings, chunking/overlap, lexical/vector/hybrid retrieval, metadata filtering and reranking</li><li>Query rewriting, document freshness, permission-aware retrieval, evidence selection and citation grounding</li><li>Context packing, retrieval recall/precision and separate retrieval vs generation failure analysis</li><li>Missing-information detection: retrieve again, ask, abstain or escalate instead of inventing an answer</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Explain the full RAG loop from memory: query → rewrite → retrieve → filter → rerank → select evidence → pack context → generate → cite → verify evidence sufficiency or abstain.</p>
+<textarea aria-label="Notes for RAG, Search &amp; Retrieval" class="feynman-notes" data-note="rag" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>When does hybrid retrieval beat vector search alone?</li><li>How would you diagnose correct documents being indexed but not used?</li><li>Design a permission-aware RAG system for internal company documents.</li><li>The retriever finds weak evidence. When should the system answer, retrieve again, ask a question or abstain?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="retrieval augmented generation course end-to-end treatment of retrieval, generation and evaluation rather than a framework tutorial. focus on architecture, retrieval choices, reranking, evaluation and production failure modes.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-rag-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">8h</span>
+</div>
+<h3>Retrieval Augmented Generation</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> End-to-end treatment of retrieval, generation and evaluation rather than a framework tutorial.</p>
+<p class="slice"><strong>80/20 slice:</strong> Focus on architecture, retrieval choices, reranking, evaluation and production failure modes.</p>
+<a class="resource-link" href="https://www.deeplearning.ai/courses/retrieval-augmented-generation" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="pinecone rag learning series guide accessible implementation-oriented explanations of embeddings, retrieval and rag patterns. read the conceptual pieces, then implement a tiny local baseline with measurable recall.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-rag-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Guide</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h + prototype</span>
+</div>
+<h3>Pinecone RAG Learning Series</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Accessible implementation-oriented explanations of embeddings, retrieval and RAG patterns.</p>
+<p class="slice"><strong>80/20 slice:</strong> Read the conceptual pieces, then implement a tiny local baseline with measurable recall.</p>
+<a class="resource-link" href="https://www.pinecone.io/learn/series/rag/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="introduction to information retrieval free book provides the classical retrieval foundations many rag implementations overlook. study inverted indexes, scoring, evaluation, relevance feedback and ranking metrics.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-rag-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Free book</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">4h selective</span>
+</div>
+<h3>Introduction to Information Retrieval</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Provides the classical retrieval foundations many RAG implementations overlook.</p>
+<p class="slice"><strong>80/20 slice:</strong> Study inverted indexes, scoring, evaluation, relevance feedback and ranking metrics.</p>
+<a class="resource-link" href="https://nlp.stanford.edu/IR-book/information-retrieval-book.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="elastic guide to hybrid search guide concise bridge between lexical relevance, semantic retrieval and rank fusion. understand bm25, vector similarity, score normalisation and reciprocal rank fusion.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-rag-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Guide</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>Elastic Guide to Hybrid Search</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Concise bridge between lexical relevance, semantic retrieval and rank fusion.</p>
+<p class="slice"><strong>80/20 slice:</strong> Understand BM25, vector similarity, score normalisation and reciprocal rank fusion.</p>
+<a class="resource-link" href="https://www.elastic.co/what-is/hybrid-search" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="llm &amp; agent evaluation" id="evals">
+<div class="topic-header">
+<div class="topic-number">07</div>
+<div>
+<p class="eyebrow">🧪 Interview domain</p>
+<h2>LLM &amp; Agent Evaluation</h2>
+<p class="topic-tagline">Turn vague quality claims into testable behaviours, datasets and release gates.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Offline vs online evals, golden datasets, human review, deterministic graders and calibrated LLM-as-judge</li><li>A/B testing, regression suites and release gates for model, prompt, retrieval and agent changes</li><li>Answer relevance, factual accuracy, faithfulness/groundedness, safety/toxicity and agent trajectory quality</li><li>Drift detection, production feedback loops, confidence/evidence signals, escalation criteria and quality monitoring</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Explain why ‘the answers look good’ is not an evaluation strategy. Design a minimal eval suite for a résumé-tailoring assistant.</p>
+<textarea aria-label="Notes for LLM &amp; Agent Evaluation" class="feynman-notes" data-note="evals" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>How would you validate and calibrate an LLM-as-judge?</li><li>What belongs in a golden dataset, and how do you prevent contamination?</li><li>When should you use an offline eval, an online eval, an A/B test or a regression suite?</li><li>How do you evaluate an agent whose trajectory can vary but outcome must be correct?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="the llm evals faq field guide high-signal practical synthesis of how strong teams design and operate evals. extract the workflow for error analysis, dataset construction, judges and continuous evaluation.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-evals-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Field guide</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>The LLM Evals FAQ</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> High-signal practical synthesis of how strong teams design and operate evals.</p>
+<p class="slice"><strong>80/20 slice:</strong> Extract the workflow for error analysis, dataset construction, judges and continuous evaluation.</p>
+<a class="resource-link" href="https://hamel.dev/blog/posts/evals-faq/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="promptfoo open-source tool practical local/ci tool for prompt, model, regression and red-team evaluation. create one yaml eval comparing two prompts or models; add a ci-style pass/fail threshold.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-evals-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Open-source tool</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h prototype</span>
+</div>
+<h3>Promptfoo</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Practical local/CI tool for prompt, model, regression and red-team evaluation.</p>
+<p class="slice"><strong>80/20 slice:</strong> Create one YAML eval comparing two prompts or models; add a CI-style pass/fail threshold.</p>
+<a class="resource-link" href="https://github.com/promptfoo/promptfoo" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="langsmith evaluation docs + platform useful for datasets, evaluators, experiments, traces, human review and llm-as-judge workflows. study dataset → evaluator → experiment workflow; map it to one agent trace from your own project.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-evals-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs + platform</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">3h</span>
+</div>
+<h3>LangSmith Evaluation</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Useful for datasets, evaluators, experiments, traces, human review and LLM-as-judge workflows.</p>
+<p class="slice"><strong>80/20 slice:</strong> Study dataset → evaluator → experiment workflow; map it to one agent trace from your own project.</p>
+<a class="resource-link" href="https://docs.langchain.com/langsmith/evaluation" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="ragas documentation docs + code hands-on toolkit for evaluating rag retrieval, faithfulness and answer quality. build one small evaluation dataset and compare retrieval, faithfulness and answer-quality signals.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-evals-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs + code</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">3h prototype</span>
+</div>
+<h3>Ragas Documentation</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Hands-on toolkit for evaluating RAG retrieval, faithfulness and answer quality.</p>
+<p class="slice"><strong>80/20 slice:</strong> Build one small evaluation dataset and compare retrieval, faithfulness and answer-quality signals.</p>
+<a class="resource-link" href="https://docs.ragas.io/en/stable/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="evaluating ai agents course focuses on traces, tool calls and agent-specific evaluation rather than text outputs alone. map each lesson to tests for planning, tool choice, arguments, recovery and final outcome.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-evals-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>Evaluating AI Agents</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Focuses on traces, tool calls and agent-specific evaluation rather than text outputs alone.</p>
+<p class="slice"><strong>80/20 slice:</strong> Map each lesson to tests for planning, tool choice, arguments, recovery and final outcome.</p>
+<a class="resource-link" href="https://www.deeplearning.ai/courses/evaluating-ai-agents" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="agent patterns, tool use &amp; control loops" id="agents">
+<div class="topic-header">
+<div class="topic-number">08</div>
+<div>
+<p class="eyebrow">🛠️ Interview domain</p>
+<h2>Agent Patterns, Tool Use &amp; Control Loops</h2>
+<p class="topic-tagline">Design bounded agent loops with reliable tool contracts before reaching for multi-agent complexity.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel"><h3>Interview 80/20</h3><ul><li>Workflows versus agents; trigger → goal → act → observe → verify → stop</li><li>Strict schemas, tool contracts, argument validation, idempotency and side-effect safety</li><li>Token, retry, tool and time budgets; escalation, MCP boundaries and human approval</li></ul></div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3><p>Explain the difference between a prompt, an agent loop, a harness and a workflow graph using one travel-booking example. Identify the verification and stopping rule for each autonomous action.</p>
+<textarea aria-label="Notes for Agent Patterns, Tool Use &amp; Control Loops" class="feynman-notes" data-note="agents" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel"><h3>Test yourself</h3><ol><li>When is one bounded tool-calling loop better than a graph or multi-agent system?</li><li>A tool call charges a customer. How do you validate it and make retries safe?</li><li>Define token, retry, tool-call and execution-time budgets for a production agent.</li></ol></div>
+</div>
+<div class="resource-grid"><article class="resource-card" data-priority="anchor" data-search="building effective agents engineering guide grounded patterns for routing, parallelisation, orchestrator–worker, evaluator–optimizer and bounded autonomous agents. master the workflow-versus-agent distinction and the five composable patterns; sketch when each should stop or escalate.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-agents-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Engineering guide</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>Building Effective Agents</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Grounded patterns for routing, parallelisation, orchestrator–worker, evaluator–optimizer and bounded autonomous agents.</p>
+<p class="slice"><strong>80/20 slice:</strong> Master the workflow-versus-agent distinction and the five composable patterns; sketch when each should stop or escalate.</p>
+<a class="resource-link" href="https://www.anthropic.com/engineering/building-effective-agents" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article><article class="resource-card" data-priority="practice" data-search="openai agents sdk documentation docs + code concrete practice with tool loops, handoffs, guardrails, sessions and tracing. build one agent with two tools, strict inputs, a maximum-turn guardrail and trace inspection.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-agents-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs + code</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h prototype</span>
+</div>
+<h3>OpenAI Agents SDK Documentation</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Concrete practice with tool loops, handoffs, guardrails, sessions and tracing.</p>
+<p class="slice"><strong>80/20 slice:</strong> Build one agent with two tools, strict inputs, a maximum-turn guardrail and trace inspection.</p>
+<a class="resource-link" href="https://openai.github.io/openai-agents-python/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article><article class="resource-card" data-priority="practice" data-search="openai structured outputs official docs primary reference for schema-constrained responses and reliable machine-readable contracts. compare structured response formats with function calling; add schema validation and a refusal/error path to one workflow.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-agents-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Official docs</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>OpenAI Structured Outputs</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Primary reference for schema-constrained responses and reliable machine-readable contracts.</p>
+<p class="slice"><strong>80/20 slice:</strong> Compare structured response formats with function calling; add schema validation and a refusal/error path to one workflow.</p>
+<a class="resource-link" href="https://developers.openai.com/api/docs/guides/structured-outputs" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article><article class="resource-card" data-priority="reference" data-search="model context protocol mcp specification 2026 07 28 stateless requests tools resources authorization tasks extensions security">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-agents-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Protocol spec</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">3h selective</span>
+</div>
+<h3>Model Context Protocol Specification (2026-07-28)</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> The current MCP revision materially changes the production model with stateless self-contained requests, per-request capability negotiation, extensions such as Tasks, and authorization hardening.</p>
+<p class="slice"><strong>80/20 slice:</strong> Understand hosts/clients/servers, tools/resources, the stateless request model, authorization and consent, then skim Tasks and the extension framework. Do not study the superseded session/handshake lifecycle.</p>
+<a class="resource-link" href="https://modelcontextprotocol.io/specification/2026-07-28" rel="noopener noreferrer" target="_blank">Open resource ↗</a>
+</article><article class="resource-card" data-priority="deep dive" data-search="writing effective tools for agents engineering guide shows why tool names, descriptions, schemas, outputs and evaluations directly affect agent reliability. redesign one real tool to remove overlap, reduce output tokens and make errors actionable for the model.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-agents-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Engineering guide</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>Writing Effective Tools for Agents</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Shows why tool names, descriptions, schemas, outputs and evaluations directly affect agent reliability.</p>
+<p class="slice"><strong>80/20 slice:</strong> Redesign one real tool to remove overlap, reduce output tokens and make errors actionable for the model.</p>
+<a class="resource-link" href="https://www.anthropic.com/engineering/writing-tools-for-agents" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article></div>
+</section><section class="topic-section" data-topic="agent harness, context &amp; runtime engineering" id="harness">
+<div class="topic-header">
+<div class="topic-number">09</div>
+<div>
+<p class="eyebrow">🧰 Interview domain</p>
+<h2>Agent Harness, Context &amp; Runtime Engineering</h2>
+<p class="topic-tagline">Engineer the environment around the model: context, tools, skills, state, sandboxes, evidence and feedback loops.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel"><h3>Interview 80/20</h3><ul><li>Context as a finite attention budget: retrieval, progressive disclosure, compaction and durable external state</li><li>Agent-legible environments: repository knowledge, tools, skills, sandboxes, observability and executable tests</li><li>Long-horizon continuity: progress artefacts, session logs, verification gates, cleanup and human escalation</li></ul></div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3><p>Explain “agent = model + harness”. Separate prompt, context, tools, loop, graph, session, sandbox, evals and observability. Then explain why the same model can perform very differently in two products.</p>
+<textarea aria-label="Notes for Agent Harness, Context &amp; Runtime Engineering" class="feynman-notes" data-note="harness" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel"><h3>Test yourself</h3><ol><li>A model scores well in a benchmark but fails in your product. How do you isolate model, context, tool and harness causes?</li><li>Design a coding-agent harness that can continue safely across multiple context windows and process crashes.</li><li>What belongs in a system prompt or AGENTS.md, and what should instead live in skills, tools, tests or runtime policy?</li></ol></div>
+</div>
+<div class="resource-grid"><article class="resource-card" data-priority="anchor" data-search="harness engineering: leveraging codex in an agent-first world production case study a production account of repository legibility, agent-accessible tools, observability, architecture enforcement and recurring cleanup. study environment underspecification, repository knowledge, agent legibility, feedback loops, architectural enforcement and entropy control.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-harness-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Production case study</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>Harness Engineering: Leveraging Codex in an Agent-first World</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> A production account of repository legibility, agent-accessible tools, observability, architecture enforcement and recurring cleanup.</p>
+<p class="slice"><strong>80/20 slice:</strong> Study environment underspecification, repository knowledge, agent legibility, feedback loops, architectural enforcement and entropy control.</p>
+<a class="resource-link" href="https://openai.com/index/harness-engineering/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article><article class="resource-card" data-priority="anchor" data-search="effective context engineering for ai agents engineering guide defines context engineering as curating the smallest high-signal token set across prompts, tools, history and external data. focus on attention budget, minimal viable context, tool-result design, just-in-time retrieval, compaction and context rot.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-harness-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Engineering guide</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>Effective Context Engineering for AI Agents</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Defines context engineering as curating the smallest high-signal token set across prompts, tools, history and external data.</p>
+<p class="slice"><strong>80/20 slice:</strong> Focus on attention budget, minimal viable context, tool-result design, just-in-time retrieval, compaction and context rot.</p>
+<a class="resource-link" href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article><article class="resource-card" data-priority="practice" data-search="effective harnesses for long-running agents engineering guide shows practical continuity across context windows using initialisation, incremental progress, git and structured handoff artefacts. recreate the initializer/progress-file pattern for a small repository and test whether a fresh session can resume correctly.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-harness-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Engineering guide</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h prototype</span>
+</div>
+<h3>Effective Harnesses for Long-running Agents</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Shows practical continuity across context windows using initialisation, incremental progress, Git and structured handoff artefacts.</p>
+<p class="slice"><strong>80/20 slice:</strong> Recreate the initializer/progress-file pattern for a small repository and test whether a fresh session can resume correctly.</p>
+<a class="resource-link" href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article><article class="resource-card" data-priority="deep dive" data-search="scaling managed agents: decoupling the brain from the hands architecture case study grounded architecture for durable sessions, stateless harnesses, isolated sandboxes, credential boundaries and many execution environments. draw brain, harness, session, sandbox, vault and tool proxy boundaries; explain crash recovery and why session is not context window.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-harness-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Architecture case study</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>Scaling Managed Agents: Decoupling the Brain from the Hands</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Grounded architecture for durable sessions, stateless harnesses, isolated sandboxes, credential boundaries and many execution environments.</p>
+<p class="slice"><strong>80/20 slice:</strong> Draw brain, harness, session, sandbox, vault and tool proxy boundaries; explain crash recovery and why session is not context window.</p>
+<a class="resource-link" href="https://www.anthropic.com/engineering/managed-agents" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article><article class="resource-card" data-priority="practice" data-search="equipping agents with agent skills engineering guide explains reusable procedural knowledge, progressive disclosure and capability packaging without loading everything into context. create one skill with clear trigger conditions, instructions, scripts and tests; review its security and context-loading behaviour.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v4-harness-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Engineering guide</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">3h</span>
+</div>
+<h3>Equipping Agents with Agent Skills</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Explains reusable procedural knowledge, progressive disclosure and capability packaging without loading everything into context.</p>
+<p class="slice"><strong>80/20 slice:</strong> Create one skill with clear trigger conditions, instructions, scripts and tests; review its security and context-loading behaviour.</p>
+<a class="resource-link" href="https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article></div>
+</section><section class="topic-section" data-topic="workflow graphs, orchestration &amp; durable execution" id="orchestration"><div class="topic-header"><div class="topic-number">10</div><div><p class="eyebrow">🔀 Interview domain</p><h2>Workflow Graphs, Orchestration &amp; Durable Execution</h2><p class="topic-tagline">Design explicit node, edge and state topology for workflows that retry, resume, branch and survive failure.</p></div></div><div class="topic-grid"><div class="focus-panel"><h3>Interview 80/20</h3><ul><li>Graph/state-machine topology: nodes, edges, routers, fan-out/fan-in, subgraphs and shared state</li><li>Retries, timeouts, idempotency, checkpointing, compensation and durable execution</li><li>Human interrupts, scheduled pipelines and choosing LangGraph, Temporal, Airflow or Kubeflow</li></ul></div><div class="feynman-panel"><h3>Feynman drill</h3><p>Explain why a single agent loop is one possible node in a larger workflow graph. Add branching, parallel work, a human approval checkpoint and crash-safe resumption.</p><textarea aria-label="Notes for Workflow Graphs, Orchestration &amp; Durable Execution" class="feynman-notes" data-note="orchestration" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea></div><div class="prompt-panel"><h3>Test yourself</h3><ol><li>When is an explicit workflow graph better than one autonomous loop?</li><li>When would you choose LangGraph, Temporal, Airflow or Kubeflow Pipelines?</li><li>How do you resume after a crash without repeating an irreversible side effect?</li></ol></div></div><div class="resource-grid"><article class="resource-card" data-priority="anchor" data-search="langgraph overview and persistence official docs a focused agent orchestration runtime covering durable execution, streaming, persistence and human-in-the-loop control. study state, nodes, edges, persistence, checkpointers and interrupts; build a two-step graph that pauses and resumes. graph engineering nodes edges state topology"><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-orchestration-1" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Official docs</span><span class="badge p-anchor">Anchor</span><span class="badge effort">5h prototype</span></div><h3>LangGraph Overview and Persistence</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Primary framework documentation for graph-based agent workflows, durable execution, persistence and human interrupts.</p><p class="slice"><strong>80/20 slice:</strong> Study state, nodes, edges, persistence, checkpointers and interrupts; build a two-step graph that pauses and resumes.</p><a class="resource-link" href="https://docs.langchain.com/oss/python/langgraph/overview" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="anchor" data-search="temporal: why durable execution official docs provides the strongest mental model for reliable long-running workflows, retries and recovery across process failures. understand workflows vs activities, replay, durable timers, retry policies and idempotency before reading sdk details."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-orchestration-2" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Official docs</span><span class="badge p-anchor">Anchor</span><span class="badge effort">4h</span></div><h3>Temporal: Why Durable Execution</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Provides the strongest mental model for reliable long-running workflows, retries and recovery across process failures.</p><p class="slice"><strong>80/20 slice:</strong> Understand workflows vs activities, replay, durable timers, retry policies and idempotency before reading SDK details.</p><a class="resource-link" href="https://docs.temporal.io/evaluate/why-temporal" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="practice" data-search="temporal durable agent with tools official cookbook shows how agent state and tool calls can be managed through durable workflow execution. trace how tool calls become activities, how state is persisted, and what happens when a step fails midway."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-orchestration-3" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Official cookbook</span><span class="badge p-practice">Practice</span><span class="badge effort">4h prototype</span></div><h3>Temporal Durable Agent with Tools</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Shows how agent state and tool calls can be managed through durable workflow execution.</p><p class="slice"><strong>80/20 slice:</strong> Trace how tool calls become activities, how state is persisted, and what happens when a step fails midway.</p><a class="resource-link" href="https://docs.temporal.io/ai-cookbook/openai-agents-sdk-python" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="practice" data-search="kubeflow pipelines concepts official docs grounded reference for portable, scalable ml workflow orchestration on kubernetes. learn components, parameters, artefacts, execution order, conditions and pipeline roots; sketch a train-register-deploy dag."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-orchestration-4" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Official docs</span><span class="badge p-practice">Practice</span><span class="badge effort">4h</span></div><h3>Kubeflow Pipelines Concepts</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Grounded reference for portable, scalable ML workflow orchestration on Kubernetes.</p><p class="slice"><strong>80/20 slice:</strong> Learn components, parameters, artefacts, execution order, conditions and pipeline roots; sketch a train-register-deploy DAG.</p><a class="resource-link" href="https://www.kubeflow.org/docs/components/pipelines/concepts/pipeline/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="reference" data-search="apache airflow core concepts official docs useful baseline for scheduled batch/data orchestration and dag operational concepts. focus on dags, tasks, scheduling, dependencies, retries and backfills; contrast airflow with event-driven durable workflows."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-orchestration-5" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Official docs</span><span class="badge p-reference">Reference</span><span class="badge effort">3h</span></div><h3>Apache Airflow Core Concepts</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Useful baseline for scheduled batch/data orchestration and DAG operational concepts.</p><p class="slice"><strong>80/20 slice:</strong> Focus on DAGs, tasks, scheduling, dependencies, retries and backfills; contrast Airflow with event-driven durable workflows.</p><a class="resource-link" href="https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/index.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article></div></section><section class="topic-section" data-topic="ai observability, reliability &amp; incident response" id="observability"><div class="topic-header"><div class="topic-number">11</div><div><p class="eyebrow">📡 Interview domain</p><h2>AI Observability, Reliability &amp; Incident Response</h2><p class="topic-tagline">See every model, retrieval and tool step—and turn telemetry into debugging, SLO and release decisions.</p></div></div><div class="topic-grid"><div class="focus-panel"><h3>Interview 80/20</h3><ul><li>Traces, spans, logs and sessions with prompt/response capture policies and PII redaction</li><li>Token metrics, cost, latency, errors, retrieval quality, tool failures and model/provider attribution</li><li>SLOs and error budgets, alerting, production feedback, incident diagnosis and trace-driven evaluation</li><li>Correlate AI telemetry with application/infrastructure telemetry to find the actual bottleneck</li></ul></div><div class="feynman-panel"><h3>Feynman drill</h3><p>A user says an agent is slow and unreliable. Define the traces and metrics needed to determine whether the bottleneck is retrieval, prefill, decoding, tool execution, retries or orchestration.</p><textarea aria-label="Notes for AI Observability, Reliability &amp; Incident Response" class="feynman-notes" data-note="observability" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea></div><div class="prompt-panel"><h3>Test yourself</h3><ol><li>What should every production LLM trace contain, and what sensitive data should it avoid storing?</li><li>How would you define SLOs for an agent whose output quality is partly subjective?</li><li>A release raises cost by 40% but latency is unchanged. How would you diagnose it?</li></ol></div></div><div class="resource-grid"><article class="resource-card" data-priority="anchor" data-search="opentelemetry genai observability open standard vendor-neutral foundation for recording model operations, token counts, tool calls and genai telemetry. understand traces, metrics, events, semantic attributes and privacy controls; design a minimal span schema."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-observability-1" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Open standard</span><span class="badge p-anchor">Anchor</span><span class="badge effort">4h</span></div><h3>OpenTelemetry GenAI Observability</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Vendor-neutral foundation for recording model operations, token counts, tool calls and GenAI telemetry.</p><p class="slice"><strong>80/20 slice:</strong> Understand traces, metrics, events, semantic attributes and privacy controls; design a minimal span schema.</p><a class="resource-link" href="https://opentelemetry.io/blog/2026/genai-observability/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="practice" data-search="langsmith observability official docs shows production tracing across model calls, retrieval, tools and decision points with aggregate monitoring. instrument one agent, inspect nested runs, tag release/model versions and identify latency/cost hotspots."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-observability-2" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Official docs</span><span class="badge p-practice">Practice</span><span class="badge effort">4h prototype</span></div><h3>LangSmith Observability</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Shows production tracing across model calls, retrieval, tools and decision points with aggregate monitoring.</p><p class="slice"><strong>80/20 slice:</strong> Instrument one agent, inspect nested runs, tag release/model versions and identify latency/cost hotspots.</p><a class="resource-link" href="https://docs.langchain.com/langsmith/observability" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="practice" data-search="arize phoenix and openinference open-source docs open-source, vendor-portable tracing of llm, retrieval, tool and agent operations using opentelemetry. capture one trace with llm, retrieval and tool spans; run a trace-level evaluation and inspect the causal chain."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-observability-3" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Open-source docs</span><span class="badge p-practice">Practice</span><span class="badge effort">4h prototype</span></div><h3>Arize Phoenix and OpenInference</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Open-source, vendor-portable tracing of LLM, retrieval, tool and agent operations using OpenTelemetry.</p><p class="slice"><strong>80/20 slice:</strong> Capture one trace with LLM, retrieval and tool spans; run a trace-level evaluation and inspect the causal chain.</p><a class="resource-link" href="https://arize.com/docs/phoenix/tracing/concepts-tracing/otel-openinference/overview" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="practice" data-search="langfuse observability overview open-source docs self-hostable observability covering traces, sessions, latency, tokens, cost and evaluation scores. compare its data model with opentelemetry; design dashboards for cost, latency, errors and model version."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-observability-4" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Open-source docs</span><span class="badge p-practice">Practice</span><span class="badge effort">3h</span></div><h3>Langfuse Observability Overview</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Self-hostable observability covering traces, sessions, latency, tokens, cost and evaluation scores.</p><p class="slice"><strong>80/20 slice:</strong> Compare its data model with OpenTelemetry; design dashboards for cost, latency, errors and model version.</p><a class="resource-link" href="https://langfuse.com/docs/observability/overview" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article><article class="resource-card" data-priority="reference" data-search="opentelemetry genai semantic conventions specification dedicated primary reference for consistent genai telemetry names, attributes, spans, events and metrics across providers. treat development conventions as evolving and make sensitive content capture opt-in."><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v3-observability-5" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Specification</span><span class="badge p-reference">Reference</span><span class="badge effort">2h selective</span></div><h3>OpenTelemetry GenAI Semantic Conventions</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Primary GenAI-specific reference for consistent telemetry names, attributes, spans, events and metrics across providers.</p><p class="slice"><strong>80/20 slice:</strong> Use the dedicated repository as a lookup source; treat Development conventions as evolving and make sensitive content capture opt-in.</p><a class="resource-link" href="https://github.com/open-telemetry/semantic-conventions-genai" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article></div></section><section class="topic-section" data-topic="ai security, guardrails &amp; red teaming" id="security">
+<div class="topic-header">
+<div class="topic-number">12</div>
+<div>
+<p class="eyebrow">🛡️ Interview domain</p>
+<h2>AI Security, Guardrails &amp; Red Teaming</h2>
+<p class="topic-tagline">Design AI systems that survive hostile inputs, unsafe tool calls and governance review.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Prompt injection, jailbreaks, insecure outputs, excessive agency, data leakage and supply-chain risk</li><li>PII redaction, data privacy, access control, least privilege, sandboxing and approval boundaries</li><li>Audit logs, governance/compliance evidence, red-team tests and security-by-design patterns</li><li>Treat model output as untrusted input: validate actions and permissions outside the model</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Explain prompt injection using an email assistant. Then design three defences that do not depend on the model simply ‘being smarter’.</p>
+<textarea aria-label="Notes for AI Security, Guardrails &amp; Red Teaming" class="feynman-notes" data-note="security" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>How would you secure an agent that can read email and call external APIs?</li><li>What is excessive agency, and how do you limit it without killing usefulness?</li><li>Design a red-team test plan for a RAG assistant with private company documents.</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="owasp top 10 for llm applications security standard core vocabulary for llm application risks such as prompt injection, insecure output handling and excessive agency. create a threat table mapping each owasp risk to one concrete control in a representative llm application.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-security-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Security standard</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>OWASP Top 10 for LLM Applications</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Core vocabulary for LLM application risks such as prompt injection, insecure output handling and excessive agency.</p>
+<p class="slice"><strong>80/20 slice:</strong> Create a threat table mapping each OWASP risk to one concrete control in a representative LLM application.</p>
+<a class="resource-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="microsoft ai red teaming 101 training practical training on vulnerabilities, attack techniques and defensive measures for generative ai systems. complete modules on prompt injection, unsafe content, data leakage and automated testing.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-security-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Training</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>Microsoft AI Red Teaming 101</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Practical training on vulnerabilities, attack techniques and defensive measures for generative AI systems.</p>
+<p class="slice"><strong>80/20 slice:</strong> Complete modules on prompt injection, unsafe content, data leakage and automated testing.</p>
+<a class="resource-link" href="https://learn.microsoft.com/en-us/security/ai-red-team/training" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="promptfoo red teaming docs tooling docs hands-on path for testing jailbreaks, prompt injection, policy violations and app-specific vulnerabilities. run a minimal red-team eval against one local or mock assistant; record top failures and mitigations.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-security-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Tooling docs</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">3h prototype</span>
+</div>
+<h3>Promptfoo Red Teaming Docs</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Hands-on path for testing jailbreaks, prompt injection, policy violations and app-specific vulnerabilities.</p>
+<p class="slice"><strong>80/20 slice:</strong> Run a minimal red-team eval against one local or mock assistant; record top failures and mitigations.</p>
+<a class="resource-link" href="https://www.promptfoo.dev/docs/red-team/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="nist ai rmf: generative ai profile governance guide risk-management framing for trustworthy generative-ai systems. map govern, map, measure and manage activities to one ai project lifecycle.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-security-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Governance guide</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">3h</span>
+</div>
+<h3>NIST AI RMF: Generative AI Profile</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Risk-management framing for trustworthy generative-AI systems.</p>
+<p class="slice"><strong>80/20 slice:</strong> Map govern, map, measure and manage activities to one AI project lifecycle.</p>
+<a class="resource-link" href="https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="google secure ai framework framework enterprise security framework for integrating security and privacy into ml-powered applications. use saif as a checklist for design reviews: identity, monitoring, controls, supply chain and feedback loops.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-security-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Framework</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>Google Secure AI Framework</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Enterprise security framework for integrating security and privacy into ML-powered applications.</p>
+<p class="slice"><strong>80/20 slice:</strong> Use SAIF as a checklist for design reviews: identity, monitoring, controls, supply chain and feedback loops.</p>
+<a class="resource-link" href="https://safety.google/intl/en-GB_ALL/safety/saif/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="mlops &amp; production engineering" id="mlops">
+<div class="topic-header">
+<div class="topic-number">13</div>
+<div>
+<p class="eyebrow">🚀 Interview domain</p>
+<h2>MLOps &amp; Production Engineering</h2>
+<p class="topic-tagline">Operate the whole lifecycle: data, training, deployment, monitoring and iteration.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Reproducibility, pipelines, registries, feature/data lineage and CI/CD</li><li>Serving patterns, rollback, shadowing, canaries and observability</li><li>Drift, feedback loops, retraining triggers and incident response</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Describe the lifecycle of one model from raw data to retirement. At each stage, name the artefact, owner, test and rollback path.</p>
+<textarea aria-label="Notes for MLOps &amp; Production Engineering" class="feynman-notes" data-note="mlops" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>How would you deploy a new model with minimal risk?</li><li>What should trigger retraining, and what should not?</li><li>Distinguish data drift, concept drift, label drift and pipeline breakage.</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="designing machine learning systems book a practical lifecycle view spanning data, modelling, serving and monitoring. focus on objectives, data engineering, deployment, monitoring and continual learning.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-mlops-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">8h selective</span>
+</div>
+<h3>Designing Machine Learning Systems</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> A practical lifecycle view spanning data, modelling, serving and monitoring.</p>
+<p class="slice"><strong>80/20 slice:</strong> Focus on objectives, data engineering, deployment, monitoring and continual learning.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/designing-machine-learning/9781098107956/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="made with ml: mlops course free course turns mlops ideas into an opinionated, testable production project. implement data validation, training, testing, serving and monitoring for one small pipeline.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-mlops-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Free course</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">6h build</span>
+</div>
+<h3>Made With ML: MLOps Course</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Turns MLOps ideas into an opinionated, testable production project.</p>
+<p class="slice"><strong>80/20 slice:</strong> Implement data validation, training, testing, serving and monitoring for one small pipeline.</p>
+<a class="resource-link" href="https://madewithml.com/courses/mlops/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="full stack deep learning free course excellent systems perspective on building and shipping ml-powered products. choose lectures on infrastructure, deployment, monitoring and llm application development.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-mlops-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Free course</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">6h selective</span>
+</div>
+<h3>Full Stack Deep Learning</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Excellent systems perspective on building and shipping ML-powered products.</p>
+<p class="slice"><strong>80/20 slice:</strong> Choose lectures on infrastructure, deployment, monitoring and LLM application development.</p>
+<a class="resource-link" href="https://fullstackdeeplearning.com/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="machine learning in production course compact overview of lifecycle decisions and failure modes. use it as a checklist, then attach each concept to an example from your own project.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-mlops-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">3h</span>
+</div>
+<h3>Machine Learning in Production</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Compact overview of lifecycle decisions and failure modes.</p>
+<p class="slice"><strong>80/20 slice:</strong> Use it as a checklist, then attach each concept to an example from your own project.</p>
+<a class="resource-link" href="https://www.deeplearning.ai/courses/machine-learning-in-production" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="ai system design &amp; data architecture" id="system-design">
+<div class="topic-header">
+<div class="topic-number">14</div>
+<div>
+<p class="eyebrow">🏗️ Interview domain</p>
+<h2>AI System Design &amp; Data Architecture</h2>
+<p class="topic-tagline">Design reliable AI systems by combining distributed-systems fundamentals with model-specific trade-offs.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>API/model gateways, request routing, prompt/inference/retrieval/ranking services and clear ownership boundaries</li><li>Async queues, streaming, fan-out/fan-in, batch vs real-time inference and human-in-the-loop workflows</li><li>Timeouts, retries/backoff, idempotency, circuit breaking, failover, graceful degradation and fallback workflows</li><li>Admission control, rate limits, backpressure, overload/load shedding, SLOs/error budgets, privacy and cost</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Design a production AI service on one sheet of paper. Explain request routing, model/retrieval services, queues, fallbacks and the failure path: timeout → retry/backoff → circuit/open fallback → load shedding or degraded mode.</p>
+<textarea aria-label="Notes for AI System Design &amp; Data Architecture" class="feynman-notes" data-note="system-design" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>Design a multi-tenant RAG service with strict data isolation and permission-aware retrieval.</li><li>A model provider becomes slow and error-prone. Design timeout, retry, fallback and circuit-breaker behaviour without causing a retry storm.</li><li>Traffic exceeds inference capacity by 3×. Where do rate limiting, queues, backpressure, admission control and load shedding belong?</li><li>Design a job-ranking system that supports offline experimentation and online feedback.</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="designing data-intensive applications, 2nd edition book the strongest foundation for explaining storage, distributed data and reliability trade-offs. prioritise storage/indexes, replication, partitioning, transactions, batch/stream processing and derived data.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-system-design-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">10h selective</span>
+</div>
+<h3>Designing Data-Intensive Applications, 2nd Edition</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> The strongest foundation for explaining storage, distributed data and reliability trade-offs.</p>
+<p class="slice"><strong>80/20 slice:</strong> Prioritise storage/indexes, replication, partitioning, transactions, batch/stream processing and derived data.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/designing-data-intensive-applications/9781098119058/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="anchor" data-search="ai engineering book connects foundation models to product architecture, evaluation, data and operational decisions. focus on model adaptation, evaluation, inference optimisation, architecture and feedback loops.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-system-design-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">6h selective</span>
+</div>
+<h3>AI Engineering</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Connects foundation models to product architecture, evaluation, data and operational decisions.</p>
+<p class="slice"><strong>80/20 slice:</strong> Focus on model adaptation, evaluation, inference optimisation, architecture and feedback loops.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/ai-engineering/9781098166298/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="machine learning system design book provides repeatable interview structure and worked ml-system cases. practise requirements, metrics, data, modelling, serving and monitoring on three case studies.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-system-design-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">6h selective</span>
+</div>
+<h3>Machine Learning System Design</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Provides repeatable interview structure and worked ML-system cases.</p>
+<p class="slice"><strong>80/20 slice:</strong> Practise requirements, metrics, data, modelling, serving and monitoring on three case studies.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/machine-learning-system/9781633438750/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="acing the system design interview book sharpens the communication and distributed-systems layer of design interviews. use selected chapters on scaling, storage, messaging, caching and reliability.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-system-design-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">4h selective</span>
+</div>
+<h3>Acing the System Design Interview</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Sharpens the communication and distributed-systems layer of design interviews.</p>
+<p class="slice"><strong>80/20 slice:</strong> Use selected chapters on scaling, storage, messaging, caching and reliability.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/acing-the-system/9781633439108/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="anchor" data-search="google site reliability engineering selected chapters reliability error budgets overload cascading failures timeouts retries load shedding graceful degradation distributed systems"><div class="resource-top"><label class="check-wrap" title="Mark complete"><input class="resource-checkbox" data-key="v4-2-system-design-sre" type="checkbox"/><span class="fake-check">✓</span></label><div class="resource-heading"><div class="badges"><span class="badge type">Free book</span><span class="badge p-anchor">Anchor</span><span class="badge effort">4h selective</span></div><h3>Google Site Reliability Engineering — Selected Chapters</h3></div></div><p class="why"><strong>Why it earns a place:</strong> Grounded production reliability patterns for error budgets, overload, cascading failures and graceful degradation.</p><p class="slice"><strong>80/20 slice:</strong> Read Embracing Risk/Error Budgets, Handling Overload and Addressing Cascading Failures; map each pattern to an AI inference service.</p><a class="resource-link" href="https://sre.google/sre-book/table-of-contents/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a></article></div>
+</section><section class="topic-section" data-topic="aws architecture &amp; certification depth" id="aws">
+<div class="topic-header">
+<div class="topic-number">15</div>
+<div>
+<p class="eyebrow">☁️ Interview domain</p>
+<h2>AWS Architecture &amp; Certification Depth</h2>
+<p class="topic-tagline">Translate ML and GenAI requirements into secure, resilient and cost-aware AWS designs.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Identity, networking, encryption, observability and cost controls</li><li>Data pipelines, training, deployment, feature stores and model governance</li><li>Bedrock/SageMaker patterns, availability, quotas and responsible AI</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Explain an AWS architecture for training and serving a model without listing services. Start with requirements, then justify each service selection.</p>
+<textarea aria-label="Notes for AWS Architecture &amp; Certification Depth" class="feynman-notes" data-note="aws" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>Design a secure cross-account ML platform on AWS.</li><li>When would you choose managed model APIs versus hosting your own model?</li><li>How would you monitor cost, quality and safety for a production GenAI workload?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="reference" data-search="aws certification exam guides official guide defines the current domains and prevents studying obsolete objectives. map gaps against mla-c02 first, saa-c03 second and aif-c01 later; keep transition dates and exam versions explicit.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-aws-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Official guide</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">1h mapping</span>
+</div>
+<h3>AWS Certification Exam Guides</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Defines the current domains and prevents studying obsolete objectives.</p>
+<p class="slice"><strong>80/20 slice:</strong> Map gaps against MLA-C02 first, SAA-C03 second and AIF-C01 later; keep transition dates and exam versions explicit.</p>
+<a class="resource-link" href="https://docs.aws.amazon.com/aws-certification/latest/examguides/aws-certification-exam-guides.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="anchor" data-search="aws machine learning engineer mla-c02 transition official certification page current source for exam availability, transition dates and updated genai agentic ai and responsible ai coverage. use the current exam page and guide; do not mix mla-c01 and mla-c02 objectives.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-aws-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Official certification page</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">8h selective</span>
+</div>
+<h3>AWS Machine Learning Engineer — MLA-C02 Transition</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Current source for exam availability, transition dates and updated coverage of GenAI implementation, agentic AI, foundation models and responsible AI.</p>
+<p class="slice"><strong>80/20 slice:</strong> Use the current certification page and exam guide; do not mix MLA-C01 and MLA-C02 objectives when planning study.</p>
+<a class="resource-link" href="https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="aws well-architected machine learning lens architecture guide turns aws knowledge into architecture trade-offs and review questions. create a one-page checklist across operational excellence, security, reliability, performance and cost.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-aws-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Architecture guide</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>AWS Well-Architected Machine Learning Lens</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Turns AWS knowledge into architecture trade-offs and review questions.</p>
+<p class="slice"><strong>80/20 slice:</strong> Create a one-page checklist across operational excellence, security, reliability, performance and cost.</p>
+<a class="resource-link" href="https://docs.aws.amazon.com/wellarchitected/latest/machine-learning-lens/machine-learning-lens.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="aws well-architected generative ai lens architecture guide adds genai-specific concerns such as model choice, responsible ai, data and inference operations. apply the questions to one bedrock-based and one self-hosted design.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-aws-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Architecture guide</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>AWS Well-Architected Generative AI Lens</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Adds GenAI-specific concerns such as model choice, responsible AI, data and inference operations.</p>
+<p class="slice"><strong>80/20 slice:</strong> Apply the questions to one Bedrock-based and one self-hosted design.</p>
+<a class="resource-link" href="https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/generative-ai-lens.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="sagemaker mlops documentation docs primary reference for aws-native pipeline, registry, deployment and monitoring patterns. trace one model from pipeline to registry to staged deployment and monitoring.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-aws-5" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Docs</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">4h</span>
+</div>
+<h3>SageMaker MLOps Documentation</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Primary reference for AWS-native pipeline, registry, deployment and monitoring patterns.</p>
+<p class="slice"><strong>80/20 slice:</strong> Trace one model from pipeline to registry to staged deployment and monitoring.</p>
+<a class="resource-link" href="https://docs.aws.amazon.com/sagemaker/latest/dg/mlops.html" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section><section class="topic-section" data-topic="behavioural, leadership &amp; project stories" id="behavioural">
+<div class="topic-header">
+<div class="topic-number">16</div>
+<div>
+<p class="eyebrow">🗣️ Interview domain</p>
+<h2>Behavioural, Leadership &amp; Project Stories</h2>
+<p class="topic-tagline">Present evidence of judgement, ownership, influence and learning—not generic STAR scripts.</p>
+</div>
+</div>
+<div class="topic-grid">
+<div class="focus-panel">
+<h3>Interview 80/20</h3>
+<ul><li>Reusable story bank with quantified context and personal contribution</li><li>Trade-offs, disagreement, failure, ambiguity and stakeholder influence</li><li>Technical depth adjusted to interviewer and role level</li></ul>
+</div>
+<div class="feynman-panel">
+<h3>Feynman drill</h3>
+<p>Tell one project story in two minutes to a non-technical leader, then retell it to a principal engineer. Keep the facts identical but change the emphasis.</p>
+<textarea aria-label="Notes for Behavioural, Leadership &amp; Project Stories" class="feynman-notes" data-note="behavioural" placeholder="Explain it from memory here. Then mark vague words, missing causal links and assumptions…"></textarea>
+</div>
+<div class="prompt-panel">
+<h3>Test yourself</h3>
+<ol><li>Tell me about a technically sound proposal you failed to get adopted.</li><li>Describe an incident where your first diagnosis was wrong.</li><li>How did you influence a cross-functional decision without formal authority?</li></ol>
+</div>
+</div>
+<div class="resource-grid">
+<article class="resource-card" data-priority="anchor" data-search="google re:work: structured interviewing guide understanding how structured interviews are scored improves answer precision and evidence. reverse-engineer competencies, behavioural anchors and consistent evidence from the interviewer’s perspective.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-behavioural-1" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Guide</span>
+<span class="badge p-anchor">Anchor</span>
+<span class="badge effort">2h</span>
+</div>
+<h3>Google re:Work: Structured Interviewing</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Understanding how structured interviews are scored improves answer precision and evidence.</p>
+<p class="slice"><strong>80/20 slice:</strong> Reverse-engineer competencies, behavioural anchors and consistent evidence from the interviewer’s perspective.</p>
+<a class="resource-link" href="https://rework.withgoogle.com/intl/en/guides/a-guide-to-structured-interviewing-for-better-hiring-practices" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="practice" data-search="behavioural interviews for engineers course provides engineering-specific prompts and answer practice. record answers to ten prompts, remove vague claims, and add decision, action, result and reflection.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-behavioural-2" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Course</span>
+<span class="badge p-practice">Practice</span>
+<span class="badge effort">4h drills</span>
+</div>
+<h3>Behavioural Interviews for Engineers</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Provides engineering-specific prompts and answer practice.</p>
+<p class="slice"><strong>80/20 slice:</strong> Record answers to ten prompts, remove vague claims, and add decision, action, result and reflection.</p>
+<a class="resource-link" href="https://www.tryexponent.com/courses/eng-behavioral" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="deep dive" data-search="the staff engineer’s path book strong framework for leadership, influence and execution beyond individual coding. read sections on role definition, technical strategy, influence, sponsorship and operating at scale.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-behavioural-3" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Book</span>
+<span class="badge p-deep">Deep dive</span>
+<span class="badge effort">5h selective</span>
+</div>
+<h3>The Staff Engineer’s Path</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Strong framework for leadership, influence and execution beyond individual coding.</p>
+<p class="slice"><strong>80/20 slice:</strong> Read sections on role definition, technical strategy, influence, sponsorship and operating at scale.</p>
+<a class="resource-link" href="https://www.oreilly.com/library/view/the-staff-engineers/9781098118723/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+<article class="resource-card" data-priority="reference" data-search="staff engineer free book real archetypes and stories help calibrate senior and staff-level interview expectations. study archetypes and interviews relevant to the role; convert lessons into evidence from your own work.">
+<div class="resource-top">
+<label class="check-wrap" title="Mark complete">
+<input class="resource-checkbox" data-key="v2-behavioural-4" type="checkbox"/>
+<span class="fake-check">✓</span>
+</label>
+<div class="resource-heading">
+<div class="badges">
+<span class="badge type">Free book</span>
+<span class="badge p-reference">Reference</span>
+<span class="badge effort">4h selective</span>
+</div>
+<h3>Staff Engineer</h3>
+</div>
+</div>
+<p class="why"><strong>Why it earns a place:</strong> Real archetypes and stories help calibrate senior and staff-level interview expectations.</p>
+<p class="slice"><strong>80/20 slice:</strong> Study archetypes and interviews relevant to the role; convert lessons into evidence from your own work.</p>
+<a class="resource-link" href="https://staffeng.com/book/" rel="noopener noreferrer" target="_blank">Open resource <span aria-hidden="true">↗</span></a>
+</article>
+</div>
+</section></main>
+</div>
+</div>
+</div>
+<footer>
+<div class="shell footer-grid">
+<div><strong>Resource policy.</strong> Specialist primary/official sources remain the anchors. Broad community curricula are included only when they add hands-on transfer and are clearly labelled as supplements.</div>
+<div><strong>Freshness.</strong> Resource set audited 21 August 2026 and rechecked for repository publication on 4 September 2026. Versioned protocols and fast-moving platform material should be rechecked quarterly.</div>
+</div>
+</footer>
+<script>
+    (() => {
+      const STORAGE = "aiml-interview-resource-progress-v4";
+      const NOTES = "aiml-interview-feynman-notes-v4";
+      const checks = [...document.querySelectorAll(".resource-checkbox")];
+      const cards = [...document.querySelectorAll(".resource-card")];
+      const sections = [...document.querySelectorAll(".topic-section")];
+      const tabs = [...document.querySelectorAll(".topic-tabs a")];
+      const topicIds = new Set(sections.map(section => section.id));
+      const topicLinks = [...document.querySelectorAll('a[href^="#"]')]
+        .filter(link => topicIds.has(link.getAttribute("href").slice(1)));
+      const search = document.getElementById("search");
+      const filterButtons = [...document.querySelectorAll(".filter-btn")];
+      const progressBar = document.getElementById("progressBar");
+      const progressText = document.getElementById("progressText");
+      const emptyState = document.getElementById("emptyState");
+      let activeFilter = "all";
+      const hashTopic = location.hash.slice(1);
+      let activeTopic = topicIds.has(hashTopic) ? hashTopic : (sections[0]?.id || "");
+
+      function loadJSON(key) {
+        try { return JSON.parse(localStorage.getItem(key) || "{}"); }
+        catch (_) { return {}; }
+      }
+
+      let state = loadJSON(STORAGE);
+      checks.forEach(cb => {
+        cb.checked = Boolean(state[cb.dataset.key]);
+        cb.closest(".resource-card").classList.toggle("completed", cb.checked);
+        cb.addEventListener("change", () => {
+          state[cb.dataset.key] = cb.checked;
+          localStorage.setItem(STORAGE, JSON.stringify(state));
+          cb.closest(".resource-card").classList.toggle("completed", cb.checked);
+          updateProgress();
+        });
+      });
+
+      function updateProgress() {
+        const done = checks.filter(cb => cb.checked).length;
+        const pct = Math.round(done / checks.length * 100);
+        progressBar.style.width = pct + "%";
+        progressText.textContent = `${done} / ${checks.length} complete · ${pct}%`;
+      }
+
+      function setActiveTopic(topicId, options = { scroll: true }) {
+        activeTopic = topicId || activeTopic;
+        tabs.forEach(tab => {
+          const isActive = tab.getAttribute("href") === "#" + activeTopic;
+          tab.classList.toggle("active-tab", isActive);
+          if (isActive) tab.setAttribute("aria-current", "page");
+          else tab.removeAttribute("aria-current");
+        });
+        sections.forEach(section => {
+          section.classList.toggle("active-topic", section.id === activeTopic);
+        });
+        applyFilters();
+        if (options.scroll) {
+          const layout = document.querySelector(".learning-layout");
+          if (layout) layout.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+
+      function applyFilters() {
+        const query = search.value.trim().toLowerCase();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const matchesText = !query || card.dataset.search.includes(query);
+          const matchesPriority = activeFilter === "all" || card.dataset.priority === activeFilter;
+          const visible = matchesText && matchesPriority;
+          card.classList.toggle("hidden", !visible);
+          const parentSection = card.closest(".topic-section");
+          if (visible && parentSection?.id === activeTopic) visibleCount++;
+        });
+
+        sections.forEach(section => {
+          const isActive = section.id === activeTopic;
+          const visibleCards = section.querySelectorAll(".resource-card:not(.hidden)").length;
+          section.classList.toggle("active-topic", isActive);
+          section.classList.toggle("hidden", isActive && visibleCards === 0);
+        });
+        emptyState.style.display = visibleCount ? "none" : "block";
+      }
+
+      topicLinks.forEach(link => {
+        link.addEventListener("click", event => {
+          event.preventDefault();
+          const topicId = link.getAttribute("href").slice(1);
+          history.replaceState(null, "", "#" + topicId);
+          setActiveTopic(topicId);
+        });
+      });
+
+      window.addEventListener("hashchange", () => {
+        const topicId = location.hash.slice(1);
+        if (topicIds.has(topicId)) setActiveTopic(topicId);
+      });
+
+      search.addEventListener("input", applyFilters);
+      filterButtons.forEach(btn => btn.addEventListener("click", () => {
+        activeFilter = btn.dataset.filter;
+        filterButtons.forEach(b => b.classList.toggle("active", b === btn));
+        applyFilters();
+      }));
+
+      document.getElementById("reset").addEventListener("click", () => {
+        if (!confirm("Reset all resource completion marks? Feynman notes will be kept.")) return;
+        state = {};
+        localStorage.removeItem(STORAGE);
+        checks.forEach(cb => {
+          cb.checked = false;
+          cb.closest(".resource-card").classList.remove("completed");
+        });
+        updateProgress();
+      });
+
+      const noteState = loadJSON(NOTES);
+      document.querySelectorAll(".feynman-notes").forEach(area => {
+        area.value = noteState[area.dataset.note] || "";
+        area.addEventListener("input", () => {
+          noteState[area.dataset.note] = area.value;
+          localStorage.setItem(NOTES, JSON.stringify(noteState));
+        });
+      });
+
+      updateProgress();
+      setActiveTopic(activeTopic, { scroll: false });
+    })();
+  </script>
+</body>
+</html>
