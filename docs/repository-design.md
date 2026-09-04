@@ -7,7 +7,7 @@
 
 ## 1. Purpose
 
-`Architect` is the canonical knowledge repository for Arvind Soni's durable architecture material. It consolidates handbooks, modular notes, patterns, and learning paths created across earlier conversations into a searchable, maintainable, version-controlled body of knowledge.
+`Architect` is the canonical knowledge repository for durable architecture material. It consolidates handbooks, modular notes, patterns, and learning paths created across earlier conversations into a searchable, maintainable, version-controlled body of knowledge.
 
 The repository is designed to reduce retrieval friction without becoming an indiscriminate technical-file archive.
 
@@ -105,7 +105,7 @@ Project examples may be included only when already public or sufficiently genera
 
 ## 7. Collaboration workflow
 
-Content decisions are managed collaboratively by Arvind and ChatGPT:
+Content decisions follow this governance model:
 
 1. inventory candidate material;
 2. select the canonical version;
@@ -118,7 +118,7 @@ Content decisions are managed collaboratively by Arvind and ChatGPT:
 
 Codex may be used when bulk conversion, repository-wide editing, link validation, formatting checks, or other code-oriented assistance is useful.
 
-The design document seeds the otherwise empty default branch. All subsequent bootstrap and migration work uses reviewable branches and pull requests. Small corrections may be committed directly only when Arvind explicitly chooses to do so.
+The design document seeds the otherwise empty default branch. All subsequent bootstrap and migration work uses reviewable branches and pull requests. Small corrections may be committed directly only when the repository owner explicitly chooses to do so.
 
 ## 8. Initial migration
 
@@ -166,7 +166,7 @@ The repository is successful when:
 
 The repository will not initially:
 
-- host every technical artifact created in ChatGPT;
+- host every technical artifact created during exploratory work;
 - preserve every historical file version;
 - become a general-purpose personal knowledge-management system;
 - include complete certification or course-note collections;
