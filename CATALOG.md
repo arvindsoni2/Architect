@@ -7,6 +7,8 @@ This is the authoritative index of current material in the repository.
 | System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v5.html](handbooks/system-design/system-design-concept-handbook-v5.html) | HTML | Current | v5 | 2026-09-03 |
 | Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html) | HTML | Current | v2.7 | 2026-09-03 |
 | AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.0.html](handbooks/ai-engineering/ai-engineering-handbook-v3.0.html) | HTML | Current | v3.0 | 2026-09-03 |
+| Software Architect Curriculum Guide | Software architecture | [learning-paths/software-architect/software-architect-curriculum-guide-v3.md](learning-paths/software-architect/software-architect-curriculum-guide-v3.md) | Markdown | Current | v3 | 2026-09-04 |
+| Software Architect Grooming Programme | Software architecture | [learning-paths/software-architect/software-architect-grooming-programme-v5.html](learning-paths/software-architect/software-architect-grooming-programme-v5.html) | HTML | Current | v5 | 2026-09-04 |
 
 ## Status values
 
