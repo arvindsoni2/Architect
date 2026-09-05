@@ -26,13 +26,13 @@ The operation ID names the business intent, not one HTTP attempt or queue delive
 
 ## Core decisions and trade-offs
 
-- **Synchronous or queued:** synchronous work gives immediate success or failure but ties the caller to downstream latency. A durable queue lets intake acknowledge accepted work and absorb short bursts, at the cost of delayed completion, duplicate delivery, ordering questions, and lifecycle state. Capacity and backlog policy remain reliability concerns.
+- **Synchronous or queued:** synchronous work waits for an outcome within the caller's deadline and ties the caller to downstream latency; a timeout or connection loss can leave the effect unknown. A durable queue lets intake acknowledge accepted work and absorb short bursts, at the cost of delayed completion, duplicate delivery, ordering questions, and lifecycle state. Capacity and backlog policy remain reliability concerns.
 - **Queue or stream:** a queue usually distributes work among consumers; a stream preserves an ordered history for independent consumer positions and replay. Choose from the business need for competing consumption, history, ordering, and reprocessing—not from product fashion.
 - **Delivery guarantee:** at-most-once avoids broker redelivery but can lose work after a pre-commit failure. At-least-once preserves retryability but requires duplicate-safe processing. Treat “exactly once” as a claim inside a named boundary, such as one database transaction or broker feature; it does not automatically include a remote API, email provider, or human action.
 - **Idempotency contract:** define the key’s namespace, owner or tenant, operation type, payload fingerprint, result returned on repeat, concurrency behaviour, and retention. The same key with a different payload must conflict. Retain records at least as long as retries and delayed deliveries remain possible; permanent retention creates unbounded state and may violate data policy.
 - **Inbox or deduplication:** a consumer can atomically insert a message or effect ID into an inbox alongside its business update. A uniqueness constraint makes racing deliveries converge on one committed transition. Broker deduplication is useful but cannot replace a business-level invariant when its scope or time window is narrower.
 - **Transactional outbox:** commit business state and an outbox event in one local transaction, then let a relay publish committed rows. This closes the database-success/message-failure dual-write gap [2]. The relay can still publish twice, so events need stable IDs and consumers remain idempotent.
-- **State machine and checkpoints:** model legal states, transitions, terminal outcomes, waits, timeouts, and owners explicitly. Checkpoint only durable, validated state at a defined boundary. Replay must be deterministic from recorded history; time, randomness, mutable external reads, and side effects belong behind recorded activity results rather than executing invisibly during replay [1]. Version workflow logic so old executions can still resume safely.
+- **State machine and checkpoints:** model legal states, transitions, terminal outcomes, waits, timeouts, and owners explicitly. Checkpoint only durable, validated state at a defined boundary. Replay must be deterministic from recorded history: use replay-safe APIs whose time and randomness values are recorded, and put external interactions in activities whose results are recorded and reused rather than re-executed during replay [1]. Version workflow logic so old executions can still resume safely.
 - **Compensation and reconciliation:** when one transaction cannot span systems, define forward recovery. Compensation is a new business action—release a reservation or mark a case for correction—not time travel, and it can fail. Irreversible or legally meaningful effects require status inquiry, reconciliation, and sometimes a named human decision rather than an invented inverse.
 
 ## Failure modes and warning signs
@@ -74,7 +74,7 @@ After approval, a worker calls the external case system with an effect ID derive
 
 That transition and a `notice_requested` outbox event commit together. The relay may publish the notification event twice; the notification service uses its own inbox/effect key so one logical notice is requested. If the case update is rejected after an earlier temporary evidence reservation, a compensating activity releases the reservation and records its outcome.
 
-Suppose the notice provider times out and cannot query by key, yet later confirms that a legally meaningful notice was sent. Sending a second notice or pretending to retract the first would be unsafe. The workflow records `notice_outcome_unknown`, blocks automatic completion, and reconciliation compares provider records with the effect ledger. A claims operator decides the case disposition and records the manual rationale. The final state distinguishes completed, compensated, and manually reconciled outcomes instead of erasing partial history.
+Suppose the notice provider times out and cannot query by key. The workflow immediately records `notice_outcome_unknown` and blocks automatic resend and completion. Later, reconciliation with provider records discovers confirmation that the legally meaningful notice was sent. A claims operator compares that confirmation with the effect ledger, decides the case disposition, and records the manual rationale. Sending a second notice or pretending to retract the first would be unsafe. The final state distinguishes completed, compensated, and manually reconciled outcomes instead of erasing partial history.
 
 ## Feynman questions
 
@@ -102,7 +102,7 @@ Repository sources:
 
 External references (verified 2026-09-05):
 
-1. Temporal, [What is a durable execution platform?](https://docs.temporal.io/evaluate/why-temporal)
+1. Temporal, [Workflow replay](https://docs.temporal.io/workflows)
 2. AWS Prescriptive Guidance, [Transactional outbox pattern](https://docs.aws.amazon.com/prescriptive-guidance/latest/cloud-design-patterns/transactional-outbox.html)
 
 **Status:** Current

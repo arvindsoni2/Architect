@@ -23,7 +23,7 @@ Production readiness is the **intersection**, not the average, of six gates:
 | Value | Does the workflow beat the current process or a credible non-AI alternative on a worthwhile outcome? | Redesign or stop. |
 | Quality | Does the system meet consequence- and segment-aware criteria on representative work? | Improve or narrow scope. |
 | Safety | Are authority, abuse, security, privacy, policy, and consequential failures bounded? | Reduce influence or block release. |
-| Operability | Can owners observe, diagnose, contain, change, and roll back it? | Keep it outside production influence. |
+| Operability | Can owners observe, diagnose, contain, change, and roll it back? | Keep it outside production influence. |
 | Economics | Is cost per successful outcome viable at realistic volume? | Change architecture, scope, or investment. |
 | Adoption | Can representative users use it correctly, understand limits, and escalate? | Repair workflow fit before scaling. |
 
