@@ -1,9 +1,9 @@
 # Modular Markdown Foundation — Design
 
-**Status:** Approved design  
-**Repository:** `arvindsoni2/Architect`  
-**Date:** 2026-09-05  
-**Visibility:** Public, curated  
+**Status:** Approved design
+**Repository:** `arvindsoni2/Architect`
+**Date:** 2026-09-05
+**Visibility:** Public, curated
 **Delivery branch:** `docs/modular-markdown-foundation`
 
 ## 1. Purpose

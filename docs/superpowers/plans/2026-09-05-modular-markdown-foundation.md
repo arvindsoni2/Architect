@@ -65,8 +65,10 @@ The shared top-level note contract is exact:
 Each `Sources and review status` section ends with:
 
 ```markdown
-**Status:** Current  
-**Edition:** Living  
+**Status:** Current
+
+**Edition:** Living
+
 **Last reviewed:** 2026-09-05
 ```
 
