@@ -110,7 +110,7 @@ Repository sources:
 External references (verified 2026-09-05):
 
 1. NIST, [AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) — AI RMF 1.0 remains published and is under revision.
-2. OpenAI, [Evaluation best practices](https://platform.openai.com/docs/guides/evaluation-best-practices) — reviewed as guidance; the page notes that the legacy Evals platform is deprecated.
+2. OpenAI, [Evaluation best practices](https://platform.openai.com/docs/guides/evaluation-best-practices) — current guidance supports task-specific evaluation and human calibration.
 3. OpenTelemetry, [Generative AI semantic conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/) and [current GenAI repository](https://github.com/open-telemetry/semantic-conventions-genai/tree/main/docs/gen-ai) — the former page has moved; the current conventions are marked Development.
 
 **Status:** Current
