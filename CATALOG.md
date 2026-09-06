@@ -12,6 +12,10 @@ This is the authoritative index of current material in the repository.
 | Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.3.html](handbooks/fde/fde-handbook-v1.3.html) | HTML | Current | v1.3 | 2026-09-04 |
 | The AI Architect's Handbook | AI architecture | [handbooks/ai-architecture/ai-architects-handbook-v1.2.html](handbooks/ai-architecture/ai-architects-handbook-v1.2.html) | HTML | Current | v1.2 | 2026-09-04 |
 | Interview Resource Accelerator | AI/ML interview preparation | [learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html](learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html) | HTML | Current | v4.3 | 2026-09-04 |
+| Architecture Decision Method | Software architecture | [docs/software-architecture/architecture-decision-method.md](docs/software-architecture/architecture-decision-method.md) | Markdown | Current | Living | 2026-09-05 |
+| Reliability and Failure Control | System design | [docs/system-design/reliability-and-failure-control.md](docs/system-design/reliability-and-failure-control.md) | Markdown | Current | Living | 2026-09-05 |
+| Durable Workflows and Idempotency | Cross-cutting patterns | [docs/cross-cutting-patterns/durable-workflows-and-idempotency.md](docs/cross-cutting-patterns/durable-workflows-and-idempotency.md) | Markdown | Current | Living | 2026-09-05 |
+| Production AI Assurance | AI architecture | [docs/ai-architecture/production-ai-assurance.md](docs/ai-architecture/production-ai-assurance.md) | Markdown | Current | Living | 2026-09-05 |
 
 ## Status values
 
@@ -22,7 +26,6 @@ This is the authoritative index of current material in the repository.
 
 ## Later migrations
 
-These candidates are intentionally not listed as current until each receives a separate public-safety, freshness, provenance, and canonical-version review:
+This candidate is intentionally not listed as current until it receives a separate public-safety, freshness, provenance, and canonical-version review:
 
-1. **Modular Markdown extraction** — extract focused notes from the eight current artifacts without duplicating their full published editions.
-2. **Focused architecture notes** — distil enduring material from the reasoning-model guide, CS336 model/inference notebook, CS329A self-improving-agent notes, and relevant course or certification material. Complete AWS certification packs remain outside repository scope.
+1. **Focused architecture notes** — distil enduring material from the reasoning-model guide, CS336 model/inference notebook, CS329A self-improving-agent notes, and relevant course or certification material. Complete AWS certification packs remain outside repository scope.
