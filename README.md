@@ -10,17 +10,36 @@ A curated, version-controlled knowledge base for software architecture, system d
 
 ## Maintainable notes
 
+### Software architecture
+
 - [Architecture Decision Method](docs/software-architecture/architecture-decision-method.md)
+
+### System design
+
 - [Reliability and Failure Control](docs/system-design/reliability-and-failure-control.md)
+
+### Cross-cutting patterns
+
 - [Durable Workflows and Idempotency](docs/cross-cutting-patterns/durable-workflows-and-idempotency.md)
+
+### AI architecture
+
 - [Production AI Assurance](docs/ai-architecture/production-ai-assurance.md)
+- [LLM Inference Systems](docs/ai-architecture/llm-inference-systems.md)
+- [Reasoning System Design](docs/ai-architecture/reasoning-system-design.md)
+- [Model Adaptation and Training](docs/ai-architecture/model-adaptation-and-training.md)
+
+### Agent architecture
+
+- [Self-Improving Agent Systems](docs/agent-architecture/self-improving-agent-systems.md)
+- [Agent Engineering Master Manual](handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html)
 
 ## Domains
 
 - [Software architecture](docs/software-architecture/)
 - [System design](docs/system-design/)
 - [AI architecture](docs/ai-architecture/)
-- [Agent architecture](handbooks/agent-engineering/)
+- [Agent architecture](docs/agent-architecture/)
 - [Cross-cutting patterns](docs/cross-cutting-patterns/)
 - [Architect learning paths](learning-paths/software-architect/)
 

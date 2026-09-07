@@ -16,6 +16,10 @@ This is the authoritative index of current material in the repository.
 | Reliability and Failure Control | System design | [docs/system-design/reliability-and-failure-control.md](docs/system-design/reliability-and-failure-control.md) | Markdown | Current | Living | 2026-09-05 |
 | Durable Workflows and Idempotency | Cross-cutting patterns | [docs/cross-cutting-patterns/durable-workflows-and-idempotency.md](docs/cross-cutting-patterns/durable-workflows-and-idempotency.md) | Markdown | Current | Living | 2026-09-05 |
 | Production AI Assurance | AI architecture | [docs/ai-architecture/production-ai-assurance.md](docs/ai-architecture/production-ai-assurance.md) | Markdown | Current | Living | 2026-09-05 |
+| LLM Inference Systems | AI architecture | [docs/ai-architecture/llm-inference-systems.md](docs/ai-architecture/llm-inference-systems.md) | Markdown | Current | Living | 2026-09-06 |
+| Reasoning System Design | AI architecture | [docs/ai-architecture/reasoning-system-design.md](docs/ai-architecture/reasoning-system-design.md) | Markdown | Current | Living | 2026-09-06 |
+| Model Adaptation and Training | AI architecture | [docs/ai-architecture/model-adaptation-and-training.md](docs/ai-architecture/model-adaptation-and-training.md) | Markdown | Current | Living | 2026-09-06 |
+| Self-Improving Agent Systems | Agent architecture | [docs/agent-architecture/self-improving-agent-systems.md](docs/agent-architecture/self-improving-agent-systems.md) | Markdown | Current | Living | 2026-09-06 |
 
 ## Status values
 
@@ -24,8 +28,4 @@ This is the authoritative index of current material in the repository.
 - **Draft:** incomplete material not yet canonical.
 - **Superseded:** retained only when a migration decision explicitly requires it.
 
-## Later migrations
-
-This candidate is intentionally not listed as current until it receives a separate public-safety, freshness, provenance, and canonical-version review:
-
-1. **Focused architecture notes** — distil enduring material from the reasoning-model guide, CS336 model/inference notebook, CS329A self-improving-agent notes, and relevant course or certification material. Complete AWS certification packs remain outside repository scope.
+> Repository scope: Complete course notebooks and certification packs are not repository artifacts.
