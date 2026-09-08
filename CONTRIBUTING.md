@@ -68,3 +68,15 @@ Published artifacts are outputs. Maintainable concepts and patterns should progr
 - [ ] `CATALOG.md` has been updated when required.
 - [ ] No obsolete duplicate or empty directory has been added.
 - [ ] `git diff --check` reports no whitespace errors.
+
+## Automated validation
+
+Run the same dependency-free content checks used by GitHub Actions before opening a pull request:
+
+```bash
+python3 scripts/validate_repository.py
+python3 -m unittest tests/test_validate_repository.py -v
+python3 -m unittest discover -s handbooks/aws-saa-c03/tests -p 'test_*.py' -v
+```
+
+The repository validator checks catalogue metadata and uniqueness, verifies catalogue targets and local Markdown links, and requires both owner-approved AWS SAA-C03 resources to remain catalogued under their scoped exception.
