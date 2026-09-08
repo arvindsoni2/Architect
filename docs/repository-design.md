@@ -25,6 +25,8 @@ The repository includes:
 
 Architecture-adjacent course or certification material may contribute distilled notes, patterns, or references. Complete course notebooks and certification study packs are outside the repository.
 
+**Scoped amendment approved 7 September 2026:** include the AWS SAA-C03 Visual Handbook and its companion *The $170 Cloud* Lab Manual under `handbooks/aws-saa-c03/`, together with supporting validation. This is a two-resource exception; it does not broaden the general certification/course-material boundary.
+
 Unrelated project files, general technical learning material, job-search material, and personal records are excluded.
 
 ## 3. Content model
@@ -134,7 +136,7 @@ The batch also creates `README.md`, `CATALOG.md`, and `CONTRIBUTING.md`.
 
 The AI Architect Handbook v1.2 and earlier architecture notes will be recovered and migrated in later focused batches after their canonical sources are located.
 
-AWS certification handbooks and complete CS329A/CS336 study notebooks are excluded. Durable architecture insights from them may later be rewritten as focused notes with appropriate references.
+AWS certification material other than the two-resource exception in Section 2, and complete CS329A/CS336 study notebooks, remain excluded. Durable architecture insights from excluded material may later be rewritten as focused notes with appropriate references.
 
 ## 9. Quality standard
 
@@ -169,6 +171,6 @@ The repository will not initially:
 - host every technical artifact created during exploratory work;
 - preserve every historical file version;
 - become a general-purpose personal knowledge-management system;
-- include complete certification or course-note collections;
+- include complete certification or course-note collections beyond the two-resource exception in Section 2;
 - publish a website or GitHub Pages portal;
 - automate content ingestion without human review.

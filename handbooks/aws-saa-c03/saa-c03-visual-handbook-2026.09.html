@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Primary 2026 visual handbook for AWS Certified Solutions Architect Associate SAA-C03, verified 14 August 2026 against the live AWS exam guide and in-scope service list." name="description"/>
+<title>AWS SAA-C03 Visual Exam Handbook — 2026 Edition</title>
+<style>
+:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-2: #edf2f8;
+  --text: #172033;
+  --muted: #5e6b82;
+  --border: #dbe3ee;
+  --navy: #17233d;
+  --orange: #ff9900;
+  --orange-soft: #fff1d6;
+  --blue: #3273dc;
+  --green: #14845b;
+  --red: #c33c54;
+  --purple: #7149c6;
+  --shadow: 0 14px 40px rgba(29, 48, 79, .10);
+  --radius: 18px;
+  --sidebar: 294px;
+  --topbar: 64px;
+}
+[data-theme="dark"] {
+  --bg: #0c1322;
+  --surface: #131e31;
+  --surface-2: #1b2940;
+  --text: #edf3ff;
+  --muted: #a8b6ca;
+  --border: #2b3a53;
+  --navy: #eef4ff;
+  --orange-soft: #3c2b0c;
+  --shadow: 0 16px 45px rgba(0, 0, 0, .28);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.62;
+}
+a { color: var(--blue); }
+button, input { font: inherit; }
+.topbar {
+  position: fixed; inset: 0 0 auto 0; height: var(--topbar); z-index: 50;
+  display: flex; align-items: center; gap: 12px; padding: 10px 18px;
+  color: #fff; background: #111b2d; border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.brand { display: flex; align-items: center; gap: 10px; min-width: 260px; font-weight: 800; }
+.aws-mark { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; background: var(--orange); color: #172033; font-weight: 900; }
+.search-wrap { flex: 1; max-width: 760px; position: relative; }
+.search-wrap input {
+  width: 100%; border: 1px solid #384760; color: #fff; background: #1c2940;
+  border-radius: 12px; padding: 10px 42px 10px 14px; outline: none;
+}
+.search-wrap input:focus { border-color: var(--orange); box-shadow: 0 0 0 3px rgba(255,153,0,.16); }
+.search-key { position: absolute; right: 10px; top: 8px; border: 1px solid #516078; border-radius: 6px; padding: 1px 6px; color: #cdd8e8; font-size: 12px; }
+.action-btn {
+  border: 1px solid #43516a; color: #fff; background: #1c2940; border-radius: 10px;
+  padding: 8px 11px; cursor: pointer; white-space: nowrap;
+}
+.action-btn:hover { border-color: var(--orange); }
+.menu-btn { display: none; }
+.sidebar {
+  position: fixed; left: 0; top: var(--topbar); bottom: 0; width: var(--sidebar); z-index: 30;
+  overflow-y: auto; padding: 18px 14px 100px; background: var(--surface); border-right: 1px solid var(--border);
+}
+.progress-panel { padding: 14px; margin-bottom: 14px; border-radius: 14px; background: var(--surface-2); }
+.progress-row { display:flex; justify-content:space-between; gap:10px; font-size:13px; font-weight:700; }
+.progress-track { height: 8px; border-radius: 999px; background: var(--border); margin-top: 9px; overflow: hidden; }
+.progress-bar { width: 0; height: 100%; background: linear-gradient(90deg, var(--orange), #ffbe55); transition: width .25s ease; }
+.nav-group { margin: 4px 0 10px; border-left: 3px solid var(--border); padding-left: 9px; }
+.nav-group.domain-1 { border-left-color: #df4c63; }
+.nav-group.domain-2 { border-left-color: #407ad6; }
+.nav-group.domain-3 { border-left-color: #19a679; }
+.nav-group.domain-4 { border-left-color: #8d5fd3; }
+.nav-chapter, .nav-topic { display: block; text-decoration: none; border-radius: 8px; }
+.nav-chapter { color: var(--text); font-size: 13px; font-weight: 800; padding: 6px 7px; }
+.nav-topic { color: var(--muted); font-size: 12px; padding: 4px 7px 4px 14px; }
+.nav-chapter:hover, .nav-topic:hover, .nav-topic.active { background: var(--surface-2); color: var(--text); }
+.main { margin-left: var(--sidebar); padding-top: var(--topbar); }
+.hero {
+  position: relative; overflow: hidden; padding: 58px max(28px, 5vw) 42px;
+  color: #fff; background:
+    radial-gradient(circle at 85% 5%, rgba(255,153,0,.34), transparent 26%),
+    radial-gradient(circle at 15% 95%, rgba(64,122,214,.30), transparent 31%),
+    linear-gradient(135deg, #111b2d 0%, #1c3152 65%, #233b60 100%);
+}
+.hero::after { content:""; position:absolute; inset:auto -90px -130px auto; width:340px; height:340px; border:1px solid rgba(255,255,255,.15); border-radius:50%; box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 70px rgba(255,255,255,.025); }
+.eyebrow { display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid rgba(255,255,255,.25); border-radius:999px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; background:rgba(255,255,255,.07); }
+.hero h1 { max-width: 940px; margin: 18px 0 12px; font-size: clamp(34px, 5vw, 66px); line-height: 1.03; letter-spacing: -.045em; }
+.hero p { max-width: 820px; font-size: 18px; color: #d5dfed; }
+.hero-meta { display:flex; flex-wrap:wrap; gap:10px; margin-top:22px; }
+.meta-pill { padding:8px 12px; border-radius:999px; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.16); font-size:13px; }
+.dashboard { padding: 26px max(20px, 4vw) 6px; }
+.domain-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; }
+.domain-tile { position:relative; min-height:160px; padding:18px; border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); overflow:hidden; }
+.domain-tile::after { content:""; position:absolute; width:100px; height:100px; right:-25px; bottom:-30px; border-radius:50%; background:var(--wash); }
+.domain-number { font-size:12px; text-transform:uppercase; letter-spacing:.08em; font-weight:900; color:var(--muted); }
+.domain-tile h3 { margin:7px 0 14px; line-height:1.18; font-size:18px; max-width:190px; }
+.ring { --p:30; --c:#df4c63; width:64px; height:64px; display:grid; place-items:center; border-radius:50%; background:conic-gradient(var(--c) calc(var(--p)*1%),var(--surface-2) 0); position:relative; }
+.ring::before { content:""; position:absolute; width:46px; height:46px; border-radius:50%; background:var(--surface); }
+.ring strong { position:relative; font-size:14px; }
+.changes { margin: 18px max(20px, 4vw); padding:18px 20px; border-radius:16px; border:1px solid #e5b558; background:var(--orange-soft); }
+.changes h2 { margin:0 0 7px; font-size:17px; color:var(--text); }
+.changes ul { margin:6px 0 0; padding-left:20px; }
+.filter-row { display:flex; flex-wrap:wrap; gap:8px; padding: 8px max(20px,4vw) 2px; }
+.handbook-filter-input { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.filter-btn { display:inline-flex; align-items:center; border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:999px; padding:7px 12px; cursor:pointer; user-select:none; }
+.filter-btn:hover { border-color:var(--orange); background:var(--orange-soft); }
+#filter-all:checked ~ .filter-row label[for="filter-all"],
+#filter-domain-1:checked ~ .filter-row label[for="filter-domain-1"],
+#filter-domain-2:checked ~ .filter-row label[for="filter-domain-2"],
+#filter-domain-3:checked ~ .filter-row label[for="filter-domain-3"],
+#filter-domain-4:checked ~ .filter-row label[for="filter-domain-4"],
+#filter-traps:checked ~ .filter-row label[for="filter-traps"],
+#filter-scope:checked ~ .filter-row label[for="filter-scope"],
+#filter-handbook:checked ~ .filter-row label[for="filter-handbook"] { border-color:var(--orange); background:var(--orange-soft); }
+#filter-domain-1:checked ~ #content > .chapter:not(.domain-1),
+#filter-domain-2:checked ~ #content > .chapter:not(.domain-2),
+#filter-domain-3:checked ~ #content > .chapter:not(.domain-3),
+#filter-domain-4:checked ~ #content > .chapter:not(.domain-4),
+#filter-traps:checked ~ #content > .chapter:not(.traps),
+#filter-scope:checked ~ #content > .chapter:not(.scope),
+#filter-handbook:checked ~ #content > .chapter:not(.handbook) { display:none; }
+.content { max-width: 1260px; margin:0 auto; padding: 14px max(20px, 4vw) 80px; }
+.chapter { margin: 30px 0 52px; }
+.chapter.hidden, .topic-card.hidden { display:none; }
+.chapter-header { display:flex; align-items:center; gap:15px; margin-bottom:16px; }
+.chapter-header h1 { margin:0; font-size:clamp(27px,3.2vw,43px); line-height:1.12; letter-spacing:-.03em; }
+.chapter-header::before { content:""; width:9px; align-self:stretch; min-height:44px; border-radius:999px; background:var(--border); }
+.domain-1 .chapter-header::before { background:#df4c63; }
+.domain-2 .chapter-header::before { background:#407ad6; }
+.domain-3 .chapter-header::before { background:#19a679; }
+.domain-4 .chapter-header::before { background:#8d5fd3; }
+.topic-card { margin:14px 0; padding:22px clamp(16px,3vw,30px); border:1px solid var(--border); border-radius:var(--radius); background:var(--surface); box-shadow:var(--shadow); }
+.topic-card.reviewed { border-color:rgba(20,132,91,.55); box-shadow:0 0 0 3px rgba(20,132,91,.08), var(--shadow); }
+.topic-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; margin-bottom:8px; }
+.topic-heading h2 { margin:0; font-size:clamp(21px,2.4vw,30px); line-height:1.25; }
+.review-btn { flex:none; border:1px solid var(--border); color:var(--muted); background:var(--surface-2); border-radius:999px; padding:6px 10px; cursor:pointer; font-size:12px; font-weight:800; }
+.reviewed .review-btn { border-color:rgba(20,132,91,.4); color:var(--green); background:rgba(20,132,91,.10); }
+h3 { margin-top:28px; font-size:18px; }
+p { margin:10px 0; }
+ul, ol { padding-left:24px; }
+li { margin:4px 0; }
+strong { color:var(--navy); }
+blockquote { margin:18px 0; padding:15px 17px; border-left:5px solid var(--orange); border-radius:0 12px 12px 0; background:var(--orange-soft); }
+blockquote p { margin:0; }
+pre { margin:18px 0; padding:18px; overflow:auto; color:#dce9fa; background:#101a2b; border:1px solid #2b3c57; border-radius:14px; line-height:1.42; box-shadow:inset 0 1px 0 rgba(255,255,255,.04); }
+code { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:.91em; }
+:not(pre)>code { padding:2px 6px; border:1px solid var(--border); border-radius:6px; background:var(--surface-2); color:var(--red); }
+table { width:100%; border-collapse:separate; border-spacing:0; margin:18px 0; font-size:14px; border:1px solid var(--border); border-radius:13px; overflow:hidden; }
+th { text-align:left; color:var(--text); background:var(--surface-2); font-size:12px; letter-spacing:.035em; text-transform:uppercase; }
+th, td { padding:11px 13px; vertical-align:top; border-bottom:1px solid var(--border); }
+th+th, td+td { border-left:1px solid var(--border); }
+tr:last-child td { border-bottom:0; }
+tbody tr:hover { background:rgba(50,115,220,.045); }
+.task-list-item { list-style:none; margin-left:-20px; }
+.task-list-item input { margin-right:9px; accent-color:var(--green); }
+mark { color:inherit; background:#ffe28a; padding:0 2px; border-radius:3px; }
+.empty-state { display:none; margin:40px; padding:30px; text-align:center; border:1px dashed var(--border); border-radius:16px; background:var(--surface); }
+.footer { padding:24px; color:var(--muted); text-align:center; border-top:1px solid var(--border); background:var(--surface); }
+@media (max-width: 1050px) {
+  .domain-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .brand span:last-child { display:none; }
+  .brand { min-width:auto; }
+}
+@media (max-width: 800px) {
+  :root { --sidebar: 286px; }
+  .menu-btn { display:inline-block; }
+  .sidebar { transform:translateX(-101%); transition:transform .22s ease; box-shadow:var(--shadow); }
+  body.sidebar-open .sidebar { transform:translateX(0); }
+  .main { margin-left:0; }
+  .action-btn.print-btn { display:none; }
+  .search-key { display:none; }
+}
+@media (max-width: 560px) {
+  .topbar { padding:9px; gap:7px; }
+  .aws-mark { width:35px; height:35px; }
+  .action-btn { padding:7px 9px; }
+  .domain-grid { grid-template-columns:1fr; }
+  .hero { padding-top:42px; }
+  .hero h1 { font-size:38px; }
+  .topic-heading { display:block; }
+  .review-btn { margin-top:10px; }
+  table { display:block; overflow-x:auto; white-space:normal; }
+}
+@media print {
+  :root { --bg:#fff; --surface:#fff; --text:#000; --muted:#444; --border:#bbb; --shadow:none; }
+  .topbar,.sidebar,.filter-row,.review-btn,.changes { display:none!important; }
+  .main { margin:0; padding:0; }
+  .hero { color:#000; background:#fff; padding:18px 0; border-bottom:2px solid #000; }
+  .hero p,.meta-pill { color:#222; }
+  .dashboard { padding:14px 0; }
+  .domain-grid { grid-template-columns:repeat(4,1fr); }
+  .domain-tile,.topic-card { box-shadow:none; break-inside:avoid; }
+  .content { max-width:none; padding:0; }
+  .chapter { break-before:page; }
+  .foundation { break-before:auto; }
+  pre { color:#000; background:#f4f4f4; border-color:#aaa; white-space:pre-wrap; }
+  a { color:#000; text-decoration:none; }
+}
+
+/* 2026 handbook deep-dive components */
+.handbook .chapter-header::before { background:linear-gradient(180deg,var(--orange),#e06d00); }
+.handbook-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:16px 0; }
+.decision-card { border:1px solid var(--border); border-radius:15px; background:var(--surface-2); padding:16px; }
+.decision-card h3 { margin:0 0 10px; font-size:16px; }
+.decision-card p { margin:6px 0; font-size:14px; }
+.flowline { display:flex; flex-wrap:wrap; align-items:center; gap:7px; margin:12px 0; }
+.flow-node { display:inline-flex; align-items:center; min-height:38px; padding:8px 11px; border:1px solid var(--border); border-radius:10px; background:var(--surface); font-weight:800; font-size:13px; }
+.flow-node.primary { border-color:rgba(255,153,0,.65); background:var(--orange-soft); }
+.flow-node.good { border-color:rgba(20,132,91,.45); background:rgba(20,132,91,.08); }
+.flow-arrow { color:var(--muted); font-weight:900; }
+.arch-diagram { margin:18px 0; padding:18px; border:1px solid var(--border); border-radius:16px; background:linear-gradient(145deg,var(--surface-2),var(--surface)); overflow:auto; }
+.arch-row { display:flex; align-items:stretch; justify-content:center; gap:10px; min-width:620px; }
+.arch-box { flex:1; min-width:110px; padding:11px 10px; border:1px solid var(--border); border-radius:11px; background:var(--surface); text-align:center; font-size:13px; font-weight:800; }
+.arch-box.edge { border-color:rgba(50,115,220,.45); }
+.arch-box.sec { border-color:rgba(195,60,84,.45); }
+.arch-box.data { border-color:rgba(20,132,91,.45); }
+.arch-box.accent { border-color:rgba(255,153,0,.65); }
+.arch-arrow { display:grid; place-items:center; color:var(--muted); font-weight:900; }
+.arch-caption { margin-top:10px; color:var(--muted); font-size:12px; text-align:center; }
+.clue-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; margin:15px 0; }
+.clue { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); gap:10px; padding:11px 12px; border:1px solid var(--border); border-radius:11px; background:var(--surface-2); font-size:13px; }
+.clue span:first-child { color:var(--muted); }
+.clue strong { text-align:right; }
+.badge-row { display:flex; flex-wrap:wrap; gap:7px; margin:10px 0; }
+.service-badge { display:inline-flex; padding:5px 8px; border-radius:999px; border:1px solid var(--border); background:var(--surface-2); font-size:12px; font-weight:800; }
+.priority-high { border-color:rgba(195,60,84,.45); background:rgba(195,60,84,.08); }
+.priority-med { border-color:rgba(255,153,0,.5); background:var(--orange-soft); }
+.exam-rule { display:grid; grid-template-columns:34px 1fr; gap:10px; align-items:start; margin:10px 0; }
+.exam-rule .n { width:30px; height:30px; display:grid; place-items:center; border-radius:9px; background:var(--navy); color:var(--surface); font-weight:900; }
+details.drill { margin:10px 0; border:1px solid var(--border); border-radius:13px; background:var(--surface-2); overflow:hidden; }
+details.drill summary { cursor:pointer; padding:13px 15px; font-weight:800; }
+details.drill .answer { padding:0 15px 15px; }
+.callout-green { margin:16px 0; padding:14px 16px; border-left:5px solid var(--green); border-radius:0 12px 12px 0; background:rgba(20,132,91,.08); }
+.callout-red { margin:16px 0; padding:14px 16px; border-left:5px solid var(--red); border-radius:0 12px 12px 0; background:rgba(195,60,84,.08); }
+@media (max-width:760px){ .handbook-grid,.clue-grid{grid-template-columns:1fr;} .clue{grid-template-columns:1fr;} .clue strong{text-align:left;} }
+@media print { details.drill .answer{display:block!important;} details.drill summary{font-weight:900;} .arch-diagram,.decision-card,.clue{break-inside:avoid;} }
+
+</style>
+</head>
+<body>
+<header class="topbar">
+<button aria-label="Open navigation" class="action-btn menu-btn" id="menuBtn">☰</button>
+<div class="brand"><div class="aws-mark">AWS</div><span>SAA-C03 Visual Handbook</span></div>
+<div class="search-wrap"><input autocomplete="off" id="search" placeholder="Search services, patterns, or exam traps…" type="search"/><span class="search-key">/</span></div>
+<button aria-label="Toggle theme" class="action-btn" id="themeBtn">◐</button>
+<button class="action-btn print-btn" id="printBtn">Print</button>
+</header>
+<aside class="sidebar" id="sidebar">
+<div class="progress-panel">
+<div class="progress-row"><span>Review progress</span><span id="progressLabel">0%</span></div>
+<div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+</div>
+<nav><div class="nav-group foundation"><a class="nav-chapter" href="#exam-foundations">Exam Foundations</a><div class="nav-topics"><a class="nav-topic" href="#1-exam-at-a-glance">1. Exam at a Glance</a><a class="nav-topic" href="#2-the-architect-s-decision-lens">2. The Architect’s Decision Lens</a></div></div><div class="nav-group domain-1"><a class="nav-chapter" href="#domain-1-design-secure-architectures-30">Domain 1 — Design Secure Architectures (30%)</a><div class="nav-topics"><a class="nav-topic" href="#3-identity-accounts-and-access">3. Identity, Accounts, and Access</a><a class="nav-topic" href="#4-vpc-and-network-security">4. VPC and Network Security</a><a class="nav-topic" href="#5-encryption-and-secrets">5. Encryption and Secrets</a><a class="nav-topic" href="#6-security-services-what-each-one-does">6. Security Services: What Each One Does</a></div></div><div class="nav-group domain-2"><a class="nav-chapter" href="#domain-2-design-resilient-architectures-26">Domain 2 — Design Resilient Architectures (26%)</a><div class="nav-topics"><a class="nav-topic" href="#7-availability-durability-and-fault-tolerance">7. Availability, Durability, and Fault Tolerance</a><a class="nav-topic" href="#8-load-balancing-and-auto-scaling">8. Load Balancing and Auto Scaling</a><a class="nav-topic" href="#9-decoupling-and-event-driven-design">9. Decoupling and Event-Driven Design</a><a class="nav-topic" href="#10-storage-resilience">10. Storage Resilience</a><a class="nav-topic" href="#11-database-resilience-and-scaling">11. Database Resilience and Scaling</a></div></div><div class="nav-group domain-3"><a class="nav-chapter" href="#domain-3-design-high-performing-architectures-24">Domain 3 — Design High-Performing Architectures (24%)</a><div class="nav-topics"><a class="nav-topic" href="#12-compute-selection">12. Compute Selection</a><a class="nav-topic" href="#13-storage-performance">13. Storage Performance</a><a class="nav-topic" href="#14-caching-and-database-performance">14. Caching and Database Performance</a><a class="nav-topic" href="#15-network-and-edge-performance">15. Network and Edge Performance</a><a class="nav-topic" href="#16-data-ingestion-and-analytics">16. Data Ingestion and Analytics</a></div></div><div class="nav-group domain-4"><a class="nav-chapter" href="#domain-4-design-cost-optimized-architectures-20">Domain 4 — Design Cost-Optimized Architectures (20%)</a><div class="nav-topics"><a class="nav-topic" href="#17-cost-optimisation-order">17. Cost Optimisation Order</a><a class="nav-topic" href="#18-ec2-and-compute-pricing">18. EC2 and Compute Pricing</a><a class="nav-topic" href="#19-storage-cost-optimisation">19. Storage Cost Optimisation</a><a class="nav-topic" href="#20-database-cost-optimisation">20. Database Cost Optimisation</a><a class="nav-topic" href="#21-network-cost-optimisation">21. Network Cost Optimisation</a></div></div><div class="nav-group reference"><a class="nav-chapter" href="#22-high-yield-service-comparisons">22. High-Yield Service Comparisons</a><div class="nav-topics"><a class="nav-topic" href="#s3-vs-ebs-vs-efs">S3 vs EBS vs EFS</a><a class="nav-topic" href="#nat-gateway-vs-internet-gateway-vs-vpc-endpoint">NAT Gateway vs Internet Gateway vs VPC Endpoint</a><a class="nav-topic" href="#vpn-vs-direct-connect">VPN vs Direct Connect</a><a class="nav-topic" href="#cloudwatch-vs-cloudtrail-vs-config-vs-x-ray">CloudWatch vs CloudTrail vs Config vs X-Ray</a><a class="nav-topic" href="#secrets-manager-vs-kms">Secrets Manager vs KMS</a></div></div><div class="nav-group patterns"><a class="nav-chapter" href="#23-architecture-patterns-to-memorise">23. Architecture Patterns to Memorise</a><div class="nav-topics"><a class="nav-topic" href="#secure-highly-available-web-application">Secure Highly Available Web Application</a><a class="nav-topic" href="#serverless-event-driven-api">Serverless Event-Driven API</a><a class="nav-topic" href="#durable-fan-out">Durable Fan-Out</a><a class="nav-topic" href="#hybrid-connectivity">Hybrid Connectivity</a><a class="nav-topic" href="#data-lake-analytics">Data Lake Analytics</a></div></div><div class="nav-group traps"><a class="nav-chapter" href="#24-frequent-exam-traps">24. Frequent Exam Traps</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#25-master-decision-trees">25. Master Decision Trees</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#26-networking-deep-dive">26. Networking Deep Dive</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#27-storage-data-movement-deep-dive">27. Storage &amp; Data Movement</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#28-database-decision-handbook">28. Database Decision Handbook</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#29-security-control-map">29. Security Control Map</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#30-event-driven-integration-handbook">30. Event-Driven &amp; Integration</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#31-observability-automation-governance">31. Observability, Automation &amp; Governance</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#32-cost-architecture-decision-rules">32. Cost Architecture Decision Rules</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#33-exam-clue-dictionary">33. Exam Clue Dictionary</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#34-multi-response-elimination-framework">34. Multi-Response Elimination Framework</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#35-architecture-drills">35. Architecture Drills</a><div class="nav-topics"></div></div><div class="nav-group handbook"><a class="nav-chapter" href="#36-current-vs-legacy-scope-notes">36. Current vs Legacy Scope Notes</a><div class="nav-topics"></div></div><div class="nav-group scope"><a class="nav-chapter" href="#37-official-in-scope-service-map-current-guide">37. Official In-Scope Service Map (Current Guide)</a><div class="nav-topics"></div></div><div class="nav-group checklist"><a class="nav-chapter" href="#38-last-hour-review-checklist">38. Last-Hour Review Checklist</a><div class="nav-topics"></div></div><div class="nav-group sources"><a class="nav-chapter" href="#39-official-sources">39. Official Sources</a><div class="nav-topics"></div></div><a class="nav-chapter" href="#september-revision">September corrections &amp; worked practice</a></nav>
+</aside>
+<main class="main">
+<section class="hero">
+<span class="eyebrow">Verified against official AWS guidance · 14 August 2026</span>
+<h1>AWS Solutions Architect Associate <span style="color:#ffb43b">SAA-C03</span></h1>
+<p>A decision-first visual exam handbook: architecture patterns, service trade-offs, decision trees, exam traps, and scenario drills for secure, resilient, high-performing, and cost-optimised AWS solutions.</p>
+<div class="hero-meta">
+<span class="meta-pill">65 questions</span><span class="meta-pill">130 minutes</span><span class="meta-pill">720 / 1,000 pass score</span><span class="meta-pill">50 scored + 15 unscored</span><span class="meta-pill">Primary 2026 handbook</span><span class="meta-pill">Offline + printable</span>
+<span class="meta-pill">Handbook v2026.09.07.1</span></div>
+</section>
+<section aria-label="Exam domains" class="dashboard">
+<div class="domain-grid">
+<div class="domain-tile" style="--wash:rgba(223,76,99,.12)"><div class="domain-number">Domain 1</div><h3>Design Secure Architectures</h3><div class="ring" style="--p:30;--c:#df4c63"><strong>30%</strong></div></div>
+<div class="domain-tile" style="--wash:rgba(64,122,214,.12)"><div class="domain-number">Domain 2</div><h3>Design Resilient Architectures</h3><div class="ring" style="--p:26;--c:#407ad6"><strong>26%</strong></div></div>
+<div class="domain-tile" style="--wash:rgba(25,166,121,.12)"><div class="domain-number">Domain 3</div><h3>Design High-Performing Architectures</h3><div class="ring" style="--p:24;--c:#19a679"><strong>24%</strong></div></div>
+<div class="domain-tile" style="--wash:rgba(141,95,211,.12)"><div class="domain-number">Domain 4</div><h3>Design Cost-Optimized Architectures</h3><div class="ring" style="--p:20;--c:#8d5fd3"><strong>20%</strong></div></div>
+</div>
+</section>
+<section class="changes">
+<h2>August 2026 handbook audit — verified 14 August</h2>
+<ul>
+<li><strong>Exam blueprint unchanged:</strong> SAA-C03 is still current with 30% Security, 26% Resilience, 24% Performance, and 20% Cost Optimisation.</li>
+<li><strong>Amazon Quick naming:</strong> the current SAA-C03 in-scope list says <em>Amazon Quick</em>. AWS product documentation describes <em>Amazon Quick Sight</em> as the BI/data-visualisation component inside Quick. Older study material may still say QuickSight/QuickSuite, so map those names to the current product family rather than treating them as separate architecture choices.</li>
+<li><strong>RDS Multi-AZ clarified:</strong> classic Multi-AZ DB <em>instance</em> standby is not readable, but a Multi-AZ DB <em>cluster</em> has readable standby DB instances. Do not apply the old “Multi-AZ cannot serve reads” rule universally.</li>
+<li><strong>Blueprint gaps closed:</strong> added the shared responsibility model, workforce vs application identity choices, quotas/throttling and immutable-infrastructure reminders, migration/transfer service selection, S3 Requester Pays, and NAT instance vs NAT gateway cost trade-offs.</li>
+<li><strong>Official service-map gap fixed:</strong> added AWS Management Console plus the Media Services category. Amazon Elastic Transcoder remains on the live SAA-C03 in-scope list even though AWS discontinued it on 13 November 2025; treat it as legacy exam recognition, not a modern recommendation.</li>
+<li><strong>Scope discipline:</strong> newer AWS services are not added merely because they are fashionable; the sheet follows the current SAA-C03 guide and its non-exhaustive in-scope list.</li>
+<li><strong>Handbook expansion:</strong> added master decision trees plus deep dives for networking, storage/data movement, databases, security, event integration, observability/governance, cost, clue recognition, elimination strategy, and architecture drills.</li></ul>
+</section>
+<section class="content" style="padding-top:0;padding-bottom:0">
+<div class="topic-card" style="margin-top:4px">
+<div class="topic-heading"><h2>How to use this handbook</h2></div>
+<div class="handbook-grid">
+<div class="decision-card"><h3>1 · Learn the decision</h3><p>Start with the constraint: security, HA, latency, throughput, consistency, operations, or cost. Do not start by memorising service names.</p></div>
+<div class="decision-card"><h3>2 · Draw the architecture</h3><p>For every scenario, place users, edge, VPC tiers, compute, state, queues, security controls, and failure boundaries.</p></div>
+<div class="decision-card"><h3>3 · Compare the nearest distractor</h3><p>Know why the second-best service is wrong. SAA-C03 questions are often decided by one hard requirement hidden in the wording.</p></div>
+<div class="decision-card"><h3>4 · Finish with drills</h3><p>Use the clue dictionary, elimination framework, and architecture drills only after the core domain sections are familiar.</p></div>
+</div>
+<div class="badge-row"><span class="service-badge priority-high">High-yield: choose between close services</span><span class="service-badge priority-med">Recognition: know purpose + exam clue</span><span class="service-badge">Scope authority: official SAA-C03 guide</span></div>
+</div>
+</section>
+
+<input class="handbook-filter-input" id="filter-all" name="handbook-filter" type="radio" value="all" checked>
+<input class="handbook-filter-input" id="filter-domain-1" name="handbook-filter" type="radio" value="domain-1">
+<input class="handbook-filter-input" id="filter-domain-2" name="handbook-filter" type="radio" value="domain-2">
+<input class="handbook-filter-input" id="filter-domain-3" name="handbook-filter" type="radio" value="domain-3">
+<input class="handbook-filter-input" id="filter-domain-4" name="handbook-filter" type="radio" value="domain-4">
+<input class="handbook-filter-input" id="filter-traps" name="handbook-filter" type="radio" value="traps">
+<input class="handbook-filter-input" id="filter-scope" name="handbook-filter" type="radio" value="scope">
+<input class="handbook-filter-input" id="filter-handbook" name="handbook-filter" type="radio" value="handbook">
+<div aria-label="Filter chapters" class="filter-row" role="radiogroup">
+<label class="filter-btn" for="filter-all">All</label><label class="filter-btn" for="filter-domain-1">Security</label><label class="filter-btn" for="filter-domain-2">Resilience</label><label class="filter-btn" for="filter-domain-3">Performance</label><label class="filter-btn" for="filter-domain-4">Cost</label><label class="filter-btn" for="filter-traps">Exam traps</label><label class="filter-btn" for="filter-scope">Service scope</label>
+<label class="filter-btn" for="filter-handbook">Deep dives</label></div>
+<div class="empty-state" id="emptyState"><h2>No matching topic</h2><p>Try a broader term such as “S3”, “Multi-AZ”, “cost”, or “security group”.</p></div>
+<div class="content" id="content"><section class="chapter foundation" data-chapter="foundation"><div class="chapter-header"><h1 id="exam-foundations">Exam Foundations</h1></div><blockquote>
+<p><strong>Verified 14 August 2026.</strong> SAA-C03 remains the active Solutions Architect – Associate exam and the four domain weightings are unchanged. This guide prioritises exam decisions and service trade-offs rather than memorising every feature. AWS can change quotas, prices, service names, and even retire services before the certification scope page is refreshed, so use the official exam guide as the scope authority and current service documentation for architecture decisions.</p>
+</blockquote><article class="topic-card" data-topic-id="1-exam-at-a-glance" id="1-exam-at-a-glance"><div class="topic-heading"><h2 id="1-exam-at-a-glance-title">1. Exam at a Glance</h2><button aria-label="Mark 1. Exam at a Glance as reviewed" class="review-btn" data-review="1-exam-at-a-glance" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Current exam detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exam code</td>
+<td><strong>SAA-C03</strong></td>
+</tr>
+<tr>
+<td>Questions</td>
+<td><strong>65 total</strong>: 50 scored + 15 unscored</td>
+</tr>
+<tr>
+<td>Duration</td>
+<td><strong>130 minutes</strong></td>
+</tr>
+<tr>
+<td>Format</td>
+<td>Multiple choice and multiple response</td>
+</tr>
+<tr>
+<td>Passing score</td>
+<td><strong>720 / 1,000</strong></td>
+</tr>
+<tr>
+<td>Price</td>
+<td><strong>USD 150</strong>, plus applicable taxes/local pricing</td>
+</tr>
+<tr>
+<td>Scoring</td>
+<td>Compensatory: pass the overall exam; no section-level pass is required</td>
+</tr>
+<tr>
+<td>Guessing</td>
+<td>No penalty for guessing; unanswered questions are incorrect</td>
+</tr>
+</tbody>
+</table><h3>Domain Weightings</h3><table>
+<thead>
+<tr>
+<th>Domain</th>
+<th style="text-align:right">Weight</th>
+<th>Official tasks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Design Secure Architectures</strong></td>
+<td style="text-align:right"><strong>30%</strong></td>
+<td>Secure access; secure workloads/apps; data security controls</td>
+</tr>
+<tr>
+<td><strong>2. Design Resilient Architectures</strong></td>
+<td style="text-align:right"><strong>26%</strong></td>
+<td>Scalable/loosely coupled; highly available/fault tolerant</td>
+</tr>
+<tr>
+<td><strong>3. Design High-Performing Architectures</strong></td>
+<td style="text-align:right"><strong>24%</strong></td>
+<td>Storage; compute; databases; networks; ingestion/transformation</td>
+</tr>
+<tr>
+<td><strong>4. Design Cost-Optimized Architectures</strong></td>
+<td style="text-align:right"><strong>20%</strong></td>
+<td>Storage; compute; databases; networks</td>
+</tr>
+</tbody>
+</table><h3>Time Strategy</h3><ul>
+<li>Average available time is <strong>2 minutes per question</strong>.</li>
+<li>First pass: answer clear questions, flag long scenarios, and eliminate obviously wrong options.</li>
+<li>Multiple-response questions require <strong>all required choices</strong>; read whether the question asks for two, three, or “select all.”</li>
+<li>When two answers work, prefer the one that best satisfies the stated priority: security, resilience, performance, cost, or operational simplicity.</li>
+</ul></article><article class="topic-card" data-topic-id="2-the-architect-s-decision-lens" id="2-the-architect-s-decision-lens"><div class="topic-heading"><h2 id="2-the-architect-s-decision-lens-title">2. The Architect’s Decision Lens</h2><button aria-label="Mark 2. The Architect’s Decision Lens as reviewed" class="review-btn" data-review="2-the-architect-s-decision-lens" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Requirement phrase</th>
+<th>Default direction to investigate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Least operational overhead</strong></td>
+<td>Managed service or serverless</td>
+</tr>
+<tr>
+<td><strong>Highly available</strong></td>
+<td>Multi-AZ, health checks, load balancing, managed failover</td>
+</tr>
+<tr>
+<td><strong>Fault tolerant</strong></td>
+<td>Redundancy plus automatic recovery, often across AZs/Regions</td>
+</tr>
+<tr>
+<td><strong>Read scaling</strong></td>
+<td>Read replicas, caching, CDN, DynamoDB/DAX depending on data model</td>
+</tr>
+<tr>
+<td><strong>Decouple</strong></td>
+<td>SQS, SNS, EventBridge, Step Functions, streaming services</td>
+</tr>
+<tr>
+<td><strong>Unknown or spiky demand</strong></td>
+<td>Auto Scaling, Lambda, Fargate, DynamoDB on-demand, Aurora Serverless v2</td>
+</tr>
+<tr>
+<td><strong>Lowest cost</strong></td>
+<td>Right-size first, then pricing model, lifecycle/tiering, data-transfer path</td>
+</tr>
+<tr>
+<td><strong>Global low latency</strong></td>
+<td>CloudFront for cacheable HTTP content; Global Accelerator for non-cacheable TCP/UDP and static anycast IPs</td>
+</tr>
+<tr>
+<td><strong>Private access to AWS services</strong></td>
+<td>VPC endpoints / AWS PrivateLink</td>
+</tr>
+<tr>
+<td><strong>No public internet path</strong></td>
+<td>Private subnets, endpoints, private connectivity, controlled egress</td>
+</tr>
+<tr>
+<td><strong>Exactly ordered processing</strong></td>
+<td>SQS FIFO or ordered stream/partition design</td>
+</tr>
+<tr>
+<td><strong>Fan-out</strong></td>
+<td>SNS to multiple SQS queues, EventBridge targets, or Kinesis consumers</td>
+</tr>
+</tbody>
+</table><blockquote>
+<p><strong>Exam habit:</strong> Identify the hard constraint first. “Most cost-effective” and “least operational overhead” can produce different answers.</p>
+</blockquote><hr/></article></section><section class="chapter domain-1" data-chapter="domain-1"><div class="chapter-header"><h1 id="domain-1-design-secure-architectures-30">Domain 1 — Design Secure Architectures (30%)</h1></div><article class="topic-card" data-topic-id="3-identity-accounts-and-access" id="3-identity-accounts-and-access"><div class="topic-heading"><h2 id="3-identity-accounts-and-access-title">3. Identity, Accounts, and Access</h2><button aria-label="Mark 3. Identity, Accounts, and Access as reviewed" class="review-btn" data-review="3-identity-accounts-and-access" type="button">○ Review</button></div><h3>IAM Building Blocks</h3><table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Use it for</th>
+<th>Exam clue</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IAM user</td>
+<td>Long-lived human/workload identity when federation is not available</td>
+<td>Avoid for applications when a role works</td>
+</tr>
+<tr>
+<td>IAM group</td>
+<td>Permission management for collections of users</td>
+<td>Groups cannot be nested and do not contain roles</td>
+</tr>
+<tr>
+<td>IAM role</td>
+<td>Temporary credentials for services, applications, federation, and cross-account access</td>
+<td>Preferred over embedded access keys</td>
+</tr>
+<tr>
+<td>Identity policy</td>
+<td>Permissions attached to users, groups, or roles</td>
+<td>Defines what the principal can do</td>
+</tr>
+<tr>
+<td>Resource policy</td>
+<td>Permissions attached to a resource</td>
+<td>S3 bucket, SQS queue, KMS key, SNS topic, and others</td>
+</tr>
+<tr>
+<td>Permission boundary</td>
+<td>Maximum permissions an IAM principal may receive</td>
+<td>Delegated administration guardrail</td>
+</tr>
+<tr>
+<td>SCP</td>
+<td>Maximum available permissions for accounts/OUs in AWS Organizations</td>
+<td>Does <strong>not</strong> grant permissions; does not restrict the management account</td>
+</tr>
+<tr>
+<td>Session policy</td>
+<td>Further restricts a temporary session</td>
+<td>Cannot expand the role’s permissions</td>
+</tr>
+</tbody>
+</table><h3>Policy Evaluation Shortcut</h3><ol>
+<li>Start with <strong>implicit deny</strong>.</li>
+<li>An applicable <strong>explicit allow</strong> can grant access.</li>
+<li>Any applicable <strong>explicit deny wins</strong>.</li>
+<li>Effective permissions are constrained by identity/resource policies, SCPs, permission boundaries, and session policies.</li>
+</ol><h3>Account Security Pattern</h3><pre><code class="language-text">AWS Organizations
+├── Management account: billing and organisation administration only
+├── Security OU: log archive + security tooling
+├── Infrastructure OU: shared networking and platform accounts
+└── Workload OUs: production / non-production accounts
+
+Human access → IAM Identity Center → permission sets → short-lived role sessions
+Workload access → IAM role → temporary credentials from STS
+</code></pre><h3>Identity Chooser</h3><table>
+<thead><tr><th>Identity need</th><th>Best starting point</th><th>Exam clue</th></tr></thead>
+<tbody>
+<tr><td>Employees and workforce SSO</td><td><strong>IAM Identity Center</strong></td><td>Federated workforce access, permission sets, short-lived role sessions</td></tr>
+<tr><td>Application customers / end users</td><td><strong>Amazon Cognito</strong></td><td>User pools for sign-in; identity pools can provide temporary AWS credentials</td></tr>
+<tr><td>Microsoft Active Directory integration</td><td><strong>AWS Directory Service</strong></td><td>Managed Microsoft AD / directory federation requirements</td></tr>
+<tr><td>Workloads and cross-account access</td><td><strong>IAM roles + AWS STS</strong></td><td>Temporary credentials; avoid embedded long-lived keys</td></tr>
+</tbody></table>
+<h3>Shared Responsibility Shortcut</h3><ul>
+<li><strong>AWS is responsible for security <em>of</em> the cloud:</strong> facilities, physical hardware, foundational infrastructure, and managed-service infrastructure.</li>
+<li><strong>You are responsible for security <em>in</em> the cloud:</strong> data, identities, permissions, configuration, encryption choices, and guest OS/application patching where you control the OS.</li>
+<li>The customer share generally decreases as you move from self-managed EC2 toward more managed/serverless services, but <strong>data classification and access control remain customer responsibilities</strong>.</li>
+</ul>
+<h3>High-Yield Rules</h3><ul>
+<li>Protect the root user with MFA and use it only for root-only tasks.</li>
+<li>Prefer IAM Identity Center/federation for workforce access; use Cognito for application end users.</li>
+<li>Prefer roles and temporary credentials over access keys.</li>
+<li>Use AWS Organizations and SCPs as organisation guardrails.</li>
+<li>Centralise logs in a separate log archive/security account.</li>
+<li>Use AWS Resource Access Manager to share supported resources across accounts.</li>
+</ul></article><article class="topic-card" data-topic-id="4-vpc-and-network-security" id="4-vpc-and-network-security"><div class="topic-heading"><h2 id="4-vpc-and-network-security-title">4. VPC and Network Security</h2><button aria-label="Mark 4. VPC and Network Security as reviewed" class="review-btn" data-review="4-vpc-and-network-security" type="button">○ Review</button></div><h3>Secure Three-Tier Pattern</h3><table><thead><tr><th>Path</th><th>Flow / boundary</th></tr></thead><tbody><tr><td>DNS</td><td>Client resolves Route 53 name; DNS is not in the HTTP forwarding path.</td></tr><tr><td>Ingress</td><td>Client → CloudFront/WAF → internet-facing ALB → private app.</td></tr><tr><td>State</td><td>App → database, cache, or S3 via the appropriate endpoint.</td></tr><tr><td>Egress</td><td>Private app → zonal or Regional NAT → internet; separate from ingress.</td></tr><tr><td>Administration</td><td>Authorized Systems Manager session; no public SSH/RDP needed.</td></tr></tbody></table><p><a href="#26a-vpc-anatomy">See the AZ/subnet boundary diagram.</a></p><h3>Public vs Private Subnet</h3><p>A subnet is considered public when its route table has a route to an <strong>Internet Gateway</strong>. A public IP alone is not enough. Private workloads normally use a NAT gateway for IPv4 outbound internet access or VPC endpoints for private AWS service access.</p><h3>Security Group vs Network ACL</h3><table>
+<thead>
+<tr>
+<th>Security group</th>
+<th>Network ACL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stateful</td>
+<td>Stateless</td>
+</tr>
+<tr>
+<td>Applied to ENIs/resources</td>
+<td>Applied at subnet boundary</td>
+</tr>
+<tr>
+<td>Allow rules only</td>
+<td>Allow and deny rules</td>
+</tr>
+<tr>
+<td>All rules evaluated together</td>
+<td>Rules processed in number order</td>
+</tr>
+<tr>
+<td>Return traffic automatically allowed</td>
+<td>Return traffic must be explicitly permitted</td>
+</tr>
+</tbody>
+</table><h3>Connectivity Choices</h3><table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Best fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Connect a small number of VPCs</td>
+<td>VPC peering; non-transitive</td>
+</tr>
+<tr>
+<td>Hub-and-spoke for many VPCs/on-prem networks</td>
+<td>Transit Gateway</td>
+</tr>
+<tr>
+<td>Private access to a provider service</td>
+<td>AWS PrivateLink / interface endpoint</td>
+</tr>
+<tr>
+<td>Private access to S3 or DynamoDB</td>
+<td>Gateway endpoint</td>
+</tr>
+<tr>
+<td>Encrypted connection over internet</td>
+<td>Site-to-Site VPN</td>
+</tr>
+<tr>
+<td>Dedicated, consistent hybrid connection</td>
+<td>Direct Connect; add VPN for encryption when required</td>
+</tr>
+<tr>
+<td>User remote access to VPC</td>
+<td>Client VPN</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="5-encryption-and-secrets" id="5-encryption-and-secrets"><div class="topic-heading"><h2 id="5-encryption-and-secrets-title">5. Encryption and Secrets</h2><button aria-label="Mark 5. Encryption and Secrets as reviewed" class="review-btn" data-review="5-encryption-and-secrets" type="button">○ Review</button></div><h3>KMS Choices</h3><table>
+<thead>
+<tr>
+<th>Key type</th>
+<th>Ownership and control</th>
+<th>Rotation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS owned key</td>
+<td>AWS owns and manages; not visible in your account</td>
+<td>Managed by the AWS service</td>
+</tr>
+<tr>
+<td>AWS managed KMS key</td>
+<td>Visible in your account but managed by AWS service</td>
+<td>AWS rotates key material annually</td>
+</tr>
+<tr>
+<td>Customer managed KMS key</td>
+<td>You control policy, grants, lifecycle, aliases, and rotation</td>
+<td>Optional automatic/custom-period or on-demand rotation for supported symmetric keys</td>
+</tr>
+<tr>
+<td>CloudHSM/custom key store</td>
+<td>Dedicated HSM control and specialised compliance</td>
+<td>More control and more operational responsibility</td>
+</tr>
+</tbody>
+</table><h3>Encryption Patterns</h3><ul>
+<li><strong>At rest:</strong> S3 SSE-S3/SSE-KMS, EBS encryption, RDS/Aurora encryption, DynamoDB encryption.</li>
+<li><strong>In transit:</strong> TLS certificates from ACM, HTTPS, VPN, encrypted Direct Connect overlay when required.</li>
+<li><strong>Envelope encryption:</strong> Data encrypted with a data key; data key encrypted by a KMS key.</li>
+<li><strong>Cross-account KMS:</strong> Key policy must allow the external account, and its IAM policy must allow use.</li>
+<li><strong>EBS:</strong> Enable encryption by default; encrypt existing data by snapshot/copy/restore workflows.</li>
+</ul><h3>Secrets Manager vs Parameter Store</h3><table>
+<thead>
+<tr>
+<th>Secrets Manager</th>
+<th>Systems Manager Parameter Store</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Built-in rotation integrations and secret lifecycle</td>
+<td>Configuration and hierarchical parameters</td>
+</tr>
+<tr>
+<td>Designed for credentials/API keys</td>
+<td>Standard/SecureString parameters</td>
+</tr>
+<tr>
+<td>Higher feature set and cost</td>
+<td>Standard tier can be lower cost</td>
+</tr>
+<tr>
+<td>Use when rotation is a core requirement</td>
+<td>Use for configuration or simpler secret storage</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="6-security-services-what-each-one-does" id="6-security-services-what-each-one-does"><div class="topic-heading"><h2 id="6-security-services-what-each-one-does-title">6. Security Services: What Each One Does</h2><button aria-label="Mark 6. Security Services: What Each One Does as reviewed" class="review-btn" data-review="6-security-services-what-each-one-does" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Primary job</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AWS WAF</td>
+<td>Layer 7 web request filtering; SQL injection/XSS patterns, rate rules</td>
+</tr>
+<tr>
+<td>AWS Shield Standard/Advanced</td>
+<td>DDoS protection; Standard is included, Advanced adds enhanced protection/support</td>
+</tr>
+<tr>
+<td>GuardDuty</td>
+<td>Threat detection from AWS data sources and behavioural analysis</td>
+</tr>
+<tr>
+<td>Inspector</td>
+<td>Vulnerability management for supported compute/container workloads</td>
+</tr>
+<tr>
+<td>Macie</td>
+<td>Discover and classify sensitive data in S3</td>
+</tr>
+<tr>
+<td>Security Hub</td>
+<td>Aggregate and prioritise security findings and standards checks</td>
+</tr>
+<tr>
+<td>Detective</td>
+<td>Investigate and visualise security events and relationships</td>
+</tr>
+<tr>
+<td>Network Firewall</td>
+<td>Managed stateful network firewall for VPC traffic</td>
+</tr>
+<tr>
+<td>Firewall Manager</td>
+<td>Centrally apply WAF, Shield, security group, and firewall policies across accounts</td>
+</tr>
+<tr>
+<td>CloudTrail</td>
+<td>API activity and audit trail</td>
+</tr>
+<tr>
+<td>AWS Config</td>
+<td>Resource configuration history and compliance evaluation</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>Download AWS compliance reports and agreements</td>
+</tr>
+<tr>
+<td>Audit Manager</td>
+<td>Collect and organise evidence for audits</td>
+</tr>
+</tbody>
+</table><blockquote>
+<p><strong>Common trap:</strong> CloudTrail answers <strong>who called which API and when</strong>. CloudWatch answers <strong>metrics, logs, alarms, and operational visibility</strong>. AWS Config answers <strong>what the resource configuration was and whether it complied</strong>.</p>
+</blockquote><hr/></article></section><section class="chapter domain-2" data-chapter="domain-2"><div class="chapter-header"><h1 id="domain-2-design-resilient-architectures-26">Domain 2 — Design Resilient Architectures (26%)</h1></div><article class="topic-card" data-topic-id="7-availability-durability-and-fault-tolerance" id="7-availability-durability-and-fault-tolerance"><div class="topic-heading"><h2 id="7-availability-durability-and-fault-tolerance-title">7. Availability, Durability, and Fault Tolerance</h2><button aria-label="Mark 7. Availability, Durability, and Fault Tolerance as reviewed" class="review-btn" data-review="7-availability-durability-and-fault-tolerance" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Availability</td>
+<td>System is accessible and functioning</td>
+</tr>
+<tr>
+<td>Durability</td>
+<td>Data remains intact over time</td>
+</tr>
+<tr>
+<td>High availability</td>
+<td>Minimise downtime through redundancy and failover</td>
+</tr>
+<tr>
+<td>Fault tolerance</td>
+<td>Continue operating despite component failure, usually with little/no interruption</td>
+</tr>
+<tr>
+<td>RTO</td>
+<td>Maximum acceptable time to restore service</td>
+</tr>
+<tr>
+<td>RPO</td>
+<td>Maximum acceptable data loss measured in time</td>
+</tr>
+</tbody>
+</table><h3>Multi-AZ vs Multi-Region</h3><ul>
+<li><strong>Multi-AZ:</strong> Handles data-centre/AZ failure, lower latency, common default for HA.</li>
+<li><strong>Multi-Region:</strong> Handles Region failure, supports global users/data residency, but increases cost and complexity.</li>
+<li>Start with the required RTO/RPO and business impact; do not select Multi-Region automatically.</li>
+</ul><h3>Reliability Controls Often Missed</h3><table>
+<thead><tr><th>Concern</th><th>Design response</th></tr></thead>
+<tbody>
+<tr><td>Service quotas / throttling</td><td>Know expected scale, request quota increases before failover events, use backoff/retries, queues, and load shedding where appropriate.</td></tr>
+<tr><td>Configuration drift</td><td>Prefer repeatable infrastructure definitions and automated deployment; immutable replacement is safer than manual in-place repair when feasible.</td></tr>
+<tr><td>Single points of failure</td><td>Distribute across AZs, use health checks and automated failover, and remove state from individual compute instances.</td></tr>
+<tr><td>Recovery confidence</td><td>Back up data, define retention, and test restore/failover procedures against the required RTO/RPO.</td></tr>
+</tbody></table></article><article class="topic-card" data-topic-id="8-load-balancing-and-auto-scaling" id="8-load-balancing-and-auto-scaling"><div class="topic-heading"><h2 id="8-load-balancing-and-auto-scaling-title">8. Load Balancing and Auto Scaling</h2><button aria-label="Mark 8. Load Balancing and Auto Scaling as reviewed" class="review-btn" data-review="8-load-balancing-and-auto-scaling" type="button">○ Review</button></div><h3>Load Balancer Selection</h3><table>
+<thead>
+<tr>
+<th>Load balancer</th>
+<th>Layer/protocol</th>
+<th>Best use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ALB</td>
+<td>Layer 7 HTTP/HTTPS</td>
+<td>Web apps, path/host/header routing, containers, Lambda targets</td>
+</tr>
+<tr>
+<td>NLB</td>
+<td>Layer 4 TCP/UDP/TLS</td>
+<td>Very high performance, static IPs, source IP preservation, non-HTTP traffic</td>
+</tr>
+<tr>
+<td>GWLB</td>
+<td>Layer 3 gateway</td>
+<td>Transparently insert virtual security/network appliances</td>
+</tr>
+<tr>
+<td>Classic Load Balancer</td>
+<td>Legacy</td>
+<td>Choose only for explicitly legacy scenarios</td>
+</tr>
+</tbody>
+</table><h3>Auto Scaling Components</h3><ul>
+<li><strong>Launch template:</strong> AMI, instance type, security groups, user data, IAM instance profile.</li>
+<li><strong>Auto Scaling group:</strong> minimum, desired, maximum, subnets/AZs, health checks.</li>
+<li><strong>Scaling policies:</strong> target tracking, step, scheduled, predictive.</li>
+<li>Prefer <strong>target tracking</strong> when a meaningful utilisation metric exists.</li>
+<li>Use ELB health checks when the application can fail while the EC2 instance remains running.</li>
+</ul><pre><code class="language-text">CloudWatch metric → scaling policy → ASG changes desired capacity
+                                      │
+                                      └→ instances register/deregister with load balancer
+</code></pre></article><article class="topic-card" data-topic-id="9-decoupling-and-event-driven-design" id="9-decoupling-and-event-driven-design"><div class="topic-heading"><h2 id="9-decoupling-and-event-driven-design-title">9. Decoupling and Event-Driven Design</h2><button aria-label="Mark 9. Decoupling and Event-Driven Design as reviewed" class="review-btn" data-review="9-decoupling-and-event-driven-design" type="button">○ Review</button></div><h3>SQS vs SNS vs EventBridge vs Kinesis</h3><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Delivery model</th>
+<th>Best fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQS Standard</td>
+<td>Pull queue, at-least-once, best-effort order</td>
+<td>Buffering and decoupling independent workers</td>
+</tr>
+<tr>
+<td>SQS FIFO</td>
+<td>Pull queue, ordered within message group, deduplication</td>
+<td>Ordered workflows and exactly-once processing semantics</td>
+</tr>
+<tr>
+<td>SNS</td>
+<td>Push pub/sub topic</td>
+<td>Simple fan-out to subscribers/endpoints</td>
+</tr>
+<tr>
+<td>EventBridge</td>
+<td>Event bus with rules, filtering, schemas, SaaS/AWS integration</td>
+<td>Event routing across services/accounts and scheduled events</td>
+</tr>
+<tr>
+<td>Kinesis Data Streams</td>
+<td>Ordered records per shard/partition key, replay/retention</td>
+<td>High-throughput real-time stream processing</td>
+</tr>
+<tr>
+<td>Amazon Data Firehose</td>
+<td>Managed delivery stream</td>
+<td>Deliver/transform streams into destinations such as S3 and Redshift</td>
+</tr>
+<tr>
+<td>Amazon MQ</td>
+<td>Managed ActiveMQ/RabbitMQ</td>
+<td>Migrate applications that require traditional broker protocols</td>
+</tr>
+</tbody>
+</table><h3>Queue Reliability Rules</h3><ul>
+<li>Set visibility timeout longer than normal processing time.</li>
+<li>Use a dead-letter queue for repeated failures.</li>
+<li>Make consumers idempotent because duplicate delivery can occur.</li>
+<li>Long polling reduces empty receives and cost.</li>
+<li>Use SNS → multiple SQS queues for durable fan-out to independent consumers.</li>
+</ul><h3>Workflow Choice</h3><ul>
+<li><strong>Step Functions:</strong> Orchestrate multi-step workflows, retries, branching, and state.</li>
+<li><strong>SQS:</strong> Buffer independent asynchronous work.</li>
+<li><strong>EventBridge:</strong> Route events based on content.</li>
+<li><strong>API Gateway:</strong> Managed front door for REST/HTTP/WebSocket APIs.</li>
+</ul></article><article class="topic-card" data-topic-id="10-storage-resilience" id="10-storage-resilience"><div class="topic-heading"><h2 id="10-storage-resilience-title">10. Storage Resilience</h2><button aria-label="Mark 10. Storage Resilience as reviewed" class="review-btn" data-review="10-storage-resilience" type="button">○ Review</button></div><h3>Storage Decision Table</h3><table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object storage/data lake/static assets</td>
+<td>S3</td>
+</tr>
+<tr>
+<td>Block device for EC2/database</td>
+<td>EBS</td>
+</tr>
+<tr>
+<td>Shared Linux NFS across AZs</td>
+<td>EFS</td>
+</tr>
+<tr>
+<td>Windows file shares / Lustre / NetApp / OpenZFS</td>
+<td>FSx family</td>
+</tr>
+<tr>
+<td>Temporary highest-speed local scratch</td>
+<td>EC2 instance store</td>
+</tr>
+<tr>
+<td>Hybrid file/volume/tape integration</td>
+<td>Storage Gateway</td>
+</tr>
+</tbody>
+</table><h3>EBS Essentials</h3><ul>
+<li>EBS volumes are created in one AZ and attach to instances in that AZ.</li>
+<li>Snapshots are incremental and stored in AWS-managed S3 infrastructure.</li>
+<li>Restore a snapshot into another AZ; copy snapshots across Regions/accounts when needed.</li>
+<li><code>gp3</code>: general-purpose SSD with independently configurable capacity, IOPS, and throughput.</li>
+<li><code>io2 Block Express</code>: critical I/O-intensive workloads with higher durability/performance.</li>
+<li><code>st1</code>: throughput-optimised HDD for large sequential workloads.</li>
+<li><code>sc1</code>: lowest-cost HDD for infrequently accessed sequential data.</li>
+<li>Instance and volume limits both affect achievable performance.</li>
+</ul><h3>S3 Resilience Features</h3><ul>
+<li>Strong read-after-write consistency for PUT, overwrite, DELETE, and LIST operations.</li>
+<li>Versioning protects against accidental overwrite/deletion.</li>
+<li>Cross-Region Replication or Same-Region Replication requires versioning.</li>
+<li>Object Lock provides WORM retention in governance or compliance mode.</li>
+<li>MFA Delete adds protection but has operational constraints.</li>
+<li>Multi-Region Access Points can route requests across replicated buckets.</li>
+</ul></article><article class="topic-card" data-topic-id="11-database-resilience-and-scaling" id="11-database-resilience-and-scaling"><div class="topic-heading"><h2 id="11-database-resilience-and-scaling-title">11. Database Resilience and Scaling</h2><button aria-label="Mark 11. Database Resilience and Scaling as reviewed" class="review-btn" data-review="11-database-resilience-and-scaling" type="button">○ Review</button></div><h3>RDS Multi-AZ DB Instance vs Read Replica</h3><table>
+<thead>
+<tr>
+<th>Multi-AZ DB instance (one standby)</th>
+<th>Read replica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High availability and automated failover</td>
+<td>Read scaling and reporting</td>
+</tr>
+<tr>
+<td>Synchronous replication</td>
+<td>Usually asynchronous replication</td>
+</tr>
+<tr>
+<td>Standby is not used for ordinary reads in classic Multi-AZ DB instance deployment</td>
+<td>Replica can serve reads</td>
+</tr>
+<tr>
+<td>Same Region/AZ redundancy pattern</td>
+<td>Same-Region or cross-Region support depends on engine</td>
+</tr>
+<tr>
+<td>Failover endpoint remains stable</td>
+<td>Can be promoted to standalone DB</td>
+</tr>
+</tbody>
+</table><h3>RDS Multi-AZ Deployment Types</h3><table>
+<thead><tr><th>Deployment</th><th>Topology</th><th>Read traffic</th><th>Primary purpose</th></tr></thead>
+<tbody>
+<tr><td>Multi-AZ DB instance</td><td>1 primary + 1 synchronous standby</td><td><strong>No</strong> reads from the standby</td><td>High availability / failover</td></tr>
+<tr><td>Multi-AZ DB cluster</td><td>1 writer + 2 readable DB instances across 3 AZs</td><td><strong>Yes</strong>, reader endpoint can use the readers</td><td>High availability plus read capacity</td></tr>
+<tr><td>Read replica</td><td>Separate replica; commonly asynchronous</td><td><strong>Yes</strong></td><td>Read scaling / reporting / DR patterns</td></tr>
+</tbody></table><blockquote>
+<p><strong>Exam trap:</strong> “Multi-AZ cannot serve reads” is only safe shorthand for the classic Multi-AZ <em>DB instance</em> deployment. Multi-AZ DB clusters have readable standbys. Replica counts and capabilities vary by engine; Aurora supports up to 15 Aurora Replicas, so do not memorise one fixed number for every RDS engine.</p>
+</blockquote><h3>Aurora Essentials</h3><ul>
+<li>MySQL- and PostgreSQL-compatible managed relational database.</li>
+<li>Shared distributed storage spans multiple AZs.</li>
+<li>One writer endpoint plus reader endpoint(s); add Aurora Replicas for reads/HA.</li>
+<li>Aurora Serverless v2 scales capacity within configured minimum/maximum ACUs.</li>
+<li>Aurora Global Database uses one primary Region and read-only secondary Regions; plan explicit switchover/failover.</li>
+<li>RDS Proxy pools and manages connections for Lambda/high-connection workloads.</li>
+</ul><h3>DynamoDB Essentials</h3><ul>
+<li>Fully managed key-value/document database with single-digit millisecond performance.</li>
+<li><strong>On-demand:</strong> unknown/spiky traffic; pay per request.</li>
+<li><strong>Provisioned:</strong> predictable traffic; configure RCU/WCU and auto scaling.</li>
+<li>Global secondary indexes support alternate access patterns.</li>
+<li>DynamoDB Streams captures item-level changes.</li>
+<li>Global Tables provide multi-Region, multi-active replication; choose MREC (eventual) or MRSC (strong) consistency deliberately.</li>
+<li>DAX provides in-memory read acceleration for compatible access patterns.</li>
+<li>Use TTL for asynchronous cleanup after expiry and PITR for continuous backups.</li>
+</ul><h3>DR Strategy Ladder</h3><table>
+<thead>
+<tr>
+<th>Strategy</th>
+<th style="text-align:right">Typical relative cost</th>
+<th>RTO/RPO direction</th>
+<th>What stays running</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Backup and restore</td>
+<td style="text-align:right">Lowest</td>
+<td>Hours; depends on backup frequency</td>
+<td>Backups only</td>
+</tr>
+<tr>
+<td>Pilot light</td>
+<td style="text-align:right">Low</td>
+<td>Tens of minutes to hours</td>
+<td>Core data/services</td>
+</tr>
+<tr>
+<td>Warm standby</td>
+<td style="text-align:right">Medium</td>
+<td>Minutes</td>
+<td>Scaled-down complete environment</td>
+</tr>
+<tr>
+<td>Multi-site active/active</td>
+<td style="text-align:right">Highest</td>
+<td>Seconds/near-zero</td>
+<td>Full capacity in multiple sites</td>
+</tr>
+</tbody>
+</table><hr/></article></section><section class="chapter domain-3" data-chapter="domain-3"><div class="chapter-header"><h1 id="domain-3-design-high-performing-architectures-24">Domain 3 — Design High-Performing Architectures (24%)</h1></div><article class="topic-card" data-topic-id="12-compute-selection" id="12-compute-selection"><div class="topic-heading"><h2 id="12-compute-selection-title">12. Compute Selection</h2><button aria-label="Mark 12. Compute Selection as reviewed" class="review-btn" data-review="12-compute-selection" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Recommended starting point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full OS/network control, specialised software</td>
+<td>EC2</td>
+</tr>
+<tr>
+<td>Event-driven task up to 15 minutes</td>
+<td>Lambda</td>
+</tr>
+<tr>
+<td>Containers with AWS-native orchestration</td>
+<td>ECS</td>
+</tr>
+<tr>
+<td>Containers without managing servers</td>
+<td>ECS on Fargate</td>
+</tr>
+<tr>
+<td>Kubernetes requirement/ecosystem</td>
+<td>EKS</td>
+</tr>
+<tr>
+<td>Queue-based batch jobs</td>
+<td>AWS Batch</td>
+</tr>
+<tr>
+<td>Simple platform deployment with less infrastructure work</td>
+<td>Elastic Beanstalk</td>
+</tr>
+<tr>
+<td>Hadoop/Spark big-data processing</td>
+<td>EMR</td>
+</tr>
+</tbody>
+</table><h3>EC2 Family Mnemonic</h3><ul>
+<li><strong>M</strong> general purpose</li>
+<li><strong>C</strong> compute optimised</li>
+<li><strong>R/X</strong> memory optimised</li>
+<li><strong>I</strong> storage I/O optimised</li>
+<li><strong>D/H</strong> dense/throughput storage</li>
+<li><strong>G/P/Inf/Trn</strong> accelerated computing</li>
+<li><strong>T</strong> burstable general purpose</li>
+</ul><p>Use workload measurements and AWS Compute Optimizer rather than choosing by name alone.</p><h3>Placement Groups</h3><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Behaviour</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cluster</td>
+<td>Packs instances close in one AZ</td>
+<td>Lowest latency/high throughput HPC</td>
+</tr>
+<tr>
+<td>Spread</td>
+<td>Separates small number of instances across distinct hardware</td>
+<td>Critical instances; reduce correlated failure</td>
+</tr>
+<tr>
+<td>Partition</td>
+<td>Divides instances into hardware partitions</td>
+<td>Large distributed systems such as Hadoop/Cassandra</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="13-storage-performance" id="13-storage-performance"><div class="topic-heading"><h2 id="13-storage-performance-title">13. Storage Performance</h2><button aria-label="Mark 13. Storage Performance as reviewed" class="review-btn" data-review="13-storage-performance" type="button">○ Review</button></div><h3>EBS Performance Snapshot</h3><table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Workload signal</th>
+<th>Current architectural point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gp3</td>
+<td>General SSD/default choice</td>
+<td>Baseline performance independent of size; can provision more IOPS/throughput</td>
+</tr>
+<tr>
+<td>io2 Block Express</td>
+<td>Mission-critical, high IOPS/low latency</td>
+<td>Up to 256,000 provisioned IOPS and 64 TiB on supported configurations</td>
+</tr>
+<tr>
+<td>st1</td>
+<td>Large sequential reads/writes</td>
+<td>Throughput, not small random I/O</td>
+</tr>
+<tr>
+<td>sc1</td>
+<td>Cold sequential data</td>
+<td>Lowest-cost EBS option</td>
+</tr>
+</tbody>
+</table><h3>EFS Performance</h3><ul>
+<li>Regional EFS is multi-AZ and elastic.</li>
+<li>EFS One Zone trades resilience for lower cost.</li>
+<li>Choose throughput/performance settings based on workload; use lifecycle management to IA/Archive tiers where appropriate.</li>
+<li>Use EFS for shared Linux file access, not as a replacement for low-latency block storage.</li>
+</ul><h3>S3 Performance</h3><ul>
+<li>Use multipart upload for large objects and parallel requests for throughput.</li>
+<li>Use CloudFront for cached global delivery.</li>
+<li>Use Transfer Acceleration only when edge-accelerated long-distance upload materially helps.</li>
+<li>Select object key patterns based on application design; modern S3 automatically scales request performance.</li>
+</ul></article><article class="topic-card" data-topic-id="14-caching-and-database-performance" id="14-caching-and-database-performance"><div class="topic-heading"><h2 id="14-caching-and-database-performance-title">14. Caching and Database Performance</h2><button aria-label="Mark 14. Caching and Database Performance as reviewed" class="review-btn" data-review="14-caching-and-database-performance" type="button">○ Review</button></div><h3>Cache Choices</h3><table>
+<thead>
+<tr>
+<th>Cache</th>
+<th>Best use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CloudFront</td>
+<td>Cache content near global viewers</td>
+</tr>
+<tr>
+<td>ElastiCache for Redis/Valkey</td>
+<td>Rich data structures, persistence, replication, sessions, leaderboards</td>
+</tr>
+<tr>
+<td>ElastiCache for Memcached</td>
+<td>Simple distributed object cache, horizontal sharding</td>
+</tr>
+<tr>
+<td>DAX</td>
+<td>DynamoDB-compatible microsecond read cache</td>
+</tr>
+<tr>
+<td>API Gateway REST API cache (not HTTP API)</td>
+<td>Cache API responses at a stage</td>
+</tr>
+</tbody>
+</table><h3>Cache-Aside Pattern</h3><pre><code class="language-text">Application → cache lookup
+      ├── hit  → return value
+      └── miss → read database → populate cache → return value
+</code></pre><p>Plan TTLs, invalidation, eviction, and stale-data tolerance. A cache improves performance but adds consistency considerations.</p></article><article class="topic-card" data-topic-id="15-network-and-edge-performance" id="15-network-and-edge-performance"><div class="topic-heading"><h2 id="15-network-and-edge-performance-title">15. Network and Edge Performance</h2><button aria-label="Mark 15. Network and Edge Performance as reviewed" class="review-btn" data-review="15-network-and-edge-performance" type="button">○ Review</button></div><h3>CloudFront vs Global Accelerator</h3><table>
+<thead>
+<tr>
+<th>CloudFront</th>
+<th>Global Accelerator</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CDN and edge cache</td>
+<td>Network acceleration; no content caching</td>
+</tr>
+<tr>
+<td>HTTP/HTTPS content and APIs</td>
+<td>TCP/UDP applications and HTTP workloads needing static anycast IPs</td>
+</tr>
+<tr>
+<td>Origins include S3, ALB, EC2, custom origins</td>
+<td>Endpoints include ALB, NLB, EC2, Elastic IP</td>
+</tr>
+<tr>
+<td>Signed URLs/cookies, origin access control, edge functions</td>
+<td>Fast health-based routing over AWS global network</td>
+</tr>
+</tbody>
+</table><h3>Route 53 Routing Policies</h3><table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Use case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Simple</td>
+<td>One resource or simple multi-value response without health logic</td>
+</tr>
+<tr>
+<td>Weighted</td>
+<td>Controlled traffic split, blue/green, canary</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Route to Region with lowest measured latency</td>
+</tr>
+<tr>
+<td>Failover</td>
+<td>Active/passive with health checks</td>
+</tr>
+<tr>
+<td>Geolocation</td>
+<td>Route by user location</td>
+</tr>
+<tr>
+<td>Geoproximity</td>
+<td>Route by resource/user geography with optional bias</td>
+</tr>
+<tr>
+<td>Multi-value answer</td>
+<td>Return multiple healthy records; not a load balancer replacement</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="16-data-ingestion-and-analytics" id="16-data-ingestion-and-analytics"><div class="topic-heading"><h2 id="16-data-ingestion-and-analytics-title">16. Data Ingestion and Analytics</h2><button aria-label="Mark 16. Data Ingestion and Analytics as reviewed" class="review-btn" data-review="16-data-ingestion-and-analytics" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Service</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Real-time ordered stream</td>
+<td>Kinesis Data Streams</td>
+</tr>
+<tr>
+<td>Managed stream delivery to destinations</td>
+<td>Amazon Data Firehose</td>
+</tr>
+<tr>
+<td>Managed Kafka</td>
+<td>Amazon MSK</td>
+</tr>
+<tr>
+<td>Serverless ETL and Data Catalog</td>
+<td>AWS Glue</td>
+</tr>
+<tr>
+<td>SQL directly on S3</td>
+<td>Athena</td>
+</tr>
+<tr>
+<td>Data lake permissions/governance</td>
+<td>Lake Formation</td>
+</tr>
+<tr>
+<td>Hadoop/Spark clusters</td>
+<td>EMR</td>
+</tr>
+<tr>
+<td>Search/log analytics</td>
+<td>OpenSearch Service</td>
+</tr>
+<tr>
+<td>Data warehouse/BI analytics</td>
+<td>Redshift</td>
+</tr>
+<tr>
+<td>Dashboards and BI</td>
+<td><strong>Amazon Quick</strong> → Quick Sight BI feature (Domain 3 may say Amazon QuickSuite)</td>
+</tr>
+<tr>
+<td>Visualise metrics</td>
+<td>Managed Grafana / CloudWatch dashboards</td>
+</tr>
+</tbody>
+</table><pre><code class="language-text">Producers → Kinesis/MSK → stream processing → S3 data lake
+                                          ├→ Glue Catalog → Athena
+                                          ├→ Redshift
+                                          └→ Amazon Quick / Quick Sight dashboards
+</code></pre><h3>Migration and Data-Transfer Chooser</h3><table>
+<thead><tr><th>Need</th><th>Service</th><th>Remember</th></tr></thead>
+<tbody>
+<tr><td>Move files/object data online at scale</td><td><strong>AWS DataSync</strong></td><td>Accelerated, managed data movement between on-premises/AWS storage and AWS storage services</td></tr>
+<tr><td>Keep hybrid file/volume/tape workflows</td><td><strong>AWS Storage Gateway</strong></td><td>Hybrid access pattern, not simply a one-time migration tool</td></tr>
+<tr><td>Managed SFTP/FTPS/FTP into AWS storage</td><td><strong>AWS Transfer Family</strong></td><td>Modernise managed file-transfer endpoints without running transfer servers</td></tr>
+<tr><td>Offline / very large physical transfer</td><td><strong>AWS Snow Family</strong> (check existing-customer eligibility)</td><td>Use when network transfer time or bandwidth is the hard constraint</td></tr>
+<tr><td>Database migration / replication</td><td><strong>AWS DMS</strong></td><td>Supports homogeneous and heterogeneous database migration patterns; schema conversion may also be required for heterogeneous moves</td></tr>
+<tr><td>SaaS application data flow</td><td><strong>Amazon AppFlow</strong></td><td>Managed data transfer between supported SaaS applications and AWS services</td></tr>
+</tbody></table><hr/></article></section><section class="chapter domain-4" data-chapter="domain-4"><div class="chapter-header"><h1 id="domain-4-design-cost-optimized-architectures-20">Domain 4 — Design Cost-Optimized Architectures (20%)</h1></div><article class="topic-card" data-topic-id="17-cost-optimisation-order" id="17-cost-optimisation-order"><div class="topic-heading"><h2 id="17-cost-optimisation-order-title">17. Cost Optimisation Order</h2><button aria-label="Mark 17. Cost Optimisation Order as reviewed" class="review-btn" data-review="17-cost-optimisation-order" type="button">○ Review</button></div><ol>
+<li><strong>Measure and allocate:</strong> tags, Cost Explorer, Cost and Usage Report, Budgets.</li>
+<li><strong>Eliminate waste:</strong> idle instances, unattached EBS, stale snapshots, unused load balancers/IPs.</li>
+<li><strong>Right-size:</strong> compute, databases, storage, provisioned capacity.</li>
+<li><strong>Match pricing model:</strong> On-Demand, Savings Plans, Reserved Instances, Spot.</li>
+<li><strong>Make architecture elastic:</strong> auto scaling, serverless, schedules, hibernation where suitable.</li>
+<li><strong>Optimise storage lifecycle:</strong> tiering, retention, compression, deletion.</li>
+<li><strong>Optimise data transfer:</strong> topology, endpoints, CDN, same-AZ/cross-AZ trade-offs.</li>
+</ol></article><article class="topic-card" data-topic-id="18-ec2-and-compute-pricing" id="18-ec2-and-compute-pricing"><div class="topic-heading"><h2 id="18-ec2-and-compute-pricing-title">18. EC2 and Compute Pricing</h2><button aria-label="Mark 18. EC2 and Compute Pricing as reviewed" class="review-btn" data-review="18-ec2-and-compute-pricing" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Best for</th>
+<th>Key caution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>On-Demand</td>
+<td>Short-term, unpredictable, no commitment</td>
+<td>Highest unit price</td>
+</tr>
+<tr>
+<td>Compute Savings Plans</td>
+<td>Flexible steady compute commitment across eligible EC2/Fargate/Lambda usage</td>
+<td>Monetary commitment; no capacity reservation</td>
+</tr>
+<tr>
+<td>EC2 Instance Savings Plans</td>
+<td>Steady EC2 family/Region usage</td>
+<td>Less flexible, potentially deeper savings</td>
+</tr>
+<tr>
+<td>Standard Reserved Instances</td>
+<td>Predictable EC2 configuration</td>
+<td>Discount instrument, not a physical instance; regional scope has no capacity reservation, zonal scope reserves capacity in its AZ</td>
+</tr>
+<tr>
+<td>Convertible Reserved Instances</td>
+<td>Long-term usage requiring exchanges</td>
+<td>Lower discount than Standard</td>
+</tr>
+<tr>
+<td>Spot Instances</td>
+<td>Interruptible, fault-tolerant workloads</td>
+<td>Design for interruption and diversify capacity</td>
+</tr>
+<tr>
+<td>Capacity Reservations</td>
+<td>Guaranteed EC2 capacity in an AZ</td>
+<td>Capacity assurance is separate from discount</td>
+</tr>
+<tr>
+<td>Dedicated Hosts</td>
+<td>Licensing/compliance/physical server visibility</td>
+<td>High cost and management responsibility</td>
+</tr>
+</tbody>
+</table><blockquote>
+<p><strong>Removed from current guidance:</strong> Do not use “Spot Blocks” or Scheduled Reserved Instances as normal current purchasing choices.</p>
+</blockquote><h3>Spot Best Practices</h3><ul>
+<li>Use multiple instance types and AZs.</li>
+<li>Use capacity-optimised allocation strategies.</li>
+<li>Checkpoint work and handle the interruption notice.</li>
+<li>Keep critical baseline capacity on On-Demand/Savings Plans when needed.</li>
+</ul></article><article class="topic-card" data-topic-id="19-storage-cost-optimisation" id="19-storage-cost-optimisation"><div class="topic-heading"><h2 id="19-storage-cost-optimisation-title">19. Storage Cost Optimisation</h2><button aria-label="Mark 19. Storage Cost Optimisation as reviewed" class="review-btn" data-review="19-storage-cost-optimisation" type="button">○ Review</button></div><h3>S3 Storage Classes</h3><table>
+<thead>
+<tr>
+<th>Access pattern</th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frequent, low-latency, multi-AZ</td>
+<td>S3 Standard</td>
+</tr>
+<tr>
+<td>Unknown/changing</td>
+<td>S3 Intelligent-Tiering</td>
+</tr>
+<tr>
+<td>Infrequent, multi-AZ</td>
+<td>S3 Standard-IA</td>
+</tr>
+<tr>
+<td>Re-creatable, infrequent, single AZ</td>
+<td>S3 One Zone-IA</td>
+</tr>
+<tr>
+<td>Archive with millisecond access</td>
+<td>S3 Glacier Instant Retrieval</td>
+</tr>
+<tr>
+<td>Archive with minutes-to-hours retrieval</td>
+<td>S3 Glacier Flexible Retrieval</td>
+</tr>
+<tr>
+<td>Long-term archive, hours retrieval</td>
+<td>S3 Glacier Deep Archive</td>
+</tr>
+<tr>
+<td>Single-AZ ultra-low-latency object storage</td>
+<td>S3 Express One Zone</td>
+</tr>
+</tbody>
+</table><p>S3 Intelligent-Tiering has a small monitoring/automation charge and no retrieval charges. Other infrequent/archive classes can have retrieval fees and minimum storage duration charges.</p><ul>
+<li><strong>S3 Requester Pays:</strong> useful when the data owner wants the requester to pay request and data-transfer charges; the bucket owner still pays storage.</li>
+<li>Lifecycle policies can transition or expire objects automatically; match class choice to access frequency, retrieval time, and minimum-duration constraints.</li>
+</ul><h3>Lifecycle Example</h3><pre><code class="language-text">Day 0   → S3 Standard
+Day 30  → S3 Standard-IA or Intelligent-Tiering based on access certainty
+Day 90  → Glacier Flexible Retrieval
+Day 365 → Glacier Deep Archive
+Expiry  → delete when retention permits
+</code></pre><h3>EBS/EFS Cost Levers</h3><ul>
+<li>Prefer gp3 over gp2 when it meets requirements; decouple size from performance.</li>
+<li>Delete unattached EBS volumes after validating retention requirements.</li>
+<li>Snapshot before deletion when recovery is required; apply snapshot lifecycle policies.</li>
+<li>Use EFS lifecycle management and EFS One Zone only when single-AZ resilience is acceptable.</li>
+<li>Select FSx type and capacity mode that matches protocol and access pattern.</li>
+</ul></article><article class="topic-card" data-topic-id="20-database-cost-optimisation" id="20-database-cost-optimisation"><div class="topic-heading"><h2 id="20-database-cost-optimisation-title">20. Database Cost Optimisation</h2><button aria-label="Mark 20. Database Cost Optimisation as reviewed" class="review-btn" data-review="20-database-cost-optimisation" type="button">○ Review</button></div><ul>
+<li>Right-size DB instance class and storage; monitor CPU, memory, connections, IOPS, and latency.</li>
+<li>Use Aurora Serverless v2 or DynamoDB on-demand for variable/uncertain workloads when appropriate.</li>
+<li>Use provisioned capacity with auto scaling or reservations for predictable demand.</li>
+<li>Add cache only when the avoided database work justifies its cost and complexity.</li>
+<li>Use read replicas when read load is the bottleneck; do not use Multi-AZ merely for read scaling.</li>
+<li>Use DynamoDB TTL for asynchronous expired-item cleanup and choose indexes carefully because they consume storage/capacity.</li>
+<li>Evaluate RDS Proxy for connection efficiency, not as a general query cache.</li>
+</ul></article><article class="topic-card" data-topic-id="21-network-cost-optimisation" id="21-network-cost-optimisation"><div class="topic-heading"><h2 id="21-network-cost-optimisation-title">21. Network Cost Optimisation</h2><button aria-label="Mark 21. Network Cost Optimisation as reviewed" class="review-btn" data-review="21-network-cost-optimisation" type="button">○ Review</button></div><ul>
+<li>Data-transfer prices vary by service, Region, direction, and AZ; do not rely on one universal per-GB number.</li>
+<li>Cross-AZ traffic often incurs charges on one or both sides; design chatty components carefully.</li>
+<li>VPC endpoints can reduce NAT gateway processing charges for supported AWS services.</li>
+<li>Use gateway endpoints for S3/DynamoDB when appropriate; no hourly endpoint charge.</li>
+<li><strong>NAT gateway vs NAT instance:</strong> NAT gateway is managed, scalable, and usually the lower-operations answer; a NAT instance can be cheaper for very low throughput but requires EC2 sizing, patching, HA, and failover design.</li>
+<li>For zonal NAT, a shared gateway reduces count but can add cross-AZ cost and a shared failure dependency; same-AZ gateways preserve egress independence. Regional NAT is a separate current availability mode with automatic AZ expansion; verify its behavior and pricing rather than applying the zonal rule universally.</li>
+<li>CloudFront can reduce origin load and internet egress patterns for cacheable content.</li>
+<li>Keep data processing near the data when possible.</li>
+<li>Use Cost Explorer and the Cost and Usage Report to validate actual transfer paths.</li>
+</ul><hr/></article></section><section class="chapter reference" data-chapter="reference"><div class="chapter-header"><h1 id="22-high-yield-service-comparisons">22. High-Yield Service Comparisons</h1></div><article class="topic-card" data-topic-id="s3-vs-ebs-vs-efs" id="s3-vs-ebs-vs-efs"><div class="topic-heading"><h2 id="s3-vs-ebs-vs-efs-title">S3 vs EBS vs EFS</h2><button aria-label="Mark S3 vs EBS vs EFS as reviewed" class="review-btn" data-review="s3-vs-ebs-vs-efs" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>S3</th>
+<th>EBS</th>
+<th>EFS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Object</td>
+<td>Block</td>
+<td>File/NFS</td>
+</tr>
+<tr>
+<td>Regional service</td>
+<td>AZ-scoped volume</td>
+<td>Regional or One Zone file system</td>
+</tr>
+<tr>
+<td>API access</td>
+<td>Mounted block device</td>
+<td>Shared mounted file system</td>
+</tr>
+<tr>
+<td>Massive scale and durability</td>
+<td>Low-latency disks for EC2</td>
+<td>Multiple Linux clients</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="nat-gateway-vs-internet-gateway-vs-vpc-endpoint" id="nat-gateway-vs-internet-gateway-vs-vpc-endpoint"><div class="topic-heading"><h2 id="nat-gateway-vs-internet-gateway-vs-vpc-endpoint-title">NAT Gateway vs Internet Gateway vs VPC Endpoint</h2><button aria-label="Mark NAT Gateway vs Internet Gateway vs VPC Endpoint as reviewed" class="review-btn" data-review="nat-gateway-vs-internet-gateway-vs-vpc-endpoint" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Internet Gateway</td>
+<td>Enables public IPv4/IPv6 connectivity for appropriately routed/addressed resources</td>
+</tr>
+<tr>
+<td>NAT Gateway</td>
+<td>Private IPv4 workloads initiate outbound connections without accepting unsolicited inbound connections</td>
+</tr>
+<tr>
+<td>Egress-only Internet Gateway</td>
+<td>Outbound-only IPv6 access</td>
+</tr>
+<tr>
+<td>VPC endpoint</td>
+<td>Private access to supported services without NAT/IGW</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="vpn-vs-direct-connect" id="vpn-vs-direct-connect"><div class="topic-heading"><h2 id="vpn-vs-direct-connect-title">VPN vs Direct Connect</h2><button aria-label="Mark VPN vs Direct Connect as reviewed" class="review-btn" data-review="vpn-vs-direct-connect" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>VPN</th>
+<th>Direct Connect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Faster to establish</td>
+<td>Dedicated private circuit and more consistent network characteristics</td>
+</tr>
+<tr>
+<td>Runs over internet</td>
+<td>Takes longer and costs more</td>
+</tr>
+<tr>
+<td>Encrypted</td>
+<td>Not encrypted by default; add MACsec where supported or VPN overlay</td>
+</tr>
+<tr>
+<td>Useful as backup to Direct Connect</td>
+<td>Best for sustained hybrid traffic and consistency</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="cloudwatch-vs-cloudtrail-vs-config-vs-x-ray" id="cloudwatch-vs-cloudtrail-vs-config-vs-x-ray"><div class="topic-heading"><h2 id="cloudwatch-vs-cloudtrail-vs-config-vs-x-ray-title">CloudWatch vs CloudTrail vs Config vs X-Ray</h2><button aria-label="Mark CloudWatch vs CloudTrail vs Config vs X-Ray as reviewed" class="review-btn" data-review="cloudwatch-vs-cloudtrail-vs-config-vs-x-ray" type="button">○ Review</button></div><table>
+<thead>
+<tr>
+<th>Service</th>
+<th>Primary question answered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CloudWatch</td>
+<td>What is the workload doing now? Metrics/logs/alarms</td>
+</tr>
+<tr>
+<td>CloudTrail</td>
+<td>Who made this AWS API call?</td>
+</tr>
+<tr>
+<td>Config</td>
+<td>How was this resource configured, and was it compliant?</td>
+</tr>
+<tr>
+<td>X-Ray</td>
+<td>Where is latency/error occurring across a distributed request?</td>
+</tr>
+</tbody>
+</table></article><article class="topic-card" data-topic-id="secrets-manager-vs-kms" id="secrets-manager-vs-kms"><div class="topic-heading"><h2 id="secrets-manager-vs-kms-title">Secrets Manager vs KMS</h2><button aria-label="Mark Secrets Manager vs KMS as reviewed" class="review-btn" data-review="secrets-manager-vs-kms" type="button">○ Review</button></div><ul>
+<li>KMS protects cryptographic keys and performs cryptographic operations.</li>
+<li>Secrets Manager stores secret values and can rotate them; it commonly uses KMS for encryption.</li>
+</ul><hr/></article></section><section class="chapter patterns" data-chapter="patterns"><div class="chapter-header"><h1 id="23-architecture-patterns-to-memorise">23. Architecture Patterns to Memorise</h1></div><article class="topic-card" data-topic-id="secure-highly-available-web-application" id="secure-highly-available-web-application"><div class="topic-heading"><h2 id="secure-highly-available-web-application-title">Secure Highly Available Web Application</h2><button aria-label="Mark Secure Highly Available Web Application as reviewed" class="review-btn" data-review="secure-highly-available-web-application" type="button">○ Review</button></div><p>Resolve DNS, then send HTTPS through CloudFront/WAF to the ALB and application tier. From the application, database, cache and object-storage access are separate dependency paths—not a database-to-cache-to-S3 chain. <a href="#26a-vpc-anatomy">Use the canonical multi-AZ diagram</a>.</p></article><article class="topic-card" data-topic-id="serverless-event-driven-api" id="serverless-event-driven-api"><div class="topic-heading"><h2 id="serverless-event-driven-api-title">Serverless Event-Driven API</h2><button aria-label="Mark Serverless Event-Driven API as reviewed" class="review-btn" data-review="serverless-event-driven-api" type="button">○ Review</button></div><pre><code class="language-text">Client → API Gateway → Lambda → DynamoDB
+                          ├→ SQS for asynchronous work
+                          ├→ EventBridge for event routing
+                          └→ Step Functions for orchestration
+
+Static UI → CloudFront → private S3 origin using Origin Access Control
+</code></pre></article><article class="topic-card" data-topic-id="durable-fan-out" id="durable-fan-out"><div class="topic-heading"><h2 id="durable-fan-out-title">Durable Fan-Out</h2><button aria-label="Mark Durable Fan-Out as reviewed" class="review-btn" data-review="durable-fan-out" type="button">○ Review</button></div><pre><code class="language-text">Publisher → SNS topic
+              ├→ SQS queue A → consumer A
+              ├→ SQS queue B → consumer B
+              └→ Lambda / HTTP subscriber
+</code></pre></article><article class="topic-card" data-topic-id="hybrid-connectivity" id="hybrid-connectivity"><div class="topic-heading"><h2 id="hybrid-connectivity-title">Hybrid Connectivity</h2><button aria-label="Mark Hybrid Connectivity as reviewed" class="review-btn" data-review="hybrid-connectivity" type="button">○ Review</button></div><pre><code class="language-text">On-premises
+  ├→ Site-to-Site VPN (quick/encrypted)
+  └→ Direct Connect (dedicated/consistent)
+            ↓
+       Transit Gateway
+       ├→ shared services VPC
+       ├→ production VPC
+       └→ non-production VPC
+</code></pre></article><article class="topic-card" data-topic-id="data-lake-analytics" id="data-lake-analytics"><div class="topic-heading"><h2 id="data-lake-analytics-title">Data Lake Analytics</h2><button aria-label="Mark Data Lake Analytics as reviewed" class="review-btn" data-review="data-lake-analytics" type="button">○ Review</button></div><table><thead><tr><th>Relationship</th><th>Path</th></tr></thead><tbody><tr><td>Ingestion data</td><td>Sources → DataSync / Firehose / Kinesis → S3 objects</td></tr><tr><td>Query data</td><td>Athena / EMR / Redshift Spectrum read S3 objects</td></tr><tr><td>Metadata</td><td>Query engines consult Glue Data Catalog schemas/partitions; the catalog is not a mandatory data-transfer hop</td></tr><tr><td>Presentation</td><td>Quick Sight queries the selected analytical source</td></tr></tbody></table><hr/></article></section><section class="chapter traps" data-chapter="traps"><div class="chapter-header"><h1 id="24-frequent-exam-traps">24. Frequent Exam Traps</h1></div><ol>
+<li><strong>Classic RDS Multi-AZ DB instance is for HA; read replicas are for read scaling.</strong> But an RDS Multi-AZ DB cluster has readable standby DB instances.</li>
+<li><strong>IAM Identity Center is for workforce access; Cognito is for application end users.</strong></li>
+<li><strong>SCPs do not grant permissions.</strong> They restrict maximum permissions.</li>
+<li><strong>Security groups are stateful; NACLs are stateless.</strong></li>
+<li><strong>A NAT gateway does not allow unsolicited inbound internet traffic.</strong></li>
+<li><strong>VPC peering is non-transitive.</strong> Use Transit Gateway for hub-and-spoke at scale.</li>
+<li><strong>CloudFront caches; Global Accelerator accelerates network paths without caching.</strong></li>
+<li><strong>EBS is AZ-scoped; EFS is shared file storage; S3 is object storage.</strong></li>
+<li><strong>RDS Proxy manages connections; ElastiCache caches data.</strong></li>
+<li><strong>SQS Standard can deliver duplicates and does not guarantee strict order.</strong></li>
+<li><strong>S3 replication requires versioning and is not a substitute for every backup/retention requirement.</strong></li>
+<li><strong>Direct Connect is not encrypted by default.</strong></li>
+<li><strong>Regional RIs and Savings Plans do not reserve capacity; zonal RIs include a reservation in the specified AZ.</strong></li>
+<li><strong>Avoid hard-coded service quotas and prices unless the question states them.</strong> Many vary by engine, Region, account, or configuration.</li>
+<li><strong>Do not choose a complex self-managed solution when the question says least operational overhead.</strong></li>
+<li><strong>Do not choose Multi-Region solely because it sounds more resilient; match RTO/RPO and cost.</strong></li>
+<li><strong>Recognise current naming:</strong> Amazon Quick is the current product name; Quick Sight is its BI feature; the live SAA Domain 3 page may still say Amazon QuickSuite.</li>
+<li><strong>Elastic Transcoder is a legacy-scope anomaly:</strong> it is still named by the live SAA-C03 in-scope page despite AWS discontinuing the service in November 2025. Know what it was for, but do not choose it as a modern architecture recommendation.</li>
+</ol><hr/></section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="25-master-decision-trees">25. Master Decision Trees</h1></div>
+<article class="topic-card" data-topic-id="25a-compute-master-chooser" id="25a-compute-master-chooser"><div class="topic-heading"><h2>Compute chooser</h2><button class="review-btn" data-review="25a-compute-master-chooser" type="button">○ Review</button></div>
+<div class="flowline"><span class="flow-node">Need full OS / kernel / specialised software?</span><span class="flow-arrow">→</span><span class="flow-node primary">EC2</span></div>
+<div class="flowline"><span class="flow-node">Container workload?</span><span class="flow-arrow">→</span><span class="flow-node">AWS-native orchestration</span><span class="flow-arrow">→</span><span class="flow-node primary">ECS</span><span class="flow-arrow">/</span><span class="flow-node">Kubernetes ecosystem</span><span class="flow-arrow">→</span><span class="flow-node primary">EKS</span></div>
+<div class="flowline"><span class="flow-node">Want containers without managing servers?</span><span class="flow-arrow">→</span><span class="flow-node primary">Fargate</span></div>
+<div class="flowline"><span class="flow-node">Event-driven, stateless function?</span><span class="flow-arrow">→</span><span class="flow-node primary">Lambda</span></div>
+<div class="flowline"><span class="flow-node">Queued batch jobs?</span><span class="flow-arrow">→</span><span class="flow-node primary">AWS Batch</span><span class="flow-arrow">·</span><span class="flow-node">Hadoop / Spark?</span><span class="flow-arrow">→</span><span class="flow-node primary">EMR</span></div>
+<blockquote><p><strong>Exam rule:</strong> choose the least operationally complex compute option that still satisfies control, runtime, networking, portability, and scaling requirements.</p></blockquote>
+</article>
+<article class="topic-card" data-topic-id="25b-storage-master-chooser" id="25b-storage-master-chooser"><div class="topic-heading"><h2>Storage chooser</h2><button class="review-btn" data-review="25b-storage-master-chooser" type="button">○ Review</button></div>
+<div class="handbook-grid">
+<div class="decision-card"><h3>Object</h3><p><strong>S3</strong> — object API, massive scale, data lakes, static assets, backups, archives.</p></div>
+<div class="decision-card"><h3>Block</h3><p><strong>EBS</strong> — persistent EC2 block storage in one AZ. <strong>Instance store</strong> — ephemeral local storage.</p></div>
+<div class="decision-card"><h3>Shared Linux file</h3><p><strong>EFS</strong> — managed NFS, elastic shared file system across AZs.</p></div>
+<div class="decision-card"><h3>Specialised file</h3><p><strong>FSx</strong> — Windows File Server, Lustre, NetApp ONTAP, or OpenZFS.</p></div>
+</div>
+</article>
+<article class="topic-card" data-topic-id="25c-database-master-chooser" id="25c-database-master-chooser"><div class="topic-heading"><h2>Database chooser</h2><button class="review-btn" data-review="25c-database-master-chooser" type="button">○ Review</button></div>
+<div class="clue-grid">
+<div class="clue"><span>Relational + SQL + transactions</span><strong>RDS / Aurora</strong></div>
+<div class="clue"><span>Key-value/document at massive scale</span><strong>DynamoDB</strong></div>
+<div class="clue"><span>MongoDB-compatible document model</span><strong>DocumentDB</strong></div>
+<div class="clue"><span>Graph relationships</span><strong>Neptune</strong></div>
+<div class="clue"><span>Cassandra-compatible wide column</span><strong>Keyspaces</strong></div>
+<div class="clue"><span>Analytical warehouse / OLAP</span><strong>Redshift</strong></div>
+<div class="clue"><span>Cache relational/app data</span><strong>ElastiCache</strong></div>
+<div class="clue"><span>Accelerate DynamoDB-compatible reads</span><strong>DAX</strong></div>
+</div>
+</article>
+<article class="topic-card" data-topic-id="25d-integration-master-chooser" id="25d-integration-master-chooser"><div class="topic-heading"><h2>Messaging and workflow chooser</h2><button class="review-btn" data-review="25d-integration-master-chooser" type="button">○ Review</button></div>
+<div class="flowline"><span class="flow-node">Buffer / decouple one work stream</span><span class="flow-arrow">→</span><span class="flow-node primary">SQS</span></div>
+<div class="flowline"><span class="flow-node">Push one event to many subscribers</span><span class="flow-arrow">→</span><span class="flow-node primary">SNS</span></div>
+<div class="flowline"><span class="flow-node">Route events by rules across producers/consumers</span><span class="flow-arrow">→</span><span class="flow-node primary">EventBridge</span></div>
+<div class="flowline"><span class="flow-node">Coordinate multi-step stateful workflow</span><span class="flow-arrow">→</span><span class="flow-node primary">Step Functions</span></div>
+<div class="flowline"><span class="flow-node">Ordered/high-throughput stream for many consumers</span><span class="flow-arrow">→</span><span class="flow-node primary">Kinesis / MSK</span></div>
+</article>
+<article class="topic-card" data-topic-id="25e-connectivity-master-chooser" id="25e-connectivity-master-chooser"><div class="topic-heading"><h2>Connectivity chooser</h2><button class="review-btn" data-review="25e-connectivity-master-chooser" type="button">○ Review</button></div>
+<div class="clue-grid">
+<div class="clue"><span>Private subnet needs outbound public internet</span><strong>NAT Gateway</strong></div>
+<div class="clue"><span>Private access to S3/DynamoDB</span><strong>Gateway endpoint</strong></div>
+<div class="clue"><span>Private access to supported AWS/service endpoint</span><strong>Interface endpoint / PrivateLink</strong></div>
+<div class="clue"><span>Two VPCs, simple non-transitive link</span><strong>VPC peering</strong></div>
+<div class="clue"><span>Many VPCs / hub-and-spoke routing</span><strong>Transit Gateway</strong></div>
+<div class="clue"><span>Encrypted hybrid link over internet</span><strong>Site-to-Site VPN</strong></div>
+<div class="clue"><span>Dedicated private hybrid connectivity</span><strong>Direct Connect</strong></div>
+<div class="clue"><span>Global cacheable HTTP content</span><strong>CloudFront</strong></div>
+</div>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="26-networking-deep-dive">26. Networking Deep Dive</h1></div>
+<article class="topic-card" data-topic-id="26a-vpc-anatomy" id="26a-vpc-anatomy"><div class="topic-heading"><h2>Secure multi-AZ VPC anatomy</h2><button class="review-btn" data-review="26a-vpc-anatomy" type="button">○ Review</button></div>
+<figure class="arch-diagram"><svg viewBox="0 0 900 690" role="img" aria-label="Two AZ VPC with separate ingress, application and database tiers" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:620px"><defs><marker id="saa-flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8496b3"/></marker></defs>
+<g fill="none" stroke="#8496b3"><rect x="30" y="120" width="860" height="460" rx="12"/><rect x="50" y="155" width="295" height="400" rx="8" stroke-dasharray="6 4"/><rect x="375" y="155" width="295" height="400" rx="8" stroke-dasharray="6 4"/>
+<path d="M360 75V200" marker-end="url(#saa-flow)"/><path d="M210 255V320" marker-end="url(#saa-flow)"/><path d="M520 255V320" marker-end="url(#saa-flow)"/><path d="M210 380V445" marker-end="url(#saa-flow)"/><path d="M520 380L315 465" marker-end="url(#saa-flow)"/><path d="M315 480H415" marker-end="url(#saa-flow)"/>
+<path d="M620 350H780V470" marker-end="url(#saa-flow)"/><path d="M780 510V575" marker-end="url(#saa-flow)"/>
+</g><g font-family="sans-serif" font-size="15" text-anchor="middle" fill="#b9c6db"><text x="360" y="23">Route 53 resolves DNS · it is not an HTTP proxy</text><text x="360" y="58">Client → CloudFront + WAF → internet-facing ALB</text><text x="140" y="144">VPC · one Region</text><text x="195" y="180">Availability Zone A</text><text x="520" y="180">Availability Zone B</text></g>
+<g fill="#172336" stroke="#6483ae"><rect x="100" y="205" width="530" height="45" rx="8"/><rect x="110" y="325" width="200" height="50" rx="8"/><rect x="420" y="325" width="200" height="50" rx="8"/><rect x="110" y="450" width="200" height="50" rx="8"/><rect x="420" y="450" width="200" height="50" rx="8"/><rect x="715" y="470" width="170" height="40" rx="8"/><rect x="715" y="580" width="170" height="45" rx="8"/></g>
+<g fill="#e5edfa" font-family="sans-serif" font-size="15" text-anchor="middle"><text x="360" y="234">ALB · public subnet in each AZ</text><text x="210" y="355">App A · private subnet</text><text x="520" y="355">App B · private subnet</text><text x="210" y="480">RDS primary · DB subnet</text><text x="520" y="480">RDS standby · DB subnet</text><text x="800" y="496">S3 gateway endpoint</text><text x="800" y="608">Regional S3</text></g>
+<g fill="#b9c6db" font-family="sans-serif" font-size="13" text-anchor="middle"><text x="365" y="295">One Auto Scaling group spans both private app subnets</text><text x="205" y="415">Apps use primary endpoint</text><text x="365" y="515">Synchronous replication → standby; no application reads</text><text x="800" y="455">Endpoint in VPC</text><text x="800" y="647">S3 outside VPC</text><text x="360" y="610">Egress is separate: private app → chosen NAT mode → internet</text><text x="360" y="640">Cache access branches from the app, not from the database</text></g></svg><figcaption>Conventional RDS Multi-AZ DB instance shown; Multi-AZ DB clusters have different readable-instance behavior. Both apps access the primary endpoint. The endpoint box denotes the VPC route-table integration, not an S3 server inside a subnet.</figcaption></figure>
+<div class="callout-green"><strong>Think in boundaries:</strong> Region → VPC → AZ → subnet → route table → SG/NACL → endpoint. Many networking questions are really asking which boundary must be crossed and whether the traffic should be public or private.</div>
+</article>
+<article class="topic-card" data-topic-id="26b-load-balancer-chooser" id="26b-load-balancer-chooser"><div class="topic-heading"><h2>ALB vs NLB vs GWLB</h2><button class="review-btn" data-review="26b-load-balancer-chooser" type="button">○ Review</button></div>
+<table><thead><tr><th>Need</th><th>Choose</th><th>Why</th></tr></thead><tbody>
+<tr><td>HTTP/HTTPS routing, host/path rules, web apps</td><td><strong>ALB</strong></td><td>Application-layer routing; integrates naturally with web/container targets and WAF.</td></tr>
+<tr><td>TCP/UDP/TLS, very high connection performance, static IP need</td><td><strong>NLB</strong></td><td>Transport-layer load balancing and preserves source-IP-oriented network behaviour.</td></tr>
+<tr><td>Insert scalable firewalls/IDS/IPS/network virtual appliances</td><td><strong>GWLB</strong></td><td>Transparent service insertion and scaling of virtual network appliances.</td></tr>
+</tbody></table>
+<blockquote><p><strong>Trap:</strong> “lowest latency” alone does not automatically mean NLB. Protocol and routing requirements come first.</p></blockquote>
+</article>
+<article class="topic-card" data-topic-id="26c-security-group-nacl" id="26c-security-group-nacl"><div class="topic-heading"><h2>Security group vs NACL</h2><button class="review-btn" data-review="26c-security-group-nacl" type="button">○ Review</button></div>
+<table><thead><tr><th></th><th>Security group</th><th>Network ACL</th></tr></thead><tbody>
+<tr><td>Applied to</td><td>Network interfaces / resources</td><td>Subnet boundary</td></tr>
+<tr><td>State</td><td><strong>Stateful</strong></td><td><strong>Stateless</strong></td></tr>
+<tr><td>Rules</td><td>Allow rules</td><td>Allow and deny rules, evaluated by rule number</td></tr>
+<tr><td>Typical use</td><td>Primary workload firewall</td><td>Coarse subnet guardrail / explicit deny requirement</td></tr>
+</tbody></table>
+</article>
+<article class="topic-card" data-topic-id="26d-private-connectivity" id="26d-private-connectivity"><div class="topic-heading"><h2>Private connectivity patterns</h2><button class="review-btn" data-review="26d-private-connectivity" type="button">○ Review</button></div>
+<table><thead><tr><th>Pattern</th><th>Best when</th><th>Watch for</th></tr></thead><tbody>
+<tr><td>Gateway VPC endpoint</td><td>Private S3 or DynamoDB access</td><td>No NAT required for those service paths.</td></tr>
+<tr><td>Interface VPC endpoint</td><td>Private IP access to supported AWS/partner/your endpoint service</td><td>Powered by AWS PrivateLink; endpoint ENIs live in subnets.</td></tr>
+<tr><td>VPC peering</td><td>Direct private connectivity between a small number of VPCs</td><td>Non-transitive; overlapping CIDRs are a problem.</td></tr>
+<tr><td>Transit Gateway</td><td>Hub-and-spoke routing for many VPCs and hybrid networks</td><td>Central routing adds cost but reduces mesh complexity.</td></tr>
+<tr><td>PrivateLink endpoint service</td><td>Expose a service privately without full network-to-network routing</td><td>Good for provider/consumer isolation.</td></tr>
+</tbody></table>
+</article>
+<article class="topic-card" data-topic-id="26e-global-delivery" id="26e-global-delivery"><div class="topic-heading"><h2>Route 53, CloudFront, and Global Accelerator</h2><button class="review-btn" data-review="26e-global-delivery" type="button">○ Review</button></div>
+<div class="handbook-grid">
+<div class="decision-card"><h3>Route 53</h3><p>DNS routing. Know <strong>simple, weighted, latency, failover, geolocation, geoproximity, and multivalue</strong> patterns.</p></div>
+<div class="decision-card"><h3>CloudFront</h3><p>CDN + edge cache for HTTP(S) content; can front S3, ALB, API origins and integrate with WAF.</p></div>
+<div class="decision-card"><h3>Global Accelerator</h3><p>Global anycast static IP entry points using the AWS global network to reach healthy regional endpoints. <strong>No content caching.</strong></p></div>
+<div class="decision-card"><h3>Hybrid</h3><p>VPN gives encrypted internet-based connectivity. Direct Connect gives dedicated private connectivity; pair designs when resilient hybrid connectivity is required.</p></div>
+</div>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="27-storage-data-movement-deep-dive">27. Storage &amp; Data Movement</h1></div>
+<article class="topic-card" data-topic-id="27a-s3-protection-stack" id="27a-s3-protection-stack"><div class="topic-heading"><h2>S3 protection stack</h2><button class="review-btn" data-review="27a-s3-protection-stack" type="button">○ Review</button></div>
+<div class="flowline"><span class="flow-node">Accidental overwrite/delete</span><span class="flow-arrow">→</span><span class="flow-node primary">Versioning</span><span class="flow-arrow">→</span><span class="flow-node">Cross-account/Region copy?</span><span class="flow-arrow">→</span><span class="flow-node primary">Replication</span><span class="flow-arrow">→</span><span class="flow-node">Immutable WORM?</span><span class="flow-arrow">→</span><span class="flow-node primary">Object Lock</span></div>
+<ul><li><strong>Versioning</strong> preserves multiple object versions and helps recover from accidental deletion/overwrite.</li><li><strong>Object Lock</strong> provides WORM-style retention/legal hold protection and works with versioning.</li><li><strong>Lifecycle policies</strong> transition or expire objects/versions according to age and access pattern.</li><li><strong>Replication</strong> supports resilience, compliance, proximity, and account/Region separation scenarios.</li></ul>
+</article>
+<article class="topic-card" data-topic-id="27b-ebs-and-instance-store" id="27b-ebs-and-instance-store"><div class="topic-heading"><h2>EBS vs instance store — advanced clue set</h2><button class="review-btn" data-review="27b-ebs-and-instance-store" type="button">○ Review</button></div>
+<table><thead><tr><th>Requirement</th><th>Choice</th></tr></thead><tbody>
+<tr><td>General-purpose SSD with independent IOPS/throughput tuning</td><td><strong>gp3</strong></td></tr>
+<tr><td>Mission-critical high-IOPS / low-latency block storage</td><td><strong>io2</strong></td></tr>
+<tr><td>Large sequential throughput workload</td><td><strong>st1</strong></td></tr>
+<tr><td>Lowest-cost infrequently accessed HDD</td><td><strong>sc1</strong></td></tr>
+<tr><td>Ephemeral ultra-low-latency local scratch/cache</td><td><strong>Instance store</strong></td></tr>
+<tr><td>One EBS volume attached to multiple instances in the same AZ, application coordinates writes</td><td><strong>EBS Multi-Attach on io1/io2</strong></td></tr>
+</tbody></table>
+</article>
+<article class="topic-card" data-topic-id="27c-efs-fsx-chooser" id="27c-efs-fsx-chooser"><div class="topic-heading"><h2>EFS and FSx chooser</h2><button class="review-btn" data-review="27c-efs-fsx-chooser" type="button">○ Review</button></div>
+<div class="clue-grid">
+<div class="clue"><span>Elastic shared NFS for Linux across AZs</span><strong>EFS</strong></div>
+<div class="clue"><span>Windows SMB + Microsoft AD integration</span><strong>FSx for Windows File Server</strong></div>
+<div class="clue"><span>High-performance HPC / ML / parallel file workloads</span><strong>FSx for Lustre</strong></div>
+<div class="clue"><span>Enterprise NAS / NetApp features and multiprotocol access</span><strong>FSx for NetApp ONTAP</strong></div>
+<div class="clue"><span>ZFS features / migrate Linux ZFS workloads</span><strong>FSx for OpenZFS</strong></div>
+<div class="clue"><span>Object storage, data lake, static assets</span><strong>S3</strong></div>
+</div>
+</article>
+<article class="topic-card" data-topic-id="27d-data-movement-chooser" id="27d-data-movement-chooser"><div class="topic-heading"><h2>Migration and transfer chooser</h2><button class="review-btn" data-review="27d-data-movement-chooser" type="button">○ Review</button></div>
+<table><thead><tr><th>Need</th><th>Service</th><th>Exam clue</th></tr></thead><tbody>
+<tr><td>Online file/object transfer between storage systems and AWS</td><td><strong>DataSync</strong></td><td>Accelerated managed data movement; scheduled/recurring transfers.</td></tr>
+<tr><td>Keep on-premises applications using file/block/tape interfaces while backing with AWS storage</td><td><strong>Storage Gateway</strong></td><td>Hybrid storage bridge.</td></tr>
+<tr><td>SFTP/FTPS/FTP into S3/EFS</td><td><strong>Transfer Family</strong></td><td>Managed file transfer protocols.</td></tr>
+<tr><td>Offline/edge transfer where network is constrained</td><td><strong>Snow Family</strong> (check existing-customer eligibility)</td><td>Physical/edge device movement.</td></tr>
+<tr><td>Migrate databases with minimal downtime</td><td><strong>AWS DMS</strong></td><td>Database replication/migration; often combine with schema conversion when engines differ.</td></tr>
+<tr><td>Lift-and-shift servers to AWS</td><td><strong>Application Migration Service</strong></td><td>Replicate source servers and launch converted workloads in AWS.</td></tr>
+</tbody></table>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="28-database-decision-handbook">28. Database Decision Handbook</h1></div>
+<article class="topic-card" data-topic-id="28a-db-model-map" id="28a-db-model-map"><div class="topic-heading"><h2>Choose the data model before the product</h2><button class="review-btn" data-review="28a-db-model-map" type="button">○ Review</button></div>
+<div class="arch-diagram"><div class="arch-row"><div class="arch-box data">Relational<br/>RDS / Aurora</div><div class="arch-box data">Key-value<br/>DynamoDB</div><div class="arch-box data">Document<br/>DocumentDB</div><div class="arch-box data">Graph<br/>Neptune</div><div class="arch-box data">Warehouse<br/>Redshift</div></div><div class="arch-caption">Start from access pattern, consistency, scale, relationship model, latency, and operational constraints — not from familiarity.</div></div>
+</article>
+<article class="topic-card" data-topic-id="28b-rds-aurora-ha" id="28b-rds-aurora-ha"><div class="topic-heading"><h2>RDS / Aurora: HA, reads, and global resilience</h2><button class="review-btn" data-review="28b-rds-aurora-ha" type="button">○ Review</button></div>
+<table><thead><tr><th>Requirement</th><th>Pattern</th></tr></thead><tbody>
+<tr><td>Classic RDS instance high availability with automatic failover</td><td><strong>RDS Multi-AZ DB instance</strong></td></tr>
+<tr><td>RDS Multi-AZ plus readable standby instances</td><td><strong>RDS Multi-AZ DB cluster</strong></td></tr>
+<tr><td>Scale reads / reporting, potentially cross-Region depending on engine</td><td><strong>RDS read replica</strong></td></tr>
+<tr><td>Aurora HA and read scaling</td><td><strong>Aurora Replicas + reader endpoint</strong></td></tr>
+<tr><td>Low-latency global reads / multi-Region DR for Aurora</td><td><strong>Aurora Global Database</strong></td></tr>
+<tr><td>Connection storms from Lambda/app fleets</td><td><strong>RDS Proxy</strong></td></tr>
+</tbody></table>
+</article>
+<article class="topic-card" data-topic-id="28c-dynamodb-patterns" id="28c-dynamodb-patterns"><div class="topic-heading"><h2>DynamoDB pattern recognition</h2><button class="review-btn" data-review="28c-dynamodb-patterns" type="button">○ Review</button></div>
+<ul><li><strong>On-demand capacity:</strong> unpredictable/spiky traffic or simple pay-per-request operations.</li><li><strong>Provisioned capacity:</strong> predictable workload where capacity can be planned and auto scaled.</li><li><strong>Global Tables:</strong> multi-Region, multi-active DynamoDB replication.</li><li><strong>DAX:</strong> in-memory acceleration for compatible read-heavy DynamoDB access patterns.</li><li><strong>Streams:</strong> capture item-level changes for downstream processing.</li><li><strong>TTL:</strong> asynchronous cleanup of expired items; useful for sessions, temporary records, and retention patterns.</li></ul>
+</article>
+<article class="topic-card" data-topic-id="28d-cache-or-proxy" id="28d-cache-or-proxy"><div class="topic-heading"><h2>Cache vs connection proxy</h2><button class="review-btn" data-review="28d-cache-or-proxy" type="button">○ Review</button></div>
+<div class="clue-grid"><div class="clue"><span>Reduce repeated reads / session cache / app cache</span><strong>ElastiCache</strong></div><div class="clue"><span>Pool and manage DB connections</span><strong>RDS Proxy</strong></div><div class="clue"><span>DynamoDB read cache</span><strong>DAX</strong></div><div class="clue"><span>Global edge cache of HTTP content</span><strong>CloudFront</strong></div></div>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="29-security-control-map">29. Security Control Map</h1></div>
+<article class="topic-card" data-topic-id="29a-identity-control-plane" id="29a-identity-control-plane"><div class="topic-heading"><h2>Identity and account control plane</h2><button class="review-btn" data-review="29a-identity-control-plane" type="button">○ Review</button></div>
+<div class="arch-diagram"><div class="arch-row"><div class="arch-box sec">Organizations<br/>SCP guardrails</div><div class="arch-box sec">Control Tower<br/>landing zone</div><div class="arch-box sec">IAM Identity Center<br/>workforce SSO</div><div class="arch-box sec">IAM roles + STS<br/>workloads/cross-account</div><div class="arch-box sec">Cognito<br/>app customers</div></div></div>
+<blockquote><p><strong>Key distinction:</strong> SCPs define a maximum permission boundary for member accounts/OUs; they do not grant permissions. Identity/resource policies still need to allow the action.</p></blockquote>
+</article>
+<article class="topic-card" data-topic-id="29b-encryption-chooser" id="29b-encryption-chooser"><div class="topic-heading"><h2>KMS vs CloudHSM vs Secrets Manager vs ACM</h2><button class="review-btn" data-review="29b-encryption-chooser" type="button">○ Review</button></div>
+<table><thead><tr><th>Need</th><th>Choose</th></tr></thead><tbody>
+<tr><td>Managed encryption keys integrated with AWS services</td><td><strong>AWS KMS</strong></td></tr>
+<tr><td>Dedicated HSMs with direct cryptographic control requirements</td><td><strong>AWS CloudHSM</strong></td></tr>
+<tr><td>Store/rotate application or database credentials</td><td><strong>AWS Secrets Manager</strong></td></tr>
+<tr><td>Provision/manage TLS certificates for supported AWS integrations</td><td><strong>AWS Certificate Manager</strong></td></tr>
+</tbody></table>
+</article>
+<article class="topic-card" data-topic-id="29c-detection-services" id="29c-detection-services"><div class="topic-heading"><h2>Threat, vulnerability, and data-security services</h2><button class="review-btn" data-review="29c-detection-services" type="button">○ Review</button></div>
+<div class="clue-grid">
+<div class="clue"><span>Threat detection from AWS telemetry</span><strong>GuardDuty</strong></div>
+<div class="clue"><span>Workload vulnerability/exposure assessment</span><strong>Inspector</strong></div>
+<div class="clue"><span>Discover/classify sensitive data in S3</span><strong>Macie</strong></div>
+<div class="clue"><span>Aggregate/prioritise security findings</span><strong>Security Hub</strong></div>
+<div class="clue"><span>Investigate relationships/root cause of security findings</span><strong>Detective</strong></div>
+<div class="clue"><span>Assess configuration against rules/compliance</span><strong>AWS Config</strong></div>
+</div>
+</article>
+<article class="topic-card" data-topic-id="29d-network-defense" id="29d-network-defense"><div class="topic-heading"><h2>Network and application defence</h2><button class="review-btn" data-review="29d-network-defense" type="button">○ Review</button></div>
+<div class="flowline"><span class="flow-node">L3/L4 workload rules</span><span class="flow-arrow">→</span><span class="flow-node primary">Security groups / NACLs</span></div>
+<div class="flowline"><span class="flow-node">Web exploits / HTTP request filtering</span><span class="flow-arrow">→</span><span class="flow-node primary">AWS WAF</span></div>
+<div class="flowline"><span class="flow-node">DDoS protection</span><span class="flow-arrow">→</span><span class="flow-node primary">AWS Shield</span></div>
+<div class="flowline"><span class="flow-node">Managed VPC network firewall / stateful traffic inspection</span><span class="flow-arrow">→</span><span class="flow-node primary">AWS Network Firewall</span></div>
+<div class="flowline"><span class="flow-node">Centrally manage WAF/Shield/network firewall policies</span><span class="flow-arrow">→</span><span class="flow-node primary">Firewall Manager</span></div>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="30-event-driven-integration-handbook">30. Event-Driven &amp; Integration</h1></div>
+<article class="topic-card" data-topic-id="30a-decoupled-pattern" id="30a-decoupled-pattern"><div class="topic-heading"><h2>Default resilient asynchronous pattern</h2><button class="review-btn" data-review="30a-decoupled-pattern" type="button">○ Review</button></div>
+<div class="arch-diagram"><div class="arch-row"><div class="arch-box edge">Producer</div><div class="arch-arrow">→</div><div class="arch-box accent">SQS</div><div class="arch-arrow">→</div><div class="arch-box">Worker fleet</div><div class="arch-arrow">→</div><div class="arch-box data">Database</div></div><div class="arch-row" style="margin-top:10px"><div class="arch-box sec">Retry policy</div><div class="arch-box sec">DLQ</div><div class="arch-box sec">Idempotency</div><div class="arch-box sec">CloudWatch alarms</div></div><div class="arch-caption">Queue depth absorbs bursts; consumers scale independently; failed messages are isolated rather than blocking the whole workload.</div></div>
+</article>
+<article class="topic-card" data-topic-id="30b-service-comparison" id="30b-service-comparison"><div class="topic-heading"><h2>SQS vs SNS vs EventBridge vs Step Functions vs Kinesis vs MQ</h2><button class="review-btn" data-review="30b-service-comparison" type="button">○ Review</button></div>
+<table><thead><tr><th>Service</th><th>Use it when</th><th>Core mental model</th></tr></thead><tbody>
+<tr><td><strong>SQS</strong></td><td>Buffer work and decouple producers/consumers</td><td>Durable queue</td></tr>
+<tr><td><strong>SNS</strong></td><td>Push the same message to multiple subscribers</td><td>Pub/sub fan-out</td></tr>
+<tr><td><strong>EventBridge</strong></td><td>Route events by rules between many AWS/SaaS/custom producers and targets</td><td>Event bus / router</td></tr>
+<tr><td><strong>Step Functions</strong></td><td>Coordinate stateful multi-step workflows, retries, branches, waits</td><td>Workflow orchestrator</td></tr>
+<tr><td><strong>Kinesis</strong></td><td>Real-time ordered stream processing with multiple consumers</td><td>Streaming log</td></tr>
+<tr><td><strong>Amazon MQ</strong></td><td>Need managed traditional message broker/protocol compatibility</td><td>Broker migration/compatibility</td></tr>
+</tbody></table>
+</article>
+<article class="topic-card" data-topic-id="30c-ordering-delivery" id="30c-ordering-delivery"><div class="topic-heading"><h2>Ordering, retries, and idempotency</h2><button class="review-btn" data-review="30c-ordering-delivery" type="button">○ Review</button></div>
+<ul><li><strong>SQS Standard:</strong> high throughput, at-least-once delivery, best-effort ordering — consumers should be idempotent.</li><li><strong>SQS FIFO:</strong> choose when strict ordering and deduplication semantics are required within the queue design.</li><li><strong>DLQ:</strong> isolates repeatedly failing messages for investigation/replay.</li><li><strong>Visibility timeout:</strong> prevents another consumer from immediately processing a message already being handled.</li></ul>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="31-observability-automation-governance">31. Observability, Automation &amp; Governance</h1></div>
+<article class="topic-card" data-topic-id="31a-observability-map" id="31a-observability-map"><div class="topic-heading"><h2>What happened? What changed? Is it compliant?</h2><button class="review-btn" data-review="31a-observability-map" type="button">○ Review</button></div>
+<div class="clue-grid">
+<div class="clue"><span>Metrics, logs, alarms, dashboards</span><strong>CloudWatch</strong></div>
+<div class="clue"><span>Who called which AWS API / account activity</span><strong>CloudTrail</strong></div>
+<div class="clue"><span>Resource configuration history and compliance rules</span><strong>AWS Config</strong></div>
+<div class="clue"><span>Distributed request traces</span><strong>AWS X-Ray</strong></div>
+<div class="clue"><span>Operational management, patching, run commands, parameters</span><strong>Systems Manager</strong></div>
+<div class="clue"><span>Infrastructure as code / reproducible stacks</span><strong>CloudFormation</strong></div>
+</div>
+</article>
+<article class="topic-card" data-topic-id="31b-governance-map" id="31b-governance-map"><div class="topic-heading"><h2>Multi-account governance map</h2><button class="review-btn" data-review="31b-governance-map" type="button">○ Review</button></div>
+<div class="flowline"><span class="flow-node primary">Organizations</span><span class="flow-arrow">→</span><span class="flow-node">OUs + accounts + SCPs</span><span class="flow-arrow">→</span><span class="flow-node primary">Control Tower</span><span class="flow-arrow">→</span><span class="flow-node">Landing zone / governed account setup</span></div>
+<div class="flowline"><span class="flow-node primary">IAM Identity Center</span><span class="flow-arrow">→</span><span class="flow-node">Workforce SSO + permission sets</span></div>
+<div class="flowline"><span class="flow-node primary">AWS Config / CloudTrail / Security Hub</span><span class="flow-arrow">→</span><span class="flow-node">Continuous evidence and central visibility</span></div>
+</article>
+<article class="topic-card" data-topic-id="31c-optimisation-services" id="31c-optimisation-services"><div class="topic-heading"><h2>Advisor services are not the same thing</h2><button class="review-btn" data-review="31c-optimisation-services" type="button">○ Review</button></div>
+<table><thead><tr><th>Service</th><th>Think</th></tr></thead><tbody><tr><td><strong>Trusted Advisor</strong></td><td>Cross-account/service best-practice checks such as cost, security, fault tolerance, performance, and limits.</td></tr><tr><td><strong>Compute Optimizer</strong></td><td>Rightsizing recommendations using utilisation data for supported compute resources.</td></tr><tr><td><strong>Well-Architected Tool</strong></td><td>Structured architecture review against Well-Architected principles.</td></tr><tr><td><strong>AWS Budgets</strong></td><td>Threshold/forecast alerts and budget controls.</td></tr></tbody></table>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="32-cost-architecture-decision-rules">32. Cost Architecture Decision Rules</h1></div>
+<article class="topic-card" data-topic-id="32a-cost-order" id="32a-cost-order"><div class="topic-heading"><h2>Cost optimisation is an architecture sequence</h2><button class="review-btn" data-review="32a-cost-order" type="button">○ Review</button></div>
+<div class="exam-rule"><div class="n">1</div><div><strong>Remove waste.</strong> Delete idle/unattached resources before negotiating discounts.</div></div>
+<div class="exam-rule"><div class="n">2</div><div><strong>Right-size.</strong> Match instance, DB, storage, and provisioned capacity to real workload.</div></div>
+<div class="exam-rule"><div class="n">3</div><div><strong>Make demand elastic.</strong> Auto Scaling, serverless, schedules, and queue buffering reduce paid idle capacity.</div></div>
+<div class="exam-rule"><div class="n">4</div><div><strong>Choose commitment.</strong> Savings Plans / Reserved pricing only after baseline demand is understood; Spot for interruptible workloads.</div></div>
+<div class="exam-rule"><div class="n">5</div><div><strong>Optimise storage and transfer.</strong> Lifecycle/tiering, compression, endpoints, CDN, and topology can dominate cost.</div></div>
+</article>
+<article class="topic-card" data-topic-id="32b-transfer-cost-traps" id="32b-transfer-cost-traps"><div class="topic-heading"><h2>Network cost traps</h2><button class="review-btn" data-review="32b-transfer-cost-traps" type="button">○ Review</button></div>
+<ul><li>Do not send S3/DynamoDB traffic through NAT when a suitable gateway endpoint solves the private-access requirement.</li><li>Cross-AZ traffic can introduce transfer cost; resilience benefits still come first when HA is required.</li><li>CloudFront can reduce repeated origin transfer and improve global delivery for cacheable content.</li><li>For heavy predictable hybrid transfer, compare Direct Connect economics with internet/VPN transfer and operational requirements.</li><li>For unpredictable workloads, fixed always-on capacity can be more expensive than elastic/serverless designs.</li></ul>
+</article>
+<article class="topic-card" data-topic-id="32c-storage-cost" id="32c-storage-cost"><div class="topic-heading"><h2>Storage cost logic</h2><button class="review-btn" data-review="32c-storage-cost" type="button">○ Review</button></div>
+<div class="flowline"><span class="flow-node">Unknown access</span><span class="flow-arrow">→</span><span class="flow-node primary">S3 Intelligent-Tiering</span></div>
+<div class="flowline"><span class="flow-node">Known infrequent + multi-AZ needed</span><span class="flow-arrow">→</span><span class="flow-node primary">Standard-IA</span></div>
+<div class="flowline"><span class="flow-node">Re-creatable + single-AZ acceptable</span><span class="flow-arrow">→</span><span class="flow-node primary">One Zone-IA</span></div>
+<div class="flowline"><span class="flow-node">Archive</span><span class="flow-arrow">→</span><span class="flow-node">Instant / Flexible / Deep Archive based on retrieval requirement</span></div>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="33-exam-clue-dictionary">33. Exam Clue Dictionary</h1></div>
+<article class="topic-card" data-topic-id="33a-clue-dictionary" id="33a-clue-dictionary"><div class="topic-heading"><h2>Question says X → think Y</h2><button class="review-btn" data-review="33a-clue-dictionary" type="button">○ Review</button></div>
+<div class="clue-grid">
+<div class="clue"><span>“decouple components” / absorb burst</span><strong>SQS</strong></div>
+<div class="clue"><span>“fan out to many subscribers”</span><strong>SNS</strong></div>
+<div class="clue"><span>“route events by source/detail rules”</span><strong>EventBridge</strong></div>
+<div class="clue"><span>“multi-step workflow with retries/branches”</span><strong>Step Functions</strong></div>
+<div class="clue"><span>“ordered real-time stream, many consumers”</span><strong>Kinesis / MSK</strong></div>
+<div class="clue"><span>“workforce SSO across AWS accounts”</span><strong>IAM Identity Center</strong></div>
+<div class="clue"><span>“customer sign-up/sign-in for an app”</span><strong>Cognito</strong></div>
+<div class="clue"><span>“maximum permissions across OU/accounts”</span><strong>SCP</strong></div>
+<div class="clue"><span>“private S3 from VPC, no NAT”</span><strong>Gateway endpoint</strong></div>
+<div class="clue"><span>“private service exposure, no full VPC routing”</span><strong>PrivateLink</strong></div>
+<div class="clue"><span>“many VPCs, transitive hub”</span><strong>Transit Gateway</strong></div>
+<div class="clue"><span>“global static/dynamic HTTP cache”</span><strong>CloudFront</strong></div>
+<div class="clue"><span>“global static IPs, no cache”</span><strong>Global Accelerator</strong></div>
+<div class="clue"><span>“web path/host routing”</span><strong>ALB</strong></div>
+<div class="clue"><span>“TCP/UDP/static IP/extreme connection performance”</span><strong>NLB</strong></div>
+<div class="clue"><span>“insert third-party firewall appliance”</span><strong>GWLB</strong></div>
+<div class="clue"><span>“shared NFS Linux file system”</span><strong>EFS</strong></div>
+<div class="clue"><span>“Windows SMB shared storage”</span><strong>FSx Windows</strong></div>
+<div class="clue"><span>“HPC parallel file system”</span><strong>FSx Lustre</strong></div>
+<div class="clue"><span>“immutable/WORM S3 objects”</span><strong>S3 Object Lock</strong></div>
+<div class="clue"><span>“read scaling, reporting query”</span><strong>Read replica</strong></div>
+<div class="clue"><span>“relational HA/failover”</span><strong>Multi-AZ</strong></div>
+<div class="clue"><span>“connection storm to relational DB”</span><strong>RDS Proxy</strong></div>
+<div class="clue"><span>“single-digit ms key-value at scale”</span><strong>DynamoDB</strong></div>
+<div class="clue"><span>“discover PII/sensitive S3 objects”</span><strong>Macie</strong></div>
+<div class="clue"><span>“threat detection from AWS telemetry”</span><strong>GuardDuty</strong></div>
+<div class="clue"><span>“API call audit trail”</span><strong>CloudTrail</strong></div>
+<div class="clue"><span>“configuration compliance/history”</span><strong>AWS Config</strong></div>
+<div class="clue"><span>“metrics/logs/alarms”</span><strong>CloudWatch</strong></div>
+<div class="clue"><span>“distributed request trace”</span><strong>X-Ray</strong></div>
+<div class="clue"><span>“online accelerated file migration”</span><strong>DataSync</strong></div>
+<div class="clue"><span>“SFTP into S3”</span><strong>Transfer Family</strong></div>
+<div class="clue"><span>“offline transfer / limited bandwidth”</span><strong>Snow Family</strong> (check existing-customer eligibility)</div>
+<div class="clue"><span>“lift-and-shift servers”</span><strong>Application Migration Service</strong></div>
+</div>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="34-multi-response-elimination-framework">34. Multi-Response Elimination Framework</h1></div>
+<article class="topic-card" data-topic-id="34a-elimination" id="34a-elimination"><div class="topic-heading"><h2>Use hard constraints before feature recall</h2><button class="review-btn" data-review="34a-elimination" type="button">○ Review</button></div>
+<div class="exam-rule"><div class="n">1</div><div><strong>Underline the non-negotiables:</strong> protocol, RTO/RPO, consistency, latency, private-only, managed/no-ops, scale, compliance, and cost wording.</div></div>
+<div class="exam-rule"><div class="n">2</div><div><strong>Eliminate architecture violations:</strong> public path when private is required, single AZ when HA is required, cache when authoritative storage is required, read replica when automatic HA is required.</div></div>
+<div class="exam-rule"><div class="n">3</div><div><strong>Prefer managed AWS primitives</strong> when the question explicitly asks for least operational overhead or most scalable/elastic approach.</div></div>
+<div class="exam-rule"><div class="n">4</div><div><strong>Separate availability from performance.</strong> Multi-AZ, replicas, cache, queues, and CDN solve different problems even when all can improve user experience.</div></div>
+<div class="exam-rule"><div class="n">5</div><div><strong>For multi-response questions, test each option independently</strong> against every hard requirement. Do not select a pair merely because the services commonly appear together.</div></div>
+<div class="callout-red"><strong>Common distractor pattern:</strong> a technically possible answer that requires more custom servers, scripts, NAT traffic, manual failover, or undifferentiated operations than a managed AWS-native option.</div>
+</article>
+<article class="topic-card" data-topic-id="34b-wording-map" id="34b-wording-map"><div class="topic-heading"><h2>Translate exam adjectives into architecture criteria</h2><button class="review-btn" data-review="34b-wording-map" type="button">○ Review</button></div>
+<table><thead><tr><th>Wording</th><th>Interpret as</th></tr></thead><tbody><tr><td>“Most resilient”</td><td>Failure-domain redundancy, automated failover, durable state, no single point of failure.</td></tr><tr><td>“Least operational overhead”</td><td>Managed/serverless before self-managed compute where requirements allow.</td></tr><tr><td>“Most cost-effective”</td><td>Meet every requirement first, then choose the lowest total architecture cost.</td></tr><tr><td>“Highly available”</td><td>Multi-AZ / redundant service design, health checks, and automatic recovery.</td></tr><tr><td>“Near real time”</td><td>Streaming/event processing rather than periodic batch.</td></tr><tr><td>“Private”</td><td>Private IP path/endpoints/hybrid connectivity; avoid unnecessary internet/NAT route.</td></tr></tbody></table>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="35-architecture-drills">35. Architecture Drills</h1></div>
+<article class="topic-card" data-topic-id="35a-drills" id="35a-drills"><div class="topic-heading"><h2>Reveal the answer only after drawing your own</h2><button class="review-btn" data-review="35a-drills" type="button">○ Review</button></div>
+<details class="drill"><summary>1 · Private application servers must download objects from S3 without internet/NAT</summary><div class="answer"><strong>Answer:</strong> S3 gateway VPC endpoint + route-table association + appropriate S3/IAM policies. The endpoint removes the need to route this traffic through a NAT gateway.</div></details>
+<details class="drill"><summary>2 · An e-commerce API sees sudden bursts that overwhelm the order-processing workers</summary><div class="answer"><strong>Answer:</strong> decouple ingestion from processing with SQS; scale workers based on queue demand; use retries/DLQ and idempotent consumers.</div></details>
+<details class="drill"><summary>3 · Global users need faster delivery of cacheable web assets and protection from common web exploits</summary><div class="answer"><strong>Answer:</strong> CloudFront at the edge with AWS WAF, backed by S3/ALB as appropriate. Global Accelerator is not a content cache.</div></details>
+<details class="drill"><summary>4 · A relational database must automatically fail over within the Region; reporting also needs read scale</summary><div class="answer"><strong>Answer:</strong> combine an HA deployment (for example RDS Multi-AZ/Aurora architecture) with readable replicas/reader endpoints appropriate to the engine. Do not confuse HA standby with read scaling.</div></details>
+<details class="drill"><summary>5 · A company has 80 VPCs and on-premises networks and wants central routing instead of a peering mesh</summary><div class="answer"><strong>Answer:</strong> AWS Transit Gateway hub-and-spoke. VPC peering is non-transitive and becomes operationally complex at this scale.</div></details>
+<details class="drill"><summary>6 · Security needs to identify which principal changed a production security group yesterday</summary><div class="answer"><strong>Answer:</strong> CloudTrail for API/account activity; AWS Config is useful alongside it to inspect resource configuration history/compliance state.</div></details>
+<details class="drill"><summary>7 · A Linux analytics workload needs a very high-performance shared parallel file system linked with S3 datasets</summary><div class="answer"><strong>Answer:</strong> FSx for Lustre is the first service to evaluate; ordinary EFS is for general shared NFS rather than HPC-style parallel-file workloads.</div></details>
+<details class="drill"><summary>8 · A company must expose an internal service privately to many consumer VPCs without establishing full network routing between them</summary><div class="answer"><strong>Answer:</strong> AWS PrivateLink / interface endpoints, rather than full-mesh VPC peering.</div></details>
+</article>
+</section><section class="chapter handbook" data-chapter="handbook">
+<div class="chapter-header"><h1 id="36-current-vs-legacy-scope-notes">36. Current vs Legacy Scope Notes</h1></div>
+<article class="topic-card" data-topic-id="36a-scope-discipline" id="36a-scope-discipline"><div class="topic-heading"><h2>Current AWS architecture ≠ certification scope ≠ old study material</h2><button class="review-btn" data-review="36a-scope-discipline" type="button">○ Review</button></div>
+<table><thead><tr><th>Situation</th><th>How this handbook treats it</th></tr></thead><tbody>
+<tr><td>Service is on the live SAA-C03 in-scope list</td><td>Know at least its purpose and common architecture clues; depth varies by exam relevance.</td></tr>
+<tr><td>Service has been retired but remains on the live exam list</td><td><strong>Legacy recognition only.</strong> Do not recommend it as a modern architecture choice.</td></tr>
+<tr><td>New AWS service exists but is not in the current guide</td><td>Do not prioritise it merely because it is new; use the blueprint as the preparation boundary.</td></tr>
+<tr><td>Product has been renamed</td><td>Use the current exam-guide label and retain aliases only to decode older questions/notes.</td></tr>
+<tr><td>Quota or pricing number changes</td><td>Prefer architectural principle over memorising fragile numbers unless the exam repeatedly depends on that limit.</td></tr>
+</tbody></table>
+<div class="callout-green"><strong>August 2026 examples:</strong> the official in-scope list uses <strong>Amazon Quick</strong>; Amazon Quick Sight is the BI component inside Quick. Amazon Elastic Transcoder still appears in the current SAA-C03 scope even though AWS discontinued the service in 2025, so treat it as recognition-only.</div>
+</article>
+</section><section class="chapter scope" data-chapter="scope"><div class="chapter-header"><h1 id="37-official-in-scope-service-map-current-guide">37. Official In-Scope Service Map (Current Guide)</h1></div><blockquote><p>Verified 14 August 2026 against the live AWS SAA-C03 exam guide and current in-scope service list. AWS states that the list is non-exhaustive and subject to change. “In scope” is an exam-recognition boundary, not necessarily a recommendation for new architectures.</p></blockquote><p>Focus deeply on the bold/high-frequency services and understand the remaining services at use-case/recognition level.</p><h3>Analytics</h3><p>Amazon Athena, AWS Data Exchange, <strong>Amazon Data Firehose</strong>, Amazon EMR, <strong>AWS Glue</strong>, <strong>Amazon Kinesis</strong>, AWS Lake Formation, Amazon MSK, Amazon OpenSearch Service, <strong>Amazon Quick</strong> (Quick Sight BI feature; Domain 3 may say Amazon QuickSuite), <strong>Amazon Redshift</strong>.</p><h3>Application Integration</h3><p>Amazon AppFlow, AWS AppSync, <strong>Amazon EventBridge</strong>, Amazon MQ, <strong>Amazon SNS</strong>, <strong>Amazon SQS</strong>, <strong>AWS Step Functions</strong>.</p><h3>AWS Cost Management</h3><p><strong>AWS Budgets</strong>, <strong>AWS Cost and Usage Report</strong>, <strong>AWS Cost Explorer</strong>, <strong>Savings Plans</strong>.</p><h3>Compute</h3><p>AWS Batch, <strong>Amazon EC2</strong>, <strong>Amazon EC2 Auto Scaling</strong>, AWS Elastic Beanstalk, AWS Outposts, AWS Serverless Application Repository, VMware Cloud on AWS, AWS Wavelength.</p><h3>Containers</h3><p>Amazon ECR, <strong>Amazon ECS</strong>, Amazon ECS Anywhere, <strong>Amazon EKS</strong>, Amazon EKS Anywhere, Amazon EKS Distro.</p><h3>Database</h3><p><strong>Amazon Aurora</strong>, Aurora Serverless, Amazon DocumentDB, <strong>Amazon DynamoDB</strong>, <strong>Amazon ElastiCache</strong>, Amazon Keyspaces, Amazon Neptune, <strong>Amazon RDS</strong>, Amazon Redshift.</p><h3>Developer Tools</h3><p><strong>AWS X-Ray</strong>.</p><h3>Front-End Web and Mobile</h3><p>AWS Amplify, <strong>Amazon API Gateway</strong>, AWS Device Farm.</p><h3>Machine Learning</h3><p>Amazon Comprehend, Amazon Kendra, Amazon Lex, Amazon Polly, Amazon Rekognition, Amazon SageMaker AI, Amazon Textract, Amazon Transcribe, Amazon Translate.</p><h3>Management and Governance</h3><p>AWS Auto Scaling, AWS CLI, <strong>AWS CloudFormation</strong>, <strong>AWS CloudTrail</strong>, <strong>Amazon CloudWatch</strong>, AWS Compute Optimizer, <strong>AWS Config</strong>, AWS Control Tower, AWS Health Dashboard, AWS License Manager, Amazon Managed Grafana, Amazon Managed Service for Prometheus, AWS Management Console, AWS Organizations, AWS Service Catalog, <strong>AWS Systems Manager</strong>, AWS Trusted Advisor, AWS Well-Architected Tool.</p><h3>Media Services</h3><p><strong>Amazon Kinesis Video Streams</strong>; <strong>Amazon Elastic Transcoder</strong> is still on the live SAA-C03 in-scope list but AWS discontinued it on 13 November 2025. Treat Elastic Transcoder as a legacy recognition item only. AWS Elemental MediaConvert is a modern replacement in the product portfolio but is currently listed as <em>out of scope</em> for SAA-C03.</p><h3>Migration and Transfer</h3><p>AWS Application Migration Service, <strong>AWS DataSync</strong>, <strong>AWS DMS</strong>, AWS Snow Family, AWS Transfer Family.</p><h3>Networking and Content Delivery</h3><p>AWS Client VPN, <strong>Amazon CloudFront</strong>, <strong>AWS Direct Connect</strong>, <strong>Elastic Load Balancing (ELB)</strong>, <strong>AWS Global Accelerator</strong>, <strong>AWS PrivateLink</strong>, <strong>Amazon Route 53</strong>, AWS Site-to-Site VPN, <strong>AWS Transit Gateway</strong>, <strong>Amazon VPC</strong>.</p><h3>Security, Identity, and Compliance</h3><p>AWS Artifact, AWS Audit Manager, <strong>AWS Certificate Manager (ACM)</strong>, AWS CloudHSM, <strong>Amazon Cognito</strong>, Amazon Detective, AWS Directory Service, AWS Firewall Manager, <strong>Amazon GuardDuty</strong>, <strong>AWS IAM Identity Center</strong>, Amazon Inspector, <strong>AWS KMS</strong>, Amazon Macie, AWS Network Firewall, AWS Resource Access Manager (AWS RAM), <strong>AWS Secrets Manager</strong>, AWS Security Hub, <strong>AWS Shield</strong>, <strong>AWS WAF</strong>, <strong>IAM</strong>.</p><h3>Serverless</h3><p>AWS AppSync, <strong>AWS Fargate</strong>, <strong>AWS Lambda</strong>.</p><h3>Storage</h3><p><strong>AWS Backup</strong>, <strong>Amazon EBS</strong>, <strong>Amazon EFS</strong>, <strong>Amazon FSx (all types)</strong>, <strong>Amazon S3</strong>, <strong>Amazon S3 Glacier</strong>, <strong>AWS Storage Gateway</strong>.</p><hr/></section><section class="chapter checklist" data-chapter="checklist"><div class="chapter-header"><h1 id="38-last-hour-review-checklist">38. Last-Hour Review Checklist</h1></div><ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox">Explain IAM role, resource policy, SCP, permission boundary, explicit deny, and the shared responsibility model.</input></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Choose IAM Identity Center vs Cognito vs Directory Service vs IAM role/STS.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Draw a secure three-tier VPC across two AZs.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Compare SG vs NACL and NAT vs endpoint.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Compare ALB, NLB, and GWLB.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Compare SQS, SNS, EventBridge, Step Functions, and Kinesis.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Compare S3, EBS, EFS, FSx, and instance store.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Compare RDS Multi-AZ DB instance, Multi-AZ DB cluster, read replicas, Aurora replicas, and Global Database.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Choose among EC2, Lambda, ECS/Fargate, EKS, Batch, and EMR.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Compare CloudFront, Global Accelerator, and Route 53 policies.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Select a DR strategy from RTO/RPO and account for service quotas/throttling in standby capacity.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Explain Savings Plans, RIs, Spot, and Capacity Reservations.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Choose DataSync vs Storage Gateway vs Transfer Family vs Snow Family vs DMS; review storage lifecycle, Requester Pays, and data-transfer cost traps.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="" type="checkbox"/>Complete practice questions and review why each distractor is wrong.</li>
+</ul></section><section class="chapter sources" data-chapter="sources"><div class="chapter-header"><h1 id="39-official-sources">39. Official Sources</h1></div><ul>
+<li><a href="https://aws.amazon.com/certification/certified-solutions-architect-associate/" rel="noopener noreferrer" target="_blank">AWS Certified Solutions Architect – Associate exam page</a></li>
+<li><a href="https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03.html" rel="noopener noreferrer" target="_blank">Official SAA-C03 exam guide</a></li>
+<li><a href="https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/saa-03-in-scope-services.html" rel="noopener noreferrer" target="_blank">Official in-scope AWS services</a></li>
+<li><a href="https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/saa-03-out-of-scope-services.html" rel="noopener noreferrer" target="_blank">Official out-of-scope AWS services</a></li>
+<li><a href="https://docs.aws.amazon.com/aws-certification/latest/solutions-architect-associate-03/solutions-architect-associate-03-domain3.html" rel="noopener noreferrer" target="_blank">Official Domain 3 task statements (live naming and performance scope)</a></li>
+<li><a href="https://docs.aws.amazon.com/quick/latest/userguide/what-is.html" rel="noopener noreferrer" target="_blank">Amazon Quick documentation (Quick Sight naming)</a></li>
+<li><a href="https://aws.amazon.com/elastictranscoder/faqs/" rel="noopener noreferrer" target="_blank">Amazon Elastic Transcoder retirement notice</a></li>
+<li><a href="https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.MultiAZ.html" rel="noopener noreferrer" target="_blank">Amazon RDS Multi-AZ deployment types</a></li>
+<li><a href="https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html" rel="noopener noreferrer" target="_blank">AWS Well-Architected Framework</a></li>
+<li><a href="https://aws.amazon.com/architecture/" rel="noopener noreferrer" target="_blank">AWS Architecture Center</a></li>
+<li><a href="https://docs.aws.amazon.com/" rel="noopener noreferrer" target="_blank">AWS Documentation</a></li>
+<li><a href="https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html" rel="noopener noreferrer" target="_blank">Elastic Load Balancing documentation</a></li><li><a href="https://docs.aws.amazon.com/ebs/latest/userguide/ebs-volumes-multi.html" rel="noopener noreferrer" target="_blank">Amazon EBS Multi-Attach documentation</a></li><li><a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-lock.html" rel="noopener noreferrer" target="_blank">Amazon S3 Object Lock documentation</a></li><li><a href="https://docs.aws.amazon.com/fsx/" rel="noopener noreferrer" target="_blank">Amazon FSx documentation</a></li><li><a href="https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html" rel="noopener noreferrer" target="_blank">AWS PrivateLink documentation</a></li><li><a href="https://docs.aws.amazon.com/vpc/latest/tgw/what-is-transit-gateway.html" rel="noopener noreferrer" target="_blank">AWS Transit Gateway documentation</a></li><li><a href="https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-what-is.html" rel="noopener noreferrer" target="_blank">Amazon EventBridge documentation</a></li><li><a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html" rel="noopener noreferrer" target="_blank">Amazon CloudWatch documentation</a></li><li><a href="https://docs.aws.amazon.com/awscloudtrail/latest/userguide/cloudtrail-user-guide.html" rel="noopener noreferrer" target="_blank">AWS CloudTrail documentation</a></li></ul><blockquote>
+<p>This is an independent study aid, not an AWS publication. AWS service behaviour, availability, quotas, and pricing can change.</p>
+</blockquote></section></div>
+<article class="topic-card" id="september-revision"><h2>September 2026 corrections and worked decisions</h2><p>Content reviewed 7 September 2026. Original August scope snapshot remains dated as such; a current product capability does not automatically imply exam coverage. <a href="saa-c03-lab-manual-v2.1.html">Companion lab manual v2.1</a>.</p>
+<h3>Exceptions worth remembering</h3><table><thead><tr><th>Decision</th><th>Accurate rule</th></tr></thead><tbody>
+<tr><td>Capacity versus price</td><td>Regional RIs / Savings Plans: price benefit, no capacity reservation. Zonal RIs: price benefit plus capacity in the specified AZ. <a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/reserved-instances-scope.html" target="_blank" rel="noopener noreferrer">RI scope</a></td></tr>
+<tr><td>NAT availability</td><td>The per-AZ rule describes zonal NAT. Regional NAT supports automatic expansion across AZs; mode, expansion behavior and costs need verification. <a href="https://docs.aws.amazon.com/vpc/latest/userguide/nat-gateways-regional.html" target="_blank" rel="noopener noreferrer">Regional NAT</a></td></tr>
+<tr><td>Global Tables</td><td>MREC: asynchronous replication and eventual consistency with conflict resolution. MRSC: strong multi-Region consistency with constrained Region layouts and feature support; TTL is not supported in MRSC. Choose consistency and recovery requirements first. <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/V2globaltables_HowItWorks.html" target="_blank" rel="noopener noreferrer">Global Tables consistency</a></td></tr>
+<tr><td>API types</td><td>REST APIs support API caching, usage plans, private API endpoints and native X-Ray integration; HTTP APIs trade features for simplicity/cost. Do not transfer one type’s feature list to the other. <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api-vs-rest.html" target="_blank" rel="noopener noreferrer">REST versus HTTP API</a></td></tr>
+<tr><td>Offline transfer</td><td>Snowball Edge is restricted to existing customers from 7 November 2025. Recognize exam terminology, but verify new-account eligibility and alternatives before recommending a deployment. <a href="https://aws.amazon.com/snowball/faqs/" target="_blank" rel="noopener noreferrer">Snowball availability</a></td></tr>
+<tr><td>Message size / expiry</td><td>SQS maximum: 1 MiB. DynamoDB TTL deletion is asynchronous and does not enforce immediate application expiry. <a href="https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html" target="_blank" rel="noopener noreferrer">SQS quotas</a> · <a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/TTL.html" target="_blank" rel="noopener noreferrer">DynamoDB TTL</a></td></tr></tbody></table>
+<h3>First-principles practice</h3>
+<details class="drill"><summary>A /27 subnet needs 28 ordinary IPv4 workload addresses. Does it fit?</summary><div class="answer">No. <a href="https://docs.aws.amazon.com/vpc/latest/userguide/subnet-sizing.html">A /27 has 32 addresses</a>; AWS reserves five in an ordinary subnet, leaving 27. A /26 provides 59. Include load balancer/endpoint ENIs and growth; do not confuse theoretical CIDR size with usable capacity.</div></details>
+<details class="drill"><summary>A cross-account role can list a bucket but cannot read SSE-KMS objects. What do you inspect?</summary><div class="answer">Separate S3 ListBucket from GetObject and KMS Decrypt. Cross-account access needs the relevant identity/resource grants and KMS key authorization; explicit denies, SCPs and boundaries can constrain access. A network endpoint creates a path, not permission. Test each layer rather than granting administrator access.</div></details>
+<details class="drill"><summary>A 6 KiB DynamoDB item is read strongly consistently once per second. What read capacity is needed?</summary><div class="answer"><a href="https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/read-write-operations.html">Round the item up to two 4 KiB units</a>: 2 RCUs for one strongly consistent read per second. Eventual reads use half that. A 6 KiB ordinary write per second consumes 6 WCUs before index/transaction effects. GSIs support eventual reads; a hot partition is not solved merely by adding an index.</div></details>
+<details class="drill"><summary>S3 copies recover two minutes behind, while the latest usable EBS snapshot is 20 hours old. Is RPO two minutes?</summary><div class="answer">No. The workload depends on every required state store. Record the newest recovered write per store; EBS can dominate data loss. Faster DNS or extra web servers do not make an old snapshot newer.</div></details>
+<details class="drill"><summary>A queue grows while CPU stays low. Which scaling signal is missing?</summary><div class="answer">Inspect backlog per available worker and oldest-message age alongside processing latency and downstream limits. CPU-only scaling may miss I/O-bound work. Unlimited workers can overload the database; scaling must respect the bottleneck.</div></details>
+<details class="drill"><summary>Objects are deleted after ten days. Is a lower archive storage price automatically cheaper?</summary><div class="answer">No. Include minimum storage duration, retrieval, requests and object-size charges. Common minimum durations (<a href="https://aws.amazon.com/s3/pricing/">AWS S3 pricing</a>): Standard-IA / One Zone-IA 30 days, Glacier Instant / Flexible Retrieval 90 days, Deep Archive 180 days. Match retrieval time and retention before comparing unit price.</div></details>
+<h3>Exam task coverage map</h3><p>Explained is not demonstrated; demonstrated is not independently assessed. The mappings below are study routes, not guarantees of complete mastery.</p>
+<table><thead><tr><th>Task</th><th>Handbook route</th><th>Lab / evidence</th></tr></thead><tbody>
+<tr><td>1.1 Secure access</td><td>§3 / §29</td><td>L00 + L09; policy decisions</td></tr><tr><td>1.2 Secure workloads</td><td>§4 / §26</td><td>L01 + L10; network isolation</td></tr><tr><td>1.3 Data security</td><td>§5 / §27 / §29</td><td>L09; wrong-key denial</td></tr><tr><td>2.1 Scalable, loosely coupled</td><td>§6 / §30</td><td>L03; crash/retry evidence</td></tr><tr><td>2.2 Highly available, fault tolerant</td><td>§7 / §23</td><td>L01 + L08; data-backed recovery</td></tr><tr><td>3.1 Storage performance</td><td>§9 / §27</td><td>L06 + L08; access-pattern measurements</td></tr><tr><td>3.2 Elastic compute</td><td>§10 / §26</td><td>L01 + L05; scaling/version evidence</td></tr><tr><td>3.3 Database performance</td><td>§11 / §28</td><td>L02 + L11; consistency/connections</td></tr><tr><td>3.4 Network performance</td><td>§12 / §26</td><td>L04 + L10; routes and measured latency</td></tr><tr><td>3.5 Ingestion/transformation</td><td>§13–16 / §30</td><td>L06 + L07; equivalent fixtures</td></tr><tr><td>4.1 Storage cost</td><td>§17 / §19 / §32</td><td>L06 + L08; lifecycle and retention</td></tr><tr><td>4.2 Compute cost</td><td>§18 / §32</td><td>L01 + L05; measured resource-hours</td></tr><tr><td>4.3 Database cost</td><td>§20 / §28 / §32</td><td>L02 + L11; mode-specific costs</td></tr><tr><td>4.4 Network cost</td><td>§21 / §32</td><td>L00 + L10; transfer/endpoints/NAT</td></tr></tbody></table>
+<p>For assessment, use unfamiliar scenario questions and explain why every distractor fails. These worked decisions supplement—not replace—the official practice resources. Revisit weak decisions after three and seven days.</p></article>
+<footer class="footer">SAA-C03 Visual Exam Handbook · 2026 Edition · v2026.09.07.1 · Independent study aid · Verify service quotas, pricing, and lifecycle details in current AWS documentation.</footer>
+</main>
+<script>
+(() => {
+  const body = document.body;
+  const search = document.getElementById('search');
+  const content = document.getElementById('content');
+  const topics = [...document.querySelectorAll('.topic-card')];
+  const chapters = [...document.querySelectorAll('.chapter')];
+  const reviewButtons = [...document.querySelectorAll('[data-review]')];
+  const progressBar = document.getElementById('progressBar');
+  const progressLabel = document.getElementById('progressLabel');
+  const emptyState = document.getElementById('emptyState');
+  const storageKey = 'aws-saa-c03-handbook-reviewed-v2026-08-14';
+  const safeGet = key => { try { return localStorage.getItem(key); } catch { return null; } };
+  const safeSet = (key, value) => { try { localStorage.setItem(key, value); } catch { /* storage unavailable; keep session behaviour */ } };
+  let activeFilter = 'all';
+  let reviewed = new Set(JSON.parse(safeGet(storageKey) || '[]'));
+
+  const applyReview = () => {
+    topics.forEach(t => {
+      const done = reviewed.has(t.dataset.topicId);
+      t.classList.toggle('reviewed', done);
+      const b = t.querySelector('[data-review]');
+      if (b) b.textContent = done ? '✓ Reviewed' : '○ Review';
+    });
+    const pct = topics.length ? Math.round(reviewed.size / topics.length * 100) : 0;
+    progressBar.style.width = pct + '%';
+    progressLabel.textContent = pct + '%';
+    safeSet(storageKey, JSON.stringify([...reviewed]));
+  };
+  reviewButtons.forEach(b => b.addEventListener('click', () => {
+    const id = b.dataset.review;
+    reviewed.has(id) ? reviewed.delete(id) : reviewed.add(id);
+    applyReview();
+  }));
+  applyReview();
+
+  const clearMarks = () => document.querySelectorAll('mark[data-search-mark]').forEach(m => m.replaceWith(m.textContent));
+  const escapeRegExp = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const runFilter = () => {
+    clearMarks();
+    const q = search.value.trim().toLowerCase();
+    let visibleChapterCount = 0;
+    topics.forEach(t => {
+      const chapter = t.closest('.chapter');
+      const filterOk = activeFilter === 'all' || chapter.classList.contains(activeFilter);
+      const textOk = !q || t.textContent.toLowerCase().includes(q);
+      const visible = filterOk && textOk;
+      t.classList.toggle('hidden', !visible);
+      if (visible && q.length > 2) {
+        const walker = document.createTreeWalker(t, NodeFilter.SHOW_TEXT, {acceptNode(n){return ['SCRIPT','STYLE','BUTTON','CODE','PRE'].includes(n.parentElement?.tagName) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;}});
+        const nodes=[]; while(walker.nextNode()) nodes.push(walker.currentNode);
+        const rx = new RegExp('(' + escapeRegExp(q) + ')','ig');
+        nodes.forEach(n => { if(rx.test(n.nodeValue)){ const span=document.createElement('span'); span.innerHTML=n.nodeValue.replace(rx,'<mark data-search-mark>$1</mark>'); n.replaceWith(span); }});
+      }
+    });
+    chapters.forEach(ch => {
+      const ownTopics = [...ch.querySelectorAll(':scope > .topic-card')];
+      const chapterFilterOk = activeFilter === 'all' || ch.classList.contains(activeFilter);
+      const hasVisibleTopic = ownTopics.some(t => !t.classList.contains('hidden'));
+      const chapterTextOk = !q || ch.textContent.toLowerCase().includes(q);
+      const visible = chapterFilterOk && (ownTopics.length ? hasVisibleTopic : chapterTextOk);
+      ch.classList.toggle('hidden', !visible);
+      if (visible) visibleChapterCount++;
+    });
+    emptyState.style.display = visibleChapterCount ? 'none' : 'block';
+  };
+  search.addEventListener('input', runFilter);
+  document.addEventListener('keydown', e => {
+    if (e.key === '/' && document.activeElement !== search) { e.preventDefault(); search.focus(); }
+    if (e.key === 'Escape') { search.value=''; search.blur(); runFilter(); }
+  });
+  document.querySelectorAll('input[name="handbook-filter"]').forEach(input => input.addEventListener('change', () => {
+    if (!input.checked) return;
+    activeFilter = input.value;
+    runFilter();
+  }));
+
+  const themeBtn = document.getElementById('themeBtn');
+  const savedTheme = safeGet('aws-saa-theme');
+  if (savedTheme) document.documentElement.dataset.theme = savedTheme;
+  themeBtn.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    safeSet('aws-saa-theme', next);
+  });
+  document.getElementById('printBtn').addEventListener('click', () => window.print());
+  document.getElementById('menuBtn').addEventListener('click', () => body.classList.toggle('sidebar-open'));
+  document.querySelectorAll('.sidebar a').forEach(a => a.addEventListener('click', () => body.classList.remove('sidebar-open')));
+
+  const navLinks = new Map([...document.querySelectorAll('.nav-topic')].map(a => [a.getAttribute('href').slice(1), a]));
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a,b) => a.boundingClientRect.top-b.boundingClientRect.top)[0];
+    if (!visible) return;
+    document.querySelectorAll('.nav-topic.active').forEach(a => a.classList.remove('active'));
+    navLinks.get(visible.target.id)?.classList.add('active');
+  }, {rootMargin:'-15% 0px -70% 0px'});
+  topics.forEach(t => observer.observe(t));
+})();
+</script>
+</body>
+</html>

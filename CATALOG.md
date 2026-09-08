@@ -21,6 +21,15 @@ This is the authoritative index of current material in the repository.
 | Model Adaptation and Training | AI architecture | [docs/ai-architecture/model-adaptation-and-training.md](docs/ai-architecture/model-adaptation-and-training.md) | Markdown | Current | Living | 2026-09-06 |
 | Self-Improving Agent Systems | Agent architecture | [docs/agent-architecture/self-improving-agent-systems.md](docs/agent-architecture/self-improving-agent-systems.md) | Markdown | Current | Living | 2026-09-06 |
 
+## Scoped AWS study-resource exception
+
+| Title | Domain | Path | Format | Status | Edition | Last reviewed |
+| --- | --- | --- | --- | --- | --- | --- |
+| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v2026.09.07.1 | 2026-09-07 |
+| The $170 Cloud — SAA-C03 Lab Manual | AWS architecture practice | [handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html) | HTML | Current | v2.1 | 2026-09-07 |
+
+These two resources are an owner-approved scope exception. “Current” identifies the canonical publication, not a claim that every AWS lab has been deployed. See their [revision and validation notes](handbooks/aws-saa-c03/README.md).
+
 ## Status values
 
 - **Current:** canonical or currently published material.
@@ -28,4 +37,4 @@ This is the authoritative index of current material in the repository.
 - **Draft:** incomplete material not yet canonical.
 - **Superseded:** retained only when a migration decision explicitly requires it.
 
-> Repository scope: Complete course notebooks and certification packs are not repository artifacts.
+> Repository scope: Complete course notebooks and certification packs remain excluded except for the two AWS SAA-C03 resources explicitly listed above.

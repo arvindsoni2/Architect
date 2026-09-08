@@ -43,4 +43,4 @@ A curated, version-controlled knowledge base for software architecture, system d
 - [Cross-cutting patterns](docs/cross-cutting-patterns/)
 - [Architect learning paths](learning-paths/software-architect/)
 
-Directories are added as curated material is migrated. This repository intentionally excludes complete certification packs, course notebooks, unrelated project files, and obsolete artifact duplicates.
+Directories are added as curated material is migrated. This repository intentionally excludes complete certification packs, course notebooks, unrelated project files, and obsolete artifact duplicates, with one owner-approved exception for the paired [AWS SAA-C03 handbook and lab manual](handbooks/aws-saa-c03/README.md).

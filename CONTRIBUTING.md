@@ -8,6 +8,8 @@ Accepted material covers software architecture, system design, AI architecture, 
 
 Complete certification packs, course notebooks, unrelated project files, personal records, and general technical-learning collections are excluded. Durable architectural lessons may be distilled from those sources into focused notes.
 
+**Owner-approved exception (7 September 2026):** the AWS SAA-C03 Visual Handbook and its companion *The $170 Cloud* Lab Manual may be maintained together under `handbooks/aws-saa-c03/`, with their supporting validation files. This exception applies only to these two resources, not to other certification packs or course notebooks. Public-content, source-verification, and curation rules still apply.
+
 ## Canonical content and versions
 
 1. Maintain one current artifact for each title.
