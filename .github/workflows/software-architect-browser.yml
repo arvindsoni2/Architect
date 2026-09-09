@@ -1,0 +1,41 @@
+name: Software architect browser validation
+
+on:
+  pull_request:
+    paths:
+      - 'learning-paths/software-architect/**'
+      - '.github/workflows/software-architect-browser.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'learning-paths/software-architect/**'
+      - '.github/workflows/software-architect-browser.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install isolated browser test dependency
+        run: |
+          npm install --prefix "$RUNNER_TEMP/architect-browser" --no-audit --no-fund playwright@1.62.1
+          "$RUNNER_TEMP/architect-browser/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Exercise programme in Chromium
+        env:
+          NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules
+          ARCHITECT_SCREENSHOTS: ${{ runner.temp }}/architect-browser-review
+        run: node learning-paths/software-architect/tests/browser-smoke.cjs
+      - name: Upload review screenshots and print sample
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: software-architect-browser-review
+          path: ${{ runner.temp }}/architect-browser-review
+          retention-days: 7
