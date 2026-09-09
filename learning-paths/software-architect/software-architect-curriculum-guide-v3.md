@@ -1,9 +1,15 @@
 # Software Architect Curriculum Guide v3
 
-**Public repository edition:** reviewed 4 September 2026
+**Public repository edition:** v3, evidence-led revision reviewed 8 September 2026
 **Purpose:** define what an aspiring software architect should learn, why it matters, and the order in which the capabilities build on one another.
 
 This guide is the durable curriculum map. It deliberately excludes dated calendars, daily exercises, saved progress and mentor workflow. Use the companion [Software Architect Grooming Programme v5](software-architect-grooming-programme-v5.html) for diagnostic bridge modules, worked scenarios, exercises, oral defences and capstone assessment.
+
+## Scope and prerequisites
+
+This is a foundation for software and solution architecture in enterprise applications. It includes internal software boundaries as well as integration, deployment and organisational concerns. It is not a claim of expertise in every architecture specialism. A job title or years of experience do not waive prerequisites: demonstrate a running request path, basic transactional correctness, quality scenarios, domain framing, production reasoning and audience-appropriate communication using the companion programme's six diagnostic bridges.
+
+Treat each module as a capability unit. Move on when its evidence is defensible, not when a day has elapsed. Use the [practice guide](practice/README.md) for guided remediation, completed examples, selected reading and runnable experiments. The practice guide and local lab are supporting material for this learning path, not an additional course syllabus.
 
 ## The outcome
 
@@ -78,7 +84,7 @@ Architecture begins before technology selection. The first responsibility is to 
 - Stakeholder concerns and competing definitions of success.
 - Functional requirements versus quality attributes.
 - ISO/IEC 25010:2023 product-quality characteristics as a vocabulary, not a substitute for context.
-- Measurable quality-attribute scenarios: stimulus, environment, affected component, response and response measure.
+- Measurable quality-attribute scenarios: source of stimulus, stimulus, environment, affected artefact, response and response measure; define the measured population and time window.
 - Utility trees and the Quality Attribute Workshop for prioritisation.
 - Assumptions, risks and evidence as first-class design inputs.
 
@@ -107,8 +113,11 @@ An architecture style packages a set of constraints and consequences. The goal i
 
 - Layered, modular-monolith, service-based, microservice, event-driven, serverless and cell-based structures.
 - Coupling and cohesion across code, deployment, data and teams.
+- Domain discovery: business language, bounded contexts, context maps and aggregates that protect explicit invariants. Derive boundaries before selecting deployment units.
+- Internal structure: dependency inversion, ports and adapters, application policy versus infrastructure, and automated module-dependency checks.
+- A bounded context is a model boundary; it need not map one-to-one to a microservice.
 - Architecture characteristics such as deployability, scalability, testability, reliability, simplicity and cost.
-- Decision matrices, sensitivity points and trade-off points.
+- Decision matrices, sensitivity points and trade-off points. Eliminate hard-constraint violations before weighting preferences; compare at least two credible options and test sensitivity to uncertain scores or weights.
 - Architecture Tradeoff Analysis Method concepts.
 - Fitness functions as repeatable evidence that important qualities remain within bounds.
 - Evolution triggers: signals that justify revisiting an earlier structural choice.
@@ -137,7 +146,9 @@ Capacity and resilience emerge from complete request paths, dependencies and fai
 ### Core knowledge
 
 - Workload modelling: requests, concurrency, data volume, growth, peaks and skew.
-- Back-of-envelope estimates as explicit models with revisable assumptions.
+- Back-of-envelope estimates as explicit models with revisable assumptions: request rates, payload egress, cache-hit sensitivity, concurrency and saturation.
+- Little's Law for stable intervals using mean residence time, latency-budget allocation and end-to-end measurement. Adding component percentiles does not calculate a request-path percentile.
+- Availability models: required versus optional dependencies, correlated failures, shared failure domains and degraded operation; SLA multiplication is not a measured availability prediction.
 - Horizontal and vertical scaling; stateless and stateful constraints.
 - Replication, partitioning, sharding and caching.
 - CAP and PACELC as reasoning tools rather than slogans.
@@ -202,7 +213,9 @@ Data architecture is not a catalogue of databases. It defines authority, meaning
 ### Core knowledge
 
 - Workload-first storage selection: relational, document, graph, time-series, key-value, search, columnar and vector capabilities.
-- Transaction boundaries and invariants.
+- Transaction boundaries and invariants; read/write interleavings, isolation levels, lost updates and write skew.
+- Optimistic version checks versus pessimistic locking; atomic conditional updates, uniqueness constraints, bounded retries and contention measurements.
+- Reservation authority versus availability projections; offline allocation and reconciliation rules that preserve business meaning.
 - Replication, partitioning, consistency and conflict resolution.
 - Operational versus analytical workloads.
 - Batch, streaming and hybrid processing.
@@ -275,6 +288,7 @@ Cloud architecture is an operating model, not a list of managed services. A soun
 - Observability through logs, metrics and traces.
 - Deployment strategies: rolling, blue-green and canary.
 - FinOps: unit economics, ownership, budgets and cost-allocation signals.
+- Architecture economics: build, buy or retain; implementation and operating effort, contractual constraints, licensing, migration and exit costs. Compare cost per successful business outcome and test sensitivity to uncertain workload and labour assumptions.
 - Strangler-fig migration, coexistence, rollback and data reconciliation.
 - Portability versus the value of provider-specific capabilities.
 
@@ -372,7 +386,7 @@ Synthesis connects the complete argument: outcome, stakeholders, drivers, constr
 - Architecture hypothesis: a decision, expected outcome and validating evidence.
 - Option comparison and explicit rejection rationale.
 - Risk and assumption logs with owners and decision triggers.
-- Evidence planning: prototypes, capacity models, threat models, event proofs and migration spikes.
+- Evidence planning and execution: prototypes, capacity models, threat models, event proofs and migration spikes; record predicted versus observed outcomes and revise decisions when evidence disagrees.
 - Evolutionary roadmaps based on capabilities and risk retirement.
 - Architecture review and oral defence.
 - Traceability from business outcomes to quality scenarios, decisions and fitness measures.
@@ -416,11 +430,35 @@ The curriculum is complete when a learner can independently take an ambiguous sc
 - coherent boundaries, runtime, data and failure behaviour;
 - security, operability, cost and migration considerations;
 - audience-appropriate diagrams and decision records;
-- an evidence plan and evolutionary roadmap; and
+- an evidence plan, results from at least two executed experiments on different material risks, and an evolutionary roadmap; and
 - a short oral defence that acknowledges uncertainty.
+
+Use the programme rubric to judge submitted learning evidence, not to confer a professional title. Every dimension must meet its floor; technical coherence and security/operability must each score at least 10/15. A high aggregate cannot compensate for an unsafe invariant, unrecoverable migration, undisclosed uncertainty or missing executed evidence. A reviewer should challenge assumptions, inspect results and record required revisions. Organisational readiness additionally requires responsibility demonstrated in context, supervised implementation and feedback over time.
 
 A large document or diagram count is not evidence of architect readiness. The evidence is traceable judgment: the ability to explain why a decision fits its context, what it sacrifices and what would cause it to change.
 
+## Demonstration checkpoints
+
+| Module | Evidence of understanding | A useful reviewer challenge |
+| --- | --- | --- |
+| 1 | Six-field quality scenarios and explicit stakeholder conflicts | Can another person construct the acceptance test? |
+| 2 | Derived boundaries, two viable options and a sensitivity analysis | What would reverse the preferred option? |
+| 3 | Calculated workload model and end-to-end measurement plan | What happens when the cache is cold or the queue grows? |
+| 4 | Legal state transitions, contracts and duplicate/timeout recovery | What if the effect committed but its response was lost? |
+| 5 | Invariant ownership, isolation reasoning and reconciliation | Can two competing writers both claim the last item? |
+| 6 | Threat/control/evidence trace and a tested or explicitly planned recovery procedure | Which critical control is unverified? |
+| 7 | Coexistence plan, ownership-transfer gate and cost sensitivity | What is irreversible after data ownership moves? |
+| 8 | Context/container/dynamic views and a complete ADR | Can the intended audience explain the decision back? |
+| 9 | Decision rights, measurable guardrails and exception expiry | Does governance reduce risk without delaying every change? |
+| 10 | Two executed experiments, reviewed revisions and an honest defence | Which result changed the design, and what remains unknown? |
+
+## Additional references for the deeper foundations
+
+- Martin Fowler, [Bounded Context](https://martinfowler.com/bliki/BoundedContext.html).
+- Alistair Cockburn, [Hexagonal architecture](https://alistair.cockburn.us/hexagonal-architecture).
+- PostgreSQL, [Transaction isolation](https://www.postgresql.org/docs/current/transaction-iso.html); behaviour is database-specific.
+- AWS, [Availability with dependencies](https://docs.aws.amazon.com/whitepapers/latest/availability-and-beyond-improving-resilience/availability-with-dependencies.html).
+
 ## Reference status
 
-The web references in this public edition were reviewed on 4 September 2026. Links, product documentation and standards can change; re-check time-sensitive recommendations before relying on them for certification, procurement or production decisions.
+The original web references were reviewed on 4 September 2026. Sources supporting this revision were checked on 8 September 2026; that targeted check is not a new audit of every optional book or video. Links, product documentation and standards can change; re-check time-sensitive recommendations before relying on them for certification, procurement or production decisions.

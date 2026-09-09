@@ -34,3 +34,8 @@ jobs:
 
       - name: Test AWS SAA-C03 resources
         run: python3 -m unittest discover -s handbooks/aws-saa-c03/tests -p 'test_*.py' -v
+
+      - name: Test software architect programme and local lab
+        run: |
+          node --test learning-paths/software-architect/tests/test_programme.cjs
+          python3 -m unittest discover -s learning-paths/software-architect/tests -p 'test_*.py' -v
