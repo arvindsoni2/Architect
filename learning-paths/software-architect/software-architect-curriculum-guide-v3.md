@@ -5,6 +5,8 @@
 
 This guide is the durable curriculum map. It deliberately excludes dated calendars, daily exercises, saved progress and mentor workflow. Use the companion [Software Architect Grooming Programme v5](software-architect-grooming-programme-v5.html) for diagnostic bridge modules, worked scenarios, exercises, oral defences and capstone assessment.
 
+To connect this curriculum to AWS SAA-C03 study and technical interviews, use the [patient portal connected-learning case](patient-portal-connected-learning.md). It maps one scenario to exact programme units, AWS labs, technical mechanisms, AI evaluation and reviewable artifacts.
+
 ## Scope and prerequisites
 
 This is a foundation for software and solution architecture in enterprise applications. It includes internal software boundaries as well as integration, deployment and organisational concerns. It is not a claim of expertise in every architecture specialism. A job title or years of experience do not waive prerequisites: demonstrate a running request path, basic transactional correctness, quality scenarios, domain framing, production reasoning and audience-appropriate communication using the companion programme's six diagnostic bridges.

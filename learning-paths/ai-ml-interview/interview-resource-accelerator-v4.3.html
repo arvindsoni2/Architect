@@ -495,6 +495,8 @@
       }
       .learning-layout { display: block; }
       .topic-section { display: block !important; page-break-before: always; }
+      .resource-card.hidden { display: block !important; }
+      #emptyState { display: none !important; }
       .topic-section:first-of-type { page-break-before: auto; }
     }
 
@@ -2271,18 +2273,39 @@
       const hashTopic = location.hash.slice(1);
       let activeTopic = topicIds.has(hashTopic) ? hashTopic : (sections[0]?.id || "");
 
-      function loadJSON(key) {
-        try { return JSON.parse(localStorage.getItem(key) || "{}"); }
-        catch (_) { return {}; }
+      const storageStatus = document.createElement('p');
+      storageStatus.id = 'storageStatus';
+      storageStatus.setAttribute('role', 'status');
+      document.querySelector('.controls-wrap').append(storageStatus);
+      const unsaved = new Set();
+      function reportStorage() {
+        storageStatus.textContent = unsaved.size
+          ? 'Some progress or notes are in this tab only. Download a backup before closing; browser storage is unavailable or full.'
+          : 'Progress and notes are saved in this browser. Download a backup before moving browsers or clearing storage.';
+      }
+      function persist(key, value) {
+        try {
+          if (value === null) localStorage.removeItem(key);
+          else localStorage.setItem(key, JSON.stringify(value));
+          unsaved.delete(key);
+        } catch (_) { unsaved.add(key); }
+        reportStorage();
+      }
+      function loadJSON(key, allowedKeys, type) {
+        try {
+          const value = JSON.parse(localStorage.getItem(key) || '{}');
+          if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+          return Object.fromEntries(Object.entries(value).filter(([field, entry]) => allowedKeys.has(field) && typeof entry === type));
+        } catch (_) { unsaved.add(key); return {}; }
       }
 
-      let state = loadJSON(STORAGE);
+      let state = loadJSON(STORAGE, new Set(checks.map(cb => cb.dataset.key)), 'boolean');
       checks.forEach(cb => {
         cb.checked = Boolean(state[cb.dataset.key]);
         cb.closest(".resource-card").classList.toggle("completed", cb.checked);
         cb.addEventListener("change", () => {
           state[cb.dataset.key] = cb.checked;
-          localStorage.setItem(STORAGE, JSON.stringify(state));
+          persist(STORAGE, state);
           cb.closest(".resource-card").classList.toggle("completed", cb.checked);
           updateProgress();
         });
@@ -2359,7 +2382,7 @@
       document.getElementById("reset").addEventListener("click", () => {
         if (!confirm("Reset all resource completion marks? Feynman notes will be kept.")) return;
         state = {};
-        localStorage.removeItem(STORAGE);
+        persist(STORAGE, null);
         checks.forEach(cb => {
           cb.checked = false;
           cb.closest(".resource-card").classList.remove("completed");
@@ -2367,15 +2390,29 @@
         updateProgress();
       });
 
-      const noteState = loadJSON(NOTES);
+      const noteState = loadJSON(NOTES, new Set([...document.querySelectorAll('.feynman-notes')].map(area => area.dataset.note)), 'string');
       document.querySelectorAll(".feynman-notes").forEach(area => {
         area.value = noteState[area.dataset.note] || "";
         area.addEventListener("input", () => {
           noteState[area.dataset.note] = area.value;
-          localStorage.setItem(NOTES, JSON.stringify(noteState));
+          persist(NOTES, noteState);
         });
       });
 
+      const exportButton = document.createElement('button');
+      exportButton.type = 'button';
+      exportButton.id = 'exportNotes';
+      exportButton.textContent = 'Download progress and notes';
+      document.querySelector('.controls-wrap').append(exportButton);
+      exportButton.addEventListener('click', () => {
+        const backup = {version: 1, progress: state, notes: noteState};
+        const url = URL.createObjectURL(new Blob([JSON.stringify(backup, null, 2)], {type:'application/json'}));
+        const link = document.createElement('a');
+        link.href = url; link.download = 'interview-progress-and-notes.json';
+        document.body.append(link); link.click(); link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      });
+      reportStorage();
       updateProgress();
       setActiveTopic(activeTopic, { scroll: false });
     })();

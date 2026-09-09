@@ -34,6 +34,25 @@ class CodeBlocks(HTMLParser):
 
 
 class PersistenceBoundary(unittest.TestCase):
+    def test_documented_pytest_default_excludes_live_provider_tests(self):
+        # Exercise pytest's own marker selection using the visible TOML config.
+        import tempfile
+        import subprocess
+        parser = CodeBlocks()
+        parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html').read_text())
+        config = next(code for code in parser.blocks if code.startswith('[project]'))
+        with tempfile.TemporaryDirectory() as directory:
+            Path(directory, 'pyproject.toml').write_text(config)
+            Path(directory, 'test_selection.py').write_text(
+                'import pytest\n'
+                'def test_local(): pass\n'
+                '@pytest.mark.live\n'
+                'def test_paid_provider(): raise AssertionError("Live provider test selected")\n')
+            result = subprocess.run([sys.executable, '-m', 'pytest'],
+                                    cwd=directory, text=True, capture_output=True)
+        self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+        self.assertIn('1 deselected', result.stdout)
+
     def test_integration_only_invokes_supplied_forge_after_completed_research(self):
         parser = CodeBlocks()
         parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html').read_text())

@@ -47,7 +47,7 @@ test('interview progress, notes and reset survive blocked storage',()=>{
 });
 
 test('interview ignores valid JSON with invalid state shapes and field types',()=>{
-  for(const bad of ['null','[]','"text"','42','{"v2-python-0":"false","python":17}']) {
+  for(const bad of ['null','[]','"text"','42','{"v2-python-1":"false","python":17}']) {
     const store=memory({'aiml-interview-resource-progress-v4':bad,'aiml-interview-feynman-notes-v4':bad});
     const {document:d}=page(interview,()=>store);
     assert.match(d.getElementById('progressText').textContent,/^0 \//);

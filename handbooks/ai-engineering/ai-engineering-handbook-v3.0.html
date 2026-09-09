@@ -574,6 +574,8 @@
     section.panel{ display:block !important; page-break-before:always }
     section.panel:first-of-type{ page-break-before:auto }
     .week-body{ display:block !important }
+    .scenario-content{ display:block !important }
+    .scenario-tabs{ display:none !important }
     .week-toggle{ display:none }
     .ascii{ background:#f0f0f0 !important; color:#000 !important }
     .source-ribbon{ background:#fff; color:#000; border:1px solid #000 }
@@ -650,6 +652,7 @@
 <!-- 01 · ROADMAP                                                    -->
 <!-- ============================================================== -->
 <section class="panel active" id="t-roadmap">
+<p><strong>How to read the targets:</strong> the weekly schedule and numerical quality, latency and cost targets are exercise hypotheses. Define dataset, denominator, workload, risk and reviewer agreement before adopting them. Completion of ten weeks or a high aggregate score does not establish job readiness; retain separate security, correctness and evidence gates.</p>
 
 <h2 class="section-title">The <em>ten-week</em> roadmap.</h2>
 <p class="section-sub">10–15 hours per week · outcome-driven · build before reading</p>
@@ -688,7 +691,7 @@
     <ul>
       <li><strong>Attention as retrieval:</strong> You don't need the math. Context window = RAM. Attention = similarity search across that RAM.</li>
       <li><strong>The atomic loop:</strong> <code>User → LLM → JSON → Tool → Result → LLM → Answer</code>. Every agentic system is this loop, repeated.</li>
-      <li><strong>Structured output:</strong> JSON mode + Pydantic parsing turns stochastic text into reliable software interfaces.</li>
+      <li><strong>Structured output:</strong> Schema-constrained output where supported, plus Pydantic validation, helps enforce interface shape. Handle refusals, truncation and retries, and validate facts and business rules separately; valid JSON is not proof of correctness.</li>
     </ul>
 
     <div class="callout feynman">
@@ -916,7 +919,7 @@
     <ul>
       <li><strong>Multi-agent is a scaling tool, not a default.</strong> Compare against a strong single-agent baseline and use multiple agents only when decomposition or independent review creates measured value.</li>
       <li><strong>Supervisor pattern:</strong> One coordinator, specialist workers. Easiest to debug, easiest to scale.</li>
-      <li><strong>Plan-and-execute:</strong> Capable model plans, cheap model executes. The single best cost-optimization pattern.</li>
+      <li><strong>Plan-and-execute:</strong> A capable model plans and a lower-cost model executes when task decomposition permits it. Compare accepted-result quality, coordination overhead, latency and total token cost with a single-model baseline.</li>
     </ul>
     <div class="callout feynman">
       <div class="callout-label">🧠 Feynman checkpoint</div>
@@ -939,7 +942,7 @@
   <div class="week-body">
     <h4>Pareto Focus</h4>
     <ul>
-      <li><strong>Containerize or it didn't happen:</strong> Docker + docker-compose is the minimum viable production standard.</li>
+      <li><strong>Make deployment reproducible:</strong> Docker Compose is useful for local integration and some bounded deployments. Choose managed functions, container services or orchestration according to availability, scaling, security and operational needs; a Compose file alone does not establish production readiness.</li>
       <li><strong>Portfolio &gt; credentials:</strong> Two polished GitHub repos with READMEs, architecture diagrams, and demo videos beat ten certificates.</li>
       <li><strong>STAR stories:</strong> Five quantified outcomes. Specifics pass senior loops; generics fail.</li>
     </ul>
@@ -1005,10 +1008,10 @@
 <tr><td><strong>Python 3.11+</strong></td><td>The lingua franca. Type hints, async, pytest, packaging (uv).</td><td>Shipping typed, tested, async code</td></tr>
 <tr><td><strong>LLM tool calling</strong></td><td>The atomic unit of agentic systems.</td><td>Building a multi-tool agent from scratch</td></tr>
 <tr><td><strong>RAG pipelines</strong></td><td>A common pattern when answers must be grounded in changing or private knowledge.</td><td>End-to-end ingestion → retrieval → generation</td></tr>
-<tr><td><strong>LangGraph</strong></td><td>Production state management. Industry-settled choice.</td><td>Checkpointed, human-in-the-loop workflow</td></tr>
+<tr><td><strong>LangGraph</strong></td><td>One option for explicit graph state, checkpointing and human review. Compare with simpler application code and durable workflow engines against the required failure model.</td><td>Checkpointed, human-in-the-loop workflow</td></tr>
 <tr><td><strong>MCP</strong></td><td>Widely adopted open protocol under AAIF / Linux Foundation governance.</td><td>Building <em>and</em> consuming an MCP server</td></tr>
 <tr><td><strong>Evaluation harness</strong></td><td>Separates demos from products.</td><td>CI-gated eval suite with 30+ test cases</td></tr>
-<tr><td><strong>Docker + FastAPI</strong></td><td>Minimum viable production.</td><td>Containerized API with health checks</td></tr>
+<tr><td><strong>Docker + FastAPI</strong></td><td>One common API deployment option; readiness also needs operational evidence.</td><td>Containerized API with health checks</td></tr>
 <tr><td><strong>pgvector + SQL</strong></td><td>Data is the foundation; vector search is table stakes.</td><td>Hybrid search (dense + sparse) query</td></tr>
 </tbody>
 </table>
@@ -1067,7 +1070,7 @@
 <section class="panel" id="t-architecture">
 
 <h2 class="section-title">Five core <em>architectures.</em></h2>
-<p class="section-sub">Every production agentic system is one of these — or a composition</p>
+<p class="section-sub">Five useful patterns to compare; this is a teaching taxonomy, not an exhaustive classification</p>
 
 <h3>1 · Single agent with tools</h3>
 <div class="ascii">User → Agent → Tools → APIs → Results</div>
@@ -1325,7 +1328,7 @@
 <ul>
 <li>Likert ratings on a sampled subset</li>
 <li>Error-taxonomy tagging (retrieval failure, reasoning error, hallucination, tool misuse)</li>
-<li>Inter-annotator agreement (κ &gt; 0.6 is the bar)</li>
+<li>Inter-annotator agreement: report the statistic, sample size and class balance, inspect disagreements, and set a risk-appropriate acceptance rule; no universal κ cutoff establishes label quality</li>
 </ul>
 
 <h3>The three-level agent eval</h3>
@@ -1663,7 +1666,7 @@ full build. The one-pager became our project charter.</div>
 <li>Check LangGraph version (PyPI) and re-pin dependencies.</li>
 <li>Re-read the latest MCP spec changelog at <code>modelcontextprotocol.io</code>.</li>
 <li>Re-check the EU AI Act implementation timeline and any subsequent amendments against official EU sources.</li>
-<li>Skim Anthropic's <a href="https://applied-llms.org/">applied-llms.org</a> and the LangChain blog for new patterns.</li>
+<li>Skim the multi-author practitioner essay at <a href="https://applied-llms.org/">applied-llms.org</a> and the LangChain blog for new patterns.</li>
 <li>Audit external links (link rot is real on personal blogs and vendor startup sites).</li>
 </ol>
 
