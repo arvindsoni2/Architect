@@ -192,9 +192,15 @@ var Programme = (() => {
       for(const [key,value] of pending) {
         if(value===null) {try{storage.removeItem(key);pending.delete(key);}catch(error){}}
       }
-      for(const [key,value] of pending) {
-        if(value!==null) {try{storage.setItem(key,value);pending.delete(key);}catch(error){break;}}
-      }
+      let previousSize;
+      do {
+        previousSize=pending.size;
+        for(const [key,value] of pending) {
+          if(value!==null) {try{storage.setItem(key,value);pending.delete(key);}catch(error){}}
+        }
+        // A smaller later edit may free quota for an earlier pending write.
+        // Retry only after progress, so a permanently blocked store terminates.
+      } while(pending.size>0 && pending.size<previousSize);
       onStatus(pending.size===0);
     }
     return {

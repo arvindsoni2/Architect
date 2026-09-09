@@ -87,3 +87,18 @@ test('recovering storage flushes every unsaved note before reporting durable suc
   full=false;store.setItem('arch-v5-theme','dark');
   assert.equal(durable.get('arch-v5-note-a'),'first');assert.equal(durable.get('arch-v5-note-b'),'second');assert.equal(states.at(-1),true);
 });
+
+test('shrinking a later note frees quota for an earlier pending larger note', () => {
+  const durable=new Map([['arch-v5-note-a','a'.repeat(40)],['arch-v5-note-b','b'.repeat(40)]]);
+  const states=[];
+  const storage={get length(){return durable.size;},key:i=>[...durable.keys()][i],getItem:key=>durable.get(key)??null,setItem:(key,value)=>{
+    const used=[...durable].reduce((sum,[k,v])=>sum+(k===key?0:v.length),0);
+    if(used+value.length>100)throw new Error('QuotaExceededError');durable.set(key,value);
+  },removeItem:key=>durable.delete(key)};
+  const store=model.createStore(storage,saved=>states.push(saved));
+  store.setItem('arch-v5-note-a','a'.repeat(70));
+  store.setItem('arch-v5-note-b','b'.repeat(10));
+  assert.equal(durable.get('arch-v5-note-b').length,10);
+  assert.equal(durable.get('arch-v5-note-a').length,70);
+  assert.equal(states.at(-1),true);
+});
