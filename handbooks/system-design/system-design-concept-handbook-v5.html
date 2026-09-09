@@ -30,7 +30,7 @@ main{min-width:0} .hero{padding:70px max(28px,calc((100vw - 310px - var(--max))/
 .refs li{margin:8px 0} footer{border-top:1px solid var(--line);padding:30px;color:var(--muted);font-size:13px}
 .hidden{display:none!important}
 @media(max-width:900px){.layout{display:block} aside{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)} nav{display:none} .hero{padding:50px 24px} .grid2,.audit-grid{grid-template-columns:1fr} .wrap{padding:28px 18px 70px}}
-@media print{aside{display:none} .layout{display:block} body{background:white;color:#111} .chapter,.audit{break-inside:avoid;background:white;color:#111;box-shadow:none} .hero{background:white;color:#111;padding:30px} a{color:#111}}
+@media print{.chapter.hidden{display:block!important} aside{display:none} .layout{display:block} body{background:white;color:#111} .chapter,.audit{break-inside:avoid;background:white;color:#111;box-shadow:none} .hero{background:white;color:#111;padding:30px} a{color:#111}}
 </style>
 </head>
 <body>
@@ -531,13 +531,18 @@ main{min-width:0} .hero{padding:70px max(28px,calc((100vw - 310px - var(--max))/
 </div>
 <script>
 const boxes=[...document.querySelectorAll('.done')];
+const storageStatus=document.createElement('p');
+storageStatus.id='storageStatus';storageStatus.setAttribute('role','status');
+document.getElementById('ptxt').after(storageStatus);
 function refresh(){
  let n=boxes.filter(b=>b.checked).length;
  document.getElementById('ptxt').textContent=`${n} / 18 practised`;
  document.getElementById('pbar').style.width=(100*n/18)+'%';
- boxes.forEach(b=>localStorage.setItem('sd-'+b.dataset.id,b.checked?'1':'0'));
+ let saved=true;
+ boxes.forEach(b=>{try{localStorage.setItem('sd-'+b.dataset.id,b.checked?'1':'0');}catch{saved=false;}});
+ storageStatus.textContent=saved?'Progress saved in this browser.':'Progress is in this tab only; browser storage is unavailable.';
 }
-boxes.forEach(b=>{b.checked=localStorage.getItem('sd-'+b.dataset.id)==='1';b.addEventListener('change',refresh)});
+boxes.forEach(b=>{try{b.checked=localStorage.getItem('sd-'+b.dataset.id)==='1';}catch{b.checked=false;}b.addEventListener('change',refresh)});
 refresh();
 document.getElementById('search').addEventListener('input',e=>{
  const q=e.target.value.toLowerCase().trim();

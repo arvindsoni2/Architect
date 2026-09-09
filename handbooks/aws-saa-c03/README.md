@@ -1,5 +1,7 @@
 # AWS SAA-C03 study pair
 
+To connect these labs to an end-to-end solution and interview explanations, use the [patient portal connected-learning case](../../learning-paths/software-architect/patient-portal-connected-learning.md). It maps the current lab display numbers and titles to architecture decisions and evidence.
+
 Owner-approved repository exception, 7 September 2026. These two resources are maintained as a pair; the exception does not admit other certification packs or course notebooks.
 
 - [Visual Handbook — v2026.09.07.1](saa-c03-visual-handbook-2026.09.html)

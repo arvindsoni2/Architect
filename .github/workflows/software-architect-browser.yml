@@ -1,14 +1,18 @@
-name: Software architect browser validation
+name: Architecture handbook browser validation
 
 on:
   pull_request:
     paths:
-      - 'learning-paths/software-architect/**'
+      - 'learning-paths/**'
+      - 'handbooks/**'
+      - 'tests/handbook-browser-smoke.cjs'
       - '.github/workflows/software-architect-browser.yml'
   push:
     branches: [main]
     paths:
-      - 'learning-paths/software-architect/**'
+      - 'learning-paths/**'
+      - 'handbooks/**'
+      - 'tests/handbook-browser-smoke.cjs'
       - '.github/workflows/software-architect-browser.yml'
 
 permissions:
@@ -32,6 +36,11 @@ jobs:
           NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules
           ARCHITECT_SCREENSHOTS: ${{ runner.temp }}/architect-browser-review
         run: node learning-paths/software-architect/tests/browser-smoke.cjs
+      - name: Exercise audited handbooks in Chromium
+        env:
+          NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules
+          ARCHITECT_SCREENSHOTS: ${{ runner.temp }}/architect-browser-review
+        run: node tests/handbook-browser-smoke.cjs
       - name: Upload review screenshots and print sample
         if: always()
         uses: actions/upload-artifact@v4

@@ -2,6 +2,8 @@
 
 Reviewed 8 September 2026. Companion to the [curriculum](../software-architect-curriculum-guide-v3.md) and [programme](../software-architect-grooming-programme-v5.html). All businesses, prices and workload figures in the worked examples are teaching assumptions. Local experiment output is evidence only for the tested implementation and environment.
 
+For a worked transfer from this programme into AWS and AI, use the [patient portal connected-learning case](../patient-portal-connected-learning.md). Start with its local booking experiment and keep one evidence pack across the selected labs.
+
 ## Start here
 
 Use Python 3.10 or later with its standard `sqlite3` module. No cloud account, paid service, package installation or credentials are needed. From the repository root:

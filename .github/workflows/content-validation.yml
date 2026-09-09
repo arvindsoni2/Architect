@@ -30,7 +30,15 @@ jobs:
         run: python3 scripts/validate_repository.py
 
       - name: Test repository validator
-        run: python3 -m unittest tests/test_validate_repository.py -v
+        # pytest executes the manual's test-selection contract in a temporary directory.
+        run: |
+          python3 -m pip install pytest==8.4.2
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+
+      - name: Test handbook storage behaviour
+        run: |
+          npm install --prefix "$RUNNER_TEMP/architect-dom" --no-audit --no-fund linkedom@0.18.12
+          NODE_PATH="$RUNNER_TEMP/architect-dom/node_modules" node --test tests/test_handbook_storage.cjs
 
       - name: Test AWS SAA-C03 resources
         run: python3 -m unittest discover -s handbooks/aws-saa-c03/tests -p 'test_*.py' -v
