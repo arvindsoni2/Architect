@@ -42,7 +42,12 @@ const files = {
       page.on('pageerror',error=>errors.push(error.message));
       page.on('dialog',dialog=>dialog.accept());
       await page.goto(pathToFileURL(path.join(root,files[name])).href);
-      await page.locator(name==='system'?'.done':'.resource-checkbox').first().check();
+      if(name==='system')await page.locator('.done').first().check();
+      else {
+        // Users click the wrapping label; the decorative check overlays the input.
+        await page.locator('.check-wrap').first().click();
+        assert.equal(await page.locator('.resource-checkbox').first().isChecked(),true);
+      }
       assert.match(await page.locator(name==='system'?'#ptxt':'#progressText').textContent(),/^1 \//);
       assert.match(await page.locator('#storageStatus').textContent(),/tab only/);
       if(name==='interview') {
