@@ -26,9 +26,9 @@ const url = pathToFileURL(path.join(__dirname,'../software-architect-grooming-pr
       assert.equal(await page.locator('.page-section.active').getAttribute('id'),target);
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Unexpected desktop page overflow');
       if(target.startsWith('day')) {
-        await page.locator(`#${target} .visual-panel`).screenshot({path:path.join(output,`${target}-diagram.png`)});
+        await page.locator(`#${target} .visual-panel`).screenshot({animations:'disabled',path:path.join(output,`${target}-diagram.png`)});
       } else if(['overview','pathways','assessment'].includes(target)) {
-        await page.screenshot({path:path.join(output,`${target}-desktop.png`),fullPage:true});
+        await page.screenshot({animations:'disabled',path:path.join(output,`${target}-desktop.png`),fullPage:true});
       }
     }
     await page.locator('[data-target="day3"]').click();
@@ -75,14 +75,14 @@ const url = pathToFileURL(path.join(__dirname,'../software-architect-grooming-pr
     assert.equal(await page.locator('[data-note="day1-workspace"]').inputValue(),'');
     assert.equal(await page.locator('#progressText').textContent(),'0%');
     await page.locator('#themeBtn').click();
-    await page.screenshot({path:path.join(output,'overview-dark.png'),fullPage:true});
+    await page.screenshot({animations:'disabled',path:path.join(output,'overview-dark.png'),fullPage:true});
     await page.locator('#themeBtn').click();
     await page.setViewportSize({width:390,height:844});
     for(const target of ['pathways','day3','assessment']) {
       await page.locator('#mobileMenu').click();
       await page.locator(`[data-target="${target}"]`).click();
       assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Unexpected mobile page overflow');
-      await page.screenshot({path:path.join(output,`${target}-mobile.png`),fullPage:true});
+      await page.screenshot({animations:'disabled',path:path.join(output,`${target}-mobile.png`),fullPage:true});
     }
     await page.emulateMedia({media:'print'});
     const printed=await page.locator('.page-section').evaluateAll(nodes=>nodes.every(node=>getComputedStyle(node).display!=='none'));
