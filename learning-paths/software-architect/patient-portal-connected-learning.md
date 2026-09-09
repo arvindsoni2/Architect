@@ -4,6 +4,8 @@
 
 Use the same case throughout. Every study session must produce a decision, an experiment or a revised explanation. Reading a service description alone is not completion.
 
+For the other programme projects and the NorthStar capstone, use the [connected project guide index](connected-learning/README.md).
+
 ## 1. One case, three levels of explanation
 
 The original brief replaces seven regional portals, aims to reduce call-centre demand by 30%, and includes records, appointments, prescriptions and clinician messaging. It has sensitive data, legacy integrations, accessibility obligations, a fixed first-year budget and phased rollout.
