@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The AI Engineering Handbook v3.0 — reviewed September 2026</title>
-<meta name="description" content="A consolidated, Pareto-pruned, Feynman-structured reference for production AI engineering. Edition v3.0, reviewed September 2026." />
+<title>The AI Engineering Handbook v3.1 — reviewed 11 September 2026</title>
+<meta name="description" content="A consolidated, Pareto-pruned, Feynman-structured reference for production AI engineering. Edition v3.1, reviewed 11 September 2026." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -608,7 +608,7 @@
   <div class="masthead-inner">
     <h1 class="mast-title">The AI Engineering <em>Handbook</em></h1>
     <div class="mast-meta">
-      <span><b>v3.0</b> · May 2026 · reviewed Sep 2026</span>
+      <span><b>v3.1</b> · May 2026 · reviewed 11 Sep 2026</span>
       <span>Consolidated from 19 files</span>
       <span>Pareto · Feynman</span>
       <button onclick="window.print()" style="background:none; border:1px solid var(--ink); padding:4px 10px; font:inherit; cursor:pointer">Print / PDF</button>
@@ -618,7 +618,7 @@
 
 <!-- ============================ HERO ============================ -->
 <div class="hero">
-  <div class="eyebrow">Single source of truth · Reviewed 3 September 2026</div>
+  <div class="eyebrow">Single source of truth · Reviewed 11 September 2026</div>
   <h1>Six months of <em>notes,</em><br>compressed.</h1>
   <p class="lede">
     Nineteen markdown files. Roughly fifty thousand words. Overlapping curricula, expired links, models that no longer exist. This handbook is what survived the cull — <strong>one place to look</strong> when you need the 20% that actually ships products in 2026. Eighty percent of the volume, gone. None of the load-bearing ideas.
@@ -633,16 +633,17 @@
 </div>
 
 <!-- ============================ TABS ============================ -->
-<nav class="tabs" role="tablist">
+<nav class="tabs" role="tablist" aria-label="Handbook sections">
   <div class="tabs-inner">
-    <button class="tab active" data-target="t-roadmap" role="tab"><span class="tab-num">01</span>Roadmap</button>
-    <button class="tab" data-target="t-skills" role="tab"><span class="tab-num">02</span>Skills Matrix</button>
-    <button class="tab" data-target="t-architecture" role="tab"><span class="tab-num">03</span>Architecture</button>
-    <button class="tab" data-target="t-stack" role="tab"><span class="tab-num">04</span>Stack &amp; Decisions</button>
-    <button class="tab" data-target="t-eval" role="tab"><span class="tab-num">05</span>Evaluation</button>
-    <button class="tab" data-target="t-interview" role="tab"><span class="tab-num">06</span>Interview Playbook</button>
-    <button class="tab" data-target="t-landscape" role="tab"><span class="tab-num">07</span>Landscape · Sep 2026</button>
-    <button class="tab" data-target="t-sources" role="tab"><span class="tab-num">08</span>Sources</button>
+    <button class="tab active" id="tab-roadmap" data-target="t-roadmap" role="tab" aria-controls="t-roadmap" aria-selected="true" tabindex="0"><span class="tab-num">01</span>Roadmap</button>
+    <button class="tab" id="tab-skills" data-target="t-skills" role="tab" aria-controls="t-skills" aria-selected="false" tabindex="-1"><span class="tab-num">02</span>Skills Matrix</button>
+    <button class="tab" id="tab-practice" data-target="t-practice" role="tab" aria-controls="t-practice" aria-selected="false" tabindex="-1"><span class="tab-num">03</span>Engineering Practice</button>
+    <button class="tab" id="tab-architecture" data-target="t-architecture" role="tab" aria-controls="t-architecture" aria-selected="false" tabindex="-1"><span class="tab-num">04</span>Architecture</button>
+    <button class="tab" id="tab-stack" data-target="t-stack" role="tab" aria-controls="t-stack" aria-selected="false" tabindex="-1"><span class="tab-num">05</span>Stack &amp; Decisions</button>
+    <button class="tab" id="tab-eval" data-target="t-eval" role="tab" aria-controls="t-eval" aria-selected="false" tabindex="-1"><span class="tab-num">06</span>Evaluation</button>
+    <button class="tab" id="tab-interview" data-target="t-interview" role="tab" aria-controls="t-interview" aria-selected="false" tabindex="-1"><span class="tab-num">07</span>Interview Playbook</button>
+    <button class="tab" id="tab-landscape" data-target="t-landscape" role="tab" aria-controls="t-landscape" aria-selected="false" tabindex="-1"><span class="tab-num">08</span>Landscape · Sep 2026</button>
+    <button class="tab" id="tab-sources" data-target="t-sources" role="tab" aria-controls="t-sources" aria-selected="false" tabindex="-1"><span class="tab-num">09</span>Sources</button>
   </div>
 </nav>
 
@@ -651,7 +652,7 @@
 <!-- ============================================================== -->
 <!-- 01 · ROADMAP                                                    -->
 <!-- ============================================================== -->
-<section class="panel active" id="t-roadmap">
+<section class="panel active" id="t-roadmap" role="tabpanel" aria-labelledby="tab-roadmap" aria-hidden="false" tabindex="0">
 <p><strong>How to read the targets:</strong> the weekly schedule and numerical quality, latency and cost targets are exercise hypotheses. Define dataset, denominator, workload, risk and reviewer agreement before adopting them. Completion of ten weeks or a high aggregate score does not establish job readiness; retain separate security, correctness and evidence gates.</p>
 
 <h2 class="section-title">The <em>ten-week</em> roadmap.</h2>
@@ -689,7 +690,8 @@
   <div class="week-body">
     <h4>Pareto Focus</h4>
     <ul>
-      <li><strong>Attention as retrieval:</strong> You don't need the math. Context window = RAM. Attention = similarity search across that RAM.</li>
+      <li><strong>Tokens are the operating unit:</strong> tokenization affects limits, truncation, latency, and cost; generation is sequential, so long outputs are usually slower than equally sized inputs.</li>
+      <li><strong>Sampling is not truth control:</strong> temperature and related parameters change the output distribution. Use schemas, validators, evidence, and task-specific evals for reliability.</li>
       <li><strong>The atomic loop:</strong> <code>User → LLM → JSON → Tool → Result → LLM → Answer</code>. Every agentic system is this loop, repeated.</li>
       <li><strong>Structured output:</strong> Schema-constrained output where supported, plus Pydantic validation, helps enforce interface shape. Handle refusals, truncation and retries, and validate facts and business rules separately; valid JSON is not proof of correctness.</li>
     </ul>
@@ -753,15 +755,30 @@
     <h4>Pareto Focus</h4>
     <ul>
       <li><strong>Chunking:</strong> A 512-token chunk with modest overlap is a baseline experiment, not a default. Iterate using retrieval and end-task evaluation.</li>
-      <li><strong>Embeddings:</strong> <code>text-embedding-3-large</code> (cloud) or <code>bge-large-en-v1.5</code> (open). The embedding model matters less than chunk quality.</li>
-      <li><strong>Hybrid search:</strong> Compare dense, sparse (BM25), and fused retrieval on the actual corpus; hybrid retrieval is valuable when lexical precision and semantic similarity are both needed.</li>
+      <li><strong>Grounding is a routing decision:</strong> stable rules may fit the prompt; live records belong behind tools or APIs; unstructured knowledge may require search. Do not put every source into a vector index.</li>
+      <li><strong>Retrieval choice follows query shape:</strong> compare relational queries, keyword search, dense retrieval, hybrid retrieval, and graph traversal on the actual access patterns.</li>
+      <li><strong>Freshness and authority:</strong> ingestion needs ownership, update cadence, access control, lineage, and deletion behavior. Relevant stale data is still wrong.</li>
     </ul>
     <div class="callout feynman">
       <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"RAG is runtime knowledge injection. Instead of asking the LLM to remember everything, we Google our own documents at query time and paste the top results into the prompt."</em>
+      <em>"Grounding gives the model the right evidence at decision time. Sometimes that means search; sometimes it means querying the source system. A vector database is one route, not the definition."</em>
+    </div>
+    <h4>Grounding decision guide</h4>
+    <div class="table-wrap">
+    <table>
+    <thead><tr><th>Need</th><th>Start with</th><th>Failure to test</th></tr></thead>
+    <tbody>
+    <tr><td>Small, stable instructions</td><td>Versioned prompt context</td><td>Context bloat, conflicting rules, stale copies</td></tr>
+    <tr><td>Current structured facts</td><td>Typed API, SQL, or governed semantic layer</td><td>Wrong joins, authorization leaks, schema drift</td></tr>
+    <tr><td>Unstructured text with exact terminology</td><td>Keyword/BM25 baseline</td><td>Synonym and paraphrase misses</td></tr>
+    <tr><td>Unstructured text with semantic variation</td><td>Dense or hybrid retrieval</td><td>False similarity, poor chunks, missing citations</td></tr>
+    <tr><td>Relationship-heavy, multi-hop questions</td><td>Graph query or graph-assisted retrieval</td><td>Incomplete edges, expensive traversal, false joins</td></tr>
+    <tr><td>PDFs, images, tables, or mixed media</td><td>Structure-aware extraction plus source-level evidence</td><td>Lost layout, OCR errors, detached captions</td></tr>
+    </tbody>
+    </table>
     </div>
     <h4>Build: Document Q&amp;A Pipeline</h4>
-    <p>Ingest 20 PDFs → chunk → embed into pgvector. FastAPI endpoint retrieves top-5 chunks and generates an answer with citation markers. <strong>Success criteria:</strong> 80%+ groundedness measured by LLM-as-judge.</p>
+    <p>Ingest 20 PDFs and one structured source. Establish keyword and dense baselines before testing fusion. A FastAPI endpoint retrieves evidence with source identity and freshness metadata, then generates an answer with citation markers. <strong>Success criteria:</strong> target-corpus retrieval recall plus answer groundedness, calibrated against human review.</p>
     <h4>Resources</h4>
     <span class="pill do">LlamaIndex RAG docs</span>
     <span class="pill skip">GraphRAG (later)</span>
@@ -876,7 +893,7 @@
       <em>"Evaluation is the entire game. Anyone can get a demo working. The engineer who can prove it works at scale — with numbers — is the one who gets hired."</em>
     </div>
     <h4>Build: Eval Harness</h4>
-    <p>30 (input, expected_output) pairs as a golden dataset. LLM-as-judge scoring (faithfulness, relevance). Langfuse tracing on every node. CI script fails if faithfulness &lt; 85%.</p>
+    <p>Build at least 30 representative cases with human labels, important risk slices, and deterministic assertions where possible. Add an LLM judge only after measuring agreement and disagreements against those labels. Trace every node. Derive release thresholds from failure cost and block regressions by slice—not from a generic percentage.</p>
   </div>
 </details>
 
@@ -992,12 +1009,30 @@
 <!-- ============================================================== -->
 <!-- 02 · SKILLS MATRIX                                              -->
 <!-- ============================================================== -->
-<section class="panel" id="t-skills">
+<section class="panel" id="t-skills" role="tabpanel" aria-labelledby="tab-skills" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">The skills <em>matrix.</em></h2>
 <p class="section-sub">Tiered by hiring impact · 2026 expectations</p>
 
 <p>AI engineering in 2026 is systems engineering with probabilistic components. You are a software engineer first; AI is a specialty layer. The matrix below ranks skills by hiring impact — the 20% in Tier 1 is what gets you through senior loops.</p>
+
+<h3>Four capabilities — one engineering role</h3>
+<p>DeepLearning.AI's August 2026 skills-map research groups AI engineering into four broad capabilities. Use this as a market-facing coverage check, not a fixed curriculum or job-title definition. Our ten-week roadmap remains the learning sequence; this map asks whether the resulting engineer can own the whole outcome.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Capability</th><th>Core question</th><th>Evidence of competence</th></tr></thead>
+<tbody>
+<tr><td><strong>Build and deploy AI applications</strong></td><td>Can you make probabilistic components useful, measurable, safe, and operable?</td><td>Deployed system with traces, evals, risk controls, and cost/latency evidence</td></tr>
+<tr><td><strong>Apply software-engineering fundamentals</strong></td><td>Can you reason about data, APIs, state, security, reliability, scale, and maintainability?</td><td>Architecture decisions tied to workload and failure requirements</td></tr>
+<tr><td><strong>Use coding agents effectively</strong></td><td>Can you direct, constrain, verify, and improve agent-assisted engineering work?</td><td>Reviewed change with clear intent, isolated execution, tests, and verifiable evidence</td></tr>
+<tr><td><strong>Shape the build</strong></td><td>Can you turn a customer problem into the smallest responsible, measurable intervention?</td><td>Problem framing, baseline, success metric, user feedback, and an explicit AI/no-AI decision</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout pareto">
+<div class="callout-label">How to use this map</div>
+<p style="margin:0">Do not study four separate silos. Pick one real problem and move through all four: shape it, design it, build it with disciplined agent assistance, and operate it using evidence.</p>
+</div>
 
 <h3>Tier 1 · Non-negotiable</h3>
 <p style="font-size:14px; color:var(--ink-soft)">The 20% that gets you hired. If you're missing any of these, fix that before anything else.</p>
@@ -1006,13 +1041,16 @@
 <thead><tr><th>Skill</th><th>Why it matters</th><th>Validate by</th></tr></thead>
 <tbody>
 <tr><td><strong>Python 3.11+</strong></td><td>The lingua franca. Type hints, async, pytest, packaging (uv).</td><td>Shipping typed, tested, async code</td></tr>
+<tr><td><strong>Software-engineering readiness</strong></td><td>AI components inherit every ordinary data, API, security, reliability, and scaling constraint.</td><td>Architecture walkthrough tied to workload, SLOs, state, and failure modes</td></tr>
+<tr><td><strong>Coding-agent engineering</strong></td><td>Generated code is uncertain work that needs bounded context, permissions, and verification.</td><td>Agent-assisted change with specification, isolation, tests, review, and evidence</td></tr>
+<tr><td><strong>Problem shaping</strong></td><td>Fast implementation has no value when the problem, baseline, or success measure is wrong.</td><td>Customer problem → baseline → AI/no-AI decision → measurable MVP</td></tr>
 <tr><td><strong>LLM tool calling</strong></td><td>The atomic unit of agentic systems.</td><td>Building a multi-tool agent from scratch</td></tr>
-<tr><td><strong>RAG pipelines</strong></td><td>A common pattern when answers must be grounded in changing or private knowledge.</td><td>End-to-end ingestion → retrieval → generation</td></tr>
-<tr><td><strong>LangGraph</strong></td><td>One option for explicit graph state, checkpointing and human review. Compare with simpler application code and durable workflow engines against the required failure model.</td><td>Checkpointed, human-in-the-loop workflow</td></tr>
+<tr><td><strong>Grounding systems</strong></td><td>Models need current, authorized evidence from the right representation—not always vector RAG.</td><td>Prompt/API/SQL/search decision backed by retrieval and end-task evals</td></tr>
+<tr><td><strong>Explicit workflow orchestration</strong></td><td>State, checkpoints, approvals, retries, and recovery must be visible and testable. LangGraph is this handbook's reference implementation, not a universal default.</td><td>Checkpointed, human-in-the-loop workflow with recovery evidence</td></tr>
 <tr><td><strong>MCP</strong></td><td>Widely adopted open protocol under AAIF / Linux Foundation governance.</td><td>Building <em>and</em> consuming an MCP server</td></tr>
-<tr><td><strong>Evaluation harness</strong></td><td>Separates demos from products.</td><td>CI-gated eval suite with 30+ test cases</td></tr>
+<tr><td><strong>Evaluation + error analysis</strong></td><td>Separates random iteration from evidence-driven improvement.</td><td>CI-gated eval suite plus first-failure taxonomy and evaluator calibration</td></tr>
 <tr><td><strong>Docker + FastAPI</strong></td><td>One common API deployment option; readiness also needs operational evidence.</td><td>Containerized API with health checks</td></tr>
-<tr><td><strong>pgvector + SQL</strong></td><td>Data is the foundation; vector search is table stakes.</td><td>Hybrid search (dense + sparse) query</td></tr>
+<tr><td><strong>SQL + data modelling</strong></td><td>Structured sources, access patterns, transactions, and lifecycle rules remain foundational.</td><td>Governed schema with joins, indexes, constraints, and representative queries</td></tr>
 </tbody>
 </table>
 </div>
@@ -1025,6 +1063,7 @@
 <tr><td><span class="tier t2">T2</span> Model routing</td><td>Cost optimization (cheap first, expensive fallback)</td></tr>
 <tr><td><span class="tier t2">T2</span> Quantization</td><td>On-prem or edge (INT8/INT4 via llama.cpp, vLLM)</td></tr>
 <tr><td><span class="tier t2">T2</span> Prompt versioning</td><td>Team-scale prompt management (Git-tracked)</td></tr>
+<tr><td><span class="tier t2">T2</span> Vector retrieval</td><td>When semantic matching over unstructured data beats keyword, API, or SQL baselines on target evals</td></tr>
 <tr><td><span class="tier t2">T2</span> Multi-agent patterns</td><td>Complex workflows requiring genuine specialization</td></tr>
 <tr><td><span class="tier t2">T2</span> Cost dashboards</td><td>High-volume production ($/task, $/user)</td></tr>
 <tr><td><span class="tier t2">T2</span> EU AI Act fluency</td><td>UK / EU work — AI Omnibus in force; Annex III high-risk rules apply from 2 Dec 2027</td></tr>
@@ -1037,7 +1076,7 @@
 <table>
 <thead><tr><th>Skill</th><th>Context</th></tr></thead>
 <tbody>
-<tr><td><span class="tier t3">T3</span> Fine-tuning (LoRA / QLoRA)</td><td>Only when RAG + prompting demonstrably fails</td></tr>
+<tr><td><span class="tier t3">T3</span> Fine-tuning (LoRA / QLoRA)</td><td>Only when a stable, context-available model-capability gap remains after evaluator, data, harness, retrieval, tool, and workflow fixes</td></tr>
 <tr><td><span class="tier t3">T3</span> RLHF / DPO</td><td>Research or alignment-specialist roles</td></tr>
 <tr><td><span class="tier t3">T3</span> CUDA / Triton</td><td>ML infrastructure or training-focused roles</td></tr>
 <tr><td><span class="tier t3">T3</span> GraphRAG</td><td>Complex multi-hop reasoning over knowledge graphs</td></tr>
@@ -1054,6 +1093,8 @@
 <tr><td>Programming</td><td>Python, Git, tests</td><td>Python + one more, async, type hints, modern tooling (uv, ruff)</td></tr>
 <tr><td>ML / DL</td><td>Classical ML + some DL</td><td>Transfer learning first, PyTorch fluency, one DL specialism</td></tr>
 <tr><td>LLMs</td><td>Prompting basics</td><td>Agentic patterns, RAG evolution, MCP, fine-tuning trade-offs</td></tr>
+<tr><td>Delivery</td><td>IDE assistance and manual implementation</td><td>Agent-directed discovery, specifications, isolated execution, verifiers, and evidence review</td></tr>
+<tr><td>Product</td><td>Implement supplied requirements</td><td>Shape the problem, establish a baseline, justify AI, and learn from users</td></tr>
 <tr><td>MLOps</td><td>Docker, CI/CD</td><td>LLMOps: prompt versioning, eval CI, cost dashboards, observability</td></tr>
 <tr><td>Cloud</td><td>One cloud basics</td><td>One cloud at production depth + managed LLM service fluency</td></tr>
 <tr><td>Ethics</td><td>"Be aware of bias"</td><td>EU AI Act compliance, threat modelling, audit trails, governance</td></tr>
@@ -1065,9 +1106,142 @@
 </section>
 
 <!-- ============================================================== -->
-<!-- 03 · ARCHITECTURE                                               -->
+<!-- 03 · ENGINEERING PRACTICE                                       -->
 <!-- ============================================================== -->
-<section class="panel" id="t-architecture">
+<section class="panel" id="t-practice" role="tabpanel" aria-labelledby="tab-practice" aria-hidden="true" tabindex="0">
+
+<h2 class="section-title">Engineering <em>practice.</em></h2>
+<p class="section-sub">Shape the right problem · direct coding agents · prove the result</p>
+
+<div class="callout pareto">
+<div class="callout-label">The shift</div>
+<p style="margin:0">Code generation is becoming cheaper. Intent, architecture, verification, and accountability are not. Treat the coding agent as an execution system whose work must stay inside explicit scope and evidence gates.</p>
+</div>
+
+<h3>The AI engineering work loop</h3>
+<div class="ascii"><span class="yellow">Shape</span> → Baseline → Specify → Plan → Build → Verify → Release → Observe
+   ↑                                                        ↓
+   └──────────── error analysis + user evidence ────────────┘</div>
+<p>This is a loop, not a waterfall. A failed verification may expose a bad implementation, but it may also reveal a bad requirement, weak data, an invalid evaluator, or a problem that never needed AI. Move back to the earliest incorrect assumption.</p>
+
+<h3>Coding-agent engineering</h3>
+<p>Using a coding agent well is not the same as building an agentic product. The engineering skill is directing uncertain execution while preserving human ownership of intent, risk, and acceptance.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Stage</th><th>Engineer owns</th><th>Agent can accelerate</th><th>Evidence gate</th></tr></thead>
+<tbody>
+<tr><td><strong>Discover</strong></td><td>Problem boundary, existing behavior, constraints, unknowns</td><td>Repository search, experiments, dependency inventory, source gathering</td><td>Observed current state; assumptions labelled</td></tr>
+<tr><td><strong>Specify</strong></td><td>Outcome, non-goals, interfaces, risk, acceptance criteria</td><td>Options, edge cases, threat prompts, draft design and task plan</td><td>Reviewed specification with testable requirements</td></tr>
+<tr><td><strong>Execute</strong></td><td>Scope, permissions, autonomy level, checkpoints</td><td>Implementation, tests, migrations, documentation</td><td>Isolated changes; incremental tests and diff inspection</td></tr>
+<tr><td><strong>Verify</strong></td><td>What counts as proof and which risks need human judgment</td><td>Automated checks, screenshots, trace analysis, security and architecture review</td><td>Fresh command output and task-level acceptance evidence</td></tr>
+<tr><td><strong>Release</strong></td><td>Approval, rollout, rollback, incident ownership</td><td>CI/CD execution, canary observation, log triage, proposed remediation</td><td>Gated deployment, monitored outcome, reversible change</td></tr>
+</tbody>
+</table>
+</div>
+
+<h4>Choose autonomy deliberately</h4>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Mode</th><th>Use when</th><th>Required controls</th></tr></thead>
+<tbody>
+<tr><td><strong>Paired</strong></td><td>The problem is ambiguous, the codebase is unfamiliar, or decisions are expensive to reverse.</td><td>Short turns, explicit questions, frequent diff review</td></tr>
+<tr><td><strong>Bounded delegation</strong></td><td>The goal and file ownership are clear and automated verification is available.</td><td>Isolated branch/worktree, path limits, checkpoints, time/token budget</td></tr>
+<tr><td><strong>Autonomous loop</strong></td><td>The task has an objective verifier and a contained, recoverable environment.</td><td>Attempt budget, stop conditions, sandbox, immutable inputs, complete audit trail</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Escalate to a human</strong> when evidence conflicts, a requirement has two plausible interpretations, credentials or production data are involved, a change expands scope, repeated fixes expose an architectural problem, or the next action is difficult to reverse.</p>
+
+<h4>Context is an engineered dependency</h4>
+<ul>
+<li><strong>Standing context:</strong> keep repository conventions, architectural boundaries, commands, and data-access rules in a short maintained file.</li>
+<li><strong>Task context:</strong> supply the goal, non-goals, exact evidence, affected interfaces, and acceptance tests; do not dump the whole repository.</li>
+<li><strong>Decision continuity:</strong> record changed assumptions and review rulings in durable artifacts rather than relying on chat history.</li>
+<li><strong>Parallel work:</strong> split only independent files or components, assign explicit ownership, and integrate through one review point.</li>
+<li><strong>Context debt:</strong> remove obsolete instructions, duplicated plans, abandoned helpers, and generated clutter during retrospectives.</li>
+</ul>
+
+<div class="callout feynman">
+<div class="callout-label">🧠 Feynman checkpoint</div>
+<p style="margin:0"><em>"A coding agent is a very fast contractor working from the context I provide. My job is to define the outcome, limit the worksite, give it instruments that can prove success, and inspect the evidence before accepting the work."</em></p>
+</div>
+
+<h4>Build: agent-assisted change with an evidence packet</h4>
+<p>Choose one bounded feature in an existing repository. Produce a one-page specification, an implementation plan, a failing test, isolated implementation commits, fresh verification output, an independent review, and a short retrospective. Measure elapsed time, human intervention points, tokens or cost, escaped defects, and rework. Repeat once with improved context and compare completed-task economics—not code volume.</p>
+
+<h3>Shaping the build</h3>
+<p>An engineer does not earn an AI solution merely by finding a model that can attempt it. Shape the smallest intervention that improves a real outcome.</p>
+<div class="tree">
+<span class="q">1 · Problem</span> — Whose decision or workflow is failing, and what evidence proves it?
+<span class="q">2 · Outcome</span> — What measurable behavior should improve, by how much, and by when?
+<span class="q">3 · Baseline</span> — What do rules, search, forms, process change, or ordinary software achieve first?
+<span class="q">4 · AI fit</span> — Does uncertainty or unstructured input justify a probabilistic component?
+<span class="q">5 · Failure budget</span> — Which errors are tolerable, reviewable, or forbidden?
+<span class="q">6 · Smallest test</span> — What MVP can reach real users without crossing the production trust boundary?
+<span class="q">7 · Learn</span> — What did users, traces, costs, and error slices teach us to change next?
+</div>
+<div class="grid-2">
+<div class="callout">
+<div class="callout-label">Prefer ordinary software when</div>
+<ul style="font-size:14px; margin-bottom:0">
+<li>Rules are stable and complete.</li>
+<li>The correct result must be deterministic.</li>
+<li>Latency or failure cost leaves no room for model uncertainty.</li>
+<li>A form, query, search index, or workflow change solves the user problem.</li>
+</ul>
+</div>
+<div class="callout">
+<div class="callout-label">Consider AI when</div>
+<ul style="font-size:14px; margin-bottom:0">
+<li>Inputs are ambiguous, unstructured, or multimodal.</li>
+<li>Useful quality can be measured on representative cases.</li>
+<li>Failures can be detected, contained, reviewed, or reversed.</li>
+<li>The expected user value exceeds inference, evaluation, and operating cost.</li>
+</ul>
+</div>
+</div>
+<h4>Worked framing: support-ticket triage</h4>
+<p><strong>Problem:</strong> specialists spend time re-routing ambiguous tickets. <strong>Baseline:</strong> measure rules plus form improvements before adding a model. <strong>AI fit:</strong> classify only the unstructured remainder and attach confidence plus evidence. <strong>Failure budget:</strong> a wrong suggested queue is reviewable; an autonomous refund is forbidden. <strong>Smallest test:</strong> run in shadow mode on representative historical tickets, then compare routing accuracy, handling time, abstention, cost, and performance across customer segments.</p>
+<p>For deeper discovery, adoption, and outcome ownership, use the <a href="../fde/fde-handbook-v1.3.html">Forward Deployed AI Engineer Handbook</a>. This handbook keeps only the engineering decision loop.</p>
+
+<h3>Software-engineering readiness gate</h3>
+<p>This is a prerequisite check, not a compressed software-architecture course. If you cannot explain or demonstrate an item, follow the canonical link rather than duplicating the subject here.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Readiness area</th><th>You should be able to</th><th>Canonical depth</th></tr></thead>
+<tbody>
+<tr><td><strong>Architecture decisions</strong></td><td>State the forces, options, trade-offs, evidence, reversibility, and review trigger.</td><td><a href="../../docs/software-architecture/architecture-decision-method.md">Architecture Decision Method</a></td></tr>
+<tr><td><strong>System design</strong></td><td>Define workload, SLOs, data flow, state ownership, scaling path, and bottlenecks.</td><td><a href="../system-design/system-design-concept-handbook-v5.html">System Design Concept Handbook</a></td></tr>
+<tr><td><strong>Reliability</strong></td><td>Bound time, retries, overload, dependency failure, blast radius, and degraded modes.</td><td><a href="../../docs/system-design/reliability-and-failure-control.md">Reliability and Failure Control</a></td></tr>
+<tr><td><strong>Durable execution</strong></td><td>Explain idempotency, workflow state, replay, reconciliation, and recovery after partial failure.</td><td><a href="../../docs/cross-cutting-patterns/durable-workflows-and-idempotency.md">Durable Workflows and Idempotency</a></td></tr>
+<tr><td><strong>Production assurance</strong></td><td>Connect evals, authorization, rollout, observability, incident response, and rollback.</td><td><a href="../../docs/ai-architecture/production-ai-assurance.md">Production AI Assurance</a></td></tr>
+<tr><td><strong>Agent architecture</strong></td><td>Choose tools, state, memory, control boundaries, and orchestration from requirements.</td><td><a href="../agent-engineering/agent-engineering-master-manual-v2.7.html">Agent Engineering Master Manual</a></td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>Minimum model foundations</h3>
+<p>Keep the mental models that change engineering decisions; defer proofs and training-depth material until the role requires them.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Concept</th><th>Decision it should improve</th><th>Go deeper</th></tr></thead>
+<tbody>
+<tr><td><strong>Tokenization and context accounting</strong></td><td>Estimate limits, truncation risk, prompt cost, and language-specific behavior.</td><td><a href="#t-roadmap">Roadmap · Weeks 1–2</a></td></tr>
+<tr><td><strong>Prefill, decode, and prefix/KV caching</strong></td><td>Separate time-to-first-token from generation speed and design cacheable context.</td><td><a href="../../docs/ai-architecture/llm-inference-systems.md">LLM Inference Systems</a></td></tr>
+<tr><td><strong>Sampling and structured output</strong></td><td>Match generation controls, schemas, validators, and retry policy to the task.</td><td><a href="#t-roadmap">Roadmap · Weeks 1–2</a></td></tr>
+<tr><td><strong>Train/validation/production distributions</strong></td><td>Recognize leakage, drift, and why offline quality may not survive deployment.</td><td><a href="../../docs/ai-architecture/model-adaptation-and-training.md">Model Adaptation and Training</a></td></tr>
+<tr><td><strong>Bias/variance and error slices</strong></td><td>Choose whether more data, a simpler system, a better evaluator, or a model change is justified.</td><td><a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html#ml">ML &amp; Statistics Foundations</a> · <a href="#t-eval">Evaluation · Error Analysis</a></td></tr>
+<tr><td><strong>Prompt, retrieval, tools, workflow, or weights</strong></td><td>Select the least invasive intervention supported by evidence.</td><td><a href="#t-eval">Evaluation · Intervention Loop</a></td></tr>
+</tbody>
+</table>
+</div>
+
+</section>
+
+<!-- ============================================================== -->
+<!-- 04 · ARCHITECTURE                                               -->
+<!-- ============================================================== -->
+<section class="panel" id="t-architecture" role="tabpanel" aria-labelledby="tab-architecture" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Five core <em>architectures.</em></h2>
 <p class="section-sub">Five useful patterns to compare; this is a teaching taxonomy, not an exhaustive classification</p>
@@ -1174,9 +1348,9 @@
 </section>
 
 <!-- ============================================================== -->
-<!-- 04 · STACK & DECISIONS                                          -->
+<!-- 05 · STACK & DECISIONS                                          -->
 <!-- ============================================================== -->
-<section class="panel" id="t-stack">
+<section class="panel" id="t-stack" role="tabpanel" aria-labelledby="tab-stack" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Stack &amp; <em>decisions.</em></h2>
 <p class="section-sub">By scenario · with decision trees</p>
@@ -1250,15 +1424,14 @@
 
 <h3>Decision trees</h3>
 
-<h4>RAG vs Fine-tuning</h4>
+<h4>Choose the intervention layer</h4>
 <div class="tree">
-<span class="q">Can better prompting solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
-  ↓ NO
-<span class="q">Can RAG solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
-  ↓ NO
-<span class="q">Can few-shot examples solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
-  ↓ NO
-<span class="q">Consider fine-tuning (LoRA)</span> with 1K+ high-quality examples.
+<span class="q">Requirement or evaluator is wrong?</span> <span class="arrow">→</span> Repair the definition of success.
+<span class="q">Evidence is missing, stale, or unauthorized?</span> <span class="arrow">→</span> Repair data and access.
+<span class="q">Code, query, search, or tool can solve it deterministically?</span> <span class="arrow">→</span> Prefer that baseline.
+<span class="q">The model received the wrong context?</span> <span class="arrow">→</span> Fix prompt, API/SQL access, retrieval, or examples.
+<span class="q">The workflow or control boundary failed?</span> <span class="arrow">→</span> Fix state, interface, authorization, or verification.
+<span class="q">A stable model-capability gap remains?</span> <span class="arrow">→</span> Evaluate routing or adaptation with rollback gates.
 </div>
 
 <h4>Single agent vs Multi-agent</h4>
@@ -1283,18 +1456,41 @@
 </section>
 
 <!-- ============================================================== -->
-<!-- 05 · EVALUATION                                                 -->
+<!-- 06 · EVALUATION                                                 -->
 <!-- ============================================================== -->
-<section class="panel" id="t-eval">
+<section class="panel" id="t-eval" role="tabpanel" aria-labelledby="tab-eval" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Evaluation <em>pyramid.</em></h2>
 <p class="section-sub">Build from the bottom up · most teams skip the cheap layers</p>
 
-<p>Most teams skip the cheap layers and go straight to LLM-as-judge, then wonder why evals are noisy and expensive. Build bottom-up.</p>
+<p>Most teams skip the cheap layers and go straight to LLM-as-judge, then wonder why evals are noisy and expensive. Build bottom-up—but do not stop at a score. Evaluation-driven development is a decision loop for choosing the next intervention.</p>
+
+<h3>The error-analysis loop</h3>
+<div class="ascii"><span class="yellow">Representative cases</span> → Run → Inspect outputs + traces → Tag first independent failure
+       ↑                                                        ↓
+Release gate ← Compare slices + guardrails ← Change one layer ← Choose intervention</div>
+<p>Start with the first independent failure, not every downstream symptom. Review both aggregate performance and slices such as intent, language, customer segment, document type, tool, risk class, or workflow length. Averages can improve while an important cohort regresses.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Observed failure</th><th>Inspect first</th><th>Least-invasive intervention</th></tr></thead>
+<tbody>
+<tr><td>Relevant evidence never reached the model</td><td>Ingestion, permissions, query, retrieval recall, freshness</td><td>Repair data or retrieval before changing the model</td></tr>
+<tr><td>Evidence was present but ignored or misused</td><td>Prompt contract, context order, ambiguity, reasoning budget</td><td>Clarify instructions, restructure context, add a check</td></tr>
+<tr><td>Tool call was invalid or unsafe</td><td>Tool description, schema, authorization, validation, state</td><td>Tighten interface and policy; add deterministic verification</td></tr>
+<tr><td>Workflow looped, stopped early, or duplicated work</td><td>State transitions, stop conditions, retry ownership, idempotency</td><td>Fix orchestration before adding agents or a larger model</td></tr>
+<tr><td>Quality varies by stable, repeated task slice</td><td>Examples, evaluator labels, model capability, latency/cost budget</td><td>Route or adapt only after harness and data fixes are exhausted</td></tr>
+<tr><td>Metric improves but users reject the result</td><td>Evaluator rubric, sampling, hidden product requirement</td><td>Repair the evaluator or reshape the requirement</td></tr>
+</tbody>
+</table>
+</div>
+<div class="callout warn">
+<div class="callout-label">Evaluate the evaluator</div>
+<p style="margin:0">For every consequential automated judge, maintain representative human-labelled examples, disagreement cases, slice-level agreement, and a review trigger. An evaluator is another fallible model of success—not ground truth.</p>
+</div>
 
 <div class="ascii">                    ┌──────────────────┐
-                    │   <span class="yellow">Human eval</span>     │   ← Periodic calibration (quarterly)
-                    │   (gold standard)│
+                    │   <span class="yellow">Human eval</span>     │   ← Continuous for high-risk changes
+                    │ labels + calibration│      Periodic for stable, lower-risk work
                     └──────────────────┘
                   ┌──────────────────────┐
                   │   <span class="yellow">LLM-as-judge</span>       │   ← Every PR / model change
@@ -1324,9 +1520,10 @@
 <p style="margin:0">Do not trust an LLM judge until it has been calibrated against a representative human-labelled set with an agreement threshold appropriate to the decision risk.</p>
 </div>
 
-<h3>Layer 3 · Human evaluation (quarterly)</h3>
+<h3>Layer 3 · Human evaluation (risk-calibrated)</h3>
 <ul>
-<li>Likert ratings on a sampled subset</li>
+<li>Review continuously for high-risk changes; sample periodically for lower-risk, stable behavior</li>
+<li>Likert ratings or pairwise preference on a representative subset</li>
 <li>Error-taxonomy tagging (retrieval failure, reasoning error, hallucination, tool misuse)</li>
 <li>Inter-annotator agreement: report the statistic, sample size and class balance, inspect disagreements, and set a risk-appropriate acceptance rule; no universal κ cutoff establishes label quality</li>
 </ul>
@@ -1363,7 +1560,7 @@
 <li>☐ Human-in-the-loop defined for high-stakes actions</li>
 <li>☐ Rollback plan documented (feature flag or model version pin)</li>
 <li>☐ PII redaction tested</li>
-<li>☐ Prompt-injection probes pass (regex + output guardrails)</li>
+<li>☐ Adversarial prompt and tool-content cases tested; instruction/data separation, least-privilege tools, deterministic authorization, sandboxing, and approval gates enforced — see <a href="../../docs/ai-architecture/production-ai-assurance.md">Production AI Assurance</a></li>
 </ul>
 </div>
 <div>
@@ -1412,9 +1609,9 @@ Recalculate with current provider pricing and measured workload data; do not cop
 </section>
 
 <!-- ============================================================== -->
-<!-- 06 · INTERVIEW PLAYBOOK                                         -->
+<!-- 07 · INTERVIEW PLAYBOOK                                         -->
 <!-- ============================================================== -->
-<section class="panel" id="t-interview">
+<section class="panel" id="t-interview" role="tabpanel" aria-labelledby="tab-interview" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">The interview <em>playbook.</em></h2>
 <p class="section-sub">Five questions that separate read-the-docs from shipped-in-prod</p>
@@ -1606,9 +1803,9 @@ full build. The one-pager became our project charter.</div>
 </section>
 
 <!-- ============================================================== -->
-<!-- 07 · LANDSCAPE                                                  -->
+<!-- 08 · LANDSCAPE                                                  -->
 <!-- ============================================================== -->
-<section class="panel" id="t-landscape">
+<section class="panel" id="t-landscape" role="tabpanel" aria-labelledby="tab-landscape" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">The landscape — <em>September 2026.</em></h2>
 <p class="section-sub">What changed since the original notes · what to track</p>
@@ -1665,6 +1862,7 @@ full build. The one-pager became our project charter.</div>
 <li>Verify current model IDs and pricing against the official Anthropic / OpenAI / Google docs.</li>
 <li>Check LangGraph version (PyPI) and re-pin dependencies.</li>
 <li>Re-read the latest MCP spec changelog at <code>modelcontextprotocol.io</code>.</li>
+<li>Review DeepLearning.AI's living skills map as a market signal; adopt durable capability gaps, not its taxonomy or transient tool choices.</li>
 <li>Re-check the EU AI Act implementation timeline and any subsequent amendments against official EU sources.</li>
 <li>Skim the multi-author practitioner essay at <a href="https://applied-llms.org/">applied-llms.org</a> and the LangChain blog for new patterns.</li>
 <li>Audit external links (link rot is real on personal blogs and vendor startup sites).</li>
@@ -1673,12 +1871,12 @@ full build. The one-pager became our project charter.</div>
 </section>
 
 <!-- ============================================================== -->
-<!-- 08 · SOURCES                                                    -->
+<!-- 09 · SOURCES                                                    -->
 <!-- ============================================================== -->
-<section class="panel" id="t-sources">
+<section class="panel" id="t-sources" role="tabpanel" aria-labelledby="tab-sources" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Verified <em>sources.</em></h2>
-<p class="section-sub">Every link below checked 3 September 2026 · grouped by purpose</p>
+<p class="section-sub">Source list maintained 11 September 2026 · grouped by purpose · re-check volatile claims before use</p>
 
 <div class="search-wrap">
   <input type="text" class="search" id="src-search" placeholder="filter sources… (e.g. 'mcp', 'langgraph', 'eval')" />
@@ -1717,6 +1915,10 @@ full build. The one-pager became our project charter.</div>
 <h4 style="color:var(--ink)">Learning</h4>
 <ul>
 <li><a href="https://www.promptingguide.ai/">promptingguide.ai</a> — DAIR.AI, maintained</li>
+<li><a href="https://www.deeplearning.ai/the-batch/the-ai-engineering-skills-map">DeepLearning.AI Engineering Skills Map</a> — market-facing four-capability map; living, not normative</li>
+<li><a href="https://www.deeplearning.ai/the-batch/issue-367">The Batch issue 367</a> — building/deploying AI applications and evaluation-driven development</li>
+<li><a href="https://www.deeplearning.ai/the-batch/issue-368">The Batch issue 368</a> — software-engineering fundamentals for agentic coding</li>
+<li><a href="https://www.deeplearning.ai/the-batch/issue-369">The Batch issue 369</a> — coding-agent workflow, autonomy, context, and verification</li>
 <li><a href="https://www.deeplearning.ai/">deeplearning.ai</a> — short courses (Agents, RAG, LangGraph)</li>
 <li><a href="https://applied-llms.org/">applied-llms.org</a> — "What we learned from a year of building with LLMs"</li>
 <li><a href="https://arxiv.org/list/cs.AI/recent">arXiv cs.AI feed</a></li>
@@ -1813,24 +2015,50 @@ full build. The one-pager became our project charter.</div>
 </main>
 
 <footer>
-  Compiled <em>May 2026</em> · reviewed <em>3 September 2026</em> · Pareto-pruned · Feynman-structured · 19 files → 1 reference
+  Compiled <em>May 2026</em> · reviewed <em>11 September 2026</em> · Pareto-pruned · Feynman-structured · 19 files → 1 reference
 </footer>
 
 <!-- ============================ SCRIPT ============================ -->
 <script>
   // tab switching
   const tabs = document.querySelectorAll('.tab');
+  const tabArray = Array.from(tabs);
   const panels = document.querySelectorAll('section.panel');
   tabs.forEach(t => {
     t.addEventListener('click', () => {
-      tabs.forEach(x => x.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
+      tabs.forEach(x => {
+        x.classList.remove('active');
+        x.setAttribute('aria-selected', 'false');
+        x.setAttribute('tabindex', '-1');
+      });
+      panels.forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-hidden', 'true');
+      });
       t.classList.add('active');
+      t.setAttribute('aria-selected', 'true');
+      t.setAttribute('tabindex', '0');
       const target = document.getElementById(t.dataset.target);
-      if (target) target.classList.add('active');
+      if (target) {
+        target.classList.add('active');
+        target.setAttribute('aria-hidden', 'false');
+      }
       // scroll to top of main on tab change
       const main = document.querySelector('main');
       main.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  tabs.forEach((t, index) => {
+    t.addEventListener('keydown', e => {
+      let nextIndex;
+      if (e.key === 'ArrowRight') nextIndex = (index + 1) % tabArray.length;
+      if (e.key === 'ArrowLeft') nextIndex = (index - 1 + tabArray.length) % tabArray.length;
+      if (e.key === 'Home') nextIndex = 0;
+      if (e.key === 'End') nextIndex = tabArray.length - 1;
+      if (nextIndex === undefined) return;
+      e.preventDefault();
+      tabArray[nextIndex].focus();
+      tabArray[nextIndex].click();
     });
   });
 
@@ -1883,12 +2111,15 @@ full build. The one-pager became our project charter.</div>
     }
   });
 
-  // deep-link via hash
-  if (location.hash) {
+  // deep-link via hash, including links between handbook panels
+  const activateHashTab = () => {
+    if (!location.hash) return;
     const id = location.hash.slice(1);
     const tab = document.querySelector(`.tab[data-target="${id}"]`);
-    if (tab) tab.click();
-  }
+    if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+  };
+  activateHashTab();
+  window.addEventListener('hashchange', activateHashTab);
   tabs.forEach(t => {
     t.addEventListener('click', () => {
       history.replaceState(null, '', '#' + t.dataset.target);
