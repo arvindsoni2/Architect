@@ -1076,7 +1076,7 @@
 <table>
 <thead><tr><th>Skill</th><th>Context</th></tr></thead>
 <tbody>
-<tr><td><span class="tier t3">T3</span> Fine-tuning (LoRA / QLoRA)</td><td>Only when RAG + prompting demonstrably fails</td></tr>
+<tr><td><span class="tier t3">T3</span> Fine-tuning (LoRA / QLoRA)</td><td>Only when a stable, context-available model-capability gap remains after evaluator, data, harness, retrieval, tool, and workflow fixes</td></tr>
 <tr><td><span class="tier t3">T3</span> RLHF / DPO</td><td>Research or alignment-specialist roles</td></tr>
 <tr><td><span class="tier t3">T3</span> CUDA / Triton</td><td>ML infrastructure or training-focused roles</td></tr>
 <tr><td><span class="tier t3">T3</span> GraphRAG</td><td>Complex multi-hop reasoning over knowledge graphs</td></tr>
@@ -1230,7 +1230,7 @@
 <tr><td><strong>Prefill, decode, and prefix/KV caching</strong></td><td>Separate time-to-first-token from generation speed and design cacheable context.</td><td><a href="../../docs/ai-architecture/llm-inference-systems.md">LLM Inference Systems</a></td></tr>
 <tr><td><strong>Sampling and structured output</strong></td><td>Match generation controls, schemas, validators, and retry policy to the task.</td><td><a href="#t-roadmap">Roadmap · Weeks 1–2</a></td></tr>
 <tr><td><strong>Train/validation/production distributions</strong></td><td>Recognize leakage, drift, and why offline quality may not survive deployment.</td><td><a href="../../docs/ai-architecture/model-adaptation-and-training.md">Model Adaptation and Training</a></td></tr>
-<tr><td><strong>Bias/variance and error slices</strong></td><td>Choose whether more data, a simpler system, a better evaluator, or a model change is justified.</td><td><a href="#t-eval">Evaluation · Error Analysis</a></td></tr>
+<tr><td><strong>Bias/variance and error slices</strong></td><td>Choose whether more data, a simpler system, a better evaluator, or a model change is justified.</td><td><a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html#ml">ML &amp; Statistics Foundations</a> · <a href="#t-eval">Evaluation · Error Analysis</a></td></tr>
 <tr><td><strong>Prompt, retrieval, tools, workflow, or weights</strong></td><td>Select the least invasive intervention supported by evidence.</td><td><a href="#t-eval">Evaluation · Intervention Loop</a></td></tr>
 </tbody>
 </table>
