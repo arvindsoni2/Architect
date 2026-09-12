@@ -98,7 +98,7 @@ Only after this baseline does the team test paged KV allocation and a smaller qu
 
 Contributing sources:
 
-- [AI Engineering Handbook v3.0](../../handbooks/ai-engineering/ai-engineering-handbook-v3.0.html)
+- [AI Engineering Handbook v3.1](../../handbooks/ai-engineering/ai-engineering-handbook-v3.1.html)
 - [Agent Engineering Master Manual v2.7](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html)
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html)
 - CS336 Handwritten Visual Notebook, inference and GPU-systems sections (private/source-synthesis asset consulted; public course counterpart is [Stanford CS336](https://cs336.stanford.edu/spring2025/); concepts synthesised here)

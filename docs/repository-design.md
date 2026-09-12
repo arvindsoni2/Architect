@@ -128,7 +128,7 @@ The first migration batch will establish the root navigation and curate these ca
 
 1. System Design Concept Handbook v5;
 2. Agent Engineering Master Manual v2.7 — AI Systems Foundations;
-3. AI Engineering Handbook v3.0;
+3. AI Engineering Handbook v3.1;
 4. Software Architect Curriculum Guide v3;
 5. Software Architect Grooming Programme v5.
 
