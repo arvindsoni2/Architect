@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate catalogue integrity and local Markdown links without network access."""
+"""Validate catalogue integrity and local Markdown/HTML links without network access."""
 
 from __future__ import annotations
 
@@ -310,7 +310,11 @@ def _html_link_errors(root: pathlib.Path) -> list[str]:
         parser = _AnchorTargetParser()
         parser.feed(document.read_text(encoding="utf-8"))
         for raw_target in parser.targets:
-            parsed = urlsplit(raw_target)
+            try:
+                parsed = urlsplit(raw_target)
+            except ValueError:
+                errors.append(f"{relative_document}: malformed href: {raw_target}")
+                continue
             if parsed.scheme or parsed.netloc or not parsed.path:
                 continue
             path_text = unquote(parsed.path)

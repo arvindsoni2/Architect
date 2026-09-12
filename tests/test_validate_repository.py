@@ -155,6 +155,23 @@ class RepositoryValidationTests(unittest.TestCase):
 
         self.assertEqual(validate_repository(root), [])
 
+    def test_reports_malformed_html_links_without_crashing(self):
+        temporary, root = self.make_repository()
+        self.addCleanup(temporary.cleanup)
+        (root / "docs" / "guide.html").write_text(
+            '<!doctype html><a href="http://[">Absolute</a>'
+            '<a href="//[">Protocol relative</a>\n',
+            encoding="utf-8",
+        )
+
+        self.assertEqual(
+            [
+                "docs/guide.html: malformed href: http://[",
+                "docs/guide.html: malformed href: //[",
+            ],
+            [error for error in validate_repository(root) if "malformed href" in error],
+        )
+
     def test_ignores_markdown_links_inside_indented_code(self):
         temporary, root = self.make_repository()
         self.addCleanup(temporary.cleanup)

@@ -633,17 +633,17 @@
 </div>
 
 <!-- ============================ TABS ============================ -->
-<nav class="tabs" role="tablist">
+<nav class="tabs" role="tablist" aria-label="Handbook sections">
   <div class="tabs-inner">
-    <button class="tab active" data-target="t-roadmap" role="tab"><span class="tab-num">01</span>Roadmap</button>
-    <button class="tab" data-target="t-skills" role="tab"><span class="tab-num">02</span>Skills Matrix</button>
-    <button class="tab" data-target="t-practice" role="tab"><span class="tab-num">03</span>Engineering Practice</button>
-    <button class="tab" data-target="t-architecture" role="tab"><span class="tab-num">04</span>Architecture</button>
-    <button class="tab" data-target="t-stack" role="tab"><span class="tab-num">05</span>Stack &amp; Decisions</button>
-    <button class="tab" data-target="t-eval" role="tab"><span class="tab-num">06</span>Evaluation</button>
-    <button class="tab" data-target="t-interview" role="tab"><span class="tab-num">07</span>Interview Playbook</button>
-    <button class="tab" data-target="t-landscape" role="tab"><span class="tab-num">08</span>Landscape · Sep 2026</button>
-    <button class="tab" data-target="t-sources" role="tab"><span class="tab-num">09</span>Sources</button>
+    <button class="tab active" id="tab-roadmap" data-target="t-roadmap" role="tab" aria-controls="t-roadmap" aria-selected="true" tabindex="0"><span class="tab-num">01</span>Roadmap</button>
+    <button class="tab" id="tab-skills" data-target="t-skills" role="tab" aria-controls="t-skills" aria-selected="false" tabindex="-1"><span class="tab-num">02</span>Skills Matrix</button>
+    <button class="tab" id="tab-practice" data-target="t-practice" role="tab" aria-controls="t-practice" aria-selected="false" tabindex="-1"><span class="tab-num">03</span>Engineering Practice</button>
+    <button class="tab" id="tab-architecture" data-target="t-architecture" role="tab" aria-controls="t-architecture" aria-selected="false" tabindex="-1"><span class="tab-num">04</span>Architecture</button>
+    <button class="tab" id="tab-stack" data-target="t-stack" role="tab" aria-controls="t-stack" aria-selected="false" tabindex="-1"><span class="tab-num">05</span>Stack &amp; Decisions</button>
+    <button class="tab" id="tab-eval" data-target="t-eval" role="tab" aria-controls="t-eval" aria-selected="false" tabindex="-1"><span class="tab-num">06</span>Evaluation</button>
+    <button class="tab" id="tab-interview" data-target="t-interview" role="tab" aria-controls="t-interview" aria-selected="false" tabindex="-1"><span class="tab-num">07</span>Interview Playbook</button>
+    <button class="tab" id="tab-landscape" data-target="t-landscape" role="tab" aria-controls="t-landscape" aria-selected="false" tabindex="-1"><span class="tab-num">08</span>Landscape · Sep 2026</button>
+    <button class="tab" id="tab-sources" data-target="t-sources" role="tab" aria-controls="t-sources" aria-selected="false" tabindex="-1"><span class="tab-num">09</span>Sources</button>
   </div>
 </nav>
 
@@ -652,7 +652,7 @@
 <!-- ============================================================== -->
 <!-- 01 · ROADMAP                                                    -->
 <!-- ============================================================== -->
-<section class="panel active" id="t-roadmap">
+<section class="panel active" id="t-roadmap" role="tabpanel" aria-labelledby="tab-roadmap" aria-hidden="false" tabindex="0">
 <p><strong>How to read the targets:</strong> the weekly schedule and numerical quality, latency and cost targets are exercise hypotheses. Define dataset, denominator, workload, risk and reviewer agreement before adopting them. Completion of ten weeks or a high aggregate score does not establish job readiness; retain separate security, correctness and evidence gates.</p>
 
 <h2 class="section-title">The <em>ten-week</em> roadmap.</h2>
@@ -690,7 +690,8 @@
   <div class="week-body">
     <h4>Pareto Focus</h4>
     <ul>
-      <li><strong>Attention as retrieval:</strong> You don't need the math. Context window = RAM. Attention = similarity search across that RAM.</li>
+      <li><strong>Tokens are the operating unit:</strong> tokenization affects limits, truncation, latency, and cost; generation is sequential, so long outputs are usually slower than equally sized inputs.</li>
+      <li><strong>Sampling is not truth control:</strong> temperature and related parameters change the output distribution. Use schemas, validators, evidence, and task-specific evals for reliability.</li>
       <li><strong>The atomic loop:</strong> <code>User → LLM → JSON → Tool → Result → LLM → Answer</code>. Every agentic system is this loop, repeated.</li>
       <li><strong>Structured output:</strong> Schema-constrained output where supported, plus Pydantic validation, helps enforce interface shape. Handle refusals, truncation and retries, and validate facts and business rules separately; valid JSON is not proof of correctness.</li>
     </ul>
@@ -892,7 +893,7 @@
       <em>"Evaluation is the entire game. Anyone can get a demo working. The engineer who can prove it works at scale — with numbers — is the one who gets hired."</em>
     </div>
     <h4>Build: Eval Harness</h4>
-    <p>30 (input, expected_output) pairs as a golden dataset. LLM-as-judge scoring (faithfulness, relevance). Langfuse tracing on every node. CI script fails if faithfulness &lt; 85%.</p>
+    <p>Build at least 30 representative cases with human labels, important risk slices, and deterministic assertions where possible. Add an LLM judge only after measuring agreement and disagreements against those labels. Trace every node. Derive release thresholds from failure cost and block regressions by slice—not from a generic percentage.</p>
   </div>
 </details>
 
@@ -1008,7 +1009,7 @@
 <!-- ============================================================== -->
 <!-- 02 · SKILLS MATRIX                                              -->
 <!-- ============================================================== -->
-<section class="panel" id="t-skills">
+<section class="panel" id="t-skills" role="tabpanel" aria-labelledby="tab-skills" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">The skills <em>matrix.</em></h2>
 <p class="section-sub">Tiered by hiring impact · 2026 expectations</p>
@@ -1049,7 +1050,7 @@
 <tr><td><strong>MCP</strong></td><td>Widely adopted open protocol under AAIF / Linux Foundation governance.</td><td>Building <em>and</em> consuming an MCP server</td></tr>
 <tr><td><strong>Evaluation + error analysis</strong></td><td>Separates random iteration from evidence-driven improvement.</td><td>CI-gated eval suite plus first-failure taxonomy and evaluator calibration</td></tr>
 <tr><td><strong>Docker + FastAPI</strong></td><td>One common API deployment option; readiness also needs operational evidence.</td><td>Containerized API with health checks</td></tr>
-<tr><td><strong>pgvector + SQL</strong></td><td>Data is the foundation; vector search is table stakes.</td><td>Hybrid search (dense + sparse) query</td></tr>
+<tr><td><strong>SQL + data modelling</strong></td><td>Structured sources, access patterns, transactions, and lifecycle rules remain foundational.</td><td>Governed schema with joins, indexes, constraints, and representative queries</td></tr>
 </tbody>
 </table>
 </div>
@@ -1062,6 +1063,7 @@
 <tr><td><span class="tier t2">T2</span> Model routing</td><td>Cost optimization (cheap first, expensive fallback)</td></tr>
 <tr><td><span class="tier t2">T2</span> Quantization</td><td>On-prem or edge (INT8/INT4 via llama.cpp, vLLM)</td></tr>
 <tr><td><span class="tier t2">T2</span> Prompt versioning</td><td>Team-scale prompt management (Git-tracked)</td></tr>
+<tr><td><span class="tier t2">T2</span> Vector retrieval</td><td>When semantic matching over unstructured data beats keyword, API, or SQL baselines on target evals</td></tr>
 <tr><td><span class="tier t2">T2</span> Multi-agent patterns</td><td>Complex workflows requiring genuine specialization</td></tr>
 <tr><td><span class="tier t2">T2</span> Cost dashboards</td><td>High-volume production ($/task, $/user)</td></tr>
 <tr><td><span class="tier t2">T2</span> EU AI Act fluency</td><td>UK / EU work — AI Omnibus in force; Annex III high-risk rules apply from 2 Dec 2027</td></tr>
@@ -1106,7 +1108,7 @@
 <!-- ============================================================== -->
 <!-- 03 · ENGINEERING PRACTICE                                       -->
 <!-- ============================================================== -->
-<section class="panel" id="t-practice">
+<section class="panel" id="t-practice" role="tabpanel" aria-labelledby="tab-practice" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Engineering <em>practice.</em></h2>
 <p class="section-sub">Shape the right problem · direct coding agents · prove the result</p>
@@ -1224,12 +1226,12 @@
 <table>
 <thead><tr><th>Concept</th><th>Decision it should improve</th><th>Go deeper</th></tr></thead>
 <tbody>
-<tr><td><strong>Tokenization and context accounting</strong></td><td>Estimate limits, truncation risk, prompt cost, and language-specific behavior.</td><td rowspan="3"><a href="../../docs/ai-architecture/llm-inference-systems.md">LLM Inference Systems</a></td></tr>
-<tr><td><strong>Prefill, decode, and prefix/KV caching</strong></td><td>Separate time-to-first-token from generation speed and design cacheable context.</td></tr>
-<tr><td><strong>Sampling and structured output</strong></td><td>Match generation controls, schemas, validators, and retry policy to the task.</td></tr>
-<tr><td><strong>Train/validation/production distributions</strong></td><td>Recognize leakage, drift, and why offline quality may not survive deployment.</td><td rowspan="3"><a href="../../docs/ai-architecture/model-adaptation-and-training.md">Model Adaptation and Training</a></td></tr>
-<tr><td><strong>Bias/variance and error slices</strong></td><td>Choose whether more data, a simpler system, a better evaluator, or a model change is justified.</td></tr>
-<tr><td><strong>Prompt, retrieval, tools, workflow, or weights</strong></td><td>Select the least invasive intervention supported by evidence.</td></tr>
+<tr><td><strong>Tokenization and context accounting</strong></td><td>Estimate limits, truncation risk, prompt cost, and language-specific behavior.</td><td><a href="#t-roadmap">Roadmap · Weeks 1–2</a></td></tr>
+<tr><td><strong>Prefill, decode, and prefix/KV caching</strong></td><td>Separate time-to-first-token from generation speed and design cacheable context.</td><td><a href="../../docs/ai-architecture/llm-inference-systems.md">LLM Inference Systems</a></td></tr>
+<tr><td><strong>Sampling and structured output</strong></td><td>Match generation controls, schemas, validators, and retry policy to the task.</td><td><a href="#t-roadmap">Roadmap · Weeks 1–2</a></td></tr>
+<tr><td><strong>Train/validation/production distributions</strong></td><td>Recognize leakage, drift, and why offline quality may not survive deployment.</td><td><a href="../../docs/ai-architecture/model-adaptation-and-training.md">Model Adaptation and Training</a></td></tr>
+<tr><td><strong>Bias/variance and error slices</strong></td><td>Choose whether more data, a simpler system, a better evaluator, or a model change is justified.</td><td><a href="#t-eval">Evaluation · Error Analysis</a></td></tr>
+<tr><td><strong>Prompt, retrieval, tools, workflow, or weights</strong></td><td>Select the least invasive intervention supported by evidence.</td><td><a href="#t-eval">Evaluation · Intervention Loop</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -1239,7 +1241,7 @@
 <!-- ============================================================== -->
 <!-- 04 · ARCHITECTURE                                               -->
 <!-- ============================================================== -->
-<section class="panel" id="t-architecture">
+<section class="panel" id="t-architecture" role="tabpanel" aria-labelledby="tab-architecture" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Five core <em>architectures.</em></h2>
 <p class="section-sub">Five useful patterns to compare; this is a teaching taxonomy, not an exhaustive classification</p>
@@ -1348,7 +1350,7 @@
 <!-- ============================================================== -->
 <!-- 05 · STACK & DECISIONS                                          -->
 <!-- ============================================================== -->
-<section class="panel" id="t-stack">
+<section class="panel" id="t-stack" role="tabpanel" aria-labelledby="tab-stack" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Stack &amp; <em>decisions.</em></h2>
 <p class="section-sub">By scenario · with decision trees</p>
@@ -1422,15 +1424,14 @@
 
 <h3>Decision trees</h3>
 
-<h4>RAG vs Fine-tuning</h4>
+<h4>Choose the intervention layer</h4>
 <div class="tree">
-<span class="q">Can better prompting solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
-  ↓ NO
-<span class="q">Can RAG solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
-  ↓ NO
-<span class="q">Can few-shot examples solve it?</span> <span class="arrow">→</span> <span class="a">YES</span>: do that.
-  ↓ NO
-<span class="q">Consider fine-tuning (LoRA)</span> with 1K+ high-quality examples.
+<span class="q">Requirement or evaluator is wrong?</span> <span class="arrow">→</span> Repair the definition of success.
+<span class="q">Evidence is missing, stale, or unauthorized?</span> <span class="arrow">→</span> Repair data and access.
+<span class="q">Code, query, search, or tool can solve it deterministically?</span> <span class="arrow">→</span> Prefer that baseline.
+<span class="q">The model received the wrong context?</span> <span class="arrow">→</span> Fix prompt, API/SQL access, retrieval, or examples.
+<span class="q">The workflow or control boundary failed?</span> <span class="arrow">→</span> Fix state, interface, authorization, or verification.
+<span class="q">A stable model-capability gap remains?</span> <span class="arrow">→</span> Evaluate routing or adaptation with rollback gates.
 </div>
 
 <h4>Single agent vs Multi-agent</h4>
@@ -1457,7 +1458,7 @@
 <!-- ============================================================== -->
 <!-- 06 · EVALUATION                                                 -->
 <!-- ============================================================== -->
-<section class="panel" id="t-eval">
+<section class="panel" id="t-eval" role="tabpanel" aria-labelledby="tab-eval" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Evaluation <em>pyramid.</em></h2>
 <p class="section-sub">Build from the bottom up · most teams skip the cheap layers</p>
@@ -1488,8 +1489,8 @@ Release gate ← Compare slices + guardrails ← Change one layer ← Choose int
 </div>
 
 <div class="ascii">                    ┌──────────────────┐
-                    │   <span class="yellow">Human eval</span>     │   ← Periodic calibration (quarterly)
-                    │   (gold standard)│
+                    │   <span class="yellow">Human eval</span>     │   ← Continuous for high-risk changes
+                    │ labels + calibration│      Periodic for stable, lower-risk work
                     └──────────────────┘
                   ┌──────────────────────┐
                   │   <span class="yellow">LLM-as-judge</span>       │   ← Every PR / model change
@@ -1559,7 +1560,7 @@ Release gate ← Compare slices + guardrails ← Change one layer ← Choose int
 <li>☐ Human-in-the-loop defined for high-stakes actions</li>
 <li>☐ Rollback plan documented (feature flag or model version pin)</li>
 <li>☐ PII redaction tested</li>
-<li>☐ Prompt-injection probes pass (regex + output guardrails)</li>
+<li>☐ Adversarial prompt and tool-content cases tested; instruction/data separation, least-privilege tools, deterministic authorization, sandboxing, and approval gates enforced — see <a href="../../docs/ai-architecture/production-ai-assurance.md">Production AI Assurance</a></li>
 </ul>
 </div>
 <div>
@@ -1610,7 +1611,7 @@ Recalculate with current provider pricing and measured workload data; do not cop
 <!-- ============================================================== -->
 <!-- 07 · INTERVIEW PLAYBOOK                                         -->
 <!-- ============================================================== -->
-<section class="panel" id="t-interview">
+<section class="panel" id="t-interview" role="tabpanel" aria-labelledby="tab-interview" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">The interview <em>playbook.</em></h2>
 <p class="section-sub">Five questions that separate read-the-docs from shipped-in-prod</p>
@@ -1804,7 +1805,7 @@ full build. The one-pager became our project charter.</div>
 <!-- ============================================================== -->
 <!-- 08 · LANDSCAPE                                                  -->
 <!-- ============================================================== -->
-<section class="panel" id="t-landscape">
+<section class="panel" id="t-landscape" role="tabpanel" aria-labelledby="tab-landscape" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">The landscape — <em>September 2026.</em></h2>
 <p class="section-sub">What changed since the original notes · what to track</p>
@@ -1872,7 +1873,7 @@ full build. The one-pager became our project charter.</div>
 <!-- ============================================================== -->
 <!-- 09 · SOURCES                                                    -->
 <!-- ============================================================== -->
-<section class="panel" id="t-sources">
+<section class="panel" id="t-sources" role="tabpanel" aria-labelledby="tab-sources" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Verified <em>sources.</em></h2>
 <p class="section-sub">Source list maintained 11 September 2026 · grouped by purpose · re-check volatile claims before use</p>
@@ -2021,17 +2022,43 @@ full build. The one-pager became our project charter.</div>
 <script>
   // tab switching
   const tabs = document.querySelectorAll('.tab');
+  const tabArray = Array.from(tabs);
   const panels = document.querySelectorAll('section.panel');
   tabs.forEach(t => {
     t.addEventListener('click', () => {
-      tabs.forEach(x => x.classList.remove('active'));
-      panels.forEach(p => p.classList.remove('active'));
+      tabs.forEach(x => {
+        x.classList.remove('active');
+        x.setAttribute('aria-selected', 'false');
+        x.setAttribute('tabindex', '-1');
+      });
+      panels.forEach(p => {
+        p.classList.remove('active');
+        p.setAttribute('aria-hidden', 'true');
+      });
       t.classList.add('active');
+      t.setAttribute('aria-selected', 'true');
+      t.setAttribute('tabindex', '0');
       const target = document.getElementById(t.dataset.target);
-      if (target) target.classList.add('active');
+      if (target) {
+        target.classList.add('active');
+        target.setAttribute('aria-hidden', 'false');
+      }
       // scroll to top of main on tab change
       const main = document.querySelector('main');
       main.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  tabs.forEach((t, index) => {
+    t.addEventListener('keydown', e => {
+      let nextIndex;
+      if (e.key === 'ArrowRight') nextIndex = (index + 1) % tabArray.length;
+      if (e.key === 'ArrowLeft') nextIndex = (index - 1 + tabArray.length) % tabArray.length;
+      if (e.key === 'Home') nextIndex = 0;
+      if (e.key === 'End') nextIndex = tabArray.length - 1;
+      if (nextIndex === undefined) return;
+      e.preventDefault();
+      tabArray[nextIndex].focus();
+      tabArray[nextIndex].click();
     });
   });
 
@@ -2084,12 +2111,15 @@ full build. The one-pager became our project charter.</div>
     }
   });
 
-  // deep-link via hash
-  if (location.hash) {
+  // deep-link via hash, including links between handbook panels
+  const activateHashTab = () => {
+    if (!location.hash) return;
     const id = location.hash.slice(1);
     const tab = document.querySelector(`.tab[data-target="${id}"]`);
-    if (tab) tab.click();
-  }
+    if (tab && tab.getAttribute('aria-selected') !== 'true') tab.click();
+  };
+  activateHashTab();
+  window.addEventListener('hashchange', activateHashTab);
   tabs.forEach(t => {
     t.addEventListener('click', () => {
       history.replaceState(null, '', '#' + t.dataset.target);
