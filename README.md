@@ -4,7 +4,7 @@ A curated, version-controlled knowledge base for software architecture, system d
 
 ## Start here
 
-- [Connect architecture, AWS and AI through the patient portal case](learning-paths/software-architect/patient-portal-connected-learning.md)
+- [Connect architecture, AWS and AI through the programme's project cases](learning-paths/software-architect/connected-learning/README.md)
 - [Content catalogue](CATALOG.md)
 - [Repository design](docs/repository-design.md)
 - [Contribution and curation rules](CONTRIBUTING.md)

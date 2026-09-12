@@ -4,6 +4,8 @@ Reviewed 8 September 2026. Companion to the [curriculum](../software-architect-c
 
 For a worked transfer from this programme into AWS and AI, use the [patient portal connected-learning case](../patient-portal-connected-learning.md). Start with its local booking experiment and keep one evidence pack across the selected labs.
 
+The [project guide index](../connected-learning/README.md) extends the same method to every other unit scenario and the NorthStar capstone. Choose the case that exposes your next reasoning gap.
+
 ## Start here
 
 Use Python 3.10 or later with its standard `sqlite3` module. No cloud account, paid service, package installation or credentials are needed. From the repository root:
