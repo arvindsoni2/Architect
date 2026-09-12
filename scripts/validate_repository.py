@@ -7,7 +7,8 @@ import datetime as dt
 import pathlib
 import re
 import sys
-from urllib.parse import unquote
+from html.parser import HTMLParser
+from urllib.parse import unquote, urlsplit
 
 
 CATALOG_COLUMNS = [
@@ -29,6 +30,19 @@ FORMAT_SUFFIXES = {"Markdown": ".md", "HTML": ".html", "PDF": ".pdf"}
 CATALOG_LINK_RE = re.compile(r"^\[[^\]]+\]\(([^)]+)\)$")
 SEPARATOR_CELL_RE = re.compile(r"^:?-{3,}:?$")
 REFERENCE_DEFINITION_RE = re.compile(r"^ {0,3}\[[^\]]+\]:\s*(.*)$")
+
+
+class _AnchorTargetParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.targets: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag.lower() != "a":
+            return
+        for name, value in attrs:
+            if name.lower() == "href" and value:
+                self.targets.append(value.strip())
 
 
 def _table_cells(line: str) -> list[str]:
@@ -289,9 +303,43 @@ def _markdown_link_errors(root: pathlib.Path) -> list[str]:
     return errors
 
 
+def _html_link_errors(root: pathlib.Path) -> list[str]:
+    errors: list[str] = []
+    for document in sorted(root.rglob("*.html")):
+        relative_document = document.relative_to(root).as_posix()
+        parser = _AnchorTargetParser()
+        parser.feed(document.read_text(encoding="utf-8"))
+        for raw_target in parser.targets:
+            parsed = urlsplit(raw_target)
+            if parsed.scheme or parsed.netloc or not parsed.path:
+                continue
+            path_text = unquote(parsed.path)
+            target = (
+                root / path_text.lstrip("/")
+                if path_text.startswith("/")
+                else document.parent / path_text
+            ).resolve()
+            try:
+                target.relative_to(root.resolve())
+            except ValueError:
+                errors.append(
+                    f"{relative_document}: local link escapes repository: {raw_target}"
+                )
+                continue
+            if not target.exists():
+                errors.append(
+                    f"{relative_document}: broken local link: {raw_target}"
+                )
+    return errors
+
+
 def validate_repository(root: pathlib.Path) -> list[str]:
     root = root.resolve()
-    return _catalogue_errors(root) + _markdown_link_errors(root)
+    return (
+        _catalogue_errors(root)
+        + _markdown_link_errors(root)
+        + _html_link_errors(root)
+    )
 
 
 def main() -> int:

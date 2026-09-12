@@ -131,6 +131,30 @@ class RepositoryValidationTests(unittest.TestCase):
 
         self.assertIn("README.md: broken local link: docs/missing.md", validate_repository(root))
 
+    def test_reports_broken_relative_html_link(self):
+        temporary, root = self.make_repository()
+        self.addCleanup(temporary.cleanup)
+        (root / "docs" / "guide.html").write_text(
+            '<!doctype html><a href="missing.md">Missing note</a>\n',
+            encoding="utf-8",
+        )
+
+        self.assertIn(
+            "docs/guide.html: broken local link: missing.md",
+            validate_repository(root),
+        )
+
+    def test_ignores_external_and_fragment_html_links(self):
+        temporary, root = self.make_repository()
+        self.addCleanup(temporary.cleanup)
+        (root / "docs" / "guide.html").write_text(
+            '<!doctype html><a href="#section">Section</a>'
+            '<a href="https://example.com/reference">Reference</a>\n',
+            encoding="utf-8",
+        )
+
+        self.assertEqual(validate_repository(root), [])
+
     def test_ignores_markdown_links_inside_indented_code(self):
         temporary, root = self.make_repository()
         self.addCleanup(temporary.cleanup)
