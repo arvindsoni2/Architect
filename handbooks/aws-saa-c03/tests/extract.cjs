@@ -8,6 +8,9 @@ const data = script.slice(script.indexOf('const PROGRAMME ='), script.indexOf('/
 const renderer = script.slice(script.indexOf('const TYPECOL='), script.indexOf('function codeBlock('));
 const progress = script.slice(script.indexOf('const LAB_STATUS'), script.indexOf('function labTrack('));
 const result = vm.runInNewContext(data + renderer + progress + `;({PROGRAMME,APPS,svgs:APPS.map(diagramSVG),
+invalidExplicitSvg:(()=>{const app=JSON.parse(JSON.stringify(APPS[0])),edge=app.diagram.edges.find(x=>x.l),node=app.diagram.nodes.find(x=>x.id===edge.f);edge.lx=node.x+75;edge.ly=node.y+26;return diagramSVG(app);})(),
+themeChecks:typeof normaliseTheme==='function' && typeof nextTheme==='function' ?
+ [normaliseTheme('dark'),normaliseTheme('light'),normaliseTheme('unsupported'),nextTheme('light'),nextTheme('dark')] : null,
 progressChecks:typeof validateProgress==='function' ? [
  {version:1,labs:{l1:{status:'building',actual:2.5,evidence:{0:true}}}},
  {version:1,labs:{alien:{status:'building'}}},
