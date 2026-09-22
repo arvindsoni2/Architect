@@ -24,9 +24,11 @@ const files = {
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(pathToFileURL(path.join(root,file)).href);
       if(name==='saa') {
-        await page.locator('#filter-domain-1').check();
+        await page.locator('label[for="filter-domain-1"]').click();
+        assert.equal(await page.locator('#filter-domain-1').isChecked(),true);
         assert.equal(await page.locator('#september-revision').isVisible(),false);
-        await page.locator('#filter-all').check();
+        await page.locator('label[for="filter-all"]').click();
+        assert.equal(await page.locator('#filter-all').isChecked(),true);
         await page.locator('#practice-q01 summary').click();
         assert.equal(await page.locator('#practice-q01 .answer').isVisible(),true);
         await page.locator('#practice-q01 [data-review]').click();
