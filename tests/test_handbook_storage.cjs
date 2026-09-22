@@ -8,22 +8,48 @@ const {parseHTML} = require('linkedom');
 const root = path.join(__dirname, '..');
 const system = 'handbooks/system-design/system-design-concept-handbook-v5.html';
 const interview = 'learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html';
+const saa = 'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html';
 
 function page(file, storage) {
   const source = fs.readFileSync(path.join(root, file), 'utf8');
   const {document, window} = parseHTML(source);
   const context = {document, window, location:{hash:''}, history:{replaceState(){}}, confirm:()=>true,
-    Blob, URL, console, setTimeout, clearTimeout};
+    Blob, URL, console, setTimeout, clearTimeout,
+    IntersectionObserver: class { observe() {} }};
   Object.defineProperty(context, 'localStorage', {get:()=>storage()});
   vm.createContext(context);
   for(const script of document.querySelectorAll('script:not([src])')) vm.runInContext(script.textContent, context);
-  return {document, event:(node,type)=>node.dispatchEvent(new window.Event(type))};
+  return {document, window, event:(node,type)=>node.dispatchEvent(new window.Event(type))};
 }
 const denied = ()=>{throw new Error('Storage denied');};
 function memory(seed={}) {
   const values = new Map(Object.entries(seed));
   return {getItem:k=>values.get(k)??null, setItem:(k,v)=>values.set(k,v), removeItem:k=>values.delete(k)};
 }
+
+test('SAA handbook filters include the revision and all tracked cards can be reviewed',()=>{
+  const {document:d,event}=page(saa,denied);
+  const filter=d.getElementById('filter-domain-1');
+  filter.checked=true;event(filter,'change');
+  assert.ok(d.getElementById('september-revision').classList.contains('hidden'));
+  const all=d.getElementById('filter-all');all.checked=true;event(all,'change');
+  assert.ok(!d.getElementById('practice-q01').classList.contains('hidden'));
+  for(const button of d.querySelectorAll('[data-review]'))event(button,'click');
+  assert.equal(d.getElementById('progressLabel').textContent,'100%');
+  const search=d.getElementById('search');search.value='zz-no-match-zz';event(search,'input');
+  assert.equal(d.querySelectorAll('.chapter:not(.hidden)').length,0);
+});
+
+test('SAA print reveals explanations and restores the previous recall state',()=>{
+  const {document:d,window,event}=page(saa,denied);
+  const details=[...d.querySelectorAll('details.drill')];
+  details[0].setAttribute('open','');
+  event(window,'beforeprint');
+  assert.ok(details.every(node=>node.hasAttribute('open')));
+  event(window,'afterprint');
+  assert.ok(details[0].hasAttribute('open'));
+  assert.ok(details.slice(1).every(node=>!node.hasAttribute('open')));
+});
 
 test('system design search and progress work with blocked storage',()=>{
   const {document:d,event} = page(system,denied);

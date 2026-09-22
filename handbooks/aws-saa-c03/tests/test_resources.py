@@ -1,4 +1,5 @@
 """Offline regression checks; no AWS requests and no deployment claims."""
+import ast
 import json
 import pathlib
 import re
@@ -36,6 +37,34 @@ def snippet(lab, title):
     return next(s['c'] for s in APPS[lab]['snippets'] if s['t'] == title)
 
 class Tests(unittest.TestCase):
+    def test_freshtrack_cloud_create_uses_dynamodb_decimal(self):
+        # Catch a missing Decimal import or a float sent to DynamoDB. Execute
+        # the actual handler; FastAPI validation is outside this regression.
+        from decimal import Decimal
+        source = APPS['l5']['pilot']['files']['app.py']
+        module = ast.parse(source)
+        nodes = []
+        for node in module.body:
+            if isinstance(node, ast.Import) and all(a.name in ('os', 'uuid') for a in node.names):
+                nodes.append(node)
+            elif isinstance(node, ast.ImportFrom) and node.module == 'decimal':
+                nodes.append(node)
+            elif isinstance(node, ast.FunctionDef) and node.name == 'add_batch':
+                node.decorator_list = []
+                nodes.append(node)
+        writes = []
+        ns = {'Batch': object, 'table': lambda: types.SimpleNamespace(
+            put_item=lambda **kw: writes.append(kw['Item']))}
+        exec(compile(ast.Module(body=nodes, type_ignores=[]), '<FreshTrack>', 'exec'), ns)
+        batch = types.SimpleNamespace(qtyKg=1.25,
+            model_dump=lambda: {'sku': 'BEANS', 'farm': 'demo', 'qtyKg': 1.25})
+        result = ns['add_batch'](batch)
+        self.assertEqual(len(writes), 1)
+        self.assertEqual(writes[0]['qtyKg'], Decimal('1.25'))
+        self.assertIsInstance(writes[0]['qtyKg'], Decimal)
+        self.assertEqual(writes[0]['batchId'], result['batchId'])
+        self.assertEqual(result['grade'], 'uninspected')
+
     def test_light_theme_accent_text_meets_wcag_aa(self):
         root=css_vars(re.search(r':root\{([^}]*)\}',HTML,re.S).group(1))
         self.assertGreaterEqual(contrast(root['amber'],root['bg']),4.5)

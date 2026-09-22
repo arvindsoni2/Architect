@@ -12,6 +12,7 @@ const files = {
   ai:'handbooks/ai-engineering/ai-engineering-handbook-v3.1.html',
   agent:'handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html',
   fde:'handbooks/fde/fde-handbook-v1.3.html',
+  saa:'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html',
 };
 (async()=>{
   await fs.mkdir(output,{recursive:true});
@@ -22,13 +23,24 @@ const files = {
       const page=await context.newPage();const errors=[];
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(pathToFileURL(path.join(root,file)).href);
-      if(['system','interview'].includes(name))await page.locator('#search').fill('zz-no-results-zz');
+      if(name==='saa') {
+        await page.locator('#filter-domain-1').check();
+        assert.equal(await page.locator('#september-revision').isVisible(),false);
+        await page.locator('#filter-all').check();
+        await page.locator('#practice-q01 summary').click();
+        assert.equal(await page.locator('#practice-q01 .answer').isVisible(),true);
+        await page.locator('#practice-q01 [data-review]').click();
+        assert.match(await page.locator('#practice-q01 [data-review]').textContent(),/Reviewed/);
+        await page.locator('#themeBtn').click();
+        assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
+      }
+      if(['system','interview','saa'].includes(name))await page.locator('#search').fill('zz-no-results-zz');
       await page.emulateMedia({media:'print'});
-      const selector={system:'.chapter',interview:'.resource-card',ai:'.scenario-content'}[name];
+      const selector={system:'.chapter',interview:'.resource-card',ai:'.scenario-content',saa:'.chapter,.topic-card'}[name];
       if(selector)assert.equal(await page.locator(selector).evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).display!=='none')),true,`${name}: print omitted filtered or inactive content`);
       await page.pdf({path:path.join(output,`${name}-print.pdf`),format:'A4'});
       await page.emulateMedia({media:'screen'});
-      if(['system','interview'].includes(name))await page.locator('#search').fill('');
+      if(['system','interview','saa'].includes(name))await page.locator('#search').fill('');
       await page.screenshot({path:path.join(output,`${name}-desktop.png`),animations:'disabled'});
       await page.setViewportSize({width:390,height:844});
       await page.screenshot({path:path.join(output,`${name}-mobile.png`),animations:'disabled'});
