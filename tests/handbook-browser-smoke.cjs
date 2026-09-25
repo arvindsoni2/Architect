@@ -21,14 +21,22 @@ const files = {
     for(const [name,file] of Object.entries(files)) {
       const context=await browser.newContext({viewport:{width:1440,height:1000}});
       const page=await context.newPage();const errors=[];
+      const redrawHybrid=page.locator('[id="41f-hybrid"]');
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(pathToFileURL(path.join(root,file)).href);
       if(name==='saa') {
+        assert.equal(await page.locator('.redraw-card').count(),8);
+        await page.locator('label[for="filter-handbook"]').click();
+        assert.equal(await redrawHybrid.isVisible(),true);
         await page.locator('label[for="filter-domain-1"]').click();
         assert.equal(await page.locator('#filter-domain-1').isChecked(),true);
         assert.equal(await page.locator('#september-revision').isVisible(),false);
+        assert.equal(await redrawHybrid.isVisible(),false);
         await page.locator('label[for="filter-all"]').click();
         assert.equal(await page.locator('#filter-all').isChecked(),true);
+        await redrawHybrid.locator('summary').click();
+        assert.equal(await redrawHybrid.locator('.redraw-figure').isVisible(),true);
+        assert.equal(await redrawHybrid.locator('.redraw-questions dt').count(),4);
         await page.locator('#practice-q01 summary').click();
         assert.equal(await page.locator('#practice-q01 .answer').isVisible(),true);
         await page.locator('#practice-q01 [data-review]').click();
@@ -38,6 +46,10 @@ const files = {
       }
       if(['system','interview','saa'].includes(name))await page.locator('#search').fill('zz-no-results-zz');
       await page.emulateMedia({media:'print'});
+      if(name==='saa') {
+        await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
+        assert.equal(await page.locator('[id="41h-dr"] details').getAttribute('open'),'');
+      }
       const selector={system:'.chapter',interview:'.resource-card',ai:'.scenario-content',saa:'.chapter,.topic-card'}[name];
       if(selector)assert.equal(await page.locator(selector).evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).display!=='none')),true,`${name}: print omitted filtered or inactive content`);
       await page.pdf({path:path.join(output,`${name}-print.pdf`),format:'A4'});
@@ -46,6 +58,12 @@ const files = {
       await page.screenshot({path:path.join(output,`${name}-desktop.png`),animations:'disabled'});
       await page.setViewportSize({width:390,height:844});
       await page.screenshot({path:path.join(output,`${name}-mobile.png`),animations:'disabled'});
+      if(name==='saa') {
+        if(!await redrawHybrid.locator('details').evaluate(el=>el.open))
+          await redrawHybrid.locator('summary').click();
+        await redrawHybrid.screenshot({path:path.join(output,'saa-hybrid-redraw-mobile.png'),animations:'disabled'});
+        assert.equal(await redrawHybrid.evaluate(el=>el.scrollWidth<=el.clientWidth+1),true,'SAA redraw card overflowed the mobile page');
+      }
       assert.deepEqual(errors,[],`${name}: uncaught page error`);
       await context.close();
     }
