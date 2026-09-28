@@ -1,5 +1,8 @@
 # Connected architecture project guides
 
+For decision models and customer delivery, use [Connect the dots: Understand → Build → Evaluate → Deliver](../../decision-models-and-forward-deployed-architecture.md). It connects the independent guides through one evidence packet; the project cases below remain the domain-specific routes.
+
+
 Use one project to connect **business requirement → architectural decision → technical mechanism → AWS implementation → AI controls → experiment → artifact → interview explanation**. These are transfer companions to the existing [grooming programme](../software-architect-grooming-programme-v5.html), not additional syllabuses. Reviewed 9 September 2026.
 
 ## Choose the question you need to practise

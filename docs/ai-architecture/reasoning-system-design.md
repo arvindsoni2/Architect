@@ -43,6 +43,30 @@ Keep generator and verifier responsibilities distinct where consequence warrants
 
 Make stopping explicit: sufficient evidence, stable ranking, diminishing improvement, a hard deadline, or an uncertainty condition that requires refusal. Cap nested refinement and tool calls. Record versioned summaries, scores, selected evidence, and stop reasons; private internal traces are not a correctness requirement.
 
+## Decision mechanism selection
+
+A bounded judgement does not always need text generation. Choose the mechanism for the individual step, then evaluate the complete workflow.
+
+| Mechanism | Good fit | Main limitation |
+| --- | --- | --- |
+| Deterministic code or rules | Exact policy, arithmetic, permissions, known invariants | Brittle interpretation of ambiguous language |
+| Conventional classifier | Stable labels and representative training data | Label maintenance and distribution shift |
+| Typed decision model | Natural-language state with predefined choices or rubric levels | Wrong choices remain possible; depends on labels, evidence and calibration |
+| Generative or reasoning model | Explanations, synthesis, code, complex decomposition | Extra latency, cost and generated-output failure modes |
+| Human review | Unresolved ambiguity or consequences beyond the system's authority | Review capacity, consistency and delay |
+
+**Jev example, checked 2026-09-28:** TypeSafe documents text/JSON state and Choice, Score and Noul primitives; Jev does not generate prose or reasoning explanations. “System One” is the vendor's decision-model framing, not a replacement for all predictive ML. Typed results constrain the answer space; they do not prove that the selected answer is true. See [System One](https://docs.typesafe.ai/concepts/system-one).
+
+Ask one well-defined question at a time. For a support ticket, distinguish intent, missing evidence and urgency; combine the outputs in code. Include an explicit unknown/unsupported path. Restrict available actions before model selection and check authority again before execution. High confidence cannot grant permission, establish evidence freshness or satisfy a missing approval.
+
+A useful composition is rules for exact checks, a learned decision for ambiguous interpretation, and bounded fallback to a generative model or human when necessary. This is a design option, not a mandatory serial cascade: a generation task can go directly to its appropriate model. Avoid paying for a router that adds no measured value.
+
+**Jev and Laya are separate candidates.** The [receptron Laya runtime](https://github.com/receptron/laya) supports Node.js/TypeScript through ONNX, including CPU execution. It documents context truncation and option limits. API similarity does not establish equal accuracy, calibration or latency. Pin runtime and checkpoint versions; measure on the actual hardware, language, input length and label set. Treat truncated required evidence as an invalid input, not a confident decision.
+
+Do not import universal savings claims. TypeSafe's [launch evaluation](https://typesafe.ai/blog/introducing-system-one-models-and-jev) describes limitations in its workflow comparisons. The [REFLEX preprint](https://arxiv.org/abs/2609.26532), submitted 22 September 2026, reports reduced strong-model calls on its benchmark but limited advantage over a cheap generative cascade on some external tasks. It is early research, not a deployment guarantee. Compare rules and conventional classifiers as well as cheap and strong generative baselines.
+
+**Connect the dots:** [Understand, build, evaluate and deliver](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Build the comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.1.html#t-practice) · [Evaluate acceptance](production-ai-assurance.md#decision-model-acceptance).
+
 ## Failure modes and warning signs
 
 - **Longer means better:** extra steps improve style or confidence while the underlying error survives. Compare accepted outcomes and hard checks, not trace length.
@@ -115,3 +139,5 @@ These references support mechanisms; they do not establish that longer reasoning
 **Edition:** Living
 
 **Last reviewed:** 2026-09-06
+
+**Focused addition reviewed:** 2026-09-28 — decision models and connected learning; earlier source-review dates remain scoped to their original sections.

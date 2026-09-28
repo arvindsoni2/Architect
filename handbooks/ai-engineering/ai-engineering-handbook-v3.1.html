@@ -1113,6 +1113,21 @@
 <h2 class="section-title">Engineering <em>practice.</em></h2>
 <p class="section-sub">Shape the right problem · direct coding agents · prove the result</p>
 
+<div class="callout pareto" id="decision-model-comparison">
+<h3>Connect the dots: compare decision mechanisms</h3>
+<p>For a bounded judgement, compare rules, a conventional classifier, a typed decision model such as Jev or Laya, and a generative baseline. Start with the <a href="../../docs/ai-architecture/reasoning-system-design.md#decision-mechanism-selection">canonical selection guide</a>; this exercise owns the comparison work.</p>
+<ol>
+<li>Create synthetic support tickets with fixed labels, an unknown path and explicit urgency criteria. Separate development and held-out cases before tuning.</li>
+<li>Run the same cases through your available candidates. Keep inputs and labels consistent; record unavailable candidates as not evaluated. Mocked responses test wiring only.</li>
+<li>Measure per-class errors, accepted-case coverage, abstention, p95 latency and full cost per successful task. Investigate missing evidence, a new language and an ambiguous label pair.</li>
+<li>Choose thresholds on development data using <a href="../../docs/ai-architecture/production-ai-assurance.md#decision-model-acceptance">decision-model acceptance</a>. State when rules or a cheaper baseline win.</li>
+<li>Write an ADR, save the evaluation packet, then continue to the <a href="../agent-engineering/agent-engineering-master-manual-v2.7.html#decision-model-workflow">agent integration exercise</a>.</li>
+</ol>
+<p><strong>Feynman check:</strong> Why can an allowed answer still be wrong? What would make you remove the router? Product examples and sources are maintained in the canonical selection guide.</p>
+<p><a href="../../learning-paths/decision-models-and-forward-deployed-architecture.md">Understand → Build → Evaluate → Deliver: shared route</a> · <a href="../fde/fde-handbook-v1.3.html#forward-deployed-architect">Who owns the architecture and outcome?</a></p>
+</div>
+
+
 <div class="callout pareto">
 <div class="callout-label">The shift</div>
 <p style="margin:0">Code generation is becoming cheaper. Intent, architecture, verification, and accountability are not. Treat the coding agent as an execution system whose work must stay inside explicit scope and evidence gates.</p>

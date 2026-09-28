@@ -33,6 +33,14 @@ This is the authoritative index of current material in the repository.
 | Model Adaptation and Training | AI architecture | [docs/ai-architecture/model-adaptation-and-training.md](docs/ai-architecture/model-adaptation-and-training.md) | Markdown | Current | Living | 2026-09-06 |
 | Self-Improving Agent Systems | Agent architecture | [docs/agent-architecture/self-improving-agent-systems.md](docs/agent-architecture/self-improving-agent-systems.md) | Markdown | Current | Living | 2026-09-06 |
 
+## Focused connected-learning additions — 28 September 2026
+
+Decision-model selection and acceptance live in the existing canonical AI architecture notes. Practical comparison, integration and role-boundary additions link through the route below. Existing handbook edition and full-review dates are retained: this is a focused update, not a whole-corpus freshness audit.
+
+| Title | Domain | Path | Format | Status | Edition | Last reviewed |
+| --- | --- | --- | --- | --- | --- | --- |
+| Decision Models and Forward Deployed Architecture Learning Route | Cross-guide architecture learning | [learning-paths/decision-models-and-forward-deployed-architecture.md](learning-paths/decision-models-and-forward-deployed-architecture.md) | Markdown | Current | Living route | 2026-09-28 |
+
 ## Scoped AWS study-resource exception
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |

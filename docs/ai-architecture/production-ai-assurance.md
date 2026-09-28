@@ -39,6 +39,28 @@ Strong quality cannot compensate for unsafe authority; low inference cost cannot
 - **Economics and adoption:** Measure cost per *accepted successful outcome*, not tokens per call. Include models, tools, retrieval, storage, infrastructure, retries, failures, evaluation, telemetry, human review, support, and change; expose quality or latency sacrificed by optimization. Assign workflow, representative-user, operational, and risk ownership.
 - **Rollout, acceptance, and rollback:** Promotion is evidence-driven, not elapsed time or a fixed percentage. Before handoff, name product, workflow, technical, incident, and acceptance owners; transfer access; prove dashboards, escalation, support, and rollback; record limitations and a dated scale, hold, narrow, or stop decision. Reduce authority when safety, segment quality, lineage, adoption, economics, or unresolved incidents invalidate evidence.
 
+## Decision-model acceptance
+
+Separate **output validity**, **decision correctness**, **calibration** and **permission to act**. Passing one does not establish the others. A probability vector requires empirical evaluation; a field named confidence is not itself evidence of reliability.
+
+For Jev, [TypeSafe's confidence documentation](https://docs.typesafe.ai/confidence) describes confidence as a summary of the output distribution for Choice and Score; Noul has no separate confidence field. Do not read a confidence of 0.9 as a promise of 90% correctness. Product semantics checked 2026-09-28.
+
+Build a labelled development/calibration set and a separate final test set. Include ambiguous and unsupported inputs, missing or truncated evidence, misleading instructions in data, class imbalance, language differences and near-valid actions outside the caller's authority. Avoid near-duplicate cases across splits. Tune thresholds on development evidence only and report uncertainty when a segment is undersampled.
+
+| Evidence | What to measure |
+| --- | --- |
+| Correctness | Per-class precision/recall, confusion matrix and consequential false positives/negatives |
+| Calibration | Reliability bins and Brier score or log loss for probability outputs; document how any confidence statistic relates to observed correctness |
+| Selective operation | Coverage (fraction accepted automatically), error among accepted cases, abstention and human-review volume |
+| End-to-end behaviour | Task success, unauthorised-action tests, p50/p95 latency, fallback/retry rate and cost per successful outcome |
+| Change control | Model/checkpoint, question, label, policy and threshold versions; regression evidence and rollback route |
+
+Compare candidates at the same risk limit and workload. A model that abstains on almost everything can appear accurate while creating an unacceptable review backlog. Include model inference, network, retries, infrastructure, human correction and operations in cost. Do not compare one provider's model-only latency with another's complete workflow latency.
+
+Before rollout, establish shadow results, named acceptance owners and bounded fallback. Enforce deadlines and retry budgets; provider outage or invalid output must not silently select a default action. Revalidate when labels, prompts, versions or traffic distribution change. A learned guardrail remains fallible; identity, authorisation and approval enforcement stay outside the model.
+
+**Connect the dots:** [Shared learning route](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Understand mechanism selection](reasoning-system-design.md#decision-mechanism-selection) · [Build failure handling](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html#decision-model-workflow) · [Deliver through production gates](../../handbooks/fde/fde-handbook-v1.3.html#delivery).
+
 ## Failure modes and warning signs
 
 - **Demo as evidence:** curated prompts and a cooperative environment substitute for representative cases and a baseline.
@@ -118,3 +140,5 @@ External references (verified 2026-09-05):
 **Edition:** Living
 
 **Last reviewed:** 2026-09-05
+
+**Focused addition reviewed:** 2026-09-28 — decision models and connected learning; earlier source-review dates remain scoped to their original sections.
