@@ -423,6 +423,18 @@ Books are listed for conceptual depth; editions and availability should be reche
 6. **Building Microservices** — Sam Newman. Read selectively when service boundaries and distributed operations are justified by the context.
 7. **Team Topologies** — Matthew Skelton and Manuel Pais. Connect cognitive load, team interaction and platform design.
 
+## Forward deployed architecture pathway
+
+Optional extension: carry one existing project from architecture defence into a simulated customer engagement. Keep the core curriculum and completion standard; this pathway adds a delivery lens rather than a new qualification.
+
+1. Use [FDE role responsibilities](../../handbooks/fde/fde-handbook-v1.3.html#forward-deployed-architect) to assign architecture, engineering, service and workflow owners.
+2. Interview a collaborator or label your simulated discovery. Record the actual workflow, baseline, hard constraints and smallest useful outcome.
+3. Implement or pair on one risky integration; retain the code, test result and ADR. If AI is justified, use the [decision-model comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.1.html#t-practice); choosing no AI is valid.
+4. Defend security, failure recovery, unit economics and handoff using the [FDE capstone](../../handbooks/fde/fde-handbook-v1.3.html#capstone) and the existing [programme assessment](software-architect-grooming-programme-v5.html#assessment).
+5. Extract a reusable pattern and name the conditions under which it should not be reused.
+
+**Connect the dots:** [Understand → Build → Evaluate → Deliver](../decision-models-and-forward-deployed-architecture.md). Carry the same ADR, case IDs, acceptance evidence and ownership map between guides. Do not claim customer adoption or production operation from a simulated exercise.
+
 ## Completion standard
 
 The curriculum is complete when a learner can independently take an ambiguous scenario and produce a defensible architecture argument containing:

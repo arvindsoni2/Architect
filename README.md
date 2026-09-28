@@ -4,6 +4,8 @@ A curated, version-controlled knowledge base for software architecture, system d
 
 ## Start here
 
+- [Connect decision models, agent engineering and forward deployed architecture](learning-paths/decision-models-and-forward-deployed-architecture.md)
+
 - [Connect architecture, AWS and AI through the programme's project cases](learning-paths/software-architect/connected-learning/README.md)
 - [Architecture and applied AI certification roadmap](learning-paths/architecture-ai-certification-roadmap.md)
 - [Content catalogue](CATALOG.md)

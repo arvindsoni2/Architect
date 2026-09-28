@@ -177,3 +177,7 @@ Time-sensitive claims were checked on 23 September 2026.
 - [AWS Agentic AI and MLOps microcredential updates](https://aws.amazon.com/blogs/training-and-certification/may-2026-new-offerings/)
 - [Anthropic: Claude Partner Network and Claude Certified Architect, Foundations](https://www.anthropic.com/news/claude-partner-network)
 - [Anthropic: Services Track and Partner Academy certification model](https://www.anthropic.com/news/services-track-partner-hub)
+
+## Forward deployed architecture evidence
+
+The role does not by itself justify another certification. Use the [connected learning route](decision-models-and-forward-deployed-architecture.md) to assemble an ADR, working integration, evaluation packet, recovery demonstration and named handoff owners. Compare that evidence with [current role responsibilities](../handbooks/fde/fde-handbook-v1.3.html#forward-deployed-architect). Keep study credentials and demonstrated delivery capability distinct.
