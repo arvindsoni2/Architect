@@ -66,6 +66,16 @@ Ask: Is this the accountable client PO or a proxy arrangement? Which clients/ser
 
 Confirm the interview stage, panel, case/presentation and duration with the recruiter. The supplied advert requires at least three office days each week in Newcastle, flexibility for client sites and willingness to undergo security clearance, with five-plus years of UK address history at application. These are vacancy requirements, not a statement of your eligibility or a guarantee of clearance. Ask the recruiter about the applicable process if needed; keep personal address history out of this public guide.
 
+## Consulting scenario drills — illustrative, not historical
+
+These cases are derived from the advert's responsibilities. They are practice material, not evidence that Accenture will ask these exact questions. Accenture's [published behavioural guidance](https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview) recommends STAR for past examples; use the [shared hypothetical sequence](../shared/handbook.md#scenario-answers) for the cases below.
+
+**AP1 — proxy PO without an available client decision-maker.** Two client stakeholders disagree about launch scope, your delegated authority is limited, and the client PO is unavailable. Clarify the Product Goal, decision deadline, contractual impact and escalation route. Recommend an ordered backlog with consequences, proceed with reversible work within your authority and seek the authorised decision before committing beyond it. **Probe:** how would you prevent the same delay recurring? **Weak response:** silently assuming full PO authority or stopping all useful work indefinitely.
+
+**AP2 — AI rollout with valuable but unreliable outcomes.** A pilot reduces manual entry, but occasional wrong product matches occur and support capacity for exceptions is limited. Establish error severity, affected users, representative evaluation and total review effort. Compare continued bounded use with additional validation, narrower eligibility and pausing affected cases. Agree release criteria, exception ownership and monitoring with specialists and operations before expansion. **Probe:** what if the sponsor wants to publicise the effort saving immediately? **Weak response:** equating manual-effort reduction with model accuracy, assuming every exception takes the same time, or expanding because the model name is impressive.
+
+When asked for a real comparison, S1 provides confirmed London/Paris involvement and approximately 90% lower manual effort using GPT-4o-mini. The errors and capacity constraints in AP2 are invented; its release choices are hypothetical. Do not treat them as observed facts or actual decisions, and do not transfer them into the historical case. Prepare the actual controls and decisions you participated in.
+
 ## Focused preparation schedule
 
 1. **Day 1:** match the advert and rehearse the opening/motivation.

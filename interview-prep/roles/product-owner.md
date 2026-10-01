@@ -36,9 +36,17 @@ Expect: Who owned funding? Who selected the platform? Which story did you defer?
 
 A field user must submit a weekly timesheet without returning to the office. Propose a thin slice: select the week, review employee details, enter hours, submit and see status. Acceptance examples: valid submission reaches the correct approver; missing required data prevents submission with a clear message; a duplicate request does not create a second timesheet. Confirm authorisation, audit needs, integration behaviour and error recovery with the team. Treat offline support as a discovery question; it is not established in the historical case.
 
-## Scenario
+## Scenario — illustrative, not historical
 
 A client asks for a dashboard before launch; research shows users are struggling to complete the core workflow, and security review identifies a release blocker. Clarify the launch outcome and mandatory control. Present options: resolve the core workflow and security issue; simplify the dashboard; or change the date. Explain impact and who approves the trade-off. Reorder transparently, preserve quality and review adoption after release. The strong answer includes a decision, rather than simply arranging another meeting.
+
+## Additional scenario drills
+
+These are fictional practice cases. Use the [shared scenario method](../shared/handbook.md#scenario-answers); for a follow-up about your own experience, switch to [STAR or PEARL](../shared/handbook.md#behavioural-answers) using a real story.
+
+**PO1 — adoption falls after launch.** A service shipped on time, but fewer users complete the main task. Clarify cohorts, instrumentation, baseline and recent workflow changes. Combine journey data with BA/UCD investigation, including accessibility and support evidence. Compare fixing a completion barrier, improving assisted support and adding the requested feature. Recommend a small intervention and an outcome check, with privacy and reliability guardrails. **Probe:** what if the data is unreliable? **Weak response:** assuming training is the cause or measuring success by backlog items completed.
+
+**PO2 — a late request threatens the Sprint Goal.** A senior stakeholder demands a feature halfway through the sprint and calls it mandatory. Clarify the obligation, deadline, consequence of delay and relation to the Sprint Goal. Discuss options with Developers and the relevant client PO: defer, reduce scope, renegotiate planned work without endangering the goal, or respond to a genuinely obsolete goal through the accountable PO. Make the impact transparent. **Probe:** what if the stakeholder outranks you? **Weak response:** inserting work unilaterally, treating Sprint Backlog changes as solely your decision, or rejecting all new information because a sprint has started.
 
 ## First 90 days and panel questions
 

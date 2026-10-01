@@ -46,6 +46,14 @@ What was your approved budget? What changed and who signed it off? What was on t
 
 Your strongest banking example must be one identifiable initiative. Do not combine GDPR, payments and Open Banking into a single story with unsupported dates or supplier counts.
 
+## Additional scenario drills
+
+These are fictional practice cases. Use the [shared scenario method](../shared/handbook.md#scenario-answers), identifying delegated tolerances, approval and evidence needed to change the baseline.
+
+**SP1 — forecast exceeds approved funding.** New integration work increases the estimate at completion beyond authorised funding; the sponsor still expects the original scope/date. Validate actuals, commitments, remaining estimates, scope and contingency rules with finance and delivery leads. Compare descoping, resequencing and additional funding, showing effects on benefits and risk. Seek the required decision before unfunded commitments are made, then update the approved plan. **Probe:** what if the sponsor refuses to decide? **Weak response:** spending first, hiding the variance or assuming contingency is automatically available.
+
+**SP2 — supplier delay at a fixed compliance deadline.** A key supplier is late and a critical control has not passed verification. Confirm the actual obligation with compliance/legal specialists and identify minimum compliant scope and the remaining dependency chain. Compare an independently verified alternative, scope reduction and a specialist-led contingency for the deadline. Escalate with evidence and record the decision. **Probe:** what if the sponsor says to launch anyway? **Weak response:** treating sponsor pressure as permission to breach a mandatory obligation, or claiming the PM can personally certify compliance.
+
 ## First 90 days and panel questions
 
 First validate the business case, commitments, governance, baseline and urgent risks. Next establish a credible forecast and resolve priority dependencies. Then improve reporting/decision cadence, transition readiness and benefits ownership. Tailor this to initiation, delivery or recovery rather than imposing a standard mobilisation template.
