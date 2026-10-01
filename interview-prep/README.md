@@ -16,6 +16,8 @@ Start with the role you are interviewing for, choose relevant evidence, then add
 
 Read the [shared handbook](shared/handbook.md) for answer structures and tools. Select examples from the [evidence bank](shared/evidence-bank.md). The [Accenture Product Owner supplement](vacancies/accenture-product-owner.md) adds the supplied vacancy's requirements.
 
+For question practice, start with [STAR and PEARL](shared/handbook.md#behavioural-answers), [question-type selection](shared/handbook.md#choose-the-question-type) and the [scenario answering sequence](shared/handbook.md#scenario-answers). Each role guide adds two scenario drills with follow-up probes and weak-answer traps; the Accenture supplement adds two consulting cases. These supplement the existing worked scenarios. Scenario preparation is relevant, but this collection does not claim that most interviews use scenarios or that their frequency has recently increased.
+
 [Open the tabbed reading view](handbook.html). It is generated from these Markdown files; edit the sources, then run `python3 scripts/render_interview_handbook.py` from the repository root.
 
 ## Prepare in three passes

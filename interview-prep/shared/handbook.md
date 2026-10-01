@@ -12,7 +12,7 @@ Distinguish three levels honestly: **direct experience**, **adjacent experience*
 
 ## Behavioural answers
 
-Use **Situation → Responsibility → Decision and Action → Result → Learning**. A familiar STAR structure is also suitable if the decision and learning are explicit.
+For a question about something you have done, choose **STAR** or **PEARL**, then make your responsibility, decision and evidence explicit. These are ways to organise an answer, not substitutes for relevant experience. [Accenture recommends STAR](https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview); [Jackie Bavaro describes PEARL](https://jackiebavaro.substack.com/p/use-pearl-instead-of-star-to-shine) for product interviews. Use the employer's requested format when one is specified.
 
 1. Give enough context to explain the difficulty.
 2. State your remit and authority.
@@ -24,9 +24,75 @@ Prepare a 90-second version and a deeper follow-up. An artefact matters because 
 
 Use several stories across an interview. Recent Natoora examples show current product and delivery capability; Northern Powergrid adds field adoption and infrastructure complexity; banking examples add regulated and supplier experience. Choose relevance over recency when a question demands a specific kind of evidence.
 
+### STAR
+
+| Element | What to explain | Useful self-check |
+| --- | --- | --- |
+| Situation | Relevant context, people affected and difficulty | Can the listener understand why this mattered? |
+| Task | Your responsibility and required outcome | What was yours to decide, and who held approval? |
+| Action | Your decisions, rationale, collaboration and response to obstacles | Why this option? What did you personally do? |
+| Result | The observed outcome and how you checked it | What changed, over which period, and with what limitations? |
+
+Add a short reflection when the question concerns failure, feedback or growth. The four letters do not require omitting learning. Spend enough time on action to establish ownership; do not let background consume the answer. A result may be a justified stop decision, a contained failure or an improved process, as well as a successful launch.
+
+### PEARL
+
+| Element | What to explain | Useful self-check |
+| --- | --- | --- |
+| Problem | The customer, business or team difficulty | Did I discover the problem or inherit it? |
+| Epiphany | The evidence or insight that changed the approach | What did I notice, and how did I test that interpretation? |
+| Action | The consequential work you personally led or contributed | How did the insight change the decision? |
+| Result | What happened and how it related to the original problem | What evidence supports the outcome? |
+| Learning | What changed in your subsequent judgement or practice | Can I show where I applied it afterwards? |
+
+PEARL makes insight visible in product, strategy and improvement stories. An epiphany can be a carefully developed observation; do not invent a dramatic breakthrough. Bavaro's [2025 explanation](https://jackiebavaro.substack.com/p/cracking-the-behavioral-interview-putting-it-together-with-pearl) particularly uses learning for growth stories. Keep reflection relevant rather than attaching a generic lesson to every answer.
+
+**Choice:** STAR suits a clear responsibility/action/outcome account; PEARL is useful when the important contribution was reframing the problem. Both can show senior judgement. The sources reviewed provide guidance, not comparative evidence that one acronym produces better hiring outcomes.
+
+### Same teaching case, two structures
+
+**Fictional example, not Arvind's employment history:** an onboarding team was asked to build a tutorial. Research and funnel data instead showed confusion about optional form fields. A bounded change improved pilot completion while support demand remained stable. All actions and outcomes in the next two paragraphs belong to this invented example.
+
+**STAR:** “Our onboarding journey lost users before submission. As PO, I was responsible for improving completion while preserving required data collection. I examined the drop-off with the analyst and observed users with the researcher. We found that optional fields appeared compulsory. I compared a tutorial with a clearer, shorter form, recommended the form change and agreed a limited pilot with engineering and the accountable sponsor. We checked completion and support demand for the pilot cohort. Completion improved without worsening support demand. I learned to investigate the journey before treating a requested feature as the solution.”
+
+**PEARL:** “Users were abandoning onboarding, and the proposed solution was a tutorial. The insight from observation and funnel data was that they misunderstood optional fields; instructions would leave that friction in place. I recommended simplifying the form, explained the alternative to the sponsor and worked with design and engineering on a bounded pilot that preserved mandatory data collection. Pilot completion improved while support demand remained stable. I took forward a habit of testing the problem behind a feature request before committing roadmap capacity.”
+
+For your own version, use the [evidence bank](evidence-bank.md) and supply only your actual insight, action and result. The fictional example is a structure demonstration, not a script to adopt as experience.
+
+## Choose the question type
+
+Scenario preparation is justified, but a claim that **most interviews now contain scenarios**, or that their use has recently increased, is not established by the sources reviewed on 1 October 2026. Accenture publishes behavioural preparation guidance; the [Civil Service explicitly permits past examples and hypothetical situations](https://www.gov.uk/government/publications/success-profiles/success-profiles-civil-service-behaviours). These examples establish relevance, not market-wide frequency or the format of your particular interview.
+
+| Question type | Typical wording | Answer approach |
+| --- | --- | --- |
+| Behavioural / past experience | Tell me about a time you challenged a priority | STAR or PEARL with actual actions and observed results |
+| Situational / hypothetical | What would you do if the client wanted an unsafe release? | Clarify, diagnose, compare options, recommend, sequence and measure |
+| Case or work sample | Review this backlog or plan and present a recommendation | Analyse the supplied evidence, expose assumptions and produce the requested decision or artefact |
+| Knowledge or motivation | Explain a Product Goal; why this role? | Answer directly, then add a short relevant example if useful |
+
+A case may include situational and technical questions; the categories can overlap. [OPM's structured-interview guidance](https://www.opm.gov/policy-data-oversight/assessment-and-selection/structured-interviews/) recognises experience-based and hypothetical assessment. Recognising the question's demand matters more than naming the category. If the interviewer moves from “what would you do?” to “have you done this?”, switch explicitly from a proposal to a real story.
+
 ## Scenario answers
 
-For a hypothetical, explain **assumptions → immediate protection → diagnosis → options → decision → sequence → measures**. Ask a few questions about users, impact, constraints and authority, then proceed with stated assumptions.
+For a hypothetical, explain **assumptions → immediate protection → diagnosis → options → decision → sequence → measures**. This is the handbook's practice sequence, not an employer-mandated acronym. Ask two or three material questions about users, impact, constraints and authority, then proceed with stated assumptions if further information is unavailable.
+
+1. **Clarify the decision:** establish the desired outcome, deadline, affected users, missing information and your authority. Distinguish a mandatory obligation from a stakeholder preference.
+2. **Protect where needed:** contain immediate harm to users, production, security or people while investigating. A low-adoption case may need research; an active incident needs action now.
+3. **Diagnose with evidence:** explain the data, user research and specialist input you would seek. Separate facts from hypotheses; do not assume the first explanation is the cause.
+4. **Compare realistic options:** include a smaller scope, changed sequence, bounded pilot, pause or defer where relevant. Compare value, feasibility, time, cost, dependencies and risk.
+5. **Recommend and secure the decision:** choose a provisional course, explain the trade-off and identify any approval beyond your remit. Say what evidence would change your view.
+6. **Sequence execution:** name the immediate step, owners, dependency or escalation and review point. Separate today's containment from the subsequent improvement.
+7. **Measure and adapt:** define the expected outcome, baseline needed and guardrails. These are proposed success criteria; do not report them as achieved results.
+
+STAR and PEARL describe a completed experience most naturally. In a hypothetical you can use their logic, but a predicted result remains a target or test. Saying “this would increase adoption by 30%” without evidence weakens the answer.
+
+### Worked release scenario — illustrative, not historical
+
+**Prompt:** the client wants a reporting dashboard in two weeks. Research shows users cannot complete the core workflow, and security has identified a release blocker.
+
+**A concise response:** “I would clarify the launch commitment, the users affected and the security finding with the relevant specialist. I would not recommend releasing the affected functionality until the blocker was resolved, or a verified workaround satisfied the required control and received the proper approval. I would compare fixing the core workflow and deferring the dashboard, a smaller dashboard alongside those fixes, and changing the launch date. Assuming the dashboard is discretionary and capacity is constrained, I would recommend prioritising the usable, secure core journey. I would bring the value and scope recommendation to the client PO or sponsor, with engineering owning the technical plan. We would make backlog changes, acceptance and operational readiness visible. Before expansion, I would check workflow completion, support demand and control verification. A contractual reporting obligation or new evidence about impact could change the scope decision.”
+
+**Follow-up probes:** What if the client refuses? Who may accept residual risk? Which work can continue in parallel? What if research is incomplete? A strong follow-up distinguishes legitimate risk acceptance from permission to breach a mandatory control, and continues useful work while a decision is escalated.
 
 If a team is six weeks late after losing its lead, address immediate production, contractual or people risks straight away. Diagnose in parallel through team and stakeholder conversations, current commitments, delivery evidence and dependencies. Establish a small stabilisation plan with owners and dates; then agree a realistic forecast and improvement experiments. A first week of listening must not delay urgent protection.
 
@@ -113,6 +179,12 @@ These connected-learning cases are teaching exercises; do not present them as yo
 
 Score each answer from 0–2 for relevance, personal ownership, judgement, evidence, calibration and clarity. A zero identifies a concrete rehearsal gap. Ask a partner to probe your metric, the rejected alternative and who held authority. This is a practice rubric, not an Accenture or Civil Service scoring scale.
 
+For a scenario, score clarity of assumptions, evidence sought, options compared, decision/authority, execution sequence and measures/guardrails. Use the same 0–2 scale: absent, mentioned, or explained with a consequence. This is a self-review aid; it does not predict a hiring score.
+
+**Practice loop:** take one role-specific drill, use a minute to outline the decision, then give a two-minute response. Have a partner change one constraint: half the capacity, an unavailable approver, unreliable data or an inflexible deadline. Revise the recommendation aloud. Finish by answering one past-experience question using STAR or PEARL. The timings are rehearsal choices; use the actual interview's allowance.
+
+**Common mistakes:** asking endless questions without a recommendation; reciting ceremonies; promising an unsupported improvement; spending money or accepting risk without authority; overlooking users and operations; treating every problem as an emergency; and inventing a result for a hypothetical. Take notes as prompts rather than memorising a polished script.
+
 Before an interview, confirm format, panel, case or presentation, duration and logistics. Prepare a specific motivation, three questions, a setback and a truthful current-status answer. Future interview formats are not established by the stages used in an earlier application.
 
 ## References
@@ -124,3 +196,6 @@ Before an interview, confirm format, panel, case or presentation, duration and l
 5. [Data and AI Ethics Framework](https://www.gov.uk/government/publications/data-ethics-framework/data-and-ai-ethics-framework).
 6. [Cracking the PM Career](https://www.crackingthepmcareer.com/) — selected product, execution, strategy and leadership reading; use your own experience when applying the ideas.
 7. [SAFe WSJF](https://framework.scaledagile.com/wsjf/) and [Prosci ADKAR](https://www.prosci.com/methodology/adkar) — prioritisation and change methods.
+8. [Accenture: behavioural interview preparation](https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview) — employer guidance on STAR and past-experience questions; not confirmation of this vacancy's interview format.
+9. [Civil Service behaviours](https://www.gov.uk/government/publications/success-profiles/success-profiles-civil-service-behaviours) and [OPM structured interviews](https://www.opm.gov/policy-data-oversight/assessment-and-selection/structured-interviews/) — experience and hypothetical assessment approaches.
+10. [Jackie Bavaro: PEARL for PM interviews](https://jackiebavaro.substack.com/p/use-pearl-instead-of-star-to-shine) and [2025 explanation](https://jackiebavaro.substack.com/p/cracking-the-behavioral-interview-putting-it-together-with-pearl) — practitioner guidance on insight, action and learning; not a validated superiority claim.

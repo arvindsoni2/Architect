@@ -44,6 +44,14 @@ Be ready to explain why a migration requires dependency discovery, rollback and 
 
 Expect: Which commitment did you change? What did the client disagree with? Who signed off risk? What did you escalate and when? What was the financial effect? How was benefit realised after launch?
 
+## Additional scenario drills
+
+These are fictional practice cases, not reported interview questions or employment examples. Use the [shared scenario method](../shared/handbook.md#scenario-answers), then defend your recommendation under a changed constraint.
+
+**DL1 — client escalation and supplier dependency.** An integration supplier misses its milestone; the client threatens commercial escalation and requests weekend working. Clarify the contract, actual critical path, remaining work and team capacity. Compare resequencing, a reduced release, supplier recovery and targeted temporary support. Recommend a credible recovery option with the accountable commercial/delivery owners, making cost and people impacts visible. Track dependency evidence, forecast confidence and quality. **Probe:** what if the supplier's recovery plan is unsupported? **Weak response:** promising overtime before diagnosing the bottleneck or approving commercial concessions beyond your authority.
+
+**DL2 — benefits lag despite green delivery.** Milestones are on time, but operations has not adopted the service and the sponsor sees no benefit. Check the business-case assumptions, adoption cohorts, workflow barriers and benefits owner. Compare enablement/support, product changes and a pause in further rollout. Recommend a bounded intervention with product and operations, then review actual use and the intended operational benefit. **Probe:** what if the benefit forecast was overstated? **Weak response:** declaring success because the agreed scope shipped or retroactively changing the success measure.
+
 ## First 90 days and panel questions
 
 Initially establish commitments, clients, decision rights, delivery health and urgent risks. Next improve one significant constraint and stabilise a credible forecast. Then strengthen cross-team planning, operational transition and benefits ownership based on measured results. Adapt the sequence if delivery is already in crisis.

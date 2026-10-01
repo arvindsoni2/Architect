@@ -46,6 +46,14 @@ Expect: How did the team choose the change? What resistance did you encounter? W
 
 If asked about SAFe, explain the environment you actually used, team and programme backlog responsibilities and dependency planning. Do not invent PI Planning experience. Use the [shared handbook](../shared/handbook.md#scrum-kanban-and-scaled-delivery) for current role distinctions.
 
+## Additional scenario drills
+
+These are fictional practice cases. Use the [shared scenario method](../shared/handbook.md#scenario-answers); make the team's participation and any structural escalation explicit.
+
+**AD1 — rising velocity, falling reliability.** Leadership celebrates higher story points, but releases are less predictable and defects are growing. Check whether estimation changed, work is being split differently or rework is omitted. Examine item age, blocked time, completed outcomes and escaped defects. Recommend one experiment with the team, such as smaller batches or resolving a recurring approval delay; agree quality guardrails and a review period. **Probe:** what if leadership insists on comparing team velocity? **Weak response:** chasing a points target or assuming the team needs more ceremonies.
+
+**AD2 — conflict around urgent work.** Product wants a date commitment, engineering flags technical risk, and support interruptions keep invalidating plans. Clarify user impact, urgency rules, capacity and decision rights. Facilitate explicit trade-offs between planned work and service obligations; test intake policies or reserved capacity rather than enforcing a universal rule. Track interruption demand, ageing work and service impact. **Probe:** what if urgent work is genuinely unpredictable? **Weak response:** promising to eliminate interruptions or deciding the team's technical plan for them.
+
 ## First 90 days and panel questions
 
 Learn the service, team agreements, demand, dependencies and baseline flow first. Agree one focused improvement experiment next. Then assess the result, build team capability and tackle cross-team constraints with leadership. Preserve useful existing practices; change what the evidence justifies.

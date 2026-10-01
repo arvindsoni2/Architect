@@ -44,6 +44,14 @@ What was your hypothesis before delivery? Which users did you speak to? How did 
 
 For AI, remember that the confirmed result is a reduction in **manual effort** during London/Paris rollout. It is not an accuracy measure or proof that a fixed share of orders needed no human work.
 
+## Additional scenario drills
+
+These are fictional practice cases. Use the [shared scenario method](../shared/handbook.md#scenario-answers), concentrating on the investment decision and the evidence that could reverse it.
+
+**PM1 — acquisition rises but retention falls.** A campaign brings more sign-ups, while retained use and support economics deteriorate. Clarify segments, cohort behaviour, activation, pricing and acquisition cost. Investigate whether the campaign attracted unsuitable customers or the journey fails to deliver value. Compare narrowing acquisition, improving onboarding and changing the proposition. Recommend a bounded test with retention, customer outcomes and cost guardrails. **Probe:** what if a quarter-end revenue target rewards continued acquisition? **Weak response:** celebrating sign-ups or proposing another feature without identifying the cause.
+
+**PM2 — one large customer requests a custom product.** A prospect offers attractive revenue if the team builds specialised features. Check strategic fit, reusable demand, delivery/support cost, contractual commitments and opportunity cost. Compare a configurable capability, a priced bounded engagement and declining the request. Recommend an option with the investment/commercial owner and evidence from other customers. **Probe:** what if sales already promised the date? **Weak response:** accepting on headline revenue alone or assuming all customisation is undesirable.
+
 ## First 90 days and panel questions
 
 First understand the market, users, strategy, economics and decision rights. Next validate the riskiest assumption and align a small set of outcome measures. Then recommend roadmap changes using evidence from customers and operations, with engineering/design feasibility and stakeholder agreement.
