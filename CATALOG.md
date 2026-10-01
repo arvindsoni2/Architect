@@ -50,6 +50,23 @@ Decision-model selection and acceptance live in the existing canonical AI archit
 
 These two resources are an owner-approved scope exception. “Current” identifies the canonical publication, not a claim that every AWS lab has been deployed. See their [revision and validation notes](handbooks/aws-saa-c03/README.md).
 
+## Scoped interview preparation collection
+
+Markdown sources are canonical. The HTML reading view is generated from them. This owner-approved collection is pending final factual review; it does not include raw private recruitment material.
+
+| Title | Domain | Path | Format | Status | Edition | Last reviewed |
+| --- | --- | --- | --- | --- | --- | --- |
+| Interview Preparation Index | Product and delivery interview preparation | [interview-prep/README.md](interview-prep/README.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Shared Interview Handbook | Product and delivery interview preparation | [interview-prep/shared/handbook.md](interview-prep/shared/handbook.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Interview Evidence Bank | Product and delivery interview preparation | [interview-prep/shared/evidence-bank.md](interview-prep/shared/evidence-bank.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/delivery-lead.md](interview-prep/roles/delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Agile Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/agile-delivery-lead.md](interview-prep/roles/agile-delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Product Owner Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-owner.md](interview-prep/roles/product-owner.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Product Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-manager.md](interview-prep/roles/product-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Senior Project Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/senior-project-manager.md](interview-prep/roles/senior-project-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Accenture Product Owner Supplement | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-01 |
+
 ## Status values
 
 - **Current:** canonical or currently published material.
@@ -57,4 +74,4 @@ These two resources are an owner-approved scope exception. “Current” identif
 - **Draft:** incomplete material not yet canonical.
 - **Superseded:** retained only when a migration decision explicitly requires it.
 
-> Repository scope: Complete course notebooks and certification packs remain excluded except for the two AWS SAA-C03 resources explicitly listed above.
+> Repository scope: Complete course notebooks and certification packs remain excluded except for the two AWS SAA-C03 resources explicitly listed above. The curated interview collection is separately approved; raw job-search records remain excluded.

@@ -4,6 +4,8 @@ A curated, version-controlled knowledge base for software architecture, system d
 
 ## Start here
 
+- [Role-based interview preparation](interview-prep/README.md) — shared methods, evidence and five role guides
+
 - [Connect decision models, agent engineering and forward deployed architecture](learning-paths/decision-models-and-forward-deployed-architecture.md)
 
 - [Connect architecture, AWS and AI through the programme's project cases](learning-paths/software-architect/connected-learning/README.md)
@@ -47,4 +49,4 @@ A curated, version-controlled knowledge base for software architecture, system d
 - [Cross-cutting patterns](docs/cross-cutting-patterns/)
 - [Architect learning paths](learning-paths/software-architect/)
 
-Directories are added as curated material is migrated. This repository intentionally excludes complete certification packs, course notebooks, unrelated project files, and obsolete artifact duplicates, with one owner-approved exception for the paired [AWS SAA-C03 handbook and lab manual](handbooks/aws-saa-c03/README.md).
+Directories are added as curated material is migrated. This repository intentionally excludes complete certification packs, course notebooks, unrelated project files, and obsolete artifact duplicates, with owner-approved exceptions for the curated [interview preparation collection](interview-prep/README.md) and the paired [AWS SAA-C03 handbook and lab manual](handbooks/aws-saa-c03/README.md).
