@@ -27,7 +27,9 @@ Architecture-adjacent course or certification material may contribute distilled 
 
 **Scoped amendment approved 7 September 2026:** include the AWS SAA-C03 Visual Handbook and its companion *The $170 Cloud* Lab Manual under `handbooks/aws-saa-c03/`, together with supporting validation. This is a two-resource exception; it does not broaden the general certification/course-material boundary.
 
-Unrelated project files, general technical learning material, job-search material, and personal records are excluded.
+**Scoped amendment approved 1 October 2026:** curated role-based interview preparation is maintained under `interview-prep/`, with shared methods, a public-safe factual evidence bank, five role guides and vacancy supplements. Stable Markdown sources generate one tabbed HTML reading view. Private recruitment feedback and personal eligibility records remain excluded.
+
+Unrelated project files, general technical learning material, job-search material outside that collection, and personal records are excluded.
 
 ## 3. Content model
 
@@ -44,6 +46,10 @@ Markdown under `docs/` is the evolving source of truth for concepts, patterns, t
 ### Learning paths
 
 `learning-paths/` contains curated curricula and development programmes directly related to becoming a software, solution, system, AI, or agent architect.
+
+### Interview preparation
+
+`interview-prep/` separates shared methods and evidence from role responsibilities and vacancy context. Markdown is canonical; the HTML reading view is regenerated rather than independently edited. Git history replaces dated duplicate editions.
 
 ### Catalogue
 
