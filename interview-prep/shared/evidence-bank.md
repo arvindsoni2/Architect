@@ -26,7 +26,7 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 
 **Metric defence:** describe how manual effort was measured, baseline workload, period and scope of comparison, exceptions and review effort. Time released is an operational benefit; cash savings require a separate cost calculation.
 
-**Technical boundary:** an OpenAI model extracted order information with validation and exception handling. The exact model ID remains to be confirmed; use model-neutral wording. Do not claim zero risk, eliminated errors or an independently calibrated confidence score without evidence.
+**Technical boundary:** GPT-4o-mini extracted order information with validation and exception handling. The model name is owner-confirmed. Do not claim zero risk, eliminated errors or an independently calibrated confidence score without evidence.
 
 **Reference:** [GenAI case study](https://arvind-portfolio-iota.vercel.app/product-owner/work/genai-order-automation).
 

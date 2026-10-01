@@ -44,7 +44,7 @@ Use the [evidence bank](../shared/evidence-bank.md) for the source and boundarie
 
 Prepare S3 as the flagship product story: user problem, actual PO remit, one priority decision, platform/integration constraints, acceptance, rollout and measurement. Add S2 for a commercial scope decision, S1 for AI adoption, S5 for a regulated release decision and S4 for dependency/leadership judgement. Include one real setback: what you misjudged, how you surfaced it and how you checked the repair. Read the bank before quoting results.
 
-For S1, the factual core is that customer support previously entered emailed orders manually, typically taking 2–3 minutes per order. The confirmed outcome is approximately 90% lower manual effort, with some cases still requiring handling. Your rollout involvement was London and Paris. Prepare how exceptions were identified, what support staff could do and how release readiness was judged. Keep the exact model ID out until confirmed.
+For S1, the factual core is that customer support previously entered emailed orders manually, typically taking 2–3 minutes per order. The confirmed outcome is approximately 90% lower manual effort, with some cases still requiring handling. Your rollout involvement was London and Paris. Prepare how exceptions were identified, what support staff could do and how release readiness was judged. The confirmed model was GPT-4o-mini; explain its place in the workflow and focus on the product decisions you made during rollout.
 
 ## Public-service case — illustrative, not historical
 
