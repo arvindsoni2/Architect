@@ -41,7 +41,7 @@ All added workload thresholds are teaching hypotheses unless explicitly attribut
 
 ## Locate the AWS labs accurately
 
-Open the [AWS lab manual](../../../handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html) and choose the display number/title. There are no stable per-lab URL anchors. Internal IDs are supplied to disambiguate older handoff numbering.
+Open the [AWS lab manual](../../../handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html) and choose the display number/title. There are no stable per-lab URL anchors. Internal IDs are supplied to disambiguate older handoff numbering.
 
 | Display | Title | ID |
 | --- | --- | --- |

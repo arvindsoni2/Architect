@@ -65,7 +65,7 @@ A useful composition is rules for exact checks, a learned decision for ambiguous
 
 Do not import universal savings claims. TypeSafe's [launch evaluation](https://typesafe.ai/blog/introducing-system-one-models-and-jev) describes limitations in its workflow comparisons. The [REFLEX preprint](https://arxiv.org/abs/2609.26532), submitted 22 September 2026, reports reduced strong-model calls on its benchmark but limited advantage over a cheap generative cascade on some external tasks. It is early research, not a deployment guarantee. Compare rules and conventional classifiers as well as cheap and strong generative baselines.
 
-**Connect the dots:** [Understand, build, evaluate and deliver](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Build the comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.1.html#t-practice) · [Evaluate acceptance](production-ai-assurance.md#decision-model-acceptance).
+**Connect the dots:** [Understand, build, evaluate and deliver](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Build the comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html#t-practice) · [Evaluate acceptance](production-ai-assurance.md#decision-model-acceptance).
 
 ## Failure modes and warning signs
 
@@ -118,8 +118,8 @@ The loop stops at the first candidate meeting the evidence rubric, or at two ref
 
 **Contributing sources:**
 
-- [AI Engineering Handbook v3.1](../../handbooks/ai-engineering/ai-engineering-handbook-v3.1.html)
-- [Agent Engineering Master Manual v2.7](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html)
+- [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html)
+- [Agent Engineering Master Manual v2.8](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html)
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html)
 - [Production AI Assurance](production-ai-assurance.md)
 - Private/source-synthesis assets consulted: Build a Reasoning Model visual chapter guide and CS329A Self-Improving AI Agents notes. Public counterparts: Sebastian Raschka's [reasoning-from-scratch hub](https://sebastianraschka.com/reasoning-from-scratch/), [official repository](https://github.com/rasbt/reasoning-from-scratch), and [Stanford CS329A](https://cs329a.stanford.edu/).

@@ -4,7 +4,7 @@
 
 **Edition:** Living roadmap
 
-**Last reviewed:** 2026-09-23
+**Last reviewed:** 2026-10-05
 
 ## Purpose
 
@@ -23,7 +23,7 @@ A certification validates a bounded body of knowledge. It does not prove that so
 | 3A | Claude Certified Architect, Foundations | High when accessible | Access-dependent through Anthropic Partner Academy | The learner can design a production-oriented Claude application and can access the exam. |
 | 3B | AWS Agentic AI Demonstrated | High | Free AWS hands-on microcredential | The learner can configure, troubleshoot and improve an agent in a provisioned AWS environment. |
 | 4A | AWS Certified Generative AI Developer – Professional (AIP-C01) | Preferred AI/FDE branch | Current standard exam | Production-grade generative AI evidence meets the readiness gate below. |
-| 4B | AWS Certified Machine Learning Engineer – Associate (MLA-C02) | Alternative ML/MLOps branch | Beta transition; check language and current exam version | The target role genuinely requires SageMaker, ML pipelines, model operations or LLMOps depth. |
+| 4B | AWS Certified Machine Learning Engineer – Associate (MLA-C02) | Alternative ML/MLOps branch | English beta active; GA dates TBD; verify booking code | The target role genuinely requires SageMaker, ML pipelines, model operations or LLMOps depth. |
 | 5 | AWS Certified Solutions Architect – Professional | Later | Current exam; monitor announced updates | Multiple substantial AWS designs and deployments demonstrate organisational, migration, hybrid, resilience and governance depth. |
 
 Stages 3A and 3B are complementary and can be completed in either order. Access should determine the order: take the Claude exam when Partner Academy access is available; otherwise continue with the AWS hands-on credential rather than waiting.
@@ -101,7 +101,9 @@ Choose **AIP-C01** for roles centred on generative AI applications, agents, RAG,
 
 Choose **MLA-C02** for roles centred on ML engineering, MLOps, LLMOps, SageMaker, data and model pipelines, fine-tuning or production inference. The updated exam includes foundation models, RAG, Bedrock and agentic AI, but retains traditional ML engineering depth.
 
-As of this roadmap's review date, MLA-C02 registration is open for an English-only beta whose delivery begins on 29 September 2026. MLA-C01 remains available in English through 28 September 2026 and in Japanese, Korean and Simplified Chinese until MLA-C02 general availability; AWS expects the standard MLA-C02 release in early 2027. Re-check the official exam page before choosing a version or language.
+As of **5 October 2026**, the updated English-only beta is active: delivery began on **29 September 2026**. English MLA-C01 ended on **28 September 2026**; Japanese, Korean and Simplified Chinese MLA-C01 remain available until the updated exam's general availability. AWS lists GA registration and delivery dates as **TBD**.
+
+**Exam-code discrepancy:** the [official exam page](https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/) calls the update **MLA-C02** in its headings and registration text, but its overview table displays **ME1-C02**. This roadmap retains MLA-C02 as the published update name; verify the actual code, version and language in the booking record before paying. Do not assume a GA date from an earlier roadmap estimate.
 
 | Role direction | Preferred branch | Reason |
 | --- | --- | --- |
@@ -180,4 +182,4 @@ Time-sensitive claims were checked on 23 September 2026.
 
 ## Forward deployed architecture evidence
 
-The role does not by itself justify another certification. Use the [connected learning route](decision-models-and-forward-deployed-architecture.md) to assemble an ADR, working integration, evaluation packet, recovery demonstration and named handoff owners. Compare that evidence with [current role responsibilities](../handbooks/fde/fde-handbook-v1.3.html#forward-deployed-architect). Keep study credentials and demonstrated delivery capability distinct.
+The role does not by itself justify another certification. Use the [connected learning route](decision-models-and-forward-deployed-architecture.md) to assemble an ADR, working integration, evaluation packet, recovery demonstration and named handoff owners. Compare that evidence with [current role responsibilities](../handbooks/fde/fde-handbook-v1.4.html#forward-deployed-architect). Keep study credentials and demonstrated delivery capability distinct.

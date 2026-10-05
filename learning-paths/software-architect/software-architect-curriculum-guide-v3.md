@@ -427,10 +427,10 @@ Books are listed for conceptual depth; editions and availability should be reche
 
 Optional extension: carry one existing project from architecture defence into a simulated customer engagement. Keep the core curriculum and completion standard; this pathway adds a delivery lens rather than a new qualification.
 
-1. Use [FDE role responsibilities](../../handbooks/fde/fde-handbook-v1.3.html#forward-deployed-architect) to assign architecture, engineering, service and workflow owners.
+1. Use [FDE role responsibilities](../../handbooks/fde/fde-handbook-v1.4.html#forward-deployed-architect) to assign architecture, engineering, service and workflow owners.
 2. Interview a collaborator or label your simulated discovery. Record the actual workflow, baseline, hard constraints and smallest useful outcome.
-3. Implement or pair on one risky integration; retain the code, test result and ADR. If AI is justified, use the [decision-model comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.1.html#t-practice); choosing no AI is valid.
-4. Defend security, failure recovery, unit economics and handoff using the [FDE capstone](../../handbooks/fde/fde-handbook-v1.3.html#capstone) and the existing [programme assessment](software-architect-grooming-programme-v5.html#assessment).
+3. Implement or pair on one risky integration; retain the code, test result and ADR. If AI is justified, use the [decision-model comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html#t-practice); choosing no AI is valid.
+4. Defend security, failure recovery, unit economics and handoff using the [FDE capstone](../../handbooks/fde/fde-handbook-v1.4.html#capstone) and the existing [programme assessment](software-architect-grooming-programme-v5.html#assessment).
 5. Extract a reusable pattern and name the conditions under which it should not be reused.
 
 **Connect the dots:** [Understand → Build → Evaluate → Deliver](../decision-models-and-forward-deployed-architecture.md). Carry the same ADR, case IDs, acceptance evidence and ownership map between guides. Do not claim customer adoption or production operation from a simulated exercise.

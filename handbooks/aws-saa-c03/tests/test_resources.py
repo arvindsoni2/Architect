@@ -14,7 +14,7 @@ ROOT = pathlib.Path(__file__).resolve().parent
 manual_arg = next((arg for arg in sys.argv[1:] if arg.lower().endswith('.html')), None)
 if manual_arg:
     sys.argv.remove(manual_arg)
-MANUAL = pathlib.Path(manual_arg) if manual_arg else ROOT.parent / 'saa-c03-lab-manual-v2.1.html'
+MANUAL = pathlib.Path(manual_arg) if manual_arg else ROOT.parent / 'saa-c03-lab-manual-v2.2.html'
 DATA = json.loads(subprocess.check_output(['node', str(ROOT / 'extract.cjs'), str(MANUAL)]))
 APPS = {a['id']: a for a in DATA['APPS']}
 HTML = MANUAL.read_text(encoding='utf-8')

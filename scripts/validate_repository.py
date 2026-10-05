@@ -23,7 +23,7 @@ CATALOG_COLUMNS = [
 AWS_SECTION = "Scoped AWS study-resource exception"
 AWS_PATHS = {
     "AWS SAA-C03 Visual Handbook": "handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html",
-    "The $170 Cloud — SAA-C03 Lab Manual": "handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html",
+    "The $170 Cloud — SAA-C03 Lab Manual": "handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html",
 }
 VALID_STATUSES = {"Current", "Review due", "Draft", "Superseded"}
 FORMAT_SUFFIXES = {"Markdown": ".md", "HTML": ".html", "PDF": ".pdf"}

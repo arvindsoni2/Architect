@@ -39,7 +39,7 @@ class PersistenceBoundary(unittest.TestCase):
         import tempfile
         import subprocess
         parser = CodeBlocks()
-        parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html').read_text())
+        parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html').read_text())
         config = next(code for code in parser.blocks if code.startswith('[project]'))
         with tempfile.TemporaryDirectory() as directory:
             Path(directory, 'pyproject.toml').write_text(config)
@@ -55,7 +55,7 @@ class PersistenceBoundary(unittest.TestCase):
 
     def test_integration_only_invokes_supplied_forge_after_completed_research(self):
         parser = CodeBlocks()
-        parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html').read_text())
+        parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html').read_text())
         source = next(code for code in parser.blocks if 'def continue_course_lesson(' in code)
         response = {'status': 'awaiting_approval', 'run_id': 'synthetic-run'}
 
@@ -91,7 +91,7 @@ class PersistenceBoundary(unittest.TestCase):
 
     def test_graph_remains_usable_until_async_application_scope_exits(self):
         parser = CodeBlocks()
-        parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html').read_text())
+        parser.feed((Path(__file__).resolve().parents[1] / 'handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html').read_text())
         source = next(code for code in parser.blocks if 'def compile_for_production(' in code)
 
         class Saver:

@@ -59,7 +59,7 @@ Compare candidates at the same risk limit and workload. A model that abstains on
 
 Before rollout, establish shadow results, named acceptance owners and bounded fallback. Enforce deadlines and retry budgets; provider outage or invalid output must not silently select a default action. Revalidate when labels, prompts, versions or traffic distribution change. A learned guardrail remains fallible; identity, authorisation and approval enforcement stay outside the model.
 
-**Connect the dots:** [Shared learning route](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Understand mechanism selection](reasoning-system-design.md#decision-mechanism-selection) · [Build failure handling](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html#decision-model-workflow) · [Deliver through production gates](../../handbooks/fde/fde-handbook-v1.3.html#delivery).
+**Connect the dots:** [Shared learning route](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Understand mechanism selection](reasoning-system-design.md#decision-mechanism-selection) · [Build failure handling](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html#decision-model-workflow) · [Deliver through production gates](../../handbooks/fde/fde-handbook-v1.4.html#delivery).
 
 ## Failure modes and warning signs
 
@@ -123,11 +123,11 @@ Promotion has no preset schedule. The acceptance owner records eligible segments
 
 Repository sources:
 
-- [AI Engineering Handbook v3.1](../../handbooks/ai-engineering/ai-engineering-handbook-v3.1.html)
-- [Agent Engineering Master Manual v2.7](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html)
+- [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html)
+- [Agent Engineering Master Manual v2.8](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html)
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html)
-- [Forward Deployed AI Engineer Handbook v1.3](../../handbooks/fde/fde-handbook-v1.3.html)
-- [Interview Resource Accelerator v4.3](../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html)
+- [Forward Deployed AI Engineer Handbook v1.4](../../handbooks/fde/fde-handbook-v1.4.html)
+- [Interview Resource Accelerator v4.4](../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html)
 
 External references (verified 2026-09-05):
 

@@ -39,7 +39,7 @@ Also obtain: peak read/write mix, number and size of records, retention, residen
 
 ## 3. The map across your existing material
 
-Open the [AWS lab manual](../../handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html) and select the **display number and title** below. Internal IDs are included because older handoff text uses different numbers; the manual does not provide stable per-lab URL anchors. Use its Design, Runbook, Handoff and Teardown material selectively. These are lab specifications/excerpts, not a pre-deployed portal.
+Open the [AWS lab manual](../../handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html) and select the **display number and title** below. Internal IDs are included because older handoff text uses different numbers; the manual does not provide stable per-lab URL anchors. Use its Design, Runbook, Handoff and Teardown material selectively. These are lab specifications/excerpts, not a pre-deployed portal.
 
 | Portal decision | Architecture preparation | Existing AWS practice | Transfer into the portal | Evidence to keep |
 | --- | --- | --- | --- | --- |

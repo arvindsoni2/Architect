@@ -7,7 +7,7 @@ const vm = require('node:vm');
 const {parseHTML} = require('linkedom');
 const root = path.join(__dirname, '..');
 const system = 'handbooks/system-design/system-design-concept-handbook-v5.html';
-const interview = 'learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html';
+const interview = 'learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html';
 const saa = 'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html';
 
 function page(file, storage) {

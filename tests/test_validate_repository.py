@@ -28,7 +28,7 @@ class RepositoryValidationTests(unittest.TestCase):
         (aws / "saa-c03-visual-handbook-2026.09.html").write_text(
             "<!doctype html>\n", encoding="utf-8"
         )
-        (aws / "saa-c03-lab-manual-v2.1.html").write_text(
+        (aws / "saa-c03-lab-manual-v2.2.html").write_text(
             "<!doctype html>\n", encoding="utf-8"
         )
         catalog = (
@@ -38,7 +38,7 @@ class RepositoryValidationTests(unittest.TestCase):
             "## Scoped AWS study-resource exception\n\n"
             f"{CATALOG_HEADER}"
             "| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v1 | 2026-09-08 |\n"
-            "| The $170 Cloud — SAA-C03 Lab Manual | AWS architecture practice | [handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html) | HTML | Current | v1 | 2026-09-08 |\n"
+            "| The $170 Cloud — SAA-C03 Lab Manual | AWS architecture practice | [handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html) | HTML | Current | v1 | 2026-09-08 |\n"
         )
         (root / "CATALOG.md").write_text(catalog, encoding="utf-8")
         return temporary, root
@@ -58,7 +58,7 @@ class RepositoryValidationTests(unittest.TestCase):
             "| Architecture Note | Software architecture | [docs/architecture-note.md](docs/architecture-note.md)",
             "| Architecture Note | Software architecture | [docs/missing.md](docs/missing.md)",
         ).replace(
-            "handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html)",
+            "handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html)",
             "handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html)",
         )
         (root / "CATALOG.md").write_text(catalog, encoding="utf-8")
@@ -100,7 +100,7 @@ class RepositoryValidationTests(unittest.TestCase):
         self.addCleanup(temporary.cleanup)
         catalog = (root / "CATALOG.md").read_text(encoding="utf-8").replace(
             "saa-c03-visual-handbook-2026.09.html",
-            "saa-c03-lab-manual-v2.1.html",
+            "saa-c03-lab-manual-v2.2.html",
         )
         (root / "CATALOG.md").write_text(catalog, encoding="utf-8")
 

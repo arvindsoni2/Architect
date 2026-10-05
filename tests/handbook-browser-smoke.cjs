@@ -8,10 +8,10 @@ const root = path.join(__dirname,'..');
 const output = process.env.ARCHITECT_SCREENSHOTS || '/tmp/architect-browser-review';
 const files = {
   system:'handbooks/system-design/system-design-concept-handbook-v5.html',
-  interview:'learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html',
-  ai:'handbooks/ai-engineering/ai-engineering-handbook-v3.1.html',
-  agent:'handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html',
-  fde:'handbooks/fde/fde-handbook-v1.3.html',
+  interview:'learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html',
+  ai:'handbooks/ai-engineering/ai-engineering-handbook-v3.2.html',
+  agent:'handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html',
+  fde:'handbooks/fde/fde-handbook-v1.4.html',
   saa:'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html',
 };
 (async()=>{

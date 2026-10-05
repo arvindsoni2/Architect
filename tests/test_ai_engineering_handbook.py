@@ -4,7 +4,7 @@ import unittest
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-HANDBOOK = ROOT / "handbooks" / "ai-engineering" / "ai-engineering-handbook-v3.1.html"
+HANDBOOK = ROOT / "handbooks" / "ai-engineering" / "ai-engineering-handbook-v3.2.html"
 
 
 class TabSemanticsParser(HTMLParser):
