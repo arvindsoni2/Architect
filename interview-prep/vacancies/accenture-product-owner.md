@@ -4,6 +4,8 @@
 
 This supplement applies the [Product Owner guide](../roles/product-owner.md) to the supplied Newcastle vacancy. The advert describes a consulting PO who connects strategy, backlog decisions, multidisciplinary delivery, rollout and benefits, with mentoring responsibilities. The client, interview format, assessment and clearance level remain unconfirmed. The questions below are predictions from the advert, not a disclosed Accenture question bank.
 
+For researched practice questions and tailored answers, use the [model question-and-answer bank](accenture-product-owner-questions.md). It supplements this advert mapping and labels public reports separately from our predictions.
+
 ## Interview thesis
 
 “I bring product ownership grounded in client and operational delivery. My Northern Powergrid PO experience gives me a field-user product example; Natoora adds commercial and AI rollout experience; banking adds regulated delivery judgement. I can connect a client outcome to a clear backlog, collaborate with BAs, UCD and engineers, support rollout and check whether benefits are realised.” Follow this with one specific personal decision.
