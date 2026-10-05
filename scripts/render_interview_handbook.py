@@ -22,6 +22,7 @@ SOURCES = [
     ('roles/senior-project-manager.md', 'senior-project-manager', 'Senior Project Manager'),
     ('vacancies/accenture-product-owner.md', 'accenture', 'Accenture PO'),
     ('vacancies/accenture-product-owner-questions.md', 'accenture-questions', 'Accenture Q&A'),
+    ('vacancies/accenture-fde.md', 'accenture-fde', 'Accenture FDE'),
 ]
 
 

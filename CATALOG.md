@@ -66,9 +66,12 @@ Markdown sources are canonical. The HTML reading view is generated from them. Th
 | Senior Project Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/senior-project-manager.md](interview-prep/roles/senior-project-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Accenture Product Owner Supplement | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Accenture Product Owner Model Q&A | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-05 |
+| Accenture Forward Deployed AI Engineer Supplement | Forward-deployed AI interview preparation | [interview-prep/vacancies/accenture-fde.md](interview-prep/vacancies/accenture-fde.md) | Markdown | Draft | Living draft | 2026-10-05 |
 | Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-05 |
 
 ## Status values
+
+The FDE v1.4 publication also includes a focused 5 October supplement for provider practice, programme/people leadership and experience boundaries. Its original research dates remain labelled. The Accenture FDE supplement contains inferred rehearsal material, not a verified interview loop or a declaration of candidate eligibility.
 
 - **Current:** canonical or currently published material.
 - **Review due:** usable material whose time-sensitive claims need checking.

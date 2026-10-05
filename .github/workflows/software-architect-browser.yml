@@ -5,6 +5,9 @@ on:
     paths:
       - 'learning-paths/**'
       - 'handbooks/**'
+      - 'interview-prep/**'
+      - 'scripts/render_interview_handbook.py'
+      - 'tests/interview-browser-smoke.cjs'
       - 'tests/handbook-browser-smoke.cjs'
       - '.github/workflows/software-architect-browser.yml'
   push:
@@ -12,6 +15,9 @@ on:
     paths:
       - 'learning-paths/**'
       - 'handbooks/**'
+      - 'interview-prep/**'
+      - 'scripts/render_interview_handbook.py'
+      - 'tests/interview-browser-smoke.cjs'
       - 'tests/handbook-browser-smoke.cjs'
       - '.github/workflows/software-architect-browser.yml'
 
@@ -41,6 +47,10 @@ jobs:
           NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules
           ARCHITECT_SCREENSHOTS: ${{ runner.temp }}/architect-browser-review
         run: node tests/handbook-browser-smoke.cjs
+      - name: Exercise interview reading view in Chromium
+        env:
+          NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules
+        run: node tests/interview-browser-smoke.cjs
       - name: Upload review screenshots and print sample
         if: always()
         uses: actions/upload-artifact@v4

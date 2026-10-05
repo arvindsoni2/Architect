@@ -139,6 +139,7 @@ summary{cursor:pointer;font-weight:750}
   <a href="#software">5. Software engineering</a>
   <a href="#systems">6. System design</a>
   <a href="#ai">7. LLM & agent engineering</a>
+  <a href="#provider-lab">7A. Multi-provider practical</a>
   <a href="#evals">8. Evals & reliability</a>
   <a href="#platform">9. Cloud, platform & LLMOps</a>
   <a href="#security">10. Security & governance</a>
@@ -149,6 +150,7 @@ summary{cursor:pointer;font-weight:750}
   <a href="#production-gates">12A. Six production gates</a>
   <a href="#adoption">12B. Adoption engineering</a>
   <a href="#value">13. Outcomes & business value</a>
+  <a href="#programme-leadership">13A. Programme & people leadership</a>
   <a href="#failure">14. Failure modes</a>
 
   <div class="nav-group">Practice</div>
@@ -480,6 +482,26 @@ citation / evidence checks</pre>
 </div>
 </section>
 
+<section id="provider-lab">
+<h2>7A. Practical: one workflow, multiple providers</h2>
+<div class="assignment">
+<p><strong>Purpose:</strong> make provider differences visible while preserving the workflow's quality, authority and data boundaries. This is a learning exercise, not customer-deployment evidence.</p>
+<ol>
+<li>Choose a small extraction-and-proposal workflow. Define typed inputs, a validated output schema, an explicit failure result, deadline, spend limit and permitted data locations. Keep the consequential commit in application code.</li>
+<li>Implement two real adapters where access permits, choosing among OpenAI, Claude, Google's supported platform APIs or a local open-weight model. An optional third may be a test double, clearly labelled; if no external access is available, mock the transport and report contract testing only.</li>
+<li>Record supported structured outputs, tools, streaming, cancellation, rate limits and usage fields per adapter. Preserve provider-specific metadata behind a common result envelope; do not silently discard unsupported requirements.</li>
+<li>Run the same held-out cases through each route. Compare accepted outcomes, schema failures, latency, attempts and total cost. Record model and API versions, dataset version and untested capabilities. Estimate missing cost fields explicitly rather than reporting zero.</li>
+<li>Route only among providers approved for this data and task. Inject throttling, malformed output, a missing capability, cancellation and a timeout after an external action. Demonstrate bounded retry, fail-closed policy checks and unknown-outcome reconciliation.</li>
+</ol>
+<table><thead><tr><th>Failure test</th><th>Expected result</th></tr></thead><tbody>
+<tr><td>Fallback violates residency or tool policy</td><td>No call is sent; task enters a recoverable hold with an explanation.</td></tr>
+<tr><td>Fallback lacks required schema/tool behaviour</td><td>Reject the route or use an explicitly tested alternative; never silently weaken the contract.</td></tr>
+<tr><td>Timeout after an external write</td><td>Reconcile using operation identity before replay; no duplicate side effect.</td></tr>
+<tr><td>Usage fields differ or are absent</td><td>Normalize known units, retain raw evidence and flag estimated or unavailable cost.</td></tr>
+</tbody></table>
+<p><strong>Deliver:</strong> adapter contract, capability matrix, evaluation report, failure traces and an ADR explaining the chosen route. A compatible API shape is not proof of equivalent behaviour. Pair this with the <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#evals">evaluation</a> and <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#orchestration">durable orchestration</a> resources. Consult <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale">Google's current agent deployment guidance</a> for its supported runtime and SDK path; the former Vertex AI Agent Engine overview redirects there (checked 5 October 2026).</p>
+</div>
+</section>
 <section id="evals">
 <h2>8. Evals & reliability <a class="toplink" href="#intro">↑ top</a></h2>
 <p class="lead">The most reliable signal that someone has moved beyond demos is that they can define, implement and operate an eval loop.</p>
@@ -869,6 +891,19 @@ ops/support allocation        = ______
 </section>
 
 
+<section id="programme-leadership">
+<h2>13A. Lead a programme without losing engineering ownership</h2>
+<p>A successful single-workflow pilot does not establish programme leadership. Across workstreams, make outcome owners, dependencies, scarce skills, operational support and decision authority visible. Prioritise the smallest independently useful slices; reserve explicit capacity for incidents, review and learning. Resource utilisation alone is not an outcome.</p>
+<p>Maintain one decision view: baseline and target; dependency and capacity constraint; current quality, safety and adoption evidence; commercial assumptions; next scale/hold/stop decision; authorised owner. Escalate an actual choice with consequences, rather than reporting every stream as green until integration fails. Revisit allocation when observed throughput or risk changes.</p>
+<h4 id="people-leadership">Engineering people leadership</h4>
+<p>Distinguish technical leadership from formal line management. For direct reports, agree expectations and development goals, give specific private feedback, provide pairing or training, and review progress against observable work. Investigate unclear requirements, overload and missing support before attributing a problem to capability. Address sustained performance concerns through the organisation's people process, with factual records and appropriate support.</p>
+<p>Career conversations should connect the engineer's aspirations to opportunities and feedback; they should not occur only when delivery is in trouble. Build succession and shared knowledge so critical services do not depend on one individual. Evidence of this responsibility includes the decision, support and follow-up, not confidential personnel documents in a public portfolio.</p>
+<div class="interview-signal">Prepare a capacity trade-off, a development conversation and a difficult feedback example. State whether you were the person's manager, technical lead or delivery coordinator. Do not infer direct-report responsibility from team size.</div>
+<h4 id="investment-decisions">CFO-facing investment decisions</h4>
+<p>Separate time released, usable capacity, avoided expenditure, cash savings and revenue. An ROI backlog should record the workflow, eligible volume, baseline, benefit mechanism, adoption assumption, full operating cost, implementation cost, owner, uncertainty and next experiment. Rank feasible opportunities after mandatory controls and dependencies; do not disguise uncertain estimates as precise priority scores.</p>
+<p>Calculate total cost over a defined period divided by accepted successful outcomes over that same period. Include failed attempts, human correction and operations. For an investment case, compare incremental realised benefit with incremental costs and show downside sensitivity. Name who can turn released capacity into value, and avoid counting the same benefit twice. A longer roadmap should state evidence required before the next commitment rather than promise unsupported returns.</p>
+<p>Use the <a href="../../interview-prep/vacancies/accenture-fde.md#worked-programme-and-commercial-case">worked programme and commercial case</a> to practise benefit realisation, payback, resource constraints and conditional sequencing. Every number in that case is synthetic. For reuse, name an asset owner, supported versions, licensing/data boundaries, maintenance cost and retirement criteria; verify its value in a second applicable engagement.</p>
+</section>
 <section id="failure">
 <h2>14. Common FDE failure modes <a class="toplink" href="#intro">↑ top</a></h2>
 <table>
@@ -1042,6 +1077,7 @@ ops/support allocation        = ______
 
 <section id="interviews">
 <h2>18. FDE interview preparation <a class="toplink" href="#intro">↑ top</a></h2>
+<div class="callout"><strong>Team-lead preparation:</strong> the <a href="../../interview-prep/vacancies/accenture-fde.md">Accenture FDE supplement</a> adds engineering ownership, people management, programme economics and code-with drills. Its questions are inferred practice, not a verified employer interview loop. Use the <a href="../../interview-prep/shared/handbook.md#behavioural-answers">shared STAR/PEARL guidance</a> for past-experience answers; use EVIDENCE below to check technical completeness. Keep hypothetical outcomes separate from observed results.</div>
 <p>Exact interview loops vary by company, but the current role specifications imply a consistent set of signals: coding, system design, applied AI, debugging, customer ambiguity and communication.</p>
 
 <h3>18.1 Coding / practical engineering</h3>
@@ -1087,6 +1123,7 @@ E — Extraction: reusable lesson or pattern</pre>
 
 <section id="readiness">
 <h2>19. Readiness scorecard <a class="toplink" href="#intro">↑ top</a></h2>
+<div class="callout warn"><strong>Two separate judgements:</strong> this score measures preparation, not whether experience satisfies a vacancy. Alongside each score, label the setting: <em>study</em>, <em>simulation/personal build</em>, <em>internal production</em> or <em>client-embedded production</em>. Record your personal contribution and who accepted the outcome. Realistic constraints in a capstone do not become real customer deployment. A high total cannot substitute for a specific employer requirement or establish engineering line-management experience. The <a href="../../interview-prep/vacancies/accenture-fde.md#map-existing-stories-without-upgrading-the-claims">vacancy evidence map</a> shows how to identify those gaps without changing the facts.</div>
 <p>Score each item 0–3: 0 = no exposure, 1 = study/tutorial, 2 = built independently, 3 = operated or defended under real/realistic constraints.</p>
 <table>
 <thead><tr><th>Competency</th><th>0–3</th><th>Evidence required for a 3</th></tr></thead>
@@ -1194,6 +1231,8 @@ E — Extraction: reusable lesson or pattern</pre>
 <div class="resource"><strong><span class="tag-ref">[REFERENCE]</span> OpenAI background mode</strong><span>Concrete vendor-specific example of asynchronous long-running model work. Generalise the durable lessons: status, cancellation, polling or callbacks, re-entry and explicit retention/security choices. https://developers.openai.com/api/docs/guides/background</span></div>
 <div class="resource"><strong><span class="tag-good">[GOOD]</span> OpenAI Agents SDK docs</strong><span>Concrete reference for tool loops, tracing and server-owned control. https://openai.github.io/openai-agents-python/</span></div>
 
+<div class="resource"><strong><span class="tag-good">[PRACTICE]</span> Google agent deployment and multi-provider contracts</strong><span><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale">Current Google deployment documentation</a> (checked 5 October 2026); apply only the runtime, identity and observability material required by <a href="#provider-lab">the provider lab</a>. This fills the Google platform gap without adding another broad course.</span></div>
+
 <h3>20.4 Evals</h3>
 <div class="resource"><strong><span class="tag-must">[CORE]</span> Anthropic — Define success criteria and build evaluations</strong><span>Strong conceptual starting point. https://docs.anthropic.com/en/docs/build-with-claude/develop-tests</span></div>
 <div class="resource"><strong><span class="tag-must">[CORE]</span> OpenAI — Evaluation best practices</strong><span>Design principles for variable model behaviour. https://developers.openai.com/api/docs/guides/evaluation-best-practices</span></div>
@@ -1226,6 +1265,7 @@ E — Extraction: reusable lesson or pattern</pre>
 
 <section id="cert">
 <h2>21. Certification mapping <a class="toplink" href="#intro">↑ top</a></h2>
+<div class="callout" id="frontier-academy"><strong>Training update — 5 October 2026:</strong> Anthropic announced <a href="https://www.anthropic.com/news/claude-frontier-academy">Claude Frontier Academy</a> on 2 October, with Accenture among the initial participants. The programme includes a practical assessment and a 12-week residency. Participation is through organisational nomination; it is not an openly available individual course. Distinguish its Resident Engineer and Frontier Deployed Engineer badges from the architect certification below. Training, assessment and a qualifying employment history are separate forms of evidence.</div>
 <p>Public Anthropic material confirms that Claude Certified Architect — Foundations (CCAR-F) launched for partners in March 2026 and that certifications are held by individuals through the Partner Academy. The public evidence reviewed does not establish a stable four-certification catalog or open access. Verify the current catalog, eligibility and access in the Partner Academy before investing; treat any certification as supplementary evidence beside real deployment competence.</p>
 
 <table>
@@ -1247,6 +1287,7 @@ E — Extraction: reusable lesson or pattern</pre>
 <p class="small">Research checked on 4 September 2026. Job postings, product features and protocol details change; use the linked pages as dated evidence, not permanent requirements.</p>
 
 <h3>Role evidence and stable discovery</h3>
+<p class="small">Focused supplement checked 5 October 2026: <a href="https://www.accenture.com/gb-en/careers/jobdetails?id=R00345109_en">Accenture R00345109, Newcastle</a>. Employer-specific interpretation and practice live in the <a href="../../interview-prep/vacancies/accenture-fde.md">vacancy supplement</a>; it does not replace the general role evidence below.</p>
 <p class="small">Discovery links help find the current role family; they do not prove responsibilities. Vacancy examples are dated evidence and may close or change. Refreshed examples carry a 5 October 2026 check date; other source-register entries retain the original 4 September research date. Compare actual coding, delivery and operational ownership before generalising a title.</p>
 <ol>
 <li>OpenAI — stable careers discovery: <a href="https://openai.com/careers/" target="_blank" rel="noopener">https://openai.com/careers/</a>. The former London Applied AI Engineer vacancy now redirects to general search and is no longer vacancy-specific evidence.</li>
@@ -1297,7 +1338,7 @@ E — Extraction: reusable lesson or pattern</pre>
 
 <div class="footer">
 <strong>Editorial principle.</strong> This handbook prioritises enduring engineering and deployment principles over framework memorisation. Vendor-specific tools are included when they illuminate current practice, but assignments are intentionally designed so they can be implemented with different model providers and orchestration stacks.<br><br>
-Version 1.3 • Research cut: 4 September 2026 • Audited field revision: current role taxonomy; durable asynchronous agent execution; MCP 2026-07-28 compatibility; risk-derived eval gates; GenAI telemetry stability and content controls; agent/tool supply-chain security; explicit production handoff; certification evidence correction • Standalone HTML, print-friendly.
+Version 1.4 • Original research cut: 4 September 2026 • Focused updates: 5 October 2026, including security/role references, programme and people leadership, provider practice, experience boundaries and training. Earlier technical research dates remain as labelled; this is not a full re-audit. • Standalone HTML, print-friendly.
 </div>
 </section>
 
