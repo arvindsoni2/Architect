@@ -20,6 +20,8 @@ For question practice, start with [STAR and PEARL](shared/handbook.md#behavioura
 
 The [Accenture model question-and-answer bank](vacancies/accenture-product-owner-questions.md) adds researched question origins, 29 model answers, three personal-story scaffolds and follow-up probes. Its research register distinguishes reports, suggestions and vacancy-derived predictions.
 
+For engineering interviews, use the [Accenture Forward Deployed AI Engineer supplement](vacancies/accenture-fde.md) alongside the [FDE Handbook v1.4](../handbooks/fde/fde-handbook-v1.4.html). It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.
+
 [Open the tabbed reading view](handbook.html). It is generated from these Markdown files; edit the sources, then run `python3 scripts/render_interview_handbook.py` from the repository root.
 
 ## Prepare in three passes
