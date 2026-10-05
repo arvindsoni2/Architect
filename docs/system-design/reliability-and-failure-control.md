@@ -96,7 +96,7 @@ Repository sources:
 - [System Design Concept Handbook v5](../../handbooks/system-design/system-design-concept-handbook-v5.html)
 - [Software Architect Grooming Programme v5](../../learning-paths/software-architect/software-architect-grooming-programme-v5.html)
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html)
-- [Forward Deployed AI Engineer Handbook v1.3](../../handbooks/fde/fde-handbook-v1.3.html)
+- [Forward Deployed AI Engineer Handbook v1.4](../../handbooks/fde/fde-handbook-v1.4.html)
 
 External references (verified 2026-09-05):
 

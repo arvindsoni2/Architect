@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The AI Engineering Handbook v3.1 — reviewed 11 September 2026</title>
-<meta name="description" content="A consolidated, Pareto-pruned, Feynman-structured reference for production AI engineering. Edition v3.1, reviewed 11 September 2026." />
+<title>The AI Engineering Handbook v3.2 — freshness reviewed 05 October 2026</title>
+<meta name="description" content="A consolidated, Pareto-pruned, Feynman-structured reference for production AI engineering. Edition v3.2, freshness reviewed 05 October 2026." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -608,7 +608,7 @@
   <div class="masthead-inner">
     <h1 class="mast-title">The AI Engineering <em>Handbook</em></h1>
     <div class="mast-meta">
-      <span><b>v3.1</b> · May 2026 · reviewed 11 Sep 2026</span>
+      <span><b>v3.2</b> · original May 2026 · freshness 05 Oct 2026</span>
       <span>Consolidated from 19 files</span>
       <span>Pareto · Feynman</span>
       <button onclick="window.print()" style="background:none; border:1px solid var(--ink); padding:4px 10px; font:inherit; cursor:pointer">Print / PDF</button>
@@ -618,7 +618,8 @@
 
 <!-- ============================ HERO ============================ -->
 <div class="hero">
-  <div class="eyebrow">Single source of truth · Reviewed 11 September 2026</div>
+  <div class="eyebrow">Single source of truth · Freshness reviewed 05 October 2026</div>
+<p class="section-sub">v3.2 updates model IDs, base pricing and the OWASP 2026 security resource. Other dated source snapshots retain their original review dates.</p>
   <h1>Six months of <em>notes,</em><br>compressed.</h1>
   <p class="lede">
     Nineteen markdown files. Roughly fifty thousand words. Overlapping curricula, expired links, models that no longer exist. This handbook is what survived the cull — <strong>one place to look</strong> when you need the 20% that actually ships products in 2026. Eighty percent of the volume, gone. None of the load-bearing ideas.
@@ -1121,10 +1122,10 @@
 <li>Run the same cases through your available candidates. Keep inputs and labels consistent; record unavailable candidates as not evaluated. Mocked responses test wiring only.</li>
 <li>Measure per-class errors, accepted-case coverage, abstention, p95 latency and full cost per successful task. Investigate missing evidence, a new language and an ambiguous label pair.</li>
 <li>Choose thresholds on development data using <a href="../../docs/ai-architecture/production-ai-assurance.md#decision-model-acceptance">decision-model acceptance</a>. State when rules or a cheaper baseline win.</li>
-<li>Write an ADR, save the evaluation packet, then continue to the <a href="../agent-engineering/agent-engineering-master-manual-v2.7.html#decision-model-workflow">agent integration exercise</a>.</li>
+<li>Write an ADR, save the evaluation packet, then continue to the <a href="../agent-engineering/agent-engineering-master-manual-v2.8.html#decision-model-workflow">agent integration exercise</a>.</li>
 </ol>
 <p><strong>Feynman check:</strong> Why can an allowed answer still be wrong? What would make you remove the router? Product examples and sources are maintained in the canonical selection guide.</p>
-<p><a href="../../learning-paths/decision-models-and-forward-deployed-architecture.md">Understand → Build → Evaluate → Deliver: shared route</a> · <a href="../fde/fde-handbook-v1.3.html#forward-deployed-architect">Who owns the architecture and outcome?</a></p>
+<p><a href="../../learning-paths/decision-models-and-forward-deployed-architecture.md">Understand → Build → Evaluate → Deliver: shared route</a> · <a href="../fde/fde-handbook-v1.4.html#forward-deployed-architect">Who owns the architecture and outcome?</a></p>
 </div>
 
 
@@ -1217,7 +1218,7 @@
 </div>
 <h4>Worked framing: support-ticket triage</h4>
 <p><strong>Problem:</strong> specialists spend time re-routing ambiguous tickets. <strong>Baseline:</strong> measure rules plus form improvements before adding a model. <strong>AI fit:</strong> classify only the unstructured remainder and attach confidence plus evidence. <strong>Failure budget:</strong> a wrong suggested queue is reviewable; an autonomous refund is forbidden. <strong>Smallest test:</strong> run in shadow mode on representative historical tickets, then compare routing accuracy, handling time, abstention, cost, and performance across customer segments.</p>
-<p>For deeper discovery, adoption, and outcome ownership, use the <a href="../fde/fde-handbook-v1.3.html">Forward Deployed AI Engineer Handbook</a>. This handbook keeps only the engineering decision loop.</p>
+<p>For deeper discovery, adoption, and outcome ownership, use the <a href="../fde/fde-handbook-v1.4.html">Forward Deployed AI Engineer Handbook</a>. This handbook keeps only the engineering decision loop.</p>
 
 <h3>Software-engineering readiness gate</h3>
 <p>This is a prerequisite check, not a compressed software-architecture course. If you cannot explain or demonstrate an item, follow the canonical link rather than duplicating the subject here.</p>
@@ -1230,7 +1231,7 @@
 <tr><td><strong>Reliability</strong></td><td>Bound time, retries, overload, dependency failure, blast radius, and degraded modes.</td><td><a href="../../docs/system-design/reliability-and-failure-control.md">Reliability and Failure Control</a></td></tr>
 <tr><td><strong>Durable execution</strong></td><td>Explain idempotency, workflow state, replay, reconciliation, and recovery after partial failure.</td><td><a href="../../docs/cross-cutting-patterns/durable-workflows-and-idempotency.md">Durable Workflows and Idempotency</a></td></tr>
 <tr><td><strong>Production assurance</strong></td><td>Connect evals, authorization, rollout, observability, incident response, and rollback.</td><td><a href="../../docs/ai-architecture/production-ai-assurance.md">Production AI Assurance</a></td></tr>
-<tr><td><strong>Agent architecture</strong></td><td>Choose tools, state, memory, control boundaries, and orchestration from requirements.</td><td><a href="../agent-engineering/agent-engineering-master-manual-v2.7.html">Agent Engineering Master Manual</a></td></tr>
+<tr><td><strong>Agent architecture</strong></td><td>Choose tools, state, memory, control boundaries, and orchestration from requirements.</td><td><a href="../agent-engineering/agent-engineering-master-manual-v2.8.html">Agent Engineering Master Manual</a></td></tr>
 </tbody>
 </table>
 </div>
@@ -1245,7 +1246,7 @@
 <tr><td><strong>Prefill, decode, and prefix/KV caching</strong></td><td>Separate time-to-first-token from generation speed and design cacheable context.</td><td><a href="../../docs/ai-architecture/llm-inference-systems.md">LLM Inference Systems</a></td></tr>
 <tr><td><strong>Sampling and structured output</strong></td><td>Match generation controls, schemas, validators, and retry policy to the task.</td><td><a href="#t-roadmap">Roadmap · Weeks 1–2</a></td></tr>
 <tr><td><strong>Train/validation/production distributions</strong></td><td>Recognize leakage, drift, and why offline quality may not survive deployment.</td><td><a href="../../docs/ai-architecture/model-adaptation-and-training.md">Model Adaptation and Training</a></td></tr>
-<tr><td><strong>Bias/variance and error slices</strong></td><td>Choose whether more data, a simpler system, a better evaluator, or a model change is justified.</td><td><a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html#ml">ML &amp; Statistics Foundations</a> · <a href="#t-eval">Evaluation · Error Analysis</a></td></tr>
+<tr><td><strong>Bias/variance and error slices</strong></td><td>Choose whether more data, a simpler system, a better evaluator, or a model change is justified.</td><td><a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#ml">ML &amp; Statistics Foundations</a> · <a href="#t-eval">Evaluation · Error Analysis</a></td></tr>
 <tr><td><strong>Prompt, retrieval, tools, workflow, or weights</strong></td><td>Select the least invasive intervention supported by evidence.</td><td><a href="#t-eval">Evaluation · Intervention Loop</a></td></tr>
 </tbody>
 </table>
@@ -1302,7 +1303,7 @@
 <div>
 <h4>Infrastructure Layer</h4>
 <ul>
-<li><strong>Model APIs:</strong> Claude (Fable 5.1, Opus 5, Sonnet 5, Haiku 4.5), GPT, Gemini, DeepSeek, open-weight via vLLM/Ollama</li>
+<li><strong>Model APIs:</strong> Claude (Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 4.5), GPT, Gemini, DeepSeek, open-weight via vLLM/Ollama</li>
 <li><strong>Vector DBs:</strong> pgvector (SQL-familiar), Pinecone (managed), Qdrant (performance)</li>
 <li><strong>MCP servers:</strong> Your tool ecosystem, standard protocol</li>
 </ul>
@@ -1383,7 +1384,7 @@
 <thead><tr><th>Layer</th><th>Choice</th><th>Rationale</th></tr></thead>
 <tbody>
 <tr><td>Framework</td><td><strong>LangGraph 1.2.11</strong></td><td>Free, open-source, production-stable; pin and re-evaluate for each project</td></tr>
-<tr><td>LLM</td><td><strong>Claude Sonnet 5</strong> + an eval-qualified lower-cost route</td><td>Start with measured task quality and cost; escalate to Opus 5 or Fable 5.1 only when evals justify it</td></tr>
+<tr><td>LLM</td><td><strong>Claude Sonnet 5.5</strong> + an eval-qualified lower-cost route</td><td>Start with measured task quality and cost; escalate to Opus 5.5 or Fable 5.1 only when evals justify it</td></tr>
 <tr><td>Vector DB</td><td><strong>pgvector + PostgreSQL</strong></td><td>One database for everything</td></tr>
 <tr><td>Eval</td><td>DeepEval + custom harness</td><td>Pytest-native, free</td></tr>
 <tr><td>Observability</td><td><strong>Langfuse (self-hosted)</strong></td><td>MIT license, LangGraph-native</td></tr>
@@ -1594,10 +1595,12 @@ Release gate ← Compare slices + guardrails ← Change one layer ← Choose int
 <h3>Cost estimation template</h3>
 <div class="ascii">Monthly cost = input tokens × input price + output tokens × output price
 
-Reviewed example · 10K queries/day · 2K input + 500 output · Claude Sonnet 5
+Base API rate example · verified 05 October 2026 · Claude Sonnet 5.5
+Workload: 10K queries/day · 2K input + 500 output tokens per query
 Input:  300K queries × 2K tokens = 600M × $2/M  = $1,200
 Output: 300K queries × 500 tokens = 150M × $10/M = $1,500
-Baseline: <span class="yellow">$2,700/month</span> before caching, batch discounts, tools, retrieval, or retries
+Baseline: <span class="yellow">$2,700/month</span>
+Before caching, batch discounts, tools, retrieval, or retries
 
 Optimization levers:
   Cache stable repeated prefixes
@@ -1605,7 +1608,8 @@ Optimization levers:
   Reduce unnecessary context without discarding evidence
   Batch asynchronous workloads when the provider supports it
 
-Recalculate with current provider pricing and measured workload data; do not copy a generic savings percentage.</div>
+Recalculate with current provider pricing and measured workload data.
+Do not copy a generic savings percentage.</div>
 
 <h3>Metric selection guide</h3>
 <div class="table-wrap">
@@ -1822,13 +1826,13 @@ full build. The one-pager became our project charter.</div>
 <!-- ============================================================== -->
 <section class="panel" id="t-landscape" role="tabpanel" aria-labelledby="tab-landscape" aria-hidden="true" tabindex="0">
 
-<h2 class="section-title">The landscape — <em>September 2026.</em></h2>
+<h2 class="section-title">The landscape — <em>dated source snapshots.</em></h2>
 <p class="section-sub">What changed since the original notes · what to track</p>
 
 <div class="callout pareto">
 <div class="callout-label">⚡ The headline shifts</div>
 <ul style="margin:0">
-<li><strong>Claude's active lineup changed.</strong> Anthropic now lists Fable 5.1, Opus 5, Sonnet 5, and Haiku 4.5. Select by eval results and workload economics rather than treating one model as a permanent default.</li>
+<li><strong>Claude's active lineup changed.</strong> Anthropic now lists Fable 5.1, Opus 5.5, Sonnet 5.5, and Haiku 4.5. Select by eval results and workload economics rather than treating one model as a permanent default.</li>
 <li><strong>MCP matured.</strong> It remains under the Linux Foundation's Agentic AI Foundation; the latest specification reviewed on 3 September 2026 is 2026-07-28 and includes optional extensions for tasks, skills, and MCP Apps.</li>
 <li><strong>LangGraph stayed on the 1.2 line.</strong> PyPI listed 1.2.11, released 11 August 2026. It is a mature low-level option for explicit, long-running stateful orchestration—not an automatic choice for every agent.</li>
 <li><strong>The EU AI Omnibus entered into force on 27 July 2026.</strong> Annex III high-risk rules now apply from 2 December 2027; Annex I product-embedded high-risk rules apply from 2 August 2028.</li>
@@ -1837,20 +1841,21 @@ full build. The one-pager became our project charter.</div>
 </ul>
 </div>
 
-<h3>Model snapshot · Anthropic only</h3>
+<h3>Model snapshot · Anthropic only · 05 October 2026</h3>
 <p style="font-size:14px; color:var(--ink-soft)">For context — OpenAI, Google, DeepSeek lineups move similarly fast. This is the line most relevant to LangGraph + MCP work.</p>
 <div class="table-wrap">
 <table>
 <thead><tr><th>Model</th><th>ID</th><th>Role</th><th>Context / max output</th><th>Input / Output (per 1M)</th></tr></thead>
 <tbody>
 <tr><td><strong>Fable 5.1</strong></td><td><code>claude-fable-5-1</code></td><td>Demanding reasoning and long-horizon agentic work</td><td>1M / 128K</td><td>$10 / $50</td></tr>
-<tr><td><strong>Opus 5</strong></td><td><code>claude-opus-5</code></td><td>Starting point for complex agentic coding and enterprise work</td><td>1M / 128K</td><td>$5 / $25</td></tr>
-<tr><td><strong>Sonnet 5</strong></td><td><code>claude-sonnet-5</code></td><td>Speed and intelligence balance</td><td>1M / 128K</td><td>$2 / $10</td></tr>
+<tr><td><strong>Opus 5.5</strong></td><td><code>claude-opus-5-5</code></td><td>Starting point for complex agentic coding and enterprise work</td><td>1M / 128K</td><td>$4 / $20</td></tr>
+<tr><td><strong>Sonnet 5.5</strong></td><td><code>claude-sonnet-5-5</code></td><td>Speed and intelligence balance</td><td>1M / 128K</td><td>$2 / $10</td></tr>
 <tr><td><strong>Haiku 4.5</strong></td><td><code>claude-haiku-4-5-20251001</code></td><td>Fast, lower-cost routing and simple tasks</td><td>200K / 64K</td><td>$1 / $5</td></tr>
 </tbody>
 </table>
 </div>
-<p style="font-size:13px; color:var(--ink-soft); margin-top:8px"><em>API list prices and limits verified against Anthropic's model overview on 3 September 2026. Re-check before making a production or budget decision.</em></p>
+<p class="section-sub"><strong>Migration check:</strong> Opus 5.5 changes thinking, forced tool choice and inter-tool progress output. Test request parameters, streaming and tool paths against the <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview">model-specific migration guidance</a> before changing production IDs; a newer model is not a drop-in upgrade.</p>
+<p style="font-size:13px; color:var(--ink-soft); margin-top:8px"><em>API list prices and limits verified against Anthropic's model overview on 5 October 2026. Re-check before making a production or budget decision.</em></p>
 
 <h3>What was pruned from the original 19 files</h3>
 <div class="table-wrap">
@@ -1919,9 +1924,10 @@ full build. The one-pager became our project charter.</div>
 <ul>
 <li><a href="https://docs.anthropic.com/">docs.anthropic.com</a> — API, models, tool use</li>
 <li><a href="https://platform.claude.com/docs/en/models/overview">Models overview</a> — current IDs, pricing, limits, and lifecycle links</li>
+<li><a href="https://platform.claude.com/docs/en/about-claude/pricing">Claude API pricing</a> — base rates used in the worked cost example; recheck before budgeting</li>
 <li><a href="https://platform.claude.com/docs/en/models/fable-5-1/overview">Fable 5.1</a> — demanding reasoning and long-horizon agentic work</li>
-<li><a href="https://platform.claude.com/docs/en/models/opus-5/overview">Opus 5</a> — complex agentic coding and enterprise work</li>
-<li><a href="https://platform.claude.com/docs/en/models/sonnet-5/overview">Sonnet 5</a> — speed and intelligence balance</li>
+<li><a href="https://platform.claude.com/docs/en/models/opus-5-5/overview">Opus 5.5</a> — complex agentic coding and enterprise work</li>
+<li><a href="https://platform.claude.com/docs/en/models/sonnet-5-5/overview">Sonnet 5.5</a> — speed and intelligence balance</li>
 <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Prompt-engineering guide</a></li>
 </ul>
 </div>
@@ -1968,7 +1974,7 @@ full build. The one-pager became our project charter.</div>
 <div data-tag="safety security regulation">
 <h4 style="color:var(--ink)">Safety, Security, Regulation</h4>
 <ul>
-<li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP Top 10 for LLMs</a></li>
+<li><a href="https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/">OWASP LLM Top 10 2026</a></li>
 <li><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act">EU AI Act timeline</a> — official</li>
 <li><a href="https://www.guardrailsai.com/">Guardrails AI</a> — output validation</li>
 <li><a href="https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force">AI Omnibus entry into force</a> — official July 2026 timeline update</li>

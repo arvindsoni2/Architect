@@ -5,11 +5,14 @@ To connect these labs to an end-to-end solution and interview explanations, use 
 Owner-approved repository exception, 7 September 2026. These two resources are maintained as a pair; the exception does not admit other certification packs or course notebooks.
 
 - [Visual Handbook — v2026.09.25.1](saa-c03-visual-handbook-2026.09.html)
-- [The $170 Cloud Lab Manual — v2.1](saa-c03-lab-manual-v2.1.html)
+- [The $170 Cloud Lab Manual — v2.2](saa-c03-lab-manual-v2.2.html)
 
 Download the HTML files and open them locally for their navigation and interactive features; GitHub's source viewer does not run them. The lab manual stores progress in browser-local storage. Its export/import feature transfers status, recorded costs and evidence ticks, not AWS account data. The print-all control prepares every lab and tab for printing.
 
 ## Revision scope
+
+The 5 October 2026 v2.2 freshness update aligns Amazon Quick / Quick Sight and Amazon Data Firehose naming and makes account-plan, trial and credit assumptions explicit. The owner-specific $170 credit scenario, $100 soft limit and $70 reserve remain; the public new-customer offer is not a substitute for the balance/expiry shown in Billing. The original 21 September exam-content check remains separately dated. The catalogue also reconciles the visual handbook to its existing v2026.09.25.1 edition.
+
 
 The 21 September exam-readiness update maps all 14 exam tasks to the actual handbook sections and lab IDs. The core labs now include an **Exam route** with practical checks for policy denial, DynamoDB queries and consistency, container recovery/scaling, stream replay, shared storage, read replicas and stale caches. Cross-account, hybrid migration and cost exercises explicitly distinguish modeled decisions from deployed and tested evidence. A skipped deployment remains a practical gap.
 

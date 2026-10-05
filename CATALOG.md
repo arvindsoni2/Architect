@@ -4,10 +4,10 @@ This is the authoritative index of current material in the repository.
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v5.html](handbooks/system-design/system-design-concept-handbook-v5.html) | HTML | Current | v5 | 2026-09-09 |
-| Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.7.html) | HTML | Current | v2.7 | 2026-09-09 |
-| AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.1.html](handbooks/ai-engineering/ai-engineering-handbook-v3.1.html) | HTML | Current | v3.1 | 2026-09-11 |
-| Architecture and Applied AI Certification Roadmap | Architecture learning path | [learning-paths/architecture-ai-certification-roadmap.md](learning-paths/architecture-ai-certification-roadmap.md) | Markdown | Current | Living roadmap | 2026-09-23 |
+| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v5.html](handbooks/system-design/system-design-concept-handbook-v5.html) | HTML | Current | v5 | 2026-10-05 |
+| Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html) | HTML | Current | v2.8 | 2026-10-05 |
+| AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.2.html](handbooks/ai-engineering/ai-engineering-handbook-v3.2.html) | HTML | Current | v3.2 | 2026-10-05 |
+| Architecture and Applied AI Certification Roadmap | Architecture learning path | [learning-paths/architecture-ai-certification-roadmap.md](learning-paths/architecture-ai-certification-roadmap.md) | Markdown | Current | Living roadmap | 2026-10-05 |
 | Software Architect Curriculum Guide | Software architecture | [learning-paths/software-architect/software-architect-curriculum-guide-v3.md](learning-paths/software-architect/software-architect-curriculum-guide-v3.md) | Markdown | Current | v3 (evidence-led revision) | 2026-09-09 |
 | Software Architect Grooming Programme | Software architecture | [learning-paths/software-architect/software-architect-grooming-programme-v5.html](learning-paths/software-architect/software-architect-grooming-programme-v5.html) | HTML | Current | v5 (evidence-led revision) | 2026-09-09 |
 | Patient Portal Connected Learning | Applied software architecture | [learning-paths/software-architect/patient-portal-connected-learning.md](learning-paths/software-architect/patient-portal-connected-learning.md) | Markdown | Current | Living companion | 2026-09-09 |
@@ -21,9 +21,9 @@ This is the authoritative index of current material in the repository.
 | Professional Learning Platform Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/professional-learning-platform.md](learning-paths/software-architect/connected-learning/professional-learning-platform.md) | Markdown | Current | Living companion | 2026-09-09 |
 | Commerce Governance Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/commerce-governance.md](learning-paths/software-architect/connected-learning/commerce-governance.md) | Markdown | Current | Living companion | 2026-09-09 |
 | NorthStar Retail Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/northstar-retail.md](learning-paths/software-architect/connected-learning/northstar-retail.md) | Markdown | Current | Living companion | 2026-09-09 |
-| Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.3.html](handbooks/fde/fde-handbook-v1.3.html) | HTML | Current | v1.3 | 2026-09-09 |
+| Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.4.html](handbooks/fde/fde-handbook-v1.4.html) | HTML | Current | v1.4 | 2026-10-05 |
 | The AI Architect's Handbook | AI architecture | [handbooks/ai-architecture/ai-architects-handbook-v1.2.html](handbooks/ai-architecture/ai-architects-handbook-v1.2.html) | HTML | Current | v1.2 | 2026-09-04 |
-| Interview Resource Accelerator | AI/ML interview preparation | [learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html](learning-paths/ai-ml-interview/interview-resource-accelerator-v4.3.html) | HTML | Current | v4.3 | 2026-09-09 |
+| Interview Resource Accelerator | AI/ML interview preparation | [learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html](learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html) | HTML | Current | v4.4 | 2026-10-05 |
 | Architecture Decision Method | Software architecture | [docs/software-architecture/architecture-decision-method.md](docs/software-architecture/architecture-decision-method.md) | Markdown | Current | Living | 2026-09-05 |
 | Reliability and Failure Control | System design | [docs/system-design/reliability-and-failure-control.md](docs/system-design/reliability-and-failure-control.md) | Markdown | Current | Living | 2026-09-05 |
 | Durable Workflows and Idempotency | Cross-cutting patterns | [docs/cross-cutting-patterns/durable-workflows-and-idempotency.md](docs/cross-cutting-patterns/durable-workflows-and-idempotency.md) | Markdown | Current | Living | 2026-09-05 |
@@ -45,8 +45,8 @@ Decision-model selection and acceptance live in the existing canonical AI archit
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v2026.09.07.1 | 2026-09-07 |
-| The $170 Cloud — SAA-C03 Lab Manual | AWS architecture practice | [handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.1.html) | HTML | Current | v2.1 | 2026-09-07 |
+| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v2026.09.25.1 | 2026-10-05 |
+| The $170 Cloud — SAA-C03 Lab Manual | AWS architecture practice | [handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html) | HTML | Current | v2.2 | 2026-10-05 |
 
 These two resources are an owner-approved scope exception. “Current” identifies the canonical publication, not a claim that every AWS lab has been deployed. See their [revision and validation notes](handbooks/aws-saa-c03/README.md).
 
