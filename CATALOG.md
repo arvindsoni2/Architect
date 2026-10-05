@@ -56,7 +56,7 @@ Markdown sources are canonical. The HTML reading view is generated from them. Th
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| Interview Preparation Index | Product and delivery interview preparation | [interview-prep/README.md](interview-prep/README.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Interview Preparation Index | Product and delivery interview preparation | [interview-prep/README.md](interview-prep/README.md) | Markdown | Draft | Living draft | 2026-10-05 |
 | Shared Interview Handbook | Product and delivery interview preparation | [interview-prep/shared/handbook.md](interview-prep/shared/handbook.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Interview Evidence Bank | Product and delivery interview preparation | [interview-prep/shared/evidence-bank.md](interview-prep/shared/evidence-bank.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/delivery-lead.md](interview-prep/roles/delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-01 |
@@ -65,7 +65,8 @@ Markdown sources are canonical. The HTML reading view is generated from them. Th
 | Product Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-manager.md](interview-prep/roles/product-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Senior Project Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/senior-project-manager.md](interview-prep/roles/senior-project-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Accenture Product Owner Supplement | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-01 |
+| Accenture Product Owner Model Q&A | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-05 |
+| Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-05 |
 
 ## Status values
 

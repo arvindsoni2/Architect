@@ -7,7 +7,7 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  await page.goto('file://'+path);
  const missing=await page.evaluate(()=>[...document.querySelectorAll('a[href^="#"]')].filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.hash));
  if(missing.length)throw Error('Missing anchor targets: '+missing.join(','));
- for(const route of ['start','methods','evidence','delivery-lead','agile-delivery-lead','product-owner','product-manager','senior-project-manager','accenture']){
+ for(const route of ['start','methods','evidence','delivery-lead','agile-delivery-lead','product-owner','product-manager','senior-project-manager','accenture','accenture-questions']){
   await page.locator('nav a[href="#'+route+'"]').click();
   await page.locator('#'+route).waitFor({state:'visible'});
   const top=await page.locator('#'+route+' h1').boundingBox();if(top.y<0)throw Error('Route heading clipped: '+route);
@@ -17,13 +17,18 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  await page.locator('#product-owner a[href="#evidence--s3-smart-timesheet"]').first().click();
  await page.locator('#evidence--s3-smart-timesheet').waitFor({state:'visible'});
  if(!await page.locator('#evidence--s3-smart-timesheet').isVisible())throw Error('Cross-guide link failed');
+ await page.locator('nav a[href="#accenture-questions"]').click();await page.locator('#accenture-questions').waitFor({state:'visible'});
+ await page.locator('#accenture-questions a[href="#accenture-questions--q24-what-is-api-first-and-what-relevant-experience-do-you-have"]').first().click();
+ await page.locator('#accenture-questions--q24-what-is-api-first-and-what-relevant-experience-do-you-have').waitFor({state:'visible'});
+ await page.locator('#accenture-questions a[href="#evidence--s3-smart-timesheet"]').first().click();
+ await page.locator('#evidence--s3-smart-timesheet').waitFor({state:'visible'});
  await page.locator('#theme').click();if(await page.locator('#theme').getAttribute('aria-pressed')!=='true')throw Error('Theme failed');
 
- await page.locator('#theme').click();await page.setViewportSize({width:390,height:844});await page.locator('nav a[href="#accenture"]').click();await page.locator('#accenture').waitFor({state:'visible'});
+ await page.locator('#theme').click();await page.setViewportSize({width:390,height:844});await page.locator('nav a[href="#accenture-questions"]').click();await page.locator('#accenture-questions').waitFor({state:'visible'});
  const overflow=await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
  if(overflow)throw Error('Mobile page overflow');
- await page.emulateMedia({media:'print'});if(await page.locator('.panel:visible').count()!==9)throw Error('Print hides guides');
- const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto('file://'+path);if(await plain.locator('.panel:visible').count()!==9)throw Error('No-JS content missing');
- if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 9 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content.');
+ await page.emulateMedia({media:'print'});if(await page.locator('.panel:visible').count()!==10)throw Error('Print hides guides');
+ const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto('file://'+path);if(await plain.locator('.panel:visible').count()!==10)throw Error('No-JS content missing');
+ if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 10 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});
