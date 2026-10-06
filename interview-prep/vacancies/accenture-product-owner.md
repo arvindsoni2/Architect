@@ -1,10 +1,10 @@
 # Accenture Product Owner — Associate Manager
 
-**Status:** Draft for owner review · **Last reviewed:** 1 October 2026
+**Status:** Draft for owner review · **Last reviewed:** 6 October 2026
 
 This supplement applies the [Product Owner guide](../roles/product-owner.md) to the supplied Newcastle vacancy. The advert describes a consulting PO who connects strategy, backlog decisions, multidisciplinary delivery, rollout and benefits, with mentoring responsibilities. The client, interview format, assessment and clearance level remain unconfirmed. The questions below are predictions from the advert, not a disclosed Accenture question bank.
 
-For researched practice questions and tailored answers, use the [model question-and-answer bank](accenture-product-owner-questions.md). It supplements this advert mapping and labels public reports separately from our predictions.
+For framework-labelled practice, complete fictional worked examples and factual adaptations, use the [model question-and-answer bank](accenture-product-owner-questions.md). It supplements this advert mapping and labels public reports separately from our predictions.
 
 ## Interview thesis
 
@@ -30,9 +30,9 @@ Use the [evidence bank](../shared/evidence-bank.md) for the source and boundarie
 
 ## Six answers to prepare
 
-**1. Tell me about yourself.** Begin with relevant product/client experience. Explain the PO-to-delivery chronology briefly, select Smart Timesheet and one Natoora example, and finish with the match to this role. Avoid a chronological account of every employer.
+**1. Tell me about yourself.** Use [Present → Past → Future](../shared/handbook.md#present--past--future). Begin with relevant product/client experience. Explain the PO-to-delivery chronology briefly, select Smart Timesheet and one Natoora example, and finish with the match to this role. Avoid a chronological account of every employer.
 
-**2. Why this role and Accenture?** Connect three concrete attractions in the advert to your background: varied client problems, multidisciplinary product delivery, and an Associate Manager remit that includes mentoring. Explain why Newcastle and the working arrangement fit your plans truthfully. Accenture's listed values can support a real example of client value, integrity or respectful challenge; reciting all values adds little.
+**2. Why this role and Accenture?** Use [Company → Role → Fit](../shared/handbook.md#company--role--fit), including why this is your next step. Connect three concrete attractions in the advert to your background: varied client problems, multidisciplinary product delivery, and an Associate Manager remit that includes mentoring. Explain why Newcastle and the working arrangement fit your plans truthfully. Accenture's listed values can support a real example of client value, integrity or respectful challenge; reciting all values adds little.
 
 **3. How would you act as proxy PO?** Agree the client's Product Goal, delegated decisions, escalation thresholds and review cadence. Keep priorities and assumptions transparent. Offer a recommendation when stakeholders conflict, but escalate a strategic, contractual or funding decision beyond your remit. In Scrum, delegating backlog work does not remove the accountable PO's responsibility.
 
@@ -46,7 +46,7 @@ Use the [evidence bank](../shared/evidence-bank.md) for the source and boundarie
 
 Prepare S3 as the flagship product story: user problem, actual PO remit, one priority decision, platform/integration constraints, acceptance, rollout and measurement. Add S2 for a commercial scope decision, S1 for AI adoption, S5 for a regulated release decision and S4 for dependency/leadership judgement. Include one real setback: what you misjudged, how you surfaced it and how you checked the repair. Read the bank before quoting results.
 
-For S1, the factual core is that customer support previously entered emailed orders manually, typically taking 2–3 minutes per order. The confirmed outcome is approximately 90% lower manual effort, with some cases still requiring handling. Your rollout involvement was London and Paris. Prepare how exceptions were identified, what support staff could do and how release readiness was judged. The confirmed model was GPT-4o-mini; explain its place in the workflow and focus on the product decisions you made during rollout.
+For S1, the factual core is that customer support previously entered emailed orders manually, typically taking 2–3 minutes per order. The confirmed outcome is approximately 90% lower manual effort, with some cases still requiring handling. Your rollout involvement was London and Paris: London used Marketman, while Paris used Lightspeed. Prepare how exceptions were identified, what support staff could do and how release readiness was judged. The confirmed model was GPT-4o-mini; explain its place in the workflow and focus on the product decisions you made during rollout.
 
 ## Public-service case — illustrative, not historical
 

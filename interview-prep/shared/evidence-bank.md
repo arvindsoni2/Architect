@@ -1,6 +1,6 @@
 # Shared evidence bank
 
-**Status:** Draft for owner review · **Last reviewed:** 1 October 2026
+**Status:** Draft for owner review · **Last reviewed:** 6 October 2026
 
 This is the factual base for all five role guides. It records the owner's confirmed corrections and selected portfolio-reported outcomes. These are self-reported professional examples, not an independent audit. Public portfolio links are the reader-facing references; private source code and conversations are not reproduced.
 
@@ -20,7 +20,7 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 
 **Owner-confirmed outcome:** approximately **90% reduction in manual effort**. Exceptions remained when the agent could not complete an order. This is not a claim of 90% model accuracy or 90% of orders completed without intervention.
 
-**Owner-confirmed involvement:** rollout in **London and Paris**. Six-region deployment was a wider target; completion in other regions is not established by this record. The portfolio places this work in March–September 2025.
+**Owner-confirmed involvement:** rollout in **London and Paris**. Six-region deployment was a wider target; completion in other regions is not established by this record. The portfolio places this work in March–September 2025. **Owner-confirmed procurement systems:** London used **Marketman**; Paris used **Lightspeed**. Do not describe both regions as using Marketman.
 
 **Decisions to discuss:** manageable pilot scope; customer-support participation; exception handling; integration with the order system; quality and cost trade-offs; rollout readiness and learning from operational feedback. Explain your decision rights and your collaboration with the developer.
 
