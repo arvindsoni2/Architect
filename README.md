@@ -31,6 +31,7 @@ A curated, version-controlled knowledge base for software architecture, system d
 ### AI architecture
 
 - [Production AI Assurance](docs/ai-architecture/production-ai-assurance.md)
+- [AI Evaluation Field Guide](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) — role-based evaluation methods, diagrams and interactive labs
 - [LLM Inference Systems](docs/ai-architecture/llm-inference-systems.md)
 - [Reasoning System Design](docs/ai-architecture/reasoning-system-design.md)
 - [Model Adaptation and Training](docs/ai-architecture/model-adaptation-and-training.md)
