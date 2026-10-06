@@ -1,6 +1,6 @@
 # Interview preparation
 
-**Status:** Draft for owner review · **Last reviewed:** 5 October 2026
+**Status:** Draft for owner review · **Last reviewed:** 6 October 2026
 
 Start with the role you are interviewing for, choose relevant evidence, then add the vacancy context. The same career facts support different questions; the actual title, dates and results do not change with the role perspective.
 
@@ -16,9 +16,9 @@ Start with the role you are interviewing for, choose relevant evidence, then add
 
 Read the [shared handbook](shared/handbook.md) for answer structures and tools. Select examples from the [evidence bank](shared/evidence-bank.md). The [Accenture Product Owner supplement](vacancies/accenture-product-owner.md) adds the supplied vacancy's requirements.
 
-For question practice, start with [STAR and PEARL](shared/handbook.md#behavioural-answers), [question-type selection](shared/handbook.md#choose-the-question-type) and the [scenario answering sequence](shared/handbook.md#scenario-answers). Each role guide adds two scenario drills with follow-up probes and weak-answer traps; the Accenture supplement adds two consulting cases. These supplement the existing worked scenarios. Scenario preparation is relevant, but this collection does not claim that most interviews use scenarios or that their frequency has recently increased.
+For opening and motivation practice, use [Present → Past → Future and Company → Role → Fit](shared/handbook.md#opening-and-motivation-answers). For question practice, start with [STAR and PEARL](shared/handbook.md#behavioural-answers), [question-type selection](shared/handbook.md#choose-the-question-type) and the [scenario answering sequence](shared/handbook.md#scenario-answers). Each role guide adds two scenario drills with follow-up probes and weak-answer traps; the Accenture supplement adds two consulting cases. These supplement the existing worked scenarios. Scenario preparation is relevant, but this collection does not claim that most interviews use scenarios or that their frequency has recently increased.
 
-The [Accenture model question-and-answer bank](vacancies/accenture-product-owner-questions.md) adds researched question origins, 29 model answers, three personal-story scaffolds and follow-up probes. Its research register distinguishes reports, suggestions and vacancy-derived predictions.
+The [Accenture model question-and-answer bank](vacancies/accenture-product-owner-questions.md) adds researched question origins, 32 structured questions, personal factual answers, complete fictional teaching examples and follow-up probes. Its research register distinguishes reports, suggestions and vacancy-derived predictions.
 
 For engineering interviews, use the [Accenture Forward Deployed AI Engineer supplement](vacancies/accenture-fde.md) alongside the [FDE Handbook v1.4](../handbooks/fde/fde-handbook-v1.4.html). It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.
 

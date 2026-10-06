@@ -1,6 +1,6 @@
 # Shared interview handbook
 
-**Status:** Draft for owner review · **Last reviewed:** 1 October 2026
+**Status:** Draft for owner review · **Last reviewed:** 6 October 2026
 
 Use this handbook to explain your judgement. Choose relevant methods and artefacts, connect them to what you did, and show how the outcome changed. Definitions live here; [role guides](../README.md) apply them to different responsibilities. Historical facts live in the [evidence bank](evidence-bank.md).
 
@@ -9,6 +9,50 @@ Use this handbook to explain your judgement. Choose relevant methods and artefac
 For each important requirement, write: intended outcome; expected decision authority; user or stakeholder; matching example; gap or adjacent experience; likely follow-up. Identify whether the employer needs a product decision-maker, a delivery leader or a project controller. Titles vary, so test the remit with the recruiter.
 
 Distinguish three levels honestly: **direct experience**, **adjacent experience**, and **knowledge you would apply with support**. Certifications demonstrate learning; formal role accountabilities still need examples.
+
+## Opening and motivation answers
+
+An opening or motivation answer needs a different structure from a past-experience story. The following are coaching devices, not Accenture-mandated methods or claims of superior hiring outcomes. Use the panel’s requested format where one is supplied.
+
+### Present → Past → Future
+
+Also called Now → Then → Next. Aim for roughly 60–90 seconds: professional identity and relevant strengths now, one or two selected proofs, then the next step and why this role fits. Present describes your current professional position; it does not require claiming current employment.
+
+| Element | Answer prompt | Avoid |
+| --- | --- | --- |
+| Present | Who are you professionally, and which strength matters here? | Claiming a former employer is current |
+| Past | Which one or two experiences demonstrate that strength? | Listing every employer, date and technology |
+| Future | What do you want next, why this remit, and what will you contribute? | A generic wish for career growth |
+
+**Template:** “I’m a [professional identity] with experience in [relevant work]. My strength is [role-relevant contribution]. At [example], I [actual action or responsibility], resulting in [defensible outcome]. More recently, [second relevant proof]. I’m now looking to [next step], and this role fits because [specific remit and contribution].”
+
+Use the [Accenture opening](../vacancies/accenture-product-owner-questions.md#q1-tell-me-about-yourself) for a factual adaptation. Keep your employment timeline available for follow-up without making it the whole introduction.
+
+### Company → Role → Fit
+
+CRF is a convenient label for this motivation structure. Give one or two specific company reasons, explain the work that attracts you, then connect your evidence and contribution. When asked “why now?”, make the intended next step explicit; a proof point alone does not answer timing.
+
+| Element | Answer prompt | Useful check |
+| --- | --- | --- |
+| Company | Why this organisation or client environment? | Is the reason specific and supported by the advert or a current source? |
+| Role | Which responsibilities or problems attract you? | Have you explained the remit rather than repeated the title? |
+| Fit and why now | What proves you can contribute, and why is this the next step? | Have you balanced what you offer with what you want to learn? |
+
+**Template:** “I’m interested in [company] because [specific reason]. This role stands out because [responsibilities or challenge]. It fits my experience in [evidence], where [actual contribution and result]. I now want to [next step], and would bring [contribution] to [relevant client or product outcome].”
+
+If the questions are separate, focus each answer: company motivation can use mission, market and credible current momentum; role motivation can use responsibilities, impact and development. These are optional prompts, not facts to manufacture. Do not claim a particular client assignment or repeat unsupported company news.
+
+### Point → Evidence → Explanation → Link
+
+PEEL is useful for a values or professional-opinion question. State your point, give a short real example, explain why it supports your view, then link it to the vacancy. It is not a replacement for a full behavioural story when the panel asks for one. For a knowledge question, a simpler Point → Example → Implication answer is usually enough.
+
+**Template:** “[Value or principle] matters to me. In [real example], [actual contribution or outcome]. That taught me [relevant judgement]. In this role I would apply it by [specific contribution].”
+
+### Teaching cases and personal answers
+
+Fictional worked answers can demonstrate an entire response, including plausible numbers. Label the case at its start, explain the metric and then replace the details with actual evidence for personal rehearsal. A made-up percentage teaches arithmetic, not a result you achieved. If personal actions are missing, keep a complete fictional teaching answer beside the factual adaptation prompts; do not fill your historical record with the invented actions.
+
+The [Accenture Q&A bank](../vacancies/accenture-product-owner-questions.md) uses this approach and names the structure for all 32 questions. In a hypothetical, use future language and proposed measures. In a behavioural answer, establish personal actions and observed results. A good answer need not end with a dramatic success; an honest stop decision or useful correction can show judgement.
 
 ## Behavioural answers
 
@@ -68,7 +112,9 @@ Scenario preparation is justified, but a claim that **most interviews now contai
 | Behavioural / past experience | Tell me about a time you challenged a priority | STAR or PEARL with actual actions and observed results |
 | Situational / hypothetical | What would you do if the client wanted an unsafe release? | Clarify, diagnose, compare options, recommend, sequence and measure |
 | Case or work sample | Review this backlog or plan and present a recommendation | Analyse the supplied evidence, expose assumptions and produce the requested decision or artefact |
-| Knowledge or motivation | Explain a Product Goal; why this role? | Answer directly, then add a short relevant example if useful |
+| Opening / introduction | Tell me about yourself | Present → Past → Future |
+| Motivation | Why this company, role and now? | Company → Role → Fit, with an explicit next-step reason |
+| Knowledge or values | Explain a Product Goal; which value matters? | Point → Example → Implication, or PEEL for a values answer |
 
 A case may include situational and technical questions; the categories can overlap. [OPM's structured-interview guidance](https://www.opm.gov/policy-data-oversight/assessment-and-selection/structured-interviews/) recognises experience-based and hypothetical assessment. Recognising the question's demand matters more than naming the category. If the interviewer moves from “what would you do?” to “have you done this?”, switch explicitly from a proposal to a real story.
 
@@ -159,7 +205,7 @@ In consultancy discussions, prepare contract model, scope/change process, team m
 
 Know the distinction between the GDS Service Standard, Technology Code of Practice, user-centred design practice and formal assessment experience. Discovery investigates the problem and whether to proceed; alpha tests risky assumptions through prototypes; beta builds and tests the service; live includes continuing improvement and operations. Retirement is also part of lifecycle ownership.
 
-For a government service, consider whole journeys across channels, accessibility and assisted digital support, privacy, security, performance and operational reliability. The Service Manual identifies cost per transaction, user satisfaction, completion and digital take-up as service KPIs; add measures for the specific service. Confirm which standards and publication requirements apply to the assignment.
+Current government Service Manual guidance specifies WCAG 2.2 AA; check the assignment’s applicable requirements and test with representative users as well as automated tools. For a government service, consider whole journeys across channels, accessibility and assisted digital support, privacy, security, performance and operational reliability. The Service Manual identifies cost per transaction, user satisfaction, completion and digital take-up as service KPIs; add measures for the specific service. Confirm which standards and publication requirements apply to the assignment.
 
 In banking or utilities, use a real regulatory or operational constraint rather than claiming government delivery by association. In an AI service, consider data suitability, privacy, evaluation, user recourse, exception handling and monitoring. Define release thresholds with the relevant specialists and accountable owner.
 
@@ -199,3 +245,5 @@ Before an interview, confirm format, panel, case or presentation, duration and l
 8. [Accenture: behavioural interview preparation](https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview) — employer guidance on STAR and past-experience questions; not confirmation of this vacancy's interview format.
 9. [Civil Service behaviours](https://www.gov.uk/government/publications/success-profiles/success-profiles-civil-service-behaviours) and [OPM structured interviews](https://www.opm.gov/policy-data-oversight/assessment-and-selection/structured-interviews/) — experience and hypothetical assessment approaches.
 10. [Jackie Bavaro: PEARL for PM interviews](https://jackiebavaro.substack.com/p/use-pearl-instead-of-star-to-shine) and [2025 explanation](https://jackiebavaro.substack.com/p/cracking-the-behavioral-interview-putting-it-together-with-pearl) — practitioner guidance on insight, action and learning; not a validated superiority claim.
+
+11. [GOV.UK: Understanding WCAG 2.2](https://www.gov.uk/service-manual/helping-people-to-use-your-service/understanding-wcag) — current government accessibility guidance.
