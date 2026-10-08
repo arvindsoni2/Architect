@@ -46,7 +46,7 @@ Decision-model selection and acceptance live in the existing canonical AI archit
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v2026.09.25.1 | 2026-10-05 |
+| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v2026.10.08.1 | 2026-10-08 |
 | The $170 Cloud — SAA-C03 Lab Manual | AWS architecture practice | [handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html) | HTML | Current | v2.2 | 2026-10-05 |
 
 These two resources are an owner-approved scope exception. “Current” identifies the canonical publication, not a claim that every AWS lab has been deployed. See their [revision and validation notes](handbooks/aws-saa-c03/README.md).
