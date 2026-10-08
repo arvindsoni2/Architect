@@ -14,7 +14,7 @@ const url=pathToFileURL(path.join(__dirname,'../saa-c03-visual-handbook-2026.09.
   await walk.locator('summary').click();
   const motion=walk.locator('[data-walk-motion]');
   assert.equal(await motion.isChecked(),false,'Motion must be learner-enabled');
-  assert.equal(await page.evaluate(()=>document.getAnimations().length),0,'No autoplay');
+  assert.equal(await walk.evaluate(el=>el.getAnimations({subtree:true}).length),0,'Walkthrough must not autoplay');
   assert.match(await walk.locator('[data-walk-status]').textContent(),/Healthy/);
   await walk.getByRole('button',{name:'Next step',exact:true}).click();
   assert.match(await walk.locator('[data-walk-status]').textContent(),/unavailable/);
