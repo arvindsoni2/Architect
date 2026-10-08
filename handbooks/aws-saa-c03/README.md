@@ -4,12 +4,14 @@ To connect these labs to an end-to-end solution and interview explanations, use 
 
 Owner-approved repository exception, 7 September 2026. These two resources are maintained as a pair; the exception does not admit other certification packs or course notebooks.
 
-- [Visual Handbook — v2026.10.08.1](saa-c03-visual-handbook-2026.09.html)
+- [Visual Handbook — v2026.10.08.2](saa-c03-visual-handbook-2026.09.html)
 - [The $170 Cloud Lab Manual — v2.2](saa-c03-lab-manual-v2.2.html)
 
 Download the HTML files and open them locally for their navigation and interactive features; GitHub's source viewer does not run them. The lab manual stores progress in browser-local storage. Its export/import feature transfers status, recorded costs and evidence ticks, not AWS account data. The print-all control prepares every lab and tab for printing.
 
 ## Revision scope
+
+The follow-up adds a user-paced, four-stage classic RDS Multi-AZ DB instance walkthrough: healthy replication, primary failure, standby promotion, then endpoint/client recovery. Optional path motion is off by default, stops when system reduced motion is enabled and has replay controls. The same explanation works without animation and prints all stages. SVG and browser-native animation keep the handbook self-contained.
 
 The 8 October visual-handbook revision adds Cram/Core/Deep reading layers, red/amber/green confidence with a weak-card filter, 11 SVG study figures with component inspectors and selected failure probes, five walkable decision trees, a phrase trainer, table-derived flashcards and an 80-service cram glossary. Every tracked card has a summary of at most 25 words. Four printable one-hour domain sheets, a day-before checklist, safe mnemonics and a scoped stable-number sheet support revision. The lab manual is unchanged.
 
