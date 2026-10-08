@@ -47,6 +47,10 @@ jobs:
           NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules
           ARCHITECT_SCREENSHOTS: ${{ runner.temp }}/architect-browser-review
         run: node tests/handbook-browser-smoke.cjs
+      - name: Exercise SAA revision tools in Chromium
+        env:
+          NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules
+        run: node handbooks/aws-saa-c03/tests/revision-browser.cjs
       - name: Exercise interview reading view in Chromium
         env:
           NODE_PATH: ${{ runner.temp }}/architect-browser/node_modules

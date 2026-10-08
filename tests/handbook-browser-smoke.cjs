@@ -16,7 +16,7 @@ const files = {
 };
 (async()=>{
   await fs.mkdir(output,{recursive:true});
-  const browser=await chromium.launch();
+  const browser=await chromium.launch(process.env.CHROMIUM_EXECUTABLE?{executablePath:process.env.CHROMIUM_EXECUTABLE,args:['--no-sandbox']}:{});
   try {
     for(const [name,file] of Object.entries(files)) {
       const context=await browser.newContext({viewport:{width:1440,height:1000}});
@@ -39,8 +39,8 @@ const files = {
         assert.equal(await redrawHybrid.locator('.redraw-questions dt').count(),4);
         await page.locator('#practice-q01 summary').click();
         assert.equal(await page.locator('#practice-q01 .answer').isVisible(),true);
-        await page.locator('#practice-q01 [data-review]').click();
-        assert.match(await page.locator('#practice-q01 [data-review]').textContent(),/Reviewed/);
+        await page.locator('#practice-q01 button[data-confidence="green"]').click();
+        assert.equal(await page.locator('#practice-q01').getAttribute('data-confidence'),'green');
         await page.locator('#themeBtn').click();
         assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
       }

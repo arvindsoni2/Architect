@@ -14,11 +14,11 @@ function page(file, storage) {
   const source = fs.readFileSync(path.join(root, file), 'utf8');
   const {document, window} = parseHTML(source);
   const context = {document, window, location:{hash:''}, history:{replaceState(){}}, confirm:()=>true,
-    Blob, URL, console, setTimeout, clearTimeout,
+    Blob, URL, console, setTimeout, clearTimeout, setInterval, clearInterval,
     IntersectionObserver: class { observe() {} }};
   Object.defineProperty(context, 'localStorage', {get:()=>storage()});
   vm.createContext(context);
-  for(const script of document.querySelectorAll('script:not([src])')) vm.runInContext(script.textContent, context);
+  for(const script of document.querySelectorAll('script:not([src]):not([type="application/json"])')) vm.runInContext(script.textContent, context);
   return {document, window, event:(node,type)=>node.dispatchEvent(new window.Event(type))};
 }
 const denied = ()=>{throw new Error('Storage denied');};
@@ -27,14 +27,14 @@ function memory(seed={}) {
   return {getItem:k=>values.get(k)??null, setItem:(k,v)=>values.set(k,v), removeItem:k=>values.delete(k)};
 }
 
-test('SAA handbook filters include the revision and all tracked cards can be reviewed',()=>{
+test('SAA handbook filters include revision and green confidence is tracked independently',()=>{
   const {document:d,event}=page(saa,denied);
   const filter=d.getElementById('filter-domain-1');
   filter.checked=true;event(filter,'change');
   assert.ok(d.getElementById('september-revision').classList.contains('hidden'));
   const all=d.getElementById('filter-all');all.checked=true;event(all,'change');
   assert.ok(!d.getElementById('practice-q01').classList.contains('hidden'));
-  for(const button of d.querySelectorAll('[data-review]'))event(button,'click');
+  for(const button of d.querySelectorAll('button[data-confidence="green"]'))event(button,'click');
   assert.equal(d.getElementById('progressLabel').textContent,'100%');
   const search=d.getElementById('search');search.value='zz-no-match-zz';event(search,'input');
   assert.equal(d.querySelectorAll('.chapter:not(.hidden)').length,0);
