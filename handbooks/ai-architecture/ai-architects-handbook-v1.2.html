@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="generator" content="pandoc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
-  <meta name="dcterms.date" content="2026-09-04" />
+  <meta name="dcterms.date" content="2026-10-13" />
   <title>The AI Architect’s Handbook</title>
   <style>
 code{white-space: pre-wrap;}
@@ -154,7 +154,7 @@ figure.axs-fig svg.axs-wide{max-width:640px}
 <header id="title-block-header">
 <h1 class="title">The AI Architect’s Handbook</h1>
 <p class="subtitle">Designing Intelligent Systems That Last</p>
-<p class="date">2026-09-04</p>
+<p class="date">2026-10-13</p>
 </header>
 <nav id="TOC" role="doc-toc">
 <ul>
@@ -210,14 +210,14 @@ Question Index</a></li>
 </ul>
 </nav>
 <p class="edition">
-First Edition · v1.2 · 13 October 2026: dark theme, reading progress, read-aloud, phone layout and Chapter 6 §37A (agent-aware serving)
+First Edition · v1.2 · 13 October 2026: dark theme, reading progress, read-aloud, phone layout, Chapter 6 §37A (agent-aware serving), theme-aware SVG figures and a full content review with time-sensitive claims re-verified
 </p>
 <blockquote>
 <p><strong>The purpose of an AI Architect is to design systems that
 reliably create value under real-world constraints.</strong></p>
 </blockquote>
 <h2 id="decision-model-architecture">Connect the dots: decision models and delivery responsibility</h2>
-<p>Choose the mechanism for each decision: exact rules, a conventional classifier, a typed decision model, a generative model or human review. Preserve the existing inference contract, authority boundary and production gates. Jev and Laya are candidates to evaluate, not reasons to relax those controls.</p>
+<p>Choose the mechanism for each decision: exact rules, a conventional classifier, a typed decision model, a generative model or human review. Preserve the existing inference contract, authority boundary and production gates. Typed decision models such as TypeSafe's Jev or the open-source Laya runtime are candidates to evaluate, not reasons to relax those controls.</p>
 <p>Use <a href="../../docs/ai-architecture/reasoning-system-design.md#decision-mechanism-selection">Reasoning System Design</a> for the canonical comparison and dated sources, and <a href="../../docs/ai-architecture/production-ai-assurance.md#decision-model-acceptance">Production AI Assurance</a> for calibration, selective coverage and rollout evidence.</p>
 <p>A forward deployed architect carries these decisions into customer delivery. Compare <a href="../fde/fde-handbook-v1.4.html#forward-deployed-architect">architecture, engineering and outcome ownership</a>, then use the same evidence packet through the engagement.</p>
 <p><a href="../../learning-paths/decision-models-and-forward-deployed-architecture.md">Understand → Build → Evaluate → Deliver: shared route</a> · <a href="../ai-engineering/ai-engineering-handbook-v3.2.html#t-practice">Build the comparison</a> · <a href="../fde/fde-handbook-v1.4.html#capstone">Deliver the capstone</a></p>
@@ -258,7 +258,7 @@ does not replace it.</li>
 </ul>
 <h2 id="v1.2-field-revision---production-acceptance-and-freshness">v1.2 Field Revision - Production Acceptance and Freshness</h2>
 <blockquote>
-<p><strong>Audited 4 September 2026.</strong> This revision preserves the
+<p><strong>Audited 4 September 2026; time-sensitive statements re-verified 13 October 2026.</strong> This revision preserves the
 accepted Chapters 0-13 and adds a production-acceptance operating model.
 Time-sensitive protocol, observability, platform, privacy, and regulatory
 statements were checked against primary sources. Example thresholds and
@@ -333,19 +333,19 @@ decision.</p>
 <li>a backlog and owner for known limitations and newly discovered failures;</li>
 <li>a recorded acceptance decision and the conditions that trigger re-review.</li>
 </ul>
-<h3 id="freshness-register-4-september-2026">Freshness Register — 4 September 2026</h3>
+<h3 id="freshness-register-13-october-2026">Freshness Register — 13 October 2026</h3>
 <table>
 <thead>
 <tr><th>Area</th><th>Current status and architectural treatment</th><th>Primary source</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>OpenAI Evals platform</strong></td><td>Deprecated 3 June 2026; existing evals are scheduled to become read-only on 31 October and the dashboard/API to shut down on 30 November 2026. Keep evaluation datasets, graders, evidence, and release decisions portable.</td><td><a href="https://developers.openai.com/api/docs/deprecations">OpenAI deprecations</a></td></tr>
+<tr><td><strong>OpenAI Evals platform</strong></td><td>Deprecated 3 June 2026; existing evals become read-only on 31 October 2026 and the dashboard and API shut down on 30 November 2026. Export any datasets, graders and results still held there now, and keep evaluation datasets, graders, evidence, and release decisions portable.</td><td><a href="https://developers.openai.com/api/docs/deprecations">OpenAI deprecations</a></td></tr>
 <tr><td><strong>MCP</strong></td><td>The 2026-07-28 specification is stateless at protocol level, carries version and capabilities per request, adds <code>server/discover</code>, moves tasks to an official extension, and introduces <code>input_required</code>. Pin and test versions; keep business state, authority, retries, and idempotency in application control.</td><td><a href="https://modelcontextprotocol.io/specification/2026-07-28/changelog">MCP 2026-07-28 changes</a></td></tr>
 <tr><td><strong>OpenTelemetry GenAI</strong></td><td>GenAI attributes and operation names are still marked Development, and prompt, retrieval, tool-argument, and result fields may contain sensitive information. Use a translation layer and metadata-first, opt-in content capture.</td><td><a href="https://opentelemetry.io/docs/specs/semconv/registry/attributes/gen-ai/">OpenTelemetry GenAI registry</a></td></tr>
 <tr><td><strong>Agentic security</strong></td><td>OWASP's Agentic Security Initiative now publishes a 2026 Top 10, Agent Control Standard material, and secure MCP guidance. Treat tool, skill, plugin, and MCP dependencies as supply-chain inputs; verify provenance, permission, consent, isolation, and revocation.</td><td><a href="https://genai.owasp.org/initiatives/agentic-security-initiative/">OWASP Agentic Security Initiative</a></td></tr>
-<tr><td><strong>EU AI Act</strong></td><td>The Commission states the Digital Omnibus entered into force on 27 July 2026, extending the high-risk application dates to 2 December 2027 and, for AI embedded in regulated physical products, 2 August 2028. Verify role, classification, jurisdiction, and current official guidance for every compliance decision.</td><td><a href="https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act">European Commission implementation FAQ</a></td></tr>
+<tr><td><strong>EU AI Act</strong></td><td>The AI Omnibus, Regulation (EU) 2026/1744, entered into force on 27 July 2026. It moves the high-risk application dates to 2 December 2027 (Annex III) and 2 August 2028 (AI embedded in regulated physical products), simplifies the company-level AI-literacy duty and adds a prohibition on AI that generates non-consensual intimate imagery. Article 50 transparency duties have applied since 2 August 2026; secondary analyses report a short transition, ending 2 December 2026, for machine-readable marking by generative systems already on the market, so confirm that point in the official text. Verify role, classification, jurisdiction, and current official guidance for every compliance decision.</td><td><a href="https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force">Commission: AI Omnibus enters into force</a>; <a href="https://digital-strategy.ec.europa.eu/en/faqs/navigating-ai-act">implementation FAQ</a></td></tr>
 <tr><td><strong>UK ICO</strong></td><td>The ICO still states that its AI and data-protection guidance is under review because of changes made by the Data (Use and Access) Act. Treat the current guidance as useful but time-sensitive.</td><td><a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/artificial-intelligence/guidance-on-ai-and-data-protection/">ICO AI and data-protection guidance</a></td></tr>
-<tr><td><strong>NIST frameworks</strong></td><td>AI RMF 1.0 remains published while NIST revises it. Privacy Framework 1.0 remains final while 1.1 is an Initial Public Draft. Cite the version used and monitor revisions.</td><td><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF</a>; <a href="https://www.nist.gov/privacy-framework">NIST Privacy Framework</a></td></tr>
+<tr><td><strong>NIST frameworks</strong></td><td>AI RMF 1.0 remains published while NIST revises it under the White House AI Action Plan; in April 2026 NIST also issued a concept note for a critical-infrastructure profile. Privacy Framework 1.0 remains final and 1.1 was still an Initial Public Draft when checked. Cite the version used and monitor revisions.</td><td><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF</a>; <a href="https://www.nist.gov/privacy-framework">NIST Privacy Framework</a></td></tr>
 </tbody>
 </table>
 <p><strong>Freshness rule:</strong> re-check protocol, model/platform,
@@ -2640,7 +2640,7 @@ infrastructure.</p>
 <li>tool manipulation;</li>
 <li>excessive agency;</li>
 <li>sensitive-data leakage;</li>
-<li>insecure output handling;</li>
+<li>improper output handling;</li>
 <li>model supply-chain risk.</li>
 </ul>
 <p>The NIST Generative AI Profile was created specifically to identify
@@ -7778,10 +7778,10 @@ realistic conditions, and improving from observed errors. It
 distinguishes general model benchmarks from contextual evaluations for a
 particular workflow.[2]</p>
 <blockquote>
-<p><strong>Platform freshness note — 4 September 2026.</strong> OpenAI
+<p><strong>Platform freshness note — re-verified 13 October 2026.</strong> OpenAI
 announced the Evals platform's deprecation on 3 June 2026; existing evals
-are scheduled to become read-only on 31 October and the Evals dashboard and
-API to shut down on 30 November 2026.[8] The evaluation architecture in this
+become read-only on 31 October 2026 and the Evals dashboard and
+API shut down on 30 November 2026.[8] The evaluation architecture in this
 chapter is deliberately platform-independent: preserve datasets, graders,
 lineage, evidence, and release decisions outside any retiring control plane.</p>
 </blockquote>
@@ -19084,17 +19084,20 @@ architecture.</p>
 Governance Example</h3>
 <p>The EU AI Act uses a risk-based framework with obligations that vary
 by system and role.[7]</p>
-<p>As of <strong>4 September 2026</strong>, the official implementation
+<p>As of <strong>13 October 2026</strong>, the official implementation
 landscape includes:</p>
 <ul>
-<li>prohibitions and AI literacy applying since February 2025;</li>
+<li>prohibitions and AI literacy applying since February 2025 (the
+2026 AI Omnibus simplified the company-level literacy duty and added a
+prohibition on AI that generates non-consensual intimate imagery);</li>
 <li>governance and general-purpose AI obligations applying since August
 2025;</li>
 <li>Article 50 transparency obligations applying from 2 August
 2026;</li>
 <li>high-risk rules applying from 2 December 2027, with AI embedded in
-regulated physical products applying from 2 August 2028 after the Digital
-Omnibus entered into force on 27 July 2026.[9][10]</li>
+regulated physical products applying from 2 August 2028 after the AI
+Omnibus, Regulation (EU) 2026/1744, entered into force on 27 July
+2026.[9][10]</li>
 </ul>
 <p>These dates are time-sensitive and should be verified against current
 official sources before making a compliance decision.</p>
@@ -19584,7 +19587,8 @@ Competence</h3>
 <li>avoid unsafe workarounds.</li>
 </ul>
 <p>The EU AI Act includes AI literacy obligations that began applying in
-February 2025.[9]</p>
+February 2025; the 2026 AI Omnibus simplified the company-level duty, so
+check the current text before relying on it.[9]</p>
 <p>Training should vary by role.</p>
 <hr />
 <h3 id="role-based-literacy">65. Role-Based Literacy</h3>
@@ -22380,7 +22384,7 @@ transparency, purpose limitation, data minimisation, accuracy, storage
 limitation, integrity, confidentiality, and accountability.[1]</p>
 <p>NIST frames privacy as enterprise risk management concerned with
 problems individuals may experience because systems process data. Its
-privacy- engineering work adds objectives such as predictability,
+privacy-engineering work adds objectives such as predictability,
 manageability, and disassociability.[2][3]</p>
 <p>ISO/IEC 27701:2025 defines requirements and guidance for
 establishing, maintaining, and continually improving a privacy
@@ -23381,8 +23385,8 @@ entries.</p>
 <li>recourse.</li>
 </ul>
 <p>The ICO’s AI guidance includes individual rights, accountability,
-transparency, lawfulness, fairness, security, and minimisation. As of 4
-September 2026, the ICO states that this guidance is under review because of
+transparency, lawfulness, fairness, security, and minimisation. As of 13
+October 2026, the ICO states that this guidance is under review because of
 changes made by the UK’s Data (Use and Access) Act.[8][9]</p>
 <p>Current legal interpretation must therefore be checked at the time of
 use.</p>
