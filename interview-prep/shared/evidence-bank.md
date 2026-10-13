@@ -1,8 +1,8 @@
 # Shared evidence bank
 
-**Status:** Draft for owner review · **Last reviewed:** 6 October 2026
+**Status:** Owner-reviewed · **Last reviewed:** 13 October 2026
 
-This is the factual base for all five role guides. It records the owner's confirmed corrections and selected portfolio-reported outcomes. These are self-reported professional examples, not an independent audit. Public portfolio links are the reader-facing references; private source code and conversations are not reproduced.
+This is the factual base for all five role guides. On 13 October 2026 the owner confirmed that the portfolio case-study narratives (written early in 2026) are accurate, including the personal decisions they describe. Figures are self-reported professional outcomes, not an independent audit: know how each was measured, then state it plainly. Public portfolio links are the reader-facing references.
 
 ## Employment chronology
 
@@ -10,7 +10,8 @@ This is the factual base for all five role guides. It records the owner's confir
 | --- | --- | --- |
 | August 2018–March 2020 | TCS Product Owner on the Northern Powergrid account | Initially small features and other initiatives; Smart Timesheet ran in 2019–March 2020 |
 | March 2020–May 2022 | TCS Agile Delivery Manager, Northern Powergrid infrastructure upgrade | Separate initiative from Smart Timesheet; TCS employment ended May 2022 |
-| May 2022–March 2026 | Natoora product and delivery work | Employment ended March 2026; do not describe the role as current |
+| May 2022–March 2026 | Natoora Scrum Master / Product Delivery Lead | Role made redundant in March 2026; describe it in the past tense |
+| April 2026–present | Job search; no long-term role or contract secured yet | Use the agreed wording in the Accenture playbook (Q2) |
 
 The role lens used in a portfolio URL is a way to explain the work. It is not a retrospective change of job title or an assertion that every architecture or engineering task was personally implemented.
 
@@ -19,6 +20,8 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 **Context:** Natoora email-to-order workflow. Customer support previously read each incoming order email and manually entered it into the system, typically taking 2–3 minutes per order.
 
 **Owner-confirmed outcome:** approximately **90% reduction in manual effort**. Exceptions remained when the agent could not complete an order. This is not a claim of 90% model accuracy or 90% of orders completed without intervention.
+
+**Owner-confirmed decision rights:** the CTO decided to limit the rollout to London and Paris. Arvind identified customer service as a key stakeholder group during stakeholder analysis and involved them in the solution design and rollout.
 
 **Owner-confirmed involvement:** rollout in **London and Paris**. Six-region deployment was a wider target; completion in other regions is not established by this record. The portfolio places this work in March–September 2025. **Owner-confirmed procurement systems:** London used **Marketman**; Paris used **Lightspeed**. Do not describe both regions as using Marketman.
 
@@ -33,6 +36,8 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 ## S2 SaaS transformation
 
 **Context:** Natoora's internal warehouse platform was adapted for external customers. The portfolio describes a nine-person UK/Brazil team and two customer implementations in January 2024–May 2025.
+
+**Owner-confirmed personal decisions:** for Client 1 the team estimated 6–8 weeks of white-labelling, but the client expected go-live in four weeks. Arvind built an impact matrix (user-facing visibility, frequency of use, complexity), prioritised customer-facing order screens, email templates, login pages, reports and app branding, and deferred internal admin screens. Client 1 went live on schedule with fewer than 10 issues in a 30-day pilot and no Sev 1s. For Client 2 he created the structured onboarding pack: a 30-question pre-sales questionnaire, financial health check, technical requirements form and capabilities document. He planned SaaS work on an assumed 70% team availability, agreed transparently with the CTO.
 
 **Owner-confirmed commercial figures:** **£28k setup fee**, **£1.6k recurring monthly revenue**, and **£29k reported profit in the first five months following rollout**. Recurring revenue supported cloud operations, developer support and other customer expenses. The owner was not in charge of the initiative after that period. Do not infer continued profit or treat recurring revenue as pure margin. The owner has confirmed the profit figure; the precise accounting calculation and customer aggregation are not reconstructed here.
 
@@ -50,13 +55,15 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 
 **Owner-confirmed technology:** OutSystems frontend hosted on AWS; a **.NET backend** connected legacy **Oracle HCM and CRM** to obtain employee data. Do not replace this with an invented custom web stack. Offline capability, native versus responsive delivery and specific GPS behaviour are not confirmed in this record.
 
+**Owner-confirmed personal role:** Arvind led the rollout and took part from discovery through delivery, release and handover to the support team. The portfolio narrative is confirmed: field research with engineers at several depots; workshops with field operations, union representatives, payroll and IT; positioning the tool as making engineers' lives easier rather than tracking them; an alpha at one depot with 50 volunteer engineers for four weeks; a beta across three depots (200 engineers); phased depot-by-depot rollout over six months with a rollout playbook (pre-visit communication, on-site training, two-week hypercare, then BAU support); peer champions; monthly feedback sessions with a visible backlog of requested improvements.
+
 **Portfolio-reported outcomes:** service for 2,000+ field engineers; approximately £500k annual savings; 50% fewer administrative office visits; eventual 3,000+ active users including supervisors and managers. Explain population, time window and calculation before using these figures. The earlier Accenture draft's >85% adoption within three months requires a denominator and supporting measurement before becoming a headline claim.
 
 **Decisions to discuss:** research with field users; balancing payroll, operational and user needs; user stories and acceptance criteria; affordable platform choice; integration dependencies; phased rollout, champions and feedback.
 
-**Boundary:** user-centred, iterative practices are transferable to GDS delivery. Northern Powergrid was a utilities client; this is not evidence of leading a formal GDS service assessment.
+**GDS bridge:** the alpha → beta → phased rollout, user research in the field and union/accessibility-style inclusion concerns are the closest real parallel to a government service lifecycle. Northern Powergrid was a regulated utilities client, so say "the same lifecycle principles" rather than claiming a formal GDS service assessment.
 
-**Reference:** [Smart Timesheet case study](https://arvind-portfolio-iota.vercel.app/product-owner/work/smart-timesheet). Portfolio corrections are required for its former date and title.
+**Reference:** [Smart Timesheet case study](https://arvind-portfolio-iota.vercel.app/product-owner/work/smart-timesheet).
 
 ## S4 Infrastructure modernisation
 
@@ -85,6 +92,28 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 Do not call click-through or add-to-order measures **85% recommendation accuracy**. Precision, click-through and conversion are different measures. Keep this case optional until the measurement and personal technical contribution are sufficiently clear.
 
 **Reference:** [Recommendation case study](https://arvind-portfolio-iota.vercel.app/product-owner/work/ml-recommendations).
+
+## S7 Natoora Agile operating model and Jira
+
+**Context:** when Arvind joined Natoora in 2022, delivery work was tracked in Trello with no velocity baseline, no delivery metrics and unpredictable releases.
+
+**Owner-confirmed outcome:** time-to-market fell from **5+ weeks to under 3 weeks** (the portfolio rounds this to a 40% improvement). Arvind led the move from Trello to Jira and established the Agile operating model across engineering, product and design, with CI/CD, feature flags and automated deployments.
+
+**How he won approval (from the owner's v9 preparation guide):** documented the symptoms for two weeks; compared Trello, Jira, Asana and ClickUp on workflow customisation, reporting, integration with GitHub/Slack and cost; asked the CTO and COO for permission to pilot one initiative on Jira's free tier (no cost, reversible); designed workflows around how the team actually worked, wrote a Jira guide and ran a workshop; then returned with pilot feedback and an updated cost-benefit case. Approval followed the evidence.
+
+**Use for:** continuous improvement, Jira/Confluence, influencing senior stakeholders without authority, measuring delivery improvement.
+
+**Metric defence:** time-to-market here means elapsed time from work starting to release. The improvement came from the operating model as a whole, not the tool alone.
+
+## Behavioural stories (owner-supplied, 13 October 2026)
+
+**B1 Conflict — one senior engineer, two launches (Natoora).** During implementation of the GenAI order automation and the multiple-basket feature, both initiatives turned out to need the same senior technical resource, which neither plan had identified. Losing that person from either project would derail both timelines. Arvind met Sales (multiple basket) and Customer Support (GenAI) separately with options — delay, reduce scope, phase the rollout — but neither would move on schedule or scope. He then ran a joint working session: made the dependency visible to everyone, circulated all options in advance, and tied the recommendation to the company's goals. GenAI carried higher strategic weight, while the multiple-basket go-to-market strategy was not yet finalised, so delaying it by 2–3 weeks (owner to confirm unit) cost little. He invited the CTO as the escalation route in case no option was workable. After negotiation, both teams agreed to finish the GenAI rollout first and then multiple basket. The meeting ended positively because everyone had seen the options beforehand.
+
+**B2 Setback — delivered features nobody used (earlier consulting career).** Focused on delivering feature after feature, Arvind did not track usage after release. A client that had invested heavily in one feature came back because it had little traction, and he was asked to find out why and recommend a fix. He interviewed the teams involved and gathered customer feedback. The finding: the feature was built to specification without real users in mind, so users could not find it or use it meaningfully. He recommended a UI/UX expert review of the design for usability. Lesson he now applies: involve users, measure adoption after release and engage the customer regularly on feature utilisation. (Client and feature remain unnamed; supply them only if asked and permitted.)
+
+**B3 Mentoring.** Arvind has mentored 20+ associates in Agile methods and 5 aspiring project managers into doing the PM job successfully, using Agile and DevOps games and coaching techniques gathered over his career. At Natoora he coached engineers on test-first development, pair programming and DevOps practices. Prepare one named-role example (for example, one aspiring PM: their starting gap, what you did together, what they then did independently).
+
+**B4 Leadership mistake — backup (from the owner's v9 guide).** At Natoora, Arvind rolled out Scrum through team-wide announcements without first consulting a respected senior engineer, who then disengaged and influenced junior colleagues. He recovered through one-to-ones and a structural concession (no-meeting Fridays); the engineer became an advocate. Lesson: secure respected senior voices before announcing change. Use only if the panel asks specifically for a people or leadership mistake.
 
 ## Adding or correcting a story
 

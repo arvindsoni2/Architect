@@ -26,7 +26,7 @@ Also called Now → Then → Next. Aim for roughly 60–90 seconds: professional
 
 **Template:** “I’m a [professional identity] with experience in [relevant work]. My strength is [role-relevant contribution]. At [example], I [actual action or responsibility], resulting in [defensible outcome]. More recently, [second relevant proof]. I’m now looking to [next step], and this role fits because [specific remit and contribution].”
 
-Use the [Accenture opening](../vacancies/accenture-product-owner-questions.md#q1-tell-me-about-yourself) for a factual adaptation. Keep your employment timeline available for follow-up without making it the whole introduction.
+Use the [Accenture opening](../vacancies/accenture-product-owner.md#q1-tell-me-about-yourself) for a factual adaptation. Keep your employment timeline available for follow-up without making it the whole introduction.
 
 ### Company → Role → Fit
 
@@ -52,7 +52,7 @@ PEEL is useful for a values or professional-opinion question. State your point, 
 
 Fictional worked answers can demonstrate an entire response, including plausible numbers. Label the case at its start, explain the metric and then replace the details with actual evidence for personal rehearsal. A made-up percentage teaches arithmetic, not a result you achieved. If personal actions are missing, keep a complete fictional teaching answer beside the factual adaptation prompts; do not fill your historical record with the invented actions.
 
-The [Accenture Q&A bank](../vacancies/accenture-product-owner-questions.md) uses this approach and names the structure for all 32 questions. In a hypothetical, use future language and proposed measures. In a behavioural answer, establish personal actions and observed results. A good answer need not end with a dramatic success; an honest stop decision or useful correction can show judgement.
+The [Accenture PO playbook](../vacancies/accenture-product-owner.md) uses this approach and names the structure for each of its 15 core questions. In a hypothetical, use future language and proposed measures. In a behavioural answer, establish personal actions and observed results. A good answer need not end with a dramatic success; an honest stop decision or useful correction can show judgement.
 
 ## Behavioural answers
 
