@@ -117,6 +117,14 @@ summary{cursor:pointer;font-weight:750}
  h2{break-before:page} a{color:#114488}
 }
 #sources { overflow-wrap: anywhere; }
+
+/* 13 Oct 2026: phone tables and read-aloud */
+@media(max-width:760px){table{display:block;overflow-x:auto;max-width:100%}.resource span,.resource strong{overflow-wrap:anywhere}.listen{right:8px;bottom:8px}}
+.listen{position:fixed;right:16px;bottom:16px;z-index:30;display:flex;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.listen button{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:999px;padding:7px 12px;font:600 13px Inter,system-ui,sans-serif;cursor:pointer}
+.listen button:hover,.listen button:focus-visible{border-color:var(--accent);outline:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{.listen{display:none!important}}
 </style>
 </head>
 <body>
@@ -124,7 +132,7 @@ summary{cursor:pointer;font-weight:750}
 <nav>
   <div class="brand">
     <h1>FDE Handbook v1.4</h1>
-<p class="small">Freshness reviewed 5 October 2026: security references and role-evidence links; original technical research dates retained.</p>
+<p class="small">Freshness reviewed 5 October 2026: security references and role-evidence links; original technical research dates retained. Phone layout and read-aloud added 13 October 2026.</p>
     <small>Forward Deployed AI Engineering<br>Audited field edition • 4 Sep 2026</small>
   </div>
   <div class="nav-group">Start</div>
@@ -1344,5 +1352,14 @@ Version 1.4 • Original research cut: 4 September 2026 • Focused updates: 5 O
 
 </main>
 </div>
+<div class="listen" id="listen" hidden><button id="listen-play" type="button" aria-label="Read the section in view aloud">▶ Listen</button><button id="listen-stop" type="button" aria-label="Stop reading">■</button></div>
+<script>
+(function(){if(!('speechSynthesis' in window))return;document.getElementById('listen').hidden=false;
+const secs=[...document.querySelectorAll('main section[id]')];let cur=secs[0];
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)cur=e.target;}),{rootMargin:'-35% 0px -60% 0px'});secs.forEach(s=>io.observe(s));
+document.getElementById('listen-play').addEventListener('click',()=>{speechSynthesis.cancel();const c=cur.cloneNode(true);c.querySelectorAll('svg,button,script,style').forEach(x=>x.remove());
+ const u=new SpeechSynthesisUtterance(c.innerText.replace(/\s+/g,' ').slice(0,9000));u.lang='en-GB';speechSynthesis.speak(u);});
+document.getElementById('listen-stop').addEventListener('click',()=>speechSynthesis.cancel());})();
+</script>
 </body>
 </html>

@@ -175,6 +175,9 @@ footer{margin-top:60px;padding-top:18px;border-top:1px solid var(--line);font-fa
 .lab1-pilot .codeblk pre{max-height:480px;overflow:auto}
 @media(max-width:640px){.lab1-pilot .step{grid-template-columns:30px minmax(0,1fr);gap:8px}.lab1-pilot table{display:block;overflow-x:auto}.lab1-pilot .card{padding:12px}}
 @media print{.lab1-pilot .codeblk pre{max-height:none;overflow:visible}}
+
+/* 13 Oct 2026: keep wide tables inside the screen on phones */
+@media(max-width:760px){table{display:block;overflow-x:auto;max-width:100%}}
 </style>
 </head>
 <body>

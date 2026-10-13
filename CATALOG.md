@@ -4,7 +4,7 @@ This is the authoritative index of current material in the repository.
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v5.html](handbooks/system-design/system-design-concept-handbook-v5.html) | HTML | Current | v5 | 2026-10-05 |
+| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v5.html](handbooks/system-design/system-design-concept-handbook-v5.html) | HTML | Current | v5 | 2026-10-13 |
 | Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html) | HTML | Current | v2.8 | 2026-10-13 |
 | AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.2.html](handbooks/ai-engineering/ai-engineering-handbook-v3.2.html) | HTML | Current | v3.2 | 2026-10-13 |
 | AI Evaluation Field Guide | AI architecture | [handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) | HTML | Current | 2026.10 | 2026-10-13 |
