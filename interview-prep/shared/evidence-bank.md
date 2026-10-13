@@ -2,7 +2,7 @@
 
 **Status:** Owner-reviewed · **Last reviewed:** 13 October 2026
 
-This is the factual base for all five role guides. On 13 October 2026 the owner confirmed that the portfolio case-study narratives (written early in 2026) are accurate, including the personal decisions they describe. Figures are self-reported professional outcomes, not an independent audit: know how each was measured, then state it plainly. Public portfolio links are the reader-facing references.
+This is the factual base for all eight role guides. On 13 October 2026 the owner confirmed that the portfolio case-study narratives (written early in 2026) are accurate, including the personal decisions they describe. Figures are self-reported professional outcomes, not an independent audit: know how each was measured, then state it plainly. Public portfolio links are the reader-facing references.
 
 ## Employment chronology
 
@@ -114,6 +114,40 @@ Do not call click-through or add-to-order measures **85% recommendation accuracy
 **B3 Mentoring.** Arvind has mentored 20+ associates in Agile methods and 5 aspiring project managers into doing the PM job successfully, using Agile and DevOps games and coaching techniques gathered over his career. At Natoora he coached engineers on test-first development, pair programming and DevOps practices. Prepare one named-role example (for example, one aspiring PM: their starting gap, what you did together, what they then did independently).
 
 **B4 Leadership mistake — backup (from the owner's v9 guide).** At Natoora, Arvind rolled out Scrum through team-wide announcements without first consulting a respected senior engineer, who then disengaged and influenced junior colleagues. He recovered through one-to-ones and a structural concession (no-meeting Fridays); the engineer became an advocate. Lesson: secure respected senior voices before announcing change. Use only if the panel asks specifically for a people or leadership mistake.
+
+## S8 Hatch — personal open-source project
+
+**What it is:** a self-hosted, human-in-the-loop workspace for job search, applications and interview preparation, published at [github.com/arvindsoni2/hatch](https://github.com/arvindsoni2/hatch). It is a personal project, not a client deployment; say so plainly.
+
+**Architecture (from the public repository):** a LangGraph supervisor coordinates four agents — Scout (discovers roles), Scorer (ranks them against the profile), Tailor (prepares evidence-grounded CV and cover-letter packs) and Coach (interview preparation). Python/FastAPI backend, Next.js frontend, Docker Compose deployment. AI can run locally through llama.cpp with a larger **primary** model for detailed work and a smaller **triage** model for fast relevance filtering, or through a configured cloud provider (Gemini, OpenRouter, OpenAI or Anthropic); the app also works with AI deferred.
+
+**Trust boundary:** Hatch never submits an application; generated documents require human review; provider secrets stay on the host, not in the browser; optional OpenTelemetry traces exclude prompt, response, CV and job-description content.
+
+**Evaluation evidence:** a staged local-model selection run on 18 July 2026 completed 27 of 27 scheduled pairs with 100% schema success and zero unsupported claims or numeric tokens. No challenger passed the hard quality gates, so the decision was to **retain the baseline model**. Use this as a story about letting evaluation, not novelty, decide a model change.
+
+**Decisions to discuss:** human approval before any external action; primary/triage routing for cost and latency; local versus cloud models; hard gates before changing a model; observability without sensitive content.
+
+## S9 IncidentPilot — personal open-source project
+
+**What it is:** a local-first incident triage agent for Docker and Podman services, published at [github.com/arvindsoni2/IncidentPilot](https://github.com/arvindsoni2/IncidentPilot). It collects operational evidence (runtime status, bounded logs, HTTP health, dependencies, deployments, optional Prometheus), applies deterministic rules, optionally asks an Ollama-compatible model to rank evidence-grounded hypotheses, and writes JSON and SRE-style Markdown reports.
+
+**Design decisions:** the MVP is deliberately **read-only** — it cannot restart containers, roll back or run shell commands. The model receives validated, structured evidence and **no tools**; deterministic rules keep control of severity, evidence references, actions and approval flags. If the model times out, the workflow falls back to rules-only diagnosis.
+
+**Evaluation evidence:** golden-file evaluations for two injected failure scenarios (FS-001, FS-002). A run passes only if all ten checks pass, including `rank1_cause_correct`, `recommendation_action_correct` and `no_action_executed`. CI runs a live integration job that builds the demo stack, injects both failures, verifies the persisted diagnosis and resets the services. Stack: FastAPI, Jinja/HTMX dashboard, Typer CLI, SQLAlchemy with SQLite and versioned migrations. The owner has also used it as a benchmark project for comparing coding-agent harnesses (Claude Code, Codex, OpenCode and Cline).
+
+**Decisions to discuss:** keeping consequential actions out of the model's reach; deterministic first, model second; graceful degradation; how the golden set was chosen and what it does not cover.
+
+## S10 ResearchOps v2 — personal open-source project
+
+**What it is:** an autonomous research digest, published at [github.com/arvindsoni2/researchops-v2](https://github.com/arvindsoni2/researchops-v2). The owner wrote the product requirements (dated 21 May 2026) after v1 — built on CrewAI with hard-coded sources — proved too narrow. v2 accepts any topic as a Markdown file, discovers and vets sources at run time, ranks every item on a five-factor rubric, writes a short "why it matters" note for the top items with Claude Haiku, and emails a digest on a cron schedule.
+
+**Design decisions:** four of the five ranking sub-scores are deterministic; only relevance is model-judged, and every sub-score is visible so the ranking can be audited. Local Ollama (Qwen) does the scoring; the paid model is used only for the top-N synthesis, grounded in each item's own content. Hard caps on tokens, search queries and a daily cost ceiling; reported running cost is about £0.03 a day for three daily topics (target ≤ £5 a month). SQLite tracks seen items for novelty; each run writes a structured JSON log and failures send an error email.
+
+**Decisions to discuss:** rewriting instead of extending v1; deterministic scoring with a narrow model role; cost as a design constraint; zero hard-coded credentials.
+
+## Credentials and learning
+
+Owner-stated credentials: PMP, PMI-ACP, PSM I and PSPO I; AWS Certified AI Practitioner (AIF-C01), passed April 2026; currently preparing for AWS Solutions Architect Associate (SAA-C03). Completed course: **GeeksforGeeks — AI Engineering Course: Generative AI & Agentic AI** (certificate held by the owner). Coursera courses: to be added once the owner supplies the course names. Confirm credential IDs and dates before quoting them, and pair each with something you built or decided — certificates show learning, not role experience.
 
 ## Adding or correcting a story
 

@@ -48,6 +48,46 @@ These are fictional practice cases. Use the [shared scenario method](../shared/h
 
 **PO2 — a late request threatens the Sprint Goal.** A senior stakeholder demands a feature halfway through the sprint and calls it mandatory. Clarify the obligation, deadline, consequence of delay and relation to the Sprint Goal. Discuss options with Developers and the relevant client PO: defer, reduce scope, renegotiate planned work without endangering the goal, or respond to a genuinely obsolete goal through the accountable PO. Make the impact transparent. **Probe:** what if the stakeholder outranks you? **Weak response:** inserting work unilaterally, treating Sprint Backlog changes as solely your decision, or rejecting all new information because a sprint has started.
 
+## 2026 question bank with model answers
+
+Scrum.org's 2026 list adds AI and evidence-based value to the classic questions; LinkedIn's hiring guide still opens with Scrum, roadmap and backlog fundamentals. [1][2] Model answers below use your own evidence; keep each under two minutes. Where an answer describes a habit rather than a recorded story, keep only what you actually do and have one real example ready.
+
+### Q1. How do you make sure your product delivers value, not just output?
+
+**Model answer:** "I agree the outcome and its measure before we build, then check it after release. On the GenAI order automation at Natoora the outcome was the time customer support spent keying orders from emails — two to three minutes each. We measured manual effort before and after the London and Paris rollout and saw about a 90% reduction, with exceptions still handled by people. Shipping the feature was the output; the released time was the value."
+
+### Q2. Have you used AI to support backlog refinement or product decisions?
+
+**Model answer:** "Yes, as an assistant, not a decision-maker. I use LLMs to draft story splits and acceptance examples from a feature description, to summarise feedback themes, and to challenge my requirements before refinement — then the team and I check them, because a model will happily write plausible acceptance criteria that miss a real constraint. I don't paste confidential client data into public tools." [1]
+
+### Q3. How would you use AI in product discovery?
+
+**Model answer:** "To move faster between idea and evidence: quick clickable prototypes to test with users, synthesis of interview notes into themes I then verify against the raw notes, and comparing several solution options early. The rule is that AI speeds up learning from users; it doesn't replace talking to them. And I'd always ask whether the problem needs AI at all — rules or an ordinary form often solve it more cheaply." [1]
+
+### Q4. Tell me about a time you tested an idea and it didn't work.
+
+**Model answer:** "In July I tested whether newer local models should replace the writing model in Hatch, my open-source job-search tool. I set hard quality gates first. All 27 runs produced valid output, but no challenger passed the gates, so I kept the existing model. It felt like a non-result, but it saved me shipping a change that looked newer and was not better — and it confirmed the gates were doing their job." For a work example, use the unused-feature setback in [B2](../shared/evidence-bank.md#behavioural-stories-owner-supplied-13-october-2026). [1]
+
+### Q5. How do you align stakeholders with competing priorities?
+
+**Model answer:** Use [B1](../shared/evidence-bank.md#behavioural-stories-owner-supplied-13-october-2026): two launches needed the same senior engineer. "I met each side with options, then ran a joint session where everyone saw the dependency and the options beforehand, tied to company goals, with the CTO available to decide if we couldn't. We agreed to finish GenAI first and delay multiple basket by two to three weeks, because its go-to-market wasn't final. Nobody left surprised." [1]
+
+### Q6. How do you help a team deliver value end to end?
+
+**Model answer:** "Fewer hand-offs and faster feedback. When I joined Natoora, work lived in Trello with no baseline and unpredictable releases. I led the move to Jira and an Agile operating model across engineering, product and design, with CI/CD, feature flags and automated deployments. Time from starting work to release fell from more than five weeks to under three. The tool mattered less than one shared backlog and the release automation." [1]
+
+### Q7. What makes a sprint successful?
+
+**Model answer:** "The Sprint Goal is met with a usable, Done increment, and we learned something that changes the next decision — from users, data or the work itself. Velocity going up is not success; a goal met with an increment nobody uses isn't either." [2]
+
+### Q8. When is AI the wrong answer for a product problem?
+
+**Model answer:** "When the rules are known, the result must be exact or the volume is low. A structured prediction, such as which customers are likely to churn, is usually better served by a conventional model that is cheaper and easier to explain. In my IncidentPilot project the deterministic rules make the diagnosis and the model only ranks hypotheses. I'd start with the simplest thing that meets the outcome and add AI where it measurably helps."
+
+### Q9. What do you know about our product and market?
+
+**Model answer:** Prepare three specifics: who the product serves, one recent change you noticed, and one question you would want to test in your first month. Tie one of them to your evidence. [2]
+
 ## First 90 days and panel questions
 
 In days 1–30, learn users, strategy, decision rights, team constraints and baseline measures. In days 31–60, improve backlog clarity and test a high-value assumption with a small release. In days 61–90, assess outcome evidence, strengthen rollout/support ownership and adapt the roadmap. Sequence this around the client's existing phase and commitments.
@@ -55,3 +95,10 @@ In days 1–30, learn users, strategy, decision rights, team constraints and bas
 Ask: Who owns product strategy and final priority decisions? How much access does the PO have to users? What has made benefits hard to realise? How are security, UCD and operations involved? What would good performance look like in six months?
 
 **Rehearsal:** one product story, one rejected priority, one user insight, one metric defence, one coaching example and the scenario above. Use Cracking the PM Career as supplementary preparation; translate its product-career material to this role's backlog, client and delivery context.
+
+## Sources and freshness
+
+Checked 13 October 2026.
+
+1. [Product Owner Interview Questions in 2026](https://www.scrum.org/resources/blog/product-owner-interview-questions-2026) — Scrum.org blog, 24 April 2026.
+2. [Product Owner interview question guide](https://business.linkedin.com/talent-solutions/resources/how-to-hire-guides/product-owner/interview-questions) — LinkedIn hiring guide.
