@@ -44,6 +44,17 @@ Work includes prompt tokens, generated tokens, protocol overhead, and retries. P
 - **Optimisation order:** Establish a baseline, identify the dominant queue, phase, memory, communication, or downstream bottleneck, then change one lever. Test batching, prefix caching, quantisation, kernel fusion, speculative decoding, or parallel placement with quality and cancellation guardrails.
 - **Economics:** Attribute accelerator time, host resources, networking, idle capacity, retries, and support. Report cost per accepted successful outcome at target concurrency, not only per-token price or peak throughput.
 
+### Agent-aware serving
+
+An agent turns one user task into many model calls: each tool result is appended and the whole conversation is sent again. Most of each request repeats the previous one, so the serving cost of an agent depends heavily on how much of that repeated prefix the server can reuse.
+
+- **Keep the prefix stable.** Prefix caches match only from the start of the prompt and only on complete blocks of tokens; vLLM, for example, hashes each block together with everything before it. Put the system prompt, tool definitions and stable instructions first. Append new turns rather than rewriting earlier ones. A timestamp or reordered tool list at the top invalidates the cache for the whole request.
+- **Respect isolation.** Shared prefixes must not leak across tenants. vLLM supports a per-request cache salt that prevents requests with different salts from sharing cached blocks. Decide which prompts may share cache and enforce it in the serving layer.
+- **Schedule for the task, not the call.** Routing successive calls from one agent session to the same replica raises cache hits (SGLang's RadixAttention reuses KV cache across calls in a tree of shared prefixes). Balance that affinity against load spreading, and give interactive sessions priority over background agents.
+- **Measure per task.** Report tokens, cache-hit rate, latency and cost per completed agent task, as well as per call. A change that makes each call cheaper can make the task dearer if it adds turns.
+
+Compaction and sub-agents change this picture. Summarising history shortens future requests but discards the cached prefix once. Weigh that one-off cost against the shorter context that follows.
+
 ## Failure modes and warning signs
 
 - **One blended latency number:** Mean end-to-end latency hides queue delay, TTFT, ITL, and completion tails. A dashboard improves while users wait longer for the first useful token.
@@ -111,8 +122,13 @@ Public primary references (accessed 2026-09-06):
 3. [Yu et al., Orca: A Distributed Serving System for Transformer-Based Generative Models](https://www.usenix.org/conference/osdi22/presentation/yu).
 4. [NVIDIA, CUDA Programming Guide](https://docs.nvidia.com/cuda/cuda-programming-guide/index.html).
 
+Focused addition (verified 2026-10-13), prompted by the agent-serving material in [Harvard CS2680](https://cs2680.seas.harvard.edu/):
+
+5. [Zheng et al., SGLang: Efficient Execution of Structured Language Model Programs](https://arxiv.org/abs/2312.07104) — RadixAttention prefix reuse.
+6. [vLLM, Automatic prefix caching design](https://docs.vllm.ai/en/latest/design/prefix_caching.html) — block hashing, matching and cache salt.
+
 **Status:** Current
 
 **Edition:** Living
 
-**Last reviewed:** 2026-09-06
+**Last reviewed:** 2026-10-13

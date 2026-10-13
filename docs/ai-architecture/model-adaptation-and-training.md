@@ -43,6 +43,18 @@ The unit of analysis is the task outcome, not the loss curve. Track distribution
 - **RLVR:** Optimize an executable, independently checked outcome such as tests, proof checking, or schema invariants. Define success, partial credit, invalid output, timeout, and abstention; inspect reward components and attack-test the verifier.
 - **Experiment and release:** Pin model, code, data, evaluator, reward, seed policy, hardware, and configuration. Compare segments and uncertainty, stage exposure only with agreed thresholds, retain the predecessor, and demonstrate rollback.
 
+### Choose the lever: program, weights or inference budget
+
+A model-based system has three adjustable layers. Optimise the cheapest reversible layer that can fix the measured failure before changing weights.
+
+| Lever | What changes | Good fit | Cost and risk |
+| --- | --- | --- | --- |
+| **Program optimisation** | Instructions, few-shot examples and module structure of a multi-step pipeline, tuned automatically against a metric | Pipeline or agent whose steps are right but whose prompts are brittle; a scored dev set exists; weights are not available | Cheap and reversible, but can overfit a small dev set or a gameable metric |
+| **Inference budget** | Sampling, search, verification or reasoning effort per request | Hard cases where extra attempts plus a reliable checker raise success | Raises latency and per-request cost every time; owned by [Reasoning System Design](reasoning-system-design.md) |
+| **Weight update** | Parameters, through SFT, distillation or reward-based training | Repeated, stable behaviour the program cannot elicit; cost or latency requires a smaller model | Slowest to iterate; changes broad behaviour; needs data contract, lineage and rollback |
+
+Program optimisers treat a pipeline as code to compile. DSPy expresses each step as a declarative module and tunes it against a target metric. MIPRO searches instructions and demonstrations for every module of a multi-stage program without per-module labels. GEPA reflects on sampled runs in natural language, proposes revised prompts and keeps the best candidates; its authors report beating the GRPO reinforcement-learning baseline while using up to 35 times fewer rollouts. Treat that as one study's result, not a general rule. The durable lesson is to measure a program-level optimisation before paying for training, and to keep the optimiser's dev set separate from the locked acceptance set.
+
 ## Failure modes and warning signs
 
 - **Fine-tuning by reflex:** a prompt or retrieval defect is baked into weights, making a volatile policy expensive to change.
@@ -88,6 +100,7 @@ The release record keeps the baseline and every candidate with evidence. An illu
 3. How would you prove that a training gain is not leakage from a shared repository or trajectory?
 4. What does distillation save, and what capability or uncertainty might it discard?
 5. Why must a prior model remain available after a candidate wins offline evaluation?
+6. A pipeline fails on 20% of cases. What evidence would make you try program optimisation first, and what would send you to training?
 
 ## Related canonical notes
 
@@ -116,8 +129,14 @@ Public primary references (verified 2026-09-06):
 4. DeepSeek-AI, [DeepSeek-R1](https://arxiv.org/abs/2501.12948) — experimental evidence for verifiable-task and rule-based rewards, not a universal quality or safety guarantee.
 5. NIST, [AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) — lifecycle risk and measurement context.
 
+Focused addition (verified 2026-10-13), prompted by the program-optimisation material in [Stanford CS329Z](https://cs329z.stanford.edu/):
+
+6. Khattab et al., [DSPy: Compiling Declarative Language Model Calls into Self-Improving Pipelines](https://arxiv.org/abs/2310.03714).
+7. Opsahl-Ong et al., [Optimizing Instructions and Demonstrations for Multi-Stage Language Model Programs](https://arxiv.org/abs/2406.11695) — MIPRO.
+8. Agrawal et al., [GEPA: Reflective Prompt Evolution Can Outperform Reinforcement Learning](https://arxiv.org/abs/2507.19457).
+
 **Status:** Current
 
 **Edition:** Living
 
-**Last reviewed:** 2026-09-06
+**Last reviewed:** 2026-10-13
