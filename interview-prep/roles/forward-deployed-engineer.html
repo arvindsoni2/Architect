@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Forward Deployed Engineer — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="roles/forward-deployed-engineer.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="delivery-lead.html">Delivery Lead</a><a href="agile-delivery-lead.html">Agile Delivery Lead</a><a href="product-owner.html">Product Owner</a><a href="product-manager.html">Product Manager</a><a href="senior-project-manager.html">Senior Project Manager</a><a href="software-ai-architect.html">Software &amp; AI Architect</a><a href="ai-engineer.html">AI Engineer</a><a href="forward-deployed-engineer.html" aria-current="page">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="forward-deployed-engineer-interview-guide">Forward Deployed Engineer interview guide</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Last reviewed:</strong> 13 October 2026 · <strong>Sources checked:</strong> 13 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#what-the-2026-loop-looks-like">What the 2026 loop looks like</a></li><li><a href="#positioning-and-evidence">Positioning and evidence</a></li><li><a href="#decomposition">Decomposition</a></li><li><a href="#customer-conversations">Customer conversations</a></li><li><a href="#technical-and-system-design">Technical and system design</a></li><li><a href="#coding-practice">Coding practice</a></li><li><a href="#behavioural-and-values">Behavioural and values</a></li><li><a href="#credibility-probes">Credibility probes</a></li><li><a href="#questions-to-ask-the-panel">Questions to ask the panel</a></li><li><a href="#sources-and-freshness">Sources and freshness</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>A forward deployed engineer (FDE) works inside a customer&#x27;s organisation to get software — now usually AI systems — into production and producing value. Interviews therefore blend software engineering with consulting: you will decompose a vague problem, write practical code, design a system that survives a real customer environment, and handle a difficult customer conversation. For the Accenture vacancy, add the <a href="../vacancies/accenture-fde.html">Accenture FDE supplement</a>; for depth, use the <a href="../../handbooks/fde/fde-handbook-v1.4.html">FDE Handbook</a>.</p>
+<p><strong>Your honest position:</strong> years of client-facing delivery (TCS consulting for utilities and banking clients, external SaaS customers at Natoora), one production AI rollout, and current hands-on AI engineering shown through three public projects. Panels value end-to-end ownership and customer judgement; be precise about which parts you coded yourself.</p>
+<h2 id="what-the-2026-loop-looks-like">What the 2026 loop looks like</h2>
+<p>Public accounts describe these loops. They are second-hand and change often; confirm with the recruiter. [1][2][3]</p>
+<div class="table-wrap"><table><thead><tr><th>Employer</th><th>Reported stages</th><th>Distinctive round</th></tr></thead><tbody>
+<tr><td>OpenAI</td><td>Recruiter screen; take-home of about five hours on its APIs (for example a RAG system, agent or eval harness); walkthrough; onsite with hiring manager, technical and design/case rounds</td><td>Defending your take-home decisions</td></tr>
+<tr><td>Anthropic</td><td>Recruiter screen; take-home; hiring-manager deep dive on a project; timed coding where each level builds on your previous code; technical design (rate limiter, job queue, LLM system); mission round</td><td>Progressive coding and mission alignment</td></tr>
+<tr><td>Palantir</td><td>Coding screen; coding; system or data design; a 60-minute decomposition with no code; a learning round fixing bugs in an unfamiliar codebase; behavioural; hiring manager</td><td>Decomposition and a real failure story</td></tr>
+<tr><td>Consultancies</td><td>Typically screening, a technical or case interview and a leadership conversation</td><td>Client and commercial judgement; check the advert</td></tr>
+</tbody></table></div>
+<p>Across loops, interviewers grade four signals: <strong>decomposition</strong> of an ambiguous problem, <strong>client conversation</strong>, <strong>learning an unfamiliar codebase quickly</strong>, and <strong>production system design</strong> with evaluation, guardrails, cost and failure modes. A values round asks why this company and for a genuine failure. [3]</p>
+<h2 id="positioning-and-evidence">Positioning and evidence</h2>
+<p><strong>Model answer — &quot;Why FDE rather than a regular engineering role?&quot;:</strong> &quot;Because the hard part of AI today is not the model, it&#x27;s getting it to work inside a real organisation — messy data, security reviews, users who were not asked, and a value case someone has to defend. I&#x27;ve spent my career on that side: leading delivery for utility and banking clients at TCS, taking an internal platform to external SaaS customers, and rolling out an AI order-automation workflow that cut manual effort by about 90% in London and Paris. Over the last year I&#x27;ve added the engineering half by building and evaluating agents myself. FDE is the role where both halves count.&quot;</p>
+<div class="table-wrap"><table><thead><tr><th>What the panel tests</th><th>Best evidence</th><th>What to show</th></tr></thead><tbody>
+<tr><td>Customer deployment and scope negotiation</td><td><a href="../shared/evidence-bank.html#s2-saas-transformation">S2 SaaS</a></td><td>Four-week go-live against a 6–8 week estimate; impact matrix; onboarding pack reused for Client 2</td></tr>
+<tr><td>AI in production with exceptions</td><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1 order automation</a></td><td>Pilot scope, customer-support involvement, exceptions, measured effort</td></tr>
+<tr><td>Hands-on agent engineering</td><td><a href="../shared/evidence-bank.html#s9-incidentpilot--personal-open-source-project">S9 IncidentPilot</a></td><td>Read-only design, rules in control, golden evaluations in CI</td></tr>
+<tr><td>Human-in-the-loop product judgement</td><td><a href="../shared/evidence-bank.html#s8-hatch--personal-open-source-project">S8 Hatch</a></td><td>No external action without the user; evaluation gates on model changes</td></tr>
+<tr><td>Field research and adoption</td><td><a href="../shared/evidence-bank.html#s3-smart-timesheet">S3 Smart Timesheet</a></td><td>Depot research, alpha → beta → phased rollout, champions</td></tr>
+<tr><td>A real failure</td><td><a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">B2 setback</a></td><td>Features built to specification that nobody used; what you changed</td></tr>
+</tbody></table></div>
+<h2 id="decomposition">Decomposition</h2>
+<p>Use one sequence and say it out loud: <strong>clarify</strong> the user, the outcome and how success is measured → <strong>map</strong> inputs, owners and freshness → <strong>constraints</strong> (security, regulation, budget, timeline) → <strong>workstreams</strong> → a <strong>walking skeleton</strong> that proves the path end to end in weeks → <strong>risks and failure modes</strong> → <strong>measure and iterate</strong>. Ask before solving; label assumptions; sequence by risk. [1][3]</p>
+<div class="qa" data-qa="q1-an-insurer-wants-llm-powered-summaries-across-30-million-historical-claims-scope-the-first-90-days">
+<h3 id="q1-an-insurer-wants-llm-powered-summaries-across-30-million-historical-claims-scope-the-first-90-days">Q1. An insurer wants LLM-powered summaries across 30 million historical claims. Scope the first 90 days.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;First, who reads the summaries and what decision do they support — a handler picking up a claim, fraud review, or a regulator? That decides what &#x27;good&#x27; means. I&#x27;d ask how claims are stored, which documents are scanned, what personal and special-category data they hold, where processing is allowed, and what a handler does today and how long it takes. Then I&#x27;d propose a thin slice: one claim type, a few hundred historical claims, a summary format agreed with handlers, and an evaluation set they label — factual accuracy against source documents, missing critical facts, and time saved. Weeks one to four: data access, a secure processing path and the baseline. Weeks five to eight: pilot with ten handlers on live claims, summaries shown alongside the originals, never replacing them. Weeks nine to twelve: decide on scale from the numbers. I would not batch-process all 30 million until the quality, cost per claim and data-protection position are proven; at that volume a cost per summary that is a few pence too high is a real budget line.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q2-how-would-you-help-a-wheelchair-user-get-through-a-busy-train-station-on-their-own">
+<h3 id="q2-how-would-you-help-a-wheelchair-user-get-through-a-busy-train-station-on-their-own">Q2. How would you help a wheelchair user get through a busy train station on their own?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;d start with the person, not the technology: which part of the journey fails today — finding step-free routes, lifts out of service, boarding assistance not arriving, crowds? I&#x27;d want to shadow a few journeys. Data sources would include station maps, live lift status, platform changes and the assistance-booking system, each with an owner and a freshness problem; a lift status that is ten minutes stale is worse than none. A first version might be live step-free routing with lift status and a one-tap &#x27;I need help at this point&#x27; that reaches staff. Success is a measure the user cares about — journeys completed without unplanned help — and the failure mode to design against is confident wrong directions.&quot; [3]</p>
+</div></div>
+<div class="qa" data-qa="q3-a-city-wants-to-reduce-emergency-response-times-where-do-you-start">
+<h3 id="q3-a-city-wants-to-reduce-emergency-response-times-where-do-you-start">Q3. A city wants to reduce emergency response times. Where do you start?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Break response time into its parts — call answering, triage, dispatch, travel and handover — and get data on each before assuming where the delay is. The fix for slow call answering is staffing or routing, not a model; for travel time it may be station placement. I&#x27;d pick the stage with the biggest measured delay and the fewest safety risks, ship a decision aid for dispatchers rather than an automated decision, and measure before and after.&quot;</p>
+</div></div>
+<h2 id="customer-conversations">Customer conversations</h2>
+<p>Graders look for ownership language, diagnostic questions before solutions, honest options with trade-offs, and no promises you cannot keep. [1]</p>
+<div class="qa" data-qa="q4-the-deployment-has-slipped-three-weeks-and-the-customers-cto-is-on-the-call">
+<h3 id="q4-the-deployment-has-slipped-three-weeks-and-the-customers-cto-is-on-the-call">Q4. The deployment has slipped three weeks and the customer&#x27;s CTO is on the call.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;d open with the facts and own them: what slipped, why, and what it affects for them. Then options, not excuses — for example go live on time with a reduced scope that still covers the main workflow, keep the full scope with a new date backed by a revised plan, or add specific capacity with its cost. I&#x27;d recommend one, say what I need from them to hit it, and agree when they&#x27;ll next hear from me. When this happened with a SaaS client expecting go-live in four weeks against our six-to-eight-week estimate, an impact matrix let us agree which screens went first; we went live on schedule with fewer than ten issues in a 30-day pilot.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q5-the-customer-wants-a-feature-that-would-break-data-governance-rules">
+<h3 id="q5-the-customer-wants-a-feature-that-would-break-data-governance-rules">Q5. The customer wants a feature that would break data-governance rules.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;d find the outcome behind the request — usually speed or visibility — and say clearly that I can&#x27;t build it the way it was asked and why, in their terms: the regulatory or reputational exposure, not &#x27;policy says no&#x27;. Then I&#x27;d offer a compliant route to the same outcome, bring their data-protection or security owner into the decision, and record it. Holding the line once, politely and with an alternative, builds more trust than quietly building something that later has to be pulled.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q6-explain-to-a-non-technical-vp-why-the-assistant-cant-guarantee-100-accuracy">
+<h3 id="q6-explain-to-a-non-technical-vp-why-the-assistant-cant-guarantee-100-accuracy">Q6. Explain to a non-technical VP why the assistant can&#x27;t guarantee 100% accuracy.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;The assistant predicts likely answers from the documents it finds; it doesn&#x27;t look facts up like a database. So, like a well-briefed new colleague, it is usually right and occasionally wrong. What we can guarantee is how we manage that: it shows its sources, says &#x27;I don&#x27;t know&#x27; when evidence is missing, we measure its error rate on real questions before launch, and anything consequential gets a human check. The useful question is which error rate is acceptable for this task and what it costs compared with today.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q7-the-customers-security-team-wont-give-you-production-credentials">
+<h3 id="q7-the-customers-security-team-wont-give-you-production-credentials">Q7. The customer&#x27;s security team won&#x27;t give you production credentials.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;They&#x27;re right to be careful, so I&#x27;d make their job easy rather than escalate. I&#x27;d ask what they need to approve access — a threat model, least-privilege scopes, audit logging, a named service identity — and offer a staged path: synthetic or masked data first, read-only access next, write access only for specific actions with approval. Meanwhile I&#x27;d build against a realistic test environment so the project keeps moving.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q8-you-disagree-with-the-architecture-the-customer-has-chosen">
+<h3 id="q8-you-disagree-with-the-architecture-the-customer-has-chosen">Q8. You disagree with the architecture the customer has chosen.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;d first make sure I understand why they chose it — there&#x27;s often a constraint I can&#x27;t see. If I still disagree, I&#x27;d put the concern in terms of their outcomes: cost, risk or time, with evidence, and propose the smallest test that would settle it. If they still choose their option, I&#x27;d document the risk, agree how we&#x27;d notice it, and commit to making their choice work. It is their system; my job is to make sure the decision is informed.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q9-the-customer-says-the-model-is-getting-worse">
+<h3 id="q9-the-customer-says-the-model-is-getting-worse">Q9. The customer says the model is getting worse.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;d ask for examples and dates, then check what changed: the inputs (new document types, a new user group), the retrieval index, the prompt or model version, and upstream data. I&#x27;d re-run the original evaluation set — if scores hold, the world has moved and the evaluation set needs new cases; if they dropped, something in our system changed and the traces will show where. I&#x27;d report back with evidence either way.&quot;</p>
+</div></div>
+<h2 id="technical-and-system-design">Technical and system design</h2>
+<div class="qa" data-qa="q10-design-a-private-vpc-deployed-rag-system-for-a-healthcare-customer-with-50-million-documents">
+<h3 id="q10-design-a-private-vpc-deployed-rag-system-for-a-healthcare-customer-with-50-million-documents">Q10. Design a private, VPC-deployed RAG system for a healthcare customer with 50 million documents.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Clarify users, question types, latency, and the regulatory frame — in the UK that means UK GDPR, the NHS Data Security and Protection Toolkit and data-residency requirements. Everything runs inside their cloud account: ingestion workers that parse and chunk documents with access-control metadata, a vector and keyword index, a model either self-hosted or reached through a private endpoint in the right region, and an API behind their single sign-on. Permissions are filtered at retrieval time, before anything reaches the model. Audit logs record who asked what and which documents were used, with retention agreed with their information-governance team. At 50 million documents, incremental ingestion and re-indexing cost matter as much as query latency. I&#x27;d prove the path with one department&#x27;s documents and an evaluation set clinicians help label, then scale.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q11-build-an-evaluation-harness-for-a-shipment-rerouting-agent-with-a-99-on-time-target">
+<h3 id="q11-build-an-evaluation-harness-for-a-shipment-rerouting-agent-with-a-99-on-time-target">Q11. Build an evaluation harness for a shipment-rerouting agent with a 99% on-time target.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Separate the agent&#x27;s decisions from the business outcome. Build scenarios from historical disruptions with known good reroutes, and grade the end state in a sandbox — was the shipment rerouted, within cost limits, without breaking a constraint — rather than trusting the agent&#x27;s description. Add policy checks that must always pass, repeat each scenario several times because agents vary, and track cost per decision. In production, shadow the agent against planners before letting it act, and watch on-time rate by lane and carrier.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q12-how-would-you-diagnose-high-latency-in-an-llm-pipeline">
+<h3 id="q12-how-would-you-diagnose-high-latency-in-an-llm-pipeline">Q12. How would you diagnose high latency in an LLM pipeline?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Trace one slow request end to end and split the time: network and queueing, retrieval, time to first token, generation, and tool calls. Long prompts raise time to first token; long outputs raise generation time; sequential tool calls add up. Fixes follow the finding — smaller or cached prompts, shorter outputs, streaming, parallel calls, a smaller model for simple requests, or more serving capacity if requests are queueing.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q13-make-an-llm-powered-search-go-from-15-seconds-to-100-milliseconds">
+<h3 id="q13-make-an-llm-powered-search-go-from-15-seconds-to-100-milliseconds">Q13. Make an LLM-powered search go from 1.5 seconds to 100 milliseconds.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;At 100 milliseconds a generative call is probably not on the critical path. I&#x27;d keep retrieval and ranking fast — precomputed embeddings, an approximate-nearest-neighbour index, caching of popular queries — and move generation off the hot path: show results instantly and stream a summary afterwards, or precompute summaries for common queries. I&#x27;d confirm with the customer which part must be 100 milliseconds.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q14-rag-fine-tuning-or-prompting--how-do-you-choose-for-a-customer">
+<h3 id="q14-rag-fine-tuning-or-prompting--how-do-you-choose-for-a-customer">Q14. RAG, fine-tuning or prompting — how do you choose for a customer?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Prompting and examples first, measured on the customer&#x27;s own evaluation set. Retrieval when the knowledge changes or must be cited. Fine-tuning only for stable behaviour or format the prompt cannot deliver, or to move a proven task to a smaller model — and only after the cheaper options have been tested on the same set.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q15-hosted-api-or-self-hosted-open-weight-model-for-an-enterprise-customer">
+<h3 id="q15-hosted-api-or-self-hosted-open-weight-model-for-an-enterprise-customer">Q15. Hosted API or self-hosted open-weight model for an enterprise customer?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Data residency and contractual terms often decide it. Hosted models are stronger and faster to adopt; self-hosting gives control over data and cost at high volume but brings GPUs, patching, monitoring and capacity planning. I&#x27;d compare total cost per successful task, the customer&#x27;s ability to operate it, and the evaluation results of both on their workload.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q16-a-third-party-api-the-customer-depends-on-times-out-intermittently">
+<h3 id="q16-a-third-party-api-the-customer-depends-on-times-out-intermittently">Q16. A third-party API the customer depends on times out intermittently.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Set timeouts, retry with exponential backoff and jitter, and only retry idempotent calls or use idempotency keys. Add a circuit breaker so a failing dependency doesn&#x27;t take everything down, a fallback or queued retry for the user, and alerting with the evidence the supplier will need. Then share the data with the supplier rather than absorbing the problem silently.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q17-its-2-am-and-your-deployment-in-the-customers-environment-is-down">
+<h3 id="q17-its-2-am-and-your-deployment-in-the-customers-environment-is-down">Q17. It&#x27;s 2 a.m. and your deployment in the customer&#x27;s environment is down.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Contain first: restore service — roll back, switch to the fallback, or disable the failing feature — and tell the customer&#x27;s on-call contact what is happening. Preserve logs and traces. Once stable, find the cause, run a blameless post-incident review with the customer, and turn the cause into a test or alert so it can&#x27;t recur silently.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q18-how-do-you-protect-a-customer-facing-agent-from-prompt-injection">
+<h3 id="q18-how-do-you-protect-a-customer-facing-agent-from-prompt-injection">Q18. How do you protect a customer-facing agent from prompt injection?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Assume injected instructions will get in, because filters miss some. Limit what they can achieve: least-privilege tools, no secrets in context, validation of every action outside the model, and approval for anything consequential. In IncidentPilot I went further — the model has no tools at all and only ranks evidence; deterministic rules decide what is recommended.&quot;</p>
+</div></div>
+<h2 id="coding-practice">Coding practice</h2>
+<p>FDE coding is practical rather than puzzle-heavy, often in Python, sometimes extended level by level. Practise these until you can narrate while coding: [1][2]</p>
+<ul>
+<li>A rate limiter with per-user and global limits (token bucket; explain the data structure and concurrency).</li>
+<li>Parse a messy CSV with inconsistent quoting into clean records, with tests for the edge cases.</li>
+<li>Exponential backoff with jitter for a flaky API.</li>
+<li>A streaming consumer that handles backpressure.</li>
+<li>A small RAG pipeline over a folder of documents, justifying the chunking.</li>
+<li>SQL: customers whose return rate exceeded 30% last quarter.</li>
+<li>Reading an unfamiliar 250-line codebase and fixing its bugs: read first, trace the one path that matters, then change it.</li>
+</ul>
+<h2 id="behavioural-and-values">Behavioural and values</h2>
+<div class="qa" data-qa="q19-tell-me-about-a-real-failure">
+<h3 id="q19-tell-me-about-a-real-failure">Q19. Tell me about a real failure.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Earlier in my consulting career I was focused on delivering feature after feature and didn&#x27;t track usage after release. A client that had invested heavily in one feature came back because almost nobody used it. I interviewed the teams and gathered customer feedback: it had been built exactly to specification, but without real users in mind, so people couldn&#x27;t find it or use it meaningfully. I recommended a UX review and redesign. What I changed in myself: I now involve users before building and measure adoption after release. That&#x27;s why the Smart Timesheet went through depot research and a 50-engineer alpha before anything scaled.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q20-tell-me-about-spotting-a-pattern-across-customers-that-changed-how-the-team-worked">
+<h3 id="q20-tell-me-about-spotting-a-pattern-across-customers-that-changed-how-the-team-worked">Q20. Tell me about spotting a pattern across customers that changed how the team worked.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;After the first SaaS client at Natoora, I noticed most of our onboarding pain came from questions we hadn&#x27;t asked before signing. For the second client I created a structured onboarding pack — a 30-question pre-sales questionnaire, a financial health check, a technical requirements form and a capabilities document. The second implementation took about half the elapsed time of the first, though the scopes weren&#x27;t identical, so I present that as an observation rather than proof.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q21-the-most-technically-challenging-thing-youve-owned-end-to-end">
+<h3 id="q21-the-most-technically-challenging-thing-youve-owned-end-to-end">Q21. The most technically challenging thing you&#x27;ve owned end to end.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Use IncidentPilot from the <a href="ai-engineer.html#q33-walk-me-through-a-project-you-built-end-to-end">AI Engineer guide</a>: read-only by design, rules in control, model with no tools, and golden evaluations that inject real failures in CI. Be explicit that it is a personal project and what you would add before running it for a customer.</p>
+</div></div>
+<div class="qa" data-qa="q22-tell-me-about-delivering-bad-news-to-a-customer">
+<h3 id="q22-tell-me-about-delivering-bad-news-to-a-customer">Q22. Tell me about delivering bad news to a customer.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Use the four-week go-live in <a href="../shared/evidence-bank.html#s2-saas-transformation">S2</a>: the honest estimate was six to eight weeks, so you told the client early, showed the impact matrix and agreed which internal screens to defer. Bad news delivered early with options is a negotiation; delivered late, it is a crisis.</p>
+</div></div>
+<div class="qa" data-qa="q23-why-this-company">
+<h3 id="q23-why-this-company">Q23. Why this company?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Name two or three specific, recent facts — a product, a customer story, a published principle — and connect each to something you have done. For AI labs, read their published charter or safety policies first; generic enthusiasm scores poorly. [2][3]</p>
+</div></div>
+<h2 id="credibility-probes">Credibility probes</h2>
+<p>Which code did you personally write, and which did a coding agent or a colleague write? Have you been embedded at a customer site as an engineer? What is the largest dataset you have processed? How was the 90% figure measured? What happened after you handed over? Answer precisely; the <a href="../vacancies/accenture-fde.html#map-existing-stories-without-upgrading-the-claims">Accenture supplement</a> shows how to separate decisions, implementation and review.</p>
+<h2 id="questions-to-ask-the-panel">Questions to ask the panel</h2>
+<p>How long does an FDE typically stay with one customer? How is success measured — deployment, adoption or revenue? How do FDE findings reach the product team? What does the first month look like?</p>
+<h2 id="sources-and-freshness">Sources and freshness</h2>
+<p>Checked 13 October 2026. These describe reported patterns, not confirmed processes.</p>
+<ol>
+<li><a href="https://www.aced.io/blog/forward-deployed-engineer-interview-the-definitive-2026-guide-fde">Forward Deployed Engineer Interview: The Definitive 2026 Guide</a> — Aced (formerly Exponent), with salary data as of May 2026.</li>
+<li><a href="https://www.sundeepteki.org/advice/the-definitive-guide-to-forward-deployed-engineer-interviews-in-2026">The definitive guide to forward deployed engineer interviews in 2026</a> — Sundeep Teki, 15 January 2026.</li>
+<li><a href="https://www.theforwarddeployed.io/interview/method">FDE interview method</a> — The Forward Deployed, reviewed 13 July 2026; the site flags which loop details are its own synthesis.</li>
+<li><a href="https://www.aced.io/guides/palantir-forward-deployed-engineer-interview">Palantir FDE interview guide</a> — Aced.</li>
+</ol>
+<p>Search on X and LinkedIn surfaced several 2026 FDE guides and threads (including posts by Andrew Ng and Priyanka Vergadia on the role), but X pages cannot be opened for verification, so they are not used as sources here.</p></article><footer>Generated from <a href="forward-deployed-engineer.md">forward-deployed-engineer.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

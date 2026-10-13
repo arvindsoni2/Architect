@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Accenture PO playbook — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="vacancies/accenture-product-owner.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="../roles/delivery-lead.html">Delivery Lead</a><a href="../roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="../roles/product-owner.html">Product Owner</a><a href="../roles/product-manager.html">Product Manager</a><a href="../roles/senior-project-manager.html">Senior Project Manager</a><a href="../roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="../roles/ai-engineer.html">AI Engineer</a><a href="../roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="accenture-product-owner.html" aria-current="page">Accenture PO playbook</a><a href="accenture-product-owner-questions.html">Accenture extra Qs</a><a href="accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="accenture-product-owner--interview-playbook">Accenture Product Owner — interview playbook</h1>
+<p><strong>Status:</strong> Owner-reviewed facts · <strong>Last reviewed:</strong> 13 October 2026 · <strong>Role:</strong> Product Owner (Associate Manager), Advanced Technology Centre, Newcastle · <strong>Interview date and format:</strong> not yet confirmed</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#1-the-night-before-page">1. The night-before page</a></li><li><a href="#2-what-the-panel-is-really-testing">2. What the panel is really testing</a></li><li><a href="#3-cost-and-commercial-answers">3. Cost and commercial answers</a></li><li><a href="#4-scenario-method">4. Scenario method</a></li><li><a href="#5-core-questions-with-spoken-answers">5. Core questions with spoken answers</a></li><li><a href="#6-scenario-drills">6. Scenario drills</a></li><li><a href="#7-questions-to-ask-the-panel">7. Questions to ask the panel</a></li><li><a href="#8-logistics-and-preparation-plan">8. Logistics and preparation plan</a></li><li><a href="#appendix--boundaries-that-keep-you-credible">Appendix — boundaries that keep you credible</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>This is the single place to prepare for this interview. It replaces the earlier supplement and the 32-question bank. Every figure comes from the <a href="../shared/evidence-bank.html">evidence bank</a>, and the owner confirmed the portfolio narratives on 13 October 2026. Depth questions, quick-fire definitions and the research register are in the <a href="accenture-product-owner-questions.html">extra questions page</a>.</p>
+<h2 id="1-the-night-before-page">1. The night-before page</h2>
+<p><strong>Your thesis (say it in some form in the first two minutes):</strong> “I turn operational problems into products people actually use, and I prove the value with numbers. I&#x27;ve done it as a consultant Product Owner for a regulated utility, and as a product delivery lead launching a SaaS product and an AI rollout. That is the mix this role describes: client strategy, backlog, multidisciplinary delivery, rollout and benefits.”</p>
+<p><strong>Seven stories cover the whole advert. Know the hook and the number for each.</strong></p>
+<div class="table-wrap"><table><thead><tr><th>#</th><th>Story</th><th>Hook</th><th>Number to say</th></tr></thead><tbody>
+<tr><td>S3</td><td>Smart Timesheet, Northern Powergrid (TCS PO, 2019–Mar 2020)</td><td>Paper timesheets → field app; I led it from discovery to handover</td><td>£500K a year; 2,000+ engineers; 50% fewer office visits</td></tr>
+<tr><td>S2</td><td>SaaS, Natoora (2024–25)</td><td>6–8 weeks of work, 4 weeks available; I chose what shipped</td><td>£29K profit in 5 months; Client 2 22% cheaper, half the time</td></tr>
+<tr><td>S1</td><td>GenAI order automation, Natoora (2025)</td><td>2–3 minutes per emailed order, typed by hand</td><td>~90% less manual effort, London and Paris</td></tr>
+<tr><td>S7</td><td>Agile operating model and Jira, Natoora</td><td>Proved the change with a free pilot before asking for approval</td><td>Time-to-market 5+ weeks → under 3</td></tr>
+<tr><td>B1</td><td>Conflict: one senior engineer, two launches</td><td>Neither side would move; I made the dependency visible</td><td>Agreed sequence; GenAI first</td></tr>
+<tr><td>B2</td><td>Setback: a feature nobody used</td><td>Built to spec, not for users</td><td>Lesson: measure adoption after release</td></tr>
+<tr><td>B3</td><td>Mentoring</td><td>Games and coaching, not lectures</td><td>20+ associates; 5 aspiring PMs</td></tr>
+</tbody></table></div>
+<p><strong>Three things to sharpen, and the fix:</strong></p>
+<ul>
+<li><strong>Cost analysis.</strong> Fix: for every story, know cost, benefit and how the benefit was measured. Use <a href="#3-cost-and-commercial-answers">section 3</a>.</li>
+<li><strong>Scenario questions.</strong> Fix: one fixed structure, practised aloud. Use <a href="#4-scenario-method">section 4</a>.</li>
+<li><strong>Decisions, not activity.</strong> Fix: every story contains the sentence “I decided…” or “I recommended… and X approved it.”</li>
+</ul>
+<p><strong>Delivery rules:</strong> answer first, then evidence. Behavioural answers 90–120 seconds; scenarios 2–3 minutes; then stop and let them probe. Name one framework per answer when it is genuinely what you used (Kotter, MoSCoW, impact matrix, WSJF, Service Standard).</p>
+<h2 id="2-what-the-panel-is-really-testing">2. What the panel is really testing</h2>
+<div class="table-wrap"><table><thead><tr><th>Advert requirement</th><th>They are asking</th><th>Your evidence</th></tr></thead><tbody>
+<tr><td>Vision, roadmap, strategy with stakeholders</td><td>Can you set direction, not just take orders?</td><td>S3 discovery → roadmap; S2 opportunity and phased plan</td></tr>
+<tr><td>Proxy PO for the client</td><td>Will you protect client priorities without overstepping?</td><td>Q13 operating model; TCS client work</td></tr>
+<tr><td>Backlog ownership and prioritisation</td><td>Do you make real trade-offs?</td><td>S2 impact matrix; B1 sequencing</td></tr>
+<tr><td>BAs and UCD, research into decisions</td><td>Do you use evidence from users?</td><td>S3 field research; B2 lesson</td></tr>
+<tr><td>Ceremonies, risks, dependencies</td><td>Can you run a delivery rhythm?</td><td>S7; B1 dependency; S2 70% capacity buffer</td></tr>
+<tr><td>Rollout and scaling</td><td>Do you plan beyond “dev complete”?</td><td>S3 alpha → beta → depot playbook; S2 Client 1 → 2</td></tr>
+<tr><td>Benefits measurement</td><td>Can you prove value in money?</td><td>Section 3, every story</td></tr>
+<tr><td>Mentoring POs and BAs (Associate Manager)</td><td>Will you grow others?</td><td>B3</td></tr>
+<tr><td>Compliance and security</td><td>Do you respect regulated delivery?</td><td>Nationwide (S5), utilities (S3, S4)</td></tr>
+<tr><td>Set yourself apart: PSPO, cloud, GDS, AI, UX</td><td>Differentiators</td><td>PSPO I; AWS AIF-C01 (SAA in progress); S3 lifecycle; S1; B2</td></tr>
+</tbody></table></div>
+<h2 id="3-cost-and-commercial-answers">3. Cost and commercial answers</h2>
+<p>Panels for consulting roles want proof that you think in money. A Product Owner&#x27;s commercial job is to decide where the client&#x27;s budget goes and to show what it returned. Learn this structure and use it in any “business case”, “cost” or “benefits” question.</p>
+<p><strong>The five-line cost case (CBMR):</strong></p>
+<ol>
+<li><strong>Cost:</strong> what it took — people, time, platform, and the opportunity cost of what we did not build.</li>
+<li><strong>Benefit:</strong> what changes for the business — hours released, cost avoided, revenue, risk reduced.</li>
+<li><strong>Measure:</strong> baseline, the same measure after release, the period, and who owns the number.</li>
+<li><strong>Risk:</strong> what could stop the benefit landing — adoption, data quality, support load.</li>
+<li><strong>Decision:</strong> go, phase, pause or stop, and who approves.</li>
+</ol>
+<p><strong>Your numbers, ready to use:</strong></p>
+<div class="table-wrap"><table><thead><tr><th>Story</th><th>Cost side</th><th>Benefit side</th><th>How it was measured</th></tr></thead><tbody>
+<tr><td>S2 SaaS</td><td>£9K to implement Client 1, £7K for Client 2; ~70% of a 9-person team</td><td>£28K setup fee + £1.6K a month; £29K profit in first 5 months</td><td>Per-client implementation cost; profit over the 5 months after rollout. Recurring revenue funded cloud and support, so it is not pure margin</td></tr>
+<tr><td>S3 Smart Timesheet</td><td>Low-cost OutSystems platform on AWS, chosen to keep cost down; integration to Oracle HCM/CRM</td><td>£500K annual savings from paper processing, fewer office visits and faster payroll</td><td>Office visits halved; 2–3 day payroll lag removed; near-zero paper within 6 months</td></tr>
+<tr><td>S1 GenAI</td><td>Model and integration build; human handling of exceptions</td><td>~90% lower manual effort against 2–3 minutes per order</td><td>Released time, not cash: say “capacity released” unless headcount or overtime actually changed</td></tr>
+<tr><td>S4 Infrastructure</td><td>120+ servers, 30+ applications, distributed teams</td><td>£400K annual savings</td><td>Avoided support and licence costs; it is a savings figure, not the programme budget</td></tr>
+<tr><td>S7 Agile</td><td>A free-tier pilot first, so no spend before evidence</td><td>Time-to-market 5+ weeks → under 3</td><td>Elapsed time from start of work to release</td></tr>
+</tbody></table></div>
+<p><strong>How to build a benefit number live (illustrative arithmetic, not a historical figure):</strong> “If a team processes 300 orders a day at 2.5 minutes each, that&#x27;s 12.5 hours a day. A 90% reduction releases about 11 hours a day — roughly one and a half full-time people. I&#x27;d then ask finance whether that capacity is redeployed or removed, because only the second is a cash saving.” Practise this pattern with any numbers the panel gives you.</p>
+<p><strong>Consulting commercials a PO touches.</strong> You do not need to have owned an account P&amp;L. You need to show you understand how backlog decisions affect the contract.</p>
+<div class="table-wrap"><table><thead><tr><th>Term</th><th>What it means</th><th>What you do as PO</th></tr></thead><tbody>
+<tr><td>Statement of Work (SOW)</td><td>Agreed scope, outcomes and price</td><td>Keep the backlog traceable to the SOW outcomes</td></tr>
+<tr><td>Change request (CR)</td><td>Formal change to scope with a price</td><td>Spot when a backlog change is really new scope; raise it before the work starts</td></tr>
+<tr><td>Time and materials vs fixed price</td><td>Client pays for effort vs for a defined result</td><td>On fixed price, scope creep costs Accenture; on T&amp;M, it costs the client. Make either visible</td></tr>
+<tr><td>Cost of delay</td><td>Value lost per week a feature is late</td><td>Use it to justify order; SAFe&#x27;s WSJF divides cost of delay by job size</td></tr>
+<tr><td>Utilisation and margin</td><td>Billable time; revenue minus delivery cost</td><td>Not the PO&#x27;s number, but a stable, well-ordered backlog protects both</td></tr>
+</tbody></table></div>
+<p><strong>If they ask “Have you managed a P&amp;L?”</strong></p>
+<blockquote>“Not an account P&amp;L with margin targets — I&#x27;d be learning Accenture&#x27;s commercial cadence from the account lead. What I have owned are the product-level money decisions. On the SaaS product, Client 1 cost £9K to implement and Client 2 £7K, because I turned what we learned into an onboarding pack. The product made £29K profit in its first five months. On Smart Timesheet, we chose a low-cost platform and the service saved around £500K a year. So I&#x27;m used to deciding where the money goes and proving what it returned. In a consulting setting, I&#x27;d add change-request discipline: if a backlog change is really new scope, I raise it before the team starts the work.”</blockquote>
+<h2 id="4-scenario-method">4. Scenario method</h2>
+<p>Use the same five steps for every “what would you do if…” question. Say the steps out loud. The panel is scoring structure as much as content.</p>
+<ol>
+<li><strong>Clarify (20–30 seconds):</strong> restate the problem; ask or state two assumptions — the goal, the deadline, who decides.</li>
+<li><strong>Options (30 seconds):</strong> give three real options with their trade-offs. Doing nothing is often one of them.</li>
+<li><strong>Recommend (30 seconds):</strong> pick one and say why, linked to the goal. Say who approves it if it is above your authority.</li>
+<li><strong>Execute (30–45 seconds):</strong> your first concrete steps, in order, with a time box.</li>
+<li><strong>Measure (15–30 seconds):</strong> how you will know it worked, and when you will review it.</li>
+</ol>
+<p>Close by linking it to a real story: “I did something similar at Natoora when…”. That turns a hypothetical into evidence. Six practice scenarios with model answers are in <a href="#6-scenario-drills">section 6</a>.</p>
+<h2 id="5-core-questions-with-spoken-answers">5. Core questions with spoken answers</h2>
+<p>These are spoken answers in your own voice. Rehearse them aloud until you can say them without reading, then change the wording so it sounds like you. The facts must stay as written.</p>
+<h3 id="q1-tell-me-about-yourself">Q1 Tell me about yourself</h3>
+<p><strong>Structure:</strong> Present → Past → Future. 90 seconds.</p>
+<blockquote>“I&#x27;m a product and delivery leader with over 20 years in technology, mostly in consulting. I turn operational problems into products people actually use, and I prove the value with numbers.”</blockquote>
+<blockquote>“At TCS I was the Product Owner on Northern Powergrid&#x27;s Smart Timesheet product. Two thousand field engineers were filling in paper timesheets. I led it from field research through to rollout and handover, and it saved around £500,000 a year. Before that I delivered regulated banking programmes at Nationwide, and afterwards I led an infrastructure modernisation for the same utility client.”</blockquote>
+<blockquote>“Most recently at Natoora I took an internal warehouse system to market as a SaaS product, which made £29,000 profit in its first five months. I also led the rollout of a GenAI order-processing tool in London and Paris that cut manual effort by about 90%.”</blockquote>
+<blockquote>“I&#x27;m PSPO and PMP certified, and earlier this year I passed AWS AI Practitioner. This role brings together client consulting, product ownership and AI-enabled delivery, which is exactly where I&#x27;ve spent my career, so I&#x27;d like to do it at Accenture.”</blockquote>
+<p><strong>Probe — “Are you still at Natoora?”</strong> → see Q2.</p>
+<h3 id="q2-why-accenture-why-this-role-why-now">Q2 Why Accenture, why this role, why now?</h3>
+<p><strong>Structure:</strong> Company → Role → Fit → Now. 90 seconds.</p>
+<blockquote>“Company: I spent eleven years delivering for clients through TCS, and I do my best work when I&#x27;m solving different clients&#x27; problems with a strong team behind me. The Advanced Technology Centre does that for public and private clients from Newcastle, where I live.”</blockquote>
+<blockquote>“Role: this is a Product Owner role that covers the whole lifecycle — strategy with the client, the backlog, user research with BAs and UCD, rollout and measuring benefits. It also includes mentoring other POs and BAs, which I&#x27;ve done informally for years and would like to do formally.”</blockquote>
+<blockquote>“Now: my role at Natoora was made redundant in March. I&#x27;ve used the time to sharpen my skills — I passed AWS AI Practitioner and I&#x27;m working towards Solutions Architect — and I&#x27;ve been selective, because I want a long-term role where client value is measured. Accenture&#x27;s value of Client Value Creation is how I already work: on Smart Timesheet the success measure was money saved and engineers kept on site, not features shipped.”</blockquote>
+<p><strong>Probe — “You interviewed with us for Technology Delivery Lead.”</strong></p>
+<blockquote>“Yes. That process was useful. It showed me where to go deeper — commercial analysis and scenario thinking — and I&#x27;ve worked on both since. I also realised my strongest work is product ownership — deciding what gets built and proving its value — so this role is a better fit than the delivery lead role.”</blockquote>
+<p>Say this calmly and briefly. Showing that you learn from a process is a strength, not a weakness. Keep any specific feedback you received in your private notes, not in this public guide.</p>
+<h3 id="q3-your-po-title-covers-less-than-two-years-why-are-you-a-product-owner">Q3 Your PO title covers less than two years. Why are you a Product Owner?</h3>
+<p><strong>Structure:</strong> Point → Evidence → Link. 60–75 seconds.</p>
+<blockquote>“My formal title was Product Owner at Northern Powergrid, but I&#x27;ve done product ownership for much longer than that. At Natoora I owned the SaaS product end to end: I spotted the opportunity, ran client discovery, decided what went into the first release and built the onboarding process. On the GenAI tool, I ran the rollout from stakeholder analysis to go-live. Before that, years of client delivery taught me how products succeed or fail in operation.”</blockquote>
+<blockquote>“The test of a PO is decisions, and I can show you three: what we shipped in four weeks for the first SaaS client, how we sequenced two launches competing for one engineer, and how field research changed the Smart Timesheet design. I&#x27;m also PSPO certified, so I know the accountability is for value and the backlog, not just requirements.”</blockquote>
+<h3 id="q4-tell-us-about-a-product-you-owned-end-to-end">Q4 Tell us about a product you owned end to end</h3>
+<p><strong>Structure:</strong> STAR. Use S3. About 2 minutes.</p>
+<blockquote>“Situation: at Northern Powergrid, more than 2,000 field engineers recorded their time on paper. They drove back to depots to hand in forms, payroll keyed them in two to three days later, and errors caused pay complaints.”</blockquote>
+<blockquote>“Task: as the TCS Product Owner, I owned the product from discovery to handover to support.”</blockquote>
+<blockquote>“Action: first I went out to depots and watched engineers work. That changed the design — they worked in the rain, wearing gloves, on small screens, so the interface had to be simple and forgiving. I ran workshops with field operations, payroll, IT and union representatives. The union was worried about surveillance, so I positioned the tool as saving engineers a trip to the office, not tracking them. We chose OutSystems on AWS, a low-cost platform, with a .NET layer pulling employee data from Oracle HCM and CRM. Then I insisted on proving it small: an alpha at one depot with 50 volunteers for four weeks, a beta at three depots with 200 engineers, and then a depot-by-depot rollout over six months. Each depot followed the same playbook — communication, on-site training, two weeks of hypercare, then handover. Respected engineers acted as peer champions.”</blockquote>
+<blockquote>“Result: the service grew to over 3,000 users, including supervisors and managers. Office visits for admin fell by half, the payroll lag disappeared, paper timesheets were almost gone within six months, and the savings were around £500,000 a year. My lesson was that field research beats a requirements document.”</blockquote>
+<p><strong>Probes and short answers:</strong></p>
+<ul>
+<li class="qa-li"><strong>What did you defer?</strong> <span class="qa-ans">Choose a real example before the interview (for example, a manager dashboard feature that came after core submission and approval).</span></li>
+<li class="qa-li"><strong>How was £500K calculated?</strong> <span class="qa-ans">Eliminated paper processing, fewer office visits and faster payroll. Know which of those carried most of the value.</span></li>
+<li class="qa-li"><strong>Were you responsible for the architecture?</strong> <span class="qa-ans">“No — I owned the product decisions and the rollout; engineering owned the design. I made sure the integration risks were in the backlog early.”</span></li>
+</ul>
+<h3 id="q5-how-do-you-prioritise-when-you-cant-deliver-everything">Q5 How do you prioritise when you can&#x27;t deliver everything?</h3>
+<p><strong>Structure:</strong> state your principle, then prove it with S2. 90–120 seconds.</p>
+<blockquote>“I prioritise by the outcome we have to hit, then by evidence: user impact, mandatory obligations, cost of delay, dependencies and effort. A scoring model helps the conversation, but I&#x27;m accountable for the call.”</blockquote>
+<blockquote>“At Natoora, our first SaaS client expected go-live in four weeks. The team estimated six to eight weeks of white-labelling. I built an impact matrix scoring each screen on how visible it was to users, how often it was used and how complex it was. We delivered everything the client&#x27;s customers would see — order screens, email templates, login, reports and app branding — and deferred the internal admin screens. We went live on schedule, with fewer than ten issues in a 30-day pilot and no severity-one incidents. Because I planned on 70% of the team&#x27;s time rather than 100%, Natoora&#x27;s core work didn&#x27;t suffer either.”</blockquote>
+<blockquote>“The deferred admin screens were the right sacrifice: users never saw them, and the client&#x27;s staff could live without them for a few weeks.”</blockquote>
+<h3 id="q6-tell-me-about-a-conflict-between-stakeholders">Q6 Tell me about a conflict between stakeholders</h3>
+<p><strong>Structure:</strong> STAR with the decision clear. Use B1. About 2 minutes.</p>
+<blockquote>“Situation: at Natoora we were implementing two things at once — the GenAI order automation for Customer Support and a multiple-basket feature for Sales. Partway through, both turned out to need the same senior engineer, which neither plan had foreseen. If I split that person, both launches would slip.”</blockquote>
+<blockquote>“Task: I had to get an agreed sequence without damaging either relationship.”</blockquote>
+<blockquote>“Action: I met each team separately first and offered options — delay, a smaller scope, or a phased rollout. Neither would move. So I ran a joint session. Beforehand I sent everyone the dependency and every option, so nobody was surprised. In the room I tied the options to the company&#x27;s goals: the GenAI tool was the higher strategic priority, and the multiple-basket go-to-market strategy wasn&#x27;t finalised yet, so a short delay of two to three weeks cost very little. I also invited the CTO, as the escalation route in case we couldn&#x27;t agree.”</blockquote>
+<blockquote>“Result: we agreed to finish the GenAI rollout first and then multiple basket, without needing the CTO to decide for us. Because everyone had seen the options in advance, the meeting ended positively. My lesson: make the constraint visible and bring options, not problems.”</blockquote>
+<p><strong>Probe — “What if they had still refused?”</strong> “Then the CTO decides, and my job is to make that decision easy: two or three costed options and a recommendation.”</p>
+<h3 id="q7-how-do-you-work-with-bas-and-ucd-and-when-did-research-change-your-mind">Q7 How do you work with BAs and UCD, and when did research change your mind?</h3>
+<blockquote>“I treat BAs and designers as partners in discovery, not people I hand requirements to. The BA helps us understand the process and the rules; UCD tells us what users actually do and need. My job is to turn that into decisions and an ordered backlog.”</blockquote>
+<blockquote>“On Smart Timesheet, watching engineers in the field shaped the whole interface. They were outdoors, in gloves, on small screens, so it had to be simple and forgiving. The union workshops changed the messaging too: we framed it as removing a trip to the office, not monitoring people. Those two research insights drove adoption more than any feature did.”</blockquote>
+<blockquote>“I also learned the opposite lesson early in my career, when a client feature was built to specification without users in mind and nobody used it. Since then, I won&#x27;t commit to a big feature without user evidence.”</blockquote>
+<h3 id="q8-how-do-you-measure-business-benefits">Q8 How do you measure business benefits?</h3>
+<p><strong>Structure:</strong> CBMR from section 3, with S2 or S3. 90 seconds.</p>
+<blockquote>“I agree the measure before we build. For each outcome I want a baseline, a target, the period, and who owns the number after go-live. Then I separate three things that people often mix up: delivered features, adoption, and realised benefit.”</blockquote>
+<blockquote>“On the SaaS product we tracked it in money: £28,000 in setup fees and £1,600 a month recurring, giving £29,000 profit in the first five months. We also tracked the cost to implement, which fell from £9,000 for Client 1 to £7,000 for Client 2 because I turned our learning into a standard onboarding pack.”</blockquote>
+<blockquote>“On the GenAI tool the benefit was time: manual entry used to take two to three minutes per order, and we cut manual effort by about 90%. I&#x27;m careful to call that capacity released, not cash saved, unless the business actually changes staffing or overtime.”</blockquote>
+<h3 id="q9-how-have-you-used-ai-to-deliver-value">Q9 How have you used AI to deliver value?</h3>
+<p><strong>Structure:</strong> STAR. Use S1. About 2 minutes.</p>
+<blockquote>“Situation: Natoora&#x27;s customer support team typed every emailed order into the system by hand — two to three minutes each, with order formats varying between procurement systems.”</blockquote>
+<blockquote>“Task: I led the operational rollout of an AI-assisted email-to-order process — stakeholders, adoption and feedback — working alongside the developer who built it.”</blockquote>
+<blockquote>“Action: in stakeholder analysis, I identified Customer Support as the group whose work would change most, so I brought them into the solution design early. That made them champions rather than critics. The CTO chose to limit the first rollout to London and Paris, which suited a pilot-first approach. London&#x27;s orders came through Marketman and Paris&#x27;s through Lightspeed, so we handled two formats. The tool used GPT-4o-mini to extract the order, then validation checked customers and products, and anything it couldn&#x27;t complete went to a person.”</blockquote>
+<blockquote>“Result: manual effort fell by about 90%. I&#x27;d stress the human-in-the-loop design: the goal was not zero people but people only on the exceptions.”</blockquote>
+<p><strong>Probes:</strong></p>
+<ul>
+<li class="qa-li"><strong>How did you stop wrong orders?</strong> <span class="qa-ans">Validation against customer and product data, plus human handling of exceptions.</span></li>
+<li class="qa-li"><strong>Is 90% the model&#x27;s accuracy?</strong> <span class="qa-ans">“No. It&#x27;s the reduction in manual effort. Some orders still need a person.”</span></li>
+<li class="qa-li"><strong>What about prompt injection or bad data?</strong> <span class="qa-ans">See the AI questions on the <a href="accenture-product-owner-questions.html">extra questions page</a>.</span></li>
+</ul>
+<h3 id="q10-how-do-you-drive-continuous-improvement">Q10 How do you drive continuous improvement?</h3>
+<p><strong>Structure:</strong> STAR. Use S7. 90–120 seconds.</p>
+<blockquote>“When I joined Natoora, work was tracked in Trello, with no delivery metrics, and releases took five weeks or more. The CTO and COO knew delivery was unpredictable, but I was new and had no track record.”</blockquote>
+<blockquote>“So I didn&#x27;t ask for a big change. I compared four tools on workflow, reporting, integration and cost, then asked to pilot one initiative on Jira&#x27;s free tier — no cost and fully reversible. I set the workflows up around how the team actually worked, wrote a short guide and ran a workshop. After the pilot I went back with the team&#x27;s feedback and a cost-benefit case, and they approved it.”</blockquote>
+<blockquote>“From there I built the operating model: sprints, metrics, CI/CD, feature flags and automated deployments. Time-to-market went from five-plus weeks to under three. The approach is Kotter&#x27;s change model in practice — create urgency with evidence, then score early wins.”</blockquote>
+<h3 id="q11-tell-me-about-a-failure">Q11 Tell me about a failure</h3>
+<p><strong>Structure:</strong> STAR plus lesson. Use B2. 90 seconds.</p>
+<blockquote>“Early in my consulting career I was so focused on delivery that I didn&#x27;t track whether features were used after release. One client had invested a lot in a feature that got very little traction, and they asked us to find out why.”</blockquote>
+<blockquote>“I was given the investigation. I spoke to the teams involved and gathered feedback from customers. The cause was uncomfortable: we&#x27;d built exactly to specification, but nobody had thought about the real users, so they couldn&#x27;t find the feature or use it meaningfully. I presented that honestly to the client and recommended a UX expert review the design for usability.”</blockquote>
+<blockquote>“It changed how I work. Now I involve users before we build and I measure adoption after we release. On Smart Timesheet, that&#x27;s why I insisted on field research and an alpha with real engineers before scaling.”</blockquote>
+<p><strong>Backup if they ask for a people or leadership mistake:</strong> use B4 from the <a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">evidence bank</a> — rolling out Scrum before winning over a respected senior engineer.</p>
+<h3 id="q12-how-have-you-mentored-product-owners-or-bas">Q12 How have you mentored Product Owners or BAs?</h3>
+<p><strong>Structure:</strong> scale first, then one specific example. 90 seconds.</p>
+<blockquote>“I&#x27;ve mentored more than 20 associates in Agile ways of working and coached five aspiring project managers into doing the job well. I use games and hands-on techniques rather than lectures, because people remember what they&#x27;ve experienced.”</blockquote>
+<blockquote>“Insert one example here: who the person was, what they found hard, what you did together over several weeks, and what they then did on their own.”</blockquote>
+<blockquote>“At Natoora I also coached engineers in test-first development, pairing and DevOps practices. In this role I&#x27;d mentor POs and BAs the same way: pair on real backlog decisions, let them lead the next one, and give specific feedback.”</blockquote>
+<p><strong>Before the interview:</strong> fill in the named-role example. Without it, this answer sounds generic. It matters because the advert lists mentoring as a key requirement.</p>
+<h3 id="q13-how-would-you-act-as-a-proxy-product-owner-for-a-client">Q13 How would you act as a proxy Product Owner for a client?</h3>
+<p><strong>Structure:</strong> Point → method → example. 90 seconds.</p>
+<blockquote>“As a proxy, I represent the client&#x27;s priorities, but the client still owns the product. So in the first week I&#x27;d agree three things with the client PO. One: the product goal and how we measure it. Two: which decisions I can make day to day, like ordering within an agreed release. Three: which ones go back to them — scope changes, anything with cost or contract impact, and policy or risk decisions.”</blockquote>
+<blockquote>“I&#x27;d keep the backlog and a decision log open to them, and review priorities together each sprint so there are no surprises. When stakeholders conflict, I bring options and a recommendation, and the client decides anything above my authority. If a change is really new scope, I flag it as a change request before the team starts the work.”</blockquote>
+<blockquote>“It&#x27;s how I worked as a TCS PO on Northern Powergrid: the backlog was mine to order, and before bigger decisions I brought field operations, payroll, IT and union representatives together in workshops so the client side was aligned.”</blockquote>
+<h3 id="q14-what-do-you-know-about-gds-and-how-would-you-apply-it">Q14 What do you know about GDS, and how would you apply it?</h3>
+<blockquote>“The GDS Service Standard has 14 points. For a PO, the important ones are understanding users and their problems, solving the whole problem, making the service simple to use and accessible to everyone, iterating frequently, and defining what success looks like and publishing performance data. Delivery moves through discovery, alpha, beta and live, with assessments between phases.”</blockquote>
+<blockquote>“I haven&#x27;t led a formal GDS assessment, but I&#x27;ve worked the same way. On Smart Timesheet we did field research with real users, ran an alpha at one depot, a beta at three, then rolled out depot by depot. Thinking about a wide, varied workforce made us design for inclusion from the start.”</blockquote>
+<blockquote>“On a public-sector project, I&#x27;d also make sure accessibility to WCAG 2.2 AA is in the Definition of Done, not a final test phase, and track the core measures: completion rate, user satisfaction, cost per transaction and digital take-up.”</blockquote>
+<h3 id="q15-how-do-you-plan-rollout-and-scaling">Q15 How do you plan rollout and scaling?</h3>
+<blockquote>“I prove it small, write down what worked, then repeat it. On Smart Timesheet the alpha at one depot gave us a playbook — communication, on-site training, two weeks of hypercare, then handover to support — and we ran that at every depot over six months.”</blockquote>
+<blockquote>“On the SaaS product I did the same across clients. After Client 1, I created a structured onboarding pack: a 30-question pre-sales questionnaire, a financial health check, a technical requirements form and a capabilities document. Client 2 took two months instead of four and cost 22% less to implement, with fewer than five issues at launch.”</blockquote>
+<blockquote>“Scaling is only done when support can run it, so handover to the support team is part of the plan, not an afterthought.”</blockquote>
+<h2 id="6-scenario-drills">6. Scenario drills</h2>
+<p>These are practice cases, not events from your history. Answer each with the five steps from <a href="#4-scenario-method">section 4</a>, then link to a real story.</p>
+<p><strong>SC1 — The client PO is unavailable and two stakeholders disagree on launch scope.</strong></p>
+<ul>
+<li><strong>Clarify:</strong> what is the launch date for, who has the authority, and what is in the contract?</li>
+<li><strong>Options:</strong> wait for the client PO; decide alone; or prepare a recommendation and keep working on what both sides agree on.</li>
+<li><strong>Recommend:</strong> the third. Continue reversible, agreed work; send the client PO a one-page decision note with two options and my recommendation; set a deadline for their decision.</li>
+<li><strong>Execute:</strong> today, the decision note and a call with both stakeholders; tomorrow, escalate through the account lead if there is still no decision.</li>
+<li><strong>Measure:</strong> decision made by the deadline; no rework. Agree a named deputy decision-maker so it doesn&#x27;t happen again.</li>
+<li><strong>Link:</strong> B1 — options shared in advance, escalation route ready.</li>
+</ul>
+<p><strong>SC2 — A senior stakeholder demands a new feature halfway through a sprint.</strong></p>
+<ul>
+<li><strong>Clarify:</strong> is it a legal or contractual obligation, what happens if it waits, and does it threaten the sprint goal?</li>
+<li><strong>Options:</strong> put it at the top of the next sprint; swap it for work of equal size if the team agrees and the goal survives; or cancel the sprint if the goal is now obsolete (a PO decision in Scrum).</li>
+<li><strong>Recommend:</strong> usually the next sprint, with the cost of delay made visible. If it is genuinely urgent, swap it in with the developers&#x27; agreement.</li>
+<li><strong>Execute:</strong> talk to the stakeholder the same day. Show what would be displaced.</li>
+<li><strong>Measure:</strong> the sprint goal is still met; the stakeholder knows the delivery date.</li>
+<li><strong>Trap:</strong> quietly adding the work, or refusing all change because “the sprint has started”.</li>
+</ul>
+<p><strong>SC3 — A service launched on time, but adoption is low.</strong></p>
+<ul>
+<li><strong>Clarify:</strong> compare with the baseline; check which users are dropping out and where in the journey.</li>
+<li><strong>Options:</strong> fix the main barrier; add assisted-digital support; or build the new feature the client is asking for.</li>
+<li><strong>Recommend:</strong> find and fix the main barrier first, using analytics plus research by UCD and the BA with real users.</li>
+<li><strong>Execute:</strong> a two-week investigation, then a small fix released and tested.</li>
+<li><strong>Measure:</strong> completion rate and support contacts against the baseline after four weeks.</li>
+<li><strong>Link:</strong> B2 — the feature nobody used.</li>
+</ul>
+<p><strong>SC4 — An AI pilot saves time but sometimes makes serious mistakes. The sponsor wants to scale it.</strong></p>
+<ul>
+<li><strong>Clarify:</strong> how often does it fail, how serious is each failure, and how much time does fixing it take?</li>
+<li><strong>Options:</strong> scale now; scale only the low-risk cases; or pause until validation improves.</li>
+<li><strong>Recommend:</strong> scale the low-risk cases with a human checking anything consequential. Agree release criteria with operations and security.</li>
+<li><strong>Execute:</strong> add validation rules and an exception queue with a named owner; monitor weekly.</li>
+<li><strong>Measure:</strong> net time saved after review effort, error severity and exception volume.</li>
+<li><strong>Link:</strong> S1 — human-in-the-loop, pilot in two regions before expanding.</li>
+</ul>
+<p><strong>SC5 — The client cuts the budget by 25% mid-programme. (This tests cost thinking.)</strong></p>
+<ul>
+<li><strong>Clarify:</strong> is the end date fixed, which outcomes matter most, and what is already contracted?</li>
+<li><strong>Options:</strong> cut scope; slow the team down; or change the team mix.</li>
+<li><strong>Recommend:</strong> protect the highest-value outcome and cut low-value scope. Re-order the backlog by cost of delay and show the client the value each option keeps.</li>
+<li><strong>Execute:</strong> within a week, give the client a revised roadmap with two options and their benefit impact; agree the change formally.</li>
+<li><strong>Measure:</strong> the core benefit is still delivered; spend is within the new budget.</li>
+<li><strong>Link:</strong> S2 — four weeks for six to eight weeks of work; deferred internal screens.</li>
+</ul>
+<p><strong>SC6 — You inherit a 400-item backlog, the team is six weeks behind and stakeholders are frustrated.</strong></p>
+<ul>
+<li><strong>Clarify:</strong> what is the product goal, what was promised, and why is the team behind?</li>
+<li><strong>Options:</strong> work harder through the list; re-plan the full scope; or reset around a smaller, credible goal.</li>
+<li><strong>Recommend:</strong> reset. In week 1, listen to the team and stakeholders. In week 2, agree the product goal and the top 20 items, archive the rest visibly, and re-baseline the date honestly with the client.</li>
+<li><strong>Execute:</strong> weekly stakeholder review; a Definition of Ready for new items.</li>
+<li><strong>Measure:</strong> sprint goals met for three sprints in a row; stakeholder confidence restored.</li>
+<li><strong>Link:</strong> S7 — Natoora operating model.</li>
+</ul>
+<h2 id="7-questions-to-ask-the-panel">7. Questions to ask the panel</h2>
+<ol>
+<li>Is this role usually the client&#x27;s accountable PO or a proxy, and how are decisions split with the client?</li>
+<li>What kind of clients and service phases would I most likely join first?</li>
+<li>How do BAs and UCD work with POs here, and what does mentoring look like at Associate Manager level?</li>
+<li>Who owns benefits measurement after go-live — Accenture, the client, or both?</li>
+<li>What would a great first six months look like in this role?</li>
+</ol>
+<h2 id="8-logistics-and-preparation-plan">8. Logistics and preparation plan</h2>
+<p><strong>Confirm with the recruiter:</strong> number of stages, panel members, whether there is a case study or presentation, and the length of each stage. The advert requires at least three office days a week, travel to client sites and willingness to go through security clearance, which needs five or more years of UK address history at application. Handle any eligibility question directly with the recruiter.</p>
+<p><strong>Countdown plan (start from the confirmed interview date):</strong></p>
+<ol>
+<li><strong>Day −7:</strong> learn the night-before page; record Q1 and Q2 and listen back.</li>
+<li><strong>Day −6:</strong> Q4, Q5 and Q15 (product, prioritisation, rollout). Prepare the deferred-feature example for Q4.</li>
+<li><strong>Day −5:</strong> section 3 — say each cost case aloud; practise the illustrative arithmetic with new numbers.</li>
+<li><strong>Day −4:</strong> scenarios SC1–SC3 aloud with a timer; keep each under three minutes.</li>
+<li><strong>Day −3:</strong> scenarios SC4–SC6; Q9 and Q14.</li>
+<li><strong>Day −2:</strong> Q6, Q10, Q11 and Q12. Write the Q12 mentoring example.</li>
+<li><strong>Day −1:</strong> mock interview with probes; reread the night-before page only.</li>
+</ol>
+<h2 id="appendix--boundaries-that-keep-you-credible">Appendix — boundaries that keep you credible</h2>
+<p>Say these facts plainly and confidently. Avoid only these overstatements:</p>
+<ul>
+<li>90% is reduction in manual effort, not model accuracy.</li>
+<li>The CTO set the London and Paris scope; you led the rollout within it.</li>
+<li>£400K at Northern Powergrid is annual savings, not the programme budget.</li>
+<li>Natoora ended in March 2026 through redundancy; don&#x27;t describe it as current.</li>
+<li>Smart Timesheet followed alpha → beta → rollout principles; it was not a formal GDS assessment.</li>
+<li>You have not owned an account P&amp;L; you have owned product-level cost and benefit decisions.</li>
+</ul>
+<p><strong>Sources:</strong> owner confirmations of 13 October 2026; <a href="https://arvind-portfolio-iota.vercel.app/product-owner">portfolio case studies</a>; <a href="https://scrumguides.org/scrum-guide.html">Scrum Guide 2020</a> (still the current official version); <a href="https://www.gov.uk/service-manual/service-standard">GDS Service Standard</a>; <a href="https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview">Accenture behavioural interview guidance</a>.</p></article><footer>Generated from <a href="accenture-product-owner.md">accenture-product-owner.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

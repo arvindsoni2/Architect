@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product Owner — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="roles/product-owner.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="delivery-lead.html">Delivery Lead</a><a href="agile-delivery-lead.html">Agile Delivery Lead</a><a href="product-owner.html" aria-current="page">Product Owner</a><a href="product-manager.html">Product Manager</a><a href="senior-project-manager.html">Senior Project Manager</a><a href="software-ai-architect.html">Software &amp; AI Architect</a><a href="ai-engineer.html">AI Engineer</a><a href="forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="product-owner-interview-guide">Product Owner interview guide</h1>
+<p><strong>Status:</strong> Owner-reviewed facts · <strong>Last reviewed:</strong> 13 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#positioning-and-evidence">Positioning and evidence</a></li><li><a href="#questions-to-rehearse">Questions to rehearse</a></li><li><a href="#worked-answer-and-follow-up">Worked answer and follow-up</a></li><li><a href="#practical-exercise--illustrative-not-historical">Practical exercise — illustrative, not historical</a></li><li><a href="#scenario--illustrative-not-historical">Scenario — illustrative, not historical</a></li><li><a href="#additional-scenario-drills">Additional scenario drills</a></li><li><a href="#2026-question-bank-with-model-answers">2026 question bank with model answers</a></li><li><a href="#first-90-days-and-panel-questions">First 90 days and panel questions</a></li><li><a href="#sources-and-freshness">Sources and freshness</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Prepare to show how you turn a product goal and user evidence into an ordered backlog and usable increments. The panel needs decisions, trade-offs and results alongside familiarity with Scrum. For the supplied vacancy, use the <a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a>.</p>
+<h2 id="positioning-and-evidence">Positioning and evidence</h2>
+<p>A confident opening: “I turn operational problems into products people actually use, and I prove the value with numbers. As TCS Product Owner on Northern Powergrid&#x27;s Smart Timesheet, I led the product from field research to handover, and it saved around £500K a year. At Natoora I took an internal platform to market as SaaS, which made £29K profit in its first five months, and led the rollout of a GenAI order tool that cut manual effort by about 90%.” Then name one decision you made; keep the whole answer under 90 seconds. Lead with decisions, not activities.</p>
+<div class="table-wrap"><table><thead><tr><th>Requirement</th><th>Best starting evidence</th><th>What to demonstrate</th></tr></thead><tbody>
+<tr><td>User-centred discovery and requirements</td><td><a href="../shared/evidence-bank.html#s3-smart-timesheet">S3 Smart Timesheet</a></td><td>Field-user needs, payroll constraints, prioritisation and acceptance</td></tr>
+<tr><td>Backlog trade-offs and full lifecycle</td><td><a href="../shared/evidence-bank.html#s2-saas-transformation">S2 SaaS</a></td><td>Launch scope, reusable capability and operational support</td></tr>
+<tr><td>AI, rollout and continuous improvement</td><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1 order automation</a></td><td>London/Paris scope, exceptions and manual-effort measurement</td></tr>
+<tr><td>Technical dependencies and risk</td><td><a href="../shared/evidence-bank.html#s4-infrastructure-modernisation">S4 infrastructure</a></td><td>Transferable dependency judgement; state the actual delivery role</td></tr>
+</tbody></table></div>
+<h2 id="questions-to-rehearse">Questions to rehearse</h2>
+<ol>
+<li class="qa-li"><strong>How do you establish product vision and a roadmap?</strong> <span class="qa-ans">Start with the user problem, desired business outcome and constraints. Explain research, assumptions and an outcome-oriented roadmap. Distinguish the Product Goal from a list of features. Show how new evidence changes priorities.</span></li>
+<li class="qa-li"><strong>How do you order a backlog with conflicting stakeholder demands?</strong> <span class="qa-ans">Establish mandatory obligations, value, urgency, risk and dependencies. Compare credible options, expose opportunity cost, make a decision within your authority and record the reason. A score supports judgement; it does not decide automatically.</span></li>
+<li class="qa-li"><strong>How do you work with BAs and UCD?</strong> <span class="qa-ans">Explain shared discovery, clear problem framing, research findings, traceable decisions and collaborative story refinement. Avoid assigning all requirements to the BA or treating UCD as a final design hand-off.</span></li>
+<li class="qa-li"><strong>What makes a good user story and acceptance criteria?</strong> <span class="qa-ans">Explain the beneficiary and outcome, a small end-to-end slice, examples and edge cases. Acceptance criteria describe this item; the Definition of Done sets product-wide quality expectations. Neither replaces accessibility, security or performance work.</span></li>
+<li class="qa-li"><strong>What if work is incomplete near sprint end?</strong> <span class="qa-ans">Inspect the Sprint Goal and evidence with the Developers. Clarify scope without weakening quality. Do not mark unfinished work Done or unilaterally add work. Review what caused the gap and adapt future planning.</span></li>
+<li class="qa-li"><strong>How do you measure value after release?</strong> <span class="qa-ans">Establish a baseline, cohort, time window and owner before rollout. Pair an outcome measure with adoption and guardrails. Separate delivered functionality from realised benefits.</span></li>
+<li class="qa-li"><strong>How do you act as a proxy PO?</strong> <span class="qa-ans">Agree which decisions are delegated, how priorities are approved and when the client PO must decide. Maintain a transparent backlog and decision log. Proxy arrangements must preserve a clear accountable decision-maker.</span></li>
+<li class="qa-li"><strong>How have you mentored a PO or BA?</strong> <span class="qa-ans">Prepare one real coaching example: observed gap, agreed practice, feedback and resulting improvement. If you have coached team members without formally mentoring a PO, say that and explain the transferable approach.</span></li>
+</ol>
+<h2 id="worked-answer-and-follow-up">Worked answer and follow-up</h2>
+<p>For “tell me about a product you owned”, use the full Smart Timesheet STAR answer in the <a href="../vacancies/accenture-product-owner.html#q4-tell-us-about-a-product-you-owned-end-to-end">Accenture playbook (Q4)</a>. Its core: field research at depots changed the interface; workshops with operations, payroll, IT and the union shaped the positioning; an alpha at one depot (50 engineers), a beta at three (200) and a six-month depot-by-depot rollout proved it before scaling; the result was 2,000+ engineers off paper, 50% fewer office visits and about £500K annual savings. Prepare one deferred feature before the interview.</p>
+<p>Expect: Who owned funding? Who selected the platform? Which story did you defer? What did users change your mind about? How were savings measured? Were you responsible for architecture or for product decisions? The story succeeds when those boundaries are clear.</p>
+<h2 id="practical-exercise--illustrative-not-historical">Practical exercise — illustrative, not historical</h2>
+<p>A field user must submit a weekly timesheet without returning to the office. Propose a thin slice: select the week, review employee details, enter hours, submit and see status. Acceptance examples: valid submission reaches the correct approver; missing required data prevents submission with a clear message; a duplicate request does not create a second timesheet. Confirm authorisation, audit needs, integration behaviour and error recovery with the team. Treat offline support as a discovery question; it is not established in the historical case.</p>
+<h2 id="scenario--illustrative-not-historical">Scenario — illustrative, not historical</h2>
+<p>A client asks for a dashboard before launch; research shows users are struggling to complete the core workflow, and security review identifies a release blocker. Clarify the launch outcome and mandatory control. Present options: resolve the core workflow and security issue; simplify the dashboard; or change the date. Explain impact and who approves the trade-off. Reorder transparently, preserve quality and review adoption after release. The strong answer includes a decision, rather than simply arranging another meeting.</p>
+<h2 id="additional-scenario-drills">Additional scenario drills</h2>
+<p>These are fictional practice cases. Use the <a href="../shared/handbook.html#scenario-answers">shared scenario method</a>; for a follow-up about your own experience, switch to <a href="../shared/handbook.html#behavioural-answers">STAR or PEARL</a> using a real story.</p>
+<p><strong>PO1 — adoption falls after launch.</strong> A service shipped on time, but fewer users complete the main task. Clarify cohorts, instrumentation, baseline and recent workflow changes. Combine journey data with BA/UCD investigation, including accessibility and support evidence. Compare fixing a completion barrier, improving assisted support and adding the requested feature. Recommend a small intervention and an outcome check, with privacy and reliability guardrails. <strong>Probe:</strong> what if the data is unreliable? <strong>Weak response:</strong> assuming training is the cause or measuring success by backlog items completed.</p>
+<p><strong>PO2 — a late request threatens the Sprint Goal.</strong> A senior stakeholder demands a feature halfway through the sprint and calls it mandatory. Clarify the obligation, deadline, consequence of delay and relation to the Sprint Goal. Discuss options with Developers and the relevant client PO: defer, reduce scope, renegotiate planned work without endangering the goal, or respond to a genuinely obsolete goal through the accountable PO. Make the impact transparent. <strong>Probe:</strong> what if the stakeholder outranks you? <strong>Weak response:</strong> inserting work unilaterally, treating Sprint Backlog changes as solely your decision, or rejecting all new information because a sprint has started.</p>
+<h2 id="2026-question-bank-with-model-answers">2026 question bank with model answers</h2>
+<p>Scrum.org&#x27;s 2026 list adds AI and evidence-based value to the classic questions; LinkedIn&#x27;s hiring guide still opens with Scrum, roadmap and backlog fundamentals. [1][2] Model answers below use your own evidence; keep each under two minutes. Where an answer describes a habit rather than a recorded story, keep only what you actually do and have one real example ready.</p>
+<div class="qa" data-qa="q1-how-do-you-make-sure-your-product-delivers-value-not-just-output">
+<h3 id="q1-how-do-you-make-sure-your-product-delivers-value-not-just-output">Q1. How do you make sure your product delivers value, not just output?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I agree the outcome and its measure before we build, then check it after release. On the GenAI order automation at Natoora the outcome was the time customer support spent keying orders from emails — two to three minutes each. We measured manual effort before and after the London and Paris rollout and saw about a 90% reduction, with exceptions still handled by people. Shipping the feature was the output; the released time was the value.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q2-have-you-used-ai-to-support-backlog-refinement-or-product-decisions">
+<h3 id="q2-have-you-used-ai-to-support-backlog-refinement-or-product-decisions">Q2. Have you used AI to support backlog refinement or product decisions?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Yes, as an assistant, not a decision-maker. I use LLMs to draft story splits and acceptance examples from a feature description, to summarise feedback themes, and to challenge my requirements before refinement — then the team and I check them, because a model will happily write plausible acceptance criteria that miss a real constraint. I don&#x27;t paste confidential client data into public tools.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q3-how-would-you-use-ai-in-product-discovery">
+<h3 id="q3-how-would-you-use-ai-in-product-discovery">Q3. How would you use AI in product discovery?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;To move faster between idea and evidence: quick clickable prototypes to test with users, synthesis of interview notes into themes I then verify against the raw notes, and comparing several solution options early. The rule is that AI speeds up learning from users; it doesn&#x27;t replace talking to them. And I&#x27;d always ask whether the problem needs AI at all — rules or an ordinary form often solve it more cheaply.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q4-tell-me-about-a-time-you-tested-an-idea-and-it-didnt-work">
+<h3 id="q4-tell-me-about-a-time-you-tested-an-idea-and-it-didnt-work">Q4. Tell me about a time you tested an idea and it didn&#x27;t work.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;In July I tested whether newer local models should replace the writing model in Hatch, my open-source job-search tool. I set hard quality gates first. All 27 runs produced valid output, but no challenger passed the gates, so I kept the existing model. It felt like a non-result, but it saved me shipping a change that looked newer and was not better — and it confirmed the gates were doing their job.&quot; For a work example, use the unused-feature setback in <a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">B2</a>. [1]</p>
+</div></div>
+<div class="qa" data-qa="q5-how-do-you-align-stakeholders-with-competing-priorities">
+<h3 id="q5-how-do-you-align-stakeholders-with-competing-priorities">Q5. How do you align stakeholders with competing priorities?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Use <a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">B1</a>: two launches needed the same senior engineer. &quot;I met each side with options, then ran a joint session where everyone saw the dependency and the options beforehand, tied to company goals, with the CTO available to decide if we couldn&#x27;t. We agreed to finish GenAI first and delay multiple basket by two to three weeks, because its go-to-market wasn&#x27;t final. Nobody left surprised.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q6-how-do-you-help-a-team-deliver-value-end-to-end">
+<h3 id="q6-how-do-you-help-a-team-deliver-value-end-to-end">Q6. How do you help a team deliver value end to end?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Fewer hand-offs and faster feedback. When I joined Natoora, work lived in Trello with no baseline and unpredictable releases. I led the move to Jira and an Agile operating model across engineering, product and design, with CI/CD, feature flags and automated deployments. Time from starting work to release fell from more than five weeks to under three. The tool mattered less than one shared backlog and the release automation.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q7-what-makes-a-sprint-successful">
+<h3 id="q7-what-makes-a-sprint-successful">Q7. What makes a sprint successful?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;The Sprint Goal is met with a usable, Done increment, and we learned something that changes the next decision — from users, data or the work itself. Velocity going up is not success; a goal met with an increment nobody uses isn&#x27;t either.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q8-when-is-ai-the-wrong-answer-for-a-product-problem">
+<h3 id="q8-when-is-ai-the-wrong-answer-for-a-product-problem">Q8. When is AI the wrong answer for a product problem?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;When the rules are known, the result must be exact or the volume is low. A structured prediction, such as which customers are likely to churn, is usually better served by a conventional model that is cheaper and easier to explain. In my IncidentPilot project the deterministic rules make the diagnosis and the model only ranks hypotheses. I&#x27;d start with the simplest thing that meets the outcome and add AI where it measurably helps.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q9-what-do-you-know-about-our-product-and-market">
+<h3 id="q9-what-do-you-know-about-our-product-and-market">Q9. What do you know about our product and market?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Prepare three specifics: who the product serves, one recent change you noticed, and one question you would want to test in your first month. Tie one of them to your evidence. [2]</p>
+</div></div>
+<h2 id="first-90-days-and-panel-questions">First 90 days and panel questions</h2>
+<p>In days 1–30, learn users, strategy, decision rights, team constraints and baseline measures. In days 31–60, improve backlog clarity and test a high-value assumption with a small release. In days 61–90, assess outcome evidence, strengthen rollout/support ownership and adapt the roadmap. Sequence this around the client&#x27;s existing phase and commitments.</p>
+<p>Ask: Who owns product strategy and final priority decisions? How much access does the PO have to users? What has made benefits hard to realise? How are security, UCD and operations involved? What would good performance look like in six months?</p>
+<p><strong>Rehearsal:</strong> one product story, one rejected priority, one user insight, one metric defence, one coaching example and the scenario above. Use Cracking the PM Career as supplementary preparation; translate its product-career material to this role&#x27;s backlog, client and delivery context.</p>
+<h2 id="sources-and-freshness">Sources and freshness</h2>
+<p>Checked 13 October 2026.</p>
+<ol>
+<li><a href="https://www.scrum.org/resources/blog/product-owner-interview-questions-2026">Product Owner Interview Questions in 2026</a> — Scrum.org blog, 24 April 2026.</li>
+<li><a href="https://business.linkedin.com/talent-solutions/resources/how-to-hire-guides/product-owner/interview-questions">Product Owner interview question guide</a> — LinkedIn hiring guide.</li>
+</ol></article><footer>Generated from <a href="product-owner.md">product-owner.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

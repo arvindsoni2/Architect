@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Accenture FDE — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="vacancies/accenture-fde.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="../roles/delivery-lead.html">Delivery Lead</a><a href="../roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="../roles/product-owner.html">Product Owner</a><a href="../roles/product-manager.html">Product Manager</a><a href="../roles/senior-project-manager.html">Senior Project Manager</a><a href="../roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="../roles/ai-engineer.html">AI Engineer</a><a href="../roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="accenture-product-owner.html">Accenture PO playbook</a><a href="accenture-product-owner-questions.html">Accenture extra Qs</a><a href="accenture-fde.html" aria-current="page">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="accenture-forward-deployed-ai-engineer">Accenture Forward Deployed AI Engineer</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Vacancy:</strong> R00345109 · <strong>Checked:</strong> 5 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#role-and-evidence-boundary">Role and evidence boundary</a></li><li><a href="#requirement-to-preparation-map">Requirement to preparation map</a></li><li><a href="#map-existing-stories-without-upgrading-the-claims">Map existing stories without upgrading the claims</a></li><li><a href="#practice-questions-and-answer-reasoning">Practice questions and answer reasoning</a></li><li><a href="#worked-programme-and-commercial-case">Worked programme and commercial case</a></li><li><a href="#rehearsal-rubric-and-focused-route">Rehearsal rubric and focused route</a></li><li><a href="#sources-and-freshness">Sources and freshness</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<h2 id="role-and-evidence-boundary">Role and evidence boundary</h2>
+<p>Accenture lists this Newcastle role at Team Lead/Consultant level. The advert combines production AI engineering, customer deployment, programme outcomes, executive engagement and engineering people management. It names OpenAI, Claude, Vertex AI and open models, including provider abstraction. It explicitly excludes internal projects, vendor labs and team-only deployments as substitutes for client-embedded delivery. Read the live advert before applying; a title or portfolio score does not establish eligibility. [1]</p>
+<p>This supplement contains <strong>inferred practice questions</strong>, not reports of questions asked by Accenture or a confirmed interview process. Answer outlines describe sound reasoning; they are not claims about the candidate&#x27;s past actions. Confirm the actual assessment format with the recruiter.</p>
+<p>Start with the <a href="../../handbooks/fde/fde-handbook-v1.4.html">FDE handbook</a>, <a href="../shared/handbook.html#behavioural-answers">shared answer methods</a> and <a href="../shared/evidence-bank.html">evidence bank</a>. Use STAR for a past event, PEARL when a genuine change of understanding is central, and the <a href="../shared/handbook.html#scenario-answers">scenario sequence</a> for a hypothetical. EVIDENCE in the FDE handbook is a technical completeness check, not another script to recite. Accenture&#x27;s general behavioural guidance recommends STAR; it does not confirm the stages of this vacancy. [2]</p>
+<h2 id="requirement-to-preparation-map">Requirement to preparation map</h2>
+<div class="table-wrap"><table><thead><tr><th>Area to demonstrate</th><th>Canonical preparation</th><th>Evidence to bring</th></tr></thead><tbody>
+<tr><td>Cloud-native production engineering</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#software">Software</a>, <a href="../../handbooks/fde/fde-handbook-v1.4.html#platform">platform</a></td><td>A deployed service, tests, trace, deployment and recovery explanation</td></tr>
+<tr><td>Agents, retrieval and context</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#ai">Agent engineering</a>, <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#harness">context practice</a></td><td>Held-out cases, retrieval failures and bounded action policy</td></tr>
+<tr><td>Provider portability</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#provider-lab">Provider lab</a></td><td>Capability matrix, adapter tests and a policy-constrained fallback</td></tr>
+<tr><td>Enterprise controls</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#security">Security</a></td><td>Identity and data boundaries, approval evidence, residual-risk owner</td></tr>
+<tr><td>Programme outcomes</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#programme-leadership">Programme leadership</a></td><td>Capacity decision, dependencies, outcome measures and release authority</td></tr>
+<tr><td>Commercial strategy</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#investment-decisions">Investment decisions</a></td><td>Defensible baseline, benefit assumptions, costs and stop criteria</td></tr>
+<tr><td>People management</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#people-leadership">Engineering people leadership</a></td><td>Actual reporting responsibility, feedback, development and follow-up</td></tr>
+<tr><td>Adoption and reuse</td><td><a href="../../handbooks/fde/fde-handbook-v1.4.html#delivery">Delivery loop</a></td><td>User behaviour, handoff acceptance and a maintained reusable asset</td></tr>
+</tbody></table></div>
+<p>These preparation choices interpret the remit in [1]; they are not an employer scoring scheme. The platform examples do not imply that mastery of every vendor is mandatory.</p>
+<h2 id="map-existing-stories-without-upgrading-the-claims">Map existing stories without upgrading the claims</h2>
+<p>Use the source records for dates, technologies and measurements. Keep a private rehearsal note for personal contribution; do not publish confidential customer artefacts.</p>
+<div class="table-wrap"><table><thead><tr><th>Existing evidence</th><th>Useful angle</th><th>Still needs establishing</th></tr></thead><tbody>
+<tr><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1: GenAI order automation</a></td><td>AI workflow, exceptions, operational benefit and rollout</td><td>Exact personal coding/debugging role; whether the engagement meets this advert&#x27;s client-embedded boundary</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s2-saas-transformation">S2: SaaS transformation</a></td><td>External implementation, reuse, support and commercial choices</td><td>Personal engineering ownership, accounting basis and customer acceptance; it is not automatically an agentic-AI example</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s3-smart-timesheet">S3: Smart Timesheet</a></td><td>Client context, legacy integration and adoption</td><td>Separate Product Owner decisions from engineering implementation; do not relabel it an AI deployment</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s4-infrastructure-modernisation">S4: Infrastructure modernisation</a></td><td>Operational risk, dependencies and migration</td><td>Actual technical and service responsibility, distinct from coordination</td></tr>
+<tr><td>People leadership</td><td>A specific real example, if available</td><td>Direct reports, development plans, performance decisions and career conversations are not established by the shared bank</td></tr>
+<tr><td>Personal projects and exercises</td><td>Demonstrate present implementation skill</td><td>Label their setting honestly; they do not replace the advert&#x27;s customer experience requirement</td></tr>
+</tbody></table></div>
+<p>For each story, record: what I decided; what I implemented; what I reviewed; what another person owned; what happened after launch; how the result was measured. If a requirement is only adjacent, say so. Several stories can show complementary strengths, but must not be blended into one invented deployment.</p>
+<h2 id="practice-questions-and-answer-reasoning">Practice questions and answer reasoning</h2>
+<p>For each drill, give a recommendation, explain what could change it, and name the evidence you would inspect. The outlines below are authored exercises inferred from the role, not employer answers.</p>
+<h3 id="q1-walk-through-a-deployment-you-personally-owned">Q1: Walk through a deployment you personally owned</h3>
+<p><strong>Answer outline:</strong> Choose one real deployment. Establish the customer workflow, your remit and the baseline. Trace one request across identity, model, data, tool and system-of-record boundaries. Identify the code or configuration you personally changed, the alternative rejected, a failure encountered, and who accepted the service. End with the observed result and measurement limits. Where your role was product or delivery leadership, say that explicitly and use a separately labelled practical exercise to demonstrate current coding capability.</p>
+<p><strong>Probe:</strong> Which test caught a defect? What did the production trace show? Who could authorise rollback? What did you learn after handoff?</p>
+<p><strong>Weak answer:</strong> A team achievement told entirely as “I”, or a polished demo without operating evidence.</p>
+<h3 id="q2-three-workstreams-need-the-same-integration-engineer">Q2: Three workstreams need the same integration engineer</h3>
+<p><strong>Answer outline:</strong> Make remaining capacity, dependencies, operational risk and deadlines visible. Protect incident response and essential control work first. Compare the smallest independently valuable slices rather than dividing the specialist&#x27;s week equally. Recommend a sequence, identify what stops, and take the commercial or scope decision to the authorised sponsor. Pair another engineer on the bottleneck so the capacity problem becomes less dependent on one person. Reforecast using observed throughput.</p>
+<p><strong>Probe:</strong> What changes if a deadline is contractual? How do you account for support and code review? What evidence justifies moving the engineer again?</p>
+<p><strong>Weak answer:</strong> Full utilisation as the objective, hidden overtime, or three simultaneous commitments with no contingency.</p>
+<h3 id="q3-an-engineer-repeatedly-misses-an-agreed-quality-bar">Q3: An engineer repeatedly misses an agreed quality bar</h3>
+<p><strong>Answer outline:</strong> Discuss specific observable examples privately. Distinguish unclear expectations, missing support, overload and skill gaps before drawing conclusions. Agree the required behaviour, support, review points and a manageable development task. Reduce immediate production risk through pairing or review without public blame. Keep factual records and follow the organisation&#x27;s people process if improvement does not occur. Discuss longer-term aspirations separately from urgent corrective feedback.</p>
+<p><strong>Probe:</strong> How would you measure progress? What if this person is the strongest coder but undermines colleagues? When do you involve the people partner?</p>
+<p><strong>Weak answer:</strong> Claiming delivery coordination proves line management, diagnosing motives, or promising an immediate dismissal.</p>
+<h3 id="q4-the-cfo-challenges-a-claim-of-substantial-savings">Q4: The CFO challenges a claim of substantial savings</h3>
+<p><strong>Answer outline:</strong> Separate potential hours released, usable capacity, avoided expenditure, cash savings and revenue. Establish volume, adoption, exception effort, quality and the measurement period. Include implementation, inference, infrastructure, review and support costs. Show base/downside scenarios, the accountable benefit owner and the mechanism by which the benefit can be realised. Recommend continued learning or a hold if the commercial case is not yet evidenced.</p>
+<p><strong>Probe:</strong> Who validates the calculation? Are review minutes counted twice? What if headcount stays unchanged? Work through the <a href="#worked-programme-and-commercial-case">case below</a>.</p>
+<p><strong>Weak answer:</strong> Multiplying all employees by an optimistic time saving and describing it as profit.</p>
+<h3 id="q5-the-cto-wants-speed-while-the-ciso-restricts-data-movement">Q5: The CTO wants speed while the CISO restricts data movement</h3>
+<p><strong>Answer outline:</strong> Clarify the exact data classification, permitted processing locations and actions. Bring the workflow and service owners into one decision. Compare a narrow approved-data slice, private managed access and self-hosted inference against operational cost and required controls. Recommend one reversible experiment with acceptance criteria. Present the executive decision first, then use an architecture walkthrough or code-with session to demonstrate the riskiest assumption with engineers.</p>
+<p><strong>Probe:</strong> Who accepts residual risk? Which records stay out of the model? What remains blocked even if the demo succeeds?</p>
+<p><strong>Weak answer:</strong> Treating private connectivity as proof of complete compliance or promising that a prompt prevents disclosure.</p>
+<h3 id="q6-your-provider-fails-halfway-through-an-action-workflow">Q6: Your provider fails halfway through an action workflow</h3>
+<p><strong>Answer outline:</strong> Identify whether generation, a tool proposal or an external write failed. A replacement provider must pass the same task-quality and data-policy gates and support the required contract. If a write&#x27;s outcome is unknown, reconcile using operation identity before any replay. Do not send protected data to an unapproved provider to preserve availability. Bound retries and cost, persist state, and surface a recoverable hold when no safe route exists.</p>
+<p><strong>Probe:</strong> How do tool-call IDs, streaming events, structured output and usage accounting differ? What happens if the second provider lacks a required feature?</p>
+<p><strong>Weak answer:</strong> “They all use an OpenAI-compatible API, so just switch the URL.”</p>
+<h3 id="q7-your-retrieval-assistant-is-fluent-but-wrong">Q7: Your retrieval assistant is fluent but wrong</h3>
+<p><strong>Answer outline:</strong> Collect representative failed queries and segment by consequence. Check whether the authoritative source exists, is fresh and is permitted for this user. Measure retrieval independently of answer generation; inspect ranking and context assembly before changing prompts. Test abstention and escalation. Use held-out cases and regression checks, then compare downstream completion and correction effort.</p>
+<p><strong>Probe:</strong> What if top-k recall improves but operators take longer? How would you test cross-tenant leakage? How do you avoid tuning against the final test set?</p>
+<p><strong>Weak answer:</strong> Adding more documents or a larger context window without identifying the failing stage.</p>
+<h3 id="q8-choose-serverless-a-container-service-or-microservices">Q8: Choose serverless, a container service or microservices</h3>
+<p><strong>Answer outline:</strong> Start with runtime duration, burstiness, concurrency, private connectivity, state, operational skills and recovery requirements. A short stateless handler may fit serverless; long-running or specialised processes may fit managed containers. Keep durable waiting outside a request process. Split services only when an ownership, scaling or isolation boundary justifies the extra deployment and failure paths. Explain the simplest acceptable initial design and a measurable trigger for change.</p>
+<p><strong>Probe:</strong> What happens during a 24-hour approval wait? How do you control cold-start or scale-to-zero effects? Which boundary needs its own release cadence?</p>
+<p><strong>Weak answer:</strong> Kubernetes or microservices chosen for prestige without workload evidence.</p>
+<h3 id="q9-strong-evaluation-scores-weak-user-adoption">Q9: Strong evaluation scores, weak user adoption</h3>
+<p><strong>Answer outline:</strong> Observe the actual task and compare eligible use with completed use. Investigate integration friction, review burden, trust, incentives and exceptions. Segment by user group and workflow. Try a narrow change with representative users and compare completion, corrections, abandonment and outcomes. Agree an expansion or stop decision with the workflow owner; model accuracy alone does not justify rollout.</p>
+<p><strong>Probe:</strong> What if users prefer the manual process for good reasons? Can the workflow be simplified without AI?</p>
+<p><strong>Weak answer:</strong> Mandatory training as the universal fix.</p>
+<h3 id="q10-turn-a-one-off-integration-into-a-reusable-accelerator">Q10: Turn a one-off integration into a reusable accelerator</h3>
+<p><strong>Answer outline:</strong> Extract the stable contract and keep customer-specific policy and configuration explicit. Remove confidential data and check reuse rights. Add compatibility tests, supported versions, applicability limits, ownership and a deprecation path. Validate with a second deployment and compare effort on equivalent tasks, including maintenance costs. Feed recurring product limitations to the platform team.</p>
+<p><strong>Probe:</strong> Who funds maintenance? What would make you keep two implementations separate? How do you prove reuse reduced effort rather than scope?</p>
+<p><strong>Weak answer:</strong> Copying a customer repository and calling it a platform.</p>
+<h3 id="q11-debug-and-explain-during-a-code-with-session">Q11: Debug and explain during a code-with session</h3>
+<p><strong>Practice task:</strong> Take your own small integration service and inject a timeout after a simulated external commit. In 40 minutes, reproduce the failure, inspect state and traces, explain an unknown outcome, implement reconciliation and run the regression test. The timer is a practice choice, not an Accenture test duration. Follow the actual assessment rules on AI assistance; be able to explain every change yourself.</p>
+<p><strong>Pass evidence:</strong> One operation identity, no duplicate side effect, bounded retries, meaningful caller status and a trace that explains the final state. A mock proves the tested integration behaviour only.</p>
+<p><strong>Probe:</strong> What if the external API has no status endpoint or idempotency support? A good answer considers manual reconciliation or an altered workflow rather than claiming exactly-once delivery.</p>
+<h2 id="worked-programme-and-commercial-case">Worked programme and commercial case</h2>
+<p><strong>Synthetic exercise:</strong> All numbers, constraints and outcomes in this section are invented for rehearsal. They are not candidate achievements or Accenture benchmarks.</p>
+<p>A case-processing pilot has 20,000 eligible cases per month. The existing process takes six minutes per case. The proposed process reaches 60% adoption; an adopted case is expected to average two minutes of remaining human work, including exceptions and corrections. Loaded labour cost is £30/hour. Implementation costs £45,000. Recurring technology and support cost £6,000/month, excluding human case handling already captured in those two minutes.</p>
+<div class="table-wrap"><table><thead><tr><th>Calculation</th><th>Result</th><th>Interpretation</th></tr></thead><tbody>
+<tr><td>Adopted cases: 20,000 × 60%</td><td>12,000/month</td><td>Non-adopted cases retain the baseline</td></tr>
+<tr><td>Released effort: 12,000 × (6 − 2) ÷ 60</td><td>800 hours/month</td><td>Potential capacity; validate through observation</td></tr>
+<tr><td>Capacity value: 800 × £30</td><td>£24,000/month</td><td>Not automatically cash savings</td></tr>
+<tr><td>Assume 50% can be productively redeployed: £24,000 × 50%</td><td>£12,000/month</td><td>A benefit hypothesis requiring an owner</td></tr>
+<tr><td>Net economic benefit: £12,000 − £6,000</td><td>£6,000/month</td><td>Conditional on that realisation assumption</td></tr>
+<tr><td>Simple payback: £45,000 ÷ £6,000</td><td>7.5 months</td><td>Undiscounted, steady-state assumption; ramp-up would extend it</td></tr>
+<tr><td>First 12 steady-state months: (£6,000 × 12 − £45,000) ÷ £45,000</td><td>60%</td><td>Simple net return on implementation spend under these assumptions</td></tr>
+</tbody></table></div>
+<p>Do not report £24,000/month as payroll savings. If finance cannot identify avoided spend or a valued use for released time, the cash-saving case is unproven. Revenue benefit needs its own causal evidence; avoid adding the same benefit twice.</p>
+<p><strong>Downside:</strong> At 30% adoption and 25% realisation, 6,000 adopted cases release 400 hours. £12,000 capacity value × 25% = £3,000; after £6,000 recurring cost, net benefit is <strong>−£3,000/month</strong>. There is no positive payback in this scenario. At 50% realisation and fixed recurring cost, break-even adoption is 30%: each adopted case releases four minutes worth £2, of which £1 is realised, so 6,000 adopted cases cover £6,000. Check variable costs before using that threshold at scale.</p>
+<p><strong>Recommended decision:</strong> Authorise a bounded measurement pilot if its cost and risk are acceptable. Assign the workflow owner to adoption, finance to benefit assumptions, engineering to task reliability and cost, and security to control evidence. Expand only when observed quality, economics and adoption justify it; a positive spreadsheet is not acceptance evidence.</p>
+<h3 id="capacity-and-roadmap-exercise">Capacity and roadmap exercise</h3>
+<p>Six engineers provide 60 engineer-days over a ten-day period. Reserve 12 days for support and unplanned work, leaving 48. One integration specialist has only eight planned days available after that reserve. These are planning assumptions, not a universal staffing ratio.</p>
+<div class="table-wrap"><table><thead><tr><th>Workstream</th><th>Total demand</th><th>Specialist demand</th><th>Decision context</th></tr></thead><tbody>
+<tr><td>A: mandatory access-control remediation</td><td>18 days</td><td>6 days</td><td>Confirmed control deadline</td></tr>
+<tr><td>B: optional claims pilot</td><td>24 days</td><td>4 days</td><td>Value hypothesis above; no committed release date</td></tr>
+<tr><td>C: sales demonstration</td><td>18 days</td><td>2 days</td><td>Optional; no contractual obligation in this case</td></tr>
+</tbody></table></div>
+<p>All three require 60 days and 12 specialist days, exceeding both limits. Recommend A plus an eight-day, read-only slice of B using two specialist days. The remaining 22 planned days support independent evaluation, training, documentation and other agreed work; do not assume spare generalist capacity removes the specialist bottleneck. Defer C unless the sponsor changes priorities or capacity. Confirm any new dependency before committing the slice.</p>
+<p><strong>Roadmap:</strong> In the first 30 days, establish controls and the baseline. In days 31–90, test the slice and acceptance gates. In months 4–12, expand only to comparable workflows with named benefit and service owners. In year two, consider reuse across business units after evidence of repeatability, capacity and support economics. Revisit each horizon when assumptions change; this is a conditional strategy, not a two-year promise.</p>
+<h2 id="rehearsal-rubric-and-focused-route">Rehearsal rubric and focused route</h2>
+<p>Score each dimension 0–2: absent, mentioned, or supported by a decision and evidence. This is a self-review tool, not an Accenture hiring threshold.</p>
+<div class="table-wrap"><table><thead><tr><th>Dimension</th><th>What earns 2</th></tr></thead><tbody>
+<tr><td>Personal ownership</td><td>Clear distinction between own work, collaboration and others&#x27; authority</td></tr>
+<tr><td>Engineering depth</td><td>Explains state, interfaces, failure and a concrete test or trace</td></tr>
+<tr><td>Commercial reasoning</td><td>Defensible baseline, denominator, costs, uncertainty and benefit owner</td></tr>
+<tr><td>Leadership</td><td>Clear capacity or people decision with support and follow-up</td></tr>
+<tr><td>Safety and operations</td><td>Enforced boundaries, recovery and accepting service owner</td></tr>
+<tr><td>Communication</td><td>Direct recommendation, alternative and evidence that would reverse it</td></tr>
+</tbody></table></div>
+<p>Do not average away a fabricated claim, unsafe action or missing client-experience requirement. Rehearse gaps honestly and identify the next evidence needed.</p>
+<ol>
+<li>Map the advert to two truthful stories and identify unestablished requirements.</li>
+<li>Complete the <a href="../../handbooks/fde/fde-handbook-v1.4.html#provider-lab">provider practical</a> and Q11 debugging drill.</li>
+<li>Recalculate the commercial case without looking; change adoption, support cost and the realisation factor.</li>
+<li>Rehearse Q2, Q3 and Q5 with a partner changing one constraint.</li>
+<li>Use the accelerator&#x27;s <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#evals">evaluation</a> and <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#orchestration">orchestration</a> resources only for demonstrated weaknesses.</li>
+</ol>
+<p>For motivation, connect the actual work to your interest in customer outcomes and engineering responsibility, then support that with a real example. Ask the recruiter about expected personal coding depth, team/reporting responsibilities, client assignment and assessment format. Ask how deployment acceptance and benefits are measured. Do not assume that an adjacent Product Owner interview process applies here.</p>
+<h2 id="sources-and-freshness">Sources and freshness</h2>
+<ol>
+<li><a href="https://www.accenture.com/gb-en/careers/jobdetails?id=R00345109_en">Accenture: Forward Deployed AI Engineer, R00345109</a> — role evidence checked 5 October 2026; vacancy content may change or close.</li>
+<li><a href="https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview">Accenture: behavioural interview preparation</a> — general STAR guidance, not a verified process for this role.</li>
+<li><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale">Google: scale agents</a> — current destination of the former Vertex AI Agent Engine overview, checked 5 October 2026. Follow supported SDK/version guidance when implementing; retain the vacancy&#x27;s own platform wording when discussing its requirements.</li>
+<li><a href="https://www.anthropic.com/news/claude-frontier-academy">Anthropic: Claude Frontier Academy</a> — announced 2 October 2026; Accenture is among initial participants. Participation is through organisational nomination, not an open individual course. See the <a href="../../handbooks/fde/fde-handbook-v1.4.html#frontier-academy">handbook training note</a> for the distinction from certification and deployment evidence.</li>
+</ol>
+<p>The source check covers this vacancy and the new references. It is not a claim that every linked handbook or all 76 accelerator resources were re-audited. The numbered questions, scoring rubric and commercial case are editorial practice material.</p></article><footer>Generated from <a href="accenture-fde.md">accenture-fde.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

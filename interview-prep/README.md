@@ -25,7 +25,15 @@ The [Accenture extra questions page](vacancies/accenture-product-owner-questions
 
 For engineering interviews, start with the [AI Engineer](roles/ai-engineer.md) or [Forward Deployed Engineer](roles/forward-deployed-engineer.md) guide; for the Accenture vacancy add the [Accenture Forward Deployed AI Engineer supplement](vacancies/accenture-fde.md) alongside the [FDE Handbook v1.4](../handbooks/fde/fde-handbook-v1.4.html). It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.
 
-[Open the tabbed reading view](handbook.html). It is generated from these Markdown files; edit the sources, then run `python3 scripts/render_interview_handbook.py` from the repository root.
+## Read the guides as HTML
+
+Every guide has its own HTML page next to its Markdown file, and `index.html` is this page. Open [index.html](index.html) and use the left-hand menu to move between guides; [handbook.html](handbook.html) holds every guide in one tabbed page.
+
+On the guide pages, **Practice mode** hides the model answers so you can answer out loud first; **Show model answer** reveals one at a time, **▶ Listen** reads a question and answer aloud in British English, and **Practised** ticks are remembered in your browser. Dark view and Print work on every page, and print always shows the answers.
+
+GitHub shows HTML files as source code. To read them as pages, download the repository (Code → Download ZIP) and open `interview-prep/index.html` in a browser, or use a static-file viewer such as `https://raw.githack.com/arvindsoni2/Architect/main/interview-prep/index.html`.
+
+The HTML is generated from these Markdown files: edit the Markdown, then run `python3 scripts/render_interview_handbook.py` from the repository root.
 
 ## Prepare in three passes
 
@@ -46,7 +54,7 @@ If only two hours remain, spend 20 minutes decoding the advert, 50 minutes on th
 
 ## Check a rendered update
 
-Run `python3 scripts/render_interview_handbook.py --check` and the repository content checks. With Playwright and Chromium installed, run `node tests/interview-browser-smoke.cjs` to check route headings, cross-guide links, themes, mobile layout, print and the no-JavaScript fallback. A custom browser path can be supplied with `INTERVIEW_CHROMIUM_EXECUTABLE`.
+Run `python3 scripts/render_interview_handbook.py --check` and the repository content checks. With Playwright and Chromium installed, run `node tests/interview-browser-smoke.cjs` to check route headings, cross-guide links, themes, mobile layout, print, the no-JavaScript fallback and, on every guide page, anchors, phone layout and practice mode. A custom browser path can be supplied with `INTERVIEW_CHROMIUM_EXECUTABLE`.
 
 ## Connect to the existing knowledge base
 

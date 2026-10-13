@@ -27,7 +27,7 @@ Architecture-adjacent course or certification material may contribute distilled 
 
 **Scoped amendment approved 7 September 2026:** include the AWS SAA-C03 Visual Handbook and its companion *The $170 Cloud* Lab Manual under `handbooks/aws-saa-c03/`, together with supporting validation. This is a two-resource exception; it does not broaden the general certification/course-material boundary.
 
-**Scoped amendment approved 1 October 2026:** curated role-based interview preparation is maintained under `interview-prep/`, with shared methods, a public-safe factual evidence bank, five role guides and vacancy supplements. Stable Markdown sources generate one tabbed HTML reading view. Private recruitment feedback and personal eligibility records remain excluded.
+**Scoped amendment approved 1 October 2026:** curated role-based interview preparation is maintained under `interview-prep/`, with shared methods, a public-safe factual evidence bank, role guides and vacancy supplements. Stable Markdown sources generate a tabbed HTML reading view and one HTML page per guide. Private recruitment feedback and personal eligibility records remain excluded.
 
 Unrelated project files, general technical learning material, job-search material outside that collection, and personal records are excluded.
 
@@ -63,7 +63,7 @@ Every HTML handbook change should meet these requirements:
 
 ### Interview preparation
 
-`interview-prep/` separates shared methods and evidence from role responsibilities and vacancy context. Markdown is canonical; the HTML reading view is regenerated rather than independently edited. Git history replaces dated duplicate editions.
+`interview-prep/` separates shared methods and evidence from role responsibilities and vacancy context. Markdown is canonical; the HTML reading view and per-guide HTML pages (with practice mode) are regenerated rather than independently edited. Git history replaces dated duplicate editions.
 
 ### Catalogue
 

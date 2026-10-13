@@ -45,5 +45,33 @@ class RenderTests(unittest.TestCase):
         self.assertIn('<li>Discover</li>', result)
 
 
+    def test_page_mode_links_to_sibling_html_pages(self):
+        documents = {"roles/product-owner.md": "product-owner", "shared/evidence-bank.md": "evidence", "README.md": "start"}
+        result = renderer.render_markdown(
+            "[Story](../shared/evidence-bank.md#s3-smart-timesheet) [Home](../README.md) [Own](#plan) [Repo](../../docs/method.md)",
+            "roles/product-owner.md", documents, page=True)
+        self.assertIn('href="../shared/evidence-bank.html#s3-smart-timesheet"', result)
+        self.assertIn('href="../index.html"', result)
+        self.assertIn('href="#plan"', result)
+        self.assertIn('href="../../docs/method.md"', result)
+
+    def test_page_mode_wraps_questions_for_practice(self):
+        documents = {"roles/ai-engineer.md": "ai-engineer"}
+        result = renderer.render_markdown(
+            "## Bank\n\n### Q1. Why?\n\n**Model answer:** Because.\n\n## Next\n\n1. **How do you plan?** Carefully.",
+            "roles/ai-engineer.md", documents, page=True)
+        self.assertIn('<div class="qa" data-qa="q1-why">', result)
+        self.assertIn('<h3 id="q1-why">', result)
+        self.assertIn('<div class="qa-body">', result)
+        self.assertIn('</div></div>\n<h2 id="next">', result)
+        self.assertIn('<li class="qa-li"><strong>How do you plan?</strong> <span class="qa-ans">Carefully.</span></li>', result)
+
+    def test_every_source_has_a_page(self):
+        pages = renderer.build_pages()
+        self.assertEqual(len(pages), len(renderer.SOURCES))
+        self.assertIn("index.html", pages)
+        self.assertIn("roles/ai-engineer.html", pages)
+
+
 if __name__ == '__main__':
     unittest.main()
