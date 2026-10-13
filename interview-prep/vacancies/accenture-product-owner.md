@@ -20,11 +20,11 @@ This is the single place to prepare for this interview. It replaces the earlier 
 | B2 | Setback: a feature nobody used | Built to spec, not for users | Lesson: measure adoption after release |
 | B3 | Mentoring | Games and coaching, not lectures | 20+ associates; 5 aspiring PMs |
 
-**What went wrong at the last Accenture interview, and the fix:**
+**Three things to sharpen, and the fix:**
 
-- **Cost analysis was weak.** Fix: for every story, know cost, benefit and how the benefit was measured. Use [section 3](#3-cost-and-commercial-answers).
-- **Scenario questions were weak.** Fix: one fixed structure, practised aloud. Use [section 4](#4-scenario-method).
-- **Answers described activity, not decisions.** Fix: every story contains the sentence “I decided…” or “I recommended… and X approved it.”
+- **Cost analysis.** Fix: for every story, know cost, benefit and how the benefit was measured. Use [section 3](#3-cost-and-commercial-answers).
+- **Scenario questions.** Fix: one fixed structure, practised aloud. Use [section 4](#4-scenario-method).
+- **Decisions, not activity.** Fix: every story contains the sentence “I decided…” or “I recommended… and X approved it.”
 
 **Delivery rules:** answer first, then evidence. Behavioural answers 90–120 seconds; scenarios 2–3 minutes; then stop and let them probe. Name one framework per answer when it is genuinely what you used (Kotter, MoSCoW, impact matrix, WSJF, Service Standard).
 
@@ -45,7 +45,7 @@ This is the single place to prepare for this interview. It replaces the earlier 
 
 ## 3. Cost and commercial answers
 
-The panel last time wanted proof that you think in money. A Product Owner's commercial job is to decide where the client's budget goes and to show what it returned. Learn this structure and use it in any “business case”, “cost” or “benefits” question.
+Panels for consulting roles want proof that you think in money. A Product Owner's commercial job is to decide where the client's budget goes and to show what it returned. Learn this structure and use it in any “business case”, “cost” or “benefits” question.
 
 **The five-line cost case (CBMR):**
 
@@ -123,9 +123,9 @@ These are spoken answers in your own voice. Rehearse them aloud until you can sa
 
 **Probe — “You interviewed with us for Technology Delivery Lead.”**
 
-> “Yes. That process was useful. The feedback was that I needed to be sharper on cost analysis and on scenario questions, so I've worked on both. I also realised my strongest work is product ownership — deciding what gets built and proving its value — so this role is a better fit than the delivery lead role.”
+> “Yes. That process was useful. It showed me where to go deeper — commercial analysis and scenario thinking — and I've worked on both since. I also realised my strongest work is product ownership — deciding what gets built and proving its value — so this role is a better fit than the delivery lead role.”
 
-Say this calmly and briefly. Taking feedback on board is a strength, not a weakness.
+Say this calmly and briefly. Showing that you learn from a process is a strength, not a weakness. Keep any specific feedback you received in your private notes, not in this public guide.
 
 ### Q3 Your PO title covers less than two years. Why are you a Product Owner?
 

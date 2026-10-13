@@ -619,7 +619,7 @@
 <!-- ============================ HERO ============================ -->
 <div class="hero">
   <div class="eyebrow">Single source of truth · Freshness reviewed 05 October 2026</div>
-<p class="section-sub">v3.2 updates model IDs, base pricing and the OWASP 2026 security resource. Other dated source snapshots retain their original review dates.</p>
+<p class="section-sub">v3.2 updates model IDs, base pricing and the OWASP 2026 security resource. A 13 October 2026 data check replaces Claude Haiku 4.5 with Haiku 5.5 and updates the LangGraph release. Other dated source snapshots retain their original review dates.</p>
   <h1>Six months of <em>notes,</em><br>compressed.</h1>
   <p class="lede">
     Nineteen markdown files. Roughly fifty thousand words. Overlapping curricula, expired links, models that no longer exist. This handbook is what survived the cull — <strong>one place to look</strong> when you need the 20% that actually ships products in 2026. Eighty percent of the volume, gone. None of the load-bearing ideas.
@@ -824,7 +824,7 @@
   <div class="week-body">
     <div class="callout">
       <div class="callout-label">📌 September 2026 status</div>
-      <p style="margin:0">LangGraph 1.2.11 was the current PyPI release on 3 September 2026. Its maintainers describe it as a low-level orchestration framework for long-running, stateful agents, with production users including Klarna, Replit, and Elastic. <strong>Treat it as one mature option, not a universal default: select it when explicit state, durable execution, and controlled orchestration fit the workload.</strong></p>
+      <p style="margin:0">LangGraph 1.2.14 was the current PyPI release on 13 October 2026 (released 6 October). Its maintainers describe it as a low-level orchestration framework for long-running, stateful agents, with production users including Klarna, Replit, and Elastic. <strong>Treat it as one mature option, not a universal default: select it when explicit state, durable execution, and controlled orchestration fit the workload.</strong></p>
     </div>
     <h4>Pareto Focus</h4>
     <ul>
@@ -1303,7 +1303,7 @@
 <div>
 <h4>Infrastructure Layer</h4>
 <ul>
-<li><strong>Model APIs:</strong> Claude (Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 4.5), GPT, Gemini, DeepSeek, open-weight via vLLM/Ollama</li>
+<li><strong>Model APIs:</strong> Claude (Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5), GPT, Gemini, DeepSeek, open-weight via vLLM/Ollama</li>
 <li><strong>Vector DBs:</strong> pgvector (SQL-familiar), Pinecone (managed), Qdrant (performance)</li>
 <li><strong>MCP servers:</strong> Your tool ecosystem, standard protocol</li>
 </ul>
@@ -1383,7 +1383,7 @@
 <table>
 <thead><tr><th>Layer</th><th>Choice</th><th>Rationale</th></tr></thead>
 <tbody>
-<tr><td>Framework</td><td><strong>LangGraph 1.2.11</strong></td><td>Free, open-source, production-stable; pin and re-evaluate for each project</td></tr>
+<tr><td>Framework</td><td><strong>LangGraph 1.2.14</strong></td><td>Free, open-source, production-stable; pin and re-evaluate for each project</td></tr>
 <tr><td>LLM</td><td><strong>Claude Sonnet 5.5</strong> + an eval-qualified lower-cost route</td><td>Start with measured task quality and cost; escalate to Opus 5.5 or Fable 5.1 only when evals justify it</td></tr>
 <tr><td>Vector DB</td><td><strong>pgvector + PostgreSQL</strong></td><td>One database for everything</td></tr>
 <tr><td>Eval</td><td>DeepEval + custom harness</td><td>Pytest-native, free</td></tr>
@@ -1832,16 +1832,16 @@ full build. The one-pager became our project charter.</div>
 <div class="callout pareto">
 <div class="callout-label">⚡ The headline shifts</div>
 <ul style="margin:0">
-<li><strong>Claude's active lineup changed.</strong> Anthropic now lists Fable 5.1, Opus 5.5, Sonnet 5.5, and Haiku 4.5. Select by eval results and workload economics rather than treating one model as a permanent default.</li>
+<li><strong>Claude's active lineup changed.</strong> Anthropic now lists Fable 5.1, Opus 5.5, Sonnet 5.5, and Haiku 5.5. Select by eval results and workload economics rather than treating one model as a permanent default.</li>
 <li><strong>MCP matured.</strong> It remains under the Linux Foundation's Agentic AI Foundation; the latest specification reviewed on 3 September 2026 is 2026-07-28 and includes optional extensions for tasks, skills, and MCP Apps.</li>
-<li><strong>LangGraph stayed on the 1.2 line.</strong> PyPI listed 1.2.11, released 11 August 2026. It is a mature low-level option for explicit, long-running stateful orchestration—not an automatic choice for every agent.</li>
+<li><strong>LangGraph stayed on the 1.2 line.</strong> PyPI listed 1.2.14, released 6 October 2026. It is a mature low-level option for explicit, long-running stateful orchestration—not an automatic choice for every agent.</li>
 <li><strong>The EU AI Omnibus entered into force on 27 July 2026.</strong> Annex III high-risk rules now apply from 2 December 2027; Annex I product-embedded high-risk rules apply from 2 August 2028.</li>
 <li><strong>Agent protocols are separating concerns.</strong> MCP covers tools and context, A2A covers agent interoperability, and AG-UI covers agent-to-frontend events. Treat each implementation as a maturity and security decision.</li>
 <li><strong>Microsoft Agent Framework 1.0 is production-ready.</strong> Microsoft directs inherited AutoGen and Semantic Kernel users to its migration guidance; new projects should compare it with LangGraph and other runtimes against explicit requirements.</li>
 </ul>
 </div>
 
-<h3>Model snapshot · Anthropic only · 05 October 2026</h3>
+<h3>Model snapshot · Anthropic only · 13 October 2026</h3>
 <p style="font-size:14px; color:var(--ink-soft)">For context — OpenAI, Google, DeepSeek lineups move similarly fast. This is the line most relevant to LangGraph + MCP work.</p>
 <div class="table-wrap">
 <table>
@@ -1850,12 +1850,12 @@ full build. The one-pager became our project charter.</div>
 <tr><td><strong>Fable 5.1</strong></td><td><code>claude-fable-5-1</code></td><td>Demanding reasoning and long-horizon agentic work</td><td>1M / 128K</td><td>$10 / $50</td></tr>
 <tr><td><strong>Opus 5.5</strong></td><td><code>claude-opus-5-5</code></td><td>Starting point for complex agentic coding and enterprise work</td><td>1M / 128K</td><td>$4 / $20</td></tr>
 <tr><td><strong>Sonnet 5.5</strong></td><td><code>claude-sonnet-5-5</code></td><td>Speed and intelligence balance</td><td>1M / 128K</td><td>$2 / $10</td></tr>
-<tr><td><strong>Haiku 4.5</strong></td><td><code>claude-haiku-4-5-20251001</code></td><td>Fast, lower-cost routing and simple tasks</td><td>200K / 64K</td><td>$1 / $5</td></tr>
+<tr><td><strong>Haiku 5.5</strong></td><td><code>claude-haiku-5-5</code></td><td>Fast, lower-cost routing and simple tasks</td><td>1M / 128K</td><td>$0.10 / $0.50 (prompts ≤100K tokens); $0.50 / $2.50 above</td></tr>
 </tbody>
 </table>
 </div>
 <p class="section-sub"><strong>Migration check:</strong> Opus 5.5 changes thinking, forced tool choice and inter-tool progress output. Test request parameters, streaming and tool paths against the <a href="https://platform.claude.com/docs/en/models/opus-5-5/overview">model-specific migration guidance</a> before changing production IDs; a newer model is not a drop-in upgrade.</p>
-<p style="font-size:13px; color:var(--ink-soft); margin-top:8px"><em>API list prices and limits verified against Anthropic's model overview on 5 October 2026. Re-check before making a production or budget decision.</em></p>
+<p style="font-size:13px; color:var(--ink-soft); margin-top:8px"><em>API list prices and limits verified against Anthropic's model overview and pricing pages on 13 October 2026. Re-check before making a production or budget decision.</em></p>
 
 <h3>What was pruned from the original 19 files</h3>
 <div class="table-wrap">
