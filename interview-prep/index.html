@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Start here — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="README.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="index.html" aria-current="page">Start here</a><a href="shared/handbook.html">Shared methods</a><a href="shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="roles/delivery-lead.html">Delivery Lead</a><a href="roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="roles/product-owner.html">Product Owner</a><a href="roles/product-manager.html">Product Manager</a><a href="roles/senior-project-manager.html">Senior Project Manager</a><a href="roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="roles/ai-engineer.html">AI Engineer</a><a href="roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="interview-preparation">Interview preparation</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Last reviewed:</strong> 13 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#choose-your-route">Choose your route</a></li><li><a href="#read-the-guides-as-html">Read the guides as HTML</a></li><li><a href="#prepare-in-three-passes">Prepare in three passes</a></li><li><a href="#ownership-and-maintenance">Ownership and maintenance</a></li><li><a href="#check-a-rendered-update">Check a rendered update</a></li><li><a href="#connect-to-the-existing-knowledge-base">Connect to the existing knowledge base</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Start with the role you are interviewing for, choose relevant evidence, then add the vacancy context. The same career facts support different questions; the actual title, dates and results do not change with the role perspective.</p>
+<h2 id="choose-your-route">Choose your route</h2>
+<div class="table-wrap"><table><thead><tr><th>Interview role</th><th>Main guide</th><th>Main decisions to demonstrate</th></tr></thead><tbody>
+<tr><td>Delivery Lead</td><td><a href="roles/delivery-lead.html">Delivery Lead</a></td><td>Delivery health, recovery, commercial choices, suppliers and leadership</td></tr>
+<tr><td>Agile Delivery Lead</td><td><a href="roles/agile-delivery-lead.html">Agile Delivery Lead</a></td><td>Flow, coaching, facilitation, cross-team dependencies and improvement</td></tr>
+<tr><td>Product Owner</td><td><a href="roles/product-owner.html">Product Owner</a></td><td>Product goals, backlog ordering, user evidence, acceptance and value</td></tr>
+<tr><td>Product Manager</td><td><a href="roles/product-manager.html">Product Manager</a></td><td>Discovery, strategy, segments, roadmaps, experiments and economics</td></tr>
+<tr><td>Senior Project Manager</td><td><a href="roles/senior-project-manager.html">Senior Project Manager</a></td><td>Business case, scope, schedule, budget, governance and benefits</td></tr>
+<tr><td>Software or AI Architect</td><td><a href="roles/software-ai-architect.html">Software &amp; AI Architect</a></td><td>Requirements before technology, trade-offs, failure modes, AI governance and cost</td></tr>
+<tr><td>AI Engineer</td><td><a href="roles/ai-engineer.html">AI Engineer</a></td><td>Retrieval, agents and tools, evaluation, cost and latency, with your public projects</td></tr>
+<tr><td>Forward Deployed Engineer</td><td><a href="roles/forward-deployed-engineer.html">Forward Deployed Engineer</a></td><td>Decomposition, customer conversations, practical coding and production design</td></tr>
+</tbody></table></div>
+<p>Read the <a href="shared/handbook.html">shared handbook</a> for answer structures and tools. Select examples from the <a href="shared/evidence-bank.html">evidence bank</a>. For the Accenture Product Owner (Associate Manager) interview, start with the <a href="vacancies/accenture-product-owner.html">Accenture PO playbook</a>: a night-before page, cost and scenario methods, 15 spoken answers and six scenario drills.</p>
+<p>For opening and motivation practice, use <a href="shared/handbook.html#opening-and-motivation-answers">Present → Past → Future and Company → Role → Fit</a>. For question practice, start with <a href="shared/handbook.html#behavioural-answers">STAR and PEARL</a>, <a href="shared/handbook.html#choose-the-question-type">question-type selection</a> and the <a href="shared/handbook.html#scenario-answers">scenario answering sequence</a>. Each delivery and product role guide adds two scenario drills with follow-up probes and weak-answer traps; the Accenture playbook adds six, using one five-step scenario method. The architect, AI engineer and FDE guides, and the 2026 question banks in the Product Owner and Senior Project Manager guides, give spoken model answers built from the evidence bank, with dated public sources for each question set.</p>
+<p>The <a href="vacancies/accenture-product-owner-questions.html">Accenture extra questions page</a> holds short answers to depth and quick-fire questions (Scrum, SAFe, API-first, cloud, AI risk, consulting situations) and the research register.</p>
+<p>For engineering interviews, start with the <a href="roles/ai-engineer.html">AI Engineer</a> or <a href="roles/forward-deployed-engineer.html">Forward Deployed Engineer</a> guide; for the Accenture vacancy add the <a href="vacancies/accenture-fde.html">Accenture Forward Deployed AI Engineer supplement</a> alongside the <a href="../handbooks/fde/fde-handbook-v1.4.html">FDE Handbook v1.4</a>. It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.</p>
+<h2 id="read-the-guides-as-html">Read the guides as HTML</h2>
+<p>Every guide has its own HTML page next to its Markdown file, and <code>index.html</code> is this page. Open <a href="index.html">index.html</a> and use the left-hand menu to move between guides; <a href="handbook.html">handbook.html</a> holds every guide in one tabbed page.</p>
+<p>On the guide pages, <strong>Practice mode</strong> hides the model answers so you can answer out loud first; <strong>Show model answer</strong> reveals one at a time, <strong>▶ Listen</strong> reads a question and answer aloud in British English, and <strong>Practised</strong> ticks are remembered in your browser. Dark view and Print work on every page, and print always shows the answers.</p>
+<p>GitHub shows HTML files as source code. To read them as pages, download the repository (Code → Download ZIP) and open <code>interview-prep/index.html</code> in a browser, or use a static-file viewer such as <code>https://raw.githack.com/arvindsoni2/Architect/main/interview-prep/index.html</code>.</p>
+<p>The HTML is generated from these Markdown files: edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code> from the repository root.</p>
+<h2 id="prepare-in-three-passes">Prepare in three passes</h2>
+<ol>
+<li><strong>Match:</strong> identify the five strongest requirements in the advert; match each to a story and a decision you actually made.</li>
+<li><strong>Explain:</strong> rehearse a 90-second answer; prepare the artefact, measurement and alternative for follow-up questions.</li>
+<li><strong>Challenge:</strong> practise a recovery or prioritisation scenario, a setback and a credibility probe. Ask what the panel could challenge in your wording.</li>
+</ol>
+<p>If only two hours remain, spend 20 minutes decoding the advert, 50 minutes on three stories, 25 minutes on a scenario, 15 minutes on motivation and questions, and 10 minutes checking logistics.</p>
+<h2 id="ownership-and-maintenance">Ownership and maintenance</h2>
+<ul>
+<li>Framework definitions belong in the shared handbook; role guides explain their use in context.</li>
+<li>Historical facts and headline metrics belong in the evidence bank. Role guides link to them rather than maintaining another version of the results.</li>
+<li>Vacancy supplements contain employer-specific motivation, advert mapping and interview questions. Refresh those facts before another application.</li>
+<li>Review dates describe this editorial review, not independent verification of employer accounting or operational data.</li>
+<li>Use stable paths and Git history. Replace an existing guide when improving it; do not add another dated copy.</li>
+<li>Keep private interview feedback, contact details, eligibility information and confidential employer material outside this public collection.</li>
+</ul>
+<h2 id="check-a-rendered-update">Check a rendered update</h2>
+<p>Run <code>python3 scripts/render_interview_handbook.py --check</code> and the repository content checks. With Playwright and Chromium installed, run <code>node tests/interview-browser-smoke.cjs</code> to check route headings, cross-guide links, themes, mobile layout, print, the no-JavaScript fallback and, on every guide page, anchors, phone layout and practice mode. A custom browser path can be supplied with <code>INTERVIEW_CHROMIUM_EXECUTABLE</code>.</p>
+<h2 id="connect-to-the-existing-knowledge-base">Connect to the existing knowledge base</h2>
+<p>Technical preparation remains in the <a href="../learning-paths/software-architect/software-architect-curriculum-guide-v3.md">architecture curriculum</a>, <a href="../learning-paths/software-architect/connected-learning/README.md">connected project guides</a> and <a href="../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html">AI/ML Interview Resource Accelerator</a>. Choose the depth the role requires. A delivery interview needs the consequence of a technical decision; an architecture interview may require defending the design itself.</p></article><footer>Generated from <a href="README.md">README.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

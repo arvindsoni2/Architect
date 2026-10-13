@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product Manager — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="roles/product-manager.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="delivery-lead.html">Delivery Lead</a><a href="agile-delivery-lead.html">Agile Delivery Lead</a><a href="product-owner.html">Product Owner</a><a href="product-manager.html" aria-current="page">Product Manager</a><a href="senior-project-manager.html">Senior Project Manager</a><a href="software-ai-architect.html">Software &amp; AI Architect</a><a href="ai-engineer.html">AI Engineer</a><a href="forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="product-manager-interview-guide">Product Manager interview guide</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Last reviewed:</strong> 1 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#positioning-and-evidence">Positioning and evidence</a></li><li><a href="#questions-to-rehearse">Questions to rehearse</a></li><li><a href="#commercial-worked-example">Commercial worked example</a></li><li><a href="#product-case--illustrative-not-historical">Product case — illustrative, not historical</a></li><li><a href="#credibility-probes">Credibility probes</a></li><li><a href="#additional-scenario-drills">Additional scenario drills</a></li><li><a href="#first-90-days-and-panel-questions">First 90 days and panel questions</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Prepare to defend which problems deserve investment, for which users, and how the product can produce sustainable outcomes. The emphasis is broader discovery, strategy and economics. Actual decision rights vary by organisation; establish them before assuming the PM controls funding or the PO only writes stories.</p>
+<h2 id="positioning-and-evidence">Positioning and evidence</h2>
+<p>A useful opening: “My product and delivery background has involved improving operational services, adapting an internal platform for external customers and rolling out AI-enabled order processing. I connect user problems with delivery feasibility and commercial consequences. I would bring that experience to product discovery, prioritisation and learning after launch.” State your actual historical titles and the product decisions you personally owned.</p>
+<div class="table-wrap"><table><thead><tr><th>Question area</th><th>Starting evidence</th><th>What to defend</th></tr></thead><tbody>
+<tr><td>Opportunity, market and business model</td><td><a href="../shared/evidence-bank.html#s2-saas-transformation">S2 SaaS</a></td><td>Customer problem, willingness to pay, fit and support costs</td></tr>
+<tr><td>User needs and service adoption</td><td><a href="../shared/evidence-bank.html#s3-smart-timesheet">S3 Smart Timesheet</a></td><td>Distinct users, workflow friction and operational outcomes</td></tr>
+<tr><td>AI product value and rollout</td><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1 order automation</a></td><td>Need for AI, exceptions, rollout scope and guardrails</td></tr>
+<tr><td>Experiments and personalisation</td><td><a href="../shared/evidence-bank.html#s6-ml-recommendations--optional">S6 recommendations</a></td><td>Optional until measurement and personal contribution are clear</td></tr>
+</tbody></table></div>
+<h2 id="questions-to-rehearse">Questions to rehearse</h2>
+<ol>
+<li class="qa-li"><strong>How would you build a product strategy?</strong> <span class="qa-ans">Identify the segment, important unmet need, competing alternatives, organisation&#x27;s strengths and constraints. State a few strategic choices, an outcome and the assumptions that could invalidate them. Explain what you will stop doing.</span></li>
+<li class="qa-li"><strong>How do you discover a valuable problem?</strong> <span class="qa-ans">Combine user interviews and observation with service data and commercial evidence. Avoid equating a stakeholder feature request with validated demand. Separate desirability, feasibility, viability and operational constraints.</span></li>
+<li class="qa-li"><strong>How do you construct a roadmap?</strong> <span class="qa-ans">Organise around outcomes and problems, make dependencies visible and distinguish near-term commitments from uncertain future options. Set evidence-based review points. A roadmap is not a promise that every item will ship on a fixed date.</span></li>
+<li class="qa-li"><strong>How would you measure product-market fit?</strong> <span class="qa-ans">Specify the market and business model. Look for repeated use, retention, willingness to pay and customer outcomes. Enterprise sales cycles and implementation services change the evidence you can obtain. One successful client is useful learning, not universal proof.</span></li>
+<li class="qa-li"><strong>When would you stop a product or feature?</strong> <span class="qa-ans">Define a hypothesis and threshold before investment. Include strategic fit, opportunity cost, customer commitments, migration and support obligations. Describe a real stop/defer decision if available; otherwise label the example hypothetical.</span></li>
+<li class="qa-li"><strong>How do you work with engineering and design?</strong> <span class="qa-ans">Co-discover the problem and risks, involve engineers early, test alternatives cheaply, and preserve their responsibility for technical design. Explain how learning affects the scope rather than handing over a fixed solution.</span></li>
+<li class="qa-li"><strong>How do you make an AI product decision?</strong> <span class="qa-ans">Compare rules, conventional software and model-based approaches against representative user tasks. Consider error consequences, validation, exception handling, data rights, latency, cost and operational ownership. Use outcome measures alongside model evaluation.</span></li>
+<li class="qa-li"><strong>How do you balance growth and reliability?</strong> <span class="qa-ans">Show the cost of failure, support load, retained customers and the marginal value of another feature. Agree guardrails and choose a sustainable investment mix.</span></li>
+</ol>
+<h2 id="commercial-worked-example">Commercial worked example</h2>
+<p>For SaaS, explain the opportunity to adapt a proven internal warehouse platform for external customers. The owner-confirmed figures are £28k setup, £1.6k recurring monthly revenue and £29k reported profit in the first five months after rollout. The recurring revenue supported cloud operations, developer support and other expenses. Your responsibility ended after that period; do not extrapolate later profitability.</p>
+<p>Discuss one choice about target customer, onboarding scope or reusable capability. State who approved pricing and investment. Prepare the cost basis and customer coverage for a financial follow-up; the guide does not reconstruct missing accounting records. Compare £9k and £7k implementation cost separately from four and two months elapsed delivery time. Scope differences matter to both comparisons.</p>
+<h2 id="product-case--illustrative-not-historical">Product case — illustrative, not historical</h2>
+<p>“Should the warehouse platform expand to another customer segment?” Start with the decision and ask about segment size, current alternatives, common workflows, buying process and constraints. Interview a small representative group; analyse recurring needs and customisation burden. Test a proposition through demos or a bounded pilot before building a broad feature set. Assess recurring revenue, cloud/support costs, onboarding investment and risk to the core business. Choose proceed, narrow, defer or stop with a clear evidence threshold and accountable sponsor.</p>
+<p>If asked for a metric tree, connect the outcome to drivers: successful customer operations depend on activated customers, reliable daily use and task completion. Revenue depends on pricing and retained paying customers; contribution depends on revenue less the relevant costs. Agree definitions before adding targets. No arbitrary percentage target is evidence of strategy.</p>
+<h2 id="credibility-probes">Credibility probes</h2>
+<p>What was your hypothesis before delivery? Which users did you speak to? How did an insight change the roadmap? What alternative would have solved the problem? What did you decide personally? Were financial results realised or forecast? Which failure or metric would change your recommendation?</p>
+<p>For AI, remember that the confirmed result is a reduction in <strong>manual effort</strong> during London/Paris rollout. It is not an accuracy measure or proof that a fixed share of orders needed no human work.</p>
+<h2 id="additional-scenario-drills">Additional scenario drills</h2>
+<p>These are fictional practice cases. Use the <a href="../shared/handbook.html#scenario-answers">shared scenario method</a>, concentrating on the investment decision and the evidence that could reverse it.</p>
+<p><strong>PM1 — acquisition rises but retention falls.</strong> A campaign brings more sign-ups, while retained use and support economics deteriorate. Clarify segments, cohort behaviour, activation, pricing and acquisition cost. Investigate whether the campaign attracted unsuitable customers or the journey fails to deliver value. Compare narrowing acquisition, improving onboarding and changing the proposition. Recommend a bounded test with retention, customer outcomes and cost guardrails. <strong>Probe:</strong> what if a quarter-end revenue target rewards continued acquisition? <strong>Weak response:</strong> celebrating sign-ups or proposing another feature without identifying the cause.</p>
+<p><strong>PM2 — one large customer requests a custom product.</strong> A prospect offers attractive revenue if the team builds specialised features. Check strategic fit, reusable demand, delivery/support cost, contractual commitments and opportunity cost. Compare a configurable capability, a priced bounded engagement and declining the request. Recommend an option with the investment/commercial owner and evidence from other customers. <strong>Probe:</strong> what if sales already promised the date? <strong>Weak response:</strong> accepting on headline revenue alone or assuming all customisation is undesirable.</p>
+<h2 id="first-90-days-and-panel-questions">First 90 days and panel questions</h2>
+<p>First understand the market, users, strategy, economics and decision rights. Next validate the riskiest assumption and align a small set of outcome measures. Then recommend roadmap changes using evidence from customers and operations, with engineering/design feasibility and stakeholder agreement.</p>
+<p>Ask: Which product choices can this role make? How are discovery and delivery funded? What evidence informs investment reviews? How is support cost represented in product decisions? Which assumption in the current strategy worries the team most?</p>
+<p><strong>Rehearsal:</strong> one discovery story, one strategy trade-off, one commercial case, one failed assumption and one product case. Use the shared handbook for methods and Cracking the PM Career for supplementary practice; keep this guide focused on your evidence and the vacancy.</p></article><footer>Generated from <a href="product-manager.md">product-manager.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

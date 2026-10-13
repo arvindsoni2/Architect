@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Senior Project Manager — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="roles/senior-project-manager.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="delivery-lead.html">Delivery Lead</a><a href="agile-delivery-lead.html">Agile Delivery Lead</a><a href="product-owner.html">Product Owner</a><a href="product-manager.html">Product Manager</a><a href="senior-project-manager.html" aria-current="page">Senior Project Manager</a><a href="software-ai-architect.html">Software &amp; AI Architect</a><a href="ai-engineer.html">AI Engineer</a><a href="forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="senior-project-manager-interview-guide">Senior Project Manager interview guide</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Last reviewed:</strong> 13 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#positioning-and-evidence">Positioning and evidence</a></li><li><a href="#questions-to-rehearse">Questions to rehearse</a></li><li><a href="#worked-infrastructure-answer">Worked infrastructure answer</a></li><li><a href="#governance-scenario--illustrative-not-historical">Governance scenario — illustrative, not historical</a></li><li><a href="#credibility-probes">Credibility probes</a></li><li><a href="#additional-scenario-drills">Additional scenario drills</a></li><li><a href="#2026-question-bank-with-model-answers">2026 question bank with model answers</a></li><li><a href="#first-90-days-and-panel-questions">First 90 days and panel questions</a></li><li><a href="#sources-and-freshness">Sources and freshness</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Prepare to show control of a defined investment: business case, scope, schedule, cost, risk, quality and transition. Explain governance as a way to enable timely decisions and accountability. Agile delivery can sit within those controls; a project plan should reflect how the work is actually delivered.</p>
+<h2 id="positioning-and-evidence">Positioning and evidence</h2>
+<p>A useful opening: “I have managed technology delivery across regulated banking, utilities and operational software, coordinating stakeholders and distributed teams. I focus on a credible plan, explicit risks and dependencies, controlled change and a supported transition into operations. I use technical understanding to improve estimates and readiness decisions.” Add one actual governance or recovery decision and its result.</p>
+<div class="table-wrap"><table><thead><tr><th>Evidence</th><th>Best use</th><th>Check before interview</th></tr></thead><tbody>
+<tr><td><a href="../shared/evidence-bank.html#s5-regulated-banking-delivery">S5 banking</a></td><td>Regulatory deadline, suppliers and release governance</td><td>Exact initiative, authority and any budget quoted</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s4-infrastructure-modernisation">S4 infrastructure</a></td><td>Sequenced upgrades, production change and risk</td><td>120+ servers/30+ apps; £400k is annual savings</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s2-saas-transformation">S2 SaaS</a></td><td>Scope negotiation, cost comparison and transition</td><td>Revenue versus profit; differing implementation scope</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1 order automation</a></td><td>Pilot gates, rollout and business benefit</td><td>London/Paris involvement and manual-effort measure</td></tr>
+</tbody></table></div>
+<h2 id="questions-to-rehearse">Questions to rehearse</h2>
+<ol>
+<li class="qa-li"><strong>How do you initiate a project?</strong> <span class="qa-ans">Confirm the problem, sponsor, business case, measurable benefits, scope boundaries, assumptions, dependencies and governance. Establish a realistic delivery approach and who can accept residual risk or changes.</span></li>
+<li class="qa-li"><strong>How do you build a credible plan?</strong> <span class="qa-ans">Work with delivery experts on work packages, estimates, dependencies, resource constraints and acceptance. Identify the critical path and uncertainty. Update forecasts from evidence rather than preserving an obsolete baseline.</span></li>
+<li class="qa-li"><strong>How do you manage budget and forecast?</strong> <span class="qa-ans">Explain approved baseline, committed/actual cost, remaining forecast, contingency rules and forecast at completion. Investigate variance and present options. State which costs and approvals you actually controlled; do not invent a programme budget.</span></li>
+<li class="qa-li"><strong>How do you manage scope change?</strong> <span class="qa-ans">Describe the request, impact on business value, cost, date, quality and dependencies. Obtain approval at the right level, update the baseline and communicate it. An Agile backlog still needs visibility when changes affect contractual commitments.</span></li>
+<li class="qa-li"><strong>What makes RAID useful?</strong> <span class="qa-ans">Give each significant item an owner, impact, action and review/decision date. Distinguish a risk from an issue, and an assumption from a known dependency. Explain a decision your RAID process enabled.</span></li>
+<li class="qa-li"><strong>How do you manage a fixed regulatory deadline?</strong> <span class="qa-ans">Identify the precise obligation with the relevant specialists, minimum compliant scope and evidence needed. Work backwards through testing and approvals; escalate early with options. Regulatory urgency does not justify silently accepting unsafe release risk.</span></li>
+<li class="qa-li"><strong>How do you govern suppliers and stakeholders?</strong> <span class="qa-ans">Agree deliverables, interfaces, milestones, evidence and escalation rights. Use a short decision paper for sponsor choices. Describe how you managed disagreement without hiding it in a green report.</span></li>
+<li class="qa-li"><strong>How do you close and realise benefits?</strong> <span class="qa-ans">Confirm acceptance, support ownership, outstanding risks, contracts, documentation and lessons. Assign benefits owners and measurement dates beyond project closure. Savings can be forecast, avoided cost or cash released; say which.</span></li>
+</ol>
+<h2 id="worked-infrastructure-answer">Worked infrastructure answer</h2>
+<p>Use the March 2020–May 2022 Northern Powergrid infrastructure initiative to explain one migration or upgrade decision. The portfolio reports 120+ servers and 30+ applications and approximately £400k annual savings. Describe the dependency, outage consequence, sequencing choice, change preparation, rollback and business validation that you personally coordinated. Explain who approved the release and residual risk.</p>
+<p>Do not open with “I managed a £400k programme” unless you separately have a verified budget. Annual savings and delivery budget are different. Explain how the savings estimate was produced and whether realised benefits were tracked after transition.</p>
+<h2 id="governance-scenario--illustrative-not-historical">Governance scenario — illustrative, not historical</h2>
+<p>A sponsor wants a fixed date, a supplier is two weeks late and the cost forecast is worsening. Validate dependency dates and the remaining critical path. Confirm whether the date is contractual, regulatory or aspirational. Present a short options paper: change scope, sequence differently, add targeted capacity with credible onboarding assumptions, or move the milestone. Include cost, residual risk, affected benefits and approval needed.</p>
+<p>Seek a decision before the option expires; do not wait for the next monthly board. Update the plan, forecast and change log after approval. Monitor evidence against the revised milestones. If the sponsor accepts risk, document the actual acceptance and any controls; do not interpret silence as approval.</p>
+<p>For an earned-value question, define planned value, earned value and actual cost before using schedule or cost indices. Explain whether the work packages and acceptance evidence support that method. Do not apply a precise index to loosely defined progress percentages or confuse schedule variance with a forecast completion date.</p>
+<h2 id="credibility-probes">Credibility probes</h2>
+<p>What was your approved budget? What changed and who signed it off? What was on the critical path? Which assumption failed? What risk did you escalate? What evidence supported go-live? Who measured benefits after you left? Prepare one imperfect outcome and what you changed subsequently.</p>
+<p>Your strongest banking example must be one identifiable initiative. Do not combine GDPR, payments and Open Banking into a single story with unsupported dates or supplier counts.</p>
+<h2 id="additional-scenario-drills">Additional scenario drills</h2>
+<p>These are fictional practice cases. Use the <a href="../shared/handbook.html#scenario-answers">shared scenario method</a>, identifying delegated tolerances, approval and evidence needed to change the baseline.</p>
+<p><strong>SP1 — forecast exceeds approved funding.</strong> New integration work increases the estimate at completion beyond authorised funding; the sponsor still expects the original scope/date. Validate actuals, commitments, remaining estimates, scope and contingency rules with finance and delivery leads. Compare descoping, resequencing and additional funding, showing effects on benefits and risk. Seek the required decision before unfunded commitments are made, then update the approved plan. <strong>Probe:</strong> what if the sponsor refuses to decide? <strong>Weak response:</strong> spending first, hiding the variance or assuming contingency is automatically available.</p>
+<p><strong>SP2 — supplier delay at a fixed compliance deadline.</strong> A key supplier is late and a critical control has not passed verification. Confirm the actual obligation with compliance/legal specialists and identify minimum compliant scope and the remaining dependency chain. Compare an independently verified alternative, scope reduction and a specialist-led contingency for the deadline. Escalate with evidence and record the decision. <strong>Probe:</strong> what if the sponsor says to launch anyway? <strong>Weak response:</strong> treating sponsor pressure as permission to breach a mandatory obligation, or claiming the PM can personally certify compliance.</p>
+<h2 id="2026-question-bank-with-model-answers">2026 question bank with model answers</h2>
+<p>Current guides add AI in project management, hybrid methods and distributed teams to the classic questions. PMI&#x27;s PMBOK Guide Eighth Edition (November 2025) organises the discipline around six principles and seven performance domains — governance, scope, schedule, finance, stakeholders, resources and risk — and adds guidance on AI. [1][2] For UK public-sector panels, map your stories to the Civil Service behaviours. [3] Where a model answer describes a habit rather than a recorded story, keep only what you actually do.</p>
+<div class="qa" data-qa="q1-tell-me-about-yourself-and-your-project-management-background">
+<h3 id="q1-tell-me-about-yourself-and-your-project-management-background">Q1. Tell me about yourself and your project management background.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;ve delivered technology projects for twenty years in regulated sectors — utilities and banking through TCS, then food tech at Natoora. I&#x27;m strongest where delivery is constrained: a fixed client date, a shared specialist, a production estate that can&#x27;t go down. At Northern Powergrid I coordinated an infrastructure programme across more than 120 servers and 30 applications, reported to save about £400k a year. At Natoora I took an internal platform to external SaaS customers and ran the rollout of an AI order-automation tool. I hold PMP and PMI-ACP, and I&#x27;m looking for a role where governance helps decisions happen faster.&quot; Keep it under two minutes. [1]</p>
+</div></div>
+<div class="qa" data-qa="q2-describe-a-time-a-project-couldnt-meet-its-plan-how-did-you-handle-it">
+<h3 id="q2-describe-a-time-a-project-couldnt-meet-its-plan-how-did-you-handle-it">Q2. Describe a time a project couldn&#x27;t meet its plan. How did you handle it?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Use <a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">B1</a>. &quot;Two launches turned out to need the same senior engineer, which neither plan had shown. I gave each sponsor options — delay, reduce scope, phase the rollout — and when neither moved, ran a joint session with the dependency visible and the CTO available to decide. We agreed to finish GenAI first and move multiple basket by two to three weeks, because its go-to-market wasn&#x27;t final. The lesson: put shared specialists into the dependency map at planning, not when the conflict lands.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q3-walk-me-through-the-cost-side-of-a-project-you-ran">
+<h3 id="q3-walk-me-through-the-cost-side-of-a-project-you-ran">Q3. Walk me through the cost side of a project you ran.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;On the Natoora SaaS work, implementation investment was about £9k for the first client and £7k for the second. The SaaS work brought a £28k setup fee and £1.6k a month in recurring revenue, and reported £29k profit in its first five months — I don&#x27;t present those as one customer&#x27;s figures. I planned team capacity at 70% availability because the same people supported the core platform, and agreed that assumption with the CTO up front. I&#x27;d be careful to say these are two different customers with different scope, so the lower second cost is partly reuse and partly a smaller job.&quot; Know which numbers you controlled and which finance reported. See the <a href="../vacancies/accenture-product-owner.html">Accenture cost method</a> for structure.</p>
+</div></div>
+<div class="qa" data-qa="q4-how-do-you-use-ai-and-automation-in-project-management">
+<h3 id="q4-how-do-you-use-ai-and-automation-in-project-management">Q4. How do you use AI and automation in project management?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;For the work around decisions, not the decisions. I use AI to draft status reports and RAID updates from meeting notes, summarise long threads, and check plans for missing dependencies — then I verify, because it can sound confident and be wrong. I keep confidential client data out of public tools. And I&#x27;ve managed AI delivery itself: the order-automation rollout went through a pilot with defined exceptions and a measured baseline before it scaled.&quot; [1][2]</p>
+</div></div>
+<div class="qa" data-qa="q5-which-methodology-do-you-use-and-how-do-you-choose">
+<h3 id="q5-which-methodology-do-you-use-and-how-do-you-choose">Q5. Which methodology do you use, and how do you choose?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;The one that fits the uncertainty and the governance. Fixed regulatory scope with external dependencies suits a predictive plan with stage gates; product work with changing requirements suits Scrum or Kanban; most organisations need a hybrid — Agile delivery inside funding and release governance. PMBOK 8 frames this as principles and performance domains rather than one process, which matches how I work.&quot; [1][2]</p>
+</div></div>
+<div class="qa" data-qa="q6-how-do-you-handle-stakeholders-who-keep-changing-requirements">
+<h3 id="q6-how-do-you-handle-stakeholders-who-keep-changing-requirements">Q6. How do you handle stakeholders who keep changing requirements?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Make the trade-off visible rather than refusing change. Agree the baseline and change route at the start, then show every request&#x27;s effect on date, cost, quality and other priorities, and let the accountable person choose. When a SaaS client needed go-live in four weeks against a six-to-eight-week estimate, an impact matrix made the choice obvious: customer-facing screens first, internal admin screens later. We went live on schedule.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q7-how-do-you-handle-a-disengaged-or-underperforming-team-member">
+<h3 id="q7-how-do-you-handle-a-disengaged-or-underperforming-team-member">Q7. How do you handle a disengaged or underperforming team member?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Use <a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">B4</a>. &quot;When I rolled out Scrum at Natoora by announcement, a respected senior engineer disengaged and others followed. I&#x27;d skipped consulting him. I had one-to-ones to understand his concerns and agreed a structural change — no-meeting Fridays — and he became one of the strongest advocates. Now I start with a private conversation to find the cause, and I bring respected voices in before announcing change.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q8-tell-me-about-a-project-that-failed-and-what-you-learned">
+<h3 id="q8-tell-me-about-a-project-that-failed-and-what-you-learned">Q8. Tell me about a project that failed and what you learned.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Use <a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">B2</a>: features delivered to specification that users didn&#x27;t adopt, the investigation, the UX recommendation, and the habit you changed — involving users early and measuring adoption after release. [1]</p>
+</div></div>
+<div class="qa" data-qa="q9-how-do-you-manage-a-distributed-or-hybrid-team">
+<h3 id="q9-how-do-you-manage-a-distributed-or-hybrid-team">Q9. How do you manage a distributed or hybrid team?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Shared core hours, decisions written down where everyone can find them, and rituals that work asynchronously.&quot; Then give your real example: the SaaS work at Natoora ran with a nine-person team across the UK and Brazil. Prepare what you actually did about the time difference — where decisions were made and how work was handed over — before using it. [1]</p>
+</div></div>
+<div class="qa" data-qa="q10-how-do-you-measure-benefits-after-the-project-closes">
+<h3 id="q10-how-do-you-measure-benefits-after-the-project-closes">Q10. How do you measure benefits after the project closes?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Assign a business owner for each benefit before go-live, record the baseline, and agree when and how it will be measured. Say what kind of benefit it is — cash released, cost avoided or time freed. The Smart Timesheet&#x27;s reported £500k a year and the infrastructure programme&#x27;s £400k are savings estimates; I&#x27;d explain how each was calculated rather than present them as budgets I managed.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q11-for-public-sector-roles--how-should-i-answer-behaviour-questions">
+<h3 id="q11-for-public-sector-roles--how-should-i-answer-behaviour-questions">Q11. For public-sector roles — how should I answer behaviour questions?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Prepare one STAR example for each behaviour the advert names, usually from Seeing the Big Picture, Changing and Improving, Making Effective Decisions, Leadership, Communicating and Influencing, Working Together, Developing Self and Others, Managing a Quality Service and Delivering at Pace. Lead with your own actions and the result. Good matches: Delivering at Pace — the four-week SaaS go-live; Making Effective Decisions — the B1 resource conflict; Changing and Improving — the Jira and Agile operating model; Developing Self and Others — mentoring 20+ associates. [3]</p>
+</div></div>
+<h2 id="first-90-days-and-panel-questions">First 90 days and panel questions</h2>
+<p>First validate the business case, commitments, governance, baseline and urgent risks. Next establish a credible forecast and resolve priority dependencies. Then improve reporting/decision cadence, transition readiness and benefits ownership. Tailor this to initiation, delivery or recovery rather than imposing a standard mobilisation template.</p>
+<p>Ask: Which tolerances are delegated to the PM? Who approves scope and budget changes? What evidence is required at release gates? How are suppliers governed? Who owns benefits after closure?</p>
+<p><strong>Rehearsal:</strong> one regulated delivery, one change request, one recovery, one budget/forecast discussion and one operational handover. Use the <a href="../shared/handbook.html">shared handbook</a> for methods; keep the project controls specific to the actual vacancy.</p>
+<h2 id="sources-and-freshness">Sources and freshness</h2>
+<p>Checked 13 October 2026.</p>
+<ol>
+<li><a href="https://blog.theinterviewguys.com/project-manager-interview-questions-and-answers/">Top 10 project manager interview questions for 2026</a> — The Interview Guys, updated 25 June 2026.</li>
+<li><a href="https://www.pmi.org/pmbok-guide-standards/foundational/pmbok/about">PMBOK Guide Eighth Edition</a> — PMI, published November 2025.</li>
+<li><a href="https://des.mod.uk/wp-content/uploads/2026/01/20250527-Success-Profile-Behaviours-2025-document-v1-O.pdf">Civil Service Success Profiles behaviours</a> — as used by MOD DE&amp;S, 2025 document; check the specific department&#x27;s advert.</li>
+<li>LinkedIn&#x27;s <a href="https://business.linkedin.com/talent-solutions/resources/how-to-hire-guides/project-manager/interview-questions">project manager interview question guide</a> for hiring managers.</li>
+</ol></article><footer>Generated from <a href="senior-project-manager.md">senior-project-manager.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

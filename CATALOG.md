@@ -54,7 +54,7 @@ These two resources are an owner-approved scope exception. “Current” identif
 
 ## Scoped interview preparation collection
 
-Markdown sources are canonical. The HTML reading view is generated from them. This owner-approved collection is pending final factual review; it does not include raw private recruitment material.
+Markdown sources are canonical. The tabbed HTML reading view and one HTML page per guide (start at `interview-prep/index.html`) are generated from them. This owner-approved collection is pending final factual review; it does not include raw private recruitment material.
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -73,6 +73,7 @@ Markdown sources are canonical. The HTML reading view is generated from them. Th
 | Accenture Product Owner Extra Questions | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-13 |
 | Accenture Forward Deployed AI Engineer Supplement | Forward-deployed AI interview preparation | [interview-prep/vacancies/accenture-fde.md](interview-prep/vacancies/accenture-fde.md) | Markdown | Draft | Living draft | 2026-10-05 |
 | Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-13 |
+| Interview Guide Pages | Product and delivery interview preparation | [interview-prep/index.html](interview-prep/index.html) | HTML | Draft | Living draft | 2026-10-13 |
 
 ## Status values
 

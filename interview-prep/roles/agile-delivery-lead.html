@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agile Delivery Lead — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="roles/agile-delivery-lead.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="delivery-lead.html">Delivery Lead</a><a href="agile-delivery-lead.html" aria-current="page">Agile Delivery Lead</a><a href="product-owner.html">Product Owner</a><a href="product-manager.html">Product Manager</a><a href="senior-project-manager.html">Senior Project Manager</a><a href="software-ai-architect.html">Software &amp; AI Architect</a><a href="ai-engineer.html">AI Engineer</a><a href="forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="agile-delivery-lead-interview-guide">Agile Delivery Lead interview guide</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Last reviewed:</strong> 1 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#positioning-and-evidence">Positioning and evidence</a></li><li><a href="#questions-to-rehearse">Questions to rehearse</a></li><li><a href="#coaching-answer-exercise">Coaching answer exercise</a></li><li><a href="#flow-scenario--illustrative-not-historical">Flow scenario — illustrative, not historical</a></li><li><a href="#seniority-and-credibility-probes">Seniority and credibility probes</a></li><li><a href="#additional-scenario-drills">Additional scenario drills</a></li><li><a href="#first-90-days-and-panel-questions">First 90 days and panel questions</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Show how you help teams deliver useful outcomes through better flow, collaboration and learning. Seniority appears in coaching judgement, cross-team coordination and removing structural constraints. Running ceremonies alone does not demonstrate that impact.</p>
+<h2 id="positioning-and-evidence">Positioning and evidence</h2>
+<p>A useful opening: “My experience combines Agile delivery leadership with product ownership and technical delivery. I help teams make work and dependencies visible, improve collaboration and inspect whether changes actually improve delivery. I adapt the working approach to the service and constraints rather than treating a framework as the objective.” Add a concrete improvement with a baseline and result you can defend.</p>
+<div class="table-wrap"><table><thead><tr><th>Evidence</th><th>What to demonstrate</th></tr></thead><tbody>
+<tr><td><a href="../shared/evidence-bank.html#s4-infrastructure-modernisation">S4 infrastructure</a></td><td>Risk-based sequencing, operations dependencies and mixed work types</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s2-saas-transformation">S2 SaaS</a></td><td>UK/Brazil collaboration, capacity transparency and reusable learning</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s3-smart-timesheet">S3 Smart Timesheet</a></td><td>Working with product priorities and users; actual role was PO</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1 order automation</a></td><td>Pilot learning, operational feedback and adoption</td></tr>
+</tbody></table></div>
+<h2 id="questions-to-rehearse">Questions to rehearse</h2>
+<ol>
+<li class="qa-li"><strong>When would you choose Scrum or Kanban?</strong> <span class="qa-ans">Consider the nature of work, interruption rate, planning horizon and team needs. Scrum provides goals and bounded inspection cycles; Kanban makes flow explicit and controls work in progress. Explain the relevant practices and review evidence rather than declaring one universally superior.</span></li>
+<li class="qa-li"><strong>How do you improve predictability?</strong> <span class="qa-ans">Make work and policies visible, reduce excessive work in progress, split work, expose blockers and use observed completion data. Report uncertainty and dependencies. Predictability must preserve quality and user value.</span></li>
+<li class="qa-li"><strong>What metrics do you use?</strong> <span class="qa-ans">Explain lead/cycle time boundaries, throughput, work-item age, WIP and quality measures. Discuss trends and variability. Velocity is team-specific planning information, not a cross-team ranking or productivity target.</span></li>
+<li class="qa-li"><strong>How do you facilitate a difficult retrospective?</strong> <span class="qa-ans">Create safety, use concrete evidence, invite quieter voices, distinguish systemic constraints from blame and choose a small experiment with an owner and review date. Explain what changed in a real example.</span></li>
+<li class="qa-li"><strong>How do you coach a team resisting change?</strong> <span class="qa-ans">Understand the problem and their experience, co-design a low-risk experiment, make the benefit visible and inspect it. Explain when a policy is mandatory and when the team has choice.</span></li>
+<li class="qa-li"><strong>How do you handle repeated sprint spillover?</strong> <span class="qa-ans">Examine work slicing, scope changes, hidden work, dependencies, quality and capacity. Collaborate with the PO and Developers on a realistic Sprint Goal and planning approach. Do not simply demand higher estimates or overtime.</span></li>
+<li class="qa-li"><strong>How do you coordinate several teams?</strong> <span class="qa-ans">Map shared outcomes, dependencies, interface owners and decision dates. Resolve the constraint closest to the work; use programme forums for decisions beyond team authority. Attendance at a scaled ceremony alone is not evidence of leading scaled delivery.</span></li>
+<li class="qa-li"><strong>How do you work with a PO, engineering lead and manager?</strong> <span class="qa-ans">Clarify accountability for value, technical quality, people support and delivery facilitation. Surface trade-offs jointly. Avoid becoming the sole approver or a messenger for every decision.</span></li>
+</ol>
+<h2 id="coaching-answer-exercise">Coaching answer exercise</h2>
+<p>Select a real case of excessive work in progress, delayed decisions or poor hand-offs. State your observation, the team&#x27;s interpretation, a practice you agreed and the result. The SaaS portfolio describes distributed working and reusable onboarding; explain which parts you personally established and how you assessed them. The two-client cost and duration comparison is useful evidence, but does not prove that ceremonies caused a productivity increase.</p>
+<p>Use: “We observed [specific problem]. I facilitated [actual discussion/experiment]. We changed [policy/working arrangement]. We checked [measure] over [period], and learned [result/next change].” Complete this with real evidence before rehearsal.</p>
+<h2 id="flow-scenario--illustrative-not-historical">Flow scenario — illustrative, not historical</h2>
+<p>Ten items are in progress, only two finish each week, and urgent support work repeatedly interrupts feature delivery. Clarify whether support and planned work share skills and capacity. Visualise all work and item age; establish explicit urgency criteria. Test lower WIP, smaller slices, clearer intake or a reserved support approach with the team. Avoid making a new support lane a dumping ground that conceals work.</p>
+<p>Use throughput and observed cycle-time distribution to discuss the likely completion range. Review quality, user outcomes and team experience as guardrails. If the bottleneck is another department&#x27;s approval, coach locally while escalating that structural constraint with evidence. Do not promise a fixed percentage improvement before observing the system.</p>
+<h2 id="seniority-and-credibility-probes">Seniority and credibility probes</h2>
+<p>Prepare examples of influencing outside your team, coaching another practitioner, challenging an unhelpful metric and changing your own approach after feedback. State actual mentoring scope: formal mentoring, peer coaching and team facilitation are related but different experiences.</p>
+<p>Expect: How did the team choose the change? What resistance did you encounter? What would have happened without it? How did you distinguish correlation from causation? Did improvement endure after you stepped back? When did you escalate rather than facilitate?</p>
+<p>If asked about SAFe, explain the environment you actually used, team and programme backlog responsibilities and dependency planning. Do not invent PI Planning experience. Use the <a href="../shared/handbook.html#scrum-kanban-and-scaled-delivery">shared handbook</a> for current role distinctions.</p>
+<h2 id="additional-scenario-drills">Additional scenario drills</h2>
+<p>These are fictional practice cases. Use the <a href="../shared/handbook.html#scenario-answers">shared scenario method</a>; make the team&#x27;s participation and any structural escalation explicit.</p>
+<p><strong>AD1 — rising velocity, falling reliability.</strong> Leadership celebrates higher story points, but releases are less predictable and defects are growing. Check whether estimation changed, work is being split differently or rework is omitted. Examine item age, blocked time, completed outcomes and escaped defects. Recommend one experiment with the team, such as smaller batches or resolving a recurring approval delay; agree quality guardrails and a review period. <strong>Probe:</strong> what if leadership insists on comparing team velocity? <strong>Weak response:</strong> chasing a points target or assuming the team needs more ceremonies.</p>
+<p><strong>AD2 — conflict around urgent work.</strong> Product wants a date commitment, engineering flags technical risk, and support interruptions keep invalidating plans. Clarify user impact, urgency rules, capacity and decision rights. Facilitate explicit trade-offs between planned work and service obligations; test intake policies or reserved capacity rather than enforcing a universal rule. Track interruption demand, ageing work and service impact. <strong>Probe:</strong> what if urgent work is genuinely unpredictable? <strong>Weak response:</strong> promising to eliminate interruptions or deciding the team&#x27;s technical plan for them.</p>
+<h2 id="first-90-days-and-panel-questions">First 90 days and panel questions</h2>
+<p>Learn the service, team agreements, demand, dependencies and baseline flow first. Agree one focused improvement experiment next. Then assess the result, build team capability and tackle cross-team constraints with leadership. Preserve useful existing practices; change what the evidence justifies.</p>
+<p>Ask: What slows teams most today? How much influence does this role have beyond the team? Which metrics trigger decisions? How are operational interruptions handled? What coaching support exists for other delivery practitioners?</p>
+<p><strong>Rehearsal:</strong> one facilitation conflict, one flow improvement, one coaching example, one cross-team dependency and one failed experiment. Each needs a personal action and evidence, not a ceremony list.</p></article><footer>Generated from <a href="agile-delivery-lead.md">agile-delivery-lead.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

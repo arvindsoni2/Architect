@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Accenture extra Qs — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="vacancies/accenture-product-owner-questions.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="../roles/delivery-lead.html">Delivery Lead</a><a href="../roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="../roles/product-owner.html">Product Owner</a><a href="../roles/product-manager.html">Product Manager</a><a href="../roles/senior-project-manager.html">Senior Project Manager</a><a href="../roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="../roles/ai-engineer.html">AI Engineer</a><a href="../roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="accenture-product-owner.html">Accenture PO playbook</a><a href="accenture-product-owner-questions.html" aria-current="page">Accenture extra Qs</a><a href="accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="accenture-product-owner--extra-questions-and-research">Accenture Product Owner — extra questions and research</h1>
+<p><strong>Status:</strong> Owner-reviewed facts · <strong>Last reviewed:</strong> 13 October 2026 · <strong>Use with:</strong> the <a href="accenture-product-owner.html">Accenture PO playbook</a></p><details class="toc" open><summary>On this page</summary><ol><li><a href="#scrum-and-product-ownership">Scrum and product ownership</a></li><li><a href="#delivery-technology-and-risk">Delivery, technology and risk</a></li><li><a href="#consulting-situations">Consulting situations</a></li><li><a href="#research-register">Research register</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>The playbook covers the 15 questions most likely to decide the interview. This page covers depth and quick-fire questions that may come up as follow-ups. Answers are short on purpose: say the point, give one example, stop. Facts come from the <a href="../shared/evidence-bank.html">evidence bank</a>.</p>
+<p>Jump to: <a href="#what-is-api-first-and-whats-your-experience">API-first</a> · <a href="#what-do-you-know-about-safe">SAFe</a> · <a href="#what-risks-do-you-watch-in-an-ai-product">AI risks</a> · <a href="#consulting-situations">Consulting situations</a> · <a href="#research-register">Research register</a></p>
+<h2 id="scrum-and-product-ownership">Scrum and product ownership</h2>
+<h3 id="what-is-the-product-owner-accountable-for">What is the Product Owner accountable for?</h3>
+<blockquote>“Maximising the value of the product. In practice that means owning the product goal, ordering the backlog and making sure everyone understands it. I can delegate backlog work to a BA, but the accountability stays with me.”</blockquote>
+<h3 id="what-does-the-po-do-in-each-scrum-event">What does the PO do in each Scrum event?</h3>
+<blockquote>“In sprint planning I bring the product goal and the most valuable items, and we agree the sprint goal together; the developers decide how much they can take on. In refinement I clarify items with the BA, designers and developers. At the sprint review I show the increment to stakeholders and we adapt the backlog. I join the retrospective as a team member.”</blockquote>
+<h3 id="definition-of-ready-and-definition-of-done">Definition of Ready and Definition of Done?</h3>
+<blockquote>“Done is in the Scrum Guide: the quality standard every increment must meet — for example tested, accessible and deployable. Ready isn&#x27;t in the Scrum Guide; it&#x27;s a team agreement that an item is clear enough to start. I use it lightly, so it doesn&#x27;t become a gate. On the Natoora SaaS team we agreed one together, and it stayed part of how we worked.”</blockquote>
+<h3 id="write-a-user-story-and-acceptance-criteria">Write a user story and acceptance criteria</h3>
+<blockquote>“As a field engineer, I want to submit my weekly timesheet from my phone, so I don&#x27;t have to drive to the depot. Acceptance criteria: given a completed week, when I submit, it goes to my supervisor for approval and I see its status; given a missing required field, I can&#x27;t submit and I see a clear message; given I submit twice, only one timesheet is created.”</blockquote>
+<p>This example uses the Smart Timesheet context to show the format. The acceptance criteria are illustrations, not a record of the actual backlog.</p>
+<h3 id="scrum-or-kanban">Scrum or Kanban?</h3>
+<blockquote>“Scrum when the work benefits from a fixed rhythm and regular stakeholder reviews, for example building a new product. Kanban when work arrives continuously and unpredictably, for example support or BAU change. Often a team uses Scrum for product work and limits work in progress the Kanban way.”</blockquote>
+<h3 id="what-do-you-know-about-safe">What do you know about SAFe?</h3>
+<blockquote>“In SAFe, the Product Manager owns the programme backlog and features, and Product Owners own team backlogs and stories. Teams plan together every 8–12 weeks in PI Planning, and priorities use WSJF: cost of delay divided by job size. I haven&#x27;t worked on a formal Agile Release Train, but at Northern Powergrid I coordinated distributed teams across Chennai, Kolkata and Newcastle around shared dependencies, which is the problem SAFe solves. I&#x27;d be happy to take the POPM certification.”</blockquote>
+<h2 id="delivery-technology-and-risk">Delivery, technology and risk</h2>
+<h3 id="what-is-api-first-and-whats-your-experience">What is API-first, and what&#x27;s your experience?</h3>
+<p>This is a reported Accenture Digital Product Owner question (see G1 below). Evidence: <a href="../shared/evidence-bank.html#s3-smart-timesheet">S3 Smart Timesheet</a>.</p>
+<blockquote>“API-first means designing the interface between systems as a contract before building the screens. For a PO, it means agreeing early what data is exchanged, who uses it and what happens when it fails. On Smart Timesheet our OutSystems front end on AWS depended on a .NET integration with Oracle HCM and CRM for employee data, so integration failure, data quality and permissions were backlog items from the start, not surprises at the end.”</blockquote>
+<h3 id="what-cloud-experience-do-you-have">What cloud experience do you have?</h3>
+<blockquote>“Smart Timesheet ran on AWS. At Natoora the SaaS product ran on Google Cloud with Terraform templates, which we reused from Client 1 for Client 2 to cut onboarding time. I passed AWS Certified AI Practitioner in April 2026 and I&#x27;m studying for Solutions Architect Associate. As a PO, I care about cloud cost, security and the support model as much as the features.”</blockquote>
+<h3 id="how-do-you-balance-technical-debt-against-new-features">How do you balance technical debt against new features?</h3>
+<blockquote>“I make the cost of the debt visible in business terms — slower delivery, incidents, security risk — and give it a regular share of capacity rather than one big clean-up. On the SaaS product, removing more than 200 hard-coded references and adding tenant isolation was essential debt work: without it, we couldn&#x27;t safely onboard a second client.”</blockquote>
+<h3 id="how-do-you-handle-security-compliance-and-regulation">How do you handle security, compliance and regulation?</h3>
+<blockquote>“Mandatory obligations go to the top of the backlog with a deadline, and the controls go into the Definition of Done. At Nationwide I delivered regulated banking work such as Open Banking and GDPR, where the date was fixed by regulation. For a public-sector client I&#x27;d involve security and data-protection colleagues in refinement, not at the end.”</blockquote>
+<h3 id="what-risks-do-you-watch-in-an-ai-product">What risks do you watch in an AI product?</h3>
+<blockquote>“Wrong outputs, sensitive data leaking, prompt injection — for example an email with hidden instructions — cost, and model changes from the vendor. I manage them with validation, a human on consequential decisions, monitoring of exception rates, and clear ownership of exceptions. On the Natoora tool, validation checked customers and products, and anything uncertain went to a person.”</blockquote>
+<h3 id="how-do-you-run-a-team-split-across-locations">How do you run a team split across locations?</h3>
+<blockquote>“At Natoora the SaaS team had nine people across the UK and Brazil. We protected overlap hours for collaboration, wrote decisions down, and ran a joint stand-up plus written end-of-day updates. At Northern Powergrid I ran teams across India and Newcastle. The rule is the same: make work and decisions visible so nobody waits for a meeting.”</blockquote>
+<h2 id="consulting-situations">Consulting situations</h2>
+<h3 id="the-client-changes-the-objective-from-profit-to-quality-halfway-through-what-do-you-do">The client changes the objective from profit to quality halfway through. What do you do?</h3>
+<p>This is a reported Accenture consulting case theme (see G2 below). Answer with the <a href="accenture-product-owner.html#4-scenario-method">scenario method</a>.</p>
+<blockquote>“I&#x27;d clarify what ‘quality’ means to them and why it changed now. Then I&#x27;d re-order the backlog against the new goal and show which planned work no longer adds value. I&#x27;d agree new success measures and check whether the change affects the contract, because a new objective can be a change request. Finally I&#x27;d tell the team why priorities moved.”</blockquote>
+<h3 id="stakeholders-dont-engage-or-take-responsibility-what-do-you-do">Stakeholders don&#x27;t engage or take responsibility. What do you do?</h3>
+<blockquote>“I find out why — usually unclear benefit, no time or fear of the decision. I make it easy: short decision notes with a recommendation and a deadline, and a demo of working software rather than documents. If a decision still doesn&#x27;t come, I escalate through the agreed route, presenting it as a risk to their outcome rather than a complaint.”</blockquote>
+<h3 id="what-would-you-do-in-your-first-90-days">What would you do in your first 90 days?</h3>
+<blockquote>“Days 1 to 30: learn the client, users, decision rights and baseline measures — and change very little. Days 31 to 60: tighten the backlog around the product goal and ship one small, valuable release. Days 61 to 90: measure the outcome, adjust the roadmap and set up the mentoring rhythm with the POs and BAs I support.”</blockquote>
+<h2 id="research-register">Research register</h2>
+<p>Reviewed 5 October 2026 and kept for reference. These are anecdotal reports, not Accenture&#x27;s question bank or confirmation of this vacancy&#x27;s format.</p>
+<div class="table-wrap"><table><thead><tr><th>Code</th><th>Source</th><th>Supports</th></tr></thead><tbody>
+<tr><td>G1</td><td><a href="https://www.glassdoor.co.uk/Interview/digital-product-owner-interview-questions-SRCH_KO0%2C21.htm">Glassdoor Digital Product Owner reports</a>, 2023–2024</td><td>Accenture API-first question (30 September 2023, location unknown); stakeholder conflict</td></tr>
+<tr><td>G2</td><td><a href="https://www.glassdoor.co.uk/Interview/Case-study-question-If-the-client-was-interested-in-growing-profit-at-the-start-of-the-project-but-at-midway-they-change-QTN_1587563.htm">Glassdoor Accenture client-objective case</a></td><td>Changing client objective (asked of a consulting senior manager, not this role)</td></tr>
+<tr><td>R1</td><td><a href="https://www.reddit.com/r/ProductOwner/comments/1m6f92w/senior_agile_product_owner_interview/">Reddit: Senior Agile PO interview</a>, 2025</td><td>Cooperation and capacity scenarios</td></tr>
+<tr><td>R2</td><td><a href="https://www.reddit.com/r/ProductOwner/comments/1r1fedm/product_owner_interviews_tips/">Reddit: PO interview tips</a>, 2026</td><td>Ambiguous requests broken into deliverable work</td></tr>
+<tr><td>L1</td><td><a href="https://business.linkedin.com/hire/resources/how-to-hire-guides/product-owner-interview-questions">LinkedIn: PO interview questions</a></td><td>Roadmap, backlog, value and stakeholder questions</td></tr>
+<tr><td>D1</td><td><a href="https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview">Accenture: behavioural interview preparation</a></td><td>Accenture recommends STAR for past examples</td></tr>
+<tr><td>D2</td><td><a href="https://scrumguides.org/scrum-guide.html">Scrum Guide 2020</a></td><td>PO accountability, events, Definition of Done; still the current official version in October 2026</td></tr>
+<tr><td>D3</td><td><a href="https://www.gov.uk/service-manual/service-standard">GDS Service Standard</a></td><td>Public-service expectations</td></tr>
+<tr><td>D4</td><td><a href="https://www.gov.uk/service-manual/helping-people-to-use-your-service/understanding-wcag">GOV.UK: Understanding WCAG 2.2</a></td><td>Accessibility standard for public services</td></tr>
+</tbody></table></div></article><footer>Generated from <a href="accenture-product-owner-questions.md">accenture-product-owner-questions.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

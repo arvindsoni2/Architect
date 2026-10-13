@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>AI Engineer — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="roles/ai-engineer.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="delivery-lead.html">Delivery Lead</a><a href="agile-delivery-lead.html">Agile Delivery Lead</a><a href="product-owner.html">Product Owner</a><a href="product-manager.html">Product Manager</a><a href="senior-project-manager.html">Senior Project Manager</a><a href="software-ai-architect.html">Software &amp; AI Architect</a><a href="ai-engineer.html" aria-current="page">AI Engineer</a><a href="forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="ai-engineer-interview-guide">AI Engineer interview guide</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Last reviewed:</strong> 13 October 2026 · <strong>Sources checked:</strong> 13 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#what-the-2026-loop-looks-like">What the 2026 loop looks like</a></li><li><a href="#positioning-and-evidence">Positioning and evidence</a></li><li><a href="#fundamentals">Fundamentals</a></li><li><a href="#retrieval">Retrieval</a></li><li><a href="#agents-and-tools">Agents and tools</a></li><li><a href="#evaluation">Evaluation</a></li><li><a href="#production-cost-and-reliability">Production, cost and reliability</a></li><li><a href="#security-and-safety">Security and safety</a></li><li><a href="#projects-and-behavioural">Projects and behavioural</a></li><li><a href="#practice-exercises">Practice exercises</a></li><li><a href="#credibility-probes">Credibility probes</a></li><li><a href="#questions-to-ask-the-panel">Questions to ask the panel</a></li><li><a href="#sources-and-freshness">Sources and freshness</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>AI engineer interviews in 2026 test whether you can <strong>build on foundation models</strong> — retrieval, tools and agents, evaluation, cost and latency — rather than train them. Panels reward a working system with numbers more than definitions. Your position: a delivery and product leader who now builds hands-on, with one production AI rollout and three public projects. Say that plainly; do not present personal projects as employed engineering experience.</p>
+<h2 id="what-the-2026-loop-looks-like">What the 2026 loop looks like</h2>
+<p>Reported loops share five kinds of round. Confirm the actual format with the recruiter; these are patterns from public guides, not a promise. [1][2][3]</p>
+<div class="table-wrap"><table><thead><tr><th>Round</th><th>Typical prompt</th><th>What scores well</th></tr></thead><tbody>
+<tr><td>Technical screen</td><td>&quot;You have a 200-page PDF and a question. What happens between enter and the answer?&quot;</td><td>Every stage named, chunk size and top-k justified, knowing when retrieval is the wrong tool</td></tr>
+<tr><td>Take-home</td><td>&quot;Here are 50 Markdown docs. Build Q&amp;A, a 20-question eval set, and report recall@5 and faithfulness.&quot;</td><td>A working system plus numbers; a judge checked against human labels</td></tr>
+<tr><td>Live coding or debugging</td><td>&quot;This agent loops forever on some inputs. Find out why and fix it.&quot;</td><td>Tracing the failing step, capping calls and cost, replaying fixed cases</td></tr>
+<tr><td>System design</td><td>&quot;Design a support assistant. How do you know it is helping and not making things worse?&quot;</td><td>Evaluation and serving designed around a model you do not control</td></tr>
+<tr><td>Product sense</td><td>&quot;A customer says the bot feels dumb. What do you change first?&quot;</td><td>Turning a vague complaint into a measurable, prioritised fix</td></tr>
+</tbody></table></div>
+<p>Many teams now allow AI coding assistants in live rounds and judge how you direct, check and override them. [2] Expect lighter algorithm questions than a classic software loop, and a practical build instead. [3]</p>
+<h2 id="positioning-and-evidence">Positioning and evidence</h2>
+<p><strong>Model opening (about 90 seconds):</strong> &quot;I&#x27;m a delivery and product leader who now builds AI systems hands-on. At Natoora I led the rollout of a GPT-4o-mini order-automation workflow in London and Paris that cut manual order-entry effort by about 90%, with exceptions routed to people. Since then I&#x27;ve built three open-source projects. IncidentPilot is an incident-triage agent where deterministic rules stay in control and the model only ranks evidence-grounded hypotheses. Hatch is a multi-agent job-search workspace on LangGraph that never takes an external action without me. ResearchOps ranks research items with mostly deterministic scoring and keeps model spend to pennies a day. The common thread is controls around the model, an evaluation that can say no, and cost as a design constraint.&quot;</p>
+<div class="table-wrap"><table><thead><tr><th>What the panel tests</th><th>Best evidence</th><th>What to show</th></tr></thead><tbody>
+<tr><td>Agents with safe tool boundaries</td><td><a href="../shared/evidence-bank.html#s9-incidentpilot--personal-open-source-project">S9 IncidentPilot</a></td><td>Read-only MVP, model with no tools, rules-only fallback</td></tr>
+<tr><td>Evaluation that drives decisions</td><td><a href="../shared/evidence-bank.html#s8-hatch--personal-open-source-project">S8 Hatch</a></td><td>Hard gates; the baseline was retained when no challenger passed</td></tr>
+<tr><td>Cost and grounding by design</td><td><a href="../shared/evidence-bank.html#s10-researchops-v2--personal-open-source-project">S10 ResearchOps v2</a></td><td>Deterministic sub-scores, narrow model role, hard cost caps</td></tr>
+<tr><td>Production rollout and exceptions</td><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1 order automation</a></td><td>Pilot scope, exception handling, measured manual effort</td></tr>
+<tr><td>Learning</td><td><a href="../shared/evidence-bank.html#credentials-and-learning">Credentials and learning</a></td><td>GeeksforGeeks Generative AI &amp; Agentic AI course, AWS AI Practitioner, plus what you built with it</td></tr>
+</tbody></table></div>
+<h2 id="fundamentals">Fundamentals</h2>
+<p>Model answers are written in your voice from the evidence bank. Where one describes a habit rather than a recorded fact, keep only what you actually do.</p>
+<div class="qa" data-qa="q1-a-user-asks-a-question-about-a-200-page-pdf-what-happens-between-enter-and-the-answer">
+<h3 id="q1-a-user-asks-a-question-about-a-200-page-pdf-what-happens-between-enter-and-the-answer">Q1. A user asks a question about a 200-page PDF. What happens between enter and the answer?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Two phases. Offline, I parse the PDF keeping its structure, split it into chunks along sections with a little overlap, embed each chunk and also index it for keyword search, storing page and section metadata. At query time I may rewrite the question, run hybrid retrieval, rerank the top candidates and pass only the best few chunks, with IDs, into a prompt that tells the model to answer from them and cite them. I check the citations point at real chunks before returning, and I stream the answer. Most latency is the generated tokens, not reading the prompt. If the question needs a live number, such as an account balance, retrieval is the wrong tool and I call an API instead.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q2-is-a-bigger-context-window-always-better">
+<h3 id="q2-is-a-bigger-context-window-always-better">Q2. Is a bigger context window always better?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;No. A longer prompt costs more, takes longer to process, and models use information in the middle of long contexts less reliably. I retrieve less but better, put the most relevant evidence first, and measure answer quality as I change top-k rather than assuming more context helps.&quot; [4]</p>
+</div></div>
+<div class="qa" data-qa="q3-what-does-temperature-change-and-when-do-you-set-it-to-zero">
+<h3 id="q3-what-does-temperature-change-and-when-do-you-set-it-to-zero">Q3. What does temperature change, and when do you set it to zero?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;It reshapes the probability distribution the next token is sampled from: higher spreads it out, lower sharpens it. I use low or zero for extraction and tool calls, but zero is not a determinism guarantee, so I still validate output against a schema and retry on failure. Reliability comes from schemas, validators and evaluation, not from the sampling setting.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q4-why-is-generating-the-answer-slower-than-reading-the-prompt">
+<h3 id="q4-why-is-generating-the-answer-slower-than-reading-the-prompt">Q4. Why is generating the answer slower than reading the prompt?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;The prompt is processed in parallel in one prefill pass; the output is produced one token at a time, each step reading the cached keys and values of everything before it. So time to first token mostly tracks prompt length, and total time mostly tracks output length. That is why shorter outputs, streaming and prefix caching matter.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q5-when-would-you-fine-tune-instead-of-improving-the-prompt-or-adding-retrieval">
+<h3 id="q5-when-would-you-fine-tune-instead-of-improving-the-prompt-or-adding-retrieval">Q5. When would you fine-tune instead of improving the prompt or adding retrieval?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Last, and only with evidence. I start with prompt structure and examples, measured on an evaluation set. If the gap is knowledge that changes or must be cited, that is retrieval. Fine-tuning fits stable behaviour the prompt cannot reliably produce — a strict format, a narrow classification — or moving a proven task to a smaller, cheaper model. It adds a data pipeline, versioning and a rollback path, so it has to beat the cheaper options on the same evaluation set.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q6-your-embedding-search-returns-results-that-look-related-but-are-not-what-the-user-meant-what-is-happening">
+<h3 id="q6-your-embedding-search-returns-results-that-look-related-but-are-not-what-the-user-meant-what-is-happening">Q6. Your embedding search returns results that look related but are not what the user meant. What is happening?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Similarity is not relevance. Embeddings capture topic, so a question about cancelling an order can match an article about placing one, and they are weak on exact identifiers like error codes. I&#x27;d measure recall on a small labelled set first, then try hybrid search with keyword matching, a reranker, metadata filters and better chunk boundaries before paying to swap the embedding model.&quot;</p>
+</div></div>
+<h2 id="retrieval">Retrieval</h2>
+<div class="qa" data-qa="q7-how-do-you-choose-a-chunk-size">
+<h3 id="q7-how-do-you-choose-a-chunk-size">Q7. How do you choose a chunk size?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;From the documents and the questions, not a default. Small chunks are precise but lose context; large ones dilute the signal and cost tokens. I split on document structure — headings, sections, table rows — test two or three sizes against retrieval recall and answer quality on real questions, and keep parent-section metadata so I can expand context when needed.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q8-why-hybrid-search-and-a-reranker">
+<h3 id="q8-why-hybrid-search-and-a-reranker">Q8. Why hybrid search and a reranker?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Keyword search catches exact terms and identifiers; vector search catches paraphrases. Combining them, usually with reciprocal rank fusion, improves recall. A cross-encoder reranker then scores each query–passage pair more accurately but is too slow for the whole corpus, so I retrieve broadly, rerank, and keep the top few.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q9-what-happens-when-the-documents-do-not-answer-the-question">
+<h3 id="q9-what-happens-when-the-documents-do-not-answer-the-question">Q9. What happens when the documents do not answer the question?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;The system should say so. I set a relevance threshold, tell the model it may answer &#x27;I don&#x27;t know&#x27;, and log the unanswered question so the content owner can fill the gap. In evaluation I include unanswerable questions and score a confident wrong answer as worse than an honest abstention.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q10-how-do-you-keep-the-index-fresh-and-permission-safe">
+<h3 id="q10-how-do-you-keep-the-index-fresh-and-permission-safe">Q10. How do you keep the index fresh and permission-safe?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Incremental ingestion keyed on content hashes, so changed documents are re-embedded and deleted ones are removed — deletes are the step teams forget. I store access-control metadata on every chunk and filter before anything reaches the model; the prompt is never the permission boundary. If I change embedding model, I re-embed everything and re-run the retrieval evaluation.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q11-how-does-agentic-rag-differ-from-a-single-retrieval-pass">
+<h3 id="q11-how-does-agentic-rag-differ-from-a-single-retrieval-pass">Q11. How does agentic RAG differ from a single retrieval pass?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;The model decides whether the evidence is enough and, if not, searches again with a better query, which helps multi-part questions. It costs latency, tokens and loop logic, so I cap iterations and keep it only for the question types where evaluation shows it beats a fixed pipeline.&quot;</p>
+</div></div>
+<h2 id="agents-and-tools">Agents and tools</h2>
+<div class="qa" data-qa="q12-how-does-tool-calling-actually-work">
+<h3 id="q12-how-does-tool-calling-actually-work">Q12. How does tool calling actually work?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I describe each tool with a schema. The model returns a structured request — a tool name and arguments — instead of prose. My code validates the arguments, checks permissions, runs the tool and appends the result to the conversation. The model never executes anything itself; every safety control lives in that code.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q13-when-would-you-not-use-an-agent">
+<h3 id="q13-when-would-you-not-use-an-agent">Q13. When would you not use an agent?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;When the steps are known in advance, a fixed workflow is cheaper, faster and easier to test. In IncidentPilot I used deterministic rules for the diagnosis that can be known, and gave the model one narrow job — ranking hypotheses from validated evidence — with no tools at all. If the model times out, the rules-only diagnosis still works.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q14-an-agent-loops-forever-on-some-inputs-how-do-you-find-and-fix-it">
+<h3 id="q14-an-agent-loops-forever-on-some-inputs-how-do-you-find-and-fix-it">Q14. An agent loops forever on some inputs. How do you find and fix it?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I open the trace for a failing run and find the step that repeats. Common causes are a tool error the agent cannot see because it was swallowed, an ambiguous tool result, or no stop condition. I fix the cause — return a structured error, tighten the tool description, add an explicit &#x27;done&#x27; state — and add guards: a maximum number of steps and tokens, a timeout, detection of the same call with the same arguments, and a partial result instead of silence. Then I replay the failing inputs as fixed test cases before shipping.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q15-how-do-you-make-tools-safe-to-give-an-agent">
+<h3 id="q15-how-do-you-make-tools-safe-to-give-an-agent">Q15. How do you make tools safe to give an agent?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Least privilege, an allow-list of actions, arguments validated on the server, idempotency keys on anything that writes, and human confirmation for anything irreversible or expensive. Hatch is a good example: it prepares CV packs and tracks applications, but it never submits an application — a person always does that step.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q16-what-is-mcp-and-how-is-it-different-from-function-calling">
+<h3 id="q16-what-is-mcp-and-how-is-it-different-from-function-calling">Q16. What is MCP, and how is it different from function calling?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Function calling is a model API feature: your application describes tools and handles the calls. MCP is an open protocol for exposing tools, resources and prompts from a server so that any compatible host can use them without a bespoke integration. The current specification, 2026-07-28, makes requests stateless and adds server discovery. MCP standardises the connection; it does not decide who may call a tool or whether a call is safe — authorisation and approval remain my job.&quot; [5]</p>
+</div></div>
+<div class="qa" data-qa="q17-how-do-you-build-an-agent-that-runs-for-days">
+<h3 id="q17-how-do-you-build-an-agent-that-runs-for-days">Q17. How do you build an agent that runs for days?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Keep state outside the conversation: a durable store with checkpoints, so a crash or restart resumes rather than repeats. Make external actions idempotent, because a checkpoint does not prove a side effect did not already happen. Hatch uses LangGraph with a SQLite checkpointer for this. Add human approval points and an expiry for stale approvals.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q18-when-are-multiple-agents-worth-it">
+<h3 id="q18-when-are-multiple-agents-worth-it">Q18. When are multiple agents worth it?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;When the work splits into parts that genuinely need different instructions, tools or models, or an independent check. In Hatch, Scout, Scorer, Tailor and Coach do different jobs with different context, and a human review sits between tailoring and applying. If one agent with good tools meets the target, more agents just add coordination cost and new failure modes.&quot;</p>
+</div></div>
+<h2 id="evaluation">Evaluation</h2>
+<div class="qa" data-qa="q19-how-do-you-know-your-ai-feature-is-good--not-your-gut-your-number">
+<h3 id="q19-how-do-you-know-your-ai-feature-is-good--not-your-gut-your-number">Q19. How do you know your AI feature is good — not your gut, your number?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I define the task and what good means with the people who own it, build a labelled evaluation set from real cases including hard and unanswerable ones, and grade with deterministic checks first and a calibrated judge only where meaning needs interpretation. I set pass thresholds from the cost of failure and look at results by slice, not just the average. In IncidentPilot an evaluation passes only if all ten checks pass, including that the right cause ranked first and that no action was executed.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q20-how-do-you-know-a-prompt-change-made-the-whole-product-better-not-just-one-example">
+<h3 id="q20-how-do-you-know-a-prompt-change-made-the-whole-product-better-not-just-one-example">Q20. How do you know a prompt change made the whole product better, not just one example?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Run the versioned evaluation set before and after, compare per-slice results and inspect the cases that changed, then gate the change in CI so a regression blocks the merge. After release I watch online signals such as escalations and user corrections. One improved example is an anecdote.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q21-when-do-you-trust-an-llm-as-a-judge">
+<h3 id="q21-when-do-you-trust-an-llm-as-a-judge">Q21. When do you trust an LLM as a judge?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;After checking it. I label a representative sample myself or with a domain expert, measure agreement, look at where the judge and humans disagree, and re-check after any model or rubric change. I use deterministic checks — schema, exact match, citation exists — wherever they can answer the question, because they do not drift.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q22-how-do-you-evaluate-a-rag-system">
+<h3 id="q22-how-do-you-evaluate-a-rag-system">Q22. How do you evaluate a RAG system?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Separately for retrieval and generation, so I know which layer failed. Retrieval: recall@k and precision on labelled question–passage pairs. Generation: faithfulness to the retrieved text, answer relevance and citation validity. End to end: task success on real questions, including ones the corpus cannot answer.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q23-how-do-you-evaluate-an-agent">
+<h3 id="q23-how-do-you-evaluate-an-agent">Q23. How do you evaluate an agent?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Task success on fixed scenarios with known end states, checked by inspecting the resulting state rather than the agent&#x27;s description of it. Then the trajectory — tool choice, wasted steps, loops — and cost per task. Agents vary run to run, so I repeat trials and report how often every attempt succeeds, not just the best run.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q24-a-customer-says-the-bot-feels-dumb-what-do-you-change-first">
+<h3 id="q24-a-customer-says-the-bot-feels-dumb-what-do-you-change-first">Q24. A customer says the bot feels dumb. What do you change first?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;d collect twenty or thirty of the conversations they mean and sort the failures — wrong answer, refusal, slow, missing context, tone. Then I&#x27;d find the first failing layer: often retrieval missing the right document, not the model. I fix the cheapest layer that explains most failures, add those cases to the evaluation set and agree a measure with the customer so &#x27;better&#x27; is visible.&quot;</p>
+</div></div>
+<h2 id="production-cost-and-reliability">Production, cost and reliability</h2>
+<div class="qa" data-qa="q25-the-token-bill-tripled-last-month-and-nobody-changed-the-code-what-happened">
+<h3 id="q25-the-token-bill-tripled-last-month-and-nobody-changed-the-code-what-happened">Q25. The token bill tripled last month and nobody changed the code. What happened?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Something changed outside the code. I&#x27;d check traffic, then tokens per request: retrieval returning more or longer chunks, conversation history growing, retries or agent loops, a lower prompt-cache hit rate because the prompt prefix changed, or a provider model or price change. A per-request cost breakdown by feature answers this in minutes; without one it takes days.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q26-your-feature-is-too-slow-and-too-expensive-what-do-you-do">
+<h3 id="q26-your-feature-is-too-slow-and-too-expensive-what-do-you-do">Q26. Your feature is too slow and too expensive. What do you do?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Measure where time and tokens go first. Then route easy requests to a smaller model, cache repeated prefixes and answers, send fewer chunks, cap output length, stream, and run independent tool calls in parallel — keeping each change only if quality holds on the evaluation set. ResearchOps shows the pattern: local scoring, the paid model only for the top items, and a hard daily cost ceiling.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q27-what-do-you-log-for-an-llm-feature">
+<h3 id="q27-what-do-you-log-for-an-llm-feature">Q27. What do you log for an LLM feature?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Request and prompt-template version, model and parameters, retrieved document IDs, tool calls and results, the output, latency split into time to first token and total, tokens, cost, and any evaluation or user-feedback signal — linked by one trace ID. I minimise sensitive content: Hatch&#x27;s optional traces deliberately exclude prompts, responses and CV text.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q28-how-do-you-reduce-hallucinations">
+<h3 id="q28-how-do-you-reduce-hallucinations">Q28. How do you reduce hallucinations?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;In layers: ground answers in retrieved evidence with citations, allow and reward abstention, constrain the output format, verify claims or citations automatically where possible, and measure the unsupported-claim rate on an evaluation set so I know whether a change helped.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q29-your-model-provider-has-an-outage-what-happens">
+<h3 id="q29-your-model-provider-has-an-outage-what-happens">Q29. Your model provider has an outage. What happens?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;A tested fallback, not any model that accepts the same request — a fallback changes behaviour, so it must pass the same evaluation. Where no fallback is safe, the system degrades gracefully. IncidentPilot falls back to rules-only diagnosis; it never silently returns a worse answer as if nothing happened.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q30-local-or-hosted-models">
+<h3 id="q30-local-or-hosted-models">Q30. Local or hosted models?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;It depends on data sensitivity, volume, latency and who will operate it. Hosted models are faster to start and stronger; local models keep data on the machine and cost nothing per call but bring hardware, updates and monitoring. Hatch supports both: a small local triage model filters roles quickly and a larger one does detailed work, or a cloud provider handles both.&quot;</p>
+</div></div>
+<h2 id="security-and-safety">Security and safety</h2>
+<div class="qa" data-qa="q31-how-do-you-defend-an-agent-against-prompt-injection">
+<h3 id="q31-how-do-you-defend-an-agent-against-prompt-injection">Q31. How do you defend an agent against prompt injection?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Assume it will happen, because there is no complete fix. Treat retrieved text and tool results as data, keep secrets out of the model&#x27;s context, give tools least privilege, validate actions outside the model, and require approval for anything consequential. The strongest control is limiting what injected text could make the system do — in IncidentPilot the model has no tools at all.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q32-how-do-you-handle-personal-data-in-an-llm-application">
+<h3 id="q32-how-do-you-handle-personal-data-in-an-llm-application">Q32. How do you handle personal data in an LLM application?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Minimise what reaches the model, redact where possible, choose a provider and region that meet the data requirements, set retention for logs and traces, and support deletion across derived copies such as embeddings and caches.&quot;</p>
+</div></div>
+<h2 id="projects-and-behavioural">Projects and behavioural</h2>
+<div class="qa" data-qa="q33-walk-me-through-a-project-you-built-end-to-end">
+<h3 id="q33-walk-me-through-a-project-you-built-end-to-end">Q33. Walk me through a project you built end to end.</h3>
+<div class="qa-body">
+<p><strong>Model answer (STAR):</strong> &quot;<strong>Situation:</strong> I wanted a triage assistant for containerised services, and to test how far an LLM should be trusted in that loop. <strong>Task:</strong> Build a triage agent that is useful and safe enough to run on real services. <strong>Action:</strong> I made the MVP read-only. A collector gathers runtime status, bounded logs, health checks and deployment data; deterministic rules diagnose the known failure patterns; an optional local model ranks hypotheses from validated evidence and has no tools; rules keep control of severity and recommended actions. I built golden-file evaluations for two injected failures with ten checks each, including &#x27;no action executed&#x27;, and a CI job that injects both failures into a live demo stack. <strong>Result:</strong> It produces JSON and SRE-style reports with or without the model, and every change has to keep both scenarios passing. <strong>Next:</strong> more scenarios, and approval-gated actions only once evaluation supports them.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q34-tell-me-about-a-time-your-evaluation-said-no">
+<h3 id="q34-tell-me-about-a-time-your-evaluation-said-no">Q34. Tell me about a time your evaluation said no.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;In July I ran a staged benchmark to see whether a newer local model should replace Hatch&#x27;s writing baseline. All 27 runs completed with valid output and no unsupported claims, but no challenger passed the hard quality gates, so I kept the baseline. The point of the gates is that a newer model does not ship just because it is newer.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q35-why-did-you-rebuild-researchops-rather-than-extend-it">
+<h3 id="q35-why-did-you-rebuild-researchops-rather-than-extend-it">Q35. Why did you rebuild ResearchOps rather than extend it?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Version one used CrewAI with hard-coded sources, so it only worked for AI topics. I wrote requirements for version two: any topic as a file, sources discovered and vetted at run time, ranking I could audit, no hard-coded credentials and a cost ceiling. Four of five ranking scores are now deterministic and only relevance is model-judged. Extending v1 would have kept its narrow design.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q36-how-do-you-use-coding-agents-in-your-own-work">
+<h3 id="q36-how-do-you-use-coding-agents-in-your-own-work">Q36. How do you use coding agents in your own work?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;As fast contributors working from a specification I write. I give them bounded context and a test that must pass, review every diff and keep decisions in the repository rather than chat history. I&#x27;ve used IncidentPilot as a benchmark project to compare Claude Code, Codex, OpenCode and Cline on the same tasks.&quot; Add one finding from that comparison that you can defend.</p>
+</div></div>
+<div class="qa" data-qa="q37-youve-been-a-delivery-lead-why-ai-engineering-and-what-is-your-gap">
+<h3 id="q37-youve-been-a-delivery-lead-why-ai-engineering-and-what-is-your-gap">Q37. You&#x27;ve been a delivery lead. Why AI engineering, and what is your gap?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;I&#x27;ve spent years making sure systems create value in production, and the hardest problems in AI products now are exactly that: evaluation, safe integration, rollout and cost. I&#x27;ve backed that with hands-on work. My honest gap is operating an AI system at high scale as the engineer on call; I&#x27;ve built the evaluation, tracing and fallback patterns that scale needs, and I&#x27;d expect to close that gap quickly in a team that already runs at scale.&quot;</p>
+</div></div>
+<h2 id="practice-exercises">Practice exercises</h2>
+<p><strong>Build in 40 minutes:</strong> a FastAPI endpoint that answers questions over a folder of Markdown files with keyword plus vector retrieval, cites chunk IDs and abstains below a threshold. Get it working end to end before optimising. [3]</p>
+<p><strong>Take-home rehearsal:</strong> 50 documents, 20 questions with labelled answers including three unanswerable ones. Report recall@5, faithfulness and abstention accuracy, and one change you made because of the numbers.</p>
+<p><strong>Debugging rehearsal:</strong> an agent that repeats a tool call. Find the swallowed error, add a step cap and a repeated-call guard, and replay the failing input as a test.</p>
+<h2 id="credibility-probes">Credibility probes</h2>
+<p>Which parts did you write and which did a coding agent write? How was the 90% order-automation figure measured? What does your evaluation set not cover? What would break first at a thousand users? Have you been on call for an AI system? Answer each directly; &quot;personal project&quot; is a respectable answer when it is true.</p>
+<h2 id="questions-to-ask-the-panel">Questions to ask the panel</h2>
+<p>How do you evaluate model or prompt changes before release? Who owns an AI feature&#x27;s quality after launch? What does your observability show for an LLM call today? Which failure in production taught the team the most?</p>
+<h2 id="sources-and-freshness">Sources and freshness</h2>
+<p>Checked 13 October 2026. Interview patterns are synthesised from public guides; employer loops vary.</p>
+<ol>
+<li><a href="https://www.techinterview.org/post/3233476824/ai-engineer-interview-rag-agents-evals/">What applied-AI engineer interviews test in 2026</a> — techinterview.org, 23 July 2026.</li>
+<li><a href="https://www.kore1.com/ai-engineer-interview-questions-2026/">AI Engineer Interview Questions 2026</a> — KORE1, 23 June 2026 (a recruiting firm&#x27;s view).</li>
+<li><a href="https://techscreen.app/articles/ai-engineer-llm-interview-questions-2026">AI Engineer Interview Questions 2026: LLM, RAG and Agents</a> — TechScreen, 21 September 2026.</li>
+<li><a href="https://letsdatascience.com/blog/50-llm-and-ai-engineer-interview-questions-for-2026">50 LLM and AI Engineer Interview Questions for 2026</a> — Let&#x27;s Data Science, updated 6 September 2026 (deeper model-internals questions for research-leaning roles).</li>
+<li><a href="https://modelcontextprotocol.io/specification/versioning">Model Context Protocol versioning</a> — current revision 2026-07-28.</li>
+<li>LinkedIn&#x27;s <a href="https://business.linkedin.com/talent-solutions/resources/how-to-hire-guides/artificial-intelligence-engineer/interview-questions">AI Engineer interview question guide</a> for hiring managers — generic behavioural questions only.</li>
+</ol>
+<p>Posts on X (for example a widely shared &quot;real interview question&quot; on running LLM evals) could not be opened for verification; they were used only as signals that evaluation questions are now standard, not as sources.</p></article><footer>Generated from <a href="ai-engineer.md">ai-engineer.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

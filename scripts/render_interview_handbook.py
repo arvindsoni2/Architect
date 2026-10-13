@@ -1,4 +1,7 @@
-"""Generate a dependency-free reading view from the collection's Markdown subset.
+"""Generate dependency-free HTML from the collection's Markdown subset.
+
+Writes the tabbed all-in-one reading view (handbook.html) and one standalone page
+per guide (README.md becomes index.html; every other .md gets a sibling .html).
 
 Supports headings, paragraphs, flat lists, tables, quotes, bold, code and links.
 Raw HTML is escaped. This is a scoped publication tool, not a general Markdown parser.
@@ -34,28 +37,39 @@ def slug(text):
     return text.replace(' ', '-').strip()
 
 
-def resolve_link(target, source, documents):
+def page_path(source):
+    """Standalone page written for a Markdown source (README becomes the index)."""
+    return 'index.html' if source == 'README.md' else source[:-3] + '.html'
+
+
+def resolve_link(target, source, documents, page=False):
     parsed = urlsplit(target)
     if parsed.scheme:
         return target if parsed.scheme in ('https', 'http') else None
     if parsed.netloc:
         return None
     path = posixpath.normpath(posixpath.join(posixpath.dirname(source), parsed.path)) if parsed.path else source
+    fragment = '#' + parsed.fragment if parsed.fragment else ''
+    if page:
+        rel = lambda p: posixpath.relpath(p, posixpath.dirname(source) or '.')
+        if path in documents:
+            return (fragment or '#') if path == source else rel(page_path(path)) + fragment
+        return rel(path) + ('?' + parsed.query if parsed.query else '') + fragment
     if path in documents:
         return '#' + documents[path] + ('--' + parsed.fragment if parsed.fragment else '')
     if path == 'handbook.html':
         return '#start'
-    return path + ('?' + parsed.query if parsed.query else '') + ('#' + parsed.fragment if parsed.fragment else '')
+    return path + ('?' + parsed.query if parsed.query else '') + fragment
 
 
-def inline(text, source, documents):
+def inline(text, source, documents, page=False):
     tokens = re.compile(r'\[([^\]]+)\]\(([^)]+)\)|`([^`]+)`|\*\*([^*]+)\*\*')
     result, end = [], 0
     for match in tokens.finditer(text):
         result.append(html.escape(text[end:match.start()]))
         label, target, code, bold = match.groups()
         if target is not None:
-            href = resolve_link(target, source, documents)
+            href = resolve_link(target, source, documents, page)
             safe_label = html.escape(label)
             result.append(f'<a href="{html.escape(href, quote=True)}">{safe_label}</a>' if href else safe_label)
         elif code is not None:
@@ -67,10 +81,11 @@ def inline(text, source, documents):
     return ''.join(result)
 
 
-def render_markdown(content, source, documents):
+def render_markdown(content, source, documents, page=False):
     lines = content.splitlines()
     prefix, output, seen, index = documents[source], [], {}, 0
-    fmt = lambda text: inline(text, source, documents)
+    fmt = lambda text: inline(text, source, documents, page)
+    open_qa = False
     while index < len(lines):
         line = lines[index]
         if not line.strip():
@@ -83,7 +98,17 @@ def render_markdown(content, source, documents):
             count = seen.get(base, 0)
             seen[base] = count + 1
             anchor = base + (f'-{count}' if count else '')
-            output.append(f'<h{level} id="{prefix}--{anchor}">{fmt(title)}</h{level}>')
+            if page and open_qa and level <= 3:
+                output.append('</div></div>')
+                open_qa = False
+            is_question = page and level == 3 and re.match(r'^Q\d+\.\s', title)
+            if is_question:
+                output.append(f'<div class="qa" data-qa="{anchor}">')
+            element_id = anchor if page else f'{prefix}--{anchor}'
+            output.append(f'<h{level} id="{element_id}">{fmt(title)}</h{level}>')
+            if is_question:
+                output.append('<div class="qa-body">')
+                open_qa = True
             index += 1
         elif line.startswith('|') and index + 1 < len(lines) and re.match(r'^\|[\s:|\-]+\|$', lines[index + 1]):
             cells = lambda row: [cell.strip() for cell in row.strip().strip('|').split('|')]
@@ -99,7 +124,11 @@ def render_markdown(content, source, documents):
             tag = 'ol' if ordered else 'ul'
             output.append('<' + tag + '>')
             while index < len(lines) and (item := re.match(pattern, lines[index])):
-                output.append('<li>' + fmt(item[1]) + '</li>')
+                question = re.match(r'^\*\*([^*]+\?)\*\*\s+(.+)$', item[1]) if page else None
+                if question:
+                    output.append('<li class="qa-li"><strong>' + html.escape(question[1]) + '</strong> <span class="qa-ans">' + fmt(question[2]) + '</span></li>')
+                else:
+                    output.append('<li>' + fmt(item[1]) + '</li>')
                 index += 1
             output.append('</' + tag + '>')
         elif line.startswith('> '):
@@ -112,6 +141,8 @@ def render_markdown(content, source, documents):
                 paragraph.append(lines[index].strip())
                 index += 1
             output.append('<p>' + fmt(' '.join(paragraph)) + '</p>')
+    if open_qa:
+        output.append('</div></div>')
     return '\n'.join(output)
 
 
@@ -153,6 +184,140 @@ theme.addEventListener('click',()=>{const dark=document.documentElement.classLis
 """
 
 
+PAGE_STYLE = """
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+"""
+
+PAGE_SCRIPT = """
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+"""
+
+NAV_GROUPS = [('Start', ('README.md', 'shared/')), ('Role guides', ('roles/',)), ('Vacancies', ('vacancies/',))]
+
+
+def build_page(source, documents, titles):
+    here = posixpath.dirname(page_path(source)) or '.'
+    rel = lambda p: posixpath.relpath(p, here)
+    content = (ROOT / 'interview-prep' / source).read_text(encoding='utf-8')
+    body = render_markdown(content, source, documents, page=True)
+    nav = []
+    for label, prefixes in NAV_GROUPS:
+        nav.append(f'<div class="nav-label">{label}</div>')
+        for path, _, title in SOURCES:
+            if path.startswith(prefixes) or path in prefixes:
+                current = ' aria-current="page"' if path == source else ''
+                nav.append(f'<a href="{html.escape(rel(page_path(path)), quote=True)}"{current}>{html.escape(title)}</a>')
+    nav.append('<div class="nav-label">All in one</div>')
+    nav.append(f'<a href="{html.escape(rel("handbook.html"), quote=True)}">Tabbed reading view</a>')
+    headings = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body)
+    toc = ''
+    if len(headings) > 2:
+        toc = '<details class="toc" open><summary>On this page</summary><ol>' + ''.join(
+            f'<li><a href="#{anchor}">{label}</a></li>' for anchor, label in headings) + '</ol></details>'
+    practice = ('<div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span>'
+                '<div class="meter" aria-hidden="true"><span id="practised-meter"></span></div>'
+                '<button type="button" id="practice-reset">Reset ticks</button></div>')
+    title = titles[source]
+    source_link = html.escape(posixpath.basename(source), quote=True)
+    return ('<!doctype html>\n<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+            f'<title>{html.escape(title)} — Interview preparation</title><style>{PAGE_STYLE}</style></head>'
+            f'<body data-page="{html.escape(source, quote=True)}"><a class="skip" href="#content">Skip to content</a>'
+            f'<header><div class="heading-row"><div><a class="brand" href="{html.escape(rel("index.html"), quote=True)}">Interview preparation</a>'
+            '<p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div>'
+            '<div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button>'
+            '<button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header>'
+            f'<div class="layout"><nav aria-label="Guides">{"".join(nav)}</nav><main id="content"><article class="panel">'
+            f'{_after_intro(body, toc + practice)}</article>'
+            f'<footer>Generated from <a href="{source_link}">{html.escape(posixpath.basename(source))}</a>. Edit the Markdown, then run '
+            '<code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div>'
+            f'<script>{PAGE_SCRIPT}</script></body></html>\n')
+
+
+def _after_intro(body, insert):
+    """Place page tools after the title and its status line, not above the title."""
+    end = body.find('</h1>')
+    if end == -1:
+        return insert + body
+    end += len('</h1>')
+    status = body.find('</p>', end)
+    if status != -1 and body[end:status].lstrip().startswith('<p>'):
+        end = status + len('</p>')
+    return body[:end] + insert + body[end:]
+
+
+def build_pages():
+    documents = {path: section for path, section, _ in SOURCES}
+    titles = {path: title for path, _, title in SOURCES}
+    return {page_path(path): build_page(path, documents, titles) for path, _, _ in SOURCES}
+
+
 def build():
     documents = {path: section for path, section, _ in SOURCES}
     navigation, panels = [], []
@@ -165,17 +330,20 @@ def build():
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--check', action='store_true', help='Fail if the committed reading view needs regeneration')
+    parser.add_argument('--check', action='store_true', help='Fail if the committed HTML needs regeneration')
     args = parser.parse_args()
-    target = ROOT / 'interview-prep/handbook.html'
-    rendered = build()
+    base = ROOT / 'interview-prep'
+    outputs = {'handbook.html': build(), **build_pages()}
     if args.check:
-        if not target.exists() or target.read_text(encoding='utf-8') != rendered:
-            parser.exit(1, 'Interview reading view is stale; run python3 scripts/render_interview_handbook.py\n')
-        print('Interview reading view matches Markdown sources.')
+        stale = [name for name, rendered in outputs.items()
+                 if not (base / name).exists() or (base / name).read_text(encoding='utf-8') != rendered]
+        if stale:
+            parser.exit(1, 'Interview HTML is stale (' + ', '.join(stale) + '); run python3 scripts/render_interview_handbook.py\n')
+        print(f'Interview reading view and {len(outputs) - 1} guide pages match Markdown sources.')
     else:
-        target.write_text(rendered, encoding='utf-8')
-        print('Generated interview-prep/handbook.html')
+        for name, rendered in outputs.items():
+            (base / name).write_text(rendered, encoding='utf-8')
+        print(f'Generated interview-prep/handbook.html and {len(outputs) - 1} guide pages')
 
 
 if __name__ == '__main__':

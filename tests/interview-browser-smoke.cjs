@@ -38,6 +38,26 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  for(const route of ['software-ai-architect','ai-engineer','forward-deployed-engineer']){await page.locator('nav a[href="#'+route+'"]').click();await page.locator('#'+route).waitFor({state:'visible'});if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile page overflow: '+route);}
  await page.emulateMedia({media:'print'});if(await page.locator('.panel:visible').count()!==14)throw Error('Print hides guides');
  const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto('file://'+path);if(await plain.locator('.panel:visible').count()!==14)throw Error('No-JS content missing');
- if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 14 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content.');
+ // Standalone guide pages: one per Markdown source, with practice mode.
+ const dir=require('node:path').dirname(path),pages=['index.html','shared/handbook.html','shared/evidence-bank.html','roles/delivery-lead.html','roles/agile-delivery-lead.html','roles/product-owner.html','roles/product-manager.html','roles/senior-project-manager.html','roles/software-ai-architect.html','roles/ai-engineer.html','roles/forward-deployed-engineer.html','vacancies/accenture-product-owner.html','vacancies/accenture-product-owner-questions.html','vacancies/accenture-fde.html'];
+ const guide=await browser.newPage({viewport:{width:390,height:844}});guide.on('pageerror',e=>errors.push(e.message));
+ for(const file of pages){await guide.goto('file://'+dir+'/'+file);
+  const gone=await guide.evaluate(()=>[...document.querySelectorAll('a[href^="#"]')].filter(a=>a.hash&&!document.getElementById(decodeURIComponent(a.hash.slice(1)))).map(a=>a.hash));
+  if(gone.length)throw Error(file+' missing anchors: '+gone.join(','));
+  if(await guide.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Guide page overflow: '+file);}
+ await guide.setViewportSize({width:1280,height:900});await guide.goto('file://'+dir+'/roles/ai-engineer.html');
+ const qa=guide.locator('.qa').first();await guide.locator('#practice').click();
+ if(await qa.locator('.qa-body').isVisible())throw Error('Practice mode did not hide the model answer');
+ await qa.locator('.reveal-btn').click();if(!await qa.locator('.qa-body').isVisible())throw Error('Reveal did not show the model answer');
+ await qa.locator('.qa-tools input').check();await guide.reload();
+ if(!(await guide.locator('#practised-count').textContent()).startsWith('1 of'))throw Error('Practised tick not saved');
+ await guide.locator('nav a[aria-current="page"]').waitFor();
+ await guide.emulateMedia({media:'print'});await guide.goto('file://'+dir+'/roles/product-owner.html');
+ if(!await guide.locator('.qa-li .qa-ans').first().isVisible())throw Error('Print hides list answers');
+ const blocked=await browser.newContext();await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Blocked','SecurityError');}}));
+ const bp=await blocked.newPage();bp.on('pageerror',e=>errors.push('blocked storage: '+e.message));await bp.goto('file://'+dir+'/roles/ai-engineer.html');await bp.locator('#practice').click();await bp.locator('.qa-tools input').first().check();
+ const flat=await browser.newPage({javaScriptEnabled:false});await flat.goto('file://'+dir+'/roles/ai-engineer.html');
+ if(!await flat.locator('.qa-body').first().isVisible()||!await flat.locator('#practice').isHidden())throw Error('No-JS guide page incomplete');
+ if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 14 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content; 14 guide pages with practice mode.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});

@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Software &amp; AI Architect — Interview preparation</title><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="roles/software-ai-architect.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="../shared/handbook.html">Shared methods</a><a href="../shared/evidence-bank.html">Evidence bank</a><div class="nav-label">Role guides</div><a href="delivery-lead.html">Delivery Lead</a><a href="agile-delivery-lead.html">Agile Delivery Lead</a><a href="product-owner.html">Product Owner</a><a href="product-manager.html">Product Manager</a><a href="senior-project-manager.html">Senior Project Manager</a><a href="software-ai-architect.html" aria-current="page">Software &amp; AI Architect</a><a href="ai-engineer.html">AI Engineer</a><a href="forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="software-and-ai-architect-interview-guide">Software and AI Architect interview guide</h1>
+<p><strong>Status:</strong> Draft for owner review · <strong>Last reviewed:</strong> 13 October 2026 · <strong>Sources checked:</strong> 13 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#what-the-2026-loop-looks-like">What the 2026 loop looks like</a></li><li><a href="#answer-framework-for-any-design-question">Answer framework for any design question</a></li><li><a href="#positioning-and-evidence">Positioning and evidence</a></li><li><a href="#track-a--solution-and-ai-architecture">Track A — solution and AI architecture</a></li><li><a href="#track-b--software-architecture-and-system-design">Track B — software architecture and system design</a></li><li><a href="#influence-and-judgement">Influence and judgement</a></li><li><a href="#presenting-an-architecture">Presenting an architecture</a></li><li><a href="#credibility-probes">Credibility probes</a></li><li><a href="#questions-to-ask-the-panel">Questions to ask the panel</a></li><li><a href="#sources-and-freshness">Sources and freshness</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Architect interviews test judgement: clarifying requirements before naming technology, choosing between credible options, explaining trade-offs in business terms and designing for failure. This guide has two tracks. <strong>Track A</strong> prepares solution and AI architect interviews: client-facing options, cloud and AI architecture, governance and the architecture review board. <strong>Track B</strong> prepares software architect interviews: system design depth, data, consistency and scaling. Most loops mix both.</p>
+<p><strong>Your honest position:</strong> your job titles were Product Owner, Agile Delivery Manager and Product Delivery Lead, not Architect. Your architecture evidence is the decisions you made or shaped in those roles, plus three public projects where you were the architect. Say that once, clearly, then let the reasoning carry the interview. Study depth is in the <a href="../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html">AI Architect&#x27;s Handbook</a>, the <a href="../../handbooks/system-design/system-design-concept-handbook-v5.html">System Design Concept Handbook</a> and the <a href="../../learning-paths/software-architect/software-architect-curriculum-guide-v3.md">architecture curriculum</a>.</p>
+<h2 id="what-the-2026-loop-looks-like">What the 2026 loop looks like</h2>
+<div class="table-wrap"><table><thead><tr><th>Format</th><th>What happens</th><th>What scores well</th></tr></thead><tbody>
+<tr><td>Screening</td><td>Background, motivation and one architecture you can defend</td><td>A decision you made, with the alternative you rejected</td></tr>
+<tr><td>Technical deep dive</td><td>Senior architects probe a design or a past system [1]</td><td>Clear non-functional requirements, trade-offs, failure modes</td></tr>
+<tr><td>Whiteboard design</td><td>&quot;Design a system for something we actually do&quot; [2]</td><td>Your first three decisions and why, before any product names</td></tr>
+<tr><td>Architecture presentation</td><td>You present a solution, then defend it</td><td>A story from problem to decision, not a tour of boxes</td></tr>
+<tr><td>Leadership conversation</td><td>Influence, stakeholder conflict, cost [1]</td><td>Translating risk into money, time and outcomes</td></tr>
+</tbody></table></div>
+<p>Panels assess technical depth across the lifecycle, links from technical metrics to business outcomes, explaining complexity to non-technical people, and attention to total cost of ownership and maintainability. [1][2]</p>
+<h2 id="answer-framework-for-any-design-question">Answer framework for any design question</h2>
+<p>Say the steps as you go: <strong>clarify</strong> users, use cases and non-functional requirements (scale, latency, availability, consistency, security, compliance) → <strong>estimate</strong> load and data volume → <strong>sketch</strong> the high-level design → <strong>deep dive</strong> on the riskiest part → <strong>trade-offs</strong> you chose and rejected → <strong>failure modes and observability</strong> → <strong>security and compliance</strong> → <strong>cost</strong> → <strong>how it evolves</strong>. For an AI system add four checks: how quality is <strong>evaluated</strong>, what <strong>guardrails</strong> bound the model, which <strong>model</strong> and why, and who is <strong>accountable</strong> when it is wrong. [3]</p>
+<h2 id="positioning-and-evidence">Positioning and evidence</h2>
+<p><strong>Model opening (about 90 seconds):</strong> &quot;I&#x27;ve spent twenty years delivering technology in regulated sectors — utilities, banking, aviation and food tech — and the decisions I&#x27;m proudest of are architectural: how to adapt an internal platform for external customers without forking it, how to sequence 120-plus server upgrades without breaking production, and how to put an LLM into an order workflow with exceptions routed to people. I&#x27;ve also designed three AI systems myself, all built around one principle: the model proposes, deterministic controls decide. I&#x27;m moving into architecture because that&#x27;s where I already add the most value — turning ambiguous requirements into decisions a team can build and operate.&quot;</p>
+<div class="table-wrap"><table><thead><tr><th>Evidence</th><th>Architectural decision to discuss</th><th>Boundary</th></tr></thead><tbody>
+<tr><td><a href="../shared/evidence-bank.html#s2-saas-transformation">S2 SaaS</a></td><td>Reusing an internal platform for external tenants; white-labelling scope; repeatable onboarding</td><td>Your role was delivery lead; name the engineers who implemented tenancy</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s4-infrastructure-modernisation">S4 infrastructure</a></td><td>Sequencing retirements, upgrades and migrations; rollback and validation</td><td>120+ servers and 30+ applications; £400k is annual savings, not budget</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s1-genai-order-automation">S1 order automation</a></td><td>LLM extraction with validation and exception routing; pilot scope</td><td>The CTO limited the rollout to London and Paris</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s3-smart-timesheet">S3 Smart Timesheet</a></td><td>Low-code front end on AWS with a .NET integration layer to Oracle HCM and CRM</td><td>You owned product decisions; confirm who selected the platform before claiming it</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s9-incidentpilot--personal-open-source-project">S9 IncidentPilot</a></td><td>Read-only MVP; model with no tools; rules-only fallback</td><td>Personal project — you were the architect</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s8-hatch--personal-open-source-project">S8 Hatch</a></td><td>Human-in-the-loop trust boundary; primary/triage model routing; local or cloud</td><td>Personal project</td></tr>
+<tr><td><a href="../shared/evidence-bank.html#s10-researchops-v2--personal-open-source-project">S10 ResearchOps v2</a></td><td>Deterministic ranking with a narrow model role; cost ceilings</td><td>Personal project; v1 was redesigned</td></tr>
+</tbody></table></div>
+<h2 id="track-a--solution-and-ai-architecture">Track A — solution and AI architecture</h2>
+<div class="qa" data-qa="q1-how-do-you-design-an-ai-solution-that-must-run-in-a-sovereign-or-uk-only-cloud-environment">
+<h3 id="q1-how-do-you-design-an-ai-solution-that-must-run-in-a-sovereign-or-uk-only-cloud-environment">Q1. How do you design an AI solution that must run in a sovereign or UK-only cloud environment?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Start from the obligations: which data can leave which boundary, who may administer the platform, and what the customer must be able to audit. Then every component has to comply, not just storage — the model endpoint must be hosted in-region or self-hosted, logs and traces stay in-region, encryption keys are customer-managed, and support access is controlled. That often narrows the model choice, so I&#x27;d evaluate the in-region options on the actual workload early, before the design depends on a model that isn&#x27;t available there.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q2-open-source-models-or-proprietary-api-models-for-an-enterprise">
+<h3 id="q2-open-source-models-or-proprietary-api-models-for-an-enterprise">Q2. Open-source models or proprietary API models for an enterprise?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Not a belief, a comparison on the workload. Proprietary APIs usually lead on capability and speed of adoption; open-weight models give control over data, versioning and cost at high volume, but the organisation then owns GPUs, patching, scaling and evaluation of every upgrade. I compare cost per successful task, data and contractual requirements, latency, and whether the team can operate it. A common answer is both: a hosted model for complex work and a small self-hosted model for high-volume simple tasks, behind one gateway.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q3-how-do-you-ensure-lineage-security-and-compliance-in-a-distributed-ai-architecture">
+<h3 id="q3-how-do-you-ensure-lineage-security-and-compliance-in-a-distributed-ai-architecture">Q3. How do you ensure lineage, security and compliance in a distributed AI architecture?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Treat every derived artefact — chunks, embeddings, prompts, caches, fine-tuning sets, logs — as data with an owner, a purpose and a retention rule. Record lineage from source to answer: which documents and versions were retrieved for each response. Enforce access control at retrieval time, encrypt in transit and at rest, keep secrets out of model context, and make deletion propagate through every derived copy. Then prove it with audit logs and periodic tests rather than a policy document.&quot; [1]</p>
+</div></div>
+<div class="qa" data-qa="q4-how-do-you-manage-model-drift-and-keep-performance-up-in-production">
+<h3 id="q4-how-do-you-manage-model-drift-and-keep-performance-up-in-production">Q4. How do you manage model drift and keep performance up in production?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Distinguish three things that look alike: the world changing (new kinds of input), our system changing (prompt, index, model version) and the provider changing the model underneath us. Pin versions where possible, run a fixed evaluation set on every change and on a schedule, monitor online signals such as escalation and correction rates by segment, and add new failure cases to the evaluation set. A threshold breach triggers a defined response — rollback, reduced autonomy or retraining — not just an alert.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q5-design-a-question-answering-system-over-internal-documentation-that-stays-relevant-and-fresh">
+<h3 id="q5-design-a-question-answering-system-over-internal-documentation-that-stays-relevant-and-fresh">Q5. Design a question-answering system over internal documentation that stays relevant and fresh.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Clarify users, document sources, permissions and how stale is acceptable. Ingest incrementally using content hashes so changed documents are re-indexed and deleted ones removed; carry access-control metadata onto every chunk and filter before generation. Use hybrid keyword and vector search with reranking, show citations with document dates, and let the system say when no current source answers. Measure retrieval recall and answer faithfulness on questions from real users, and give content owners a report of unanswered questions.&quot; [3]</p>
+</div></div>
+<div class="qa" data-qa="q6-how-would-you-reduce-token-costs-at-scale">
+<h3 id="q6-how-would-you-reduce-token-costs-at-scale">Q6. How would you reduce token costs at scale?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Measure cost per successful task by feature first. Then route simple requests to smaller models, cache stable prompt prefixes and repeated answers, send fewer and shorter retrieved chunks, cap output length, batch asynchronous work and remove retries that loop. Each change has to hold quality on the evaluation set. In ResearchOps I kept scoring on a local model and used the paid model only for the top items, with a hard daily cost ceiling.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q7-how-do-you-detect-and-reduce-ungrounded-outputs">
+<h3 id="q7-how-do-you-detect-and-reduce-ungrounded-outputs">Q7. How do you detect and reduce ungrounded outputs?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Ground answers in retrieved sources with citations, check automatically that cited passages exist and support the claim where possible, allow the system to abstain, and measure the unsupported-claim rate on a labelled set. For high-consequence answers add human review. The architecture must make abstention a normal, visible outcome rather than an error.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q8-fine-tune-a-model-or-use-retrieval-for-a-domain-specific-assistant">
+<h3 id="q8-fine-tune-a-model-or-use-retrieval-for-a-domain-specific-assistant">Q8. Fine-tune a model or use retrieval for a domain-specific assistant?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Retrieval first for knowledge that changes or must be cited — it is cheaper to update and easier to debug. Fine-tuning suits stable behaviour, style or format that prompting can&#x27;t deliver reliably, or moving a proven task to a smaller model for cost or latency. The decision should come from an evaluation of both on the same cases, not from preference.&quot; [3]</p>
+</div></div>
+<div class="qa" data-qa="q9-how-do-you-decide-between-building-and-buying">
+<h3 id="q9-how-do-you-decide-between-building-and-buying">Q9. How do you decide between building and buying?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Buy what doesn&#x27;t differentiate the business; build what does or what no product does well. I compare total cost over several years, including integration and operation, the exit cost if the vendor changes terms, data and security requirements, and how much the capability needs to change with the business. The Smart Timesheet is a useful example: an OutSystems front end on AWS for speed and cost, with a .NET integration layer to the client&#x27;s Oracle HCM and CRM where control mattered.&quot; Say who made that platform decision. [2]</p>
+</div></div>
+<div class="qa" data-qa="q10-a-stakeholder-wants-everything-multi-region-active-active-how-do-you-push-back">
+<h3 id="q10-a-stakeholder-wants-everything-multi-region-active-active-how-do-you-push-back">Q10. A stakeholder wants everything multi-region active-active. How do you push back?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Ask what an hour of downtime actually costs for each service and what recovery time and data-loss limits the business needs. Active-active roughly doubles infrastructure and adds data-consistency complexity, so I&#x27;d propose it only where the numbers justify it and offer cheaper patterns elsewhere — a warm standby or backup-and-restore — with the cost and recovery time of each side by side. The stakeholder then chooses with the trade-off visible.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q11-how-do-you-keep-a-cloud-bill-from-quietly-tripling">
+<h3 id="q11-how-do-you-keep-a-cloud-bill-from-quietly-tripling">Q11. How do you keep a cloud bill from quietly tripling?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Treat cost as a design requirement: tag resources to owners and products, set budgets and anomaly alerts, review cost per transaction or per customer rather than the total, right-size and schedule non-production environments, and use committed-use pricing only for steady load. For AI workloads add token and request dashboards, because model spend grows with prompts and usage without any code change.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q12-which-well-architected-pillar-do-teams-ignore-most">
+<h3 id="q12-which-well-architected-pillar-do-teams-ignore-most">Q12. Which well-architected pillar do teams ignore most?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;The AWS framework has six pillars: operational excellence, security, reliability, performance efficiency, cost optimisation and sustainability. In my experience operational excellence is the one most neglected — runbooks, observability, safe deployment and learning from incidents — because it doesn&#x27;t show up in a demo. It&#x27;s the pillar that decides whether the other five survive the first year in production.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q13-how-does-architecture-make-ai-governance-real-rather-than-a-document">
+<h3 id="q13-how-does-architecture-make-ai-governance-real-rather-than-a-document">Q13. How does architecture make AI governance real rather than a document?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;By turning obligations into enforced controls with evidence: an inventory of AI systems and their risk tier; approval gates in the deployment pipeline; access control and logging at the model gateway; evaluation results attached to every release; and a way to reduce or withdraw a system&#x27;s authority quickly. Frameworks such as NIST&#x27;s AI Risk Management Framework and ISO/IEC 42001 help structure this. In the EU, Article 50 transparency duties have applied since August 2026 and the AI Omnibus moved most high-risk obligations to December 2027, so the timeline must be checked for each system rather than assumed.&quot;</p>
+</div></div>
+<h2 id="track-b--software-architecture-and-system-design">Track B — software architecture and system design</h2>
+<div class="qa" data-qa="q14-design-a-system-for-something-we-actually-do-what-are-your-first-three-decisions">
+<h3 id="q14-design-a-system-for-something-we-actually-do-what-are-your-first-three-decisions">Q14. Design a system for something we actually do. What are your first three decisions?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;First, what the system must guarantee — the one or two non-functional requirements that dominate, such as consistency for payments or latency for search. Second, the boundaries: which parts change together and which teams own them, which shapes services and data ownership. Third, the data model and where the source of truth lives. Technology choices come after those, and I&#x27;d say what would make me change each decision.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q15-when-would-you-choose-a-monolith-over-microservices">
+<h3 id="q15-when-would-you-choose-a-monolith-over-microservices">Q15. When would you choose a monolith over microservices?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Usually at the start, and whenever the team is small or the domain boundaries are still unclear. A well-structured modular monolith is faster to change and simpler to operate. I&#x27;d split a service out when there&#x27;s a clear reason — independent scaling, a different release cadence, a separate team, or isolation of a risky component — and accept the cost in networking, observability and data consistency.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q16-strong-or-eventual-consistency--how-do-you-decide-and-how-do-you-keep-data-correct-across-services">
+<h3 id="q16-strong-or-eventual-consistency--how-do-you-decide-and-how-do-you-keep-data-correct-across-services">Q16. Strong or eventual consistency — how do you decide, and how do you keep data correct across services?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;By the cost of a wrong or stale read. Balances and inventory reservations need strong consistency at the point of decision; a product catalogue or a feed can be eventually consistent. Across services I avoid distributed transactions: the transactional outbox pattern publishes events reliably with the local change, consumers are idempotent, and a saga with compensating actions handles multi-step business processes.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q17-how-would-you-scale-a-read-heavy-service">
+<h3 id="q17-how-would-you-scale-a-read-heavy-service">Q17. How would you scale a read-heavy service?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Measure first. Then cache at the right layer — CDN for static content, an application cache for hot objects — with an explicit invalidation strategy, add read replicas and accept their replication lag where the use case allows, and denormalise or precompute views for expensive queries. Watch the cache hit rate and the load on the database when the cache is cold.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q18-design-a-distributed-job-queue-with-priorities-retries-and-a-dead-letter-queue">
+<h3 id="q18-design-a-distributed-job-queue-with-priorities-retries-and-a-dead-letter-queue">Q18. Design a distributed job queue with priorities, retries and a dead-letter queue.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Producers write jobs with an ID, priority and idempotency key to a durable store or broker. Workers pull by priority with a visibility timeout, so a crashed worker&#x27;s job reappears. Failures retry with exponential backoff and jitter up to a limit, then move to a dead-letter queue with the error for inspection and replay. Jobs must be idempotent because delivery is at least once. Expose queue depth, age of the oldest job and retry rates, and protect low-priority work from starvation.&quot; [4]</p>
+</div></div>
+<div class="qa" data-qa="q19-design-a-rate-limiter-with-per-user-and-global-limits">
+<h3 id="q19-design-a-rate-limiter-with-per-user-and-global-limits">Q19. Design a rate limiter with per-user and global limits.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;A token bucket per user and one global bucket, both checked atomically on each request — in a shared store such as Redis with a script, so multiple API instances agree. Return a clear 429 with a retry-after time. Decide what happens if the store is unavailable — fail open for low-risk endpoints, closed for expensive ones — and monitor rejection rates so legitimate users aren&#x27;t being throttled.&quot; [4]</p>
+</div></div>
+<div class="qa" data-qa="q20-how-do-you-design-apis-that-others-can-depend-on">
+<h3 id="q20-how-do-you-design-apis-that-others-can-depend-on">Q20. How do you design APIs that others can depend on?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Contract first: clear resources, consistent errors, pagination, idempotency keys for writes, and versioning with a deprecation policy. Design for the consumer&#x27;s workflow rather than the database tables, document with examples, and test the contract automatically so a change that breaks consumers fails the build.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q21-how-would-you-modernise-a-legacy-estate-without-stopping-the-business">
+<h3 id="q21-how-would-you-modernise-a-legacy-estate-without-stopping-the-business">Q21. How would you modernise a legacy estate without stopping the business?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Inventory and classify first — retire, upgrade, migrate or replace — then sequence by business risk and dependency, not by technology. Use the strangler-fig approach for applications: route traffic through a façade and move capabilities one at a time. Every change needs rollback and production validation agreed with the application owner. At Northern Powergrid we treated 120-plus servers and 30-plus applications differently by category rather than as one migration, which kept production stable.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q22-how-do-you-design-for-multiple-tenants">
+<h3 id="q22-how-do-you-design-for-multiple-tenants">Q22. How do you design for multiple tenants?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Choose the isolation model per layer — shared, pooled with tenant IDs, or dedicated — based on security, noisy-neighbour risk and cost, and enforce tenant identity at every query, cache key, log and backup. When we adapted Natoora&#x27;s internal platform for external customers, the decisions were about white-labelling and configuration without forking the product, plus a repeatable onboarding process, so a second customer did not mean a second codebase.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q23-how-do-you-define-and-use-slos">
+<h3 id="q23-how-do-you-define-and-use-slos">Q23. How do you define and use SLOs?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Pick a few indicators users feel — availability, latency, correctness — set objectives with the business, and use the error budget to balance release speed and reliability: if the budget is spent, the team prioritises reliability work. For AI features add behavioural indicators such as unsupported-answer rate, because a fast, available service can still be wrong.&quot;</p>
+</div></div>
+<h2 id="influence-and-judgement">Influence and judgement</h2>
+<div class="qa" data-qa="q24-tell-me-about-a-design-you-got-wrong">
+<h3 id="q24-tell-me-about-a-design-you-got-wrong">Q24. Tell me about a design you got wrong.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;My first version of ResearchOps used CrewAI with hard-coded sources. It worked for AI topics but I&#x27;d designed the topic and the source list into the code, so every new subject meant code changes. I wrote proper requirements for version two — any topic as a configuration file, sources discovered and vetted at run time, ranking that can be audited, and a cost ceiling — and rebuilt it rather than patching. The lesson I apply now: separate what changes often from what doesn&#x27;t, and write that down before choosing a framework.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q25-you-designed-the-right-solution-and-the-team-didnt-want-to-build-it-what-did-you-do">
+<h3 id="q25-you-designed-the-right-solution-and-the-team-didnt-want-to-build-it-what-did-you-do">Q25. You designed the right solution and the team didn&#x27;t want to build it. What did you do?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Find out why before escalating — resistance often contains information. When I wanted Natoora to move from Trello to Jira, I documented the problems for two weeks, compared four tools on workflow, reporting, integrations and cost, and asked for a free, reversible pilot on one initiative. I designed the workflows around how the team actually worked and came back with the pilot results. Approval followed the evidence; I hadn&#x27;t needed to win an argument.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q26-explain-a-hard-technical-trade-off-as-if-i-were-the-cfo">
+<h3 id="q26-explain-a-hard-technical-trade-off-as-if-i-were-the-cfo">Q26. Explain a hard technical trade-off as if I were the CFO.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Put it in money, time and risk. For example: &#x27;A full white-label would take six to eight weeks; the client needs four. If we brand the customer-facing screens, emails, login and reports first and defer internal admin screens, we meet the date. The risk is that internal users work with unbranded admin screens for a while, which costs us nothing with the customer.&#x27; No jargon, one recommendation, and what would change it.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q27-sales-promised-a-client-something-the-architecture-cant-do-what-happens-next-week">
+<h3 id="q27-sales-promised-a-client-something-the-architecture-cant-do-what-happens-next-week">Q27. Sales promised a client something the architecture can&#x27;t do. What happens next week?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Separate what was promised from what is buildable, quickly and honestly. I&#x27;d find the outcome the client actually needs, propose what we can deliver and when, with the cost of the alternative, and go with the account lead to the client together rather than leaving sales to backtrack alone. Then fix the process: a technical review before commitments of that kind.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q28-when-is-good-enough-the-right-architecture">
+<h3 id="q28-when-is-good-enough-the-right-architecture">Q28. When is &quot;good enough&quot; the right architecture?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;When it meets the requirement with a clear path to change, and the cost of more design exceeds the risk it removes. IncidentPilot&#x27;s first version is deliberately read-only: it can&#x27;t restart anything. That made it safe enough to run and evaluate now, and the evaluation will tell me when approval-gated actions are justified.&quot;</p>
+</div></div>
+<div class="qa" data-qa="q29-what-do-you-document-and-what-do-you-let-the-code-carry">
+<h3 id="q29-what-do-you-document-and-what-do-you-let-the-code-carry">Q29. What do you document, and what do you let the code carry?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> &quot;Document the why: decisions, alternatives rejected and the conditions that would reopen them, in short architecture decision records next to the code. Let the code, tests and API contracts carry the what. A diagram that nobody updates is worse than none, so I keep a small number of current views.&quot; [2]</p>
+</div></div>
+<div class="qa" data-qa="q30-tell-me-about-mentoring-someone-through-a-hard-technical-problem">
+<h3 id="q30-tell-me-about-mentoring-someone-through-a-hard-technical-problem">Q30. Tell me about mentoring someone through a hard technical problem.</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> Use the mentoring record in <a href="../shared/evidence-bank.html#behavioural-stories-owner-supplied-13-october-2026">B3</a>: at Natoora you coached engineers on test-first development, pair programming and DevOps practices. Prepare one specific person, the problem, how you helped them reason rather than handing over the answer, and what they then did on their own.</p>
+</div></div>
+<h2 id="presenting-an-architecture">Presenting an architecture</h2>
+<p>If asked to present, tell a story: the problem and who has it, the requirements that drive the design, two or three options with their trade-offs, the decision, how it fails and how you&#x27;d know, the cost, and what you&#x27;d do next. Leave time for questions; the defence matters more than the slides.</p>
+<h2 id="credibility-probes">Credibility probes</h2>
+<p>Were you the architect or the delivery lead? Who signed off the design? What did it cost to run? What broke in production? Which decision would you reverse? For the personal projects: what load have they handled, and what would you change before a customer used them? Answer within your actual role; reasoning quality earns the credit.</p>
+<h2 id="questions-to-ask-the-panel">Questions to ask the panel</h2>
+<p>How are architecture decisions made and recorded here? How much of the role is hands-on? Which non-functional requirement causes the most trouble today? How do you govern AI use across teams?</p>
+<h2 id="sources-and-freshness">Sources and freshness</h2>
+<p>Checked 13 October 2026.</p>
+<ol>
+<li><a href="https://dataford.io/interview-guides/capgemini/ai-architect">Capgemini AI Architect interview guide</a> — Dataford, updated 1 August 2026.</li>
+<li><a href="https://www.kore1.com/solutions-architect-interview-questions/">Solutions architect interview questions</a> — KORE1, 28 July 2026 (a recruiting firm&#x27;s view).</li>
+<li><a href="https://www.systemdesignhandbook.com/guides/generative-ai-system-design-interview/">Generative AI system design interview guide</a> — System Design Handbook, updated 15 July 2026.</li>
+<li><a href="https://www.aced.io/blog/forward-deployed-engineer-interview-the-definitive-2026-guide-fde">Forward Deployed Engineer interview guide</a> — Aced, for the job-queue and rate-limiter questions also used in engineering loops.</li>
+<li>LinkedIn&#x27;s hiring guides for <a href="https://business.linkedin.com/talent-solutions/resources/how-to-hire-guides/software-architect/interview-questions">software architects</a> and <a href="https://business.linkedin.com/talent-solutions/resources/how-to-hire-guides/solution-architect/interview-questions">solution architects</a> — generic scalability, API and influence questions.</li>
+<li>EU AI Act dates as verified in the <a href="../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html">AI Architect&#x27;s Handbook</a> on 13 October 2026.</li>
+</ol></article><footer>Generated from <a href="software-ai-architect.md">software-ai-architect.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+if(get('ip-theme')==='dark')root.classList.add('dark');
+function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
+syncTheme();
+theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>
