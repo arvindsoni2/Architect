@@ -2,7 +2,7 @@
 
 **Status:** Approved design  
 **Repository:** `arvindsoni2/Architect`  
-**Date:** 2026-09-03  
+**Date:** 2026-09-03 · **Amended:** 2026-10-13 (HTML-first learning)\
 **Visibility:** Public, curated
 
 ## 1. Purpose
@@ -31,17 +31,31 @@ Architecture-adjacent course or certification material may contribute distilled 
 
 Unrelated project files, general technical learning material, job-search material outside that collection, and personal records are excluded.
 
+**Owner preference approved 13 October 2026 — HTML-first learning:** interactive HTML handbooks are the preferred way to learn from this repository, because they can carry diagrams, motion, labs, quizzes and read-aloud. Markdown notes are kept alongside them. Section 3 describes how the two formats work together.
+
 ## 3. Content model
 
-The repository uses a hybrid publication model.
+The repository uses a hybrid model with **HTML as the primary learning format**.
 
-### Maintainable knowledge
+### Interactive handbooks (primary)
 
-Markdown under `docs/` is the evolving source of truth for concepts, patterns, trade-offs, failure modes, checklists, and references. Content should be modular enough to update without regenerating an entire handbook.
+`handbooks/` and the HTML files in `learning-paths/` are the main learning surface. They are edited directly and are not generated from Markdown. New learning material lands in the most relevant HTML handbook first, with explanatory diagrams and, where they help understanding, interactive or animated figures. Each handbook keeps one current edition; its visible edition line records what changed and when.
 
-### Published handbooks
+### Markdown companions (retained)
 
-`handbooks/` contains only the latest curated HTML or PDF editions whose layout or learning experience is valuable in its rendered form. These artifacts are published outputs, not parallel editable sources.
+Markdown under `docs/` remains as plain-text companions for durable concepts, patterns, trade-offs, failure modes, checklists and references. They are easy to search, diff and reuse. They are not being retired. When a topic exists in both formats, keep the facts aligned in the same pull request; the HTML may teach more (figures, labs, motion) but must not contradict the note.
+
+### HTML quality standard
+
+Every HTML handbook change should meet these requirements:
+
+- **Self-contained:** one file that works offline from a download. Inline CSS, JavaScript and SVG. External fonts are optional and must have a fallback; no external runtime dependencies.
+- **Diagrams:** inline SVG with `role="img"`, a `<title>` and a `<desc>`, using the page's colour tokens so they work in every theme the page offers. Prefer SVG to raster images.
+- **Interaction and motion:** controls are real buttons or inputs and work with a keyboard. Motion starts only when the reader presses play and respects `prefers-reduced-motion`. The same explanation must be readable without the animation, including in print.
+- **Audio:** prefer read-aloud through the browser's Web Speech API, which needs no audio files. Hide the control when the browser does not support it.
+- **Video:** link to it rather than embedding video files, to keep handbooks small and fast.
+- **Layout:** no horizontal page scroll at 390 px wide; wide tables scroll inside their own container. Print shows all content.
+- **Storage:** wrap browser storage in `try/catch` and render correctly without it.
 
 ### Learning paths
 
@@ -71,10 +85,16 @@ Architect/
 │   ├── agent-architecture/
 │   └── cross-cutting-patterns/
 ├── handbooks/
-│   ├── system-design/
+│   ├── agent-engineering/
+│   ├── ai-architecture/
 │   ├── ai-engineering/
-│   └── agent-engineering/
+│   ├── ai-evaluation/
+│   ├── aws-saa-c03/
+│   ├── fde/
+│   └── system-design/
+├── interview-prep/
 └── learning-paths/
+    ├── ai-ml-interview/
     └── software-architect/
 ```
 
@@ -165,7 +185,8 @@ The repository is successful when:
 - a reader can locate relevant material from the README or catalogue without remembering a filename;
 - each subject has one clearly identified current source;
 - Markdown changes are meaningfully reviewable in Git;
-- rich handbook layouts remain available where they add value;
+- interactive HTML handbooks are the first place a reader learns a topic, and meet the HTML quality standard in Section 3;
+- Markdown companions stay factually aligned with the handbooks;
 - obsolete duplicates do not compete with canonical content;
 - public content passes the safety and provenance review;
 - future architecture notes have an obvious destination and update workflow.

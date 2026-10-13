@@ -46,19 +46,31 @@ The repository does not intentionally add hidden provenance metadata. Visible st
 - Verify links and time-sensitive claims before merge. Label unresolved freshness concerns as **Review due** in `CATALOG.md`.
 - Include concise references for factual claims that depend on external sources.
 
-## Rendered artifacts
+## HTML-first learning (owner preference, 13 October 2026)
 
-Rendered HTML or PDF belongs under `handbooks/` (or the approved `interview-prep/` collection) only when its layout or learning experience adds value beyond Markdown.
+Interactive HTML handbooks are the preferred learning format. Put new learning material in the most relevant HTML handbook first, with diagrams and, where they help understanding, interactive or animated figures. Keep the Markdown notes under `docs/`: they are plain-text companions and are not being retired. When a topic exists in both, update both in the same pull request so their facts agree.
 
-Before merge, open rendered HTML locally and check:
+HTML handbooks are edited directly; they are not generated from Markdown. The exception is `interview-prep/handbook.html`, which is still generated from its Markdown sources.
 
-- table-of-contents and internal navigation;
-- missing images, fonts, stylesheets, or scripts;
-- clipped or overlapping text;
-- code blocks and diagrams;
+Every HTML change should meet the standard in [repository design, section 3](docs/repository-design.md#html-quality-standard):
+
+- self-contained single file; no external runtime dependencies (fonts optional, with a fallback);
+- inline SVG diagrams with `role="img"`, `<title>` and `<desc>`, using the page's colour tokens;
+- keyboard-usable controls; motion starts only on request and respects `prefers-reduced-motion`; the explanation also works without animation and in print;
+- read-aloud through the browser's Web Speech API rather than audio files; link to video rather than embedding it;
+- no horizontal page scroll at 390 px wide; wide tables scroll inside their own container;
+- browser storage wrapped in `try/catch`, with the page working without it.
+
+Before merge, open the HTML locally and check:
+
+- table of contents and internal navigation;
+- missing images, fonts, stylesheets or scripts, and the browser console for errors;
+- clipped or overlapping text, including in every theme the page offers;
+- diagrams, interactive figures and motion (with reduced motion on and off);
+- layout at 390 px wide;
 - print layout when the document supports printing.
 
-Published artifacts are outputs. Maintainable concepts and patterns should progressively move into modular Markdown under `docs/`.
+Update the handbook's visible edition line to say what changed and when.
 
 ## Pull-request checklist
 
@@ -66,7 +78,8 @@ Published artifacts are outputs. Maintainable concepts and patterns should progr
 - [ ] The selected edition is canonical.
 - [ ] Public-content and sensitive-data review is complete.
 - [ ] Links and time-sensitive claims have been checked.
-- [ ] Rendered files have been opened and visually inspected.
+- [ ] New learning content is in the relevant HTML handbook, and any Markdown companion agrees with it.
+- [ ] HTML files have been opened and visually inspected, including at 390 px, in each theme and with reduced motion.
 - [ ] `CATALOG.md` has been updated when required.
 - [ ] No obsolete duplicate or empty directory has been added.
 - [ ] `git diff --check` reports no whitespace errors.
