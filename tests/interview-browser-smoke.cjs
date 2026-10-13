@@ -18,8 +18,8 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  await page.locator('#evidence--s3-smart-timesheet').waitFor({state:'visible'});
  if(!await page.locator('#evidence--s3-smart-timesheet').isVisible())throw Error('Cross-guide link failed');
  await page.locator('nav a[href="#accenture-questions"]').click();await page.locator('#accenture-questions').waitFor({state:'visible'});
- await page.locator('#accenture-questions a[href="#accenture-questions--q24-what-is-api-first-and-what-relevant-experience-do-you-have"]').first().click();
- await page.locator('#accenture-questions--q24-what-is-api-first-and-what-relevant-experience-do-you-have').waitFor({state:'visible'});
+ await page.locator('#accenture-questions a[href="#accenture-questions--what-is-api-first-and-whats-your-experience"]').first().click();
+ await page.locator('#accenture-questions--what-is-api-first-and-whats-your-experience').waitFor({state:'visible'});
  await page.locator('#accenture-questions a[href="#evidence--s3-smart-timesheet"]').first().click();
  await page.locator('#evidence--s3-smart-timesheet').waitFor({state:'visible'});
  await page.locator('#theme').click();if(await page.locator('#theme').getAttribute('aria-pressed')!=='true')throw Error('Theme failed');

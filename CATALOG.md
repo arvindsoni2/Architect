@@ -65,8 +65,8 @@ Markdown sources are canonical. The HTML reading view is generated from them. Th
 | Product Owner Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-owner.md](interview-prep/roles/product-owner.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Product Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-manager.md](interview-prep/roles/product-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Senior Project Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/senior-project-manager.md](interview-prep/roles/senior-project-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Accenture Product Owner Supplement | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Accenture Product Owner Model Q&A | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-05 |
+| Accenture Product Owner Playbook | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-13 |
+| Accenture Product Owner Extra Questions | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-13 |
 | Accenture Forward Deployed AI Engineer Supplement | Forward-deployed AI interview preparation | [interview-prep/vacancies/accenture-fde.md](interview-prep/vacancies/accenture-fde.md) | Markdown | Draft | Living draft | 2026-10-05 |
 | Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-05 |
 

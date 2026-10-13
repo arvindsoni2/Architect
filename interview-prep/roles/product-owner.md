@@ -1,12 +1,12 @@
 # Product Owner interview guide
 
-**Status:** Draft for owner review · **Last reviewed:** 1 October 2026
+**Status:** Owner-reviewed facts · **Last reviewed:** 13 October 2026
 
-Prepare to show how you turn a product goal and user evidence into an ordered backlog and usable increments. The panel needs decisions, trade-offs and results alongside familiarity with Scrum. For the supplied vacancy, add the [Accenture supplement](../vacancies/accenture-product-owner.md).
+Prepare to show how you turn a product goal and user evidence into an ordered backlog and usable increments. The panel needs decisions, trade-offs and results alongside familiarity with Scrum. For the supplied vacancy, use the [Accenture PO playbook](../vacancies/accenture-product-owner.md).
 
 ## Positioning and evidence
 
-A defensible opening: “My background combines product ownership and delivery leadership. I was a Product Owner on the Northern Powergrid account before moving into infrastructure delivery, and later worked on product and delivery initiatives at Natoora. I bring experience translating operational problems into priorities, coordinating technical dependencies and supporting adoption. For this role, I would focus that experience on an evidence-led backlog and measurable client value.” Add one concrete decision you can defend; keep this under 90 seconds.
+A confident opening: “I turn operational problems into products people actually use, and I prove the value with numbers. As TCS Product Owner on Northern Powergrid's Smart Timesheet, I led the product from field research to handover, and it saved around £500K a year. At Natoora I took an internal platform to market as SaaS, which made £29K profit in its first five months, and led the rollout of a GenAI order tool that cut manual effort by about 90%.” Then name one decision you made; keep the whole answer under 90 seconds. Lead with decisions, not activities.
 
 | Requirement | Best starting evidence | What to demonstrate |
 | --- | --- | --- |
@@ -28,7 +28,7 @@ A defensible opening: “My background combines product ownership and delivery l
 
 ## Worked answer and follow-up
 
-For “tell me about a product you owned”, use this factual core: “Smart Timesheet ran in 2019–March 2020, when I was a TCS Product Owner on Northern Powergrid. The service addressed field timesheet administration. We used an OutSystems frontend hosted on AWS, with a .NET backend connecting Oracle HCM and CRM for employee data. The reported outcomes include fewer administrative office visits and annual savings.” Then supply **your actual** discovery activity, one contested priority, the alternative you rejected and how you checked release readiness. Use the [shared answer structure](../shared/handbook.md#behavioural-answers); do not memorise unverified actions as history.
+For “tell me about a product you owned”, use the full Smart Timesheet STAR answer in the [Accenture playbook (Q4)](../vacancies/accenture-product-owner.md#q4-tell-us-about-a-product-you-owned-end-to-end). Its core: field research at depots changed the interface; workshops with operations, payroll, IT and the union shaped the positioning; an alpha at one depot (50 engineers), a beta at three (200) and a six-month depot-by-depot rollout proved it before scaling; the result was 2,000+ engineers off paper, 50% fewer office visits and about £500K annual savings. Prepare one deferred feature before the interview.
 
 Expect: Who owned funding? Who selected the platform? Which story did you defer? What did users change your mind about? How were savings measured? Were you responsible for architecture or for product decisions? The story succeeds when those boundaries are clear.
 

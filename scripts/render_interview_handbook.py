@@ -20,8 +20,8 @@ SOURCES = [
     ('roles/product-owner.md', 'product-owner', 'Product Owner'),
     ('roles/product-manager.md', 'product-manager', 'Product Manager'),
     ('roles/senior-project-manager.md', 'senior-project-manager', 'Senior Project Manager'),
-    ('vacancies/accenture-product-owner.md', 'accenture', 'Accenture PO'),
-    ('vacancies/accenture-product-owner-questions.md', 'accenture-questions', 'Accenture Q&A'),
+    ('vacancies/accenture-product-owner.md', 'accenture', 'Accenture PO playbook'),
+    ('vacancies/accenture-product-owner-questions.md', 'accenture-questions', 'Accenture extra Qs'),
     ('vacancies/accenture-fde.md', 'accenture-fde', 'Accenture FDE'),
 ]
 
