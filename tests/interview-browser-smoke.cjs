@@ -7,7 +7,7 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  await page.goto('file://'+path);
  const missing=await page.evaluate(()=>[...document.querySelectorAll('a[href^="#"]')].filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.hash));
  if(missing.length)throw Error('Missing anchor targets: '+missing.join(','));
- for(const route of ['start','methods','evidence','delivery-lead','agile-delivery-lead','product-owner','product-manager','senior-project-manager','accenture','accenture-questions','accenture-fde']){
+ for(const route of ['start','methods','evidence','delivery-lead','agile-delivery-lead','product-owner','product-manager','senior-project-manager','software-ai-architect','ai-engineer','forward-deployed-engineer','accenture','accenture-questions','accenture-fde']){
   await page.locator('nav a[href="#'+route+'"]').click();
   await page.locator('#'+route).waitFor({state:'visible'});
   const top=await page.locator('#'+route+' h1').boundingBox();if(top.y<0)throw Error('Route heading clipped: '+route);
@@ -35,8 +35,9 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  if(overflow)throw Error('Mobile page overflow');
  await page.locator('nav a[href="#accenture-fde"]').click();await page.locator('#accenture-fde').waitFor({state:'visible'});
  if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('FDE mobile page overflow');
- await page.emulateMedia({media:'print'});if(await page.locator('.panel:visible').count()!==11)throw Error('Print hides guides');
- const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto('file://'+path);if(await plain.locator('.panel:visible').count()!==11)throw Error('No-JS content missing');
- if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 11 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content.');
+ for(const route of ['software-ai-architect','ai-engineer','forward-deployed-engineer']){await page.locator('nav a[href="#'+route+'"]').click();await page.locator('#'+route).waitFor({state:'visible'});if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile page overflow: '+route);}
+ await page.emulateMedia({media:'print'});if(await page.locator('.panel:visible').count()!==14)throw Error('Print hides guides');
+ const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto('file://'+path);if(await plain.locator('.panel:visible').count()!==14)throw Error('No-JS content missing');
+ if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 14 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});
