@@ -599,6 +599,24 @@
     .week-num{ font-size:36px; width:48px }
     .week-title h4{ font-size:18px }
   }
+
+  /* ---------- 13 Oct 2026: interactive figures ---------- */
+  .ix-fig{border:2px solid var(--ink);background:var(--paper-warm);padding:18px;margin:22px 0;box-shadow:var(--shadow)}
+  .ix-fig h4{margin:0 0 4px} .ix-fig .ix-hint{font-size:14px;color:var(--ink-soft);margin:0 0 10px}
+  .ix-fig svg{width:100%;height:auto;display:block} .ix-fig svg text{fill:var(--ink);font:13px 'Inter Tight',system-ui,sans-serif} .ix-fig svg .ix-sm{fill:var(--ink-soft);font-size:11px}
+  .ix-node rect{fill:var(--paper);stroke:var(--ink);stroke-width:1.5;transition:fill .3s ease}
+  .ix-node.on rect{fill:var(--highlight);stroke-width:2.5}
+  .ix-row{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;align-items:center}
+  .ix-btn{font:600 13px 'Inter Tight',system-ui,sans-serif;border:2px solid var(--ink);background:var(--paper);color:var(--ink);padding:7px 12px;cursor:pointer}
+  .ix-btn:hover,.ix-btn:focus-visible{background:var(--highlight);outline:none} .ix-btn[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+  .ix-out{border-left:4px solid var(--accent);background:var(--paper);padding:12px 14px;margin-top:10px}
+  .ix-table{width:100%;border-collapse:collapse;font-size:14px;margin-top:10px} .ix-table th,.ix-table td{border-bottom:1px solid var(--ink);padding:8px;text-align:left;vertical-align:top}
+  .ix-table tr.pick{background:var(--highlight)}
+  .ix-wrap{overflow-x:auto}
+  .listen{position:fixed;right:16px;bottom:16px;z-index:60;display:flex;gap:6px;background:var(--paper);border:2px solid var(--ink);padding:6px;box-shadow:var(--shadow)}
+  @media(max-width:600px){.mast-meta span{white-space:normal}.mast-meta{gap:8px}.listen{right:8px;bottom:8px}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  @media print{.ix-btn,.ix-row,.listen{display:none!important}}
 </style>
 </head>
 <body>
@@ -619,7 +637,7 @@
 <!-- ============================ HERO ============================ -->
 <div class="hero">
   <div class="eyebrow">Single source of truth · Freshness reviewed 05 October 2026</div>
-<p class="section-sub">v3.2 updates model IDs, base pricing and the OWASP 2026 security resource. A 13 October 2026 data check replaces Claude Haiku 4.5 with Haiku 5.5 and updates the LangGraph release. Other dated source snapshots retain their original review dates.</p>
+<p class="section-sub">v3.2 updates model IDs, base pricing and the OWASP 2026 security resource. A 13 October 2026 data check replaces Claude Haiku 4.5 with Haiku 5.5 and updates the LangGraph release; the same update adds an animated agent-loop figure, a lever chooser (Stack &amp; Decisions) and read-aloud. Other dated source snapshots retain their original review dates.</p>
   <h1>Six months of <em>notes,</em><br>compressed.</h1>
   <p class="lede">
     Nineteen markdown files. Roughly fifty thousand words. Overlapping curricula, expired links, models that no longer exist. This handbook is what survived the cull — <strong>one place to look</strong> when you need the 20% that actually ships products in 2026. Eighty percent of the volume, gone. None of the load-bearing ideas.
@@ -643,7 +661,7 @@
     <button class="tab" id="tab-stack" data-target="t-stack" role="tab" aria-controls="t-stack" aria-selected="false" tabindex="-1"><span class="tab-num">05</span>Stack &amp; Decisions</button>
     <button class="tab" id="tab-eval" data-target="t-eval" role="tab" aria-controls="t-eval" aria-selected="false" tabindex="-1"><span class="tab-num">06</span>Evaluation</button>
     <button class="tab" id="tab-interview" data-target="t-interview" role="tab" aria-controls="t-interview" aria-selected="false" tabindex="-1"><span class="tab-num">07</span>Interview Playbook</button>
-    <button class="tab" id="tab-landscape" data-target="t-landscape" role="tab" aria-controls="t-landscape" aria-selected="false" tabindex="-1"><span class="tab-num">08</span>Landscape · Sep 2026</button>
+    <button class="tab" id="tab-landscape" data-target="t-landscape" role="tab" aria-controls="t-landscape" aria-selected="false" tabindex="-1"><span class="tab-num">08</span>Landscape · dated snapshots</button>
     <button class="tab" id="tab-sources" data-target="t-sources" role="tab" aria-controls="t-sources" aria-selected="false" tabindex="-1"><span class="tab-num">09</span>Sources</button>
   </div>
 </nav>
@@ -701,6 +719,20 @@
       <div class="callout-label">🧠 Feynman checkpoint</div>
       <em>"An LLM is a probabilistic autocomplete engine. Tool calling forces it to emit a JSON function call instead of prose. The magic is in the loop, not the model."</em>
     </div>
+
+    <figure class="ix-fig" id="ix-loop"><h4>Watch the atomic loop</h4><p class="ix-hint">Press Play or Step. The model never runs the tool itself: it asks for a call, your code runs it, and the result goes back in as new context.</p>
+    <svg viewBox="0 0 760 200" role="img" aria-labelledby="ixl-t ixl-d"><title id="ixl-t">The atomic agent loop</title><desc id="ixl-d">User message goes to the model, which returns a JSON tool call. Your code validates and runs the tool, and the result returns to the model, which either calls another tool or writes the answer.</desc>
+    <defs><marker id="ixa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1a1814"/></marker></defs>
+    <g class="ix-node" data-n="0"><rect x="10" y="70" width="95" height="50"/><text x="57" y="100" text-anchor="middle">User</text></g>
+    <g class="ix-node" data-n="1"><rect x="140" y="70" width="110" height="50"/><text x="195" y="92" text-anchor="middle">LLM</text><text x="195" y="110" text-anchor="middle" class="ix-sm">decides next step</text></g>
+    <g class="ix-node" data-n="2"><rect x="290" y="10" width="130" height="50"/><text x="355" y="32" text-anchor="middle">JSON tool call</text><text x="355" y="50" text-anchor="middle" class="ix-sm">name + arguments</text></g>
+    <g class="ix-node" data-n="3"><rect x="460" y="10" width="140" height="50"/><text x="530" y="32" text-anchor="middle">Your code</text><text x="530" y="50" text-anchor="middle" class="ix-sm">validate · authorise · run</text></g>
+    <g class="ix-node" data-n="4"><rect x="460" y="130" width="140" height="50"/><text x="530" y="152" text-anchor="middle">Tool result</text><text x="530" y="170" text-anchor="middle" class="ix-sm">appended to context</text></g>
+    <g class="ix-node" data-n="5"><rect x="640" y="70" width="110" height="50"/><text x="695" y="100" text-anchor="middle">Answer</text></g>
+    <g fill="none" stroke="#1a1814" stroke-width="1.6"><path d="M105 95 H140" marker-end="url(#ixa)"/><path d="M250 85 L290 40" marker-end="url(#ixa)"/><path d="M420 35 H460" marker-end="url(#ixa)"/><path d="M530 60 V130" marker-end="url(#ixa)"/><path d="M460 155 C330 175 230 160 200 122" marker-end="url(#ixa)"/><path d="M250 100 C420 100 560 95 640 95" stroke-dasharray="5 4" marker-end="url(#ixa)"/></g>
+    <text x="300" y="190" class="ix-sm">loop until no tool is needed or a budget is hit</text></svg>
+    <div class="ix-row"><button class="ix-btn" id="ixl-play" type="button">▶ Play</button><button class="ix-btn" id="ixl-step" type="button">Step</button><button class="ix-btn" id="ixl-reset" type="button">Reset</button></div>
+    <div class="ix-out" id="ixl-out" aria-live="polite">User: “What is 18% of £2,450, converted to euros?”</div></figure>
 
     <h4>Build: Atomic Agent</h4>
     <p>A 100-line Python script that takes a user query, decides between three tools (web search, calculator, weather), executes the chosen tool, returns structured JSON.</p>
@@ -1370,6 +1402,15 @@
 
 <h2 class="section-title">Stack &amp; <em>decisions.</em></h2>
 <p class="section-sub">By scenario · with decision trees</p>
+
+<figure class="ix-fig" id="ix-lever"><h4>Before changing models: choose the lever</h4><p class="ix-hint">Added 13 October 2026, following Stanford CS329Z’s optimisation unit. Pick the symptom you see; the table highlights the cheapest reversible lever to try first.</p>
+<div class="ix-row" role="group" aria-label="Symptom"><button class="ix-btn" data-sym="prompt" type="button">Steps are right but prompts are brittle</button><button class="ix-btn" data-sym="hard" type="button">Hard cases fail; a reliable checker exists</button><button class="ix-btn" data-sym="weights" type="button">Stable behaviour the prompt cannot elicit, or cost/latency needs a smaller model</button></div>
+<div class="ix-wrap"><table class="ix-table"><thead><tr><th>Lever</th><th>What changes</th><th>Cost and risk</th></tr></thead><tbody>
+<tr data-lever="prompt"><td><strong>Program optimisation</strong><br/>DSPy · MIPRO · GEPA</td><td>Instructions, examples and module structure, tuned against a metric on a dev set</td><td>Cheap and reversible; can overfit a small dev set or a gameable metric</td></tr>
+<tr data-lever="hard"><td><strong>Inference budget</strong></td><td>Sampling, search, verification or reasoning effort per request</td><td>Adds latency and cost to every request; only as good as the checker</td></tr>
+<tr data-lever="weights"><td><strong>Weight update</strong><br/>SFT · distillation · RL</td><td>Model parameters</td><td>Slowest to iterate; changes broad behaviour; needs a data contract, lineage and rollback</td></tr></tbody></table></div>
+<div class="ix-out" id="ix-lever-out" aria-live="polite">Choose a symptom above.</div>
+<p class="ix-hint">Evidence: <a href="https://arxiv.org/abs/2310.03714" target="_blank" rel="noopener">DSPy</a> compiles a pipeline against a metric; <a href="https://arxiv.org/abs/2406.11695" target="_blank" rel="noopener">MIPRO</a> tunes instructions and examples per module; <a href="https://arxiv.org/abs/2507.19457" target="_blank" rel="noopener">GEPA</a> reports beating the GRPO RL baseline with up to 35× fewer rollouts in its study. Keep the optimiser’s dev set separate from your locked evaluation set.</p></figure>
 
 <h3>Pick a stack by scenario</h3>
 <div class="scenario-buttons">
@@ -2148,5 +2189,30 @@ full build. The one-pager became our project charter.</div>
   });
 </script>
 
+<div class="listen" id="listen" hidden><button class="ix-btn" id="listen-play" type="button" aria-label="Read the open tab aloud">▶ Listen</button><button class="ix-btn" id="listen-stop" type="button" aria-label="Stop reading">■</button></div>
+<script>
+(function(){
+const nodes=[...document.querySelectorAll('#ix-loop .ix-node')],out=document.getElementById('ixl-out');
+const steps=[[0,'User: “What is 18% of £2,450, converted to euros?”'],[1,'The model reads the request and the tool schemas, and decides it needs a calculation.'],[2,'It returns structured output, not prose: {"tool":"calculator","args":{"expr":"0.18*2450"}}.'],
+[3,'Your code validates the arguments against the schema, checks permissions, and runs the tool.'],[4,'Result “441” is appended to the conversation as a tool message.'],[1,'With new context the model needs one more step: a currency conversion.'],[2,'{"tool":"fx_rate","args":{"from":"GBP","to":"EUR"}}'],[3,'Your code calls the rates API with a timeout and records the call.'],[4,'Result: the current rate is appended.'],[1,'The model now has everything it needs and no tool call is required.'],[5,'Answer: 18% of £2,450 is £441, shown in euros at the fetched rate — with the rate’s source and time.']];
+let i=0,timer=null;
+function show(){nodes.forEach(n=>n.classList.toggle('on',+n.dataset.n===steps[i][0]));out.textContent=steps[i][1];}
+function stop(){if(timer){clearInterval(timer);timer=null;}document.getElementById('ixl-play').textContent='▶ Play';}
+function step(){if(i<steps.length-1){i++;show();}if(i===steps.length-1)stop();}
+document.getElementById('ixl-step').addEventListener('click',()=>{stop();step();});
+document.getElementById('ixl-reset').addEventListener('click',()=>{stop();i=0;show();});
+document.getElementById('ixl-play').addEventListener('click',e=>{if(timer){stop();return;}if(i===steps.length-1)i=0;show();timer=setInterval(step,window.matchMedia('(prefers-reduced-motion: reduce)').matches?2600:1600);e.target.textContent='❚❚ Pause';});
+show();
+const msg={prompt:'Try program optimisation first: build a scored dev set, let an optimiser tune instructions and examples, and confirm the gain on the locked evaluation set.',hard:'Try a bounded inference budget: sample or search several candidates and let the checker choose. Measure the added latency and cost per accepted answer.',weights:'Consider a weight update, but only with a data contract, held-out evaluation, lineage and a rollback path. Re-check whether a cheaper lever was ruled out first.'};
+document.querySelectorAll('#ix-lever [data-sym]').forEach(b=>b.addEventListener('click',()=>{const s=b.dataset.sym;
+ document.querySelectorAll('#ix-lever [data-sym]').forEach(x=>x.setAttribute('aria-pressed',x===b));
+ document.querySelectorAll('#ix-lever tr[data-lever]').forEach(r=>r.classList.toggle('pick',r.dataset.lever===s));document.getElementById('ix-lever-out').textContent=msg[s];}));
+const box=document.getElementById('listen');
+if('speechSynthesis' in window){box.hidden=false;
+ document.getElementById('listen-play').addEventListener('click',()=>{speechSynthesis.cancel();const panel=document.querySelector('section.panel.active')||document.body;const c=panel.cloneNode(true);c.querySelectorAll('svg,button,.ix-row,script,style').forEach(x=>x.remove());
+  const u=new SpeechSynthesisUtterance(c.innerText.replace(/\s+/g,' ').slice(0,8000));u.lang='en-GB';speechSynthesis.speak(u);});
+ document.getElementById('listen-stop').addEventListener('click',()=>speechSynthesis.cancel());}
+})();
+</script>
 </body>
 </html>
