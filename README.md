@@ -39,6 +39,7 @@ A curated, version-controlled knowledge base for software architecture, system d
 ### Agent architecture
 
 - [Self-Improving Agent Systems](docs/agent-architecture/self-improving-agent-systems.md)
+- [Coding Agents and Spec-Driven Development](docs/agent-architecture/coding-agents-and-spec-driven-development.md)
 - [Agent Engineering Master Manual](handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html)
 
 ## Domains

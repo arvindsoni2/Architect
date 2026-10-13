@@ -51,6 +51,16 @@ Make memory admission conservative. Store only information with purpose, source,
 
 Set a change budget and stopping rule for candidates, retries, training runs, time, and spend. Stop on a safety failure, plateau, depleted budget, evaluator disagreement, or missing human judgment. Promotion requires an acceptance owner, baseline comparison, artifact hash, canary scope, and tested rollback. Production must not let a model approve its own authority, alter its evaluator, widen tools, or bypass a release gate.
 
+### Data flywheel: from traces to datasets
+
+Production traces are the richest source of improvement data, but they become a dataset only after selection, labelling and separation. A flywheel turns reviewed traces into evaluation cases, optimisation examples or training data, then measures whether the next version improved.
+
+- **Separate the uses.** Keep three pools: an evaluation set that never feeds optimisation, a dev set for prompt or program optimisation, and a training set for weight updates. Mixing them inflates every result.
+- **Select for information, not volume.** A small set of high-quality, diverse examples can matter more than a large noisy one; the LIMA study fine-tuned on about 1,000 curated examples. Prefer failures, boundary cases and disagreements over routine successes.
+- **Label with calibrated judges.** LLM judges speed up labelling, but Shankar et al. found that people's grading criteria shift as they grade outputs ("criteria drift"). Re-check a judge against fresh human labels whenever the criteria or task change.
+- **Generate environments, not just text.** For coding agents, SWE-smith builds runnable task instances by breaking existing tests in real repositories, producing 50,000 instances from 128 repositories. Synthetic data is useful when it comes with an executable check; it is not evidence on its own.
+- **Record lineage.** Every dataset row should trace to its source trace, transformation, labeller or judge version, and the pool it belongs to.
+
 ## Failure modes and warning signs
 
 - **Reward hacking:** the agent optimises a proxy such as approval rate, verbosity, or evaluator score while the real outcome worsens. Compare proxy and workflow outcomes and include adversarial cases.
@@ -98,6 +108,7 @@ Candidates run isolated with synthetic credentials, replayed tools, fixed policy
 - [Reasoning System Design](../ai-architecture/reasoning-system-design.md) owns inference-time search, verification, selection, and adaptive compute.
 - [Model Adaptation and Training](../ai-architecture/model-adaptation-and-training.md) owns datasets, SFT, distillation, reward-based training, and weight-change experiments.
 - [Production AI Assurance](../ai-architecture/production-ai-assurance.md) owns acceptance evidence, autonomy levels, rollout, observability, and behavioural rollback.
+- [Coding Agents and Spec-Driven Development](coding-agents-and-spec-driven-development.md) owns the coding-agent loop, specifications, skills and agent–computer interfaces.
 - [Durable Workflows and Idempotency](../cross-cutting-patterns/durable-workflows-and-idempotency.md) owns restart correctness, duplicate-safe effects, checkpoints, replay, and compensation.
 - [Reliability and Failure Control](../system-design/reliability-and-failure-control.md) owns deadlines, retry budgets, overload control, and recovery objectives.
 - [Architecture Decision Method](../software-architecture/architecture-decision-method.md) owns decision hypotheses, trade-offs, evidence plans, and reversal triggers.
@@ -120,10 +131,16 @@ Public primary references:
 4. Shinn et al., [Reflexion](https://arxiv.org/abs/2303.11366) — language-agent feedback as an experimental technique.
 5. Madaan et al., [Self-Refine](https://arxiv.org/abs/2303.17651) — bounded iterative refinement.
 
+Focused addition (verified 2026-10-13), prompted by the data material in [Stanford CS329Z](https://cs329z.stanford.edu/):
+
+6. Zhou et al., [LIMA: Less Is More for Alignment](https://arxiv.org/abs/2305.11206) — small curated fine-tuning sets.
+7. Shankar et al., [Who Validates the Validators?](https://arxiv.org/abs/2404.12272) — aligning LLM evaluators with human judgement; criteria drift.
+8. Yang et al., [SWE-smith: Scaling Data for Software Engineering Agents](https://arxiv.org/abs/2504.21798) — executable synthetic task instances.
+
 These references support the synthesis; they do not establish that open-ended autonomous self-modification is safe or production-ready.
 
 **Status:** Current
 
 **Edition:** Living
 
-**Last reviewed:** 2026-09-06
+**Last reviewed:** 2026-10-13

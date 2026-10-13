@@ -29,10 +29,11 @@ This is the authoritative index of current material in the repository.
 | Reliability and Failure Control | System design | [docs/system-design/reliability-and-failure-control.md](docs/system-design/reliability-and-failure-control.md) | Markdown | Current | Living | 2026-09-05 |
 | Durable Workflows and Idempotency | Cross-cutting patterns | [docs/cross-cutting-patterns/durable-workflows-and-idempotency.md](docs/cross-cutting-patterns/durable-workflows-and-idempotency.md) | Markdown | Current | Living | 2026-09-05 |
 | Production AI Assurance | AI architecture | [docs/ai-architecture/production-ai-assurance.md](docs/ai-architecture/production-ai-assurance.md) | Markdown | Current | Living | 2026-09-05 |
-| LLM Inference Systems | AI architecture | [docs/ai-architecture/llm-inference-systems.md](docs/ai-architecture/llm-inference-systems.md) | Markdown | Current | Living | 2026-09-06 |
+| LLM Inference Systems | AI architecture | [docs/ai-architecture/llm-inference-systems.md](docs/ai-architecture/llm-inference-systems.md) | Markdown | Current | Living | 2026-10-13 |
 | Reasoning System Design | AI architecture | [docs/ai-architecture/reasoning-system-design.md](docs/ai-architecture/reasoning-system-design.md) | Markdown | Current | Living | 2026-09-06 |
-| Model Adaptation and Training | AI architecture | [docs/ai-architecture/model-adaptation-and-training.md](docs/ai-architecture/model-adaptation-and-training.md) | Markdown | Current | Living | 2026-09-06 |
-| Self-Improving Agent Systems | Agent architecture | [docs/agent-architecture/self-improving-agent-systems.md](docs/agent-architecture/self-improving-agent-systems.md) | Markdown | Current | Living | 2026-09-06 |
+| Model Adaptation and Training | AI architecture | [docs/ai-architecture/model-adaptation-and-training.md](docs/ai-architecture/model-adaptation-and-training.md) | Markdown | Current | Living | 2026-10-13 |
+| Self-Improving Agent Systems | Agent architecture | [docs/agent-architecture/self-improving-agent-systems.md](docs/agent-architecture/self-improving-agent-systems.md) | Markdown | Current | Living | 2026-10-13 |
+| Coding Agents and Spec-Driven Development | Agent architecture | [docs/agent-architecture/coding-agents-and-spec-driven-development.md](docs/agent-architecture/coding-agents-and-spec-driven-development.md) | Markdown | Current | Living | 2026-10-13 |
 
 ## Focused connected-learning additions — 28 September 2026
 
