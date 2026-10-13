@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The AI Engineering Handbook v3.2 — freshness reviewed 05 October 2026</title>
-<meta name="description" content="A consolidated, Pareto-pruned, Feynman-structured reference for production AI engineering. Edition v3.2, freshness reviewed 05 October 2026." />
+<title>The AI Engineering Handbook v3.2 — builder's track, checked 13 October 2026</title>
+<meta name="description" content="A ten-week, build-first course in production AI engineering: weekly builds with pass conditions, a capstone with measurable targets, and links to the deeper handbooks. Edition v3.2, restructured and fact-checked 13 October 2026." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,700;9..144,900&family=JetBrains+Mono:wght@400;500;700&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -617,6 +617,44 @@
   @media(max-width:600px){.mast-meta span{white-space:normal}.mast-meta{gap:8px}.listen{right:8px;bottom:8px}}
   @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
   @media print{.ix-btn,.ix-row,.listen{display:none!important}}
+  /* ---------- 13 Oct 2026: builder track ---------- */
+  .dg{max-width:560px}
+  .dg-svg{width:100%;height:auto;display:block;max-width:520px;margin:0 auto}
+  .dg-box rect{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+  .dg-first rect{fill:var(--highlight);stroke-width:2.2}
+  .dg-svg text{fill:var(--ink);font:500 13px 'Inter Tight',system-ui,sans-serif}
+  .dg-svg .dg-num{fill:var(--accent);font:700 12px 'JetBrains Mono',monospace}
+  .dg-svg .dg-sm{fill:var(--ink-soft);font:12px 'Inter Tight',system-ui,sans-serif}
+  .dg-svg .dg-strong{font:700 15px 'Inter Tight',system-ui,sans-serif}
+  .dg-edge{stroke:var(--ink);stroke-width:1.5;fill:none}
+  .dg-back{stroke-dasharray:5 4}
+  .dg-head{fill:var(--ink)}
+  .fits{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:16px 0 0;padding:0;list-style:none;max-width:none}
+  .fits li{border:1px solid var(--ink);background:var(--paper);padding:12px 14px;margin:0;font-size:14px}
+  .fits li strong{display:block;margin-bottom:2px}
+  .fq{font-family:'Fraunces',serif;font-size:18px;margin:0 0 6px}
+  .fq-hint{font-size:13px;color:var(--ink-soft);margin:0 0 10px}
+  details.reveal{border-top:1px dashed #b8941a;padding-top:8px}
+  details.reveal summary{cursor:pointer;font:600 13px 'Inter Tight',system-ui,sans-serif;color:#6b5108}
+  details.reveal p{margin:8px 0 0}
+  .wk-check{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;border-top:1px solid var(--ink);margin-top:24px;padding-top:14px;font-size:14px}
+  .wk-check .wk-label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);font-weight:700}
+  .wk-check label{display:inline-flex;gap:6px;align-items:center;cursor:pointer}
+  .wk-check input{width:18px;height:18px;accent-color:var(--ok)}
+  .week.done .week-num{color:var(--ok)}
+  .week.done .week-title .meta::after{content:" · done";color:var(--ok);font-weight:700}
+  .prog{border:2px solid var(--ink);background:var(--paper-warm);padding:14px 16px;margin:24px 0}
+  .prog-head{display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center}
+  .prog-track{height:12px;border:1px solid var(--ink);background:var(--paper);margin-top:10px}
+  .prog-fill{height:100%;width:0;background:var(--ok);transition:width .3s ease}
+  .calc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}
+  .calc-grid label{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink-soft)}
+  .calc-grid input{font:500 15px 'JetBrains Mono',monospace;padding:8px;border:2px solid var(--ink);background:var(--paper);color:var(--ink);width:100%}
+  .calc-out{font-family:'JetBrains Mono',monospace;font-size:14px}
+  .calc-out b{color:var(--accent);font-size:18px}
+  .pattern-table td:first-child{white-space:nowrap}
+  @media(max-width:640px){.pattern-table td:first-child{white-space:normal}}
+  @media print{.prog button,.wk-check input{print-color-adjust:exact}.prog-track{display:none}}
 </style>
 </head>
 <body>
@@ -626,9 +664,8 @@
   <div class="masthead-inner">
     <h1 class="mast-title">The AI Engineering <em>Handbook</em></h1>
     <div class="mast-meta">
-      <span><b>v3.2</b> · original May 2026 · freshness 05 Oct 2026</span>
-      <span>Consolidated from 19 files</span>
-      <span>Pareto · Feynman</span>
+      <span><b>v3.2</b> · builder's track · checked 13 Oct 2026</span>
+      <span>Build first · measure everything</span>
       <button onclick="window.print()" style="background:none; border:1px solid var(--ink); padding:4px 10px; font:inherit; cursor:pointer">Print / PDF</button>
     </div>
   </div>
@@ -636,18 +673,18 @@
 
 <!-- ============================ HERO ============================ -->
 <div class="hero">
-  <div class="eyebrow">Single source of truth · Freshness reviewed 05 October 2026</div>
-<p class="section-sub">v3.2 updates model IDs, base pricing and the OWASP 2026 security resource. A 13 October 2026 data check replaces Claude Haiku 4.5 with Haiku 5.5 and updates the LangGraph release; the same update adds an animated agent-loop figure, a lever chooser (Stack &amp; Decisions) and read-aloud. Other dated source snapshots retain their original review dates.</p>
-  <h1>Six months of <em>notes,</em><br>compressed.</h1>
+  <div class="eyebrow">Builder's track · v3.2 · restructured and fact-checked 13 October 2026</div>
+  <h1>Build it, <em>measure it,</em><br>ship it.</h1>
   <p class="lede">
-    Nineteen markdown files. Roughly fifty thousand words. Overlapping curricula, expired links, models that no longer exist. This handbook is what survived the cull — <strong>one place to look</strong> when you need the 20% that actually ships products in 2026. Eighty percent of the volume, gone. None of the load-bearing ideas.
+    A ten-week, build-first course in AI engineering. Each week ends with <strong>something that runs</strong> and a test it must pass, and the course ends with a capstone that has measurable targets. The other handbooks in this repository explain how to think about AI systems; this one makes you produce the evidence.
   </p>
+  <p class="section-sub" style="margin:24px 0 0;padding:0;border:0;text-transform:none;letter-spacing:.02em;font-size:12px">13 October 2026: restructured as a build-first track. Architecture, evaluation and interview material that other handbooks own is now a short summary with a link; diagrams are redrawn; progress tracking and explain-it-back checks are added. Model, pricing, MCP, LangGraph and EU AI Act facts were re-checked the same day.</p>
 
   <div class="hero-stats">
-    <div class="stat"><span class="stat-num">19→1</span><span class="stat-label">Files consolidated</span></div>
-    <div class="stat"><span class="stat-num">10wk</span><span class="stat-label">Mastery roadmap</span></div>
-    <div class="stat"><span class="stat-num">5</span><span class="stat-label">Core architectures</span></div>
-    <div class="stat"><span class="stat-num">85%</span><span class="stat-label">Word reduction</span></div>
+    <div class="stat"><span class="stat-num">10</span><span class="stat-label">Weekly builds</span></div>
+    <div class="stat"><span class="stat-num">1</span><span class="stat-label">Capstone with targets</span></div>
+    <div class="stat"><span class="stat-num">10–15h</span><span class="stat-label">Per week</span></div>
+    <div class="stat"><span class="stat-num">1</span><span class="stat-label">Starter stack</span></div>
   </div>
 </div>
 
@@ -660,9 +697,8 @@
     <button class="tab" id="tab-architecture" data-target="t-architecture" role="tab" aria-controls="t-architecture" aria-selected="false" tabindex="-1"><span class="tab-num">04</span>Architecture</button>
     <button class="tab" id="tab-stack" data-target="t-stack" role="tab" aria-controls="t-stack" aria-selected="false" tabindex="-1"><span class="tab-num">05</span>Stack &amp; Decisions</button>
     <button class="tab" id="tab-eval" data-target="t-eval" role="tab" aria-controls="t-eval" aria-selected="false" tabindex="-1"><span class="tab-num">06</span>Evaluation</button>
-    <button class="tab" id="tab-interview" data-target="t-interview" role="tab" aria-controls="t-interview" aria-selected="false" tabindex="-1"><span class="tab-num">07</span>Interview Playbook</button>
-    <button class="tab" id="tab-landscape" data-target="t-landscape" role="tab" aria-controls="t-landscape" aria-selected="false" tabindex="-1"><span class="tab-num">08</span>Landscape · dated snapshots</button>
-    <button class="tab" id="tab-sources" data-target="t-sources" role="tab" aria-controls="t-sources" aria-selected="false" tabindex="-1"><span class="tab-num">09</span>Sources</button>
+    <button class="tab" id="tab-landscape" data-target="t-landscape" role="tab" aria-controls="t-landscape" aria-selected="false" tabindex="-1"><span class="tab-num">07</span>Landscape · dated snapshots</button>
+    <button class="tab" id="tab-sources" data-target="t-sources" role="tab" aria-controls="t-sources" aria-selected="false" tabindex="-1"><span class="tab-num">08</span>Sources</button>
   </div>
 </nav>
 
@@ -674,13 +710,31 @@
 <section class="panel active" id="t-roadmap" role="tabpanel" aria-labelledby="tab-roadmap" aria-hidden="false" tabindex="0">
 <p><strong>How to read the targets:</strong> the weekly schedule and numerical quality, latency and cost targets are exercise hypotheses. Define dataset, denominator, workload, risk and reviewer agreement before adopting them. Completion of ten weeks or a high aggregate score does not establish job readiness; retain separate security, correctness and evidence gates.</p>
 
+<div class="callout">
+<div class="callout-label">Where this handbook fits</div>
+<p style="margin:0">Use this track to build. Go to the handbook that owns a subject when you need depth:</p>
+<ul class="fits">
+<li><strong>Agent design in depth</strong><a href="../agent-engineering/agent-engineering-master-manual-v2.8.html#chapter-architecture">Agent Engineering Master Manual</a></li>
+<li><strong>Evaluation in depth</strong><a href="../ai-evaluation/ai-evaluation-field-guide-2026.html#harness">AI Evaluation Field Guide</a></li>
+<li><strong>Architecture, security and governance</strong><a href="../ai-architecture/ai-architects-handbook-v1.2.html">AI Architect's Handbook</a></li>
+<li><strong>Customer delivery</strong><a href="../fde/fde-handbook-v1.4.html">Forward Deployed AI Engineer Handbook</a></li>
+<li><strong>Interview practice</strong><a href="../../interview-prep/handbook.html">Interview preparation</a> · <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html">Resource Accelerator</a></li>
+</ul>
+</div>
+
 <h2 class="section-title">The <em>ten-week</em> roadmap.</h2>
 <p class="section-sub">10–15 hours per week · outcome-driven · build before reading</p>
 
 <div class="callout pareto">
   <div class="callout-label">⚡ Philosophy</div>
   <p style="margin-bottom:8px"><strong>Pareto:</strong> One framework (LangGraph). One protocol (MCP). One vector store (pgvector). One observability stack (Langfuse). One deployment pattern (Docker + FastAPI). Everything else is optional.</p>
-  <p style="margin:0"><strong>Feynman:</strong> Every week ends with a <em>Teach-It-Back</em> checkpoint. If you can't explain it in plain English with a diagram, you haven't mastered it.</p>
+  <p style="margin:0"><strong>Feynman:</strong> Every week ends with an <em>explain-it-back</em> check. Answer the question in plain English, with a diagram if it helps, before you open the model answer.</p>
+</div>
+
+<div class="prog" id="prog">
+  <div class="prog-head"><strong id="prog-text">0 of 10 weeks complete · capstone 0 of 5</strong><button class="ix-btn" id="prog-reset" type="button">Reset progress</button></div>
+  <div class="prog-track" role="progressbar" aria-labelledby="prog-text" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" id="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  <p class="ix-hint" id="prog-note" style="margin:8px 0 0">A week counts as complete when all three boxes at the end of its card are ticked. Ticks are saved in this browser only.</p>
 </div>
 
 <div class="table-wrap">
@@ -691,13 +745,13 @@
     <tr><td><strong>Retrieval</strong></td><td>3–4</td><td>Naive → Advanced → Agentic RAG</td><td>Production RAG pipeline with eval</td></tr>
     <tr><td><strong>Agent core</strong></td><td>5–6</td><td>LangGraph, memory, MCP</td><td>Stateful agent + tool ecosystem</td></tr>
     <tr><td><strong>Production</strong></td><td>7–8</td><td>Evaluation, observability, safety</td><td>Instrumented, guarded deployment</td></tr>
-    <tr><td><strong>Integration</strong></td><td>9–10</td><td>Multi-agent, capstone, portfolio</td><td>Shippable capstone + interview-ready</td></tr>
+    <tr><td><strong>Integration</strong></td><td>9–10</td><td>Multi-agent, capstone, portfolio</td><td>Shippable capstone + evidence write-up</td></tr>
   </tbody>
 </table>
 </div>
 
 <!-- WEEK CARDS -->
-<details class="week" open>
+<details class="week" data-week="w1" open>
   <summary class="week-head">
     <div class="week-num">01</div>
     <div class="week-title">
@@ -716,8 +770,10 @@
     </ul>
 
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"An LLM is a probabilistic autocomplete engine. Tool calling forces it to emit a JSON function call instead of prose. The magic is in the loop, not the model."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">Explain tool calling to a non-engineer. Who actually runs the tool?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>An LLM predicts the next piece of text. With tool calling it can answer with a structured request (a JSON function call) instead of prose. The model never runs the tool: your code checks the request, runs it and feeds the result back. The useful behaviour comes from that loop, not from the model alone.</em></p></details>
     </div>
 
     <figure class="ix-fig" id="ix-loop"><h4>Watch the atomic loop</h4><p class="ix-hint">Press Play or Step. The model never runs the tool itself: it asks for a call, your code runs it, and the result goes back in as new context.</p>
@@ -743,10 +799,11 @@
     <span class="pill do">promptingguide.ai</span>
     <span class="pill skip">Transformer math proofs</span>
     <span class="pill skip">Training from scratch</span>
+    <div class="wk-check" data-week="w1"><span class="wk-label">Week 1 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w2">
   <summary class="week-head">
     <div class="week-num">02</div>
     <div class="week-title">
@@ -763,8 +820,10 @@
       <li><strong>Context = RAM:</strong> What you put in (retrieved docs, memory, tool schemas) matters more than how you phrase the question.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"Prompts are code, not prose. We version them, test them, deploy them through CI/CD. A prompt change is a code change."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">Why should a prompt change go through the same process as a code change?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>Prompts are code, not prose. We version them, test them, deploy them through CI/CD. A prompt change is a code change.</em></p></details>
     </div>
     <h4>Build: Prompt Versioning System</h4>
     <p>Git-tracked prompt registry. Jinja2 or YAML templates separate from code. A/B test two variants against a 20-example eval set. Measure correctness, latency, token cost.</p>
@@ -772,10 +831,11 @@
     <span class="pill do">Anthropic prompt-engineering docs</span>
     <span class="pill skip">Jailbreak research</span>
     <span class="pill skip">Emotional prompting studies</span>
+    <div class="wk-check" data-week="w2"><span class="wk-label">Week 2 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w3">
   <summary class="week-head">
     <div class="week-num">03</div>
     <div class="week-title">
@@ -793,8 +853,10 @@
       <li><strong>Freshness and authority:</strong> ingestion needs ownership, update cadence, access control, lineage, and deletion behavior. Relevant stale data is still wrong.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"Grounding gives the model the right evidence at decision time. Sometimes that means search; sometimes it means querying the source system. A vector database is one route, not the definition."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">When is a vector database the wrong way to ground an answer?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>Grounding gives the model the right evidence at decision time. Sometimes that means search; sometimes it means querying the source system. A vector database is one route, not the definition.</em></p></details>
     </div>
     <h4>Grounding decision guide</h4>
     <div class="table-wrap">
@@ -816,10 +878,11 @@
     <span class="pill do">LlamaIndex RAG docs</span>
     <span class="pill skip">GraphRAG (later)</span>
     <span class="pill skip">Multi-modal RAG (later)</span>
+    <div class="wk-check" data-week="w3"><span class="wk-label">Week 3 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w4">
   <summary class="week-head">
     <div class="week-num">04</div>
     <div class="week-title">
@@ -833,18 +896,21 @@
     <ul>
       <li><strong>Agentic loop:</strong> Retrieve → Evaluate sufficiency → Reformulate → Re-retrieve (max 3 iterations) → Generate. The agent decides when it knows enough.</li>
       <li><strong>Three memory tiers:</strong> Short-term (conversation), Semantic (user facts in vector DB), Episodic (past decisions as few-shot). Procedural is nice-to-have.</li>
-      <li><strong>Query reformulation:</strong> HyDE (Hypothetical Document Embedding) and step-back prompting actually move the needle. Most other tricks don't.</li>
+      <li><strong>Query reformulation:</strong> HyDE (Hypothetical Document Embeddings) and step-back prompting are two techniques worth testing. Keep whichever improves retrieval recall on your own question set, and drop the rest.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"Static RAG retrieves once and hopes. Agentic RAG asks: 'Is this enough?' If not, search again with a better query. It's a researcher checking sources before writing."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">What does agentic RAG do that a single retrieval pass cannot, and what does it cost you?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>Single-pass RAG retrieves once and answers with whatever came back. Agentic RAG checks whether the evidence is enough and, if not, searches again with a better query, like a researcher checking sources before writing. The price is extra latency, tokens and loop logic, so cap the iterations and measure whether the extra rounds improve answers.</em></p></details>
     </div>
     <h4>Build: Self-Evaluating Research Agent</h4>
     <p>Extend Week 3. Add sufficiency-evaluator node, query reformulation, semantic memory in pgvector. Evaluate on a 30-question test set measuring retrieval recall, faithfulness, latency.</p>
+    <div class="wk-check" data-week="w4"><span class="wk-label">Week 4 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w5">
   <summary class="week-head">
     <div class="week-num">05</div>
     <div class="week-title">
@@ -855,7 +921,7 @@
   </summary>
   <div class="week-body">
     <div class="callout">
-      <div class="callout-label">📌 September 2026 status</div>
+      <div class="callout-label">📌 Status · checked 13 October 2026</div>
       <p style="margin:0">LangGraph 1.2.14 was the current PyPI release on 13 October 2026 (released 6 October). Its maintainers describe it as a low-level orchestration framework for long-running, stateful agents, with production users including Klarna, Replit, and Elastic. <strong>Treat it as one mature option, not a universal default: select it when explicit state, durable execution, and controlled orchestration fit the workload.</strong></p>
     </div>
     <h4>Pareto Focus</h4>
@@ -865,18 +931,21 @@
       <li><strong>Human-in-the-loop:</strong> <code>interrupt</code> nodes for approval. Non-negotiable for any agent with write access.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"LangGraph forces you to draw the flowchart before you write the code. If you can't draw the state machine on a whiteboard, your agent will fail in production."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">Why draw the state machine before writing agent code?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>Drawing the states and transitions first makes you decide where the agent can stop, wait for approval, retry or resume. If you cannot draw it, you cannot test it, and the behaviour will only be discovered in production.</em></p></details>
     </div>
     <h4>Build: Approval-Required Agent</h4>
     <p>Plans a multi-step task (research → write → send). Pauses at "send" for human approval via a simple web UI. Resumes or aborts based on input. Persists state to PostgreSQL. <strong>Success criteria:</strong> kill the process mid-task, restart, it resumes correctly.</p>
     <span class="pill do">Current LangGraph concepts and versioning docs</span>
     <span class="pill skip">CrewAI deep dive (prototyping only)</span>
     <span class="pill skip">AutoGen / Semantic Kernel deep dives (use Microsoft migration guidance if inherited)</span>
+    <div class="wk-check" data-week="w5"><span class="wk-label">Week 5 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w6">
   <summary class="week-head">
     <div class="week-num">06</div>
     <div class="week-title">
@@ -887,8 +956,8 @@
   </summary>
   <div class="week-body">
     <div class="callout">
-      <div class="callout-label">📌 September 2026 status</div>
-      <p style="margin:0">MCP is governed through the Linux Foundation's Agentic AI Foundation. Anthropic's December 2025 donation announcement reported 10,000+ active public servers and 97M+ monthly Python and TypeScript SDK downloads; treat those as dated adoption figures, not live counters. The latest specification on 3 September 2026 was 2026-07-28. <strong>MCP is a widely adopted open standard for connecting AI applications to tools and context.</strong></p>
+      <div class="callout-label">📌 Status · checked 13 October 2026</div>
+      <p style="margin:0">MCP is governed through the Linux Foundation's Agentic AI Foundation. Anthropic's December 2025 donation announcement reported 10,000+ active public servers and 97M+ monthly Python and TypeScript SDK downloads; treat those as dated adoption figures, not live counters. 2026-07-28 remains the current specification (checked 13 October 2026). <strong>MCP is a widely adopted open standard for connecting AI applications to tools and context.</strong></p>
     </div>
     <h4>Pareto Focus</h4>
     <ul>
@@ -897,15 +966,18 @@
       <li><strong>Schema-first design:</strong> Typed tool interfaces make agent-tool integration failures easier to detect, test, and contain.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"MCP is a contract. The server says 'I have a calculator tool that takes two numbers.' The client says 'I need to calculate something.' MCP translates so any LLM can use any tool."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">What problem does MCP solve, and what does it leave to you?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>MCP is a contract between an AI application and a tool server. The server describes its tools, resources and prompts; the client inside the host application discovers and calls them, so any compatible host can reuse the same server instead of a bespoke integration. MCP does not decide who may call a tool or whether a call is safe: authorisation, approval and validation stay with you.</em></p></details>
     </div>
     <h4>Build: MCP Server + Client</h4>
     <p>An MCP server exposing a SQLite database (product catalog). Connect to your LangGraph agent from Week 5. Connect the same server to Claude Desktop. Document the schema with OpenAPI-style descriptions.</p>
+    <div class="wk-check" data-week="w6"><span class="wk-label">Week 6 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w7">
   <summary class="week-head">
     <div class="week-num">07</div>
     <div class="week-title">
@@ -922,15 +994,18 @@
       <li><strong>Langfuse:</strong> Self-hostable, OpenTelemetry-native, LangGraph-aware. The pragmatic choice for solo developers and small teams.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"Evaluation is the entire game. Anyone can get a demo working. The engineer who can prove it works at scale — with numbers — is the one who gets hired."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">Why define the evaluation set before building the agent?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>Anyone can make a demo work once. An evaluation set shows how often it works, where it fails and whether a change made things better or worse. Defining it first stops you from tuning the system to the examples you happened to try.</em></p></details>
     </div>
     <h4>Build: Eval Harness</h4>
     <p>Build at least 30 representative cases with human labels, important risk slices, and deterministic assertions where possible. Add an LLM judge only after measuring agreement and disagreements against those labels. Trace every node. Derive release thresholds from failure cost and block regressions by slice—not from a generic percentage.</p>
+    <div class="wk-check" data-week="w7"><span class="wk-label">Week 7 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w8">
   <summary class="week-head">
     <div class="week-num">08</div>
     <div class="week-title">
@@ -944,18 +1019,21 @@
     <ul>
       <li><strong>Defense in depth:</strong> Input validation → Output guardrails → Budget limits → Audit logs. No single layer suffices.</li>
       <li><strong>Cost is a feature:</strong> Eval-qualified routing can reduce cost by using expensive models only where they improve accepted-task outcomes.</li>
-      <li><strong>Prompt injection:</strong> The SQL injection of AI. Mitigate with privilege separation and tool allow-listing, not prompt cleverness.</li>
+      <li><strong>Prompt injection:</strong> untrusted text can steer the model. Unlike SQL injection, there is no complete fix such as parameterised queries, so design for containment: privilege separation, tool allow-lists, deterministic authorisation and approval for consequential actions. Prompt wording alone is not a control.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"Safety isn't a bolt-on; it's architecture. You don't secure a bank by hiring better tellers; you secure it with vaults, cameras, and alarms."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">Why can&#x27;t a better system prompt make an agent safe?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>Safety isn't a bolt-on; it's architecture. You don't secure a bank by hiring better tellers; you secure it with vaults, cameras, and alarms.</em></p></details>
     </div>
     <h4>Build: Hardened Agent</h4>
     <p>Add to Week 6 agent: input regex guard, output PII redaction, token budget per session (10K in / 2K out), cost dashboard, audit log of every tool call and approval.</p>
+    <div class="wk-check" data-week="w8"><span class="wk-label">Week 8 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w9">
   <summary class="week-head">
     <div class="week-num">09</div>
     <div class="week-title">
@@ -968,19 +1046,22 @@
     <h4>Pareto Focus</h4>
     <ul>
       <li><strong>Multi-agent is a scaling tool, not a default.</strong> Compare against a strong single-agent baseline and use multiple agents only when decomposition or independent review creates measured value.</li>
-      <li><strong>Supervisor pattern:</strong> One coordinator, specialist workers. Easiest to debug, easiest to scale.</li>
+      <li><strong>Supervisor pattern:</strong> One coordinator, specialist workers. Usually the simplest multi-agent pattern to trace and debug.</li>
       <li><strong>Plan-and-execute:</strong> A capable model plans and a lower-cost model executes when task decomposition permits it. Compare accepted-result quality, coordination overhead, latency and total token cost with a single-model baseline.</li>
     </ul>
     <div class="callout feynman">
-      <div class="callout-label">🧠 Feynman checkpoint</div>
-      <em>"Multi-agent is hiring a team. If one person can do the job well, more people creates meetings, miscommunication, delay. Only go multi-agent when the work genuinely requires different expertise."</em>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">When are multiple agents worth their cost?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>Multi-agent is hiring a team. If one person can do the job well, more people creates meetings, miscommunication, delay. Only go multi-agent when the work genuinely requires different expertise.</em></p></details>
     </div>
     <h4>Capstone: Enterprise Research Agent</h4>
     <p>Planner → Research Agent (MCP search) → Writer Agent → Review Agent → Human Approval → Output. LangGraph state, Langfuse tracing, cost tracking.</p>
+    <div class="wk-check" data-week="w9"><span class="wk-label">Week 9 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
-<details class="week">
+<details class="week" data-week="w10">
   <summary class="week-head">
     <div class="week-num">10</div>
     <div class="week-title">
@@ -993,8 +1074,8 @@
     <h4>Pareto Focus</h4>
     <ul>
       <li><strong>Make deployment reproducible:</strong> Docker Compose is useful for local integration and some bounded deployments. Choose managed functions, container services or orchestration according to availability, scaling, security and operational needs; a Compose file alone does not establish production readiness.</li>
-      <li><strong>Portfolio &gt; credentials:</strong> Two polished GitHub repos with READMEs, architecture diagrams, and demo videos beat ten certificates.</li>
-      <li><strong>STAR stories:</strong> Five quantified outcomes. Specifics pass senior loops; generics fail.</li>
+      <li><strong>Portfolio &gt; credentials:</strong> Two polished repositories with READMEs, architecture diagrams, measured results and a short demo usually say more than a list of certificates.</li>
+      <li><strong>Turn builds into evidence:</strong> for each build, record the problem, your decision, the measured result and what you would change. Practise turning that record into answers in the <a href="../../interview-prep/handbook.html">interview preparation collection</a> and the <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#system-design">Interview Resource Accelerator</a>; this handbook no longer carries its own interview playbook.</li>
     </ul>
     <h4>Whiteboard checklist</h4>
     <ol>
@@ -1004,6 +1085,7 @@
       <li>Cost optimization (caching, routing, quantization)</li>
       <li>Safety layers for a high-stakes agent</li>
     </ol>
+    <div class="wk-check" data-week="w10"><span class="wk-label">Week 10 progress</span><label><input type="checkbox" data-k="build"> Build runs</label><label><input type="checkbox" data-k="criteria"> Success criteria met</label><label><input type="checkbox" data-k="explain"> Explained it back</label></div>
   </div>
 </details>
 
@@ -1033,6 +1115,12 @@
         <li>p95 latency &lt; 15s per brief</li>
         <li>&lt; $0.10 average cost per brief</li>
       </ul>
+      <div class="wk-check" data-week="capstone"><span class="wk-label">Capstone targets</span>
+        <label><input type="checkbox" data-k="correct"> Correctness</label>
+        <label><input type="checkbox" data-k="grounded"> Groundedness</label>
+        <label><input type="checkbox" data-k="latency"> p95 latency</label>
+        <label><input type="checkbox" data-k="cost"> Cost per brief</label>
+        <label><input type="checkbox" data-k="demo"> Deployed and demoed</label></div>
     </div>
   </div>
 </div>
@@ -1047,7 +1135,7 @@
 <h2 class="section-title">The skills <em>matrix.</em></h2>
 <p class="section-sub">Tiered by hiring impact · 2026 expectations</p>
 
-<p>AI engineering in 2026 is systems engineering with probabilistic components. You are a software engineer first; AI is a specialty layer. The matrix below ranks skills by hiring impact — the 20% in Tier 1 is what gets you through senior loops.</p>
+<p>AI engineering in 2026 is systems engineering with probabilistic components. You are a software engineer first; AI is a specialty layer. The matrix below ranks skills by hiring impact; Tier 1 is the foundation most AI engineering roles now expect.</p>
 
 <h3>Four capabilities — one engineering role</h3>
 <p>DeepLearning.AI's August 2026 skills-map research groups AI engineering into four broad capabilities. Use this as a market-facing coverage check, not a fixed curriculum or job-title definition. Our ten-week roadmap remains the learning sequence; this map asks whether the resulting engineer can own the whole outcome.</p>
@@ -1068,7 +1156,7 @@
 </div>
 
 <h3>Tier 1 · Non-negotiable</h3>
-<p style="font-size:14px; color:var(--ink-soft)">The 20% that gets you hired. If you're missing any of these, fix that before anything else.</p>
+<p style="font-size:14px; color:var(--ink-soft)">Close gaps here before moving on to Tier 2.</p>
 <div class="table-wrap">
 <table>
 <thead><tr><th>Skill</th><th>Why it matters</th><th>Validate by</th></tr></thead>
@@ -1167,9 +1255,7 @@
 </div>
 
 <h3>The AI engineering work loop</h3>
-<div class="ascii"><span class="yellow">Shape</span> → Baseline → Specify → Plan → Build → Verify → Release → Observe
-   ↑                                                        ↓
-   └──────────── error analysis + user evidence ────────────┘</div>
+<figure class="ix-fig dg"><svg class="dg-svg" viewBox="0 0 420 310" role="img" aria-labelledby="dgw-t dgw-d"><title id="dgw-t">The AI engineering work loop</title><desc id="dgw-d">Eight steps in a loop: Shape, Baseline, Specify, Plan, Build, Verify, Release, Observe. Error analysis and user evidence from Observe feed back into Shape.</desc><defs><marker id="dgw-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker></defs><g class="dg-box dg-first"><rect x="10" y="52" width="170" height="44"/><text x="24" y="78.0" class="dg-num">1</text><text x="103.0" y="79.0" text-anchor="middle">Shape</text></g><g class="dg-box"><rect x="10" y="118" width="170" height="44"/><text x="24" y="144.0" class="dg-num">2</text><text x="103.0" y="145.0" text-anchor="middle">Baseline</text></g><g class="dg-box"><rect x="10" y="184" width="170" height="44"/><text x="24" y="210.0" class="dg-num">3</text><text x="103.0" y="211.0" text-anchor="middle">Specify</text></g><g class="dg-box"><rect x="10" y="250" width="170" height="44"/><text x="24" y="276.0" class="dg-num">4</text><text x="103.0" y="277.0" text-anchor="middle">Plan</text></g><g class="dg-box"><rect x="240" y="250" width="170" height="44"/><text x="254" y="276.0" class="dg-num">5</text><text x="333.0" y="277.0" text-anchor="middle">Build</text></g><g class="dg-box"><rect x="240" y="184" width="170" height="44"/><text x="254" y="210.0" class="dg-num">6</text><text x="333.0" y="211.0" text-anchor="middle">Verify</text></g><g class="dg-box"><rect x="240" y="118" width="170" height="44"/><text x="254" y="144.0" class="dg-num">7</text><text x="333.0" y="145.0" text-anchor="middle">Release</text></g><g class="dg-box"><rect x="240" y="52" width="170" height="44"/><text x="254" y="78.0" class="dg-num">8</text><text x="333.0" y="79.0" text-anchor="middle">Observe</text></g><path class="dg-edge" d="M95.0 96 V116" marker-end="url(#dgw-a)"/><path class="dg-edge" d="M95.0 162 V182" marker-end="url(#dgw-a)"/><path class="dg-edge" d="M95.0 228 V248" marker-end="url(#dgw-a)"/><path class="dg-edge" d="M180 272.0 H238" marker-end="url(#dgw-a)"/><path class="dg-edge" d="M325.0 250 V230" marker-end="url(#dgw-a)"/><path class="dg-edge" d="M325.0 184 V164" marker-end="url(#dgw-a)"/><path class="dg-edge" d="M325.0 118 V98" marker-end="url(#dgw-a)"/><path class="dg-edge dg-back" d="M325.0 52 V30 H95.0 V50" marker-end="url(#dgw-a)"/><text x="210.0" y="24" text-anchor="middle" class="dg-sm">error analysis + user evidence → back to Shape</text></svg></figure>
 <p>This is a loop, not a waterfall. A failed verification may expose a bad implementation, but it may also reveal a bad requirement, weak data, an invalid evaluator, or a problem that never needed AI. Move back to the earliest incorrect assumption.</p>
 
 <h3>Coding-agent engineering</h3>
@@ -1210,9 +1296,11 @@
 </ul>
 
 <div class="callout feynman">
-<div class="callout-label">🧠 Feynman checkpoint</div>
-<p style="margin:0"><em>"A coding agent is a very fast contractor working from the context I provide. My job is to define the outcome, limit the worksite, give it instruments that can prove success, and inspect the evidence before accepting the work."</em></p>
-</div>
+      <div class="callout-label">🧠 Explain it back</div>
+      <p class="fq">When a coding agent writes the code, what is still your job?</p>
+      <p class="fq-hint">Say or write your answer first, then compare.</p>
+      <details class="reveal"><summary>Compare with a model answer</summary><p><em>A coding agent is a very fast contractor working from the context I provide. My job is to define the outcome, limit the worksite, give it instruments that can prove success, and inspect the evidence before accepting the work.</em></p></details>
+    </div>
 
 <h4>Build: agent-assisted change with an evidence packet</h4>
 <p>Choose one bounded feature in an existing repository. Produce a one-page specification, an implementation plan, a failing test, isolated implementation commits, fresh verification output, an independent review, and a short retrospective. Measure elapsed time, human intervention points, tokens or cost, escaped defects, and rework. Repeat once with improved context and compare completed-task economics—not code volume.</p>
@@ -1291,78 +1379,27 @@
 <!-- ============================================================== -->
 <section class="panel" id="t-architecture" role="tabpanel" aria-labelledby="tab-architecture" aria-hidden="true" tabindex="0">
 
-<h2 class="section-title">Five core <em>architectures.</em></h2>
-<p class="section-sub">Five useful patterns to compare; this is a teaching taxonomy, not an exhaustive classification</p>
+<h2 class="section-title">Architecture <em>at a glance.</em></h2>
+<p class="section-sub">Enough to choose a pattern for your build · depth lives in the Agent Engineering Master Manual</p>
 
-<h3>1 · Single agent with tools</h3>
-<div class="ascii">User → Agent → Tools → APIs → Results</div>
-<p><strong>Use for:</strong> Assistants, coding tools, research agents, support bots. <br>
-<strong>Framework:</strong> OpenAI Agents SDK (fastest), LangGraph (most control).</p>
+<p>Start with the simplest pattern that can meet the task's success criteria, and add structure only when an evaluation shows the simpler one falling short. The <a href="../agent-engineering/agent-engineering-master-manual-v2.8.html#chapter-architecture">Agent Engineering Master Manual</a> covers each pattern, trust boundaries and runtime choices in depth; the <a href="../ai-architecture/ai-architects-handbook-v1.2.html">AI Architect's Handbook</a> covers the architecture decisions around them.</p>
 
-<h3>2 · Planner – Executor</h3>
-<div class="ascii">User → <span class="red">Planner</span> (capable model) → Task list → <span class="yellow">Executor</span> (cheap model) → Tools</div>
-<p><strong>Use for:</strong> Report generation, complex research, structured workflows. <br>
-<strong>Benefit:</strong> Potentially lower cost per accepted result when routing quality is proven by evaluation. <br>
-<strong>Framework:</strong> LangGraph (natural fit), CrewAI Hierarchical Process.</p>
-
-<h3>3 · Multi-agent collaboration</h3>
-<div class="ascii">User → <span class="red">Manager Agent</span> → Specialist Agents → Results</div>
-<p><strong>Use for:</strong> AI dev teams, content pipelines, complex cross-domain tasks. <br>
-<strong>Caveat:</strong> Coordination adds latency, cost, and failure modes. Use it only when decomposition or independent verification beats a strong single-agent baseline.</p>
-
-<h3>4 · Event-driven</h3>
-<div class="ascii">Event (CRM lead, ticket, alert) → Agent → Decision → Action</div>
-<p><strong>Use for:</strong> Sales automation, DevOps, ops workflows. <br>
-<strong>Framework:</strong> n8n (no-code), LangGraph + Redis/Kafka (code-first), Temporal (durable).</p>
-
-<h3>5 · Self-improving (bounded)</h3>
-<div class="ascii">Agent → Action → Feedback → Memory update → Agent</div>
-<p><strong>Use for:</strong> Personal assistants, long-running research, recommendation systems. <br>
-<strong>Reality check:</strong> Most "self-improving" production systems are human-curated refinement loops. Full autonomy remains research-grade.</p>
+<div class="table-wrap">
+<table class="pattern-table">
+<thead><tr><th>Pattern</th><th>Use it for</th><th>Earn it by</th></tr></thead>
+<tbody>
+<tr><td><strong>Single agent with tools</strong></td><td>Assistants, coding tools, research and support agents</td><td>The default starting point; many tasks never need more</td></tr>
+<tr><td><strong>Planner – executor</strong></td><td>Report generation, structured research</td><td>Showing in evaluation that a cheaper executor keeps quality</td></tr>
+<tr><td><strong>Multi-agent collaboration</strong></td><td>Genuinely separate expertise or independent review</td><td>Beating a strong single-agent baseline on quality, cost and latency</td></tr>
+<tr><td><strong>Event-driven</strong></td><td>Alerts, tickets, CRM and operations events</td><td>Idempotent actions and durable state (queues, Temporal or similar)</td></tr>
+<tr><td><strong>Self-improving (bounded)</strong></td><td>Long-running assistants and research</td><td>Human-curated refinement; full autonomy is still research-grade</td></tr>
+</tbody>
+</table>
+</div>
 
 <h3>The four-layer production platform</h3>
-<div class="ascii">┌─────────────────────────────────────┐
-│ <span class="yellow">Application Layer</span>                    │  UIs · APIs · messaging · AG-UI
-├─────────────────────────────────────┤
-│ <span class="yellow">Agent Intelligence Layer</span>             │  Reasoning · planning · memory · reflection
-├─────────────────────────────────────┤
-│ <span class="yellow">Agent Runtime Layer</span>                  │  Scheduling · state · checkpointing
-├─────────────────────────────────────┤
-│ <span class="yellow">Infrastructure Layer</span>                 │  GPUs · model APIs · vector DBs · MCP servers
-└─────────────────────────────────────┘</div>
-
-<div class="grid-2">
-<div>
-<h4>Infrastructure Layer</h4>
-<ul>
-<li><strong>Model APIs:</strong> Claude (Fable 5.1, Opus 5.5, Sonnet 5.5, Haiku 5.5), GPT, Gemini, DeepSeek, open-weight via vLLM/Ollama</li>
-<li><strong>Vector DBs:</strong> pgvector (SQL-familiar), Pinecone (managed), Qdrant (performance)</li>
-<li><strong>MCP servers:</strong> Your tool ecosystem, standard protocol</li>
-</ul>
-</div>
-<div>
-<h4>Runtime Layer</h4>
-<ul>
-<li><strong>Loop:</strong> <code>perceive → reason → act → observe → persist → repeat</code></li>
-<li><strong>Options:</strong> LangGraph Platform, AWS Bedrock AgentCore, Temporal + adapters</li>
-</ul>
-</div>
-<div>
-<h4>Intelligence Layer</h4>
-<ul>
-<li><strong>Planning:</strong> Hierarchical decomposition, dynamic replanning on failure</li>
-<li><strong>Memory:</strong> Semantic (facts) · Episodic (experiences) · Procedural (evolving prompts)</li>
-<li><strong>Reflection:</strong> Self-critique before final output</li>
-</ul>
-</div>
-<div>
-<h4>Application Layer</h4>
-<ul>
-<li><strong>AG-UI</strong> (CopilotKit) for real-time streaming to frontends</li>
-<li>Streaming responses, HITL checkpoints, session management</li>
-</ul>
-</div>
-</div>
+<figure class="ix-fig dg"><svg class="dg-svg" viewBox="0 0 420 282" role="img" aria-labelledby="dgs-t dgs-d"><title id="dgs-t">The four-layer production platform</title><desc id="dgs-d">Four stacked layers, top to bottom: Application: UIs · APIs · messaging · AG-UI streaming · approval steps; Agent intelligence: Planning · context and memory · tool choice · self-checks; Agent runtime: State · checkpoints · scheduling · retries · interrupts; Infrastructure: Model APIs · vector stores · MCP servers · identity · GPUs.</desc><g class="dg-box dg-first"><rect x="10" y="10" width="400" height="58"/><text x="24" y="33" class="dg-strong">Application</text><text x="24" y="53" class="dg-sm">UIs · APIs · messaging · AG-UI streaming · approval steps</text></g><g class="dg-box"><rect x="10" y="78" width="400" height="58"/><text x="24" y="101" class="dg-strong">Agent intelligence</text><text x="24" y="121" class="dg-sm">Planning · context and memory · tool choice · self-checks</text></g><g class="dg-box"><rect x="10" y="146" width="400" height="58"/><text x="24" y="169" class="dg-strong">Agent runtime</text><text x="24" y="189" class="dg-sm">State · checkpoints · scheduling · retries · interrupts</text></g><g class="dg-box"><rect x="10" y="214" width="400" height="58"/><text x="24" y="237" class="dg-strong">Infrastructure</text><text x="24" y="257" class="dg-sm">Model APIs · vector stores · MCP servers · identity · GPUs</text></g></svg></figure>
+<p>Model choices sit in the infrastructure layer (Claude Fable 5.1, Opus 5.5, Sonnet 5.5 and Haiku 5.5, other providers, or open-weight models served with vLLM or Ollama); runtime options include LangGraph, AWS Bedrock AgentCore and Temporal with adapters.</p>
 
 <h3>Three unsolved problems · 2026</h3>
 <p>These remain the primary barriers to fully autonomous production agents. Recognizing them keeps you honest in interviews.</p>
@@ -1468,7 +1505,7 @@
 <h3>Protocol stack at a glance</h3>
 <div class="table-wrap">
 <table>
-<thead><tr><th>Protocol</th><th>Layer</th><th>Status · September 2026</th><th>Learn priority</th></tr></thead>
+<thead><tr><th>Protocol</th><th>Layer</th><th>Status · checked 13 October 2026</th><th>Learn priority</th></tr></thead>
 <tbody>
 <tr><td><strong>MCP</strong></td><td>Agent ↔ Tools</td><td>AAIF / Linux Foundation governance · specification 2026-07-28</td><td><span class="tier essential">Essential</span></td></tr>
 <tr><td><strong>A2A</strong></td><td>Agent ↔ Agent</td><td>Open interoperability protocol; verify the profile and implementation maturity</td><td><span class="tier high">High</span></td></tr>
@@ -1504,7 +1541,7 @@
 
 <h4>Cloud vs Edge deployment</h4>
 <div class="tree">
-<span class="q">Latency &lt; 200ms?</span> <span class="arrow">→</span> Edge (SLM on-device)
+<span class="q">Very tight end-to-end latency (for example under 200 ms)?</span> <span class="arrow">→</span> Measure first; a small model close to the user (on-device, edge or nearby region) or a non-generative path may be needed
 <span class="q">Data cannot leave premises?</span> <span class="arrow">→</span> Edge or private cloud
 <span class="q">Complex reasoning required?</span> <span class="arrow">→</span> Cloud (frontier LLM)
 <span class="q">High volume, cost-sensitive?</span> <span class="arrow">→</span> Hybrid (SLM edge + LLM cloud fallback)
@@ -1517,15 +1554,13 @@
 <!-- ============================================================== -->
 <section class="panel" id="t-eval" role="tabpanel" aria-labelledby="tab-eval" aria-hidden="true" tabindex="0">
 
-<h2 class="section-title">Evaluation <em>pyramid.</em></h2>
-<p class="section-sub">Build from the bottom up · most teams skip the cheap layers</p>
+<h2 class="section-title">Evaluation and <em>error analysis.</em></h2>
+<p class="section-sub">Find the first failure · fix the cheapest layer · gate the release</p>
 
 <p>Most teams skip the cheap layers and go straight to LLM-as-judge, then wonder why evals are noisy and expensive. Build bottom-up—but do not stop at a score. Evaluation-driven development is a decision loop for choosing the next intervention.</p>
 
 <h3>The error-analysis loop</h3>
-<div class="ascii"><span class="yellow">Representative cases</span> → Run → Inspect outputs + traces → Tag first independent failure
-       ↑                                                        ↓
-Release gate ← Compare slices + guardrails ← Change one layer ← Choose intervention</div>
+<figure class="ix-fig dg"><svg class="dg-svg" viewBox="0 0 420 310" role="img" aria-labelledby="dge-t dge-d"><title id="dge-t">The error-analysis loop</title><desc id="dge-d">Representative cases, run, inspect outputs and traces, tag the first independent failure, choose an intervention, change one layer, compare slices and guardrails, release gate. New failures become new representative cases.</desc><defs><marker id="dge-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" class="dg-head"/></marker></defs><g class="dg-box dg-first"><rect x="10" y="52" width="170" height="44"/><text x="24" y="78.0" class="dg-num">1</text><text x="103.0" y="71.0" text-anchor="middle">Representative</text><text x="103.0" y="87.0" text-anchor="middle">cases</text></g><g class="dg-box"><rect x="10" y="118" width="170" height="44"/><text x="24" y="144.0" class="dg-num">2</text><text x="103.0" y="145.0" text-anchor="middle">Run</text></g><g class="dg-box"><rect x="10" y="184" width="170" height="44"/><text x="24" y="210.0" class="dg-num">3</text><text x="103.0" y="203.0" text-anchor="middle">Inspect outputs</text><text x="103.0" y="219.0" text-anchor="middle">+ traces</text></g><g class="dg-box"><rect x="10" y="250" width="170" height="44"/><text x="24" y="276.0" class="dg-num">4</text><text x="103.0" y="269.0" text-anchor="middle">Tag first</text><text x="103.0" y="285.0" text-anchor="middle">independent failure</text></g><g class="dg-box"><rect x="240" y="250" width="170" height="44"/><text x="254" y="276.0" class="dg-num">5</text><text x="333.0" y="269.0" text-anchor="middle">Choose</text><text x="333.0" y="285.0" text-anchor="middle">intervention</text></g><g class="dg-box"><rect x="240" y="184" width="170" height="44"/><text x="254" y="210.0" class="dg-num">6</text><text x="333.0" y="211.0" text-anchor="middle">Change one layer</text></g><g class="dg-box"><rect x="240" y="118" width="170" height="44"/><text x="254" y="144.0" class="dg-num">7</text><text x="333.0" y="137.0" text-anchor="middle">Compare slices</text><text x="333.0" y="153.0" text-anchor="middle">+ guardrails</text></g><g class="dg-box"><rect x="240" y="52" width="170" height="44"/><text x="254" y="78.0" class="dg-num">8</text><text x="333.0" y="79.0" text-anchor="middle">Release gate</text></g><path class="dg-edge" d="M95.0 96 V116" marker-end="url(#dge-a)"/><path class="dg-edge" d="M95.0 162 V182" marker-end="url(#dge-a)"/><path class="dg-edge" d="M95.0 228 V248" marker-end="url(#dge-a)"/><path class="dg-edge" d="M180 272.0 H238" marker-end="url(#dge-a)"/><path class="dg-edge" d="M325.0 250 V230" marker-end="url(#dge-a)"/><path class="dg-edge" d="M325.0 184 V164" marker-end="url(#dge-a)"/><path class="dg-edge" d="M325.0 118 V98" marker-end="url(#dge-a)"/><path class="dg-edge dg-back" d="M325.0 52 V30 H95.0 V50" marker-end="url(#dge-a)"/><text x="210.0" y="24" text-anchor="middle" class="dg-sm">new failures become new cases</text></svg></figure>
 <p>Start with the first independent failure, not every downstream symptom. Review both aggregate performance and slices such as intent, language, customer segment, document type, tool, risk class, or workflow length. Averages can improve while an important cohort regresses.</p>
 <div class="table-wrap">
 <table>
@@ -1545,45 +1580,8 @@ Release gate ← Compare slices + guardrails ← Change one layer ← Choose int
 <p style="margin:0">For every consequential automated judge, maintain representative human-labelled examples, disagreement cases, slice-level agreement, and a review trigger. An evaluator is another fallible model of success—not ground truth.</p>
 </div>
 
-<div class="ascii">                    ┌──────────────────┐
-                    │   <span class="yellow">Human eval</span>     │   ← Continuous for high-risk changes
-                    │ labels + calibration│      Periodic for stable, lower-risk work
-                    └──────────────────┘
-                  ┌──────────────────────┐
-                  │   <span class="yellow">LLM-as-judge</span>       │   ← Every PR / model change
-                  │   (RAGAS, G-Eval)    │
-                  └──────────────────────┘
-              ┌──────────────────────────────┐
-              │   <span class="yellow">Schema validation</span>           │   ← Every commit
-              │   Exact match, code exec     │      Fast, cheap, deterministic
-              │   Structural assertions      │
-              └──────────────────────────────┘</div>
-
-<h3>Layer 1 · Structural validation (commit-level)</h3>
-<ul>
-<li>JSON schema compliance (Pydantic validators)</li>
-<li>Tool-call signature verification</li>
-<li>Regex guards for format compliance</li>
-<li>Code-execution tests for code-gen agents</li>
-</ul>
-
-<h3>Layer 2 · LLM-as-judge (PR-level)</h3>
-<ul>
-<li><strong>RAGAS:</strong> faithfulness, answer relevance, context precision / recall</li>
-<li><strong>DeepEval G-Eval:</strong> chain-of-thought reasoning before scoring</li>
-</ul>
-<div class="callout warn">
-<div class="callout-label">⚠ Calibration rule</div>
-<p style="margin:0">Do not trust an LLM judge until it has been calibrated against a representative human-labelled set with an agreement threshold appropriate to the decision risk.</p>
-</div>
-
-<h3>Layer 3 · Human evaluation (risk-calibrated)</h3>
-<ul>
-<li>Review continuously for high-risk changes; sample periodically for lower-risk, stable behavior</li>
-<li>Likert ratings or pairwise preference on a representative subset</li>
-<li>Error-taxonomy tagging (retrieval failure, reasoning error, hallucination, tool misuse)</li>
-<li>Inter-annotator agreement: report the statistic, sample size and class balance, inspect disagreements, and set a risk-appropriate acceptance rule; no universal κ cutoff establishes label quality</li>
-</ul>
+<h3>Build checks from the bottom up</h3>
+<p>Run cheap deterministic checks on every commit: schema validation, exact match, code execution and tool-signature checks. Add a calibrated LLM judge (for example a RAGAS faithfulness score or a G-Eval rubric) on every pull request or model change. Keep human review continuous for high-risk changes and sampled for stable, lower-risk behaviour, and tag what reviewers find with an error taxonomy. When you report human agreement, give the statistic, sample size and class balance; no single κ cut-off proves label quality. The <a href="../ai-evaluation/ai-evaluation-field-guide-2026.html#graders">AI Evaluation Field Guide</a> covers graders, judge calibration and statistics in depth.</p>
 
 <h3>The three-level agent eval</h3>
 <p>Evaluate at all three levels or you'll miss critical failure modes.</p>
@@ -1633,24 +1631,28 @@ Release gate ← Compare slices + guardrails ← Change one layer ← Choose int
 </div>
 </div>
 
-<h3>Cost estimation template</h3>
-<div class="ascii">Monthly cost = input tokens × input price + output tokens × output price
-
-Base API rate example · verified 05 October 2026 · Claude Sonnet 5.5
-Workload: 10K queries/day · 2K input + 500 output tokens per query
-Input:  300K queries × 2K tokens = 600M × $2/M  = $1,200
-Output: 300K queries × 500 tokens = 150M × $10/M = $1,500
-Baseline: <span class="yellow">$2,700/month</span>
-Before caching, batch discounts, tools, retrieval, or retries
-
-Optimization levers:
-  Cache stable repeated prefixes
-  Route only eval-qualified tasks to cheaper models
-  Reduce unnecessary context without discarding evidence
-  Batch asynchronous workloads when the provider supports it
-
-Recalculate with current provider pricing and measured workload data.
-Do not copy a generic savings percentage.</div>
+<h3>Cost estimation</h3>
+<p>Monthly cost = input tokens × input price + output tokens × output price. Change the inputs to match your workload; the defaults are the worked example.</p>
+<figure class="ix-fig" id="calc">
+<div class="calc-grid">
+<label>Queries per day<input type="number" min="0" step="100" id="calc-q" value="10000"></label>
+<label>Input tokens per query<input type="number" min="0" step="100" id="calc-in" value="2000"></label>
+<label>Output tokens per query<input type="number" min="0" step="50" id="calc-out" value="500"></label>
+<label>Input price ($ per 1M)<input type="number" min="0" step="0.05" id="calc-pin" value="2"></label>
+<label>Output price ($ per 1M)<input type="number" min="0" step="0.05" id="calc-pout" value="10"></label>
+<label>Days per month<input type="number" min="1" max="31" step="1" id="calc-days" value="30"></label>
+</div>
+<p class="calc-out" id="calc-result" aria-live="polite">Input: 600M tokens = $1,200 · Output: 150M tokens = $1,500 · Baseline <b>$2,700 / month</b></p>
+<p class="ix-hint" style="margin:0">Default prices are Claude Sonnet 5.5 list prices ($2 input, $10 output per million tokens), checked 13 October 2026. The baseline excludes caching, batch discounts, tools, retrieval and retries.</p>
+</figure>
+<h4>Optimisation levers</h4>
+<ul>
+<li>Cache stable repeated prefixes.</li>
+<li>Route only eval-qualified tasks to cheaper models.</li>
+<li>Reduce unnecessary context without discarding evidence.</li>
+<li>Batch asynchronous workloads when the provider supports it.</li>
+</ul>
+<p>Recalculate with current provider pricing and measured workload data. Do not copy a generic savings percentage.</p>
 
 <h3>Metric selection guide</h3>
 <div class="table-wrap">
@@ -1669,201 +1671,7 @@ Do not copy a generic savings percentage.</div>
 </section>
 
 <!-- ============================================================== -->
-<!-- 07 · INTERVIEW PLAYBOOK                                         -->
-<!-- ============================================================== -->
-<section class="panel" id="t-interview" role="tabpanel" aria-labelledby="tab-interview" aria-hidden="true" tabindex="0">
-
-<h2 class="section-title">The interview <em>playbook.</em></h2>
-<p class="section-sub">Five questions that separate read-the-docs from shipped-in-prod</p>
-
-<details class="week" open>
-<summary class="week-head">
-<div class="week-num">Q1</div>
-<div class="week-title"><h4>Walk me through naive RAG → advanced RAG → agentic RAG.</h4><div class="meta">Tests RAG depth · retrieval reasoning</div></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<h4>Strong answer structure</h4>
-<ol>
-<li><strong>Naive:</strong> embed → vector search → stuff into prompt → generate. Fast, simple, fails on complex queries.</li>
-<li><strong>Advanced:</strong> add hybrid search (BM25 + dense), reranking (cross-encoder), query rewriting. Better recall, still static.</li>
-<li><strong>Agentic:</strong> agent evaluates sufficiency, reformulates query, iterates retrieval (max N times), then generates with citations. Dynamic, slower, higher quality.</li>
-</ol>
-<blockquote>Senior signal: mentions latency trade-offs, cost per query, and when each tier is appropriate.</blockquote>
-</div>
-</details>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">Q2</div>
-<div class="week-title"><h4>Your RAG hallucinates despite good retrieval. Debug it.</h4><div class="meta">Tests systematic thinking</div></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<h4>Strong answer · ordered</h4>
-<ol>
-<li>Verify retrieval is actually correct (log chunks, measure recall@k).</li>
-<li>Check prompt instructions: "Answer ONLY from context."</li>
-<li>Check context positioning (lost-in-the-middle; move best chunks to start/end).</li>
-<li>Check chunk granularity (too large dilutes signal; too small fragments facts).</li>
-<li>Add faithfulness check (LLM-as-judge or NLI model) before returning the answer.</li>
-<li>If all fail, the question likely isn't answerable from the corpus.</li>
-</ol>
-</div>
-</details>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">Q3</div>
-<div class="week-title"><h4>When do you NOT use an agent?</h4><div class="meta">Tests judgment · anti-agent-washing</div></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<h4>Strong answer</h4>
-<ul>
-<li>Deterministic workflow → use a DAG / state machine.</li>
-<li>Sub-second latency budget → agent loops add seconds.</li>
-<li>High cost of failure (finance, medical) without HITL → too risky.</li>
-<li>Simple RAG or single tool call suffices → don't over-engineer.</li>
-<li>A strong single-agent baseline already meets the acceptance target and the task does not decompose cleanly → multi-agent complexity is unlikely to earn its cost.</li>
-</ul>
-</div>
-</details>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">Q4</div>
-<div class="week-title"><h4>How do you cut LLM costs by 50% without quality regression?</h4><div class="meta">Tests optimization · economics</div></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<h4>Strong answer · three tiers</h4>
-<ol>
-<li><strong>Don't call the LLM:</strong> semantic + exact caching, trivial query classification to non-LLM paths.</li>
-<li><strong>Call a cheaper LLM:</strong> route tasks that pass an eval-backed confidence threshold; use the larger model as a controlled fallback.</li>
-<li><strong>Make each call cheaper:</strong> prompt compression, shorter contexts, output token limits, quantization, batch inference, prompt caching.</li>
-</ol>
-<div class="callout warn">
-<div class="callout-label">Critical</div>
-<p style="margin:0">Validate every change against the eval harness. Cost cuts without measurement are just quality cuts in disguise.</p>
-</div>
-</div>
-</details>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">Q5</div>
-<div class="week-title"><h4>Explain MCP in 60 seconds.</h4><div class="meta">Tests current-state knowledge</div></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<h4>Strong answer</h4>
-<blockquote>"MCP is an open interface for AI applications to access tools and data — like USB-C for AI. Its server primitives are <strong>Tools</strong> (execute functions), <strong>Resources</strong> (expose context), and <strong>Prompts</strong> (reusable templates). A server exposes capabilities; a client consumes them. Compatible hosts can reuse the same capability boundary instead of building a bespoke integration for each tool. MCP moved under the Linux Foundation's Agentic AI Foundation in December 2025; the latest specification reviewed here is 2026-07-28."</blockquote>
-</div>
-</details>
-
-<h3>System design scenarios</h3>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">A</div>
-<div class="week-title"><h4>Customer support chatbot · 100k QPS · &lt; 2s latency</h4><div class="meta">High-volume RAG + tool use</div></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<h4>Architecture</h4>
-<ol>
-<li><strong>Intent classifier</strong> (small model, &lt; 50ms) routes simple FAQs to cached responses.</li>
-<li><strong>RAG pipeline</strong> (hybrid search + rerank, &lt; 200ms) for complex queries.</li>
-<li><strong>LLM</strong> (quantized open-weight or API) with constrained JSON output.</li>
-<li><strong>Tool layer</strong> (order lookup, refund) via MCP with HITL for write operations.</li>
-<li><strong>Guardrails:</strong> input filtering, output PII redaction, toxicity detection.</li>
-<li><strong>Fallback:</strong> confidence threshold routes to human with full context.</li>
-</ol>
-<h4>Key trade-offs</h4>
-<ul>
-<li><strong>Latency vs quality:</strong> reranking adds latency but may improve precision; measure both on the target corpus.</li>
-<li><strong>Cost vs coverage:</strong> use an eval-qualified open-weight model for suitable routine traffic and a stronger API model for defined edge cases.</li>
-</ul>
-</div>
-</details>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">B</div>
-<div class="week-title"><h4>Real-time fraud detection · &lt; 50ms</h4><div class="meta">Why an LLM is the wrong tool</div></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<h4>Architecture</h4>
-<ol>
-<li><strong>Feature pipeline:</strong> Kafka → Flink for real-time aggregations.</li>
-<li><strong>Model:</strong> XGBoost or LightGBM — not an LLM. Deterministic, fast, explainable.</li>
-<li><strong>Inference:</strong> ONNX Runtime, co-located with feature store.</li>
-<li><strong>Decision:</strong> score → policy engine (allow / step-up / block).</li>
-<li><strong>Explainability:</strong> SHAP values surfaced to analysts.</li>
-</ol>
-<blockquote>Why not an LLM? Latency budget and deterministic requirements. Use the right tool for the job.</blockquote>
-</div>
-</details>
-
-<h3>Behavioral · STAR templates</h3>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">S1</div>
-<div class="week-title"><h4>Tell me about a model that failed in production.</h4></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<div class="ascii"><span class="yellow">Situation:</span> At [Company], our demand-forecasting model's MAPE jumped from
-9% to 17% overnight after a deployment.
-
-<span class="yellow">Task:</span> I owned the ML pipeline and had to diagnose and fix it before
-the weekly replenishment run.
-
-<span class="yellow">Action:</span>
-  1. Rolled back via feature flag within 15 minutes.
-  2. Checked data drift — PSI on input features showed an upstream
-     schema change (new POS field mapping).
-  3. Fixed the ingestion pipeline, added schema validation
-     (Great Expectations), and retrained.
-  4. Added a canary stage (1% traffic) to the deployment pipeline.
-
-<span class="yellow">Result:</span> Zero business impact due to fast rollback. Schema validation
-now blocks known incompatible changes before they hit the model.
-Post-mortem became our template for incident response.</div>
-</div>
-</details>
-
-<details class="week">
-<summary class="week-head">
-<div class="week-num">S2</div>
-<div class="week-title"><h4>How do you handle ambiguity?</h4></div>
-<div class="week-toggle">+</div>
-</summary>
-<div class="week-body">
-<div class="ascii"><span class="yellow">Situation:</span> Stakeholders asked for an "AI assistant" without defining
-success metrics or scope.
-
-<span class="yellow">Task:</span> Create clarity and a viable 6-week plan.
-
-<span class="yellow">Action:</span>
-  1. Ran a 2-day discovery workshop with 5 stakeholders.
-  2. Defined the primary metric (deflection rate) and guardrails
-     (CSAT, escalation rate).
-  3. Scoped a 2-week MVP (RAG over 500 FAQs) to validate feasibility.
-  4. Wrote a one-pager with architecture, risks, and go/no-go criteria.
-
-<span class="yellow">Result:</span> MVP achieved 40% deflection rate. Stakeholders approved
-full build. The one-pager became our project charter.</div>
-</div>
-</details>
-
-</section>
-
-<!-- ============================================================== -->
-<!-- 08 · LANDSCAPE                                                  -->
+<!-- 07 · LANDSCAPE                                                  -->
 <!-- ============================================================== -->
 <section class="panel" id="t-landscape" role="tabpanel" aria-labelledby="tab-landscape" aria-hidden="true" tabindex="0">
 
@@ -1874,7 +1682,7 @@ full build. The one-pager became our project charter.</div>
 <div class="callout-label">⚡ The headline shifts</div>
 <ul style="margin:0">
 <li><strong>Claude's active lineup changed.</strong> Anthropic now lists Fable 5.1, Opus 5.5, Sonnet 5.5, and Haiku 5.5. Select by eval results and workload economics rather than treating one model as a permanent default.</li>
-<li><strong>MCP matured.</strong> It remains under the Linux Foundation's Agentic AI Foundation; the latest specification reviewed on 3 September 2026 is 2026-07-28 and includes optional extensions for tasks, skills, and MCP Apps.</li>
+<li><strong>MCP matured.</strong> It remains under the Linux Foundation's Agentic AI Foundation; the current specification, checked 13 October 2026, is 2026-07-28 and includes optional extensions for tasks, skills, and MCP Apps.</li>
 <li><strong>LangGraph stayed on the 1.2 line.</strong> PyPI listed 1.2.14, released 6 October 2026. It is a mature low-level option for explicit, long-running stateful orchestration—not an automatic choice for every agent.</li>
 <li><strong>The EU AI Omnibus entered into force on 27 July 2026.</strong> Annex III high-risk rules now apply from 2 December 2027; Annex I product-embedded high-risk rules apply from 2 August 2028.</li>
 <li><strong>Agent protocols are separating concerns.</strong> MCP covers tools and context, A2A covers agent interoperability, and AG-UI covers agent-to-frontend events. Treat each implementation as a maturity and security decision.</li>
@@ -1932,12 +1740,12 @@ full build. The one-pager became our project charter.</div>
 </section>
 
 <!-- ============================================================== -->
-<!-- 09 · SOURCES                                                    -->
+<!-- 08 · SOURCES                                                    -->
 <!-- ============================================================== -->
 <section class="panel" id="t-sources" role="tabpanel" aria-labelledby="tab-sources" aria-hidden="true" tabindex="0">
 
 <h2 class="section-title">Verified <em>sources.</em></h2>
-<p class="section-sub">Source list maintained 11 September 2026 · grouped by purpose · re-check volatile claims before use</p>
+<p class="section-sub">Grouped by purpose · model, pricing, MCP, LangGraph and EU AI Act links re-checked 13 October 2026 · re-check volatile claims before use</p>
 
 <div class="search-wrap">
   <input type="text" class="search" id="src-search" placeholder="filter sources… (e.g. 'mcp', 'langgraph', 'eval')" />
@@ -2077,7 +1885,7 @@ full build. The one-pager became our project charter.</div>
 </main>
 
 <footer>
-  Compiled <em>May 2026</em> · reviewed <em>11 September 2026</em> · Pareto-pruned · Feynman-structured · 19 files → 1 reference
+  Compiled <em>May 2026</em> · restructured and fact-checked <em>13 October 2026</em> · build first, measure everything
 </footer>
 
 <!-- ============================ SCRIPT ============================ -->
@@ -2209,9 +2017,44 @@ document.querySelectorAll('#ix-lever [data-sym]').forEach(b=>b.addEventListener(
  document.querySelectorAll('#ix-lever tr[data-lever]').forEach(r=>r.classList.toggle('pick',r.dataset.lever===s));document.getElementById('ix-lever-out').textContent=msg[s];}));
 const box=document.getElementById('listen');
 if('speechSynthesis' in window){box.hidden=false;
- document.getElementById('listen-play').addEventListener('click',()=>{speechSynthesis.cancel();const panel=document.querySelector('section.panel.active')||document.body;const c=panel.cloneNode(true);c.querySelectorAll('svg,button,.ix-row,script,style').forEach(x=>x.remove());
+ document.getElementById('listen-play').addEventListener('click',()=>{speechSynthesis.cancel();const panel=document.querySelector('section.panel.active')||document.body;const c=panel.cloneNode(true);c.querySelectorAll('svg,button,.ix-row,script,style,.reveal,.wk-check,.prog,.calc-grid').forEach(x=>x.remove());
   const u=new SpeechSynthesisUtterance(c.innerText.replace(/\s+/g,' ').slice(0,8000));u.lang='en-GB';speechSynthesis.speak(u);});
  document.getElementById('listen-stop').addEventListener('click',()=>speechSynthesis.cancel());}
+})();
+</script>
+
+<script>
+(function(){
+// Weekly progress: saved per browser; the page works without storage.
+const KEY='aieh-builder-progress-v1';let store=null,state={};
+try{store=window.localStorage;state=JSON.parse(store.getItem(KEY)||'{}')||{};}catch(e){store=null;state={};}
+const note=document.getElementById('prog-note');
+if(!store&&note)note.textContent='A week counts as complete when all three boxes at the end of its card are ticked. This browser is not saving ticks, so they will reset when you leave.';
+const groups=[...document.querySelectorAll('.wk-check[data-week]')];
+function save(){if(!store)return;try{store.setItem(KEY,JSON.stringify(state));}catch(e){}}
+function render(){let weeks=0,cap=0;
+ groups.forEach(g=>{const w=g.dataset.week,boxes=[...g.querySelectorAll('input')];const all=boxes.every(b=>b.checked);
+  if(w==='capstone')cap=boxes.filter(b=>b.checked).length;else{if(all)weeks++;const d=document.querySelector('details.week[data-week="'+w+'"]');if(d)d.classList.toggle('done',all);}});
+ const txt=document.getElementById('prog-text');if(txt)txt.textContent=weeks+' of 10 weeks complete · capstone '+cap+' of 5';
+ const bar=document.getElementById('prog-bar');if(bar)bar.setAttribute('aria-valuenow',weeks);
+ const fill=document.getElementById('prog-fill');if(fill)fill.style.width=(weeks*10)+'%';}
+groups.forEach(g=>g.querySelectorAll('input').forEach(b=>{const w=g.dataset.week,k=b.dataset.k;b.checked=!!(state[w]&&state[w][k]);
+ b.addEventListener('change',()=>{state[w]=state[w]||{};state[w][k]=b.checked;save();render();});}));
+const reset=document.getElementById('prog-reset');
+if(reset)reset.addEventListener('click',()=>{if(!confirm('Clear all progress ticks?'))return;state={};save();groups.forEach(g=>g.querySelectorAll('input').forEach(b=>b.checked=false));render();});
+render();
+// Cost calculator
+const ids=['calc-q','calc-in','calc-out','calc-pin','calc-pout','calc-days'];
+const fmt=n=>'$'+n.toLocaleString('en-GB',{maximumFractionDigits:n<100?2:0});
+const tok=n=>n>=1e9?(n/1e9).toLocaleString('en-GB',{maximumFractionDigits:2})+'B':n>=1e6?(n/1e6).toLocaleString('en-GB',{maximumFractionDigits:1})+'M':n.toLocaleString('en-GB');
+function calc(){const v=ids.map(id=>Math.max(0,parseFloat(document.getElementById(id).value)||0));const [q,i,o,pi,po,d]=v;
+ const ti=q*d*i,to=q*d*o,ci=ti/1e6*pi,co=to/1e6*po;
+ document.getElementById('calc-result').innerHTML='Input: '+tok(ti)+' tokens = '+fmt(ci)+' · Output: '+tok(to)+' tokens = '+fmt(co)+' · Baseline <b>'+fmt(ci+co)+' / month</b>';}
+if(document.getElementById('calc-q')){ids.forEach(id=>document.getElementById(id).addEventListener('input',calc));calc();}
+// Print every collapsed card and model answer, then restore.
+let opened=[];
+window.addEventListener('beforeprint',()=>{opened=[...document.querySelectorAll('details:not([open])')];opened.forEach(d=>d.open=true);});
+window.addEventListener('afterprint',()=>{opened.forEach(d=>d.open=false);opened=[];});
 })();
 </script>
 </body>

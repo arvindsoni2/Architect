@@ -49,6 +49,20 @@ The handbook was last fully reviewed on 4 September 2026 and missed the 5 Octobe
 
 The Article 50 marking transition comes from secondary analyses; the handbook says so and asks readers to confirm it in the official text.
 
+## Addendum — AI Engineering Handbook v3.2 restructure
+
+The handbook was repositioned as the repository's build-first track, keeping its filename and links.
+
+| Area | Change |
+| --- | --- |
+| Dates | One status line (restructured and fact-checked 13 October 2026) replaces the mix of 5 October, 11 September and "September 2026" labels. MCP 2026-07-28, LangGraph 1.2.14, Claude list prices and EU AI Act dates were re-checked. |
+| Interview playbook | Removed. Its generic practice answers were invented examples; week 10 now links to `interview-prep/` and the Interview Resource Accelerator. |
+| Architecture and evaluation | The five architectures became a one-table summary and the evaluation pyramid a single paragraph, each linking to the Agent Engineering Master Manual and the AI Evaluation Field Guide. |
+| Claims | Prompt injection is no longer compared with SQL injection as if it had a complete fix; the HyDE claim, the 200 ms edge rule and a few hiring claims were softened to what the evidence supports. |
+| Interactivity | Text-art diagrams redrawn as SVG; weekly progress ticks saved in the browser; explain-it-back questions with hidden model answers; a cost calculator. |
+
+**Follow-up not applied:** the Agent Engineering Master Manual v2.8 still contains copies of this handbook's roadmap, architectures, evaluation pyramid and interview playbook. Decide whether the Manual should link here instead of carrying them.
+
 ## Primary sources checked on 13 October 2026
 
 - [Anthropic models overview](https://platform.claude.com/docs/en/about-claude/models/overview) and [pricing](https://platform.claude.com/docs/en/about-claude/pricing): Fable 5.1, Opus 5.5, Sonnet 5.5 and Haiku 5.5; Haiku 5.5 at $0.10/$0.50 per million tokens for prompts up to 100K tokens and $0.50/$2.50 above.
