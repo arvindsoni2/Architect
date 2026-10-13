@@ -5,12 +5,12 @@ This is the authoritative index of current material in the repository.
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
 | System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v5.html](handbooks/system-design/system-design-concept-handbook-v5.html) | HTML | Current | v5 | 2026-10-05 |
-| Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html) | HTML | Current | v2.8 | 2026-10-05 |
-| AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.2.html](handbooks/ai-engineering/ai-engineering-handbook-v3.2.html) | HTML | Current | v3.2 | 2026-10-05 |
-| AI Evaluation Field Guide | AI architecture | [handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) | HTML | Current | 2026.10 | 2026-10-06 |
+| Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html) | HTML | Current | v2.8 | 2026-10-13 |
+| AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.2.html](handbooks/ai-engineering/ai-engineering-handbook-v3.2.html) | HTML | Current | v3.2 | 2026-10-13 |
+| AI Evaluation Field Guide | AI architecture | [handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) | HTML | Current | 2026.10 | 2026-10-13 |
 | Architecture and Applied AI Certification Roadmap | Architecture learning path | [learning-paths/architecture-ai-certification-roadmap.md](learning-paths/architecture-ai-certification-roadmap.md) | Markdown | Current | Living roadmap | 2026-10-05 |
 | Software Architect Curriculum Guide | Software architecture | [learning-paths/software-architect/software-architect-curriculum-guide-v3.md](learning-paths/software-architect/software-architect-curriculum-guide-v3.md) | Markdown | Current | v3 (evidence-led revision) | 2026-09-09 |
-| Software Architect Grooming Programme | Software architecture | [learning-paths/software-architect/software-architect-grooming-programme-v5.html](learning-paths/software-architect/software-architect-grooming-programme-v5.html) | HTML | Current | v5 (evidence-led revision) | 2026-09-09 |
+| Software Architect Grooming Programme (Adaptive Software Architect Apprenticeship) | Software architecture | [learning-paths/software-architect/software-architect-grooming-programme-v5.html](learning-paths/software-architect/software-architect-grooming-programme-v5.html) | HTML | Current | v5 (evidence-led revision) | 2026-09-09 |
 | Patient Portal Connected Learning | Applied software architecture | [learning-paths/software-architect/patient-portal-connected-learning.md](learning-paths/software-architect/patient-portal-connected-learning.md) | Markdown | Current | Living companion | 2026-09-09 |
 | Connected Architecture Project Guides | Applied software architecture | [learning-paths/software-architect/connected-learning/README.md](learning-paths/software-architect/connected-learning/README.md) | Markdown | Current | Living index | 2026-09-09 |
 | Regulated Payments Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/regulated-payments.md](learning-paths/software-architect/connected-learning/regulated-payments.md) | Markdown | Current | Living companion | 2026-09-09 |
@@ -57,18 +57,18 @@ Markdown sources are canonical. The HTML reading view is generated from them. Th
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| Interview Preparation Index | Product and delivery interview preparation | [interview-prep/README.md](interview-prep/README.md) | Markdown | Draft | Living draft | 2026-10-05 |
-| Shared Interview Handbook | Product and delivery interview preparation | [interview-prep/shared/handbook.md](interview-prep/shared/handbook.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Interview Evidence Bank | Product and delivery interview preparation | [interview-prep/shared/evidence-bank.md](interview-prep/shared/evidence-bank.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Interview Preparation Index | Product and delivery interview preparation | [interview-prep/README.md](interview-prep/README.md) | Markdown | Draft | Living draft | 2026-10-13 |
+| Shared Interview Handbook | Product and delivery interview preparation | [interview-prep/shared/handbook.md](interview-prep/shared/handbook.md) | Markdown | Draft | Living draft | 2026-10-13 |
+| Interview Evidence Bank | Product and delivery interview preparation | [interview-prep/shared/evidence-bank.md](interview-prep/shared/evidence-bank.md) | Markdown | Draft | Living draft | 2026-10-13 |
 | Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/delivery-lead.md](interview-prep/roles/delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Agile Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/agile-delivery-lead.md](interview-prep/roles/agile-delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Product Owner Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-owner.md](interview-prep/roles/product-owner.md) | Markdown | Draft | Living draft | 2026-10-01 |
+| Product Owner Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-owner.md](interview-prep/roles/product-owner.md) | Markdown | Draft | Living draft | 2026-10-13 |
 | Product Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-manager.md](interview-prep/roles/product-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Senior Project Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/senior-project-manager.md](interview-prep/roles/senior-project-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
 | Accenture Product Owner Playbook | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-13 |
 | Accenture Product Owner Extra Questions | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-13 |
 | Accenture Forward Deployed AI Engineer Supplement | Forward-deployed AI interview preparation | [interview-prep/vacancies/accenture-fde.md](interview-prep/vacancies/accenture-fde.md) | Markdown | Draft | Living draft | 2026-10-05 |
-| Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-05 |
+| Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-13 |
 
 ## Status values
 
