@@ -166,6 +166,31 @@ blockquote{margin:20px 0;padding:10px 18px;border-left:4px solid var(--accent);b
 @media print{header,nav,footer,.skip{display:none}.layout{display:block;margin:0;padding:0}.panel,.enhanced .panel[hidden]{display:block!important;border:0;padding:0;margin:0;break-before:page}.panel:first-child{break-before:auto}body{background:#fff;color:#111;font-size:10pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
 """
 
+# Theme handling shared by the tabbed view and the guide pages. Storage alone is not
+# enough: Firefox and Safari give each local file its own storage, so the chosen theme
+# also travels in a ?theme= query on links between pages, and is applied before paint.
+THEME_HEAD = """(function(){var r=document.documentElement,t=null;
+try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+if(t==='dark'||t==='light'){try{localStorage.setItem('ip-theme',t);}catch(e){}}
+else{try{t=localStorage.getItem('ip-theme');}catch(e){}}
+if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+if(t==='dark')r.classList.add('dark');})();"""
+
+THEME_JS = """function ipThemeSetup(button){
+var root=document.documentElement;
+function current(){return root.classList.contains('dark')?'dark':'light';}
+function carry(updateAddress){var v=current();
+ [].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.getAttribute('data-ip-href')||a.getAttribute('href');
+  if(!h||h.charAt(0)==='#'||/^[a-z][a-z0-9+.-]*:/i.test(h))return;
+  if(!/[.]html$/i.test(h.split('#')[0].split('?')[0]))return;
+  try{var u=new URL(h,location.href);u.searchParams.set('theme',v);a.setAttribute('data-ip-href',h);a.setAttribute('href',u.href);}catch(e){}});
+ if(updateAddress){try{var c=new URL(location.href);c.searchParams.set('theme',v);history.replaceState(history.state,'',c.href);}catch(e){}}}
+function sync(){var d=root.classList.contains('dark');button.setAttribute('aria-pressed',String(d));button.textContent=d?'Light view':'Dark view';}
+button.addEventListener('click',function(){root.classList.toggle('dark');try{localStorage.setItem('ip-theme',current());}catch(e){}sync();carry(true);});
+sync();carry(false);}
+"""
+
+
 SCRIPT = """
 const panels=[...document.querySelectorAll('.panel')];
 const links=[...document.querySelectorAll('nav a')];
@@ -179,8 +204,7 @@ function selectPanel(){
 }
 document.documentElement.classList.add('enhanced');
 window.addEventListener('hashchange',selectPanel);selectPanel();
-const theme=document.getElementById('theme');
-theme.addEventListener('click',()=>{const dark=document.documentElement.classList.toggle('dark');theme.setAttribute('aria-pressed',String(dark));theme.textContent=dark?'Light view':'Dark view';});
+ipThemeSetup(document.getElementById('theme'));
 """
 
 
@@ -225,10 +249,7 @@ function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
 var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
 var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
 theme.hidden=false;printBtn.hidden=false;
-if(get('ip-theme')==='dark')root.classList.add('dark');
-function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
-syncTheme();
-theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+ipThemeSetup(theme);
 printBtn.addEventListener('click',function(){window.print();});
 var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
 if(!qas.length&&!lis.length)return;
@@ -287,7 +308,7 @@ def build_page(source, documents, titles):
     title = titles[source]
     source_link = html.escape(posixpath.basename(source), quote=True)
     return ('<!doctype html>\n<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
-            f'<title>{html.escape(title)} — Interview preparation</title><style>{PAGE_STYLE}</style></head>'
+            f'<title>{html.escape(title)} — Interview preparation</title><script>{THEME_HEAD}</script><style>{PAGE_STYLE}</style></head>'
             f'<body data-page="{html.escape(source, quote=True)}"><a class="skip" href="#content">Skip to content</a>'
             f'<header><div class="heading-row"><div><a class="brand" href="{html.escape(rel("index.html"), quote=True)}">Interview preparation</a>'
             '<p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div>'
@@ -297,7 +318,7 @@ def build_page(source, documents, titles):
             f'{_after_intro(body, toc + practice)}</article>'
             f'<footer>Generated from <a href="{source_link}">{html.escape(posixpath.basename(source))}</a>. Edit the Markdown, then run '
             '<code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div>'
-            f'<script>{PAGE_SCRIPT}</script></body></html>\n')
+            f'<script>{THEME_JS}{PAGE_SCRIPT}</script></body></html>\n')
 
 
 def _after_intro(body, insert):
@@ -325,7 +346,7 @@ def build():
         navigation.append(f'<a href="#{section}">{html.escape(title)}</a>')
         content = (ROOT / 'interview-prep' / path).read_text(encoding='utf-8')
         panels.append(f'<section class="panel" id="{section}" aria-label="{html.escape(title)}">' + render_markdown(content, path, documents) + '</section>')
-    return '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product and Delivery Interview Handbook</title><style>' + STYLE + '</style></head><body><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><div class="brand">Interview preparation</div><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><button id="theme" type="button" aria-pressed="false">Dark view</button></div></header><div class="layout"><nav aria-label="Guide navigation"><div class="nav-label">Choose your route</div>' + ''.join(navigation) + '</nav><main id="content">' + '\n'.join(panels) + '<footer>Generated from canonical Markdown. Review status and dates appear in each guide. Print includes all guides.</footer></main></div><script>' + SCRIPT + '</script></body></html>\n'
+    return '<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product and Delivery Interview Handbook</title><script>' + THEME_HEAD + '</script><style>' + STYLE + '</style></head><body><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><div class="brand">Interview preparation</div><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><button id="theme" type="button" aria-pressed="false">Dark view</button></div></header><div class="layout"><nav aria-label="Guide navigation"><div class="nav-label">Choose your route</div>' + ''.join(navigation) + '</nav><main id="content">' + '\n'.join(panels) + '<footer>Generated from canonical Markdown. Review status and dates appear in each guide. Print includes all guides.</footer></main></div><script>' + THEME_JS + SCRIPT + '</script></body></html>\n'
 
 
 def main():

@@ -29,7 +29,7 @@ For engineering interviews, start with the [AI Engineer](roles/ai-engineer.md) o
 
 Every guide has its own HTML page next to its Markdown file, and `index.html` is this page. Open [index.html](index.html) and use the left-hand menu to move between guides; [handbook.html](handbook.html) holds every guide in one tabbed page.
 
-On the guide pages, **Practice mode** hides the model answers so you can answer out loud first; **Show model answer** reveals one at a time, **▶ Listen** reads a question and answer aloud in British English, and **Practised** ticks are remembered in your browser. Dark view and Print work on every page, and print always shows the answers.
+On the guide pages, **Practice mode** hides the model answers so you can answer out loud first; **Show model answer** reveals one at a time, **▶ Listen** reads a question and answer aloud in British English, and **Practised** ticks are remembered in your browser. Dark view and Print work on every page; your theme choice carries across guide pages and the tabbed view (it starts from your system setting), and print always shows the answers.
 
 GitHub shows HTML files as source code. To read them as pages, download the repository (Code → Download ZIP) and open `interview-prep/index.html` in a browser, or use a static-file viewer such as `https://raw.githack.com/arvindsoni2/Architect/main/interview-prep/index.html`.
 
