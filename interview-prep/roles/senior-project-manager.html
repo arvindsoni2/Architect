@@ -1,5 +1,10 @@
 <!doctype html>
-<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Senior Project Manager — Interview preparation</title><style>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Senior Project Manager — Interview preparation</title><script>(function(){var r=document.documentElement,t=null;
+try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+if(t==='dark'||t==='light'){try{localStorage.setItem('ip-theme',t);}catch(e){}}
+else{try{t=localStorage.getItem('ip-theme');}catch(e){}}
+if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+if(t==='dark')r.classList.add('dark');})();</script><style>
 :root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
 html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
 *{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -133,7 +138,19 @@ footer{font-size:13px;color:var(--muted);margin:20px 0}
 <li><a href="https://www.pmi.org/pmbok-guide-standards/foundational/pmbok/about">PMBOK Guide Eighth Edition</a> — PMI, published November 2025.</li>
 <li><a href="https://des.mod.uk/wp-content/uploads/2026/01/20250527-Success-Profile-Behaviours-2025-document-v1-O.pdf">Civil Service Success Profiles behaviours</a> — as used by MOD DE&amp;S, 2025 document; check the specific department&#x27;s advert.</li>
 <li>LinkedIn&#x27;s <a href="https://business.linkedin.com/talent-solutions/resources/how-to-hire-guides/project-manager/interview-questions">project manager interview question guide</a> for hiring managers.</li>
-</ol></article><footer>Generated from <a href="senior-project-manager.md">senior-project-manager.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>
+</ol></article><footer>Generated from <a href="senior-project-manager.md">senior-project-manager.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>function ipThemeSetup(button){
+var root=document.documentElement;
+function current(){return root.classList.contains('dark')?'dark':'light';}
+function carry(updateAddress){var v=current();
+ [].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.getAttribute('data-ip-href')||a.getAttribute('href');
+  if(!h||h.charAt(0)==='#'||/^[a-z][a-z0-9+.-]*:/i.test(h))return;
+  if(!/[.]html$/i.test(h.split('#')[0].split('?')[0]))return;
+  try{var u=new URL(h,location.href);u.searchParams.set('theme',v);a.setAttribute('data-ip-href',h);a.setAttribute('href',u.href);}catch(e){}});
+ if(updateAddress){try{var c=new URL(location.href);c.searchParams.set('theme',v);history.replaceState(history.state,'',c.href);}catch(e){}}}
+function sync(){var d=root.classList.contains('dark');button.setAttribute('aria-pressed',String(d));button.textContent=d?'Light view':'Dark view';}
+button.addEventListener('click',function(){root.classList.toggle('dark');try{localStorage.setItem('ip-theme',current());}catch(e){}sync();carry(true);});
+sync();carry(false);}
+
 (function(){
 var root=document.documentElement,store=null;
 try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
@@ -142,10 +159,7 @@ function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
 var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
 var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
 theme.hidden=false;printBtn.hidden=false;
-if(get('ip-theme')==='dark')root.classList.add('dark');
-function syncTheme(){var d=root.classList.contains('dark');theme.setAttribute('aria-pressed',String(d));theme.textContent=d?'Light view':'Dark view';}
-syncTheme();
-theme.addEventListener('click',function(){root.classList.toggle('dark');set('ip-theme',root.classList.contains('dark')?'dark':'light');syncTheme();});
+ipThemeSetup(theme);
 printBtn.addEventListener('click',function(){window.print();});
 var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
 if(!qas.length&&!lis.length)return;

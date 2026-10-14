@@ -56,8 +56,16 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  if(!await guide.locator('.qa-li .qa-ans').first().isVisible())throw Error('Print hides list answers');
  const blocked=await browser.newContext();await blocked.addInitScript(()=>Object.defineProperty(window,'localStorage',{get(){throw new DOMException('Blocked','SecurityError');}}));
  const bp=await blocked.newPage();bp.on('pageerror',e=>errors.push('blocked storage: '+e.message));await bp.goto('file://'+dir+'/roles/ai-engineer.html');await bp.locator('#practice').click();await bp.locator('.qa-tools input').first().check();
+ // Theme must survive moving between guides even when each file has its own storage (Firefox, Safari).
+ const isDark=pg=>pg.evaluate(()=>document.documentElement.classList.contains('dark'));
+ const tp=await blocked.newPage();await tp.goto('file://'+dir+'/roles/ai-engineer.html');await tp.locator('#theme').click();
+ await tp.locator('nav a',{hasText:'Product Owner'}).click();if(!await isDark(tp))throw Error('Dark view lost moving between guide pages');
+ await tp.locator('nav a',{hasText:'Tabbed reading view'}).click();if(!await isDark(tp))throw Error('Dark view lost opening the tabbed view');
+ await tp.locator('nav a[href="#product-manager"]').click();if(!await isDark(tp))throw Error('Dark view lost switching tabs');
+ await tp.locator('#theme').click();await tp.locator('nav a[href="#start"]').click();await tp.locator('#start a[href*="index.html"]').first().click();
+ if(await isDark(tp))throw Error('Light view not carried back to guide pages');
  const flat=await browser.newPage({javaScriptEnabled:false});await flat.goto('file://'+dir+'/roles/ai-engineer.html');
  if(!await flat.locator('.qa-body').first().isVisible()||!await flat.locator('#practice').isHidden())throw Error('No-JS guide page incomplete');
- if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 14 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content; 14 guide pages with practice mode.');
+ if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 14 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content; 14 guide pages with practice mode; theme carried between pages.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});

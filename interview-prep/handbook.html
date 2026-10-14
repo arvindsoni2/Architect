@@ -1,5 +1,10 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product and Delivery Interview Handbook</title><style>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product and Delivery Interview Handbook</title><script>(function(){var r=document.documentElement,t=null;
+try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+if(t==='dark'||t==='light'){try{localStorage.setItem('ip-theme',t);}catch(e){}}
+else{try{t=localStorage.getItem('ip-theme');}catch(e){}}
+if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+if(t==='dark')r.classList.add('dark');})();</script><style>
 :root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc}
 html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752}
 *{box-sizing:border-box}html{scroll-padding-top:24px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,sans-serif}
@@ -37,7 +42,7 @@ blockquote{margin:20px 0;padding:10px 18px;border-left:4px solid var(--accent);b
 <p>For engineering interviews, start with the <a href="#ai-engineer">AI Engineer</a> or <a href="#forward-deployed-engineer">Forward Deployed Engineer</a> guide; for the Accenture vacancy add the <a href="#accenture-fde">Accenture Forward Deployed AI Engineer supplement</a> alongside the <a href="../handbooks/fde/fde-handbook-v1.4.html">FDE Handbook v1.4</a>. It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.</p>
 <h2 id="start--read-the-guides-as-html">Read the guides as HTML</h2>
 <p>Every guide has its own HTML page next to its Markdown file, and <code>index.html</code> is this page. Open <a href="index.html">index.html</a> and use the left-hand menu to move between guides; <a href="#start">handbook.html</a> holds every guide in one tabbed page.</p>
-<p>On the guide pages, <strong>Practice mode</strong> hides the model answers so you can answer out loud first; <strong>Show model answer</strong> reveals one at a time, <strong>▶ Listen</strong> reads a question and answer aloud in British English, and <strong>Practised</strong> ticks are remembered in your browser. Dark view and Print work on every page, and print always shows the answers.</p>
+<p>On the guide pages, <strong>Practice mode</strong> hides the model answers so you can answer out loud first; <strong>Show model answer</strong> reveals one at a time, <strong>▶ Listen</strong> reads a question and answer aloud in British English, and <strong>Practised</strong> ticks are remembered in your browser. Dark view and Print work on every page; your theme choice carries across guide pages and the tabbed view (it starts from your system setting), and print always shows the answers.</p>
 <p>GitHub shows HTML files as source code. To read them as pages, download the repository (Code → Download ZIP) and open <code>interview-prep/index.html</code> in a browser, or use a static-file viewer such as <code>https://raw.githack.com/arvindsoni2/Architect/main/interview-prep/index.html</code>.</p>
 <p>The HTML is generated from these Markdown files: edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code> from the repository root.</p>
 <h2 id="start--prepare-in-three-passes">Prepare in three passes</h2>
@@ -1323,7 +1328,19 @@ blockquote{margin:20px 0;padding:10px 18px;border-left:4px solid var(--accent);b
 <li><a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale">Google: scale agents</a> — current destination of the former Vertex AI Agent Engine overview, checked 5 October 2026. Follow supported SDK/version guidance when implementing; retain the vacancy&#x27;s own platform wording when discussing its requirements.</li>
 <li><a href="https://www.anthropic.com/news/claude-frontier-academy">Anthropic: Claude Frontier Academy</a> — announced 2 October 2026; Accenture is among initial participants. Participation is through organisational nomination, not an open individual course. See the <a href="../handbooks/fde/fde-handbook-v1.4.html#frontier-academy">handbook training note</a> for the distinction from certification and deployment evidence.</li>
 </ol>
-<p>The source check covers this vacancy and the new references. It is not a claim that every linked handbook or all 76 accelerator resources were re-audited. The numbered questions, scoring rubric and commercial case are editorial practice material.</p></section><footer>Generated from canonical Markdown. Review status and dates appear in each guide. Print includes all guides.</footer></main></div><script>
+<p>The source check covers this vacancy and the new references. It is not a claim that every linked handbook or all 76 accelerator resources were re-audited. The numbered questions, scoring rubric and commercial case are editorial practice material.</p></section><footer>Generated from canonical Markdown. Review status and dates appear in each guide. Print includes all guides.</footer></main></div><script>function ipThemeSetup(button){
+var root=document.documentElement;
+function current(){return root.classList.contains('dark')?'dark':'light';}
+function carry(updateAddress){var v=current();
+ [].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.getAttribute('data-ip-href')||a.getAttribute('href');
+  if(!h||h.charAt(0)==='#'||/^[a-z][a-z0-9+.-]*:/i.test(h))return;
+  if(!/[.]html$/i.test(h.split('#')[0].split('?')[0]))return;
+  try{var u=new URL(h,location.href);u.searchParams.set('theme',v);a.setAttribute('data-ip-href',h);a.setAttribute('href',u.href);}catch(e){}});
+ if(updateAddress){try{var c=new URL(location.href);c.searchParams.set('theme',v);history.replaceState(history.state,'',c.href);}catch(e){}}}
+function sync(){var d=root.classList.contains('dark');button.setAttribute('aria-pressed',String(d));button.textContent=d?'Light view':'Dark view';}
+button.addEventListener('click',function(){root.classList.toggle('dark');try{localStorage.setItem('ip-theme',current());}catch(e){}sync();carry(true);});
+sync();carry(false);}
+
 const panels=[...document.querySelectorAll('.panel')];
 const links=[...document.querySelectorAll('nav a')];
 function selectPanel(){
@@ -1336,6 +1353,5 @@ function selectPanel(){
 }
 document.documentElement.classList.add('enhanced');
 window.addEventListener('hashchange',selectPanel);selectPanel();
-const theme=document.getElementById('theme');
-theme.addEventListener('click',()=>{const dark=document.documentElement.classList.toggle('dark');theme.setAttribute('aria-pressed',String(dark));theme.textContent=dark?'Light view':'Dark view';});
+ipThemeSetup(document.getElementById('theme'));
 </script></body></html>
