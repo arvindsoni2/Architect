@@ -147,7 +147,7 @@ Do not call click-through or add-to-order measures **85% recommendation accuracy
 
 ## Credentials and learning
 
-Owner-stated credentials: PMP, PMI-ACP, PSM I and PSPO I; AWS Certified AI Practitioner (AIF-C01), passed April 2026; currently preparing for AWS Solutions Architect Associate (SAA-C03). Completed course: **GeeksforGeeks — AI Engineering Course: Generative AI & Agentic AI** (certificate held by the owner). Coursera courses: to be added once the owner supplies the course names. Confirm credential IDs and dates before quoting them, and pair each with something you built or decided — certificates show learning, not role experience.
+Owner-stated credentials: PMP, PMI-ACP, PSM I, PSPO I and PSPO II (Scrum.org, 16 October 2026, verifiable at scrum.org/certificates/1356776); AWS Certified AI Practitioner (AIF-C01), passed April 2026; currently preparing for AWS Solutions Architect Associate (SAA-C03). Completed course: **GeeksforGeeks — AI Engineering Course: Generative AI & Agentic AI** (certificate held by the owner). Coursera courses: to be added once the owner supplies the course names. Confirm credential IDs and dates before quoting them, and pair each with something you built or decided — certificates show learning, not role experience.
 
 ## Adding or correcting a story
 

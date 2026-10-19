@@ -41,7 +41,7 @@ This is the single place to prepare for this interview. It replaces the earlier 
 | Benefits measurement | Can you prove value in money? | Section 3, every story |
 | Mentoring POs and BAs (Associate Manager) | Will you grow others? | B3 |
 | Compliance and security | Do you respect regulated delivery? | Nationwide (S5), utilities (S3, S4) |
-| Set yourself apart: PSPO, cloud, GDS, AI, UX | Differentiators | PSPO I; AWS AIF-C01 (SAA in progress); S3 lifecycle; S1; B2 |
+| Set yourself apart: PSPO, cloud, GDS, AI, UX | Differentiators | PSPO II (October 2026) and PSPO I; AWS AIF-C01 (SAA in progress); S3 lifecycle; S1; B2 |
 
 ## 3. Cost and commercial answers
 
@@ -107,7 +107,7 @@ These are spoken answers in your own voice. Rehearse them aloud until you can sa
 
 > “Most recently at Natoora I took an internal warehouse system to market as a SaaS product, which made £29,000 profit in its first five months. I also led the rollout of a GenAI order-processing tool in London and Paris that cut manual effort by about 90%.”
 
-> “I'm PSPO and PMP certified, and earlier this year I passed AWS AI Practitioner. This role brings together client consulting, product ownership and AI-enabled delivery, which is exactly where I've spent my career, so I'd like to do it at Accenture.”
+> “I hold PSPO II and PMP, and earlier this year I passed AWS AI Practitioner. This role brings together client consulting, product ownership and AI-enabled delivery, which is exactly where I've spent my career, so I'd like to do it at Accenture.”
 
 **Probe — “Are you still at Natoora?”** → see Q2.
 
@@ -133,7 +133,7 @@ Say this calmly and briefly. Showing that you learn from a process is a strength
 
 > “My formal title was Product Owner at Northern Powergrid, but I've done product ownership for much longer than that. At Natoora I owned the SaaS product end to end: I spotted the opportunity, ran client discovery, decided what went into the first release and built the onboarding process. On the GenAI tool, I ran the rollout from stakeholder analysis to go-live. Before that, years of client delivery taught me how products succeed or fail in operation.”
 
-> “The test of a PO is decisions, and I can show you three: what we shipped in four weeks for the first SaaS client, how we sequenced two launches competing for one engineer, and how field research changed the Smart Timesheet design. I'm also PSPO certified, so I know the accountability is for value and the backlog, not just requirements.”
+> “The test of a PO is decisions, and I can show you three: what we shipped in four weeks for the first SaaS client, how we sequenced two launches competing for one engineer, and how field research changed the Smart Timesheet design. I've also passed PSPO II, so I know the accountability is for value and the backlog, not just requirements.”
 
 ### Q4 Tell us about a product you owned end to end
 
