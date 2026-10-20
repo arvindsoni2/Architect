@@ -23,7 +23,7 @@ For opening and motivation practice, use [Present → Past → Future and Compan
 
 The [Accenture extra questions page](vacancies/accenture-product-owner-questions.md) holds short answers to depth and quick-fire questions (Scrum, SAFe, API-first, cloud, AI risk, consulting situations) and the research register.
 
-For engineering interviews, start with the [AI Engineer](roles/ai-engineer.md) or [Forward Deployed Engineer](roles/forward-deployed-engineer.md) guide; for the Accenture vacancy add the [Accenture Forward Deployed AI Engineer supplement](vacancies/accenture-fde.md) alongside the [FDE Handbook v1.4](../handbooks/fde/fde-handbook-v1.4.html). It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.
+For engineering interviews, start with the [AI Engineer](roles/ai-engineer.md) or [Forward Deployed Engineer](roles/forward-deployed-engineer.md) guide; for the Accenture vacancy add the [Accenture Forward Deployed AI Engineer supplement](vacancies/accenture-fde.md) alongside the [FDE Handbook v1.5](../handbooks/fde/fde-handbook-v1.5.html). It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.
 
 ## Read the guides as HTML
 
