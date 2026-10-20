@@ -8,20 +8,20 @@ Accenture lists this Newcastle role at Team Lead/Consultant level. The advert co
 
 This supplement contains **inferred practice questions**, not reports of questions asked by Accenture or a confirmed interview process. Answer outlines describe sound reasoning; they are not claims about the candidate's past actions. Confirm the actual assessment format with the recruiter.
 
-Start with the [FDE handbook](../../handbooks/fde/fde-handbook-v1.4.html), [shared answer methods](../shared/handbook.md#behavioural-answers) and [evidence bank](../shared/evidence-bank.md). Use STAR for a past event, PEARL when a genuine change of understanding is central, and the [scenario sequence](../shared/handbook.md#scenario-answers) for a hypothetical. EVIDENCE in the FDE handbook is a technical completeness check, not another script to recite. Accenture's general behavioural guidance recommends STAR; it does not confirm the stages of this vacancy. [2]
+Start with the [FDE handbook](../../handbooks/fde/fde-handbook-v1.5.html), [shared answer methods](../shared/handbook.md#behavioural-answers) and [evidence bank](../shared/evidence-bank.md). Use STAR for a past event, PEARL when a genuine change of understanding is central, and the [scenario sequence](../shared/handbook.md#scenario-answers) for a hypothetical. EVIDENCE in the FDE handbook is a technical completeness check, not another script to recite. Accenture's general behavioural guidance recommends STAR; it does not confirm the stages of this vacancy. [2]
 
 ## Requirement to preparation map
 
 | Area to demonstrate | Canonical preparation | Evidence to bring |
 | --- | --- | --- |
-| Cloud-native production engineering | [Software](../../handbooks/fde/fde-handbook-v1.4.html#software), [platform](../../handbooks/fde/fde-handbook-v1.4.html#platform) | A deployed service, tests, trace, deployment and recovery explanation |
-| Agents, retrieval and context | [Agent engineering](../../handbooks/fde/fde-handbook-v1.4.html#ai), [context practice](../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#harness) | Held-out cases, retrieval failures and bounded action policy |
-| Provider portability | [Provider lab](../../handbooks/fde/fde-handbook-v1.4.html#provider-lab) | Capability matrix, adapter tests and a policy-constrained fallback |
-| Enterprise controls | [Security](../../handbooks/fde/fde-handbook-v1.4.html#security) | Identity and data boundaries, approval evidence, residual-risk owner |
-| Programme outcomes | [Programme leadership](../../handbooks/fde/fde-handbook-v1.4.html#programme-leadership) | Capacity decision, dependencies, outcome measures and release authority |
-| Commercial strategy | [Investment decisions](../../handbooks/fde/fde-handbook-v1.4.html#investment-decisions) | Defensible baseline, benefit assumptions, costs and stop criteria |
-| People management | [Engineering people leadership](../../handbooks/fde/fde-handbook-v1.4.html#people-leadership) | Actual reporting responsibility, feedback, development and follow-up |
-| Adoption and reuse | [Delivery loop](../../handbooks/fde/fde-handbook-v1.4.html#delivery) | User behaviour, handoff acceptance and a maintained reusable asset |
+| Cloud-native production engineering | [Software](../../handbooks/fde/fde-handbook-v1.5.html#software), [platform](../../handbooks/fde/fde-handbook-v1.5.html#platform) | A deployed service, tests, trace, deployment and recovery explanation |
+| Agents, retrieval and context | [Agent engineering](../../handbooks/fde/fde-handbook-v1.5.html#ai), [context practice](../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#harness) | Held-out cases, retrieval failures and bounded action policy |
+| Provider portability | [Provider lab](../../handbooks/fde/fde-handbook-v1.5.html#provider-lab) | Capability matrix, adapter tests and a policy-constrained fallback |
+| Enterprise controls | [Security](../../handbooks/fde/fde-handbook-v1.5.html#security) | Identity and data boundaries, approval evidence, residual-risk owner |
+| Programme outcomes | [Programme leadership](../../handbooks/fde/fde-handbook-v1.5.html#programme-leadership) | Capacity decision, dependencies, outcome measures and release authority |
+| Commercial strategy | [Investment decisions](../../handbooks/fde/fde-handbook-v1.5.html#investment-decisions) | Defensible baseline, benefit assumptions, costs and stop criteria |
+| People management | [Engineering people leadership](../../handbooks/fde/fde-handbook-v1.5.html#people-leadership) | Actual reporting responsibility, feedback, development and follow-up |
+| Adoption and reuse | [Delivery loop](../../handbooks/fde/fde-handbook-v1.5.html#delivery) | User behaviour, handoff acceptance and a maintained reusable asset |
 
 These preparation choices interpret the remit in [1]; they are not an employer scoring scheme. The platform examples do not imply that mastery of every vendor is mandatory.
 
@@ -184,7 +184,7 @@ Score each dimension 0–2: absent, mentioned, or supported by a decision and ev
 Do not average away a fabricated claim, unsafe action or missing client-experience requirement. Rehearse gaps honestly and identify the next evidence needed.
 
 1. Map the advert to two truthful stories and identify unestablished requirements.
-2. Complete the [provider practical](../../handbooks/fde/fde-handbook-v1.4.html#provider-lab) and Q11 debugging drill.
+2. Complete the [provider practical](../../handbooks/fde/fde-handbook-v1.5.html#provider-lab) and Q11 debugging drill.
 3. Recalculate the commercial case without looking; change adoption, support cost and the realisation factor.
 4. Rehearse Q2, Q3 and Q5 with a partner changing one constraint.
 5. Use the accelerator's [evaluation](../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#evals) and [orchestration](../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#orchestration) resources only for demonstrated weaknesses.
@@ -196,6 +196,6 @@ For motivation, connect the actual work to your interest in customer outcomes an
 1. [Accenture: Forward Deployed AI Engineer, R00345109](https://www.accenture.com/gb-en/careers/jobdetails?id=R00345109_en) — role evidence checked 5 October 2026; vacancy content may change or close.
 2. [Accenture: behavioural interview preparation](https://www.accenture.com/us-en/blogs/blogs-careers/how-to-prepare-for-a-behavioral-interview) — general STAR guidance, not a verified process for this role.
 3. [Google: scale agents](https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale) — current destination of the former Vertex AI Agent Engine overview, checked 5 October 2026. Follow supported SDK/version guidance when implementing; retain the vacancy's own platform wording when discussing its requirements.
-4. [Anthropic: Claude Frontier Academy](https://www.anthropic.com/news/claude-frontier-academy) — announced 2 October 2026; Accenture is among initial participants. Participation is through organisational nomination, not an open individual course. See the [handbook training note](../../handbooks/fde/fde-handbook-v1.4.html#frontier-academy) for the distinction from certification and deployment evidence.
+4. [Anthropic: Claude Frontier Academy](https://www.anthropic.com/news/claude-frontier-academy) — announced 2 October 2026; Accenture is among initial participants. Participation is through organisational nomination, not an open individual course. See the [handbook training note](../../handbooks/fde/fde-handbook-v1.5.html#frontier-academy) for the distinction from certification and deployment evidence.
 
 The source check covers this vacancy and the new references. It is not a claim that every linked handbook or all 76 accelerator resources were re-audited. The numbered questions, scoring rubric and commercial case are editorial practice material.

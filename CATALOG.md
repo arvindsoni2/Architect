@@ -22,7 +22,7 @@ This is the authoritative index of current material in the repository.
 | Professional Learning Platform Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/professional-learning-platform.md](learning-paths/software-architect/connected-learning/professional-learning-platform.md) | Markdown | Current | Living companion | 2026-09-09 |
 | Commerce Governance Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/commerce-governance.md](learning-paths/software-architect/connected-learning/commerce-governance.md) | Markdown | Current | Living companion | 2026-09-09 |
 | NorthStar Retail Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/northstar-retail.md](learning-paths/software-architect/connected-learning/northstar-retail.md) | Markdown | Current | Living companion | 2026-09-09 |
-| Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.4.html](handbooks/fde/fde-handbook-v1.4.html) | HTML | Current | v1.4 | 2026-10-05 |
+| Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.5.html](handbooks/fde/fde-handbook-v1.5.html) | HTML | Current | v1.5 | 2026-10-20 |
 | The AI Architect's Handbook | AI architecture | [handbooks/ai-architecture/ai-architects-handbook-v1.2.html](handbooks/ai-architecture/ai-architects-handbook-v1.2.html) | HTML | Current | v1.2 | 2026-10-13 |
 | Interview Resource Accelerator | AI/ML interview preparation | [learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html](learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html) | HTML | Current | v4.4 | 2026-10-05 |
 | Architecture Decision Method | Software architecture | [docs/software-architecture/architecture-decision-method.md](docs/software-architecture/architecture-decision-method.md) | Markdown | Current | Living | 2026-09-05 |
@@ -77,7 +77,7 @@ Markdown sources are canonical. The tabbed HTML reading view and one HTML page p
 
 ## Status values
 
-The FDE v1.4 publication also includes a focused 5 October supplement for provider practice, programme/people leadership and experience boundaries. Its original research dates remain labelled. The Accenture FDE supplement contains inferred rehearsal material, not a verified interview loop or a declaration of candidate eligibility.
+The FDE v1.5 publication adds a 20 October 2026 UK market snapshot, an interview-loop map with decomposition, learning and customer-simulation drills, a portfolio case-study standard and refreshed certification evidence; it retains the focused 5 October supplement for provider practice, programme/people leadership and experience boundaries. Its original research dates remain labelled. The Accenture FDE supplement contains inferred rehearsal material, not a verified interview loop or a declaration of candidate eligibility.
 
 - **Current:** canonical or currently published material.
 - **Review due:** usable material whose time-sensitive claims need checking.

@@ -2,7 +2,7 @@
 
 **Status:** Draft for owner review · **Last reviewed:** 13 October 2026 · **Sources checked:** 13 October 2026
 
-A forward deployed engineer (FDE) works inside a customer's organisation to get software — now usually AI systems — into production and producing value. Interviews therefore blend software engineering with consulting: you will decompose a vague problem, write practical code, design a system that survives a real customer environment, and handle a difficult customer conversation. For the Accenture vacancy, add the [Accenture FDE supplement](../vacancies/accenture-fde.md); for depth, use the [FDE Handbook](../../handbooks/fde/fde-handbook-v1.4.html).
+A forward deployed engineer (FDE) works inside a customer's organisation to get software — now usually AI systems — into production and producing value. Interviews therefore blend software engineering with consulting: you will decompose a vague problem, write practical code, design a system that survives a real customer environment, and handle a difficult customer conversation. For the Accenture vacancy, add the [Accenture FDE supplement](../vacancies/accenture-fde.md); for depth, use the [FDE Handbook](../../handbooks/fde/fde-handbook-v1.5.html).
 
 **Your honest position:** years of client-facing delivery (TCS consulting for utilities and banking clients, external SaaS customers at Natoora), one production AI rollout, and current hands-on AI engineering shown through three public projects. Panels value end-to-end ownership and customer judgement; be precise about which parts you coded yourself.
 
