@@ -65,7 +65,7 @@ A useful composition is rules for exact checks, a learned decision for ambiguous
 
 Do not import universal savings claims. TypeSafe's [launch evaluation](https://typesafe.ai/blog/introducing-system-one-models-and-jev) describes limitations in its workflow comparisons. The [REFLEX preprint](https://arxiv.org/abs/2609.26532), submitted 22 September 2026, reports reduced strong-model calls on its benchmark but limited advantage over a cheap generative cascade on some external tasks. It is early research, not a deployment guarantee. Compare rules and conventional classifiers as well as cheap and strong generative baselines.
 
-**Connect the dots:** [Understand, build, evaluate and deliver](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Build the comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html#t-practice) · [Evaluate acceptance](production-ai-assurance.md#decision-model-acceptance).
+**Connect the dots:** [Understand, build, evaluate and deliver](../../learning-paths/decision-models-and-forward-deployed-architecture.md) · [Build the comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.3.html#t-practice) · [Evaluate acceptance](production-ai-assurance.md#decision-model-acceptance).
 
 ## Failure modes and warning signs
 
@@ -118,7 +118,7 @@ The loop stops at the first candidate meeting the evidence rubric, or at two ref
 
 **Contributing sources:**
 
-- [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html)
+- [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.3.html)
 - [Agent Engineering Master Manual v2.8](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html)
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html)
 - [Production AI Assurance](production-ai-assurance.md)

@@ -115,7 +115,7 @@ The release record keeps the baseline and every candidate with evidence. An illu
 
 Contributing sources:
 
-- [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html) — evaluation and rollback.
+- [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.3.html) — evaluation and rollback.
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html) — evidence.
 - [Forward Deployed AI Engineer Handbook v1.5](../../handbooks/fde/fde-handbook-v1.6.html) — evaluation gates.
 - [Production AI Assurance](production-ai-assurance.md) — release evidence.

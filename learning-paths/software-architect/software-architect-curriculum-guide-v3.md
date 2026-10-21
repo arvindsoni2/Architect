@@ -429,7 +429,7 @@ Optional extension: carry one existing project from architecture defence into a 
 
 1. Use [FDE role responsibilities](../../handbooks/fde/fde-handbook-v1.6.html#forward-deployed-architect) to assign architecture, engineering, service and workflow owners.
 2. Interview a collaborator or label your simulated discovery. Record the actual workflow, baseline, hard constraints and smallest useful outcome.
-3. Implement or pair on one risky integration; retain the code, test result and ADR. If AI is justified, use the [decision-model comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html#t-practice); choosing no AI is valid.
+3. Implement or pair on one risky integration; retain the code, test result and ADR. If AI is justified, use the [decision-model comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.3.html#t-practice); choosing no AI is valid.
 4. Defend security, failure recovery, unit economics and handoff using the [FDE capstone](../../handbooks/fde/fde-handbook-v1.6.html#capstone) and the existing [programme assessment](software-architect-grooming-programme-v6.html#assessment).
 5. Extract a reusable pattern and name the conditions under which it should not be reused.
 

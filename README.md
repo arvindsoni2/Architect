@@ -33,7 +33,7 @@ Learn from the **interactive HTML handbooks** first: they carry the diagrams, la
 ### AI architecture
 
 - [Production AI Assurance](docs/ai-architecture/production-ai-assurance.md)
-- [AI Engineering Handbook](handbooks/ai-engineering/ai-engineering-handbook-v3.2.html) — ten-week, build-first track with weekly builds, progress tracking and a capstone
+- [AI Engineering Handbook](handbooks/ai-engineering/ai-engineering-handbook-v3.3.html) — ten-week, build-first track with weekly builds, progress tracking and a capstone
 - [AI Evaluation Field Guide](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) — role-based evaluation methods, diagrams and interactive labs
 - [LLM Inference Systems](docs/ai-architecture/llm-inference-systems.md)
 - [Reasoning System Design](docs/ai-architecture/reasoning-system-design.md)

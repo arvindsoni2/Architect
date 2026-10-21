@@ -9,7 +9,7 @@ const output = process.env.ARCHITECT_SCREENSHOTS || '/tmp/architect-browser-revi
 const files = {
   system:'handbooks/system-design/system-design-concept-handbook-v6.html',
   interview:'learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html',
-  ai:'handbooks/ai-engineering/ai-engineering-handbook-v3.2.html',
+  ai:'handbooks/ai-engineering/ai-engineering-handbook-v3.3.html',
   agent:'handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html',
   fde:'handbooks/fde/fde-handbook-v1.6.html',
   saa:'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html',

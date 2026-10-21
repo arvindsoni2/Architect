@@ -166,7 +166,7 @@ pre,.table-wrap,.diagram,.flow-diagram,.code-wrap{max-width:100%;}
 </section>
 <section class="panel" id="decision-model-workflow">
 <h2>Connect the dots: a bounded decision inside an agent</h2>
-<p>Reuse the labelled tickets, decision contract and evaluation packet from the <a href="../ai-engineering/ai-engineering-handbook-v3.2.html#t-practice">AI Engineering comparison</a>. Here the task is reliable integration, not another model benchmark.</p>
+<p>Reuse the labelled tickets, decision contract and evaluation packet from the <a href="../ai-engineering/ai-engineering-handbook-v3.3.html#t-practice">AI Engineering comparison</a>. Here the task is reliable integration, not another model benchmark.</p>
 <ol>
 <li>Implement a provider adapter returning a validated label, available probability fields, model/question versions and an explicit failure status. Do not manufacture confidence for a provider that does not return it.</li>
 <li>Place deterministic input and permission checks around the decision call. Low confidence, unsupported input or missing evidence must take an explicit clarification, bounded fallback or human-review route.</li>
