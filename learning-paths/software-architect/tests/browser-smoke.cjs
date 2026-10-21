@@ -5,7 +5,7 @@ const fs = require('node:fs/promises');
 const path = require('node:path');
 const {pathToFileURL} = require('node:url');
 const output = process.env.ARCHITECT_SCREENSHOTS || '/tmp/architect-browser-review';
-const url = pathToFileURL(path.join(__dirname,'../software-architect-grooming-programme-v5.html')).href;
+const url = pathToFileURL(path.join(__dirname,'../software-architect-grooming-programme-v6.html')).href;
 
 (async()=>{
   await fs.mkdir(output,{recursive:true});

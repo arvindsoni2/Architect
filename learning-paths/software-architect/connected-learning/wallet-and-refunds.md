@@ -1,6 +1,6 @@
 # Digital wallet and refunds: authority before automation
 
-[Project index and working method](README.md) · [Programme Unit 6](../software-architect-grooming-programme-v5.html#day6)
+[Project index and working method](README.md) · [Programme Unit 6](../software-architect-grooming-programme-v6.html#day6)
 
 ## Frame the risk
 
@@ -30,7 +30,7 @@ Within a transaction, check the cumulative refund bound, claim a subject/transac
 
 | Preparation | Exact lab transfer | Unit 6 artifact |
 | --- | --- | --- |
-| [Programme security/resilience](../software-architect-grooming-programme-v5.html#day6) | 09 SecureLanding (`l9sec`), **Build the policy matrix**, **Break encryption access safely**. | Data-flow diagram, identity flow, allow/deny evidence. |
+| [Programme security/resilience](../software-architect-grooming-programme-v6.html#day6) | 09 SecureLanding (`l9sec`), **Build the policy matrix**, **Break encryption access safely**. | Data-flow diagram, identity flow, allow/deny evidence. |
 | [Durable workflow boundaries](../../../docs/cross-cutting-patterns/durable-workflows-and-idempotency.md) | 03 OrderFlow (`l3`), **Duplicate drill** and **Poison drill**. | Refund state/effect model and top-risk treatment. |
 | [Recovery reasoning](../../../docs/system-design/reliability-and-failure-control.md) | 08 VaultGrade (`l8`), **THE DRILL**; 11 DataShift (`l11data`), **Restore and re-encrypt**. | Resilience plan including ledger reconciliation after restore. |
 

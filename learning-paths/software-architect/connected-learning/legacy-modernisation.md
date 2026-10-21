@@ -1,6 +1,6 @@
 # Legacy order management: migrate the writer, not just the code
 
-[Project index and working method](README.md) · [Programme Unit 7](../software-architect-grooming-programme-v5.html#day7)
+[Project index and working method](README.md) · [Programme Unit 7](../software-architect-grooming-programme-v6.html#day7)
 
 ## Frame the first increment
 

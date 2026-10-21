@@ -3,7 +3,7 @@
 For decision models and customer delivery, use [Connect the dots: Understand → Build → Evaluate → Deliver](../../decision-models-and-forward-deployed-architecture.md). It connects the independent guides through one evidence packet; the project cases below remain the domain-specific routes.
 
 
-Use one project to connect **business requirement → architectural decision → technical mechanism → AWS implementation → AI controls → experiment → artifact → interview explanation**. These are transfer companions to the existing [grooming programme](../software-architect-grooming-programme-v5.html), not additional syllabuses. Reviewed 9 September 2026.
+Use one project to connect **business requirement → architectural decision → technical mechanism → AWS implementation → AI controls → experiment → artifact → interview explanation**. These are transfer companions to the existing [grooming programme](../software-architect-grooming-programme-v6.html), not additional syllabuses. Reviewed 9 September 2026.
 
 ## Choose the question you need to practise
 
@@ -35,7 +35,7 @@ Use six passes, initially 60–90 minutes each; implementation can require addit
 5. **Package evidence:** complete the original unit's required artifacts; connect each claim to an observation or labelled hypothesis.
 6. **Defend and revise:** explain without notes, answer a changed-constraint question, and record the revision.
 
-Use the [patient portal evidence template](../patient-portal-connected-learning.md#7-build-one-evidence-pack-over-eight-sessions) and the [programme assessment](../software-architect-grooming-programme-v5.html#assessment). Each guide includes a worked ADR and a concrete experiment specification. Proposed diagrams, example decisions and expected test outcomes are **not executed evidence**.
+Use the [patient portal evidence template](../patient-portal-connected-learning.md#7-build-one-evidence-pack-over-eight-sessions) and the [programme assessment](../software-architect-grooming-programme-v6.html#assessment). Each guide includes a worked ADR and a concrete experiment specification. Proposed diagrams, example decisions and expected test outcomes are **not executed evidence**.
 
 All added workload thresholds are teaching hypotheses unless explicitly attributed to the programme brief. All data and external providers in exercises should be synthetic or sandboxed. The companions do not deploy AWS resources, process real payments, grant regulatory approval or establish production readiness. Preserve actual versions, configuration, commands, observations and teardown results when you run an AWS lab. Do not put private customer, employer or financial records in this public repository.
 

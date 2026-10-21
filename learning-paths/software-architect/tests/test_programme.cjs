@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const html = fs.readFileSync(path.join(__dirname, '../software-architect-grooming-programme-v5.html'), 'utf8');
+const html = fs.readFileSync(path.join(__dirname, '../software-architect-grooming-programme-v6.html'), 'utf8');
 const source = html.match(/<script id="programme-model">([\s\S]*?)<\/script>/)?.[1] || '';
 const context = vm.createContext({TextEncoder});
 vm.runInContext(source, context);

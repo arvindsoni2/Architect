@@ -1,6 +1,6 @@
 # Retail inventory intelligence: truth, projections and predictions
 
-[Project index and working method](README.md) · [Programme Unit 5](../software-architect-grooming-programme-v5.html#day5)
+[Project index and working method](README.md) · [Programme Unit 5](../software-architect-grooming-programme-v6.html#day5)
 
 ## Frame the data problem
 

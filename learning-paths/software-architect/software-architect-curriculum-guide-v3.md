@@ -3,7 +3,7 @@
 **Public repository edition:** v3, evidence-led revision reviewed 8 September 2026
 **Purpose:** define what an aspiring software architect should learn, why it matters, and the order in which the capabilities build on one another.
 
-This guide is the durable curriculum map. It deliberately excludes dated calendars, daily exercises, saved progress and mentor workflow. Use the companion [Software Architect Grooming Programme v5](software-architect-grooming-programme-v5.html) for diagnostic bridge modules, worked scenarios, exercises, oral defences and capstone assessment.
+This guide is the durable curriculum map. It deliberately excludes dated calendars, daily exercises, saved progress and mentor workflow. Use the companion [Software Architect Grooming Programme v5](software-architect-grooming-programme-v6.html) for diagnostic bridge modules, worked scenarios, exercises, oral defences and capstone assessment.
 
 To connect this curriculum to AWS SAA-C03 study and technical interviews, use the [patient portal connected-learning case](patient-portal-connected-learning.md). It maps one scenario to exact programme units, AWS labs, technical mechanisms, AI evaluation and reviewable artifacts.
 
@@ -430,7 +430,7 @@ Optional extension: carry one existing project from architecture defence into a 
 1. Use [FDE role responsibilities](../../handbooks/fde/fde-handbook-v1.6.html#forward-deployed-architect) to assign architecture, engineering, service and workflow owners.
 2. Interview a collaborator or label your simulated discovery. Record the actual workflow, baseline, hard constraints and smallest useful outcome.
 3. Implement or pair on one risky integration; retain the code, test result and ADR. If AI is justified, use the [decision-model comparison](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html#t-practice); choosing no AI is valid.
-4. Defend security, failure recovery, unit economics and handoff using the [FDE capstone](../../handbooks/fde/fde-handbook-v1.6.html#capstone) and the existing [programme assessment](software-architect-grooming-programme-v5.html#assessment).
+4. Defend security, failure recovery, unit economics and handoff using the [FDE capstone](../../handbooks/fde/fde-handbook-v1.6.html#capstone) and the existing [programme assessment](software-architect-grooming-programme-v6.html#assessment).
 5. Extract a reusable pattern and name the conditions under which it should not be reused.
 
 **Connect the dots:** [Understand → Build → Evaluate → Deliver](../decision-models-and-forward-deployed-architecture.md). Carry the same ADR, case IDs, acceptance evidence and ownership map between guides. Do not claim customer adoption or production operation from a simulated exercise.

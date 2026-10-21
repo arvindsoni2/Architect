@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-HTML = pathlib.Path(os.environ.get('ARCHITECT_HTML', ROOT / 'software-architect-grooming-programme-v5.html')).read_text()
+HTML = pathlib.Path(os.environ.get('ARCHITECT_HTML', ROOT / 'software-architect-grooming-programme-v6.html')).read_text()
 
 
 class Elements(HTMLParser):

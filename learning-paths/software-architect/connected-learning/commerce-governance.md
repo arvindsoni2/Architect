@@ -1,6 +1,6 @@
 # Multi-team commerce governance: guardrails with evidence
 
-[Project index and working method](README.md) · [Programme Unit 9](../software-architect-grooming-programme-v5.html#day9)
+[Project index and working method](README.md) · [Programme Unit 9](../software-architect-grooming-programme-v6.html#day9)
 
 ## Frame the operating model
 

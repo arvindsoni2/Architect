@@ -1,6 +1,6 @@
 # NorthStar Retail: connect the complete architecture engagement
 
-[Project index and working method](README.md) · [Unit 10 workshop](../software-architect-grooming-programme-v5.html#day10) · [Full capstone brief](../software-architect-grooming-programme-v5.html#capstone)
+[Project index and working method](README.md) · [Unit 10 workshop](../software-architect-grooming-programme-v6.html#day10) · [Full capstone brief](../software-architect-grooming-programme-v6.html#capstone)
 
 ## Preserve the actual brief
 
@@ -112,4 +112,4 @@ Suggested phases follow the brief: shadow visibility and a bounded pilot within 
 
 Explain the same evidence three ways: business value and phased risk to an executive; authority, transactions and failure traces to an engineer; evaluation, model boundaries and rollback to an AI/platform interviewer. Then answer: **“The store remains offline after its allocation is exhausted, and the business asks you to keep accepting orders. What changes?”** A defensible answer exposes the business risk and alternatives; it does not invent a consistency guarantee.
 
-Use the [existing assessment rubric](../software-architect-grooming-programme-v5.html#assessment). Diagrams, planned AWS drills and completed reading do not satisfy executed-evidence gates. The AWS service candidates above are reasoned proposals; production choices require current regional capability, price, quota and recovery validation.
+Use the [existing assessment rubric](../software-architect-grooming-programme-v6.html#assessment). Diagrams, planned AWS drills and completed reading do not satisfy executed-evidence gates. The AWS service candidates above are reasoned proposals; production choices require current regional capability, price, quota and recovery validation.
