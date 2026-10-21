@@ -26,7 +26,7 @@ main{min-width:0} .hero{padding:70px max(28px,calc((100vw - 310px - var(--max))/
 .eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--muted);font-size:11px;font-weight:800} h2{margin:2px 0;font-size:28px;line-height:1.2} h3{font-size:16px;margin-top:0}
 .concept p{margin:12px 0} .example,.formula{padding:14px 16px;border-left:3px solid var(--accent2);background:#0d1526;border-radius:8px;margin:16px 0} .formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border-left-color:var(--accent)}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px} .exercise,.challenge{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:17px} ol{padding-left:22px} label{font-size:13px;color:var(--muted)} details{margin-top:14px;border-top:1px dashed var(--line);padding-top:12px} summary{cursor:pointer;font-weight:800;color:var(--accent2)}
-.section-title{margin-top:56px} .matrix{width:100%;border-collapse:collapse;font-size:14px} .matrix th,.matrix td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} .matrix th{color:var(--accent)}
+.section-title{margin-top:56px} .table-scroll{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}@media print{.table-scroll{overflow:visible}}.matrix{width:100%;border-collapse:collapse;font-size:14px} .matrix th,.matrix td{padding:10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} .matrix th{color:var(--accent)}
 .refs li{margin:8px 0} footer{border-top:1px solid var(--line);padding:30px;color:var(--muted);font-size:13px}
 .hidden{display:none!important}
 @media(max-width:900px){.layout{display:block} aside{position:relative;height:auto;border-right:0;border-bottom:1px solid var(--line)} nav{display:none} .hero{padding:50px 24px} .grid2,.audit-grid{grid-template-columns:1fr} .wrap{padding:28px 18px 70px}}
@@ -219,14 +219,14 @@ body.core-only .chapter:not([data-core]):focus-within{opacity:1}
 <section>
 <h2>How to use it</h2>
 <p>For each chapter: <b>read the first-principles and Pareto blocks → read the concept and step through the diagram → close the text and run the Feynman loop → do the three short exercises → solve the design challenge on paper → open the model answer and compare</b>. Mark the chapter practised only after you can redraw its diagram and defend a decision without the banned words, not merely define the term.</p>
-<table class="matrix">
+<div class="table-scroll"><table class="matrix">
 <tr><th>Pass</th><th>What to do</th><th>Evidence of learning</th></tr>
 <tr><td>1 · Understand</td><td>Read concept + example</td><td>You can explain the mechanism.</td></tr>
 <tr><td>2 · Retrieve</td><td>Feynman loop: redraw the diagram, explain it without the banned words</td><td>You remember the important constraints and can say them plainly.</td></tr>
 <tr><td>3 · Apply</td><td>Complete micro-exercises</td><td>You can use the concept in a bounded problem.</td></tr>
 <tr><td>4 · Judge</td><td>Do the design challenge</td><td>You can compare alternatives and failure modes.</td></tr>
 <tr><td>5 · Integrate</td><td>Use it in a full system design</td><td>You can show where the concept changes architecture.</td></tr>
-</table>
+</table></div>
 </section>
 <section class="lens-intro lens-scope" id="first-principles">
 <h2>Architecture from first principles</h2>
@@ -759,7 +759,7 @@ body.core-only .chapter:not([data-core]):focus-within{opacity:1}
 <section id="practice-ladder">
 <h2 class="section-title">Integrated practice ladder</h2>
 <p>Use this progression to turn isolated mechanisms into increasingly complete system designs.</p>
-<table class="matrix">
+<div class="table-scroll"><table class="matrix">
 <tr><th>Level</th><th>System</th><th>Primary concepts to exercise</th><th>Required output</th></tr>
 <tr><td>1</td><td>URL Shortener</td><td>requirements, estimation, caching, database, partitioning</td><td>API + data model + capacity estimate + C4 container view</td></tr>
 <tr><td>2</td><td>Rate Limiter</td><td>token bucket, distributed counters, consistency, hot keys</td><td>algorithm + storage choice + failure behavior</td></tr>
@@ -768,11 +768,11 @@ body.core-only .chapter:not([data-core]):focus-within{opacity:1}
 <tr><td>5</td><td>Chat / Messaging</td><td>ordering, fan-out, presence, multi-region, consistency</td><td>data partitioning + message flow + capacity</td></tr>
 <tr><td>6</td><td>Video / Social Feed</td><td>CDN, caching, fan-out, ranking, async pipelines</td><td>read/write paths + cache strategy + overload plan</td></tr>
 <tr><td>7</td><td>Ride Sharing</td><td>geospatial partitioning, streaming, matching, regional resilience</td><td>end-to-end architecture + 5 ADRs + RPO/RTO</td></tr>
-</table>
+</table></div>
 </section>
 <section>
 <h2 class="section-title">Reusable system-design review checklist</h2>
-<table class="matrix">
+<div class="table-scroll"><table class="matrix">
 <tr><th>Question</th><th>What a strong answer contains</th></tr>
 <tr><td>What are we designing?</td><td>Actors, use cases, non-goals, measurable quality attributes.</td></tr>
 <tr><td>How large is it?</td><td>Assumptions, QPS, payloads, storage, bandwidth, peak factor.</td></tr>
@@ -784,7 +784,7 @@ body.core-only .chapter:not([data-core]):focus-within{opacity:1}
 <tr><td>How is blast radius limited?</td><td>Bulkheads, circuit breakers, rate limiting, shedding, cells/regions.</td></tr>
 <tr><td>How do we know it works?</td><td>SLIs, SLOs, traces, metrics, logs, synthetic tests, error budgets.</td></tr>
 <tr><td>How does it evolve?</td><td>ADRs, compatibility, migration path, rollback, ownership.</td></tr>
-</table>
+</table></div>
 </section>
 <section>
 <h2 class="section-title">Grounded references</h2>
