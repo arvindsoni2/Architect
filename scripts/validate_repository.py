@@ -337,12 +337,153 @@ def _html_link_errors(root: pathlib.Path) -> list[str]:
     return errors
 
 
+LENS_KINDS = ("fp", "pareto", "visual", "feynman")
+LENS_MAX_LEARN_ITEMS = 3
+
+
+class _LearningLensParser(HTMLParser):
+    """Collects learning-lens units, blocks, Feynman text and diagram metadata.
+
+    See docs/learning-lens-standard.md. A unit is any element carrying
+    ``data-lens-unit``. An empty value means the unit is the element itself;
+    ``until-next`` means it runs until the next unit starts (for flat,
+    heading-based documents).
+    """
+
+    def __init__(self) -> None:
+        super().__init__(convert_charrefs=True)
+        self.events: list[tuple[str, str, int]] = []
+        self.units: list[dict] = []
+        self.unknown: list[tuple[str, int]] = []
+        self.learn_lists: list[tuple[int, int]] = []
+        self.feynman: list[tuple[str, int]] = []
+        self.svgs: list[dict] = []
+        self._depth: dict[str, int] = {}
+        self._open_units: list[dict] = []
+        self._feynman_open: list[dict] = []
+        self._learn_open: list[dict] = []
+        self._svg: dict | None = None
+
+    def _line(self) -> int:
+        return self.getpos()[0]
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        attributes = {name.lower(): (value or "") for name, value in attrs}
+        tag = tag.lower()
+        depth = self._depth.get(tag, 0) + 1
+        self._depth[tag] = depth
+        position = len(self.events)
+        if "data-lens-unit" in attributes:
+            unit = {
+                "line": self._line(),
+                "mode": attributes["data-lens-unit"],
+                "start": position,
+                "end": None,
+                "tag": tag,
+                "depth": depth,
+            }
+            self.units.append(unit)
+            if unit["mode"] != "until-next":
+                self._open_units.append(unit)
+        kind = attributes.get("data-lens-block")
+        if kind is not None:
+            if kind in LENS_KINDS:
+                self.events.append(("block", kind, self._line()))
+            else:
+                self.unknown.append((kind, self._line()))
+            if kind == "feynman":
+                self._feynman_open.append({"tag": tag, "depth": depth, "text": [], "line": self._line()})
+        classes = attributes.get("class", "").split()
+        if tag == "ul" and "lens-learn" in classes:
+            self._learn_open.append({"depth": depth, "items": 0, "line": self._line()})
+        if tag == "li" and self._learn_open:
+            if self._depth.get("ul", 0) == self._learn_open[-1]["depth"]:
+                self._learn_open[-1]["items"] += 1
+        if tag == "svg" and "lens-svg" in classes:
+            self._svg = {"line": self._line(), "role": attributes.get("role", ""), "title": False, "desc": False, "depth": depth}
+        elif self._svg is not None and tag in ("title", "desc"):
+            self._svg[tag] = True
+        self.events.append(("start", tag, self._line()))
+
+    def handle_startendtag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        self.handle_starttag(tag, attrs)
+        self.handle_endtag(tag)
+
+    def handle_endtag(self, tag: str) -> None:
+        tag = tag.lower()
+        depth = self._depth.get(tag, 0)
+        if self._open_units and self._open_units[-1]["tag"] == tag and self._open_units[-1]["depth"] == depth:
+            self._open_units.pop()["end"] = len(self.events)
+        if self._feynman_open and self._feynman_open[-1]["tag"] == tag and self._feynman_open[-1]["depth"] == depth:
+            block = self._feynman_open.pop()
+            self.feynman.append((" ".join(" ".join(block["text"]).split()), block["line"]))
+        if tag == "ul" and self._learn_open and self._learn_open[-1]["depth"] == depth:
+            block = self._learn_open.pop()
+            self.learn_lists.append((block["items"], block["line"]))
+        if tag == "svg" and self._svg is not None and self._svg["depth"] == depth:
+            self.svgs.append(self._svg)
+            self._svg = None
+        if depth:
+            self._depth[tag] = depth - 1
+        self.events.append(("end", tag, self._line()))
+
+    def handle_data(self, data: str) -> None:
+        for block in self._feynman_open:
+            block["text"].append(data)
+
+
+def _learning_lens_errors(root: pathlib.Path) -> list[str]:
+    errors: list[str] = []
+    for document in sorted(root.rglob("*.html")):
+        text = document.read_text(encoding="utf-8")
+        if "data-lens-unit" not in text and "data-lens-block" not in text and "lens-svg" not in text:
+            continue
+        relative_document = document.relative_to(root).as_posix()
+        parser = _LearningLensParser()
+        parser.feed(text)
+        parser.close()
+        for kind, line in parser.unknown:
+            errors.append(f"{relative_document}:{line}: unknown data-lens-block value: {kind}")
+        units = parser.units
+        for index, unit in enumerate(units):
+            if unit["mode"] == "until-next":
+                end = units[index + 1]["start"] if index + 1 < len(units) else len(parser.events)
+            else:
+                end = unit["end"] if unit["end"] is not None else len(parser.events)
+            found = {name for event, name, _ in parser.events[unit["start"]:end] if event == "block"}
+            missing = [kind for kind in LENS_KINDS if kind not in found]
+            if missing:
+                errors.append(
+                    f"{relative_document}:{unit['line']}: learning-lens unit is missing: {', '.join(missing)}"
+                )
+        for items, line in parser.learn_lists:
+            if items > LENS_MAX_LEARN_ITEMS:
+                errors.append(
+                    f"{relative_document}:{line}: Pareto learn-first list has {items} items; the limit is {LENS_MAX_LEARN_ITEMS}"
+                )
+        seen: dict[str, int] = {}
+        for body, line in parser.feynman:
+            if body in seen:
+                errors.append(
+                    f"{relative_document}:{line}: Feynman block repeats the one at line {seen[body]}; prompts must be written for each unit"
+                )
+            else:
+                seen[body] = line
+        for svg in parser.svgs:
+            if svg["role"] != "img" or not svg["title"] or not svg["desc"]:
+                errors.append(
+                    f"{relative_document}:{svg['line']}: learning-lens diagram needs role=\"img\", <title> and <desc>"
+                )
+    return errors
+
+
 def validate_repository(root: pathlib.Path) -> list[str]:
     root = root.resolve()
     return (
         _catalogue_errors(root)
         + _markdown_link_errors(root)
         + _html_link_errors(root)
+        + _learning_lens_errors(root)
     )
 
 

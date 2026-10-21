@@ -13,6 +13,8 @@ const files = {
   agent:'handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html',
   fde:'handbooks/fde/fde-handbook-v1.6.html',
   saa:'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html',
+  aiarch:'handbooks/ai-architecture/ai-architects-handbook-v1.3.html',
+  evals:'handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html',
 };
 (async()=>{
   await fs.mkdir(output,{recursive:true});
@@ -24,6 +26,23 @@ const files = {
       const redrawHybrid=page.locator('[id="41f-hybrid"]');
       page.on('pageerror',error=>errors.push(error.message));
       await page.goto(pathToFileURL(path.join(root,file)).href);
+      // Learning lens: the first step-through diagram walks forward, wraps backwards and resets.
+      if(await page.locator('.lens-visual[data-steps]').count()) {
+        const r=await page.evaluate(()=>{const f=document.querySelector('.lens-visual[data-steps]');const c=f.querySelector('.lens-controls');const n=Number(f.dataset.steps);const svg=f.querySelector('svg');
+          c.querySelector('[data-lens-act="next"]').click();const first=c.querySelector('.lens-status').textContent,stepping=svg.classList.contains('stepping'),lit=f.querySelectorAll('.lens-steps li.on').length,edges=svg.querySelectorAll('.lens-edge.on').length;
+          c.querySelector('[data-lens-act="prev"]').click();const wrapped=c.querySelector('.lens-status').textContent;
+          c.querySelector('[data-lens-act="all"]').click();return {hidden:c.hidden,n,first,stepping,lit,edges,wrapped,reset:svg.classList.contains('stepping')};});
+        assert.equal(r.hidden,false,`${name}: lens controls stayed hidden`);
+        assert.match(r.first,/^Step 1 of /);assert.equal(r.stepping,true);assert.equal(r.lit,1);assert.ok(r.edges>=1,`${name}: step 1 highlights no arrow`);
+        assert.match(r.wrapped,new RegExp(`^Step ${r.n} of `));assert.equal(r.reset,false);
+      }
+      if(name==='system') {
+        await page.locator('#coreToggle').click();
+        assert.equal(await page.evaluate(()=>document.body.classList.contains('core-only')),true);
+        assert.equal(await page.locator('#coreToggle').getAttribute('aria-pressed'),'true');
+        await page.locator('#coreToggle').click();
+        assert.equal(await page.evaluate(()=>document.body.classList.contains('core-only')),false);
+      }
       if(name==='saa') {
         assert.equal(await page.locator('.redraw-card').count(),8);
         await page.locator('label[for="filter-handbook"]').click();
@@ -46,6 +65,8 @@ const files = {
       }
       if(['system','interview','saa'].includes(name))await page.locator('#search').fill('zz-no-results-zz');
       await page.emulateMedia({media:'print'});
+      if(name!=='saa') await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
+      assert.equal(await page.evaluate(()=>[...document.querySelectorAll('details.lens-model,details.lens-sketch')].every(d=>d.open)),true,`${name}: print hides a model answer or sketch`);
       if(name==='saa') {
         await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
         assert.equal(await page.locator('[id="41h-dr"] details').getAttribute('open'),'');
@@ -57,6 +78,7 @@ const files = {
       if(['system','interview','saa'].includes(name))await page.locator('#search').fill('');
       await page.screenshot({path:path.join(output,`${name}-desktop.png`),animations:'disabled'});
       await page.setViewportSize({width:390,height:844});
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`${name}: page scrolls sideways at 390 px`);
       await page.screenshot({path:path.join(output,`${name}-mobile.png`),animations:'disabled'});
       if(name==='saa') {
         if(!await redrawHybrid.locator('details').evaluate(el=>el.open))
@@ -96,6 +118,6 @@ const files = {
       assert.deepEqual(errors,[]);
       await context.close();
     }
-    console.log('Handbook browser smoke passed: filtered print, inactive AI scenarios, storage fallback, note export and reset.');
+    console.log('Handbook browser smoke passed: filtered print, inactive AI scenarios, storage fallback, note export and reset, learning-lens steppers, core path, print answers and 390 px overflow.');
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

@@ -4,7 +4,7 @@ A curated, version-controlled knowledge base for software architecture, system d
 
 ## Start here
 
-Learn from the **interactive HTML handbooks** first: they carry the diagrams, labs, motion and read-aloud. The Markdown notes under `docs/` are plain-text companions kept alongside them. The [content catalogue](CATALOG.md) lists both.
+Learn from the **interactive HTML handbooks** first: they carry the diagrams, labs, motion and read-aloud. Each unit now opens with first principles and a Pareto cut, and ends with a Feynman loop; the System Design handbook also offers a *Core path only* view. The Markdown notes under `docs/` are plain-text companions kept alongside them. The [content catalogue](CATALOG.md) lists both.
 
 - [Role-based interview preparation](interview-prep/README.md) — shared methods, evidence and five role guides
 
@@ -14,6 +14,7 @@ Learn from the **interactive HTML handbooks** first: they carry the diagrams, la
 - [Architecture and applied AI certification roadmap](learning-paths/architecture-ai-certification-roadmap.md)
 - [Content catalogue](CATALOG.md)
 - [Repository design](docs/repository-design.md)
+- [Learning lens standard](docs/learning-lens-standard.md) — first principles, Pareto, step-through visuals and Feynman loops in every handbook unit
 - [Contribution and curation rules](CONTRIBUTING.md)
 
 ## Maintainable notes

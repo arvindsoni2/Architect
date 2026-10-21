@@ -72,6 +72,10 @@ Before merge, open the HTML locally and check:
 
 Update the handbook's visible edition line to say what changed and when.
 
+## Learning lens (owner preference, 21 October 2026)
+
+When a handbook chapter or learning unit is added or substantially revised, give it the four learning-lens blocks described in the [learning lens standard](docs/learning-lens-standard.md): first principles (the problem and two to four irreducible truths), a Pareto cut (at most three things to learn first, plus what to defer), a visual with numbered arrows that also works without script, and a Feynman loop with banned words and a hidden model answer written for that unit. Link videos only to verified lesson pages or creator-channel searches. The repository validator enforces the structural rules for any page that marks its units with `data-lens-unit`.
+
 ## Pull-request checklist
 
 - [ ] The change is within the repository’s architecture scope or an explicitly approved collection.
@@ -80,6 +84,7 @@ Update the handbook's visible edition line to say what changed and when.
 - [ ] Links and time-sensitive claims have been checked.
 - [ ] New learning content is in the relevant HTML handbook, and any Markdown companion agrees with it.
 - [ ] HTML files have been opened and visually inspected, including at 390 px, in each theme and with reduced motion.
+- [ ] New or substantially revised handbook units carry the four learning-lens blocks.
 - [ ] `CATALOG.md` has been updated when required.
 - [ ] No obsolete duplicate or empty directory has been added.
 - [ ] `git diff --check` reports no whitespace errors.

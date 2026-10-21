@@ -332,5 +332,76 @@ class RepositoryValidationTests(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
 
+LENS_DIAGRAM = (
+    '<figure data-lens-block="visual"><svg class="lens-svg" role="img">'
+    "<title>T</title><desc>D</desc></svg></figure>"
+)
+
+
+def lens_unit(prompt="Explain caching.", learn=3, blocks=("fp", "pareto", "visual", "feynman"), mode=""):
+    parts = []
+    if "fp" in blocks:
+        parts.append('<section data-lens-block="fp"><p>Truths</p></section>')
+    if "pareto" in blocks:
+        items = "".join(f"<li>item {n}</li>" for n in range(learn))
+        parts.append(f'<section data-lens-block="pareto"><ul class="lens-learn">{items}</ul></section>')
+    if "visual" in blocks:
+        parts.append(LENS_DIAGRAM)
+    if "feynman" in blocks:
+        parts.append(f'<section data-lens-block="feynman"><p>{prompt}</p></section>')
+    if mode == "until-next":
+        return f'<h1>Chapter</h1><section data-lens-unit="until-next"></section>{"".join(parts)}'
+    return f'<article data-lens-unit="">{"".join(parts)}</article>'
+
+
+class LearningLensValidationTests(unittest.TestCase):
+    make_repository = RepositoryValidationTests.make_repository
+
+    def write_page(self, root, body):
+        (root / "docs" / "page.html").write_text(f"<!doctype html><body>{body}</body>", encoding="utf-8")
+
+    def lens_errors(self, body):
+        temporary, root = self.make_repository()
+        with temporary:
+            self.write_page(root, body)
+            return [error for error in validate_repository(root) if "page.html" in error]
+
+    def test_accepts_complete_units(self):
+        body = lens_unit("Explain caching.") + lens_unit("Explain sharding.")
+        self.assertEqual(self.lens_errors(body), [])
+
+    def test_reports_missing_lens_block(self):
+        errors = self.lens_errors(lens_unit(blocks=("fp", "visual", "feynman")))
+        self.assertEqual(len(errors), 1)
+        self.assertIn("missing: pareto", errors[0])
+
+    def test_flat_units_run_until_the_next_unit(self):
+        body = lens_unit("First.", mode="until-next") + lens_unit("Second.", mode="until-next", blocks=("fp", "pareto", "visual"))
+        errors = self.lens_errors(body)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("missing: feynman", errors[0])
+
+    def test_limits_learn_first_items(self):
+        errors = self.lens_errors(lens_unit(learn=4))
+        self.assertEqual(len(errors), 1)
+        self.assertIn("4 items", errors[0])
+
+    def test_rejects_repeated_feynman_prompts(self):
+        errors = self.lens_errors(lens_unit("Same prompt.") + lens_unit("Same prompt."))
+        self.assertEqual(len(errors), 1)
+        self.assertIn("repeats", errors[0])
+
+    def test_requires_accessible_lens_diagrams(self):
+        body = lens_unit().replace("<desc>D</desc>", "")
+        errors = self.lens_errors(body)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("<desc>", errors[0])
+
+    def test_rejects_unknown_lens_block(self):
+        errors = self.lens_errors(lens_unit() + '<div data-lens-block="summary"></div>')
+        self.assertEqual(len(errors), 1)
+        self.assertIn("unknown data-lens-block value: summary", errors[0])
+
+
 if __name__ == "__main__":
     unittest.main()
