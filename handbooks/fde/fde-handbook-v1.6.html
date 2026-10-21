@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Forward Deployed AI Engineer Handbook v1.5</title>
+<title>Forward Deployed AI Engineer Handbook v1.6</title>
 <meta name="description" content="A field guide for taking enterprise AI systems from ambiguous customer problems to safe, measurable production outcomes.">
 <style>
 :root{
@@ -126,18 +126,104 @@ summary{cursor:pointer;font-weight:750}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media print{.listen{display:none!important}}
 </style>
+<style>
+
+/* Learning lens v1 (first principles, Pareto, visual, Feynman). See docs/learning-lens-standard.md */
+.lens-scope,.lens-block,.lens-visual,.lens-sketch{--lens-ink:var(--text);--lens-muted:var(--muted);--lens-line:var(--line);--lens-surface:var(--panel);--lens-surface2:var(--panel2);--lens-accent:var(--accent);
+--lr-client:#4a7fe6;--lr-compute:#26946a;--lr-data:#c0820f;--lr-async:#8a62d8;--lr-risk:#cf4b4b;--lr-neutral:#7d8899;--lr-control:#2a95a8;--lr-model:#c25e9a;
+--lr-client:color-mix(in oklab,#4a7fe6 74%,var(--lens-ink));--lr-compute:color-mix(in oklab,#25a06f 74%,var(--lens-ink));--lr-data:color-mix(in oklab,#d68e10 78%,var(--lens-ink));--lr-async:color-mix(in oklab,#8e63e0 74%,var(--lens-ink));--lr-risk:color-mix(in oklab,#dc4f4f 76%,var(--lens-ink));--lr-neutral:color-mix(in oklab,#7d8899 70%,var(--lens-ink));--lr-control:color-mix(in oklab,#2a9fb4 74%,var(--lens-ink));--lr-model:color-mix(in oklab,#cf5fa3 74%,var(--lens-ink))}
+.lens-block{border-left:4px solid var(--lens-c,var(--lens-accent));padding:2px 0 2px 16px;margin:20px 0;display:grid;gap:10px;min-width:0}
+.lens-block>*{margin:0}
+.lens-tag{font:700 11px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--lens-c,var(--lens-accent))}
+.lens-fp{--lens-c:var(--lr-compute)} .lens-pareto{--lens-c:var(--lr-data)} .lens-visual{--lens-c:var(--lr-client)} .lens-feynman{--lens-c:var(--lr-async)}
+.lens-problem{max-width:72ch}
+.lens-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--lens-muted)}
+.lens-chip{text-decoration:none;display:inline-block;font:600 11.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:1px 8px;border-radius:999px;border:1px solid var(--lr-c,var(--lens-line));color:var(--lr-c,var(--lens-ink))}
+.lens-chip.lr-client{--lr-c:var(--lr-client)} .lens-chip.lr-compute{--lr-c:var(--lr-compute)} .lens-chip.lr-data{--lr-c:var(--lr-data)} .lens-chip.lr-async{--lr-c:var(--lr-async)} .lens-chip.lr-control{--lr-c:var(--lr-control)} .lens-chip.lr-model{--lr-c:var(--lr-model)} .lens-chip.lr-risk{--lr-c:var(--lr-risk)}
+.lens-table-wrap{overflow-x:auto;max-width:100%}
+.lens-truths{width:100%;border-collapse:collapse;font-size:14.5px;min-width:440px}
+.lens-truths th{font:700 10.5px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--lens-muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--lens-line)}
+.lens-truths td{padding:9px 10px;border-bottom:1px solid var(--lens-line);vertical-align:top;color:var(--lens-ink)}
+.lens-truths tr:last-child td{border-bottom:0} .lens-truths td:first-child{font-weight:650;width:42%}
+.lens-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.lens-split>div{border:1px solid var(--lens-line);border-radius:10px;padding:12px 14px;background:var(--lens-surface2);min-width:0}
+.lens-split h4{margin:0 0 6px;font:700 10.5px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--lens-muted)}
+.lens-split ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14.5px}
+.lens-visual{margin:22px 0}
+.lens-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lens-controls[hidden]{display:none!important}
+.lens-btn{font-weight:600;font-size:13px;line-height:1.2;font-family:inherit;padding:7px 12px;border-radius:8px;border:1px solid var(--lens-line);background:var(--lens-surface2);color:var(--lens-ink);cursor:pointer}
+.lens-btn:hover,.lens-btn:focus-visible{border-color:var(--lr-client);outline:none}
+.lens-btn:focus-visible{box-shadow:0 0 0 2px var(--lr-client)}
+.lens-status{font:12px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--lens-muted)}
+.lens-svg-wrap{overflow-x:auto;border:1px solid var(--lens-line);border-radius:12px;background:var(--lens-surface2);padding:8px}
+.lens-svg{display:block;width:100%;height:auto;min-width:600px}
+.lens-svg text{fill:var(--lens-ink);font-family:inherit;font-size:14px}
+.lens-svg .lens-sub{fill:var(--lens-muted);font-size:11.5px}
+.lens-svg .lens-elabel{fill:var(--lens-muted);font-size:11.5px;paint-order:stroke;stroke:var(--lens-surface2);stroke-width:4px;stroke-linejoin:round}
+.lens-svg .lens-glabel{fill:var(--lens-muted);font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.lens-svg .lens-group rect{fill:none;stroke:var(--lens-line);stroke-width:1.5;stroke-dasharray:5 5}
+.lens-node rect{stroke-width:2;fill:var(--lens-surface);stroke:var(--lr-neutral)}
+.lens-node.lr-client rect{stroke:var(--lr-client);fill:color-mix(in oklab,var(--lr-client) 13%,var(--lens-surface))}
+.lens-node.lr-compute rect{stroke:var(--lr-compute);fill:color-mix(in oklab,var(--lr-compute) 13%,var(--lens-surface))}
+.lens-node.lr-data rect{stroke:var(--lr-data);fill:color-mix(in oklab,var(--lr-data) 13%,var(--lens-surface))}
+.lens-node.lr-async rect{stroke:var(--lr-async);fill:color-mix(in oklab,var(--lr-async) 13%,var(--lens-surface))}
+.lens-node.lr-risk rect{stroke:var(--lr-risk);fill:color-mix(in oklab,var(--lr-risk) 13%,var(--lens-surface))}
+.lens-node.lr-control rect{stroke:var(--lr-control);fill:color-mix(in oklab,var(--lr-control) 13%,var(--lens-surface))}
+.lens-node.lr-model rect{stroke:var(--lr-model);fill:color-mix(in oklab,var(--lr-model) 13%,var(--lens-surface))}
+.lens-node.lr-neutral rect{stroke:var(--lr-neutral);stroke-dasharray:6 4}
+.lens-node .lens-label{font-weight:700}
+.lens-edge{--ec:var(--lr-neutral);transition:opacity .25s ease}
+.lens-edge.lr-client{--ec:var(--lr-client)} .lens-edge.lr-compute{--ec:var(--lr-compute)} .lens-edge.lr-data{--ec:var(--lr-data)} .lens-edge.lr-async{--ec:var(--lr-async)} .lens-edge.lr-risk{--ec:var(--lr-risk)} .lens-edge.lr-control{--ec:var(--lr-control)} .lens-edge.lr-model{--ec:var(--lr-model)}
+.lens-edge path{fill:none;stroke:var(--ec);stroke-width:2.4}
+.lens-edge.dashed path{stroke-dasharray:7 5}
+.lens-edge polygon,.lens-edge circle{fill:var(--ec);stroke:none}
+.lens-edge .lens-num{fill:var(--lens-surface);font-size:11.5px;font-weight:800}
+.lens-legend text{fill:var(--lens-muted);font-size:11.5px}
+.lens-legend rect{stroke:none}
+.lens-legend .lg-client{fill:var(--lr-client)} .lens-legend .lg-compute{fill:var(--lr-compute)} .lens-legend .lg-data{fill:var(--lr-data)} .lens-legend .lg-async{fill:var(--lr-async)} .lens-legend .lg-risk{fill:var(--lr-risk)} .lens-legend .lg-neutral{fill:var(--lr-neutral)} .lens-legend .lg-control{fill:var(--lr-control)} .lens-legend .lg-model{fill:var(--lr-model)}
+.lens-legend line{stroke:var(--lens-muted);stroke-width:2;stroke-dasharray:7 5}
+.lens-svg.stepping .lens-edge{opacity:.13} .lens-svg.stepping .lens-edge.done{opacity:.42} .lens-svg.stepping .lens-edge.on{opacity:1}
+.lens-svg.stepping .lens-edge.on path{stroke-width:3.4}
+.lens-steps{margin:0;padding-left:24px;display:grid;gap:5px;font-size:14.5px;max-width:78ch}
+.lens-steps li{padding:3px 8px;border-radius:6px}
+.lens-steps li.on{background:color-mix(in oklab,var(--lr-client) 16%,transparent);outline:1px solid var(--lr-client)}
+.lens-prompt{max-width:78ch;margin:0}
+.lens-feynman ol.lens-loop{margin:0;padding-left:22px;display:grid;gap:8px;font-size:15px;max-width:78ch}
+.lens-banned{display:inline-block;margin-top:4px;font-size:13px;color:var(--lens-muted)}
+.lens-banned i{font-style:normal;text-decoration:line-through;text-decoration-color:var(--lr-risk)}
+.lens-watch{font-size:14px;color:var(--lens-muted);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.lens-watch b{color:var(--lens-ink)}
+details.lens-model,details.lens-sketch{border:1px solid var(--lens-line);border-radius:10px;padding:10px 14px;background:var(--lens-surface2);margin:0}
+details.lens-model>summary,details.lens-sketch>summary{cursor:pointer;font-weight:700}
+details.lens-model p{margin:8px 0 0;max-width:78ch}
+details.lens-sketch .lens-visual{margin:12px 0 4px}
+.lens-sketch .hint{color:var(--lens-muted);font-size:13px;margin:8px 0 0}
+.lens-core-badge{display:inline-block;font:700 10.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--lr-data);color:var(--lr-data);vertical-align:middle}
+@media (max-width:640px){.lens-split{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.lens-truths{min-width:0}.lens-truths thead{display:none}.lens-truths tr{display:block;padding:8px 0;border-bottom:1px solid var(--lens-line)}.lens-truths tr:last-child{border-bottom:0}.lens-truths td{display:block;border:0;padding:2px 0;width:auto!important}}
+@media (prefers-reduced-motion:reduce){.lens-edge{transition:none}}
+@media print{.lens-scope,.lens-block,.lens-visual,.lens-sketch{--lens-ink:#111;--lens-muted:#444;--lens-line:#bbb;--lens-surface:#fff;--lens-surface2:#fff;color:#111}.lens-controls{display:none!important}.lens-svg.stepping .lens-edge{opacity:1!important}.lens-steps li.on{background:none;outline:0}.lens-svg{min-width:0}.lens-svg-wrap{overflow:visible}}
+
+.nav-core{display:inline-block;margin-left:6px;font:700 9.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;padding:0 6px;border-radius:999px;border:1px solid var(--lr-data,#d68e10);color:var(--lr-data,#d68e10)}
+nav{--lens-ink:var(--text)}
+.lens-path{width:100%;border-collapse:collapse;font-size:14.5px}
+.lens-path td,.lens-path th{padding:8px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.lens-path th{font:700 10.5px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+
+</style>
 </head>
 <body>
 <div class="layout">
 <nav>
   <div class="brand">
-    <h1>FDE Handbook v1.5</h1>
-<p class="small">v1.5, 20 October 2026: UK market snapshot, interview-loop map and drills, portfolio case-study standard and refreshed certification evidence. Security and role references reviewed 5 October 2026; original technical research dates retained. Phone layout and read-aloud added 13 October 2026.</p>
+    <h1>FDE Handbook v1.6</h1>
+<p class="small">v1.6, 21 October 2026: what the role reduces to, a core reading path, diagrams for the competency model, roadmap, discovery and delivery loop, and explain-it-back prompts. v1.5, 20 October 2026: UK market snapshot, interview-loop map and drills, portfolio case-study standard and refreshed certification evidence. Security and role references reviewed 5 October 2026; original technical research dates retained. Phone layout and read-aloud added 13 October 2026.</p>
     <small>Forward Deployed AI Engineering<br>Audited field edition • 4 Sep 2026</small>
   </div>
   <div class="nav-group">Start</div>
   <a href="#intro">0. How to use this handbook</a>
-  <a href="#role">1. What an FDE actually is</a>
+  <a href="#role" data-core="">1. What an FDE actually is<span class="nav-core">core</span></a>
 <a href="#forward-deployed-architect">1A. Forward deployed architecture</a>
   <a href="#market">2. Why the role matters now</a>
   <a href="#uk-market">2A. UK market snapshot</a>
@@ -146,16 +232,16 @@ summary{cursor:pointer;font-weight:750}
 
   <div class="nav-group">Engineering Core</div>
   <a href="#software">5. Software engineering</a>
-  <a href="#systems">6. System design</a>
-  <a href="#ai">7. LLM & agent engineering</a>
+  <a href="#systems" data-core="">6. System design<span class="nav-core">core</span></a>
+  <a href="#ai" data-core="">7. LLM & agent engineering<span class="nav-core">core</span></a>
   <a href="#provider-lab">7A. Multi-provider practical</a>
-  <a href="#evals">8. Evals & reliability</a>
+  <a href="#evals" data-core="">8. Evals & reliability<span class="nav-core">core</span></a>
   <a href="#platform">9. Cloud, platform & LLMOps</a>
   <a href="#security">10. Security & governance</a>
 
   <div class="nav-group">Forward-Deployed Craft</div>
-  <a href="#discovery">11. Discovery & problem framing</a>
-  <a href="#delivery">12. FDE delivery loop</a>
+  <a href="#discovery" data-core="">11. Discovery & problem framing<span class="nav-core">core</span></a>
+  <a href="#delivery" data-core="">12. FDE delivery loop<span class="nav-core">core</span></a>
   <a href="#production-gates">12A. Six production gates</a>
   <a href="#adoption">12B. Adoption engineering</a>
   <a href="#value">13. Outcomes & business value</a>
@@ -166,7 +252,7 @@ summary{cursor:pointer;font-weight:750}
   <a href="#assignments">15. Assignment ladder</a>
   <a href="#projects">16. Portfolio projects</a>
   <a href="#capstone">17. Capstone simulation</a>
-  <a href="#interviews">18. Interview preparation</a>
+  <a href="#interviews" data-core="">18. Interview preparation<span class="nav-core">core</span></a>
   <a href="#readiness">19. Readiness scorecard</a>
   <a href="#fieldkit">Field kit: scripts & checklists</a>
 
@@ -196,6 +282,7 @@ summary{cursor:pointer;font-weight:750}
   <div class="card"><div class="level">Build</div><h3>Produce artifacts</h3><p>Every major chapter points toward something you can build, measure or explain: code, architecture, eval sets, runbooks, discovery maps and outcome reports.</p></div>
   <div class="card"><div class="level">Prove</div><h3>Demonstrate judgment</h3><p>FDE interviews and real engagements test trade-offs under ambiguity. Your portfolio should show why you chose a design, what failed and how you measured success.</p></div>
 </div>
+<div class="lens-scope"><section class="lens-block lens-pareto" data-lens="pareto" aria-label="Pareto"><p class="lens-tag">Pareto · the core path</p><div class="lens-split"><div><h4>The 20% (learn now)</h4><ul class="lens-learn"><li><a href="#role">§1 What the role reduces to</a>, then <a href="#discovery">§11 discovery</a> and <a href="#delivery">§12 the delivery loop and six gates</a></li><li><a href="#systems">§6 system design</a>, <a href="#ai">§7 LLM and agent engineering</a> and <a href="#evals">§8 evals</a>: the engineering an interviewer will probe</li><li><a href="#interviews">§18 interview preparation</a>, practised against your own case studies</li></ul></div><div><h4>Defer (second pass)</h4><ul class="lens-defer"><li><a href="#market">§2</a> and <a href="#uk-market">§2A</a> market context: read when choosing targets</li><li><a href="#platform">§9 platform</a> and <a href="#programme-leadership">§13A programme leadership</a>: when a role asks for them</li><li><a href="#resources">§20–22</a> resources, certifications and sources: reference, not reading</li></ul></div></div></section><p class="small">Sections marked <span class="nav-core">core</span> in the sidebar are the core path. Each core-to-practice section ends with an <b>explain-it-back</b> prompt: say it to a non-technical sponsor in two minutes without the banned words, then compare with the model answer.</p></div>
 <div class="callout good"><strong>The FDE learning rule:</strong> 40% study, 60% implementation. If a resource does not improve something you can design, deploy, debug, measure or explain, it is probably secondary.</div>
 <div class="callout"><strong>Freshness note:</strong> this edition was audited against primary sources available on 4 September 2026. Role postings and vendor programs are dated evidence, not permanent definitions. Protocol versions, platform deprecations and emerging observability conventions are called out explicitly so durable principles remain separate from time-sensitive implementation choices.</div>
 </section>
@@ -203,6 +290,7 @@ summary{cursor:pointer;font-weight:750}
 <section id="role">
 <h2>1. What an FDE actually is <a class="toplink" href="#intro">↑ top</a></h2>
 <p class="quote">An FDE owns the uncomfortable middle between “the model/platform can do this” and “the customer runs this reliably in production.”</p>
+<div class="lens-scope"><h3 id="role-reduces-to">What the role reduces to</h3><section class="lens-block lens-fp" data-lens="fp" aria-label="First principles"><p class="lens-tag">First principles</p><p class="lens-problem"><b>The problem it solves:</b> Customers can access strong models but can’t turn them into reliable, measured change in their own workflows. The FDE closes that gap.</p><div class="lens-table-wrap"><table class="lens-truths"><thead><tr><th scope="col">Irreducible truth</th><th scope="col">So what</th></tr></thead><tbody><tr><td>The role reduces to one chain: ambiguous problem → evidence → working system → measured outcome.</td><td>Every section of this handbook strengthens one link; a weak link breaks the chain.</td></tr><tr><td>The problem is in the customer’s workflow, not in the model.</td><td>Discovery and a baseline come before any technology choice.</td></tr><tr><td>Production means safe, operable and adopted, not just accurate.</td><td>Authority, recovery and adoption are part of the build, not hardening for later.</td></tr><tr><td>What you learn in one engagement should make the next one faster.</td><td>Codify patterns and feed friction back to the product.</td></tr></tbody></table></div></section></div>
 
 <div class="diagram">
 <svg viewBox="0 0 1100 260" role="img" aria-label="FDE operating loop">
@@ -244,6 +332,7 @@ summary{cursor:pointer;font-weight:750}
 </tbody>
 </table>
 <div class="decision"><strong>Vacancy test:</strong> look for production code, debugging, evaluation, integration, deployment and measurable adoption. If the evidence is mainly workshops, account support, recommendations or pipeline influence, the role is adjacent even when the title says “FDE.”</div>
+<div class="lens-scope"><section id="feynman-role" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">In two minutes, explain to a customer sponsor what a forward deployed engineer will do in their organisation, and how that differs from a consultant and from a product engineer.<br/><span class="lens-banned">Banned words: <i>FDE</i>, <i>deployment</i>, <i>agentic</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>I sit with your team to find the part of your work where AI can make a measurable difference, then build and run that system with your people, inside your security and data rules, until it is used and its results are measured. A consultant usually advises and leaves; I write and ship the code and stay through launch. A product engineer builds one product for many customers; I adapt it to your systems and feed what I learn back to our product team, so the next customer is faster.</p></details></section></div>
 </section>
 
 <section id="forward-deployed-architect">
@@ -260,6 +349,7 @@ summary{cursor:pointer;font-weight:750}
 <ol><li>Observe the workflow and challenge the requested solution with a measurable baseline.</li><li>Compare at least two feasible architectures and implement or pair on the riskiest integration.</li><li>Assign decision, implementation, service and outcome owners; agree the evidence each will accept.</li><li>Use the existing six gates and handoff requirements. Produce one reusable adapter, evaluation set or pattern with its applicability limits.</li></ol>
 <p><strong>Readiness evidence:</strong> defend an ADR using a failed assumption, inspect a trace through a brownfield integration, demonstrate recovery, and explain who can authorise increased autonomy. A job title or course certificate does not substitute for those demonstrations.</p>
 <p><a href="../../learning-paths/decision-models-and-forward-deployed-architecture.md">Understand → Build → Evaluate → Deliver: shared route</a> · <a href="../../learning-paths/software-architect/software-architect-curriculum-guide-v3.md#forward-deployed-architecture-pathway">Build the optional pathway</a> · <a href="#capstone">Evaluate the engagement capstone</a> · <a href="#delivery">Deliver through production gates</a></p>
+<div class="lens-scope"><section id="feynman-forward-deployed-architect" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor why the architect on their engagement still writes code and stays after the design is approved.<br/><span class="lens-banned">Banned words: <i>architecture</i>, <i>design authority</i>, <i>ADR</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>A design rests on assumptions about your systems, data and people, and many of them are only tested when real code meets real systems. If the person who made the design leaves after sign-off, nobody is accountable when an assumption turns out wrong. Staying hands-on means the same person sees the problem, changes the plan, explains the trade-off to you, and keeps the system safe and maintainable as it moves to production and to your team.</p></details></section></div>
 </section>
 
 <section id="market">
@@ -273,6 +363,7 @@ summary{cursor:pointer;font-weight:750}
 </div>
 <div class="callout warn"><strong>Career warning:</strong> the title is expanding faster than the definition. Evaluate a vacancy by its responsibilities. A genuine FDE role should contain meaningful engineering, customer proximity and production outcome ownership.</div>
 <div class="fieldnote"><strong>The unit of deployment is often a pod.</strong> Mature forward-deployed motions combine engineering, domain expertise, delivery leadership, security/risk partnership and change capability. One FDE still needs broad judgment, but should not be mistaken for a permanently heroic single-person delivery model.</div>
+<div class="lens-scope"><section id="feynman-market" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor why companies with access to strong AI models still struggle to get value from them.<br/><span class="lens-banned">Banned words: <i>pilot</i>, <i>production</i>, <i>LLM</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>Getting a good answer in a demo is the easy part. Value arrives when the system fits a real workflow: it reads the right data with the right permissions, its mistakes are caught, people trust it enough to use it, it runs reliably and its cost makes sense. That last mile runs through your systems, rules and people, which is why organisations are creating dedicated roles to work through it with customers.</p></details></section></div>
 </section>
 <section id="uk-market">
 <h2>2A. UK market snapshot — October 2026 <a class="toplink" href="#intro">↑ top</a></h2>
@@ -305,6 +396,8 @@ summary{cursor:pointer;font-weight:750}
 <section id="competency">
 <h2>3. The FDE competency model <a class="toplink" href="#intro">↑ top</a></h2>
 <p class="lead">Think of FDE capability as a ten-part system. Weakness in one part can block an otherwise strong deployment.</p>
+<div class="lens-scope"><figure class="lens-block lens-visual" data-lens="visual" data-steps="6" id="fde-competency-lens"><figcaption class="lens-tag">Visual · step through it</figcaption><div class="lens-controls" hidden=""><button type="button" class="lens-btn" data-lens-act="prev">&#9664; Back</button><button type="button" class="lens-btn" data-lens-act="next">Next step &#9654;</button><button type="button" class="lens-btn" data-lens-act="all">Show all</button><span class="lens-status" role="status" aria-live="polite"></span></div><div class="lens-svg-wrap"><svg class="lens-svg" viewBox="0 0 790 344" role="img" aria-labelledby="fde-competency-lens-t fde-competency-lens-d"><title id="fde-competency-lens-t">How the ten FDE capability domains work together</title><desc id="fde-competency-lens-d">Boxes: Discovery, Business value, Delivery judgement, LLM engineering, Agent engineering, Software, System design, Evals, Security + governance, Cloud + platform. Numbered arrows follow the steps listed under the diagram.</desc><g class="lens-group"><rect x="10" y="8" width="240" height="300" rx="14"/><text class="lens-glabel" x="22" y="26">SOLVE THE RIGHT PROBLEM</text></g><g class="lens-group"><rect x="275" y="8" width="240" height="300" rx="14"/><text class="lens-glabel" x="287" y="26">BUILD IT</text></g><g class="lens-group"><rect x="540" y="8" width="240" height="300" rx="14"/><text class="lens-glabel" x="552" y="26">MAKE IT SAFE TO RUN</text></g><g class="lens-node lr-client"><rect x="30" y="40" width="200" height="56" rx="10"/><text class="lens-label" x="130" y="64" text-anchor="middle">Discovery</text><text class="lens-sub" x="130" y="82" text-anchor="middle">workflow, owner, pain</text></g><g class="lens-node lr-data"><rect x="30" y="140" width="200" height="56" rx="10"/><text class="lens-label" x="130" y="164" text-anchor="middle">Business value</text><text class="lens-sub" x="130" y="182" text-anchor="middle">baseline + target</text></g><g class="lens-node lr-control"><rect x="30" y="240" width="200" height="56" rx="10"/><text class="lens-label" x="130" y="264" text-anchor="middle">Delivery judgement</text><text class="lens-sub" x="130" y="282" text-anchor="middle">smallest useful slice</text></g><g class="lens-node lr-model"><rect x="295" y="36" width="200" height="48" rx="10"/><text class="lens-label" x="395" y="65" text-anchor="middle">LLM engineering</text></g><g class="lens-node lr-model"><rect x="295" y="104" width="200" height="48" rx="10"/><text class="lens-label" x="395" y="133" text-anchor="middle">Agent engineering</text></g><g class="lens-node lr-compute"><rect x="295" y="172" width="200" height="48" rx="10"/><text class="lens-label" x="395" y="201" text-anchor="middle">Software</text></g><g class="lens-node lr-compute"><rect x="295" y="244" width="200" height="48" rx="10"/><text class="lens-label" x="395" y="273" text-anchor="middle">System design</text></g><g class="lens-node lr-data"><rect x="560" y="40" width="200" height="56" rx="10"/><text class="lens-label" x="660" y="64" text-anchor="middle">Evals</text><text class="lens-sub" x="660" y="82" text-anchor="middle">quality on real cases</text></g><g class="lens-node lr-control"><rect x="560" y="140" width="200" height="56" rx="10"/><text class="lens-label" x="660" y="164" text-anchor="middle">Security + governance</text><text class="lens-sub" x="660" y="182" text-anchor="middle">identity, approval, audit</text></g><g class="lens-node lr-compute"><rect x="560" y="240" width="200" height="56" rx="10"/><text class="lens-label" x="660" y="264" text-anchor="middle">Cloud + platform</text><text class="lens-sub" x="660" y="282" text-anchor="middle">run, observe, recover</text></g><g class="lens-edge lr-client" data-step="1"><path d="M130.0 96.0 L130.0 131.0"/><polygon points="130.0,140.0 124.5,129.0 135.5,129.0"/><circle cx="130.0" cy="118.0" r="10.5"/><text class="lens-num" x="130.0" y="122.0" text-anchor="middle">1</text></g><g class="lens-edge lr-data" data-step="2"><path d="M130.0 196.0 L130.0 231.0"/><polygon points="130.0,240.0 124.5,229.0 135.5,229.0"/><circle cx="130.0" cy="218.0" r="10.5"/><text class="lens-num" x="130.0" y="222.0" text-anchor="middle">2</text></g><g class="lens-edge lr-control" data-step="3"><path d="M230.0 268.0 L286.0 268.0"/><polygon points="295.0,268.0 284.0,273.5 284.0,262.5"/><circle cx="262.5" cy="268.0" r="10.5"/><text class="lens-num" x="262.5" y="272.0" text-anchor="middle">3</text></g><g class="lens-edge lr-model" data-step="4"><path d="M495.0 63.0 L551.0 64.7"/><polygon points="560.0,65.0 548.8,70.1 549.2,59.2"/><circle cx="527.5" cy="64.0" r="10.5"/><text class="lens-num" x="527.5" y="68.0" text-anchor="middle">4</text></g><g class="lens-edge lr-model" data-step="5"><path d="M495.0 143.1 L551.1 151.6"/><polygon points="560.0,152.9 548.3,156.7 549.9,145.8"/><circle cx="527.5" cy="148.0" r="10.5"/><text class="lens-num" x="527.5" y="152.0" text-anchor="middle">5</text></g><g class="lens-edge lr-compute" data-step="6"><path d="M483.3 220.0 L551.3 238.5"/><polygon points="560.0,240.8 547.9,243.3 550.8,232.6"/><circle cx="521.7" cy="230.4" r="10.5"/><text class="lens-num" x="521.7" y="234.4" text-anchor="middle">6</text></g><g class="lens-legend"><rect class="lg-client" x="14" y="325" width="11" height="11" rx="2"/><text x="30" y="334">client / caller</text><rect class="lg-compute" x="151.0" y="325" width="11" height="11" rx="2"/><text x="167.0" y="334">compute</text><rect class="lg-data" x="235.2" y="325" width="11" height="11" rx="2"/><text x="251.2" y="334">data / state</text><rect class="lg-model" x="352.4" y="325" width="11" height="11" rx="2"/><text x="368.4" y="334">model / AI</text><rect class="lg-control" x="456.4" y="325" width="11" height="11" rx="2"/><text x="472.4" y="334">control / policy</text></g></svg></div><ol class="lens-steps"><li>Discovery finds the real workflow, its owner and where time, quality, risk or money is lost.</li><li>Business value turns that pain into a baseline and a target before anything is built.</li><li>Delivery judgement picks the smallest slice that can prove the value, and system design fits it to the customer’s existing systems.</li><li>Model work only becomes credible when evals show quality on the customer’s real cases.</li><li>Agent capability is deployable only inside security boundaries: identity, approval and audit outside the model.</li><li>Software and platform skills keep it running, observable and recoverable after launch.</li></ol></figure></div>
+
 <div class="callout"><strong>These domains are not equally weighted.</strong> In forward-deployed work, discovery and outcome ownership determine whether you are solving the right problem, while authorization and side-effect boundaries determine whether the system is safe enough to deploy. Infrastructure literacy is essential, but it supports those higher-leverage decisions rather than replacing them.</div>
 <table>
 <thead><tr><th>Domain</th><th>Minimum credible capability</th><th>Advanced signal</th></tr></thead>
@@ -321,11 +414,14 @@ summary{cursor:pointer;font-weight:750}
 <tr><td>10. Business value</td><td>Define success metric before build.</td><td>Translate quality/latency/adoption into economic or operational value.</td></tr>
 </tbody>
 </table>
+<div class="lens-scope"><section id="feynman-competency" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor which skills on the engagement team matter most for their project, and why coding alone is not enough.<br/><span class="lens-banned">Banned words: <i>competency</i>, <i>evals</i>, <i>authorization</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>Two things decide whether a project succeeds. First, solving the right problem: understanding how the work is done today, who owns the result and what change would be worth paying for. Second, being safe to switch on: the system can do only what it is allowed to, its quality is measured before it goes live, and any action it takes can be traced and undone. Engineering, cloud and model skills are essential, but they serve those two goals.</p></details></section></div>
 </section>
 
 <section id="roadmap">
 <h2>4. Transition roadmap <a class="toplink" href="#intro">↑ top</a></h2>
 <p>This roadmap assumes an experienced enterprise professional moving toward hands-on applied AI. It deliberately avoids a “learn every framework” trap.</p>
+<div class="lens-scope"><figure class="lens-block lens-visual" data-lens="visual" data-steps="7" id="fde-roadmap-lens"><figcaption class="lens-tag">Visual · step through it</figcaption><div class="lens-controls" hidden=""><button type="button" class="lens-btn" data-lens-act="prev">&#9664; Back</button><button type="button" class="lens-btn" data-lens-act="next">Next step &#9654;</button><button type="button" class="lens-btn" data-lens-act="all">Show all</button><span class="lens-status" role="status" aria-live="polite"></span></div><div class="lens-svg-wrap"><svg class="lens-svg" viewBox="0 0 790 274" role="img" aria-labelledby="fde-roadmap-lens-t fde-roadmap-lens-d"><title id="fde-roadmap-lens-t">Transition roadmap: each phase ends in evidence</title><desc id="fde-roadmap-lens-d">Boxes: Phase A, Phase B, Phase C, Phase D, Tested API service, Eval set + approval, Deployed slice, Case studies. Numbered arrows follow the steps listed under the diagram.</desc><g class="lens-node lr-client"><rect x="20" y="30" width="170" height="60" rx="10"/><text class="lens-label" x="105" y="56" text-anchor="middle">Phase A</text><text class="lens-sub" x="105" y="74" text-anchor="middle">engineering credibility</text></g><g class="lens-node lr-compute"><rect x="220" y="30" width="170" height="60" rx="10"/><text class="lens-label" x="305" y="56" text-anchor="middle">Phase B</text><text class="lens-sub" x="305" y="74" text-anchor="middle">production AI</text></g><g class="lens-node lr-control"><rect x="420" y="30" width="170" height="60" rx="10"/><text class="lens-label" x="505" y="56" text-anchor="middle">Phase C</text><text class="lens-sub" x="505" y="74" text-anchor="middle">forward-deployed</text></g><g class="lens-node lr-data"><rect x="620" y="30" width="160" height="60" rx="10"/><text class="lens-label" x="700" y="56" text-anchor="middle">Phase D</text><text class="lens-sub" x="700" y="74" text-anchor="middle">interview + market</text></g><g class="lens-node lr-data"><rect x="20" y="170" width="170" height="60" rx="10"/><text class="lens-label" x="105" y="196" text-anchor="middle">Tested API service</text><text class="lens-sub" x="105" y="214" text-anchor="middle">debugged from traces</text></g><g class="lens-node lr-data"><rect x="220" y="170" width="170" height="60" rx="10"/><text class="lens-label" x="305" y="196" text-anchor="middle">Eval set + approval</text><text class="lens-sub" x="305" y="214" text-anchor="middle">resumable state</text></g><g class="lens-node lr-data"><rect x="420" y="170" width="170" height="60" rx="10"/><text class="lens-label" x="505" y="196" text-anchor="middle">Deployed slice</text><text class="lens-sub" x="505" y="214" text-anchor="middle">incident + playbook</text></g><g class="lens-node lr-data"><rect x="620" y="170" width="160" height="60" rx="10"/><text class="lens-label" x="700" y="196" text-anchor="middle">Case studies</text><text class="lens-sub" x="700" y="214" text-anchor="middle">brownfield + agent</text></g><g class="lens-edge lr-client" data-step="1"><path d="M105.0 90.0 L105.0 161.0"/><polygon points="105.0,170.0 99.5,159.0 110.5,159.0"/><circle cx="105.0" cy="130.0" r="10.5"/><text class="lens-num" x="105.0" y="134.0" text-anchor="middle">1</text></g><g class="lens-edge lr-client" data-step="2"><path d="M190.0 60.0 L211.0 60.0"/><polygon points="220.0,60.0 209.0,65.5 209.0,54.5"/><circle cx="205.0" cy="60.0" r="10.5"/><text class="lens-num" x="205.0" y="64.0" text-anchor="middle">2</text></g><g class="lens-edge lr-compute" data-step="3"><path d="M305.0 90.0 L305.0 161.0"/><polygon points="305.0,170.0 299.5,159.0 310.5,159.0"/><circle cx="305.0" cy="130.0" r="10.5"/><text class="lens-num" x="305.0" y="134.0" text-anchor="middle">3</text></g><g class="lens-edge lr-compute" data-step="4"><path d="M390.0 60.0 L411.0 60.0"/><polygon points="420.0,60.0 409.0,65.5 409.0,54.5"/><circle cx="405.0" cy="60.0" r="10.5"/><text class="lens-num" x="405.0" y="64.0" text-anchor="middle">4</text></g><g class="lens-edge lr-control" data-step="5"><path d="M505.0 90.0 L505.0 161.0"/><polygon points="505.0,170.0 499.5,159.0 510.5,159.0"/><circle cx="505.0" cy="130.0" r="10.5"/><text class="lens-num" x="505.0" y="134.0" text-anchor="middle">5</text></g><g class="lens-edge lr-control" data-step="6"><path d="M590.0 60.0 L611.0 60.0"/><polygon points="620.0,60.0 609.0,65.5 609.0,54.5"/><circle cx="605.0" cy="60.0" r="10.5"/><text class="lens-num" x="605.0" y="64.0" text-anchor="middle">6</text></g><g class="lens-edge lr-data" data-step="7"><path d="M700.0 90.0 L700.0 161.0"/><polygon points="700.0,170.0 694.5,159.0 705.5,159.0"/><circle cx="700.0" cy="130.0" r="10.5"/><text class="lens-num" x="700.0" y="134.0" text-anchor="middle">7</text></g><g class="lens-legend"><rect class="lg-client" x="14" y="255" width="11" height="11" rx="2"/><text x="30" y="264">client / caller</text><rect class="lg-compute" x="151.0" y="255" width="11" height="11" rx="2"/><text x="167.0" y="264">compute</text><rect class="lg-data" x="235.2" y="255" width="11" height="11" rx="2"/><text x="251.2" y="264">data / state</text><rect class="lg-control" x="352.4" y="255" width="11" height="11" rx="2"/><text x="368.4" y="264">control / policy</text></g></svg></div><ol class="lens-steps"><li>Phase A ends with a tested Python API service with persistence and integrations, debugged from logs and traces rather than trial and error.</li><li>Move on only once you can explain idempotency, retries, timeouts, queues and transactions from your own examples.</li><li>Phase B ends with an AI service that has an eval set built before prompt tuning, an approval boundary for side effects and resumable task state.</li><li>Move on once identity and tool permissions are enforced outside the model.</li><li>Phase C ends with a production-like deployment from an ambiguous brief, a demonstrated failure and recovery, and a reusable playbook.</li><li>Phase D turns that work into interview-ready material.</li><li>It ends with two deployment case studies, one agent- and eval-heavy case and one brownfield integration case.</li></ol></figure></div>
+
 
 <div class="callout good"><strong>If you are coming from delivery, product or enterprise architecture rather than software engineering:</strong> do not spend the first phase collecting more discovery or stakeholder frameworks. Keep those strengths, but bias your first investment toward hands-on engineering: Python services, tests, APIs, persistence, debugging, containers and one deployed AI workflow. Your goal is to become the person who can carry a customer problem through implementation, not merely frame it well.</div>
 
@@ -365,6 +461,7 @@ summary{cursor:pointer;font-weight:750}
 <li>System-design interview practice plus coding fluency.</li>
 <li>Customer discovery / ambiguity case drills.</li>
 </ul>
+<div class="lens-scope"><section id="feynman-roadmap" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a hiring manager how you are building evidence that you can do this job, phase by phase.<br/><span class="lens-banned">Banned words: <i>roadmap</i>, <i>credibility</i>, <i>portfolio</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>First I proved I can build and debug real software: a tested service with a database and outside integrations. Then I built an AI service that validates its output, measures its quality and asks for approval before it does anything consequential. Next I ran a full engagement from a vague brief: discovery, a small deployed system, a failure I recovered from and a write-up others can reuse. Finally I turned those into case studies and practised interviews against them.</p></details></section></div>
 </section>
 
 <section id="software">
@@ -411,6 +508,7 @@ operational guardrail</pre>
 </ul>
 <p><strong>Pass condition:</strong> you can explain exactly which failures are retried, which are not, and what the caller sees.</p>
 </div>
+<div class="lens-scope"><section id="feynman-software" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor why the engineer on their AI project must be a strong software engineer, not just good with prompts.<br/><span class="lens-banned">Banned words: <i>Python</i>, <i>API</i>, <i>async</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>Most of an AI system is ordinary software: connecting to your systems, handling errors and slow responses, storing data correctly, testing, logging and deploying safely. The model call is one small piece. If the software around it is weak, the system will fail in ways that have nothing to do with AI, such as duplicate records, lost requests or outages, and nobody will trust it.</p></details></section></div>
 </section>
 
 <section id="systems">
@@ -444,6 +542,7 @@ operational guardrail</pre>
 </table>
 
 <div class="callout"><strong>FDE interview habit:</strong> state the invariant before the technology. “A commit side effect must execute at most once” is stronger reasoning than “I’ll use Kafka.”</div>
+<div class="lens-scope"><section id="feynman-systems" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor the questions you ask before drawing any architecture for their existing systems.<br/><span class="lens-banned">Banned words: <i>system of record</i>, <i>idempotent</i>, <i>brownfield</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>I need to know which system holds the official version of each fact; which actions can be undone and which can’t; what happens if something runs twice or stops halfway; who may do what and where that is checked; which data may leave your environment; which steps must be instant and which can wait; how much volume to expect; and what records your auditors need. Those answers decide the design. Tools come after.</p></details></section></div>
 </section>
 
 <section id="ai">
@@ -516,6 +615,7 @@ citation / evidence checks</pre>
 </ul>
 <p><strong>Failure injection:</strong> crash after the external side effect but before local acknowledgement. Reconcile safely.</p>
 </div>
+<div class="lens-scope"><section id="feynman-ai" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor why you might not use an agent at all, even though they asked for one.<br/><span class="lens-banned">Banned words: <i>agent</i>, <i>multi-agent</i>, <i>LLM</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>An agent decides its own steps, which is powerful but harder to predict, test and control. Many tasks follow a known sequence, so ordinary code with one AI step for the hard part, such as reading a document or drafting a reply, is cheaper, faster and safer. I use the simplest structure that does the job and add freedom only where the task genuinely needs it and we can measure that it helps.</p></details></section></div>
 </section>
 
 <section id="provider-lab">
@@ -537,6 +637,7 @@ citation / evidence checks</pre>
 </tbody></table>
 <p><strong>Deliver:</strong> adapter contract, capability matrix, evaluation report, failure traces and an ADR explaining the chosen route. A compatible API shape is not proof of equivalent behaviour. Pair this with the <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#evals">evaluation</a> and <a href="../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html#orchestration">durable orchestration</a> resources. Consult <a href="https://docs.cloud.google.com/gemini-enterprise-agent-platform/scale">Google's current agent deployment guidance</a> for its supported runtime and SDK path; the former Vertex AI Agent Engine overview redirects there (checked 5 October 2026).</p>
 </div>
+<div class="lens-scope"><section id="feynman-provider-lab" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor why changing AI provider is more than changing a setting.<br/><span class="lens-banned">Banned words: <i>provider</i>, <i>adapter</i>, <i>schema</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>Different providers’ models follow instructions, format answers, refuse requests and handle long inputs differently, and they may process data in different places and charge differently. A switch can quietly change answer quality, break rules about where data goes or change the cost. We keep the business rules and final actions in our own code, test both options on the same tasks, and switch only when the results and data rules check out.</p></details></section></div>
 </section>
 <section id="evals">
 <h2>8. Evals & reliability <a class="toplink" href="#intro">↑ top</a></h2>
@@ -576,6 +677,7 @@ PLATFORM       timeout • rate limit • deploy/config drift
 USER           ambiguous intent • missing permission • changed objective</pre>
 
 <div class="callout warn"><strong>OpenAI Evals retirement is now an operational deadline.</strong> OpenAI announced the Evals platform deprecation on <strong>3 June 2026</strong>. Existing evals become <strong>read-only on 31 October 2026</strong>, and the Evals dashboard/API are scheduled to <strong>shut down on 30 November 2026</strong>. Do not start Assignment A6 by coupling your eval harness to that retiring platform. Build the dataset, rubric, graders and release gates as portable application assets; use a maintained harness or your own code so the evaluation design survives vendor-tool changes.</div>
+<div class="lens-scope"><section id="feynman-evals" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor how you will know the system is good enough to go live, before anyone relies on it.<br/><span class="lens-banned">Banned words: <i>eval</i>, <i>golden set</i>, <i>grader</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>Before tuning anything, we agree what success means for your workflow and collect real examples, including hard and risky ones, with the right answers. Every version is tested against them automatically: hard rules by code, quality by agreed scoring guides, and a sample by your experts. Going live needs results above thresholds we set from today’s baseline and the cost of mistakes, and we keep testing live samples after launch.</p></details></section></div>
 </section>
 
 <section id="platform">
@@ -638,6 +740,7 @@ Air-gapped</pre>
 </ul>
 <p><strong>Pass condition:</strong> another engineer can diagnose a failed workflow without reading the source code first.</p>
 </div>
+<div class="lens-scope"><section id="feynman-platform" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor what “production-ready” means for operations, beyond the AI giving good answers.<br/><span class="lens-banned">Banned words: <i>LLMOps</i>, <i>CI/CD</i>, <i>observability</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>It means your team can deploy it, see what it is doing, find out why it failed, recover and change it safely. In practice: it is packaged the same way every time, changes pass automatic checks and can be rolled back, secrets are stored safely, and every request leaves a record of what the model saw and did, what it cost and how long it took. Without that, the first incident becomes guesswork.</p></details></section></div>
 </section>
 
 <section id="security">
@@ -718,12 +821,15 @@ Audit evidence</pre>
 <li>Required security/privacy/risk reviews are complete and residual risks have an authorized owner.</li>
 </ul>
 </div>
+<div class="lens-scope"><section id="feynman-security" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor how the system stops the AI from doing something it shouldn’t, even if someone tricks it.<br/><span class="lens-banned">Banned words: <i>prompt injection</i>, <i>least privilege</i>, <i>tool gateway</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>We never rely on the AI to police itself. It can only propose actions; separate code checks each proposal against who the user is and what this task allows before anything happens. Risky actions need a person’s approval, and the AI never sees passwords or keys. If someone hides instructions in a document or email, the worst case is a blocked proposal that gets logged, not an unauthorised payment or a data leak.</p></details></section></div>
 </section>
 
 
 <section id="discovery">
 <h2>11. Customer discovery & problem framing <a class="toplink" href="#intro">↑ top</a></h2>
 <p>Discovery is not “collect requirements.” The FDE tries to understand the actual workflow, constraints and value mechanism before committing to a technical design.</p>
+<div class="lens-scope"><figure class="lens-block lens-visual" data-lens="visual" data-steps="8" id="fde-discovery-lens"><figcaption class="lens-tag">Visual · step through it</figcaption><div class="lens-controls" hidden=""><button type="button" class="lens-btn" data-lens-act="prev">&#9664; Back</button><button type="button" class="lens-btn" data-lens-act="next">Next step &#9654;</button><button type="button" class="lens-btn" data-lens-act="all">Show all</button><span class="lens-status" role="status" aria-live="polite"></span></div><div class="lens-svg-wrap"><svg class="lens-svg" viewBox="0 0 790 364" role="img" aria-labelledby="fde-discovery-lens-t fde-discovery-lens-d"><title id="fde-discovery-lens-t">The eight discovery questions, in order</title><desc id="fde-discovery-lens-d">Boxes: Trigger, Actor, Current path, Pain, Volume, Constraints, Decision, Success, Problem statement. Numbered arrows follow the steps listed under the diagram.</desc><g class="lens-node lr-client"><rect x="20" y="30" width="170" height="58" rx="10"/><text class="lens-label" x="105" y="55" text-anchor="middle">Trigger</text><text class="lens-sub" x="105" y="73" text-anchor="middle">what starts it?</text></g><g class="lens-node lr-client"><rect x="220" y="30" width="170" height="58" rx="10"/><text class="lens-label" x="305" y="55" text-anchor="middle">Actor</text><text class="lens-sub" x="305" y="73" text-anchor="middle">who does, who owns?</text></g><g class="lens-node lr-compute"><rect x="420" y="30" width="170" height="58" rx="10"/><text class="lens-label" x="505" y="55" text-anchor="middle">Current path</text><text class="lens-sub" x="505" y="73" text-anchor="middle">step by step today</text></g><g class="lens-node lr-risk"><rect x="620" y="30" width="160" height="58" rx="10"/><text class="lens-label" x="700" y="55" text-anchor="middle">Pain</text><text class="lens-sub" x="700" y="73" text-anchor="middle">time, quality, risk, money</text></g><g class="lens-node lr-data"><rect x="620" y="150" width="160" height="58" rx="10"/><text class="lens-label" x="700" y="175" text-anchor="middle">Volume</text><text class="lens-sub" x="700" y="193" text-anchor="middle">how often, how big</text></g><g class="lens-node lr-control"><rect x="420" y="150" width="170" height="58" rx="10"/><text class="lens-label" x="505" y="175" text-anchor="middle">Constraints</text><text class="lens-sub" x="505" y="193" text-anchor="middle">rules, systems, data</text></g><g class="lens-node lr-control"><rect x="220" y="150" width="170" height="58" rx="10"/><text class="lens-label" x="305" y="175" text-anchor="middle">Decision</text><text class="lens-sub" x="305" y="193" text-anchor="middle">where is judgement?</text></g><g class="lens-node lr-data"><rect x="20" y="150" width="170" height="58" rx="10"/><text class="lens-label" x="105" y="175" text-anchor="middle">Success</text><text class="lens-sub" x="105" y="193" text-anchor="middle">measurable change</text></g><g class="lens-node lr-compute"><rect x="220" y="266" width="370" height="58" rx="10"/><text class="lens-label" x="405" y="291" text-anchor="middle">Problem statement</text><text class="lens-sub" x="405" y="309" text-anchor="middle">baseline → target, and how we’d know it’s false</text></g><g class="lens-edge lr-client" data-step="1"><path d="M190.0 59.0 L211.0 59.0"/><polygon points="220.0,59.0 209.0,64.5 209.0,53.5"/><circle cx="205.0" cy="59.0" r="10.5"/><text class="lens-num" x="205.0" y="63.0" text-anchor="middle">1</text></g><g class="lens-edge lr-client" data-step="2"><path d="M390.0 59.0 L411.0 59.0"/><polygon points="420.0,59.0 409.0,64.5 409.0,53.5"/><circle cx="405.0" cy="59.0" r="10.5"/><text class="lens-num" x="405.0" y="63.0" text-anchor="middle">2</text></g><g class="lens-edge lr-compute" data-step="3"><path d="M590.0 59.0 L611.0 59.0"/><polygon points="620.0,59.0 609.0,64.5 609.0,53.5"/><circle cx="605.0" cy="59.0" r="10.5"/><text class="lens-num" x="605.0" y="63.0" text-anchor="middle">3</text></g><g class="lens-edge lr-risk" data-step="4"><path d="M700.0 88.0 L700.0 141.0"/><polygon points="700.0,150.0 694.5,139.0 705.5,139.0"/><circle cx="700.0" cy="119.0" r="10.5"/><text class="lens-num" x="700.0" y="123.0" text-anchor="middle">4</text></g><g class="lens-edge lr-data" data-step="5"><path d="M620.0 179.0 L599.0 179.0"/><polygon points="590.0,179.0 601.0,173.5 601.0,184.5"/><circle cx="605.0" cy="179.0" r="10.5"/><text class="lens-num" x="605.0" y="183.0" text-anchor="middle">5</text></g><g class="lens-edge lr-control" data-step="6"><path d="M420.0 179.0 L399.0 179.0"/><polygon points="390.0,179.0 401.0,173.5 401.0,184.5"/><circle cx="405.0" cy="179.0" r="10.5"/><text class="lens-num" x="405.0" y="183.0" text-anchor="middle">6</text></g><g class="lens-edge lr-control" data-step="7"><path d="M220.0 179.0 L199.0 179.0"/><polygon points="190.0,179.0 201.0,173.5 201.0,184.5"/><circle cx="205.0" cy="179.0" r="10.5"/><text class="lens-num" x="205.0" y="183.0" text-anchor="middle">7</text></g><g class="lens-edge lr-data" data-step="8"><path d="M180.0 208.0 L321.6 262.8"/><polygon points="330.0,266.0 317.8,267.2 321.7,256.9"/><circle cx="255.0" cy="237.0" r="10.5"/><text class="lens-num" x="255.0" y="241.0" text-anchor="middle">8</text></g><g class="lens-legend"><rect class="lg-client" x="14" y="345" width="11" height="11" rx="2"/><text x="30" y="354">client / caller</text><rect class="lg-compute" x="151.0" y="345" width="11" height="11" rx="2"/><text x="167.0" y="354">compute</text><rect class="lg-data" x="235.2" y="345" width="11" height="11" rx="2"/><text x="251.2" y="354">data / state</text><rect class="lg-control" x="352.4" y="345" width="11" height="11" rx="2"/><text x="368.4" y="354">control / policy</text><rect class="lg-risk" x="496.0" y="345" width="11" height="11" rx="2"/><text x="512.0" y="354">failure / risk</text></g></svg></div><ol class="lens-steps"><li>Trigger: what starts this workflow?</li><li>Actor: who performs it, and who owns the outcome?</li><li>Current path: what happens today, step by step?</li><li>Pain: where are time, quality, risk or money lost?</li><li>Volume: how often, and at what scale?</li><li>Constraints: security, regulation, systems, data, latency, policy.</li><li>Decision: where is judgement needed, and who is allowed to make it?</li><li>Success: what measurable change would make it worthwhile? Only now write the problem statement, including the condition that would prove it false.</li></ol></figure></div>
+
 
 <h3>The 8-question discovery sheet</h3>
 <ol>
@@ -763,10 +869,13 @@ We will know this is false if [falsification condition].</pre>
 </ul>
 <p><strong>Scoring:</strong> you lose points for every technology choice that appears before a validated problem constraint.</p>
 </div>
+<div class="lens-scope"><section id="feynman-discovery" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Your sponsor asks for a multi-agent chatbot. Explain why you will spend the first days asking about their work instead of building it.<br/><span class="lens-banned">Banned words: <i>discovery</i>, <i>MVP</i>, <i>requirements</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>The request describes a solution, not the problem. I need to see what starts the work, who does it, what happens step by step, where time or money is lost, how often, which rules apply, where judgement is needed and what result would make this worthwhile. Often a simpler fix solves the real pain: a search tool, a form or one automated step. Building the wrong thing quickly is still building the wrong thing.</p></details></section></div>
 </section>
 
 <section id="delivery">
 <h2>12. The FDE delivery loop <a class="toplink" href="#intro">↑ top</a></h2>
+<div class="lens-scope"><figure class="lens-block lens-visual" data-lens="visual" data-steps="7" id="fde-delivery-lens"><figcaption class="lens-tag">Visual · step through it</figcaption><div class="lens-controls" hidden=""><button type="button" class="lens-btn" data-lens-act="prev">&#9664; Back</button><button type="button" class="lens-btn" data-lens-act="next">Next step &#9654;</button><button type="button" class="lens-btn" data-lens-act="all">Show all</button><span class="lens-status" role="status" aria-live="polite"></span></div><div class="lens-svg-wrap"><svg class="lens-svg" viewBox="0 0 790 304" role="img" aria-labelledby="fde-delivery-lens-t fde-delivery-lens-d"><title id="fde-delivery-lens-t">The delivery loop and the gate each stage evidences</title><desc id="fde-delivery-lens-d">Boxes: Discover, Frame, Build, Deploy, Measure, Accept + hand off, Codify. Numbered arrows follow the steps listed under the diagram.</desc><g class="lens-node lr-client"><rect x="20" y="30" width="170" height="64" rx="10"/><text class="lens-label" x="105" y="58" text-anchor="middle">Discover</text><text class="lens-sub" x="105" y="76" text-anchor="middle">gate: value</text></g><g class="lens-node lr-control"><rect x="220" y="30" width="170" height="64" rx="10"/><text class="lens-label" x="305" y="58" text-anchor="middle">Frame</text><text class="lens-sub" x="305" y="76" text-anchor="middle">value</text></g><g class="lens-node lr-compute"><rect x="420" y="30" width="170" height="64" rx="10"/><text class="lens-label" x="505" y="58" text-anchor="middle">Build</text><text class="lens-sub" x="505" y="76" text-anchor="middle">quality</text></g><g class="lens-node lr-compute"><rect x="620" y="30" width="160" height="64" rx="10"/><text class="lens-label" x="700" y="58" text-anchor="middle">Deploy</text><text class="lens-sub" x="700" y="76" text-anchor="middle">safety, operability</text></g><g class="lens-node lr-data"><rect x="600" y="186" width="180" height="64" rx="10"/><text class="lens-label" x="690" y="214" text-anchor="middle">Measure</text><text class="lens-sub" x="690" y="232" text-anchor="middle">quality, cost, adoption</text></g><g class="lens-node lr-control"><rect x="380" y="186" width="190" height="64" rx="10"/><text class="lens-label" x="475" y="214" text-anchor="middle">Accept + hand off</text><text class="lens-sub" x="475" y="232" text-anchor="middle">operability</text></g><g class="lens-node lr-async"><rect x="180" y="186" width="170" height="64" rx="10"/><text class="lens-label" x="265" y="214" text-anchor="middle">Codify</text><text class="lens-sub" x="265" y="232" text-anchor="middle">reusable assets</text></g><g class="lens-edge lr-client" data-step="1"><path d="M190.0 62.0 L211.0 62.0"/><polygon points="220.0,62.0 209.0,67.5 209.0,56.5"/><circle cx="205.0" cy="62.0" r="10.5"/><text class="lens-num" x="205.0" y="66.0" text-anchor="middle">1</text></g><g class="lens-edge lr-control" data-step="2"><path d="M390.0 62.0 L411.0 62.0"/><polygon points="420.0,62.0 409.0,67.5 409.0,56.5"/><circle cx="405.0" cy="62.0" r="10.5"/><text class="lens-num" x="405.0" y="66.0" text-anchor="middle">2</text></g><g class="lens-edge lr-compute" data-step="3"><path d="M590.0 62.0 L611.0 62.0"/><polygon points="620.0,62.0 609.0,67.5 609.0,56.5"/><circle cx="605.0" cy="62.0" r="10.5"/><text class="lens-num" x="605.0" y="66.0" text-anchor="middle">3</text></g><g class="lens-edge lr-compute" data-step="4"><path d="M697.9 94.0 L692.6 177.0"/><polygon points="692.1,186.0 687.3,174.7 698.2,175.4"/><circle cx="695.0" cy="140.0" r="10.5"/><text class="lens-num" x="695.0" y="144.0" text-anchor="middle">4</text></g><g class="lens-edge lr-data" data-step="5"><path d="M600.0 218.0 L579.0 218.0"/><polygon points="570.0,218.0 581.0,212.5 581.0,223.5"/><circle cx="585.0" cy="218.0" r="10.5"/><text class="lens-num" x="585.0" y="222.0" text-anchor="middle">5</text></g><g class="lens-edge lr-control" data-step="6"><path d="M380.0 218.0 L359.0 218.0"/><polygon points="350.0,218.0 361.0,212.5 361.0,223.5"/><circle cx="365.0" cy="218.0" r="10.5"/><text class="lens-num" x="365.0" y="222.0" text-anchor="middle">6</text></g><g class="lens-edge lr-async dashed" data-step="7"><path d="M232.2 186.0 L144.3 100.3"/><polygon points="137.8,94.0 149.5,97.7 141.9,105.6"/><circle cx="185.0" cy="140.0" r="10.5"/><text class="lens-num" x="185.0" y="144.0" text-anchor="middle">7</text></g><g class="lens-legend"><rect class="lg-client" x="14" y="265" width="11" height="11" rx="2"/><text x="30" y="274">client / caller</text><rect class="lg-compute" x="151.0" y="265" width="11" height="11" rx="2"/><text x="167.0" y="274">compute</text><rect class="lg-data" x="235.2" y="265" width="11" height="11" rx="2"/><text x="251.2" y="274">data / state</text><rect class="lg-async" x="352.4" y="265" width="11" height="11" rx="2"/><text x="368.4" y="274">async / messaging</text><rect class="lg-control" x="502.59999999999997" y="265" width="11" height="11" rx="2"/><text x="518.5999999999999" y="274">control / policy</text><line x1="14" y1="290" x2="42" y2="290"/><text x="48" y="294">reply / asynchronous</text></g></svg></div><ol class="lens-steps"><li>Discover: observe the workflow; separate what users say happens from what the data shows. Evidence for the value gate.</li><li>Frame: choose an MVP that can disprove the value hypothesis quickly, with explicit non-goals.</li><li>Build: a thin vertical slice across real systems beats a polished isolated prototype. Evidence for the quality gate.</li><li>Deploy: identity, observability, failure handling and data governance are part of the solution. Evidence for safety and operability.</li><li>Measure both system quality and workflow outcome: a high eval score with zero adoption is not success. Evidence for economics and adoption.</li><li>Accept and hand off: named owners, runbook, rollback drill and a dated scale, hold or stop decision.</li><li>Codify the engagement into reusable assets that make the next one faster.</li></ol></figure></div>
+
 
 <div id="production-gates">
 <h3>12A. The Six Production Gates</h3>
@@ -851,6 +960,7 @@ only where measured risk and value justify it</pre>
 </div>
 
 <div class="callout"><strong>High-agency does not mean uncontrolled improvisation.</strong> High-agency FDEs move quickly because they make assumptions explicit, shorten feedback loops and preserve critical invariants.</div>
+<div class="lens-scope"><section id="feynman-delivery" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor why a successful pilot is not yet a decision to scale.<br/><span class="lens-banned">Banned words: <i>production gates</i>, <i>operability</i>, <i>adoption</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>A pilot shows it can work. Scaling needs evidence on six fronts: the problem is worth solving, the quality is good enough, it is safe and properly authorised, your team can run and fix it, the cost per successful result is acceptable, and people actually use it. Failing any one can sink the whole thing, and strength in one doesn’t make up for another. We bring evidence for each and agree a dated scale, hold or stop decision.</p></details></section></div>
 </section>
 
 
@@ -924,6 +1034,7 @@ ops/support allocation        = ______
 → estimated monthly run cost          = ______
 → expected operational/business value = ______
 → value / cost ratio                  = ______</pre>
+<div class="lens-scope"><section id="feynman-value" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor how a model’s accuracy connects to the money they care about.<br/><span class="lens-banned">Banned words: <i>outcome tree</i>, <i>KPI</i>, <i>groundedness</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>We trace a chain from your business goal to what we measure. Say the goal is lower claim-handling cost. That means fewer manual review minutes, which means the system prepares the evidence pack automatically, which depends on it finding the right records and summarising them correctly. We measure each link, so if accuracy improves but costs don’t fall, we can see which link is broken instead of guessing.</p></details></section></div>
 </section>
 
 
@@ -939,6 +1050,7 @@ ops/support allocation        = ______
 <p>Separate time released, usable capacity, avoided expenditure, cash savings and revenue. An ROI backlog should record the workflow, eligible volume, baseline, benefit mechanism, adoption assumption, full operating cost, implementation cost, owner, uncertainty and next experiment. Rank feasible opportunities after mandatory controls and dependencies; do not disguise uncertain estimates as precise priority scores.</p>
 <p>Calculate total cost over a defined period divided by accepted successful outcomes over that same period. Include failed attempts, human correction and operations. For an investment case, compare incremental realised benefit with incremental costs and show downside sensitivity. Name who can turn released capacity into value, and avoid counting the same benefit twice. A longer roadmap should state evidence required before the next commitment rather than promise unsupported returns.</p>
 <p>Use the <a href="../../interview-prep/vacancies/accenture-fde.md#worked-programme-and-commercial-case">worked programme and commercial case</a> to practise benefit realisation, payback, resource constraints and conditional sequencing. Every number in that case is synthetic. For reuse, name an asset owner, supported versions, licensing/data boundaries, maintenance cost and retirement criteria; verify its value in a second applicable engagement.</p>
+<div class="lens-scope"><section id="feynman-programme-leadership" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor what you will report every fortnight across several workstreams.<br/><span class="lens-banned">Banned words: <i>programme</i>, <i>RAID</i>, <i>utilisation</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>One view. For each workstream: the baseline and target, current results on quality, safety and use, what is blocking it, which cost assumptions still hold, and the next decision with the person who owns it: scale, hold or stop. I bring you real choices and their consequences rather than a list of activity, and I keep time for incidents and reviews so the plan doesn’t quietly assume nothing will go wrong.</p></details></section></div>
 </section>
 <section id="failure">
 <h2>14. Common FDE failure modes <a class="toplink" href="#intro">↑ top</a></h2>
@@ -965,6 +1077,7 @@ ops/support allocation        = ______
 <div class="fieldnote"><strong>Hero-engineer deployment.</strong> A pilot performs well while its author is present, but support staff cannot explain why a request failed. The fix is not a better prompt; it is task-level correlation, failure taxonomy, runbook ownership and an operable rollback path.</div>
 
 <div class="fieldnote"><strong>Economically successful demo.</strong> A premium model reaches excellent quality on a small pilot. At full workload, cost grows beyond the value of the process being automated. Preserve the quality baseline, then test routing, context reduction, batching and smaller models against the same eval gate.</div>
+<div class="lens-scope"><section id="feynman-failure" class="lens-block lens-feynman" data-lens="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p><p class="lens-prompt">Explain to a sponsor the most common ways projects like theirs fail, and what you will do differently.<br/><span class="lens-banned">Banned words: <i>framework</i>, <i>RAG</i>, <i>hero engineer</i></span></p><details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>Teams pick a tool first and let it shape the design, so the real constraints arrive too late; I start from your rules, data and failure cases. They mistake a good demo for readiness; I test failures, recovery and monitoring before launch. They measure value after building, when it is too late to prove; I agree the baseline and target first. And they rely on one person who knows everything; I document and hand over as we go.</p></details></section></div>
 </section>
 
 <section id="assignments">
@@ -1428,7 +1541,7 @@ E — Extraction: reusable lesson or pattern</pre>
 
 <div class="footer">
 <strong>Editorial principle.</strong> This handbook prioritises enduring engineering and deployment principles over framework memorisation. Vendor-specific tools are included when they illuminate current practice, but assignments are intentionally designed so they can be implemented with different model providers and orchestration stacks.<br><br>
-Version 1.5 • Original research cut: 4 September 2026 • Focused updates: 5 October 2026, including security/role references, programme and people leadership, provider practice, experience boundaries and training; 20 October 2026, UK market snapshot, interview-loop map and drills, portfolio case-study standard, certification and resource refresh. Earlier technical research dates remain as labelled; this is not a full re-audit. • Standalone HTML, print-friendly.
+Version 1.6 • Learning lens added 21 October 2026 • Original research cut: 4 September 2026 • Focused updates: 5 October 2026, including security/role references, programme and people leadership, provider practice, experience boundaries and training; 20 October 2026, UK market snapshot, interview-loop map and drills, portfolio case-study standard, certification and resource refresh. Earlier technical research dates remain as labelled; this is not a full re-audit. • Standalone HTML, print-friendly.
 </div>
 </section>
 
@@ -1442,6 +1555,32 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)cur=e.t
 document.getElementById('listen-play').addEventListener('click',()=>{speechSynthesis.cancel();const c=cur.cloneNode(true);c.querySelectorAll('svg,button,script,style').forEach(x=>x.remove());
  const u=new SpeechSynthesisUtterance(c.innerText.replace(/\s+/g,' ').slice(0,9000));u.lang='en-GB';speechSynthesis.speak(u);});
 document.getElementById('listen-stop').addEventListener('click',()=>speechSynthesis.cancel());})();
+</script>
+<script>
+/* Learning lens v1: step-through diagrams and print support. */
+(function(){
+  document.querySelectorAll('.lens-visual[data-steps]').forEach(function(fig){
+    var n=Number(fig.getAttribute('data-steps'))||0, svg=fig.querySelector('svg'), ctr=fig.querySelector('.lens-controls');
+    if(!n||!svg||!ctr)return;
+    var items=[].slice.call(fig.querySelectorAll('.lens-steps>li')), edges=[].slice.call(svg.querySelectorAll('[data-step]'));
+    var status=ctr.querySelector('.lens-status'), step=0;
+    function render(){
+      svg.classList.toggle('stepping',step>0);
+      edges.forEach(function(e){var s=Number(e.getAttribute('data-step'));e.classList.toggle('on',s===step);e.classList.toggle('done',step>0&&s<step);});
+      items.forEach(function(li,i){li.classList.toggle('on',i+1===step);});
+      status.textContent=step?('Step '+step+' of '+n+': '+(items[step-1]?items[step-1].textContent:'')):('All '+n+' steps shown');
+    }
+    ctr.hidden=false;
+    ctr.querySelector('[data-lens-act="next"]').addEventListener('click',function(){step=step>=n?1:step+1;render();});
+    ctr.querySelector('[data-lens-act="prev"]').addEventListener('click',function(){step=step<=1?n:step-1;render();});
+    ctr.querySelector('[data-lens-act="all"]').addEventListener('click',function(){step=0;render();});
+    render();
+  });
+  window.addEventListener('beforeprint',function(){
+    document.querySelectorAll('details.lens-model,details.lens-sketch').forEach(function(d){d.open=true;});
+    document.querySelectorAll('.lens-svg.stepping').forEach(function(s){s.classList.remove('stepping');});
+  });
+})();
 </script>
 </body>
 </html>

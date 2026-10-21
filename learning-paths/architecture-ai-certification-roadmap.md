@@ -182,4 +182,4 @@ Time-sensitive claims were checked on 23 September 2026.
 
 ## Forward deployed architecture evidence
 
-The role does not by itself justify another certification. Use the [connected learning route](decision-models-and-forward-deployed-architecture.md) to assemble an ADR, working integration, evaluation packet, recovery demonstration and named handoff owners. Compare that evidence with [current role responsibilities](../handbooks/fde/fde-handbook-v1.5.html#forward-deployed-architect). Keep study credentials and demonstrated delivery capability distinct.
+The role does not by itself justify another certification. Use the [connected learning route](decision-models-and-forward-deployed-architecture.md) to assemble an ADR, working integration, evaluation packet, recovery demonstration and named handoff owners. Compare that evidence with [current role responsibilities](../handbooks/fde/fde-handbook-v1.6.html#forward-deployed-architect). Keep study credentials and demonstrated delivery capability distinct.
