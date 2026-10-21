@@ -4,7 +4,7 @@ To connect these labs to an end-to-end solution and interview explanations, use 
 
 Owner-approved repository exception, 7 September 2026. These two resources are maintained as a pair; the exception does not admit other certification packs or course notebooks.
 
-- [Visual Handbook — v2026.10.08.2](saa-c03-visual-handbook-2026.09.html)
+- [Visual Handbook — v2026.10.21](saa-c03-visual-handbook-2026.09.html)
 - [The $170 Cloud Lab Manual — v2.2](saa-c03-lab-manual-v2.2.html)
 
 Download the HTML files and open them locally for their navigation and interactive features; GitHub's source viewer does not run them. The lab manual stores progress in browser-local storage. Its export/import feature transfers status, recorded costs and evidence ticks, not AWS account data. The print-all control prepares every lab and tab for printing.
