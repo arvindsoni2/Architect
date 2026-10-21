@@ -118,7 +118,7 @@ The ADR chooses the modular monolith plus queue because it meets the measured sc
 
 Repository sources:
 
-- [System Design Concept Handbook v5](../../handbooks/system-design/system-design-concept-handbook-v5.html)
+- [System Design Concept Handbook v5](../../handbooks/system-design/system-design-concept-handbook-v6.html)
 - [Software Architect Curriculum Guide v3](../../learning-paths/software-architect/software-architect-curriculum-guide-v3.md)
 - [Software Architect Grooming Programme v5](../../learning-paths/software-architect/software-architect-grooming-programme-v5.html)
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html)

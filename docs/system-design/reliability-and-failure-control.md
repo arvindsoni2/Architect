@@ -93,7 +93,7 @@ Service recovery and data recovery are different. The breaker may close and norm
 
 Repository sources:
 
-- [System Design Concept Handbook v5](../../handbooks/system-design/system-design-concept-handbook-v5.html)
+- [System Design Concept Handbook v5](../../handbooks/system-design/system-design-concept-handbook-v6.html)
 - [Software Architect Grooming Programme v5](../../learning-paths/software-architect/software-architect-grooming-programme-v5.html)
 - [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html)
 - [Forward Deployed AI Engineer Handbook v1.5](../../handbooks/fde/fde-handbook-v1.5.html)
