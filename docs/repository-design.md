@@ -2,7 +2,7 @@
 
 **Status:** Approved design  
 **Repository:** `arvindsoni2/Architect`  
-**Date:** 2026-09-03 · **Amended:** 2026-10-13 (HTML-first learning)\
+**Date:** 2026-09-03 · **Amended:** 2026-10-13 (HTML-first learning), 2026-10-21 (learning lens)\
 **Visibility:** Public, curated
 
 ## 1. Purpose
@@ -56,6 +56,7 @@ Every HTML handbook change should meet these requirements:
 - **Video:** link to it rather than embedding video files, to keep handbooks small and fast.
 - **Layout:** no horizontal page scroll at 390 px wide; wide tables scroll inside their own container. Print shows all content.
 - **Storage:** wrap browser storage in `try/catch` and render correctly without it.
+- **Learning lens:** chapters and learning units carry first-principles, Pareto, visual and Feynman blocks as described in the [learning lens standard](learning-lens-standard.md) (amended 21 October 2026).
 
 ### Learning paths
 

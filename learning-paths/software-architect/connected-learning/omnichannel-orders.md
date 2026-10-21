@@ -1,6 +1,6 @@
 # Omnichannel orders: defend the failure paths
 
-[Project index and working method](README.md) · [Programme Unit 4](../software-architect-grooming-programme-v5.html#day4)
+[Project index and working method](README.md) · [Programme Unit 4](../software-architect-grooming-programme-v6.html#day4)
 
 ## Frame the workflow
 

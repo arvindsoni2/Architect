@@ -4,13 +4,13 @@ This is the authoritative index of current material in the repository.
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v5.html](handbooks/system-design/system-design-concept-handbook-v5.html) | HTML | Current | v5 | 2026-10-13 |
-| Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html) | HTML | Current | v2.8 | 2026-10-13 |
-| AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.2.html](handbooks/ai-engineering/ai-engineering-handbook-v3.2.html) | HTML | Current | v3.2 | 2026-10-13 |
-| AI Evaluation Field Guide | AI architecture | [handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) | HTML | Current | 2026.10 | 2026-10-13 |
+| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v6.html](handbooks/system-design/system-design-concept-handbook-v6.html) | HTML | Current | v6 | 2026-10-21 |
+| Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html) | HTML | Current | v2.9 | 2026-10-21 |
+| AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.3.html](handbooks/ai-engineering/ai-engineering-handbook-v3.3.html) | HTML | Current | v3.3 | 2026-10-21 |
+| AI Evaluation Field Guide | AI architecture | [handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) | HTML | Current | 2026.10 (learning lens 21 Oct) | 2026-10-21 |
 | Architecture and Applied AI Certification Roadmap | Architecture learning path | [learning-paths/architecture-ai-certification-roadmap.md](learning-paths/architecture-ai-certification-roadmap.md) | Markdown | Current | Living roadmap | 2026-10-05 |
 | Software Architect Curriculum Guide | Software architecture | [learning-paths/software-architect/software-architect-curriculum-guide-v3.md](learning-paths/software-architect/software-architect-curriculum-guide-v3.md) | Markdown | Current | v3 (evidence-led revision) | 2026-09-09 |
-| Software Architect Grooming Programme (Adaptive Software Architect Apprenticeship) | Software architecture | [learning-paths/software-architect/software-architect-grooming-programme-v5.html](learning-paths/software-architect/software-architect-grooming-programme-v5.html) | HTML | Current | v5 (evidence-led revision) | 2026-09-09 |
+| Software Architect Grooming Programme (Adaptive Software Architect Apprenticeship) | Software architecture | [learning-paths/software-architect/software-architect-grooming-programme-v6.html](learning-paths/software-architect/software-architect-grooming-programme-v6.html) | HTML | Current | v6 (learning lens) | 2026-10-21 |
 | Patient Portal Connected Learning | Applied software architecture | [learning-paths/software-architect/patient-portal-connected-learning.md](learning-paths/software-architect/patient-portal-connected-learning.md) | Markdown | Current | Living companion | 2026-09-09 |
 | Connected Architecture Project Guides | Applied software architecture | [learning-paths/software-architect/connected-learning/README.md](learning-paths/software-architect/connected-learning/README.md) | Markdown | Current | Living index | 2026-09-09 |
 | Regulated Payments Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/regulated-payments.md](learning-paths/software-architect/connected-learning/regulated-payments.md) | Markdown | Current | Living companion | 2026-09-09 |
@@ -22,8 +22,8 @@ This is the authoritative index of current material in the repository.
 | Professional Learning Platform Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/professional-learning-platform.md](learning-paths/software-architect/connected-learning/professional-learning-platform.md) | Markdown | Current | Living companion | 2026-09-09 |
 | Commerce Governance Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/commerce-governance.md](learning-paths/software-architect/connected-learning/commerce-governance.md) | Markdown | Current | Living companion | 2026-09-09 |
 | NorthStar Retail Connected Learning | Applied software architecture | [learning-paths/software-architect/connected-learning/northstar-retail.md](learning-paths/software-architect/connected-learning/northstar-retail.md) | Markdown | Current | Living companion | 2026-09-09 |
-| Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.5.html](handbooks/fde/fde-handbook-v1.5.html) | HTML | Current | v1.5 | 2026-10-20 |
-| The AI Architect's Handbook | AI architecture | [handbooks/ai-architecture/ai-architects-handbook-v1.2.html](handbooks/ai-architecture/ai-architects-handbook-v1.2.html) | HTML | Current | v1.2 | 2026-10-13 |
+| Forward Deployed AI Engineer Handbook | Forward-deployed AI engineering | [handbooks/fde/fde-handbook-v1.6.html](handbooks/fde/fde-handbook-v1.6.html) | HTML | Current | v1.6 | 2026-10-21 |
+| The AI Architect's Handbook | AI architecture | [handbooks/ai-architecture/ai-architects-handbook-v1.3.html](handbooks/ai-architecture/ai-architects-handbook-v1.3.html) | HTML | Current | v1.3 | 2026-10-21 |
 | Interview Resource Accelerator | AI/ML interview preparation | [learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html](learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html) | HTML | Current | v4.4 | 2026-10-05 |
 | Architecture Decision Method | Software architecture | [docs/software-architecture/architecture-decision-method.md](docs/software-architecture/architecture-decision-method.md) | Markdown | Current | Living | 2026-09-05 |
 | Reliability and Failure Control | System design | [docs/system-design/reliability-and-failure-control.md](docs/system-design/reliability-and-failure-control.md) | Markdown | Current | Living | 2026-09-05 |
@@ -47,7 +47,7 @@ Decision-model selection and acceptance live in the existing canonical AI archit
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v2026.10.08.2 | 2026-10-08 |
+| AWS SAA-C03 Visual Handbook | AWS solution architecture | [handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html](handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html) | HTML | Current | v2026.10.21 | 2026-10-21 |
 | The $170 Cloud — SAA-C03 Lab Manual | AWS architecture practice | [handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html](handbooks/aws-saa-c03/saa-c03-lab-manual-v2.2.html) | HTML | Current | v2.2 | 2026-10-05 |
 
 These two resources are an owner-approved scope exception. “Current” identifies the canonical publication, not a claim that every AWS lab has been deployed. See their [revision and validation notes](handbooks/aws-saa-c03/README.md).
@@ -77,7 +77,7 @@ Markdown sources are canonical. The tabbed HTML reading view and one HTML page p
 
 ## Status values
 
-The FDE v1.5 publication adds a 20 October 2026 UK market snapshot, an interview-loop map with decomposition, learning and customer-simulation drills, a portfolio case-study standard and refreshed certification evidence; it retains the focused 5 October supplement for provider practice, programme/people leadership and experience boundaries. Its original research dates remain labelled. The Accenture FDE supplement contains inferred rehearsal material, not a verified interview loop or a declaration of candidate eligibility.
+The FDE v1.6 publication (21 October 2026) adds what the role reduces to, a core reading path, four step-through diagrams and explain-it-back prompts; it keeps all v1.5 content. The FDE v1.5 publication adds a 20 October 2026 UK market snapshot, an interview-loop map with decomposition, learning and customer-simulation drills, a portfolio case-study standard and refreshed certification evidence; it retains the focused 5 October supplement for provider practice, programme/people leadership and experience boundaries. Its original research dates remain labelled. The Accenture FDE supplement contains inferred rehearsal material, not a verified interview loop or a declaration of candidate eligibility.
 
 - **Current:** canonical or currently published material.
 - **Review due:** usable material whose time-sensitive claims need checking.

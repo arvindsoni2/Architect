@@ -1,6 +1,6 @@
 # Regulated payments startup: boundaries before microservices
 
-[Project index and working method](README.md) · [Programme Unit 2](../software-architect-grooming-programme-v5.html#day2)
+[Project index and working method](README.md) · [Programme Unit 2](../software-architect-grooming-programme-v6.html#day2)
 
 ## Frame the decision
 

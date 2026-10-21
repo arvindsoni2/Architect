@@ -1,6 +1,6 @@
 # Professional learning platform: views that agree
 
-[Project index and working method](README.md) · [Programme Unit 8](../software-architect-grooming-programme-v5.html#day8)
+[Project index and working method](README.md) · [Programme Unit 8](../software-architect-grooming-programme-v6.html#day8)
 
 ## Frame the communication problem
 
@@ -32,7 +32,7 @@ In the deployment view, show private database access, task roles, tenant policy 
 
 | Preparation | Exact lab transfer | Artifact |
 | --- | --- | --- |
-| [Programme communication](../software-architect-grooming-programme-v5.html#day8) and [decision method](../../../docs/software-architecture/architecture-decision-method.md) | 05 FreshTrack (`l5`), **App + local loop**: map running components back to container names. | C4 context/container views and deployment overlay. |
+| [Programme communication](../software-architect-grooming-programme-v6.html#day8) and [decision method](../../../docs/software-architecture/architecture-decision-method.md) | 05 FreshTrack (`l5`), **App + local loop**: map running components back to container names. | C4 context/container views and deployment overlay. |
 | Private content delivery | 04 CraftRoast (`l4`), **Distribution + OAC**; extend its public storefront pattern with an entitlement check and controlled media access. | Access-policy ADR; do not mistake OAC for learner authorisation. |
 | Durable issuance | 03 OrderFlow (`l3`), **Duplicate drill**; 06 ClipPress (`l6`), **Failure + replay drill** only if recorded-media processing is in scope. | Assessment-to-certificate dynamic view and issuance ADR. |
 

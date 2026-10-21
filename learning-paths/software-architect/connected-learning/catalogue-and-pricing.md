@@ -1,6 +1,6 @@
 # Global catalogue and pricing: fast browsing, correct checkout
 
-[Project index and working method](README.md) · [Programme Unit 3](../software-architect-grooming-programme-v5.html#day3)
+[Project index and working method](README.md) · [Programme Unit 3](../software-architect-grooming-programme-v6.html#day3)
 
 ## Frame and quantify
 
