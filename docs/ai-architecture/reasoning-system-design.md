@@ -120,7 +120,7 @@ The loop stops at the first candidate meeting the evidence rubric, or at two ref
 
 - [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.2.html)
 - [Agent Engineering Master Manual v2.8](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.8.html)
-- [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.2.html)
+- [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html)
 - [Production AI Assurance](production-ai-assurance.md)
 - Private/source-synthesis assets consulted: Build a Reasoning Model visual chapter guide and CS329A Self-Improving AI Agents notes. Public counterparts: Sebastian Raschka's [reasoning-from-scratch hub](https://sebastianraschka.com/reasoning-from-scratch/), [official repository](https://github.com/rasbt/reasoning-from-scratch), and [Stanford CS329A](https://cs329a.stanford.edu/).
 
