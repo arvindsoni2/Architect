@@ -118,9 +118,9 @@ Candidates run isolated with synthetic credentials, replayed tools, fixed policy
 Contributing sources:
 
 - [CS329A Self-Improving AI Agents](https://cs329a.stanford.edu/) — verifiers and improvement.
-- [Agent Engineering Master Manual v2.8](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html) — loops and authority.
-- [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html) — reversibility.
-- [Forward Deployed AI Engineer Handbook v1.5](../../handbooks/fde/fde-handbook-v1.6.html) — gates.
+- [Agent Engineering Master Manual v2.9](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html) — loops and authority.
+- [The AI Architect's Handbook v1.3](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html) — reversibility.
+- [Forward Deployed AI Engineer Handbook v1.6](../../handbooks/fde/fde-handbook-v1.6.html) — gates.
 - [Production AI Assurance](../ai-architecture/production-ai-assurance.md) and [Durable Workflows and Idempotency](../cross-cutting-patterns/durable-workflows-and-idempotency.md) — recovery.
 
 Public primary references:
