@@ -52,6 +52,13 @@ These are fictional practice cases. Use the [shared scenario method](../shared/h
 
 **PM2 — one large customer requests a custom product.** A prospect offers attractive revenue if the team builds specialised features. Check strategic fit, reusable demand, delivery/support cost, contractual commitments and opportunity cost. Compare a configurable capability, a priced bounded engagement and declining the request. Recommend an option with the investment/commercial owner and evidence from other customers. **Probe:** what if sales already promised the date? **Weak response:** accepting on headline revenue alone or assuming all customisation is undesirable.
 
+## Bridge questions
+
+These questions cross from your story into the system behind it and back. Each answer follows the five beats in [Connect the dots](../shared/connect-the-dots.md) (Stakes, Split, Sketch, Shape, Show); the decisions behind them are in the [decision lists](../shared/decision-ledger.md).
+
+1. **How did the platform choice change the business case?** “On Natoora's SaaS product each client had its own database, schema and cloud environment, built from Terraform templates. That's the silo model: the strongest isolation, but the highest cost per client. The CTO and tech lead chose it; the sysadmin and CTO tracked cloud cost per client, because it hit both the client's margin and ours, and the £1.6k monthly fee had to cover running costs and support. Reusing the templates was one reason Client 2 cost 22% less to implement than Client 1. So the choice was paid for twice: by the client in fees, and by us in margin, which is why we watched it per client.”
+2. **Build or buy: who decided, and on what evidence?** “On Natoora's order automation we bought the model and built the workflow. Earlier rule-based attempts had failed on the variety of order formats, so using an LLM came out of a discussion I was part of, backed by the CTO. Our tech lead chose GPT-4o-mini for cost and latency. My part was the evidence: I wrote the product requirements with risk, cost and benefit, defined the success metrics before we scaled, and measured the result, about ninety per cent less manual effort per order, including the time still spent on exceptions.”
+
 ## First 90 days and panel questions
 
 First understand the market, users, strategy, economics and decision rights. Next validate the riskiest assumption and align a small set of outcome measures. Then recommend roadmap changes using evidence from customers and operations, with engineering/design feasibility and stakeholder agreement.

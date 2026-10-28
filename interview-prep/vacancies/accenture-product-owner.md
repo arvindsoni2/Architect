@@ -151,7 +151,7 @@ Say this calmly and briefly. Showing that you learn from a process is a strength
 
 - **What did you defer?** Choose a real example before the interview (for example, a manager dashboard feature that came after core submission and approval).
 - **How was £500K calculated?** Eliminated paper processing, fewer office visits and faster payroll. Know which of those carried most of the value.
-- **Were you responsible for the architecture?** “No — I owned the product decisions and the rollout; engineering owned the design. I made sure the integration risks were in the backlog early.”
+- **Were you responsible for the architecture?** “No. I owned the product decisions and the rollout. TCS chose the platform, and our architect and engineering lead owned the design. I was in the room at Northern Powergrid's architecture review board for the data-sovereignty and GDPR rulings, and I made sure the integration risks were in the backlog early.” The full answer is in [Architecture review](../shared/architecture-review.md#worked-example-smart-timesheet).
 
 ### Q5 How do you prioritise when you can't deliver everything?
 

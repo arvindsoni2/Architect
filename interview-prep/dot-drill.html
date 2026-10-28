@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dot drill — Interview preparation</title><script>(function(){var r=document.documentElement,t=null;
+try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+if(t==='dark'||t==='light'){try{localStorage.setItem('ip-theme',t);}catch(e){}}
+else{try{t=localStorage.getItem('ip-theme');}catch(e){}}
+if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+if(t==='dark')r.classList.add('dark');})();</script><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+.drill{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;margin:18px 0 26px}
+@media(max-width:960px){.drill{grid-template-columns:1fr}}
+.drill>*{min-width:0}.drill[hidden]{display:none}
+.roles{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}.roles button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.grid-wrap{overflow-x:auto}table.grid{min-width:560px;font-size:13px}table.grid th{font-size:12px;text-align:center;padding:6px 4px}table.grid th:first-child,table.grid td:first-child{text-align:left;white-space:nowrap}
+table.grid td{padding:3px;text-align:center}.cell{width:38px;height:32px;padding:0;border:1px solid transparent;background:none;color:var(--accent);cursor:pointer;border-radius:6px}
+.cell[aria-pressed="true"]{border-color:var(--accent);background:var(--soft)}.dot{display:inline-block;width:13px;height:13px;border-radius:50%;border:2px solid currentColor;vertical-align:middle}
+.dot.v2{background:currentColor}.dot.v1{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}.dot.v0{opacity:.5}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin-top:8px}.key .dot{color:var(--accent);width:10px;height:10px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--soft);min-width:0}.card .prompt{font-size:20px;line-height:1.35;font-weight:650;margin:8px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;background:var(--paper)}
+.card ul{list-style:none;padding:0;margin:12px 0}.card li{margin:4px 0}.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;min-width:3.4em}
+@media print{.drill{display:none!important}}
+</style></head><body data-page="dot-drill.html"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden>Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="index.html">Start here</a><a href="shared/handbook.html">Shared methods</a><a href="shared/evidence-bank.html">Evidence bank</a><a href="shared/connect-the-dots.html">Connect the dots</a><a href="shared/decision-ledger.html">Decision lists</a><a href="shared/architecture-review.html">Architecture review</a><div class="nav-label">Role guides</div><a href="roles/delivery-lead.html">Delivery Lead</a><a href="roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="roles/product-owner.html">Product Owner</a><a href="roles/product-manager.html">Product Manager</a><a href="roles/senior-project-manager.html">Senior Project Manager</a><a href="roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="roles/ai-engineer.html">AI Engineer</a><a href="roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">Practise</div><a href="dot-drill.html" aria-current="page">Dot drill</a><div class="nav-label">All in one</div><a href="handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="dot-drill">Dot drill</h1><p>Pick the role you are interviewing for, then a story and a lens. Answer out loud in 90 seconds using the five beats from <a href="shared/connect-the-dots.html">Connect the dots</a>. The drill tells you which level to start at and suggests a pairing when a story is thin on that lens.</p><div class="drill" id="drill" hidden><div><div class="roles" id="roles" role="group" aria-label="Interview role"></div><div class="grid-wrap"><table class="grid" id="grid"></table></div><div class="key"><span><span class="dot v2"></span> strong</span><span><span class="dot v1"></span> usable</span><span><span class="dot v0"></span> thin</span><span>S1–S7 work · S8–S10 personal projects</span></div></div><div class="card" aria-live="polite"><div class="chips" id="chips"></div><p class="prompt" id="prompt"></p><p id="advice"></p><p id="pair"></p><ul><li><label><input type="checkbox"> <strong>Stakes</strong> · what was at risk, for whom</label></li><li><label><input type="checkbox"> <strong>Split</strong> · what you owned, who owned the rest</label></li><li><label><input type="checkbox"> <strong>Sketch</strong> · three boxes, one risky arrow</label></li><li><label><input type="checkbox"> <strong>Shape</strong> · how your calls shaped theirs</label></li><li><label><input type="checkbox"> <strong>Show</strong> · the review, the result, the number</label></li></ul><div class="controls"><button type="button" id="start">Start 90 s</button><span class="timer" id="timer">1:30</span><button type="button" id="random">Random question</button></div></div></div><h2 id="without-the-interactive-drill">Without the interactive drill</h2><p>The same material as tables, for print or when scripts are off.</p><h2 id="story-and-lens-grid">Story and lens grid</h2>
+<p>Strong means the story answers the lens on its own; usable means it works with care; thin means pair it with a stronger story.</p>
+<div class="table-wrap"><table><thead><tr><th>Story</th><th>Decisions</th><th>Architecture</th><th>Cloud and cost</th><th>Data and AI</th><th>Governance</th><th>Users</th><th>Value</th></tr></thead><tbody>
+<tr><td>S1 GenAI orders</td><td>strong</td><td>usable</td><td>usable</td><td>strong</td><td>usable</td><td>strong</td><td>usable</td></tr>
+<tr><td>S2 SaaS launch</td><td>strong</td><td>usable</td><td>strong</td><td>thin</td><td>usable</td><td>strong</td><td>strong</td></tr>
+<tr><td>S3 Smart Timesheet</td><td>strong</td><td>usable</td><td>usable</td><td>usable</td><td>strong</td><td>strong</td><td>strong</td></tr>
+<tr><td>S4 Infrastructure</td><td>usable</td><td>strong</td><td>strong</td><td>thin</td><td>strong</td><td>usable</td><td>strong</td></tr>
+<tr><td>S5 Nationwide GDPR</td><td>strong</td><td>thin</td><td>thin</td><td>usable</td><td>strong</td><td>thin</td><td>usable</td></tr>
+<tr><td>S7 Agile and Jira</td><td>strong</td><td>usable</td><td>usable</td><td>thin</td><td>usable</td><td>usable</td><td>strong</td></tr>
+<tr><td>S8 Hatch</td><td>strong</td><td>strong</td><td>strong</td><td>strong</td><td>strong</td><td>usable</td><td>thin</td></tr>
+<tr><td>S9 IncidentPilot</td><td>strong</td><td>strong</td><td>usable</td><td>strong</td><td>strong</td><td>thin</td><td>thin</td></tr>
+<tr><td>S10 ResearchOps</td><td>strong</td><td>strong</td><td>strong</td><td>strong</td><td>usable</td><td>thin</td><td>thin</td></tr>
+</tbody></table></div>
+<h2 id="lens-prompts">Lens prompts</h2>
+<p>Each lens has one question a panel tends to ask. Replace “this story” with the story&#x27;s name.</p>
+<div class="table-wrap"><table><thead><tr><th>Lens</th><th>Question</th></tr></thead><tbody>
+<tr><td>Decisions</td><td>In this story, which decisions were yours, which belonged to someone else, and how did you influence the ones that weren&#x27;t yours?</td></tr>
+<tr><td>Architecture</td><td>Sketch the system in this story in three boxes. Which arrow carried the most risk, and what did you do about it?</td></tr>
+<tr><td>Cloud and cost</td><td>In this story, what did the solution cost to build and to run, and which design choice drove that cost?</td></tr>
+<tr><td>Data and AI</td><td>In this story, where did data or a model make a decision, and how did you know it was good enough?</td></tr>
+<tr><td>Governance</td><td>In this story, who had to approve the work, what did they challenge, and which condition did you carry afterwards?</td></tr>
+<tr><td>Users</td><td>In this story, who were the users, what did you learn from them that changed the design, and how did you measure adoption?</td></tr>
+<tr><td>Value</td><td>In this story, how was the value calculated, and what would a finance director challenge in that number?</td></tr>
+</tbody></table></div>
+<h2 id="where-each-role-starts">Where each role starts</h2>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th>Starting level</th><th>How to answer</th></tr></thead><tbody>
+<tr><td>Product Owner</td><td>2 · Decision</td><td>Start with the decision, the trade-off and who owned it. Go one level down to show you understood the mechanism.</td></tr>
+<tr><td>Product Manager</td><td>2 · Decision</td><td>Start with the decision and keep the business case in view: segment, economics, and why this bet over others.</td></tr>
+<tr><td>Delivery Lead</td><td>1 · Outcome</td><td>Start with the consequence, the risk and the plan. Then show the decision behind it.</td></tr>
+<tr><td>Architect</td><td>3 · Mechanism</td><td>Start with constraints, options, the trade-off and failure modes. Say who signed off.</td></tr>
+<tr><td>AI Engineer</td><td>4 · Build and proof</td><td>Start with how it works and how you measured it. Use a personal project for code-level detail.</td></tr>
+<tr><td>FDE</td><td>4 · Build and proof</td><td>Start with the customer&#x27;s problem, then what you built and how it was adopted.</td></tr>
+</tbody></table></div></article><footer>Generated from <a href="shared/connect-the-dots.html">connect-the-dots.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script type="application/json" id="drill-data">{"stories": [{"id": "S1", "name": "GenAI orders", "personal": false, "values": [2, 1, 1, 2, 1, 2, 1]}, {"id": "S2", "name": "SaaS launch", "personal": false, "values": [2, 1, 2, 0, 1, 2, 2]}, {"id": "S3", "name": "Smart Timesheet", "personal": false, "values": [2, 1, 1, 1, 2, 2, 2]}, {"id": "S4", "name": "Infrastructure", "personal": false, "values": [1, 2, 2, 0, 2, 1, 2]}, {"id": "S5", "name": "Nationwide GDPR", "personal": false, "values": [2, 0, 0, 1, 2, 0, 1]}, {"id": "S7", "name": "Agile and Jira", "personal": false, "values": [2, 1, 1, 0, 1, 1, 2]}, {"id": "S8", "name": "Hatch", "personal": true, "values": [2, 2, 2, 2, 2, 1, 0]}, {"id": "S9", "name": "IncidentPilot", "personal": true, "values": [2, 2, 1, 2, 2, 0, 0]}, {"id": "S10", "name": "ResearchOps", "personal": true, "values": [2, 2, 2, 2, 1, 0, 0]}], "lenses": ["Decisions", "Architecture", "Cloud and cost", "Data and AI", "Governance", "Users", "Value"], "prompts": ["In this story, which decisions were yours, which belonged to someone else, and how did you influence the ones that weren't yours?", "Sketch the system in this story in three boxes. Which arrow carried the most risk, and what did you do about it?", "In this story, what did the solution cost to build and to run, and which design choice drove that cost?", "In this story, where did data or a model make a decision, and how did you know it was good enough?", "In this story, who had to approve the work, what did they challenge, and which condition did you carry afterwards?", "In this story, who were the users, what did you learn from them that changed the design, and how did you measure adoption?", "In this story, how was the value calculated, and what would a finance director challenge in that number?"], "roles": [{"name": "Product Owner", "level": "2 · Decision", "advice": "Start with the decision, the trade-off and who owned it. Go one level down to show you understood the mechanism.", "technical": false}, {"name": "Product Manager", "level": "2 · Decision", "advice": "Start with the decision and keep the business case in view: segment, economics, and why this bet over others.", "technical": false}, {"name": "Delivery Lead", "level": "1 · Outcome", "advice": "Start with the consequence, the risk and the plan. Then show the decision behind it.", "technical": false}, {"name": "Architect", "level": "3 · Mechanism", "advice": "Start with constraints, options, the trade-off and failure modes. Say who signed off.", "technical": true}, {"name": "AI Engineer", "level": "4 · Build and proof", "advice": "Start with how it works and how you measured it. Use a personal project for code-level detail.", "technical": true}, {"name": "FDE", "level": "4 · Build and proof", "advice": "Start with the customer's problem, then what you built and how it was adopted.", "technical": true}]}</script><script>function ipThemeSetup(button){
+var root=document.documentElement;
+function current(){return root.classList.contains('dark')?'dark':'light';}
+function carry(updateAddress){var v=current();
+ [].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.getAttribute('data-ip-href')||a.getAttribute('href');
+  if(!h||h.charAt(0)==='#'||/^[a-z][a-z0-9+.-]*:/i.test(h))return;
+  if(!/[.]html$/i.test(h.split('#')[0].split('?')[0]))return;
+  try{var u=new URL(h,location.href);u.searchParams.set('theme',v);a.setAttribute('data-ip-href',h);a.setAttribute('href',u.href);}catch(e){}});
+ if(updateAddress){try{var c=new URL(location.href);c.searchParams.set('theme',v);history.replaceState(history.state,'',c.href);}catch(e){}}}
+function sync(){var d=root.classList.contains('dark');button.setAttribute('aria-pressed',String(d));button.textContent=d?'Light view':'Dark view';}
+button.addEventListener('click',function(){root.classList.toggle('dark');try{localStorage.setItem('ip-theme',current());}catch(e){}sync();carry(true);});
+sync();carry(false);}
+
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+ipThemeSetup(theme);
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+
+(function(){
+var D=JSON.parse(document.getElementById('drill-data').textContent),$=function(id){return document.getElementById(id);};
+var role=0,si=2,li=0,timer=null,left=90,W=['thin','usable','strong'];
+var root=$('drill');root.hidden=false;
+var rb=$('roles');D.roles.forEach(function(r,i){var b=document.createElement('button');b.type='button';b.textContent=r.name;b.setAttribute('aria-pressed',i===role?'true':'false');
+ b.addEventListener('click',function(){role=i;[].forEach.call(rb.children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});show();});rb.appendChild(b);});
+var h='<thead><tr><th scope="col">Story</th>'+D.lenses.map(function(l){return '<th scope="col">'+l+'</th>';}).join('')+'</tr></thead><tbody>';
+D.stories.forEach(function(s,i){h+='<tr><td>'+s.id+' '+s.name+'</td>'+s.values.map(function(v,j){return '<td><button type="button" class="cell" data-s="'+i+'" data-l="'+j+'" aria-pressed="false" aria-label="'+s.id+' '+s.name+', '+D.lenses[j]+': '+W[v]+'"><span class="dot v'+v+'"></span></button></td>';}).join('')+'</tr>';});
+$('grid').innerHTML=h+'</tbody>';
+$('grid').addEventListener('click',function(e){var c=e.target.closest('.cell');if(!c)return;si=+c.getAttribute('data-s');li=+c.getAttribute('data-l');show();});
+function best(l,personal,not){for(var i=0;i<D.stories.length;i++){var s=D.stories[i];if(i!==not&&s.personal===personal&&s.values[l]===2)return s;}return null;}
+function pairing(){var s=D.stories[si],r=D.roles[role],v=s.values[li],p,lens=D.lenses[li].toLowerCase();
+ if(!s.personal&&r.technical&&li>=1&&li<=4){p=best(li,true,si);return 'Pair it: '+s.name+' gives the stakes and who decided; '+(p?p.name:'a personal project')+' gives the '+lens+' you built yourself. Say which is which.';}
+ if(s.personal&&!r.technical){p=best(0,false,si);return 'Pair it: open with '+(p?p.name:'a work story')+' for the stakes, then use '+s.name+' to show you can make the technical call yourself. Say plainly that it is a personal project.';}
+ if(v<2){p=best(li,s.personal,si)||best(li,!s.personal,si);return 'This cell is thin. Lead with '+(p?p.name:'a stronger story')+' for '+lens+', and use '+s.name+' only as a supporting example.';}
+ return 'This cell is strong. Answer from '+s.name+' alone.';}
+function fmt(n){return Math.floor(n/60)+':'+('0'+(n%60)).slice(-2);}
+function stop(){if(timer){clearInterval(timer);timer=null;}left=90;$('timer').textContent=fmt(left);$('start').textContent='Start 90 s';}
+function show(){var s=D.stories[si],r=D.roles[role];
+ [].forEach.call(document.querySelectorAll('.cell'),function(c){c.setAttribute('aria-pressed',(+c.getAttribute('data-s')===si&&+c.getAttribute('data-l')===li)?'true':'false');});
+ $('chips').innerHTML='';[r.name+' · level '+r.level,s.id+' '+s.name,D.lenses[li]+': '+W[s.values[li]]].forEach(function(t){var c=document.createElement('span');c.className='chip';c.textContent=t;$('chips').appendChild(c);});
+ $('prompt').textContent=D.prompts[li].replace(/this story/g,s.name);$('advice').textContent=r.advice;$('pair').textContent=pairing();stop();}
+$('start').addEventListener('click',function(){if(timer){stop();return;}left=90;$('start').textContent='Stop';timer=setInterval(function(){left--;$('timer').textContent=fmt(Math.max(left,0));if(left<=0){clearInterval(timer);timer=null;$('timer').textContent='Time';$('start').textContent='Start 90 s';}},1000);});
+$('random').addEventListener('click',function(){var a,b;do{a=Math.floor(Math.random()*D.stories.length);b=Math.floor(Math.random()*D.lenses.length);}while(a===si&&b===li);si=a;li=b;show();});
+show();
+})();
+</script></body></html>

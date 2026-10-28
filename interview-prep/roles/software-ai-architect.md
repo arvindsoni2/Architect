@@ -31,7 +31,7 @@ Say the steps as you go: **clarify** users, use cases and non-functional require
 | [S2 SaaS](../shared/evidence-bank.md#s2-saas-transformation) | Reusing an internal platform for external tenants; white-labelling scope; repeatable onboarding | Your role was delivery lead; name the engineers who implemented tenancy |
 | [S4 infrastructure](../shared/evidence-bank.md#s4-infrastructure-modernisation) | Sequencing retirements, upgrades and migrations; rollback and validation | 120+ servers and 30+ applications; £400k is annual savings, not budget |
 | [S1 order automation](../shared/evidence-bank.md#s1-genai-order-automation) | LLM extraction with validation and exception routing; pilot scope | The CTO limited the rollout to London and Paris |
-| [S3 Smart Timesheet](../shared/evidence-bank.md#s3-smart-timesheet) | Low-code front end on AWS with a .NET integration layer to Oracle HCM and CRM | You owned product decisions; confirm who selected the platform before claiming it |
+| [S3 Smart Timesheet](../shared/evidence-bank.md#s3-smart-timesheet) | Low-code front end on AWS with a .NET integration layer to Oracle HCM and CRM | TCS chose OutSystems, which ran the platform on AWS. You owned product decisions and attended Northern Powergrid's ARB for the data-sovereignty and GDPR rulings ([decision list](../shared/decision-ledger.md#s3-smart-timesheet)) |
 | [S9 IncidentPilot](../shared/evidence-bank.md#s9-incidentpilot--personal-open-source-project) | Read-only MVP; model with no tools; rules-only fallback | Personal project — you were the architect |
 | [S8 Hatch](../shared/evidence-bank.md#s8-hatch--personal-open-source-project) | Human-in-the-loop trust boundary; primary/triage model routing; local or cloud | Personal project |
 | [S10 ResearchOps v2](../shared/evidence-bank.md#s10-researchops-v2--personal-open-source-project) | Deterministic ranking with a narrow model role; cost ceilings | Personal project; v1 was redesigned |
@@ -165,6 +165,22 @@ Say the steps as you go: **clarify** users, use cases and non-functional require
 ## Presenting an architecture
 
 If asked to present, tell a story: the problem and who has it, the requirements that drive the design, two or three options with their trade-offs, the decision, how it fails and how you'd know, the cost, and what you'd do next. Leave time for questions; the defence matters more than the slides.
+
+## Bridge questions
+
+These questions cross from your story into the system behind it and back. Each answer follows the five beats in [Connect the dots](../shared/connect-the-dots.md) (Stakes, Split, Sketch, Shape, Show); the decisions behind them are in the [decision lists](../shared/decision-ledger.md).
+
+### Q31. How did user research change your non-functional requirements?
+
+**Model answer:** “On Smart Timesheet, field research rewrote them. Engineers worked in gloves, in the rain, on small screens, so usability meant simple and forgiving, not feature-rich. They often had no signal, so availability meant offline-first: the native app stored timesheets on the phone and synced later. And GDPR made data minimisation a requirement: only employee ID, name and day rate went to the cloud. I was the Product Owner, not the architect, but those requirements came from my research and shaped the design.”
+
+### Q32. Who signed off the design, and which condition shaped it most?
+
+**Model answer:** “Northern Powergrid's architecture review board, and I was in the room. The platform was OutSystems, running in the vendor's cloud on AWS; Northern Powergrid had no AWS account of its own. So the board's real questions were about data: it required employee data to stay in the UK and approved sharing only three fields. That condition shaped the design most, because every extra field would have made the GDPR case harder. Our architect presented the design; I presented the problem, the value, the users, the data we needed and the rollout.”
+
+### Q33. Was your SaaS platform multi-tenant?
+
+**Model answer:** “Not in the shared-database sense. At Natoora it was one codebase with a separate stack per client: each client had its own database, schema and cloud environment, built from Terraform templates. That's the silo model. It gives the strongest isolation and simpler compliance, at a higher cost and operational load per client, which is why the CTO and sysadmin tracked cloud cost per client. The CTO and tech lead chose it; I took part in the architecture reviews and owned the technical-debt plan, including tracking every open security item until it was closed.”
 
 ## Credibility probes
 

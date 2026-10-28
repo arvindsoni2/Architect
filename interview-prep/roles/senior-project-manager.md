@@ -102,6 +102,18 @@ Current guides add AI in project management, hybrid methods and distributed team
 
 **Model answer:** Prepare one STAR example for each behaviour the advert names, usually from Seeing the Big Picture, Changing and Improving, Making Effective Decisions, Leadership, Communicating and Influencing, Working Together, Developing Self and Others, Managing a Quality Service and Delivering at Pace. Lead with your own actions and the result. Good matches: Delivering at Pace — the four-week SaaS go-live; Making Effective Decisions — the B1 resource conflict; Changing and Improving — the Jira and Agile operating model; Developing Self and Others — mentoring 20+ associates. [3]
 
+## Bridge questions
+
+These questions cross from your story into the system behind it and back. Each answer follows the five beats in [Connect the dots](../shared/connect-the-dots.md) (Stakes, Split, Sketch, Shape, Show); the decisions behind them are in the [decision lists](../shared/decision-ledger.md).
+
+### Q12. A governance board's process threatened your date. What did you do?
+
+**Model answer:** “At Northern Powergrid every production change in the infrastructure programme needed the weekly change board, and one rejection cost a week. I was the TCS Agile Delivery Manager, and the board's approval wasn't mine to give, so I made approval predictable: templated change requests, an informal pre-check with the CAB chair and related changes batched together. Every change carried a rollback plan and production validation scripts. When one migration did fail, we rolled it back to its previous state and moved it to the next phase rather than force it into that window. The controls protected the date because they were built in, not added at the end.”
+
+### Q13. How do you manage several suppliers against a fixed regulatory deadline?
+
+**Model answer:** “On Nationwide's GDPR programme the deadline was set in law, 25 May 2018, and five suppliers (Capgemini, IBM, Accenture, TCS and Infosys) depended on shared test environments. Nationwide's release or programme manager owned scope and release; I was the TCS project manager, and my power was visibility. Nothing went to the bi-weekly governance meeting without a named owner and a next action, and I kept the end-to-end and integration environments available when the test team needed them, about ninety per cent of the time. The programme was signed off two weeks before the deadline.”
+
 ## First 90 days and panel questions
 
 First validate the business case, commitments, governance, baseline and urgent risks. Next establish a credible forecast and resolve priority dependencies. Then improve reporting/decision cadence, transition readiness and benefits ownership. Tailor this to initiation, delivery or recovery rather than imposing a standard mobilisation template.

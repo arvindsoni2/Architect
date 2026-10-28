@@ -203,6 +203,18 @@ Model answers are written in your voice from the evidence bank. Where one descri
 
 **Debugging rehearsal:** an agent that repeats a tool call. Find the swallowed error, add a step cap and a repeated-call guard, and replay the failing input as a test.
 
+## Bridge questions
+
+These questions cross from your story into the system behind it and back. Each answer follows the five beats in [Connect the dots](../shared/connect-the-dots.md) (Stakes, Split, Sketch, Shape, Show); the decisions behind them are in the [decision lists](../shared/decision-ledger.md).
+
+### Q38. How would you build the GenAI order automation today, and how would you evaluate it?
+
+**Model answer:** “I'd keep what worked at Natoora: strip people's names and addresses before anything reaches the model, ask for structured JSON, validate customers and products against the warehouse system, block duplicates on the order reference and items, and send anything uncertain to human review. What I'd add is a fixed evaluation set: a labelled sample of real emails from each procurement system, scored field by field, plus the exception rate and handling time per system. Every prompt or model change would run against that set before release. It's the same gate I use in Hatch, my personal project, where a staged evaluation kept the baseline model because no challenger passed the quality gates.”
+
+### Q39. What did production teach you that a demo didn't?
+
+**Model answer:** “Three things on the GenAI order tool. Format variety was the real problem: Marketman in London and Lightspeed in Paris sent orders differently, so each procurement system needed its own experiments over two to three months. Exception rules can't be designed up front; ours grew out of what those experiments showed. And trust came from visibility: the human review screen let customer service see exactly how each order was handled. That's also why I measured effort released, about ninety per cent, rather than claiming a model accuracy figure.”
+
 ## Credibility probes
 
 Which parts did you write and which did a coding agent write? How was the 90% order-automation figure measured? What does your evaluation set not cover? What would break first at a thousand users? Have you been on call for an AI system? Answer each directly; "personal project" is a respectable answer when it is true.

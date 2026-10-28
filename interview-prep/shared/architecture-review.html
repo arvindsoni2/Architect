@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Architecture review — Interview preparation</title><script>(function(){var r=document.documentElement,t=null;
+try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+if(t==='dark'||t==='light'){try{localStorage.setItem('ip-theme',t);}catch(e){}}
+else{try{t=localStorage.getItem('ip-theme');}catch(e){}}
+if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+if(t==='dark')r.classList.add('dark');})();</script><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="shared/architecture-review.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="handbook.html">Shared methods</a><a href="evidence-bank.html">Evidence bank</a><a href="connect-the-dots.html">Connect the dots</a><a href="decision-ledger.html">Decision lists</a><a href="architecture-review.html" aria-current="page">Architecture review</a><div class="nav-label">Role guides</div><a href="../roles/delivery-lead.html">Delivery Lead</a><a href="../roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="../roles/product-owner.html">Product Owner</a><a href="../roles/product-manager.html">Product Manager</a><a href="../roles/senior-project-manager.html">Senior Project Manager</a><a href="../roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="../roles/ai-engineer.html">AI Engineer</a><a href="../roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">Practise</div><a href="../dot-drill.html">Dot drill</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="architecture-review">Architecture review</h1>
+<p><strong>Status:</strong> Owner-approved · <strong>Last reviewed:</strong> 28 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#what-a-review-board-is-for">What a review board is for</a></li><li><a href="#who-brings-what">Who brings what</a></li><li><a href="#the-one-page-pack">The one-page pack</a></li><li><a href="#answering-how-do-you-represent-a-design-at-an-arb">Answering “how do you represent a design at an ARB?”</a></li><li><a href="#three-traps-panels-listen-for">Three traps panels listen for</a></li><li><a href="#worked-example-smart-timesheet">Worked example: Smart Timesheet</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>How an Architecture Review Board works, what a Product Owner brings to it, and a worked answer from Smart Timesheet, where you were in the room. Use it with <a href="connect-the-dots.html">Connect the dots</a> and the <a href="decision-ledger.html">decision lists</a>.</p>
+<h2 id="what-a-review-board-is-for">What a review board is for</h2>
+<p>An Architecture Review Board (ARB) checks that a design fits the organisation&#x27;s principles, standards and risk appetite before money or production access is committed. TOGAF calls it the Architecture Board; many UK organisations call it a design authority. It usually ends in one of four outcomes: approve, approve with conditions, defer, or reject. Sometimes it grants a time-limited exception to a standard.</p>
+<p>A Change Advisory Board (CAB) is different. A CAB asks “is this change safe to make now?”; an ARB asks “is this the right design?”. You have worked with both at Northern Powergrid: Smart Timesheet went through the ARB, and the infrastructure programme used the ARB for upgrades and the weekly CAB for every production change.</p>
+<h2 id="who-brings-what">Who brings what</h2>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th>Brings</th><th>Typical content</th></tr></thead><tbody>
+<tr><td>Product Owner</td><td>The why and the what</td><td>Problem, users and value, with the number; scope in, out and deferred; non-functional needs grounded in research; rollout plan and how to reverse it; how success is measured</td></tr>
+<tr><td>Architect</td><td>The how</td><td>C4 context and container views; options considered, with an ADR; how the design meets standards; security and data model; run cost and support model</td></tr>
+<tr><td>Delivery lead</td><td>The when and the risk</td><td>Plan and dependencies; RAID log highlights; environments and release approach; who closes each condition, and by when</td></tr>
+</tbody></table></div>
+<h2 id="the-one-page-pack">The one-page pack</h2>
+<p>In the order the board reads it:</p>
+<ol>
+<li><strong>Decision asked:</strong> what you want the board to approve today.</li>
+<li><strong>Problem and value:</strong> who has the problem, and the number.</li>
+<li><strong>Scope:</strong> in, out and deferred.</li>
+<li><strong>Context view:</strong> users, the system and its neighbours.</li>
+<li><strong>Options and recommendation:</strong> two or three options and the trade-off.</li>
+<li><strong>Quality needs:</strong> availability, security and data, and how each is met.</li>
+<li><strong>Risks and exceptions:</strong> open risks, compliance, and any standard waived.</li>
+<li><strong>Cost and support:</strong> build cost, run cost, and who supports it.</li>
+</ol>
+<h2 id="answering-how-do-you-represent-a-design-at-an-arb">Answering “how do you represent a design at an ARB?”</h2>
+<div class="qa" data-qa="q1-how-do-you-represent-a-design-or-architecture-at-a-review-board">
+<h3 id="q1-how-do-you-represent-a-design-or-architecture-at-a-review-board">Q1. How do you represent a design or architecture at a review board?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> “I treat the review board as a decision meeting, not a show-and-tell. Beforehand I agree with the architect who presents what. I bring the why and the what: the problem, the value, the users, the scope and the rollout. The architect brings the how: the options, the design and how it meets the standards. We send a one-page pack in advance that opens with the decision we&#x27;re asking for. In the room I start with the decision and the value, the architect walks through the container view and the main trade-off, and I take the questions on scope and risk. Any conditions go into the backlog as items with an owner and a date, and I report on them at the next review. That keeps governance a check on risk instead of a queue.”</p>
+</div></div>
+<h2 id="three-traps-panels-listen-for">Three traps panels listen for</h2>
+<ul>
+<li>Showing the solution before the problem. Boards approve value and risk, not diagrams.</li>
+<li>Answering outside your lane: the Product Owner defending design details they didn&#x27;t own, or the architect fielding value questions.</li>
+<li>Treating conditions as paperwork. A condition with no owner or date in the backlog is the most common way governance turns into delay.</li>
+</ul>
+<h2 id="worked-example-smart-timesheet">Worked example: Smart Timesheet</h2>
+<p>Northern Powergrid, 2019 to March 2020, while you were the TCS Product Owner. The initiative needed rulings from several perspectives at Northern Powergrid&#x27;s board (data sovereignty, GDPR impact and design review), and the data-sharing ruling decided whether it was viable. When a panel asks “which architecture concerns have you dealt with?”, name those three.</p>
+<p>The facts that shape the answer:</p>
+<ul>
+<li>TCS, as implementation partner, chose OutSystems to get from prototype to production quickly.</li>
+<li>OutSystems ran the platform in its own cloud on AWS. Northern Powergrid had no direct relationship with AWS.</li>
+<li>Only three fields crossed to the cloud: employee ID, name and day rate. The native app worked offline, and the desktop web app was deferred so mobile shipped first.</li>
+<li>You were in the room at the ARB.</li>
+</ul>
+<p>So the honest answer to “how did you handle the AWS architecture?” is that the AWS layer was the vendor&#x27;s. The decisions that mattered to Northern Powergrid were about data: where it lived and what left Oracle. Those went through the ARB, and you were there.</p>
+<p>How the system worked:</p>
+<ol>
+<li>Engineers submit their time in the OutSystems native app. It stores timesheets on the phone and syncs when back online.</li>
+<li>Supervisors approve timesheets in the same app.</li>
+<li>The app calls the .NET layer whenever it needs employee data.</li>
+<li>The .NET layer reads Oracle HCM. This is where employee data leaves Northern Powergrid&#x27;s systems for a vendor cloud; the ARB approved only employee ID, name and day rate.</li>
+<li>It also calls Oracle CRM through its API: the second legacy dependency, and the second delivery risk.</li>
+<li>When a timesheet is approved, API calls send what each system needs to HCM, CRM and payroll.</li>
+</ol>
+<p>The full decision list is in <a href="decision-ledger.html#s3-smart-timesheet">Decision lists</a>.</p>
+<div class="qa" data-qa="q2-on-the-timesheet-project-how-did-you-handle-the-aws-architecture-what-did-you-decide-and-what-did-the-architect-decide-and-how-did-you-present-it-to-the-arb">
+<h3 id="q2-on-the-timesheet-project-how-did-you-handle-the-aws-architecture-what-did-you-decide-and-what-did-the-architect-decide-and-how-did-you-present-it-to-the-arb">Q2. On the timesheet project, how did you handle the AWS architecture, what did you decide and what did the architect decide, and how did you present it to the ARB?</h3>
+<div class="qa-body">
+<p><strong>Stakes.</strong> “Smart Timesheet replaced paper timesheets for over two thousand Northern Powergrid field engineers. Forms went back to depots by hand and payroll keyed them in two to three days later, so mistakes turned into pay complaints.”</p>
+<p><strong>Split.</strong> “I was the TCS Product Owner, and the decisions sat at three levels. I owned what we built and in what order: the users, the first release, the acceptance criteria and the rollout. TCS, as the implementation partner, chose OutSystems so we could move from prototype to production quickly, and our architect and engineering lead owned the integration design. The decisions that could make or break the initiative belonged to Northern Powergrid&#x27;s Architecture Review Board: data sovereignty and GDPR.”</p>
+<p><strong>Sketch.</strong> “In three boxes: an OutSystems app for engineers and supervisors, running in OutSystems&#x27; own cloud on AWS; a .NET integration layer; and the legacy Oracle HCM and CRM systems behind it, which held the employee data. Northern Powergrid had no AWS account of its own. OutSystems ran that layer. So the arrow that mattered was employee data leaving Oracle for a vendor&#x27;s cloud.”</p>
+<p><strong>Shape.</strong> “That turned the AWS question into two product questions: where does the data live, and what data does the app actually need? We sent the cloud only what the app needed: employee ID, name and day rate. Every extra field would have made the GDPR case harder. Engineers often worked without signal, so the native app stored timesheets on the phone and synced when back online, and I deferred the desktop web app so mobile shipped first. Field research also gave the architect real usability requirements: gloves, rain and small screens, so the app had to be simple and forgiving. I moved the Oracle integration work to the front of the backlog so it was proven before the alpha, and the alpha at one depot doubled as a live test of the integration.”</p>
+<p><strong>Show.</strong> “I was in the room at the ARB, because the initiative needed decisions from several architecture perspectives: data sovereignty, GDPR impact and design review. I presented the why and the what: the problem, the value, the users, the data we needed and the rollout. Our architect presented the design. The board required the data to stay in the UK and approved only those three fields. Nothing else left Northern Powergrid&#x27;s systems. The service grew to over three thousand users and saved around half a million pounds a year. I own the why and the what, the architects and the board own the how and the guardrails, and the backlog is where they meet.”</p>
+<p>Say “hosted in the UK” rather than naming an AWS region, unless you know which one OutSystems used. If they ask why AWS decisions weren&#x27;t yours: “On a managed platform the infrastructure is the vendor&#x27;s job. Our job was deciding what we trusted the vendor with.” Before you say the £500k figure, know how it was calculated: paper processing removed, fewer office visits and faster payroll.</p>
+<p><strong>One level down:</strong></p>
+<ol>
+<li class="qa-li"><strong>Who ran the AWS side?</strong> <span class="qa-ans">OutSystems did, as a managed cloud. In GDPR terms that usually makes Northern Powergrid the controller, OutSystems a processor and AWS a sub-processor. That chain is what the ARB had to be satisfied with.</span></li>
+<li class="qa-li"><strong>How did the cloud app reach Oracle?</strong> <span class="qa-ans">The .NET middleware called Oracle HCM and CRM through APIs, and approval triggered the calls to HCM, CRM and payroll. If pressed on the network path, the patterns are in the <a href="../../handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html#hybrid-connectivity-title">SAA-C03 handbook</a>: VPN versus Direct Connect, and hybrid connectivity.</span></li>
+<li class="qa-li"><strong>What if signal or Oracle was down?</strong> <span class="qa-ans">Offline-first on the phone covered no signal. For Oracle outages at payroll cut-off: timeouts, retries, a circuit breaker or queued submissions. See <a href="../../handbooks/system-design/system-design-concept-handbook-v6.html#c13">System Design v6</a>, chapters 10, 13 and 14.</span></li>
+<li class="qa-li"><strong>Who could sign in, and how?</strong> <span class="qa-ans">The usual pattern is single sign-on against the corporate directory. Check what Smart Timesheet actually used before you say it.</span></li>
+<li class="qa-li"><strong>How did you handle data sovereignty and GDPR?</strong> <span class="qa-ans">UK hosting and data minimisation: three fields crossed. Day rate is pay data, so prepare for “why did the cloud need it?”. Encryption is covered in the SAA-C03 handbook; a processing agreement with the vendor is the contractual side. This is your strongest level-3 topic, because you were in the room for it.</span></li>
+<li class="qa-li"><strong>How available did it need to be?</strong> <span class="qa-ans">Peaks around submission deadlines and the payroll cut-off. See <a href="../../handbooks/system-design/system-design-concept-handbook-v6.html#c16">System Design v6</a>, chapter 16, on SLOs.</span></li>
+</ol>
+</div></div></article><footer>Generated from <a href="architecture-review.md">architecture-review.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>function ipThemeSetup(button){
+var root=document.documentElement;
+function current(){return root.classList.contains('dark')?'dark':'light';}
+function carry(updateAddress){var v=current();
+ [].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.getAttribute('data-ip-href')||a.getAttribute('href');
+  if(!h||h.charAt(0)==='#'||/^[a-z][a-z0-9+.-]*:/i.test(h))return;
+  if(!/[.]html$/i.test(h.split('#')[0].split('?')[0]))return;
+  try{var u=new URL(h,location.href);u.searchParams.set('theme',v);a.setAttribute('data-ip-href',h);a.setAttribute('href',u.href);}catch(e){}});
+ if(updateAddress){try{var c=new URL(location.href);c.searchParams.set('theme',v);history.replaceState(history.state,'',c.href);}catch(e){}}}
+function sync(){var d=root.classList.contains('dark');button.setAttribute('aria-pressed',String(d));button.textContent=d?'Light view':'Dark view';}
+button.addEventListener('click',function(){root.classList.toggle('dark');try{localStorage.setItem('ip-theme',current());}catch(e){}sync();carry(true);});
+sync();carry(false);}
+
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+ipThemeSetup(theme);
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

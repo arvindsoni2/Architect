@@ -3,11 +3,14 @@
 Writes the tabbed all-in-one reading view (handbook.html) and one standalone page
 per guide (README.md becomes index.html; every other .md gets a sibling .html).
 
+Also writes dot-drill.html, a practice page built from the tables in shared/connect-the-dots.md.
+
 Supports headings, paragraphs, flat lists, tables, quotes, bold, code and links.
 Raw HTML is escaped. This is a scoped publication tool, not a general Markdown parser.
 """
 import argparse
 import html
+import json
 import posixpath
 import re
 from pathlib import Path
@@ -18,6 +21,9 @@ SOURCES = [
     ('README.md', 'start', 'Start here'),
     ('shared/handbook.md', 'methods', 'Shared methods'),
     ('shared/evidence-bank.md', 'evidence', 'Evidence bank'),
+    ('shared/connect-the-dots.md', 'connect', 'Connect the dots'),
+    ('shared/decision-ledger.md', 'decisions', 'Decision lists'),
+    ('shared/architecture-review.md', 'arb', 'Architecture review'),
     ('roles/delivery-lead.md', 'delivery-lead', 'Delivery Lead'),
     ('roles/agile-delivery-lead.md', 'agile-delivery-lead', 'Agile Delivery Lead'),
     ('roles/product-owner.md', 'product-owner', 'Product Owner'),
@@ -283,20 +289,28 @@ progress();
 NAV_GROUPS = [('Start', ('README.md', 'shared/')), ('Role guides', ('roles/',)), ('Vacancies', ('vacancies/',))]
 
 
-def build_page(source, documents, titles):
-    here = posixpath.dirname(page_path(source)) or '.'
-    rel = lambda p: posixpath.relpath(p, here)
-    content = (ROOT / 'interview-prep' / source).read_text(encoding='utf-8')
-    body = render_markdown(content, source, documents, page=True)
+def _navigation(rel, current_page):
     nav = []
     for label, prefixes in NAV_GROUPS:
         nav.append(f'<div class="nav-label">{label}</div>')
         for path, _, title in SOURCES:
             if path.startswith(prefixes) or path in prefixes:
-                current = ' aria-current="page"' if path == source else ''
+                current = ' aria-current="page"' if page_path(path) == current_page else ''
                 nav.append(f'<a href="{html.escape(rel(page_path(path)), quote=True)}"{current}>{html.escape(title)}</a>')
+    nav.append('<div class="nav-label">Practise</div>')
+    current = ' aria-current="page"' if current_page == DRILL_PAGE else ''
+    nav.append(f'<a href="{html.escape(rel(DRILL_PAGE), quote=True)}"{current}>Dot drill</a>')
     nav.append('<div class="nav-label">All in one</div>')
     nav.append(f'<a href="{html.escape(rel("handbook.html"), quote=True)}">Tabbed reading view</a>')
+    return nav
+
+
+def build_page(source, documents, titles):
+    here = posixpath.dirname(page_path(source)) or '.'
+    rel = lambda p: posixpath.relpath(p, here)
+    content = (ROOT / 'interview-prep' / source).read_text(encoding='utf-8')
+    body = render_markdown(content, source, documents, page=True)
+    nav = _navigation(rel, page_path(source))
     headings = re.findall(r'<h2 id="([^"]+)">(.*?)</h2>', body)
     toc = ''
     if len(headings) > 2:
@@ -333,10 +347,147 @@ def _after_intro(body, insert):
     return body[:end] + insert + body[end:]
 
 
+DRILL_PAGE = 'dot-drill.html'
+DRILL_SOURCE = 'shared/connect-the-dots.md'
+
+
+def _section_table(content, heading):
+    """Rows of the first Markdown table under a level-2 heading, as lists of cells."""
+    lines = content.splitlines()
+    start = lines.index('## ' + heading)
+    rows = []
+    for line in lines[start + 1:]:
+        if line.startswith('## '):
+            break
+        if line.startswith('|') and not re.match(r'^\|[\s:|\-]+\|$', line):
+            rows.append([cell.strip() for cell in line.strip().strip('|').split('|')])
+    return rows[0], rows[1:]
+
+
+def drill_data():
+    content = (ROOT / 'interview-prep' / DRILL_SOURCE).read_text(encoding='utf-8')
+    grid_head, grid_rows = _section_table(content, 'Story and lens grid')
+    _, prompt_rows = _section_table(content, 'Lens prompts')
+    _, role_rows = _section_table(content, 'Where each role starts')
+    score = {'thin': 0, 'usable': 1, 'strong': 2}
+    stories = []
+    for row in grid_rows:
+        sid, name = row[0].split(' ', 1)
+        number = int(sid[1:])
+        stories.append({'id': sid, 'name': name, 'personal': number >= 8, 'values': [score[v] for v in row[1:]]})
+    lenses = grid_head[1:]
+    prompts = dict(prompt_rows)
+    if [l for l in lenses if l not in prompts]:
+        raise ValueError('Every lens in the grid needs a prompt')
+    roles = [{'name': r[0], 'level': r[1], 'advice': r[2], 'technical': r[1].startswith(('3', '4'))} for r in role_rows]
+    return {'stories': stories, 'lenses': lenses, 'prompts': [prompts[l] for l in lenses], 'roles': roles}
+
+
+DRILL_STYLE = """
+.drill{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:22px;margin:18px 0 26px}
+@media(max-width:960px){.drill{grid-template-columns:1fr}}
+.drill>*{min-width:0}.drill[hidden]{display:none}
+.roles{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}.roles button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.grid-wrap{overflow-x:auto}table.grid{min-width:560px;font-size:13px}table.grid th{font-size:12px;text-align:center;padding:6px 4px}table.grid th:first-child,table.grid td:first-child{text-align:left;white-space:nowrap}
+table.grid td{padding:3px;text-align:center}.cell{width:38px;height:32px;padding:0;border:1px solid transparent;background:none;color:var(--accent);cursor:pointer;border-radius:6px}
+.cell[aria-pressed="true"]{border-color:var(--accent);background:var(--soft)}.dot{display:inline-block;width:13px;height:13px;border-radius:50%;border:2px solid currentColor;vertical-align:middle}
+.dot.v2{background:currentColor}.dot.v1{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}.dot.v0{opacity:.5}
+.key{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:13px;color:var(--muted);margin-top:8px}.key .dot{color:var(--accent);width:10px;height:10px}
+.card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--soft);min-width:0}.card .prompt{font-size:20px;line-height:1.35;font-weight:650;margin:8px 0 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chip{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:2px 9px;background:var(--paper)}
+.card ul{list-style:none;padding:0;margin:12px 0}.card li{margin:4px 0}.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.timer{font-variant-numeric:tabular-nums;font-weight:700;min-width:3.4em}
+@media print{.drill{display:none!important}}
+"""
+
+DRILL_SCRIPT = r"""
+(function(){
+var D=JSON.parse(document.getElementById('drill-data').textContent),$=function(id){return document.getElementById(id);};
+var role=0,si=2,li=0,timer=null,left=90,W=['thin','usable','strong'];
+var root=$('drill');root.hidden=false;
+var rb=$('roles');D.roles.forEach(function(r,i){var b=document.createElement('button');b.type='button';b.textContent=r.name;b.setAttribute('aria-pressed',i===role?'true':'false');
+ b.addEventListener('click',function(){role=i;[].forEach.call(rb.children,function(x){x.setAttribute('aria-pressed',x===b?'true':'false');});show();});rb.appendChild(b);});
+var h='<thead><tr><th scope="col">Story</th>'+D.lenses.map(function(l){return '<th scope="col">'+l+'</th>';}).join('')+'</tr></thead><tbody>';
+D.stories.forEach(function(s,i){h+='<tr><td>'+s.id+' '+s.name+'</td>'+s.values.map(function(v,j){return '<td><button type="button" class="cell" data-s="'+i+'" data-l="'+j+'" aria-pressed="false" aria-label="'+s.id+' '+s.name+', '+D.lenses[j]+': '+W[v]+'"><span class="dot v'+v+'"></span></button></td>';}).join('')+'</tr>';});
+$('grid').innerHTML=h+'</tbody>';
+$('grid').addEventListener('click',function(e){var c=e.target.closest('.cell');if(!c)return;si=+c.getAttribute('data-s');li=+c.getAttribute('data-l');show();});
+function best(l,personal,not){for(var i=0;i<D.stories.length;i++){var s=D.stories[i];if(i!==not&&s.personal===personal&&s.values[l]===2)return s;}return null;}
+function pairing(){var s=D.stories[si],r=D.roles[role],v=s.values[li],p,lens=D.lenses[li].toLowerCase();
+ if(!s.personal&&r.technical&&li>=1&&li<=4){p=best(li,true,si);return 'Pair it: '+s.name+' gives the stakes and who decided; '+(p?p.name:'a personal project')+' gives the '+lens+' you built yourself. Say which is which.';}
+ if(s.personal&&!r.technical){p=best(0,false,si);return 'Pair it: open with '+(p?p.name:'a work story')+' for the stakes, then use '+s.name+' to show you can make the technical call yourself. Say plainly that it is a personal project.';}
+ if(v<2){p=best(li,s.personal,si)||best(li,!s.personal,si);return 'This cell is thin. Lead with '+(p?p.name:'a stronger story')+' for '+lens+', and use '+s.name+' only as a supporting example.';}
+ return 'This cell is strong. Answer from '+s.name+' alone.';}
+function fmt(n){return Math.floor(n/60)+':'+('0'+(n%60)).slice(-2);}
+function stop(){if(timer){clearInterval(timer);timer=null;}left=90;$('timer').textContent=fmt(left);$('start').textContent='Start 90 s';}
+function show(){var s=D.stories[si],r=D.roles[role];
+ [].forEach.call(document.querySelectorAll('.cell'),function(c){c.setAttribute('aria-pressed',(+c.getAttribute('data-s')===si&&+c.getAttribute('data-l')===li)?'true':'false');});
+ $('chips').innerHTML='';[r.name+' · level '+r.level,s.id+' '+s.name,D.lenses[li]+': '+W[s.values[li]]].forEach(function(t){var c=document.createElement('span');c.className='chip';c.textContent=t;$('chips').appendChild(c);});
+ $('prompt').textContent=D.prompts[li].replace(/this story/g,s.name);$('advice').textContent=r.advice;$('pair').textContent=pairing();stop();}
+$('start').addEventListener('click',function(){if(timer){stop();return;}left=90;$('start').textContent='Stop';timer=setInterval(function(){left--;$('timer').textContent=fmt(Math.max(left,0));if(left<=0){clearInterval(timer);timer=null;$('timer').textContent='Time';$('start').textContent='Start 90 s';}},1000);});
+$('random').addEventListener('click',function(){var a,b;do{a=Math.floor(Math.random()*D.stories.length);b=Math.floor(Math.random()*D.lenses.length);}while(a===si&&b===li);si=a;li=b;show();});
+show();
+})();
+"""
+
+
+def build_drill(documents):
+    here = '.'
+    rel = lambda p: posixpath.relpath(p, here)
+    data = drill_data()
+    content = (ROOT / 'interview-prep' / DRILL_SOURCE).read_text(encoding='utf-8')
+    fallback = render_markdown(
+        '\n'.join(['## Story and lens grid', ''] + [l for l in _section_lines(content, 'Story and lens grid')]
+                  + ['', '## Lens prompts', ''] + _section_lines(content, 'Lens prompts')
+                  + ['', '## Where each role starts', ''] + _section_lines(content, 'Where each role starts')),
+        DRILL_SOURCE, documents, page=True).replace('src="', 'data-src="')
+    beats = ''.join(f'<li><label><input type="checkbox"> <strong>{b}</strong> · {html.escape(d)}</label></li>' for b, d in (
+        ('Stakes', 'what was at risk, for whom'), ('Split', 'what you owned, who owned the rest'),
+        ('Sketch', 'three boxes, one risky arrow'), ('Shape', 'how your calls shaped theirs'),
+        ('Show', 'the review, the result, the number')))
+    payload = json.dumps(data, ensure_ascii=False).replace('</', '<\\/')
+    method = html.escape(rel(page_path(DRILL_SOURCE)), quote=True)
+    body = ('<h1 id="dot-drill">Dot drill</h1>'
+            f'<p>Pick the role you are interviewing for, then a story and a lens. Answer out loud in 90 seconds using the five beats from <a href="{method}">Connect the dots</a>. '
+            'The drill tells you which level to start at and suggests a pairing when a story is thin on that lens.</p>'
+            '<div class="drill" id="drill" hidden><div><div class="roles" id="roles" role="group" aria-label="Interview role"></div>'
+            '<div class="grid-wrap"><table class="grid" id="grid"></table></div>'
+            '<div class="key"><span><span class="dot v2"></span> strong</span><span><span class="dot v1"></span> usable</span><span><span class="dot v0"></span> thin</span><span>S1–S7 work · S8–S10 personal projects</span></div></div>'
+            '<div class="card" aria-live="polite"><div class="chips" id="chips"></div><p class="prompt" id="prompt"></p><p id="advice"></p><p id="pair"></p>'
+            f'<ul>{beats}</ul><div class="controls"><button type="button" id="start">Start 90 s</button><span class="timer" id="timer">1:30</span>'
+            '<button type="button" id="random">Random question</button></div></div></div>'
+            '<h2 id="without-the-interactive-drill">Without the interactive drill</h2><p>The same material as tables, for print or when scripts are off.</p>'
+            + fallback)
+    return ('<!doctype html>\n<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
+            f'<title>Dot drill — Interview preparation</title><script>{THEME_HEAD}</script><style>{PAGE_STYLE}{DRILL_STYLE}</style></head>'
+            f'<body data-page="{DRILL_PAGE}"><a class="skip" href="#content">Skip to content</a>'
+            f'<header><div class="heading-row"><div><a class="brand" href="{html.escape(rel("index.html"), quote=True)}">Interview preparation</a>'
+            '<p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div>'
+            '<div class="tools"><button id="practice" type="button" aria-pressed="false" hidden>Practice mode</button>'
+            '<button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header>'
+            f'<div class="layout"><nav aria-label="Guides">{"".join(_navigation(rel, DRILL_PAGE))}</nav><main id="content"><article class="panel">'
+            f'{body}</article><footer>Generated from <a href="{method}">connect-the-dots.md</a>. Edit the Markdown, then run '
+            '<code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div>'
+            f'<script type="application/json" id="drill-data">{payload}</script>'
+            f'<script>{THEME_JS}{PAGE_SCRIPT}{DRILL_SCRIPT}</script></body></html>\n')
+
+
+def _section_lines(content, heading):
+    lines = content.splitlines()
+    start = lines.index('## ' + heading)
+    out = []
+    for line in lines[start + 1:]:
+        if line.startswith('## '):
+            break
+        out.append(line)
+    return out
+
+
 def build_pages():
     documents = {path: section for path, section, _ in SOURCES}
     titles = {path: title for path, _, title in SOURCES}
-    return {page_path(path): build_page(path, documents, titles) for path, _, _ in SOURCES}
+    pages = {page_path(path): build_page(path, documents, titles) for path, _, _ in SOURCES}
+    pages[DRILL_PAGE] = build_drill(documents)
+    return pages
 
 
 def build():

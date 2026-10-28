@@ -7,7 +7,7 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  await page.goto('file://'+path);
  const missing=await page.evaluate(()=>[...document.querySelectorAll('a[href^="#"]')].filter(a=>!document.getElementById(a.hash.slice(1))).map(a=>a.hash));
  if(missing.length)throw Error('Missing anchor targets: '+missing.join(','));
- for(const route of ['start','methods','evidence','delivery-lead','agile-delivery-lead','product-owner','product-manager','senior-project-manager','software-ai-architect','ai-engineer','forward-deployed-engineer','accenture','accenture-questions','accenture-fde']){
+ for(const route of ['start','methods','evidence','connect','decisions','arb','delivery-lead','agile-delivery-lead','product-owner','product-manager','senior-project-manager','software-ai-architect','ai-engineer','forward-deployed-engineer','accenture','accenture-questions','accenture-fde']){
   await page.locator('nav a[href="#'+route+'"]').click();
   await page.locator('#'+route).waitFor({state:'visible'});
   const top=await page.locator('#'+route+' h1').boundingBox();if(top.y<0)throw Error('Route heading clipped: '+route);
@@ -36,10 +36,10 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  await page.locator('nav a[href="#accenture-fde"]').click();await page.locator('#accenture-fde').waitFor({state:'visible'});
  if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('FDE mobile page overflow');
  for(const route of ['software-ai-architect','ai-engineer','forward-deployed-engineer']){await page.locator('nav a[href="#'+route+'"]').click();await page.locator('#'+route).waitFor({state:'visible'});if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Mobile page overflow: '+route);}
- await page.emulateMedia({media:'print'});if(await page.locator('.panel:visible').count()!==14)throw Error('Print hides guides');
- const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto('file://'+path);if(await plain.locator('.panel:visible').count()!==14)throw Error('No-JS content missing');
+ await page.emulateMedia({media:'print'});if(await page.locator('.panel:visible').count()!==17)throw Error('Print hides guides');
+ const plain=await browser.newPage({javaScriptEnabled:false});await plain.goto('file://'+path);if(await plain.locator('.panel:visible').count()!==17)throw Error('No-JS content missing');
  // Standalone guide pages: one per Markdown source, with practice mode.
- const dir=require('node:path').dirname(path),pages=['index.html','shared/handbook.html','shared/evidence-bank.html','roles/delivery-lead.html','roles/agile-delivery-lead.html','roles/product-owner.html','roles/product-manager.html','roles/senior-project-manager.html','roles/software-ai-architect.html','roles/ai-engineer.html','roles/forward-deployed-engineer.html','vacancies/accenture-product-owner.html','vacancies/accenture-product-owner-questions.html','vacancies/accenture-fde.html'];
+ const dir=require('node:path').dirname(path),pages=['index.html','shared/handbook.html','shared/evidence-bank.html','shared/connect-the-dots.html','shared/decision-ledger.html','shared/architecture-review.html','dot-drill.html','roles/delivery-lead.html','roles/agile-delivery-lead.html','roles/product-owner.html','roles/product-manager.html','roles/senior-project-manager.html','roles/software-ai-architect.html','roles/ai-engineer.html','roles/forward-deployed-engineer.html','vacancies/accenture-product-owner.html','vacancies/accenture-product-owner-questions.html','vacancies/accenture-fde.html'];
  const guide=await browser.newPage({viewport:{width:390,height:844}});guide.on('pageerror',e=>errors.push(e.message));
  for(const file of pages){await guide.goto('file://'+dir+'/'+file);
   const gone=await guide.evaluate(()=>[...document.querySelectorAll('a[href^="#"]')].filter(a=>a.hash&&!document.getElementById(decodeURIComponent(a.hash.slice(1)))).map(a=>a.hash));
@@ -64,8 +64,16 @@ const path=require('node:path').resolve(__dirname,'../interview-prep/handbook.ht
  await tp.locator('nav a[href="#product-manager"]').click();if(!await isDark(tp))throw Error('Dark view lost switching tabs');
  await tp.locator('#theme').click();await tp.locator('nav a[href="#start"]').click();await tp.locator('#start a[href*="index.html"]').first().click();
  if(await isDark(tp))throw Error('Light view not carried back to guide pages');
+ // Dot drill: picking a story and lens writes the question; without scripts the tables remain.
+ await guide.emulateMedia({media:'screen'});await guide.goto('file://'+dir+'/dot-drill.html');await guide.locator('#drill').waitFor({state:'visible'});
+ await guide.locator('#roles button',{hasText:'Architect'}).click();await guide.locator('.cell[data-s="0"][data-l="1"]').click();
+ if(!(await guide.locator('#prompt').textContent()).includes('GenAI orders'))throw Error('Drill prompt did not use the chosen story');
+ if(!(await guide.locator('#pair').textContent()).startsWith('Pair it'))throw Error('Drill did not suggest a pairing for a work story in an architect interview');
+ await guide.locator('#start').click();if(await guide.locator('#start').textContent()!=='Stop')throw Error('Drill timer did not start');await guide.locator('#start').click();
+ const nojs=await browser.newPage({javaScriptEnabled:false});await nojs.goto('file://'+dir+'/dot-drill.html');
+ if(await nojs.locator('#drill').isVisible()||!await nojs.locator('#lens-prompts').isVisible())throw Error('Drill no-JS fallback wrong');
  const flat=await browser.newPage({javaScriptEnabled:false});await flat.goto('file://'+dir+'/roles/ai-engineer.html');
  if(!await flat.locator('.qa-body').first().isVisible()||!await flat.locator('#practice').isHidden())throw Error('No-JS guide page incomplete');
- if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 14 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content; 14 guide pages with practice mode; theme carried between pages.');
+ if(errors.length)throw Error(errors.join(','));console.log('Browser QA passed: 17 routes, all anchors, cross-guide links, themes, mobile overflow, print and no-JS content; 18 pages with practice mode and the dot drill; theme carried between pages.');
  await browser.close();
 })().catch(e=>{console.error(e);process.exit(1);});
