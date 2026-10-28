@@ -68,9 +68,20 @@ class RenderTests(unittest.TestCase):
 
     def test_every_source_has_a_page(self):
         pages = renderer.build_pages()
-        self.assertEqual(len(pages), len(renderer.SOURCES))
+        self.assertEqual(len(pages), len(renderer.SOURCES) + 1)
         self.assertIn("index.html", pages)
         self.assertIn("roles/ai-engineer.html", pages)
+        self.assertIn("dot-drill.html", pages)
+
+    def test_drill_reads_grid_prompts_and_roles_from_the_method_page(self):
+        data = renderer.drill_data()
+        self.assertEqual(len(data["prompts"]), len(data["lenses"]))
+        self.assertTrue(all(len(s["values"]) == len(data["lenses"]) for s in data["stories"]))
+        self.assertTrue(any(s["personal"] for s in data["stories"]))
+        self.assertTrue(any(r["technical"] for r in data["roles"]))
+        page = renderer.build_pages()["dot-drill.html"]
+        self.assertIn('id="drill" hidden', page)
+        self.assertIn('id="without-the-interactive-drill"', page)
 
 
 if __name__ == '__main__':

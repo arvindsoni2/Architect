@@ -94,10 +94,10 @@ Suppose the notice provider times out and cannot query by key. The workflow imme
 
 Repository sources:
 
-- [System Design Concept Handbook v5](../../handbooks/system-design/system-design-concept-handbook-v6.html)
-- [Agent Engineering Master Manual v2.8](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html)
-- [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html)
-- [Forward Deployed AI Engineer Handbook v1.5](../../handbooks/fde/fde-handbook-v1.6.html)
+- [System Design Concept Handbook v6](../../handbooks/system-design/system-design-concept-handbook-v6.html)
+- [Agent Engineering Master Manual v2.9](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html)
+- [The AI Architect's Handbook v1.3](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html)
+- [Forward Deployed AI Engineer Handbook v1.6](../../handbooks/fde/fde-handbook-v1.6.html)
 - [Interview Resource Accelerator v4.4](../../learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html)
 
 External references (verified 2026-09-05):

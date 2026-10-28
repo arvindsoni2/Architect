@@ -115,9 +115,9 @@ The release record keeps the baseline and every candidate with evidence. An illu
 
 Contributing sources:
 
-- [AI Engineering Handbook v3.2](../../handbooks/ai-engineering/ai-engineering-handbook-v3.3.html) — evaluation and rollback.
-- [The AI Architect's Handbook v1.2](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html) — evidence.
-- [Forward Deployed AI Engineer Handbook v1.5](../../handbooks/fde/fde-handbook-v1.6.html) — evaluation gates.
+- [AI Engineering Handbook v3.3](../../handbooks/ai-engineering/ai-engineering-handbook-v3.3.html) — evaluation and rollback.
+- [The AI Architect's Handbook v1.3](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html) — evidence.
+- [Forward Deployed AI Engineer Handbook v1.6](../../handbooks/fde/fde-handbook-v1.6.html) — evaluation gates.
 - [Production AI Assurance](production-ai-assurance.md) — release evidence.
 - Private/source-synthesis assets consulted: Reasoning Model visual guide; CS329A notes; CS336 notebook. Public counterparts: Sebastian Raschka's [reasoning-from-scratch hub](https://sebastianraschka.com/reasoning-from-scratch/), [official repo](https://github.com/rasbt/reasoning-from-scratch), [CS329A](https://cs329a.stanford.edu/), and [CS336](https://cs336.stanford.edu/spring2025/).
 

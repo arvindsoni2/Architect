@@ -148,6 +148,18 @@ FDE coding is practical rather than puzzle-heavy, often in Python, sometimes ext
 
 **Model answer:** Name two or three specific, recent facts — a product, a customer story, a published principle — and connect each to something you have done. For AI labs, read their published charter or safety policies first; generic enthusiasm scores poorly. [2][3]
 
+## Bridge questions
+
+These questions cross from your story into the system behind it and back. Each answer follows the five beats in [Connect the dots](../shared/connect-the-dots.md) (Stakes, Split, Sketch, Shape, Show); the decisions behind them are in the [decision lists](../shared/decision-ledger.md).
+
+### Q24. The customer's governance held a decision that could stop deployment. What did you change?
+
+**Model answer:** “On Smart Timesheet, Northern Powergrid's architecture review board decided what employee data could leave their systems for a vendor's cloud, and that ruling decided whether the initiative was viable. Instead of arguing for everything, we designed to the constraint: we worked out the minimum the app needed, employee ID, name and day rate, kept the data in the UK, and I presented that case in the room. The board approved it. Designing to the customer's governance was faster than fighting it.”
+
+### Q25. Walk me from the first discovery call to a running deployment.
+
+**Model answer:** “For Natoora's first SaaS client: discovery workshops and a system demo, then a hard constraint, go-live in four weeks against a six-to-eight-week estimate. I built an impact matrix and we white-labelled the customer-facing screens first, deferring admin screens. Each client got its own environment from Terraform templates, so standing one up was repeatable. Client 1 went live on schedule with fewer than ten issues in a thirty-day pilot. For Client 2 I turned the lessons into an onboarding pack, a questionnaire, financial health check and requirements form, and it cost 22% less to implement.”
+
 ## Credibility probes
 
 Which code did you personally write, and which did a coding agent or a colleague write? Have you been embedded at a customer site as an engineer? What is the largest dataset you have processed? How was the 90% figure measured? What happened after you handed over? Answer precisely; the [Accenture supplement](../vacancies/accenture-fde.md#map-existing-stories-without-upgrading-the-claims) shows how to separate decisions, implementation and review.

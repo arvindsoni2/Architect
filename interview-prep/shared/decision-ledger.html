@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Decision lists — Interview preparation</title><script>(function(){var r=document.documentElement,t=null;
+try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+if(t==='dark'||t==='light'){try{localStorage.setItem('ip-theme',t);}catch(e){}}
+else{try{t=localStorage.getItem('ip-theme');}catch(e){}}
+if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+if(t==='dark')r.classList.add('dark');})();</script><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="shared/decision-ledger.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="handbook.html">Shared methods</a><a href="evidence-bank.html">Evidence bank</a><a href="connect-the-dots.html">Connect the dots</a><a href="decision-ledger.html" aria-current="page">Decision lists</a><a href="architecture-review.html">Architecture review</a><div class="nav-label">Role guides</div><a href="../roles/delivery-lead.html">Delivery Lead</a><a href="../roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="../roles/product-owner.html">Product Owner</a><a href="../roles/product-manager.html">Product Manager</a><a href="../roles/senior-project-manager.html">Senior Project Manager</a><a href="../roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="../roles/ai-engineer.html">AI Engineer</a><a href="../roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">Practise</div><a href="../dot-drill.html">Dot drill</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="decision-lists">Decision lists</h1>
+<p><strong>Status:</strong> Owner-approved · <strong>Last reviewed:</strong> 28 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#how-to-read-a-decision-list">How to read a decision list</a></li><li><a href="#s3-smart-timesheet">S3 Smart Timesheet</a></li><li><a href="#s1-genai-order-automation">S1 GenAI order automation</a></li><li><a href="#s2-saas-transformation">S2 SaaS transformation</a></li><li><a href="#s4-infrastructure-modernisation">S4 Infrastructure modernisation</a></li><li><a href="#s5-gdpr-programme-at-nationwide">S5 GDPR programme at Nationwide</a></li><li><a href="#s7-agile-operating-model-and-jira">S7 Agile operating model and Jira</a></li><li><a href="#s8-to-s10-personal-projects">S8 to S10 personal projects</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Each story below records who made each decision and what your part was, so you can answer boundary questions such as “what did you decide, and what did the architect decide?” without overclaiming or underclaiming. The method behind these lists is in <a href="connect-the-dots.html">Connect the dots</a>; the facts come from the <a href="evidence-bank.html">evidence bank</a> and the owner&#x27;s answers of 26–28 October 2026.</p>
+<h2 id="how-to-read-a-decision-list">How to read a decision list</h2>
+<div class="table-wrap"><table><thead><tr><th>Label</th><th>Meaning</th></tr></thead><tbody>
+<tr><td>Owned</td><td>You made the call.</td></tr>
+<tr><td>Recommended</td><td>You proposed it; someone else approved it.</td></tr>
+<tr><td>Shaped</td><td>You supplied the requirement or constraint that drove someone else&#x27;s call.</td></tr>
+<tr><td>Accepted</td><td>It was decided elsewhere; you planned and delivered around it.</td></tr>
+</tbody></table></div>
+<p>Each story also has the question a panel is most likely to ask, a five-beat model answer (Stakes, Split, Sketch, Shape, Show) and the follow-ups one level down. Use <strong>Practice mode</strong> to hide the answers and say yours first.</p>
+<h2 id="s3-smart-timesheet">S3 Smart Timesheet</h2>
+<p>Northern Powergrid · 2019–March 2020 · TCS Product Owner. The full worked answer, with the architecture walk-through, is in <a href="architecture-review.html#worked-example-smart-timesheet">Architecture review</a>.</p>
+<p><strong>Flow:</strong> 1. Field engineers → Smart Timesheet app (OutSystems native app, works offline); 2. Supervisors → app (approval); 3. App → .NET integration layer; 4. .NET → Oracle HCM (risky arrow: employee data leaves Northern Powergrid&#x27;s systems); 5. .NET → Oracle CRM (risky arrow: legacy integration); 6. Approval → API calls to HCM, CRM and payroll.</p>
+<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
+<tr><td>Who the users are and what they need (field research at depots)</td><td>You</td><td>Owned</td><td>Evidence bank</td></tr>
+<tr><td>First release: the native mobile app; the desktop web app deferred</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Offline submission: store on the phone, sync when back online</td><td>Built into the OutSystems native app</td><td>Shaped: a key constraint from field research</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Positioning with the union: the tool saves a trip to the office; it doesn&#x27;t track engineers</td><td>You, with field operations</td><td>Owned</td><td>Evidence bank</td></tr>
+<tr><td>Alpha (1 depot, 50 engineers, 4 weeks), beta (3 depots, 200) and phased rollout with playbook, hypercare and champions</td><td>You</td><td>Owned</td><td>Evidence bank</td></tr>
+<tr><td>Platform: OutSystems, for rapid prototype-to-production delivery</td><td>TCS, as implementation partner</td><td>Accepted: TCS&#x27;s call, which you delivered</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>AWS hosting, infrastructure and operations</td><td>OutSystems, as a vendor-run cloud; Northern Powergrid had no direct AWS relationship</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Data sovereignty: employee data stays in the UK</td><td>Northern Powergrid Architecture Review Board</td><td>Shaped: you presented the initiative and its data needs to the board in person</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Which employee data may be shared with the cloud app (GDPR impact); this ruling decided whether the initiative was viable</td><td>Northern Powergrid Architecture Review Board</td><td>Shaped: the product&#x27;s data needs were your input. Approved: employee ID, name and day rate only</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Integration design: a .NET layer in front of Oracle HCM and CRM</td><td>Architect and engineering</td><td>Shaped: you put the integration risks into the backlog early</td><td>Evidence bank</td></tr>
+<tr><td>Identity, security and environments</td><td>Architect and client IT</td><td>Accepted</td><td>To confirm</td></tr>
+<tr><td>Handover to the support team</td><td>You, with support</td><td>Owned</td><td>Evidence bank</td></tr>
+</tbody></table></div>
+<h2 id="s1-genai-order-automation">S1 GenAI order automation</h2>
+<p>Natoora · Mar–Sep 2025 · delivery lead for the London and Paris rollout · 1 developer · CTO sponsor.</p>
+<p><strong>Flow:</strong> 1. Order emails → Scheduled job; 2. Scheduled job → GPT-4o-mini; 3. GPT-4o-mini → Validation (risky arrow); 4. Validation → WS (risky arrow); 5. Validation → Human review; 6. Human review → WS. 3–4: model output becoming a real order. Validation, duplicate rules and human review sit on that path.</p>
+<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
+<tr><td>Limit the rollout to London and Paris</td><td>CTO</td><td>Accepted</td><td>Evidence bank</td></tr>
+<tr><td>Use an LLM instead of rules</td><td>Discussion you were part of; the CTO backed it</td><td>Shaped</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Product requirements: risk, cost and benefit, shared with customer support</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Evaluation approach and success metrics, reviewed by stakeholders</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Model: GPT-4o-mini, for cost and latency</td><td>Tech lead</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Human review of exceptions; exception rules evolved from the experiments</td><td>You, the team and customer support</td><td>Shaped</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Integration with WS through its API, Python and scheduled jobs</td><td>Developer</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Duplicate check on order reference and order items; WS also flags likely duplicates</td><td>Developer, in WS and the pipeline</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Data protection: people&#x27;s names and addresses stripped or randomised before the model; reviewed by the CTO and lead developer</td><td>CTO and lead developer</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>How the 90% effort reduction was measured and presented</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+</tbody></table></div>
+<div class="qa" data-qa="q1-on-the-genai-order-tool-what-did-you-decide-and-what-did-the-developer-and-the-cto-decide-and-how-did-you-make-sure-the-model-didnt-create-wrong-orders">
+<h3 id="q1-on-the-genai-order-tool-what-did-you-decide-and-what-did-the-developer-and-the-cto-decide-and-how-did-you-make-sure-the-model-didnt-create-wrong-orders">Q1. On the GenAI order tool, what did you decide and what did the developer and the CTO decide? And how did you make sure the model didn&#x27;t create wrong orders?</h3>
+<div class="qa-body">
+<p><strong>Stakes.</strong> “Customer service typed every emailed order into our warehouse system by hand: two to three minutes each, more than a hundred emails a day in a region. A wrong order meant a wrong delivery to a premium restaurant.”</p>
+<p><strong>Split.</strong> “I led the rollout in London and Paris, with the CTO as sponsor. I wrote the product requirements, covering risk, cost and benefit, and I defined how we&#x27;d evaluate it and what success meant. Using an LLM came out of a discussion I was part of and the CTO backed. Our tech lead chose GPT-4o-mini for cost and latency. The developer built the integration into WS, our warehouse system, and the CTO and lead developer reviewed data protection and security.”</p>
+<p><strong>Sketch.</strong> “A scheduled job picks up order emails and PDFs from Marketman in London and Lightspeed in Paris, and strips or randomises the orderer&#x27;s name and address before anything reaches the model. GPT-4o-mini turns each order into structured JSON. Validation matches customers and products against WS, deterministic rules on the order reference and items stop the same order going in twice, and anything uncertain goes to a human review screen. The risky arrow was the model&#x27;s output becoming a real order.”</p>
+<p><strong>Shape.</strong> “My job was making that arrow measurable before we trusted it. I set the success metrics and the evaluation first, and we ran experiments for two to three months as each procurement system came on, logging every exception. Human review did more than catch errors: it let customer service see exactly how orders from each system were handled, which is how they came to trust it. The exception rules grew out of what those experiments showed.”</p>
+<p><strong>Show.</strong> “We measured average handling time per order before, then after, including the time people still spent on exceptions. That came to about ninety per cent less manual effort, which I presented to the stakeholders. It&#x27;s effort released, not model accuracy.”</p>
+<p><strong>One level down:</strong></p>
+<ol>
+<li class="qa-li"><strong>Could the same email create two orders?</strong> <span class="qa-ans">No: the pipeline checks the order reference and the order items, and WS flags likely duplicates as a second line. That&#x27;s an idempotency key. System Design v6, chapter 11.</span></li>
+<li class="qa-li"><strong>How did you know extraction was good enough?</strong> <span class="qa-ans">Your answer: two to three months of experiments per procurement system, with exceptions logged and timed. Name it in evaluation terms: a sample of real emails, the exception rate per system, and time per order.</span></li>
+<li class="qa-li"><strong>Order emails went to OpenAI. Who approved that?</strong> <span class="qa-ans">The CTO and lead developer reviewed it, and people&#x27;s names and addresses were stripped or randomised before the model saw anything. Say exactly that. It&#x27;s data minimisation, the same principle as the three fields on Smart Timesheet.</span></li>
+</ol>
+</div></div>
+<h2 id="s2-saas-transformation">S2 SaaS transformation</h2>
+<p>Natoora · Jan 2024–May 2025 · delivery lead · 9 people across the UK and Brazil · CTO sponsor.</p>
+<p><strong>Flow:</strong> 1. Client staff → WS, per client; 2. B2B customers → PRO App; 3. PRO App → WS, per client; 4. WS, per client → Client&#x27;s own database (risky arrow); 5. Terraform templates → WS, per client. A separate stack per client (the silo model): strongest isolation, highest cost per client.</p>
+<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
+<tr><td>Turn the internal warehouse platform into a SaaS product</td><td>Natoora board and CTO</td><td>Accepted</td><td>Evidence bank</td></tr>
+<tr><td>Architecture: a separate database, schema and cloud environment for each client</td><td>CTO and tech lead</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Architecture reviews, design and database decisions that affected delivery</td><td>CTO and tech lead, with you</td><td>Shaped</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Client 1 scope in four weeks: impact matrix, white-label customer-facing screens first, defer admin screens</td><td>You</td><td>Owned</td><td>Evidence bank</td></tr>
+<tr><td>Plan SaaS work on 70% team availability</td><td>You, agreed with the CTO</td><td>Recommended</td><td>Evidence bank</td></tr>
+<tr><td>Client 2 onboarding pack: questionnaire, financial health check, requirements form</td><td>You</td><td>Owned</td><td>Evidence bank</td></tr>
+<tr><td>Go live with some security items still open, with enough protection in place; finish the Angular migration afterwards</td><td>CTO reviewed; client signed off</td><td>Owned the follow-up: each item tracked in Jira until closed</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Watch cloud cost per client, because it hit both margins</td><td>Sysadmin and CTO</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+</tbody></table></div>
+<div class="qa" data-qa="q2-your-portfolios-architect-view-says-you-led-the-move-to-a-multi-tenant-saas-which-design-decisions-were-yours-and-which-were-the-engineers-and-the-ctos">
+<h3 id="q2-your-portfolios-architect-view-says-you-led-the-move-to-a-multi-tenant-saas-which-design-decisions-were-yours-and-which-were-the-engineers-and-the-ctos">Q2. Your portfolio&#x27;s architect view says you led the move to a multi-tenant SaaS. Which design decisions were yours, and which were the engineers&#x27; and the CTO&#x27;s?</h3>
+<div class="qa-body">
+<p><strong>Stakes.</strong> “Natoora decided to sell its internal warehouse platform to other food businesses. The first client was the reference case: if it failed, the SaaS strategy failed with it.”</p>
+<p><strong>Split.</strong> “I was delivery lead for a nine-person team across the UK and Brazil. The CTO and tech lead decided the architecture, and I took part in the architecture reviews and in the design and database decisions that affected delivery. I owned scope, sequencing and client onboarding, and I agreed capacity with the CTO: seventy per cent availability, because the same team still ran Natoora&#x27;s own platform.”</p>
+<p><strong>Sketch.</strong> “One codebase, Django and PostgreSQL, but each client got its own database, schema and cloud environment on Google Cloud, built from Terraform templates, plus the PRO App for B2B ordering. That&#x27;s the silo model: the strongest isolation, at a higher cost per client. So our sysadmin and the CTO watched cloud cost per client, because it hit both the client&#x27;s margin and ours.”</p>
+<p><strong>Shape.</strong> “The four-week deadline against a six-to-eight-week estimate was mine to solve. I built an impact matrix of visibility, frequency of use and complexity, and we white-labelled the customer-facing order screens, emails, login pages, reports and app branding first, deferring internal admin screens. For Client 2 I turned the lessons into an onboarding pack, which caught scope problems before they reached engineering.”</p>
+<p><strong>Show.</strong> “Client 1 went live on schedule. Not every security item was closed at go-live: the CTO reviewed it, the client signed off, and there was enough protection that client data wasn&#x27;t at risk. I owned the technical-debt plan and tracked every open security item in Jira until it was closed, and finishing the Angular migration after go-live closed them and cut the debt. The pilot had fewer than ten issues and no Sev 1s, Client 2 cost 22% less to implement, and the product reported £29,000 profit in its first five months.”</p>
+<p><strong>One level down:</strong></p>
+<ol>
+<li class="qa-li"><strong>So was it multi-tenant?</strong> <span class="qa-ans">Not in the shared-database sense. It was one codebase with a separate stack per client: the silo model. Say it that way, and know the trade-off against a shared database with a tenant ID: isolation and simpler compliance against cost and operational load per client. Architect guide Q22.</span></li>
+<li class="qa-li"><strong>How do you go live with known security issues?</strong> <span class="qa-ans">Risk acceptance: who accepted the risk (the client signed off), what protection covered the gap, and a tracked plan to close it (your Jira items and the Angular migration). It&#x27;s the “approve with conditions” outcome from the ARB section.</span></li>
+<li class="qa-li"><strong>What did one client&#x27;s environment cost to run?</strong> <span class="qa-ans">The sysadmin and CTO monitored it. If you know the figure, compare it with the £1.6k monthly fee. Architect guide Q11.</span></li>
+</ol>
+</div></div>
+<h2 id="s4-infrastructure-modernisation">S4 Infrastructure modernisation</h2>
+<p>Northern Powergrid · Mar 2020–May 2022 · TCS Agile Delivery Manager for phases 1 and 2 of 3 · teams in Chennai, Kolkata and Newcastle.</p>
+<p><strong>Flow:</strong> 1. 30+ applications → Treatment; 2. Treatment → NPg ARB; 3. Treatment → Weekly CAB; 4. Weekly CAB → 120+ servers (risky arrow); 5. Weekly CAB → Oracle 9 (risky arrow). 4–5: production change windows on tightly coupled systems, some from vendors that no longer existed.</p>
+<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
+<tr><td>Delivery of phase 1 (six months of quick wins) and phase 2 (twenty months of complex migrations); phase 3 ran after you left TCS</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Assessment strategies: retire, replatform, refactor or replace</td><td>Engineers and architects</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Treatment for each application</td><td>Project sponsor, with NPg and TCS architects</td><td>Shaped: every application properly impact-assessed</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Keep every treatment aimed at the goal: fewer servers on legacy software, decommissioned where possible</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Target Windows and Oracle versions</td><td>TCS technical team assessed each server and application</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Approval of upgrades and uplifts</td><td>NPg ARB</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Approval of every production change</td><td>NPg weekly CAB</td><td>Shaped: templates, pre-checks, batching</td><td>Portfolio-reported</td></tr>
+<tr><td>Rollback plan and validation scripts for every change</td><td>You</td><td>Owned</td><td>Portfolio-reported</td></tr>
+<tr><td>After a failed migration and rollback, move that application to the next phase</td><td>You and the project team</td><td>Owned jointly</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Capture each application&#x27;s undocumented knowledge before migration</td><td>You</td><td>Owned</td><td>Portfolio-reported</td></tr>
+</tbody></table></div>
+<div class="qa" data-qa="q3-did-you-design-the-migration-strategy-or-did-the-architects-and-how-did-you-get-changes-through-the-cab-without-losing-weeks">
+<h3 id="q3-did-you-design-the-migration-strategy-or-did-the-architects-and-how-did-you-get-changes-through-the-cab-without-losing-weeks">Q3. Did you design the migration strategy, or did the architects? And how did you get changes through the CAB without losing weeks?</h3>
+<div class="qa-body">
+<p><strong>Stakes.</strong> “Northern Powergrid ran more than 120 servers on unsupported Windows versions and Oracle 9. That&#x27;s critical national infrastructure exposed to unpatched vulnerabilities, and it was paying over £320,000 a year for Microsoft extended support alone.”</p>
+<p><strong>Split.</strong> “The programme ran in three phases. I was the TCS Agile Delivery Manager for the first two; the third went ahead after I left TCS in May 2022. The project sponsor decided each application&#x27;s treatment with Northern Powergrid&#x27;s and TCS&#x27;s architects, using strategies our engineers and architects created. The TCS technical team chose target versions, and Northern Powergrid&#x27;s ARB approved the upgrades. My job was to make sure every application was properly impact-assessed and that every treatment served the goal of fewer servers on legacy software. I owned delivery: the sequencing, the change packs and getting changes through the weekly CAB.”</p>
+<p><strong>Sketch.</strong> “Thirty-plus applications were assessed one by one, and each got a treatment: retire, replatform, refactor or replace. Upgrades went to the ARB, and every production change went through the weekly CAB in ServiceNow. The risky arrow was the production change window: tightly coupled systems, some from vendors that no longer existed.”</p>
+<p><strong>Shape.</strong> “Phase one was six months of quick wins: retiring obsolete applications and decommissioning thirty-plus servers. That built confidence and funded phase two, twenty months of complex migrations. Every change carried a rollback plan and production validation scripts. Before each migration we wrote down the application&#x27;s undocumented knowledge, because with defunct vendors nobody else could help us.”</p>
+<p><strong>Show.</strong> “A rejected change cost a week, so I templated CAB submissions, pre-checked them with the CAB chair and batched related changes. One migration did fail. We rolled it back to its previous state and, rather than force it into that phase, moved it to the next one, because its complexity didn&#x27;t fit. The programme saves about £400,000 a year: around £350,000 in Microsoft and Oracle extended-support fees no longer paid, and about £50,000 of engineer time no longer spent on patching and upgrades.”</p>
+<p><strong>One level down:</strong></p>
+<ol>
+<li class="qa-li"><strong>CAB or ARB: what&#x27;s the difference?</strong> <span class="qa-ans">A CAB asks “is this change safe to make now?”; an ARB asks “is this the right design?”. This programme used both: the ARB approved the upgrades and target versions, and the weekly CAB approved every production change. S3 adds the ARB from the product side.</span></li>
+<li><strong>Tell me about something that went wrong.</strong> The failed migration: it rolled back cleanly because every change had a rollback plan, then moved to the next phase. It shows the controls working, not just the plan.</li>
+<li class="qa-li"><strong>How did you calculate £400k?</strong> <span class="qa-ans">Lead with £400k a year. If asked how, split it: £350k hard cash (Microsoft and Oracle extended-support fees no longer paid) and £50k soft (engineer hours no longer spent on patching and upgrades). Keep the split ready; panels probe exactly this.</span></li>
+</ol>
+</div></div>
+<h2 id="s5-gdpr-programme-at-nationwide">S5 GDPR programme at Nationwide</h2>
+<p>Nationwide Building Society through TCS · Sep 2017–Jun 2018 · project manager · five suppliers · fixed legal deadline.</p>
+<p><strong>Flow:</strong> 1. Five suppliers → Test environments (risky arrow); 2. Test environments → Defects and RAID; 3. Defects and RAID → Bi-weekly governance; 4. Bi-weekly governance → Release decision. 1: five suppliers depending on shared test environments, against a date the law fixed.</p>
+<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
+<tr><td>Scope and release</td><td>Nationwide release manager or programme manager</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Coordinating five suppliers</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Test environments available when the test team needed them</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Driving programme-level defects to resolution</td><td>You, with the suppliers</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Every risk and issue raised at governance with a named owner</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Programme sign-off, two weeks before the 25 May 2018 deadline</td><td>Nationwide</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Progress reporting</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+</tbody></table></div>
+<div class="qa" data-qa="q4-in-regulated-banking-who-could-stop-a-release-and-what-did-you-do-when-a-supplier-dependency-threatened-a-compliance-deadline">
+<h3 id="q4-in-regulated-banking-who-could-stop-a-release-and-what-did-you-do-when-a-supplier-dependency-threatened-a-compliance-deadline">Q4. In regulated banking, who could stop a release, and what did you do when a supplier dependency threatened a compliance deadline?</h3>
+<div class="qa-body">
+<p><strong>Stakes.</strong> “GDPR came into force on 25 May 2018, and nobody could move that date. Nationwide&#x27;s programme had five suppliers working towards it.”</p>
+<p><strong>Split.</strong> “I was the TCS project manager from September 2017 to June 2018. Nationwide&#x27;s release and programme managers owned scope and release. I owned what kept the date safe: coordinating the suppliers, keeping the test environments available, driving programme-level defects to resolution, and making sure every risk and issue had a named owner.”</p>
+<p><strong>Sketch.</strong> “Five suppliers (Capgemini, IBM, Accenture, TCS and Infosys) all tested in shared end-to-end and integration environments. Defects and risks went into the RAID log and on to a bi-weekly governance meeting, and Nationwide made the release call. The risky arrow was the shared environments: if one went down, every supplier&#x27;s testing stopped.”</p>
+<p><strong>Shape.</strong> “With a fixed date, anything slipping had to be visible early, so nothing went to governance without a named owner and a next action. I matched environment availability to what the test team needed, so the suppliers weren&#x27;t waiting on each other.”</p>
+<p><strong>Show.</strong> “We kept the shared test environments available about ninety per cent of the time, which kept testing on track, and the programme was signed off two weeks before the 25 May 2018 deadline.”</p>
+<p><strong>One level down:</strong></p>
+<ol>
+<li class="qa-li"><strong>Who could stop a release?</strong> <span class="qa-ans">Nationwide&#x27;s release manager or programme manager. Your power was visibility: every risk had an owner and reached governance in time to act.</span></li>
+<li class="qa-li"><strong>How do you manage five suppliers in one programme?</strong> <span class="qa-ans">A single RAID log with named owners, a shared environment schedule, and one escalation route to the client&#x27;s programme manager.</span></li>
+<li class="qa-li"><strong>Is 90% availability good?</strong> <span class="qa-ans">For shared test environments used by five suppliers it&#x27;s a reasonable figure. Know the denominator (planned test hours, or all hours) before you quote it.</span></li>
+</ol>
+</div></div>
+<h2 id="s7-agile-operating-model-and-jira">S7 Agile operating model and Jira</h2>
+<p>Natoora · from 2022 · Scrum Master / Product Delivery Lead.</p>
+<p><strong>Flow:</strong> 1. Jira backlog → Two-week sprints; 2. Two-week sprints → CI/CD pipeline; 3. CI/CD pipeline → Release (risky arrow). 3: big, manual releases were where the weeks disappeared.</p>
+<div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
+<tr><td>Move from Trello to Jira, starting with one initiative on the free tier</td><td>CTO and COO approved</td><td>Recommended</td><td>Evidence bank</td></tr>
+<tr><td>Agile operating model across engineering, product and design</td><td>You</td><td>Owned</td><td>Evidence bank</td></tr>
+<tr><td>Jira workflows designed around how the team worked; guide and workshop</td><td>You</td><td>Owned</td><td>Evidence bank</td></tr>
+<tr><td>Feature flags</td><td>You proposed them, with examples from your engineering days; engineering built them</td><td>Recommended</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>CI/CD and DevOps practices</td><td>Engineering; you coached good practice</td><td>Shaped</td><td>Owner answer, Oct 2026</td></tr>
+<tr><td>Time-to-market baseline before Jira, then measured 3 and 6 months after</td><td>You</td><td>Owned</td><td>Owner answer, Oct 2026</td></tr>
+</tbody></table></div>
+<div class="qa" data-qa="q5-you-say-cicd-and-feature-flags-helped-cut-time-to-market-who-built-the-pipeline-and-what-exactly-did-you-change">
+<h3 id="q5-you-say-cicd-and-feature-flags-helped-cut-time-to-market-who-built-the-pipeline-and-what-exactly-did-you-change">Q5. You say CI/CD and feature flags helped cut time-to-market. Who built the pipeline, and what exactly did you change?</h3>
+<div class="qa-body">
+<p><strong>Stakes.</strong> “When I joined Natoora in 2022, work lived in Trello with no velocity baseline, no delivery metrics and unpredictable releases. Getting from starting work to a release took over five weeks.”</p>
+<p><strong>Split.</strong> “I owned the operating model and the case for change, and the CTO and COO approved the tooling. On engineering practice I was an adviser, not the builder: I proposed feature flags, with examples from my own engineering days, and the team built them and found them useful. I also coached DevOps practices.”</p>
+<p><strong>Sketch.</strong> “Work flows from a Jira backlog through two-week sprints into a CI/CD pipeline with automated deployments, and releases go out behind feature flags. The risky arrow was the release: big, manual releases were where the weeks disappeared.”</p>
+<p><strong>Shape.</strong> “I documented the symptoms for two weeks and compared Trello, Jira, Asana and ClickUp on workflow, reporting, GitHub and Slack integration, and cost. Then I asked to pilot one initiative on Jira&#x27;s free tier: no spend and fully reversible. I designed the workflows around how the team actually worked and ran the workshop.”</p>
+<p><strong>Show.</strong> “Approval followed the pilot evidence. I set a baseline before the move and measured again three and six months after: time-to-market fell from over five weeks to under three. The tool was the small part. One source of truth, smaller batches and feature flags did the work.”</p>
+<p><strong>One level down:</strong></p>
+<ol>
+<li class="qa-li"><strong>Why do feature flags shorten time-to-market?</strong> <span class="qa-ans">They separate deploying from releasing, so small changes ship often and risky ones stay switched off until ready.</span></li>
+<li class="qa-li"><strong>What would you measure besides time-to-market?</strong> <span class="qa-ans">The DORA measures: deployment frequency, lead time, change failure rate and time to restore.</span></li>
+</ol>
+</div></div>
+<h2 id="s8-to-s10-personal-projects">S8 to S10 personal projects</h2>
+<p>For these three the decision split is simple: you owned every decision. That&#x27;s what makes them your strongest evidence in architect, AI engineer and FDE interviews. Here, panels test a different boundary: personal project versus production. Your answers give the honest line: “These are personal projects. I use them myself and have shared them with a few friends, not with customers. The design notes are private, and I can share them if you&#x27;d like to see them.” Say it early, then pair each project with a work story that supplies the stakes.</p>
+<p><strong>S8 Hatch.</strong> Flow: 1. LangGraph supervisor → Scout · Scorer; 2. Scout · Scorer → Models; 3. Scout · Scorer → Your review (risky arrow); 4. Your review → Applications. There is no arrow from the agents to the outside world: you approve and submit everything. Decisions you own: human approval before any external action; primary/triage model routing for cost and latency; hard quality gates before changing a model (the July 2026 run kept the baseline); traces without prompt or CV content..</p>
+<p><strong>S9 IncidentPilot.</strong> Flow: 1. Evidence → Deterministic rules; 2. Evidence → Local model; 3. Local model → Deterministic rules (risky arrow); 4. Deterministic rules → Report. 3: the model suggests; rules decide. The tool is read-only and can&#x27;t restart anything. Decisions you own: a read-only MVP; the model gets validated evidence and no tools; rules-only fallback when the model times out; golden-file evaluation with ten checks, including no_action_executed..</p>
+<p><strong>S10 ResearchOps v2.</strong> Flow: 1. Topic file → Source discovery; 2. Source discovery → Five-factor ranking; 3. Five-factor ranking → Claude Haiku (risky arrow); 4. Claude Haiku → Email digest. 3: the paid model sees only the top items, under hard token and cost caps. Decisions you own: rewriting v1 instead of extending it; four of five ranking scores deterministic and visible; the paid model only for top-N synthesis; token, query and daily cost caps, with a reported running cost of about £0.03 a day..</p>
+<div class="qa" data-qa="q6-has-any-of-this-run-for-anyone-other-than-you-what-would-you-change-before-a-customer-used-it">
+<h3 id="q6-has-any-of-this-run-for-anyone-other-than-you-what-would-you-change-before-a-customer-used-it">Q6. Has any of this run for anyone other than you? What would you change before a customer used it?</h3>
+<div class="qa-body">
+<p><strong>Model answer:</strong> “These are personal projects. I use them myself and have shared them with a few friends, not with customers, so they haven&#x27;t run at production load. Before a customer used one, I&#x27;d add authentication and per-user data separation, monitoring with alerts, a support route, and a security review. The design decisions I&#x27;d keep are the ones that matter in production: a person approves anything with consequences, deterministic rules sit around the model, and cost is capped. My design notes are private, and I can share them if you&#x27;d like to see them.”</p>
+<blockquote>“Hatch is a personal project, not a client deployment. The design decision I&#x27;d defend first is that it never submits anything: agents draft, and I approve.”</blockquote>
+<blockquote>“IncidentPilot is a personal project. The decision I&#x27;d defend is keeping consequential actions out of the model&#x27;s reach: deterministic rules first, the model second.”</blockquote>
+<blockquote>“ResearchOps is a personal project. I rewrote v1 rather than extend it, because hard-coded sources were the design flaw, not a missing feature.”</blockquote>
+</div></div></article><footer>Generated from <a href="decision-ledger.md">decision-ledger.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>function ipThemeSetup(button){
+var root=document.documentElement;
+function current(){return root.classList.contains('dark')?'dark':'light';}
+function carry(updateAddress){var v=current();
+ [].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.getAttribute('data-ip-href')||a.getAttribute('href');
+  if(!h||h.charAt(0)==='#'||/^[a-z][a-z0-9+.-]*:/i.test(h))return;
+  if(!/[.]html$/i.test(h.split('#')[0].split('?')[0]))return;
+  try{var u=new URL(h,location.href);u.searchParams.set('theme',v);a.setAttribute('data-ip-href',h);a.setAttribute('href',u.href);}catch(e){}});
+ if(updateAddress){try{var c=new URL(location.href);c.searchParams.set('theme',v);history.replaceState(history.state,'',c.href);}catch(e){}}}
+function sync(){var d=root.classList.contains('dark');button.setAttribute('aria-pressed',String(d));button.textContent=d?'Light view':'Dark view';}
+button.addEventListener('click',function(){root.classList.toggle('dark');try{localStorage.setItem('ip-theme',current());}catch(e){}sync();carry(true);});
+sync();carry(false);}
+
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+ipThemeSetup(theme);
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

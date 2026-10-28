@@ -54,6 +54,13 @@ These are fictional practice cases. Use the [shared scenario method](../shared/h
 
 **AD2 — conflict around urgent work.** Product wants a date commitment, engineering flags technical risk, and support interruptions keep invalidating plans. Clarify user impact, urgency rules, capacity and decision rights. Facilitate explicit trade-offs between planned work and service obligations; test intake policies or reserved capacity rather than enforcing a universal rule. Track interruption demand, ageing work and service impact. **Probe:** what if urgent work is genuinely unpredictable? **Weak response:** promising to eliminate interruptions or deciding the team's technical plan for them.
 
+## Bridge questions
+
+These questions cross from your story into the system behind it and back. Each answer follows the five beats in [Connect the dots](../shared/connect-the-dots.md) (Stakes, Split, Sketch, Shape, Show); the decisions behind them are in the [decision lists](../shared/decision-ledger.md).
+
+1. **How did you change engineering practice without owning engineering?** “At Natoora I owned the operating model, not the pipeline. I proposed feature flags, with examples from my own engineering work, and the team built them and found them useful; I coached DevOps practice, and engineering owned CI/CD. The change that unlocked it was a free, reversible pilot of Jira on one initiative, which the CTO and COO approved once they saw the evidence.”
+2. **How did you measure whether the new way of working helped?** “I set a baseline before the Jira move and measured again three and six months after. Time-to-market, from starting work to release, fell from over five weeks to under three. I'm careful to say the tool was the small part: one source of truth, smaller batches and feature flags did the work. Next I'd add the DORA measures: deployment frequency, lead time, change failure rate and time to restore.”
+
 ## First 90 days and panel questions
 
 Learn the service, team agreements, demand, dependencies and baseline flow first. Agree one focused improvement experiment next. Then assess the result, build team capability and tackle cross-team constraints with leadership. Preserve useful existing practices; change what the evidence justifies.

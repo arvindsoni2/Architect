@@ -3,7 +3,7 @@
 **Public repository edition:** v3, evidence-led revision reviewed 8 September 2026
 **Purpose:** define what an aspiring software architect should learn, why it matters, and the order in which the capabilities build on one another.
 
-This guide is the durable curriculum map. It deliberately excludes dated calendars, daily exercises, saved progress and mentor workflow. Use the companion [Software Architect Grooming Programme v5](software-architect-grooming-programme-v6.html) for diagnostic bridge modules, worked scenarios, exercises, oral defences and capstone assessment.
+This guide is the durable curriculum map. It deliberately excludes dated calendars, daily exercises, saved progress and mentor workflow. Use the companion [Software Architect Grooming Programme v6](software-architect-grooming-programme-v6.html) for diagnostic bridge modules, worked scenarios, exercises, oral defences and capstone assessment.
 
 To connect this curriculum to AWS SAA-C03 study and technical interviews, use the [patient portal connected-learning case](patient-portal-connected-learning.md). It maps one scenario to exact programme units, AWS labs, technical mechanisms, AI evaluation and reviewable artifacts.
 

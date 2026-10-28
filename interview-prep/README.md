@@ -1,6 +1,6 @@
 # Interview preparation
 
-**Status:** Draft for owner review · **Last reviewed:** 13 October 2026
+**Status:** Draft for owner review · **Last reviewed:** 28 October 2026
 
 Start with the role you are interviewing for, choose relevant evidence, then add the vacancy context. The same career facts support different questions; the actual title, dates and results do not change with the role perspective.
 
@@ -23,7 +23,18 @@ For opening and motivation practice, use [Present → Past → Future and Compan
 
 The [Accenture extra questions page](vacancies/accenture-product-owner-questions.md) holds short answers to depth and quick-fire questions (Scrum, SAFe, API-first, cloud, AI risk, consulting situations) and the research register.
 
-For engineering interviews, start with the [AI Engineer](roles/ai-engineer.md) or [Forward Deployed Engineer](roles/forward-deployed-engineer.md) guide; for the Accenture vacancy add the [Accenture Forward Deployed AI Engineer supplement](vacancies/accenture-fde.md) alongside the [FDE Handbook v1.5](../handbooks/fde/fde-handbook-v1.6.html). It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.
+For engineering interviews, start with the [AI Engineer](roles/ai-engineer.md) or [Forward Deployed Engineer](roles/forward-deployed-engineer.md) guide; for the Accenture vacancy add the [Accenture Forward Deployed AI Engineer supplement](vacancies/accenture-fde.md) alongside the [FDE Handbook v1.6](../handbooks/fde/fde-handbook-v1.6.html). It maps vacancy R00345109 to evidence, adds eleven inferred technical/leadership drills and a synthetic programme/commercial case, and distinguishes practice from qualifying client deployment.
+
+## Connect the dots
+
+Some questions cross from a story into the system behind it and who decided what: “how did you handle the AWS architecture, what did you decide and what did the architect decide, and how did you present it to the ARB?” Four pages prepare you for them:
+
+- [Connect the dots](shared/connect-the-dots.md): the five-beat answer (Stakes, Split, Sketch, Shape, Show), the level each role starts at, and a grid of every story against every lens.
+- [Decision lists](shared/decision-ledger.md): for each story, who made each decision and what your part was, with a model answer and the follow-ups one level down.
+- [Architecture review](shared/architecture-review.md): how a review board works, what a Product Owner brings, and the Smart Timesheet worked answer.
+- [Dot drill](dot-drill.html): pick a role, a story and a lens, and answer out loud in 90 seconds.
+
+Every role guide also ends with bridge questions built from the decision lists.
 
 ## Read the guides as HTML
 

@@ -88,6 +88,18 @@ Scrum.org's 2026 list adds AI and evidence-based value to the classic questions;
 
 **Model answer:** Prepare three specifics: who the product serves, one recent change you noticed, and one question you would want to test in your first month. Tie one of them to your evidence. [2]
 
+## Bridge questions
+
+These questions cross from your story into the system behind it and back. Each answer follows the five beats in [Connect the dots](../shared/connect-the-dots.md) (Stakes, Split, Sketch, Shape, Show); the decisions behind them are in the [decision lists](../shared/decision-ledger.md).
+
+### Q10. What did the architect own on your project, and what did you own?
+
+**Model answer:** “On Smart Timesheet at Northern Powergrid I was the TCS Product Owner. I owned what we built and in what order: the users, the first release, the acceptance criteria and the rollout. TCS chose OutSystems as the platform, and our architect and engineering lead owned the integration design. The decisions that could stop the initiative sat with Northern Powergrid's architecture review board: where employee data lived and what could be shared with a vendor's cloud. I was in that room. I made the product case for the minimum data the app needed, employee ID, name and day rate, and the board approved exactly that, with the data kept in the UK. I own the why and the what, architects own the how, and the backlog is where they meet.”
+
+### Q11. When did a technical constraint change your backlog order?
+
+**Model answer:** “On Smart Timesheet, two constraints did. Field engineers often had no signal, so offline submission became a must-have for the first release: the native app stored timesheets on the phone and synced when back online. To protect that, I deferred the desktop web app so mobile shipped first. And the legacy Oracle integration was the riskiest dependency, so I moved it to the front of the backlog and proved it before the alpha. The alpha at one depot, fifty volunteer engineers for four weeks, doubled as a live test of the integration.”
+
 ## First 90 days and panel questions
 
 In days 1–30, learn users, strategy, decision rights, team constraints and baseline measures. In days 31–60, improve backlog clarity and test a high-value assumption with a small release. In days 61–90, assess outcome evidence, strengthen rollout/support ownership and adapt the roadmap. Sequence this around the client's existing phase and commitments.

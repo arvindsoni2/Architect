@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en-GB"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Connect the dots — Interview preparation</title><script>(function(){var r=document.documentElement,t=null;
+try{t=new URLSearchParams(location.search).get('theme');}catch(e){}
+if(t==='dark'||t==='light'){try{localStorage.setItem('ip-theme',t);}catch(e){}}
+else{try{t=localStorage.getItem('ip-theme');}catch(e){}}
+if(t!=='dark'&&t!=='light')t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';
+if(t==='dark')r.classList.add('dark');})();</script><style>
+:root{color-scheme:light;--bg:#f3f5f9;--paper:#fff;--ink:#19293a;--muted:#536679;--line:#d5deea;--accent:#2257a5;--soft:#edf3fc;--ok:#1f7a4d}
+html.dark{color-scheme:dark;--bg:#111b28;--paper:#192638;--ink:#eaf0f7;--muted:#b4c3d5;--line:#354960;--accent:#9cc3ff;--soft:#233752;--ok:#6fd3a0}
+*{box-sizing:border-box}html{scroll-padding-top:16px}body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 system-ui,-apple-system,"Segoe UI",sans-serif}
+a{color:var(--accent);text-underline-offset:3px}a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:-9999px}.skip:focus{left:20px;top:10px;background:var(--paper);padding:8px;z-index:2}
+header{background:var(--paper);border-bottom:1px solid var(--line);padding:16px max(20px,calc((100vw - 1300px)/2))}
+.heading-row{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}.brand{font-size:20px;font-weight:750;letter-spacing:-.3px;color:var(--ink);text-decoration:none}.subtitle{color:var(--muted);margin:2px 0 0;font-size:14px}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink);background:var(--paper);cursor:pointer}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;max-width:1300px;margin:24px auto;padding:0 20px}
+nav{align-self:start;position:sticky;top:16px;max-height:calc(100vh - 32px);overflow:auto}nav a{display:block;padding:8px 12px;margin:2px 0;border-radius:8px;text-decoration:none;color:var(--muted);font-size:15px}nav a[aria-current=page]{color:var(--accent);background:var(--soft);font-weight:700}
+.nav-label{text-transform:uppercase;font-size:11px;font-weight:750;letter-spacing:1.3px;color:var(--muted);margin:14px 12px 4px}
+main{min-width:0}.panel{background:var(--paper);padding:30px 38px;border:1px solid var(--line);border-radius:14px}
+h1{font-size:31px;line-height:1.2;letter-spacing:-.6px;margin:0 0 20px}h2{font-size:23px;line-height:1.35;margin:36px 0 12px}h3{font-size:19px;line-height:1.4;margin:26px 0 8px}p{margin:12px 0}li{padding-left:3px;margin:10px 0}strong{font-weight:700}
+.table-wrap{overflow-x:auto;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.5}th,td{border:1px solid var(--line);padding:11px;text-align:left;vertical-align:top}th{background:var(--soft)}code{font-size:.86em;background:var(--soft);padding:2px 5px;border-radius:4px;overflow-wrap:anywhere}
+blockquote{margin:18px 0;padding:10px 18px;border-left:4px solid var(--accent);background:var(--soft)}
+.toc{border:1px solid var(--line);border-radius:10px;padding:8px 16px;margin:0 0 20px;background:var(--soft)}.toc summary{cursor:pointer;font-weight:700}.toc ol{margin:8px 0;padding-left:22px;columns:2;column-gap:28px}.toc li{margin:4px 0;font-size:15px;break-inside:avoid}
+.practice-bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 20px;font-size:15px}
+.meter{flex:1 1 160px;height:10px;border:1px solid var(--line);border-radius:6px;background:var(--paper);overflow:hidden}.meter span{display:block;height:100%;width:0;background:var(--ok)}
+.qa{border-top:1px solid var(--line);padding-top:4px}.qa-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:2px 0 6px;font-size:14px}.qa-tools button{font-size:14px;padding:4px 10px}
+.qa-tools label{display:inline-flex;gap:6px;align-items:center;color:var(--muted);cursor:pointer}.qa-tools input{width:17px;height:17px;accent-color:var(--ok)}
+.qa.practised h3::after{content:" ✓";color:var(--ok)}
+.reveal-btn{display:none}.practice .reveal-btn{display:inline-block}
+.practice .qa:not(.revealed) .qa-body,.practice .qa-li:not(.revealed) .qa-ans{display:none}
+.qa-li .reveal-btn{margin-left:8px;font-size:13px;padding:2px 8px}
+footer{font-size:13px;color:var(--muted);margin:20px 0}
+@media(max-width:850px){.layout{display:block;margin:14px auto;padding:0 14px}nav{position:static;max-height:none;display:flex;overflow-x:auto;gap:4px;margin:0 0 14px;padding-bottom:8px}nav a{white-space:nowrap;padding:8px 11px;border:1px solid var(--line)}.nav-label{display:none}.panel{padding:22px 18px}header{padding:14px 16px}h1{font-size:26px}body{font-size:16px}.toc ol{columns:1}}
+@media print{header,nav,footer,.skip,.toc,.practice-bar,.qa-tools,.reveal-btn{display:none!important}.layout{display:block;margin:0;padding:0}.panel{border:0;padding:0}.qa-body,.qa-ans{display:block!important}.qa-ans{display:inline!important}body{background:#fff;color:#111;font-size:10.5pt}h1{font-size:20pt}h2{font-size:15pt;break-after:avoid}h3{break-after:avoid}table{font-size:9pt}tr{break-inside:avoid}a{color:#111}html.dark{--paper:#fff;--ink:#111;--line:#ccc;--soft:#f4f4f4;--muted:#444}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style></head><body data-page="shared/connect-the-dots.md"><a class="skip" href="#content">Skip to content</a><header><div class="heading-row"><div><a class="brand" href="../index.html">Interview preparation</a><p class="subtitle">Shared methods · consistent evidence · role-specific practice</p></div><div class="tools"><button id="practice" type="button" aria-pressed="false" hidden title="Hide model answers so you can answer first">Practice mode</button><button id="theme" type="button" aria-pressed="false" hidden>Dark view</button><button id="print" type="button" hidden>Print</button></div></div></header><div class="layout"><nav aria-label="Guides"><div class="nav-label">Start</div><a href="../index.html">Start here</a><a href="handbook.html">Shared methods</a><a href="evidence-bank.html">Evidence bank</a><a href="connect-the-dots.html" aria-current="page">Connect the dots</a><a href="decision-ledger.html">Decision lists</a><a href="architecture-review.html">Architecture review</a><div class="nav-label">Role guides</div><a href="../roles/delivery-lead.html">Delivery Lead</a><a href="../roles/agile-delivery-lead.html">Agile Delivery Lead</a><a href="../roles/product-owner.html">Product Owner</a><a href="../roles/product-manager.html">Product Manager</a><a href="../roles/senior-project-manager.html">Senior Project Manager</a><a href="../roles/software-ai-architect.html">Software &amp; AI Architect</a><a href="../roles/ai-engineer.html">AI Engineer</a><a href="../roles/forward-deployed-engineer.html">Forward Deployed Engineer</a><div class="nav-label">Vacancies</div><a href="../vacancies/accenture-product-owner.html">Accenture PO playbook</a><a href="../vacancies/accenture-product-owner-questions.html">Accenture extra Qs</a><a href="../vacancies/accenture-fde.html">Accenture FDE</a><div class="nav-label">Practise</div><a href="../dot-drill.html">Dot drill</a><div class="nav-label">All in one</div><a href="../handbook.html">Tabbed reading view</a></nav><main id="content"><article class="panel"><h1 id="connect-the-dots">Connect the dots</h1>
+<p><strong>Status:</strong> Owner-approved · <strong>Last reviewed:</strong> 28 October 2026</p><details class="toc" open><summary>On this page</summary><ol><li><a href="#one-question-three-layers">One question, three layers</a></li><li><a href="#five-beats-for-any-boundary-question">Five beats for any boundary question</a></li><li><a href="#the-same-story-four-levels-deep">The same story, four levels deep</a></li><li><a href="#where-each-role-starts">Where each role starts</a></li><li><a href="#pair-a-work-story-with-a-personal-project">Pair a work story with a personal project</a></li><li><a href="#story-and-lens-grid">Story and lens grid</a></li><li><a href="#lens-prompts">Lens prompts</a></li><li><a href="#practise">Practise</a></li></ol></details><div class="practice-bar" id="practice-bar" hidden><span id="practised-count"></span><div class="meter" aria-hidden="true"><span id="practised-meter"></span></div><button type="button" id="practice-reset">Reset ticks</button></div>
+<p>Many interviews include questions that connect a story to the system behind it and to who decided what. A Product Owner panel once asked: “On the timesheet project, how did you handle the AWS architecture, what did you decide and what did the architect decide, and how did you present it to the ARB?” This page is the method for answering that kind of question. The <a href="decision-ledger.html">decision lists</a> apply it to every story in the <a href="evidence-bank.html">evidence bank</a>, <a href="architecture-review.html">Architecture review</a> covers governance boards, and the <a href="../dot-drill.html">dot drill</a> lets you practise.</p>
+<h2 id="one-question-three-layers">One question, three layers</h2>
+<p>A boundary question cuts through three layers at once and scores how smoothly you move between them.</p>
+<div class="table-wrap"><table><thead><tr><th>Layer</th><th>What it covers</th><th>Where it lives</th></tr></thead><tbody>
+<tr><td>Story</td><td>What happened, for whom, and what changed</td><td>The <a href="evidence-bank.html">evidence bank</a></td></tr>
+<tr><td>System</td><td>What it ran on and where it could break</td><td>The handbooks, linked from each story&#x27;s “One level down”</td></tr>
+<tr><td>Decision rights</td><td>Who decided each thing, what you decided and how you influenced the rest</td><td>The <a href="decision-ledger.html">decision lists</a></td></tr>
+</tbody></table></div>
+<p>A Product Owner panel isn&#x27;t asking you to be the architect. It&#x27;s checking three things: that you understand the architecture well enough to make good product calls, that you know exactly where your authority stopped, and that you can work inside governance without being slowed by it. The weak answer either overclaims the architecture or retreats with “that was the architect&#x27;s job”.</p>
+<h2 id="five-beats-for-any-boundary-question">Five beats for any boundary question</h2>
+<p>STAR still works for behavioural questions. Boundary questions need a different spine, because the panel wants the split of decisions and a picture of the system, not just a sequence of events. Each beat starts with an English keyword you can anchor on.</p>
+<div class="table-wrap"><table><thead><tr><th>Beat</th><th>What to say</th><th>Time</th></tr></thead><tbody>
+<tr><td>Stakes</td><td>One line on what was at risk and for whom. Lead with stakes, not setup.</td><td>About 10 seconds</td></tr>
+<tr><td>Split</td><td>Which decisions were yours and which belonged to the architect, engineering or the client. Name the owners.</td><td>About 15 seconds</td></tr>
+<tr><td>Sketch</td><td>The system in three boxes and the one risky arrow. Say it as if you were drawing it.</td><td>About 15 seconds</td></tr>
+<tr><td>Shape</td><td>How your decisions shaped the technical ones: requirements, risk ordering, rollout. This is where you claim the decisions you made.</td><td>About 30 seconds</td></tr>
+<tr><td>Show</td><td>The governance moment and the result: the review, the conditions, the number and what it measured.</td><td>About 20 seconds</td></tr>
+</tbody></table></div>
+<p>Frameworks to name inside the beats, two or three per answer: RACI or decision rights (Split), the C4 context and container views (Sketch), non-functional requirements and the AWS Well-Architected pillars (Shape), an ADR and the review board&#x27;s conditions (Show).</p>
+<h2 id="the-same-story-four-levels-deep">The same story, four levels deep</h2>
+<p>You don&#x27;t need different stories for different roles. You need to know which level each role expects you to start on: a delivery interview needs the consequence of a technical decision, and an architecture interview needs the defence of the design.</p>
+<div class="table-wrap"><table><thead><tr><th>Level</th><th>What you say</th><th>Smart Timesheet at this level</th></tr></thead><tbody>
+<tr><td>1 · Outcome</td><td>What changed and how it was measured</td><td>Around £500k a year; half the admin office visits</td></tr>
+<tr><td>2 · Decision</td><td>Options, the trade-off, who decided</td><td>An alpha at one depot before scaling; TCS chose the platform</td></tr>
+<tr><td>3 · Mechanism</td><td>Components, data flow, failure modes, quality needs</td><td>App → .NET → Oracle; only three fields leave Northern Powergrid; offline-first on the phone</td></tr>
+<tr><td>4 · Build and proof</td><td>Code, tests, evaluation, operations</td><td>You weren&#x27;t at this level on S3. Use Hatch or IncidentPilot</td></tr>
+</tbody></table></div>
+<p><strong>The rule:</strong> start at your role&#x27;s level. Go one level down to prove you understand the mechanism, and one level up to show business sense. Go two levels down only where you actually did the work, and say so.</p>
+<h2 id="where-each-role-starts">Where each role starts</h2>
+<div class="table-wrap"><table><thead><tr><th>Role</th><th>Starting level</th><th>How to answer</th></tr></thead><tbody>
+<tr><td>Product Owner</td><td>2 · Decision</td><td>Start with the decision, the trade-off and who owned it. Go one level down to show you understood the mechanism.</td></tr>
+<tr><td>Product Manager</td><td>2 · Decision</td><td>Start with the decision and keep the business case in view: segment, economics, and why this bet over others.</td></tr>
+<tr><td>Delivery Lead</td><td>1 · Outcome</td><td>Start with the consequence, the risk and the plan. Then show the decision behind it.</td></tr>
+<tr><td>Architect</td><td>3 · Mechanism</td><td>Start with constraints, options, the trade-off and failure modes. Say who signed off.</td></tr>
+<tr><td>AI Engineer</td><td>4 · Build and proof</td><td>Start with how it works and how you measured it. Use a personal project for code-level detail.</td></tr>
+<tr><td>FDE</td><td>4 · Build and proof</td><td>Start with the customer&#x27;s problem, then what you built and how it was adopted.</td></tr>
+</tbody></table></div>
+<h2 id="pair-a-work-story-with-a-personal-project">Pair a work story with a personal project</h2>
+<p>Your work stories are strong on decisions, users and value. Your personal projects are strong on architecture, cost, AI and governance, because you made every decision yourself. Use a work story for the why and a personal project for the how. In a Product Owner interview, Smart Timesheet carries the answer on its own. In an architect or AI engineer interview, add: “and where I make these calls myself, in Hatch…”. Always say “personal project” when you use one.</p>
+<h2 id="story-and-lens-grid">Story and lens grid</h2>
+<p>Strong means the story answers the lens on its own; usable means it works with care; thin means pair it with a stronger story.</p>
+<div class="table-wrap"><table><thead><tr><th>Story</th><th>Decisions</th><th>Architecture</th><th>Cloud and cost</th><th>Data and AI</th><th>Governance</th><th>Users</th><th>Value</th></tr></thead><tbody>
+<tr><td>S1 GenAI orders</td><td>strong</td><td>usable</td><td>usable</td><td>strong</td><td>usable</td><td>strong</td><td>usable</td></tr>
+<tr><td>S2 SaaS launch</td><td>strong</td><td>usable</td><td>strong</td><td>thin</td><td>usable</td><td>strong</td><td>strong</td></tr>
+<tr><td>S3 Smart Timesheet</td><td>strong</td><td>usable</td><td>usable</td><td>usable</td><td>strong</td><td>strong</td><td>strong</td></tr>
+<tr><td>S4 Infrastructure</td><td>usable</td><td>strong</td><td>strong</td><td>thin</td><td>strong</td><td>usable</td><td>strong</td></tr>
+<tr><td>S5 Nationwide GDPR</td><td>strong</td><td>thin</td><td>thin</td><td>usable</td><td>strong</td><td>thin</td><td>usable</td></tr>
+<tr><td>S7 Agile and Jira</td><td>strong</td><td>usable</td><td>usable</td><td>thin</td><td>usable</td><td>usable</td><td>strong</td></tr>
+<tr><td>S8 Hatch</td><td>strong</td><td>strong</td><td>strong</td><td>strong</td><td>strong</td><td>usable</td><td>thin</td></tr>
+<tr><td>S9 IncidentPilot</td><td>strong</td><td>strong</td><td>usable</td><td>strong</td><td>strong</td><td>thin</td><td>thin</td></tr>
+<tr><td>S10 ResearchOps</td><td>strong</td><td>strong</td><td>strong</td><td>strong</td><td>usable</td><td>thin</td><td>thin</td></tr>
+</tbody></table></div>
+<h2 id="lens-prompts">Lens prompts</h2>
+<p>Each lens has one question a panel tends to ask. Replace “this story” with the story&#x27;s name.</p>
+<div class="table-wrap"><table><thead><tr><th>Lens</th><th>Question</th></tr></thead><tbody>
+<tr><td>Decisions</td><td>In this story, which decisions were yours, which belonged to someone else, and how did you influence the ones that weren&#x27;t yours?</td></tr>
+<tr><td>Architecture</td><td>Sketch the system in this story in three boxes. Which arrow carried the most risk, and what did you do about it?</td></tr>
+<tr><td>Cloud and cost</td><td>In this story, what did the solution cost to build and to run, and which design choice drove that cost?</td></tr>
+<tr><td>Data and AI</td><td>In this story, where did data or a model make a decision, and how did you know it was good enough?</td></tr>
+<tr><td>Governance</td><td>In this story, who had to approve the work, what did they challenge, and which condition did you carry afterwards?</td></tr>
+<tr><td>Users</td><td>In this story, who were the users, what did you learn from them that changed the design, and how did you measure adoption?</td></tr>
+<tr><td>Value</td><td>In this story, how was the value calculated, and what would a finance director challenge in that number?</td></tr>
+</tbody></table></div>
+<h2 id="practise">Practise</h2>
+<p>Open the <a href="../dot-drill.html">dot drill</a>, pick a role, choose a story and a lens, and answer out loud in 90 seconds using the five beats. Each role guide also ends with bridge questions built from the <a href="decision-ledger.html">decision lists</a>.</p></article><footer>Generated from <a href="connect-the-dots.md">connect-the-dots.md</a>. Edit the Markdown, then run <code>python3 scripts/render_interview_handbook.py</code>.</footer></main></div><script>function ipThemeSetup(button){
+var root=document.documentElement;
+function current(){return root.classList.contains('dark')?'dark':'light';}
+function carry(updateAddress){var v=current();
+ [].forEach.call(document.querySelectorAll('a[href]'),function(a){var h=a.getAttribute('data-ip-href')||a.getAttribute('href');
+  if(!h||h.charAt(0)==='#'||/^[a-z][a-z0-9+.-]*:/i.test(h))return;
+  if(!/[.]html$/i.test(h.split('#')[0].split('?')[0]))return;
+  try{var u=new URL(h,location.href);u.searchParams.set('theme',v);a.setAttribute('data-ip-href',h);a.setAttribute('href',u.href);}catch(e){}});
+ if(updateAddress){try{var c=new URL(location.href);c.searchParams.set('theme',v);history.replaceState(history.state,'',c.href);}catch(e){}}}
+function sync(){var d=root.classList.contains('dark');button.setAttribute('aria-pressed',String(d));button.textContent=d?'Light view':'Dark view';}
+button.addEventListener('click',function(){root.classList.toggle('dark');try{localStorage.setItem('ip-theme',current());}catch(e){}sync();carry(true);});
+sync();carry(false);}
+
+(function(){
+var root=document.documentElement,store=null;
+try{store=window.localStorage;store.getItem('ip-probe');}catch(e){store=null;}
+function get(k){try{return store?store.getItem(k):null;}catch(e){return null;}}
+function set(k,v){try{if(store)store.setItem(k,v);}catch(e){}}
+var toc=document.querySelector('.toc');if(toc&&window.matchMedia&&window.matchMedia('(max-width:850px)').matches)toc.open=false;
+var theme=document.getElementById('theme'),printBtn=document.getElementById('print'),practiceBtn=document.getElementById('practice');
+theme.hidden=false;printBtn.hidden=false;
+ipThemeSetup(theme);
+printBtn.addEventListener('click',function(){window.print();});
+var qas=[].slice.call(document.querySelectorAll('.qa')),lis=[].slice.call(document.querySelectorAll('.qa-li'));
+if(!qas.length&&!lis.length)return;
+practiceBtn.hidden=false;
+var page=document.body.getAttribute('data-page'),key='ip-practised:'+page,done={};
+try{done=JSON.parse(get(key)||'{}')||{};}catch(e){done={};}
+var bar=document.getElementById('practice-bar'),count=document.getElementById('practised-count'),meter=document.getElementById('practised-meter');
+var speech=('speechSynthesis' in window)?window.speechSynthesis:null,speaking=null;
+function progress(){if(!qas.length){bar.hidden=true;return;}bar.hidden=false;var n=qas.filter(function(q){return done[q.getAttribute('data-qa')];}).length;
+ count.textContent=n+' of '+qas.length+' questions practised';meter.style.width=Math.round(100*n/qas.length)+'%';}
+function revealButton(target,label){var b=document.createElement('button');b.type='button';b.className='reveal-btn';b.textContent=label;b.setAttribute('aria-expanded','false');
+ b.addEventListener('click',function(){var open=target.classList.toggle('revealed');b.setAttribute('aria-expanded',String(open));b.textContent=open?'Hide answer':label;});return b;}
+qas.forEach(function(q){var id=q.getAttribute('data-qa'),h=q.querySelector('h3'),tools=document.createElement('div');tools.className='qa-tools';
+ tools.appendChild(revealButton(q,'Show model answer'));
+ if(speech){var l=document.createElement('button');l.type='button';l.textContent='▶ Listen';l.setAttribute('aria-label','Read this question and model answer aloud');
+  l.addEventListener('click',function(){if(speaking===l){speech.cancel();return;}speech.cancel();
+   var u=new SpeechSynthesisUtterance((h.textContent+'. '+q.querySelector('.qa-body').textContent).replace(/\s+/g,' '));u.lang='en-GB';u.rate=0.95;
+   speaking=l;l.textContent='■ Stop';u.onend=u.onerror=function(){if(speaking===l){speaking=null;}l.textContent='▶ Listen';};speech.speak(u);});tools.appendChild(l);}
+ var lab=document.createElement('label'),box=document.createElement('input');box.type='checkbox';box.checked=!!done[id];q.classList.toggle('practised',box.checked);
+ box.addEventListener('change',function(){if(box.checked)done[id]=1;else delete done[id];q.classList.toggle('practised',box.checked);set(key,JSON.stringify(done));progress();});
+ lab.appendChild(box);lab.appendChild(document.createTextNode(' Practised'));tools.appendChild(lab);
+ h.insertAdjacentElement('afterend',tools);});
+lis.forEach(function(li){li.querySelector('strong').insertAdjacentElement('afterend',revealButton(li,'Show'));});
+practiceBtn.addEventListener('click',function(){var on=document.body.classList.toggle('practice');practiceBtn.setAttribute('aria-pressed',String(on));
+ if(on){qas.concat(lis).forEach(function(x){x.classList.remove('revealed');var b=x.querySelector('.reveal-btn');if(b){b.setAttribute('aria-expanded','false');b.textContent=x.classList.contains('qa')?'Show model answer':'Show';}});}});
+document.getElementById('practice-reset').addEventListener('click',function(){done={};set(key,'{}');qas.forEach(function(q){q.classList.remove('practised');var c=q.querySelector('.qa-tools input');if(c)c.checked=false;});progress();});
+progress();
+})();
+</script></body></html>

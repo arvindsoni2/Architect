@@ -58,22 +58,26 @@ Markdown sources are canonical. The tabbed HTML reading view and one HTML page p
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| Interview Preparation Index | Product and delivery interview preparation | [interview-prep/README.md](interview-prep/README.md) | Markdown | Draft | Living draft | 2026-10-13 |
+| Interview Preparation Index | Product and delivery interview preparation | [interview-prep/README.md](interview-prep/README.md) | Markdown | Draft | Living draft | 2026-10-28 |
 | Shared Interview Handbook | Product and delivery interview preparation | [interview-prep/shared/handbook.md](interview-prep/shared/handbook.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| Interview Evidence Bank | Product and delivery interview preparation | [interview-prep/shared/evidence-bank.md](interview-prep/shared/evidence-bank.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/delivery-lead.md](interview-prep/roles/delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Agile Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/agile-delivery-lead.md](interview-prep/roles/agile-delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Product Owner Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-owner.md](interview-prep/roles/product-owner.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| Product Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-manager.md](interview-prep/roles/product-manager.md) | Markdown | Draft | Living draft | 2026-10-01 |
-| Senior Project Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/senior-project-manager.md](interview-prep/roles/senior-project-manager.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| Software and AI Architect Interview Guide | Architecture interview preparation | [interview-prep/roles/software-ai-architect.md](interview-prep/roles/software-ai-architect.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| AI Engineer Interview Guide | AI engineering interview preparation | [interview-prep/roles/ai-engineer.md](interview-prep/roles/ai-engineer.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| Forward Deployed Engineer Interview Guide | Forward-deployed AI interview preparation | [interview-prep/roles/forward-deployed-engineer.md](interview-prep/roles/forward-deployed-engineer.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| Accenture Product Owner Playbook | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-13 |
-| Accenture Product Owner Extra Questions | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-13 |
+| Interview Evidence Bank | Product and delivery interview preparation | [interview-prep/shared/evidence-bank.md](interview-prep/shared/evidence-bank.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Connect the Dots Method | Product and delivery interview preparation | [interview-prep/shared/connect-the-dots.md](interview-prep/shared/connect-the-dots.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Interview Decision Lists | Product and delivery interview preparation | [interview-prep/shared/decision-ledger.md](interview-prep/shared/decision-ledger.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Architecture Review Guide | Architecture interview preparation | [interview-prep/shared/architecture-review.md](interview-prep/shared/architecture-review.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Interview Dot Drill | Product and delivery interview preparation | [interview-prep/dot-drill.html](interview-prep/dot-drill.html) | HTML | Draft | Living draft | 2026-10-28 |
+| Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/delivery-lead.md](interview-prep/roles/delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Agile Delivery Lead Interview Guide | Product and delivery interview preparation | [interview-prep/roles/agile-delivery-lead.md](interview-prep/roles/agile-delivery-lead.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Product Owner Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-owner.md](interview-prep/roles/product-owner.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Product Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/product-manager.md](interview-prep/roles/product-manager.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Senior Project Manager Interview Guide | Product and delivery interview preparation | [interview-prep/roles/senior-project-manager.md](interview-prep/roles/senior-project-manager.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Software and AI Architect Interview Guide | Architecture interview preparation | [interview-prep/roles/software-ai-architect.md](interview-prep/roles/software-ai-architect.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| AI Engineer Interview Guide | AI engineering interview preparation | [interview-prep/roles/ai-engineer.md](interview-prep/roles/ai-engineer.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Forward Deployed Engineer Interview Guide | Forward-deployed AI interview preparation | [interview-prep/roles/forward-deployed-engineer.md](interview-prep/roles/forward-deployed-engineer.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Accenture Product Owner Playbook | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner.md](interview-prep/vacancies/accenture-product-owner.md) | Markdown | Draft | Living draft | 2026-10-28 |
+| Accenture Product Owner Extra Questions | Product and delivery interview preparation | [interview-prep/vacancies/accenture-product-owner-questions.md](interview-prep/vacancies/accenture-product-owner-questions.md) | Markdown | Draft | Living draft | 2026-10-28 |
 | Accenture Forward Deployed AI Engineer Supplement | Forward-deployed AI interview preparation | [interview-prep/vacancies/accenture-fde.md](interview-prep/vacancies/accenture-fde.md) | Markdown | Draft | Living draft | 2026-10-05 |
-| Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-13 |
-| Interview Guide Pages | Product and delivery interview preparation | [interview-prep/index.html](interview-prep/index.html) | HTML | Draft | Living draft | 2026-10-13 |
+| Interview Handbook Reading View | Product and delivery interview preparation | [interview-prep/handbook.html](interview-prep/handbook.html) | HTML | Draft | Living draft | 2026-10-28 |
+| Interview Guide Pages | Product and delivery interview preparation | [interview-prep/index.html](interview-prep/index.html) | HTML | Draft | Living draft | 2026-10-28 |
 
 ## Status values
 

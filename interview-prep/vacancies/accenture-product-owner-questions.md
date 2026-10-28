@@ -48,7 +48,7 @@ This is a reported Accenture Digital Product Owner question (see G1 below). Evid
 
 ### How do you balance technical debt against new features?
 
-> “I make the cost of the debt visible in business terms — slower delivery, incidents, security risk — and give it a regular share of capacity rather than one big clean-up. On the SaaS product, removing more than 200 hard-coded references and adding tenant isolation was essential debt work: without it, we couldn't safely onboard a second client.”
+> “I make the cost of the debt visible in business terms — slower delivery, incidents, security risk — and give it a regular share of capacity rather than one big clean-up. On the SaaS product I owned the technical-debt plan: removing more than 200 hard-coded references so each client could run in its own environment, and tracking every open security item in Jira until the Angular migration closed them. Without that work, we couldn't safely onboard a second client.”
 
 ### How do you handle security, compliance and regulation?
 
