@@ -52,6 +52,14 @@ Decision-model selection and acceptance live in the existing canonical AI archit
 
 These two resources are an owner-approved scope exception. “Current” identifies the canonical publication, not a claim that every AWS lab has been deployed. See their [revision and validation notes](handbooks/aws-saa-c03/README.md).
 
+## Scoped project and product management guide
+
+An owner-approved single-resource exception (29 October 2026) supporting the delivery, project and product roles in the interview collection. Time-sensitive facts (PMBOK 8th edition, the July 2026 PMP exam outline) were checked on the review date.
+
+| Title | Domain | Path | Format | Status | Edition | Last reviewed |
+| --- | --- | --- | --- | --- | --- | --- |
+| PM & Product Field Guide | Project and product management | [handbooks/project-product/project-product-field-guide-v1.html](handbooks/project-product/project-product-field-guide-v1.html) | HTML | Current | v1 (learning lens) | 2026-10-29 |
+
 ## Scoped interview preparation collection
 
 Markdown sources are canonical. The tabbed HTML reading view and one HTML page per guide (start at `interview-prep/index.html`) are generated from them. This owner-approved collection is pending final factual review; it does not include raw private recruitment material.
@@ -88,4 +96,4 @@ The FDE v1.6 publication (21 October 2026) adds what the role reduces to, a core
 - **Draft:** incomplete material not yet canonical.
 - **Superseded:** retained only when a migration decision explicitly requires it.
 
-> Repository scope: Complete course notebooks and certification packs remain excluded except for the two AWS SAA-C03 resources explicitly listed above. The curated interview collection is separately approved; raw job-search records remain excluded.
+> Repository scope: Complete course notebooks and certification packs remain excluded except for the two AWS SAA-C03 resources explicitly listed above. The curated interview collection and the PM & Product Field Guide are separately approved; raw job-search records remain excluded.

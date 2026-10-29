@@ -7,6 +7,7 @@ A curated, version-controlled knowledge base for software architecture, system d
 Learn from the **interactive HTML handbooks** first: they carry the diagrams, labs, motion and read-aloud. Each unit now opens with first principles and a Pareto cut, and ends with a Feynman loop; the System Design handbook also offers a *Core path only* view. The Markdown notes under `docs/` are plain-text companions kept alongside them. The [content catalogue](CATALOG.md) lists both.
 
 - [Role-based interview preparation](interview-prep/README.md) — shared methods, evidence, decision lists, an architecture review guide, a practice drill and eight role guides
+- [PM & Product Field Guide](handbooks/project-product/project-product-field-guide-v1.html) — project and product management frameworks with diagrams, calculators, evaluation methods, a formula sheet and a quiz
 
 - [Connect decision models, agent engineering and forward deployed architecture](learning-paths/decision-models-and-forward-deployed-architecture.md)
 
@@ -55,4 +56,4 @@ Learn from the **interactive HTML handbooks** first: they carry the diagrams, la
 - [Cross-cutting patterns](docs/cross-cutting-patterns/)
 - [Architect learning paths](learning-paths/software-architect/)
 
-Directories are added as curated material is migrated. This repository intentionally excludes complete certification packs, course notebooks, unrelated project files, and obsolete artifact duplicates, with owner-approved exceptions for the curated [interview preparation collection](interview-prep/README.md) and the paired [AWS SAA-C03 handbook and lab manual](handbooks/aws-saa-c03/README.md).
+Directories are added as curated material is migrated. This repository intentionally excludes complete certification packs, course notebooks, unrelated project files, and obsolete artifact duplicates, with owner-approved exceptions for the curated [interview preparation collection](interview-prep/README.md), the [PM & Product Field Guide](handbooks/project-product/project-product-field-guide-v1.html) and the paired [AWS SAA-C03 handbook and lab manual](handbooks/aws-saa-c03/README.md).

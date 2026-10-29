@@ -1,0 +1,1970 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PM &amp; Product Field Guide</title>
+<meta name="description" content="Interactive revision guide to project and product management: PMBOK 8, Scrum, critical path, earned value, risk, discovery, prioritisation, metrics, evaluation, formulas and a quiz.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Layout: sticky track switcher (project = teal, product = indigo) over a card grid; "Glance" collapses every card to its one-line takeaway for fast recall */
+:root{
+  --bg:#EDF0F4; --surface:#FFFFFF; --sunk:#E3E8EE; --ink:#152031; --muted:#556175; --line:#D2D8E1;
+  --proj:#0A6A65; --proj-soft:#D5EBE8; --prod:#4A3FC4; --prod-soft:#E3E0FA;
+  --good:#1D7A3C; --good-soft:#DBEFE1; --warn:#935D00; --warn-soft:#F6E9CE; --bad:#B42318; --bad-soft:#F8DDDA;
+  --acc:var(--proj); --acc-soft:var(--proj-soft);
+  --f-display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --f-body:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1219; --surface:#151C26; --sunk:#1D2633; --ink:#E4E9F0; --muted:#9AA6B7; --line:#2A3544;
+    --proj:#4CC3BA; --proj-soft:#12322F; --prod:#A49DFF; --prod-soft:#25214A;
+    --good:#5DCB86; --good-soft:#143022; --warn:#E6B14C; --warn-soft:#382A0F; --bad:#F27B70; --bad-soft:#3C1814;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1219; --surface:#151C26; --sunk:#1D2633; --ink:#E4E9F0; --muted:#9AA6B7; --line:#2A3544;
+  --proj:#4CC3BA; --proj-soft:#12322F; --prod:#A49DFF; --prod-soft:#25214A;
+  --good:#5DCB86; --good-soft:#143022; --warn:#E6B14C; --warn-soft:#382A0F; --bad:#F27B70; --bad-soft:#3C1814;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--f-body);-webkit-font-smoothing:antialiased}
+[data-track="project"]{--acc:var(--proj);--acc-soft:var(--proj-soft)}
+[data-track="product"]{--acc:var(--prod);--acc-soft:var(--prod-soft)}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1180px;margin:0 auto}
+
+/* masthead */
+.mast{padding-block:28px 18px}
+.mast .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:end;justify-content:space-between}
+.eyebrow{font:500 12px/1 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:800 clamp(30px,6vw,52px)/1 var(--f-display);letter-spacing:-.02em;margin:8px 0 10px;text-wrap:balance}
+h1 .p1{color:var(--proj)} h1 .p2{color:var(--prod)}
+.lede{margin:0;color:var(--muted);max-width:60ch}
+.progress{min-width:220px;flex:0 1 280px}
+.progress .row{display:flex;justify-content:space-between;font:500 12px var(--f-mono);color:var(--muted);margin-bottom:6px}
+.bar{height:8px;border-radius:4px;background:var(--sunk);overflow:hidden;display:flex}
+.bar i{display:block;height:100%}
+
+/* sticky controls */
+.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding-block:10px}
+.controls .wrap{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.tabs{display:flex;gap:4px;background:var(--sunk);padding:4px;border-radius:10px;overflow-x:auto;max-width:100%}
+.tab{appearance:none;border:0;background:transparent;color:var(--muted);font:600 14px var(--f-body);padding:7px 12px;border-radius:7px;cursor:pointer;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.tab small{font:500 11px var(--f-mono);opacity:.8}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--acc);box-shadow:0 1px 2px rgb(0 0 0 / .08)}
+.search{flex:1 1 200px;min-width:0;position:relative}
+.search input{width:100%;font:15px var(--f-body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 12px}
+.toggle{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:600 13px var(--f-body);border-radius:8px;padding:8px 12px;cursor:pointer;display:flex;gap:8px;align-items:center}
+.toggle .sw{width:28px;height:16px;border-radius:8px;background:var(--sunk);position:relative;transition:background .2s}
+.toggle .sw::after{content:"";position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--muted);transition:transform .2s}
+.toggle[aria-pressed="true"] .sw{background:var(--acc)}
+.toggle[aria-pressed="true"] .sw::after{transform:translateX(12px);background:var(--surface)}
+
+main{padding-block:22px 60px}
+.panel-head{display:flex;flex-wrap:wrap;gap:6px 20px;align-items:baseline;margin-bottom:16px}
+.panel-head h2{font:800 26px/1.1 var(--f-display);margin:0;color:var(--acc);letter-spacing:-.01em}
+.panel-head p{margin:0;color:var(--muted);max-width:70ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr));gap:16px;align-items:start}
+.empty{color:var(--muted);padding:24px 0}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card.wide{grid-column:1/-1}
+.card-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.tag{font:500 11px/1.3 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--acc)}
+.card h3{font:700 21px/1.2 var(--f-display);margin:4px 0 0;text-wrap:balance;letter-spacing:-.005em}
+.done{flex:none;appearance:none;width:32px;height:32px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;display:grid;place-items:center}
+.done svg{width:16px;height:16px;opacity:.35}
+.done[aria-pressed="true"]{background:var(--acc);border-color:var(--acc);color:var(--surface)}
+.done[aria-pressed="true"] svg{opacity:1}
+.card.is-done{border-color:color-mix(in srgb,var(--acc) 40%,var(--line))}
+.key{margin:0;background:var(--acc-soft);border-radius:8px;padding:9px 12px;display:flex;gap:10px;align-items:baseline}
+.key b{font:500 10.5px var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--acc);flex:none}
+.detail{display:flex;flex-direction:column;gap:12px;min-width:0}
+body.glance .detail{display:none}
+body.glance .grid{grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr))}
+.detail p{margin:0}
+.detail h4{font:600 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:4px 0 0}
+.detail ul,.detail ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:3px}
+.muted{color:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+code,.mono{font-family:var(--f-mono);font-size:.9em}
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:start}
+.split>*{min-width:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 13px var(--f-body);background:var(--sunk);color:var(--ink);border:1px solid transparent;border-radius:999px;padding:4px 10px}
+button.chip{cursor:pointer}
+button.chip[aria-pressed="true"]{background:var(--acc);color:var(--surface)}
+.chip b{font-family:var(--f-mono);font-weight:500;color:var(--acc);margin-right:4px}
+
+.blocks{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px}
+.blk{background:var(--sunk);border-radius:8px;padding:10px 12px;font-size:13.5px;line-height:1.4}
+.blk strong{display:block;font-weight:600;font-size:14px;margin-bottom:2px}
+.blk.on{background:var(--acc-soft)}
+button.blk{appearance:none;border:1px solid transparent;text-align:left;color:var(--ink);font-family:var(--f-body);cursor:pointer}
+button.blk[aria-pressed="true"]{border-color:var(--acc);background:var(--acc-soft)}
+.panelbox{background:var(--acc-soft);border-radius:8px;padding:12px 14px}
+.panelbox strong{color:var(--acc)}
+
+.chev{display:flex;gap:4px;overflow-x:auto;padding-bottom:4px}
+.chev>div{flex:1 0 140px;background:var(--sunk);padding:10px 18px 10px 14px;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%,10px 50%);font-size:13px;line-height:1.35}
+.chev>div:first-child{clip-path:polygon(0 0,calc(100% - 10px) 0,100% 50%,calc(100% - 10px) 100%,0 100%);border-radius:6px 0 0 6px}
+.chev strong{display:block;font:600 14px var(--f-body);color:var(--acc)}
+.chev .n{font:500 11px var(--f-mono);color:var(--muted)}
+
+/* tables */
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+th{font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--sunk)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* calculators */
+.calc{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.fld{display:flex;flex-direction:column;gap:4px;min-width:0}
+.fld label,.lbl{font:500 11px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+input[type=number],input[type=text],select{width:100%;font:500 14px var(--f-mono);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:7px 8px;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--acc)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.tile{background:var(--sunk);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;min-width:0}
+.tile .lbl{font-size:10.5px}
+.tile b{font:600 20px/1.15 var(--f-mono);font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.tile .f{font:400 11.5px var(--f-mono);color:var(--muted)}
+.pill{display:inline-block;font:500 11px/1.4 var(--f-mono);padding:2px 8px;border-radius:999px;align-self:flex-start}
+.pill.good{background:var(--good-soft);color:var(--good)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.pill.acc{background:var(--acc-soft);color:var(--acc)}
+.hbar{display:grid;grid-template-columns:44px 1fr 92px;gap:8px;align-items:center;font:500 12px var(--f-mono);font-variant-numeric:tabular-nums}
+.hbar .t{height:14px;background:var(--sunk);border-radius:3px;overflow:hidden}
+.hbar .t i{display:block;height:100%;border-radius:3px}
+.hbar span:last-child{text-align:right}
+
+/* diagrams */
+.diagram{overflow-x:auto;border-radius:8px;background:var(--sunk);padding:8px}
+.diagram svg{display:block;width:100%;height:auto}
+.diagram.mw600 svg{min-width:600px}
+.diagram.mw520 svg{min-width:520px}
+svg text{font-family:var(--f-body);fill:var(--ink)}
+svg .t-m{fill:var(--muted)} svg .t-a{fill:var(--acc)} svg .t-s{fill:var(--surface)}
+svg .mono{font-family:var(--f-mono)}
+svg .f-surf{fill:var(--surface)} svg .f-acc{fill:var(--acc)} svg .f-accs{fill:var(--acc-soft)} svg .f-sunk{fill:var(--sunk)} svg .f-bg{fill:var(--bg)} svg .f-none{fill:none}
+svg .s-line{stroke:var(--line)} svg .s-acc{stroke:var(--acc)} svg .s-muted{stroke:var(--muted)} svg .s-ink{stroke:var(--ink)}
+svg .f-good{fill:var(--good)} svg .f-bad{fill:var(--bad)} svg .f-warn{fill:var(--warn)}
+svg .s-good{stroke:var(--good)} svg .s-bad{stroke:var(--bad)} svg .s-warn{stroke:var(--warn)}
+
+.seg{display:inline-flex;background:var(--sunk);border-radius:8px;padding:3px;gap:3px}
+.seg button{appearance:none;border:0;background:transparent;color:var(--muted);font:600 13px var(--f-body);padding:6px 12px;border-radius:6px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--acc)}
+
+.matrix{display:grid;grid-template-columns:22px repeat(5,1fr);gap:4px;font:500 12px var(--f-mono)}
+.matrix button{appearance:none;border:2px solid transparent;border-radius:6px;aspect-ratio:1.3;font:600 14px var(--f-mono);cursor:pointer;color:var(--ink);max-width:100%}
+.matrix .lo{background:var(--good-soft)} .matrix .md{background:var(--warn-soft)} .matrix .hi{background:var(--bad-soft)}
+.matrix button[aria-pressed="true"]{border-color:var(--ink)}
+.matrix .ax{display:grid;place-items:center;color:var(--muted)}
+
+.quad{display:grid;grid-template-columns:22px 1fr 1fr;grid-template-rows:1fr 1fr 22px;gap:6px}
+.quad .q{background:var(--sunk);border-radius:8px;padding:10px;font-size:13px;line-height:1.4}
+.quad .q strong{display:block;font-size:14px}
+.quad .q.hot{background:var(--acc-soft)}
+.quad .ax{font:500 11px var(--f-mono);color:var(--muted);display:grid;place-items:center}
+.quad .ax.v{writing-mode:vertical-rl;transform:rotate(180deg)}
+
+.stairs{display:flex;align-items:flex-end;gap:4px;overflow-x:auto}
+.stairs>div{flex:1 0 96px;background:var(--acc-soft);border-radius:6px 6px 0 0;padding:8px;font-size:12.5px;line-height:1.35}
+.stairs strong{display:block;font-size:13.5px;color:var(--acc)}
+
+.pyr{display:flex;flex-direction:column;align-items:center;gap:4px}
+.pyr>div{background:var(--acc-soft);border-radius:6px;padding:8px 12px;display:flex;justify-content:space-between;gap:10px;font-size:13px;min-width:0;max-width:100%}
+.pyr strong{font-size:14px}
+.pyr span{color:var(--muted);font:500 11.5px var(--f-mono);white-space:nowrap}
+
+.canvas{display:grid;gap:4px;grid-template-columns:repeat(5,1fr);grid-template-areas:"pr so uv ua cs" "pr km uv ch cs" "co co co rv rv"}
+.canvas>div{background:var(--sunk);border-radius:6px;padding:9px;font-size:12.5px;line-height:1.35;min-width:0}
+.canvas strong{display:block;font-size:13px;color:var(--acc);margin-bottom:2px}
+@media (max-width:640px){.canvas{grid-template-columns:1fr 1fr;grid-template-areas:"pr so" "km uv" "ua ch" "cs cs" "co rv"}}
+
+.cols3{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:8px}
+.col{background:var(--sunk);border-radius:8px;padding:10px;font-size:13px}
+.col strong{display:block;color:var(--acc);font-size:14px;margin-bottom:4px}
+.col ul{padding-left:16px}
+
+.funnel{display:flex;flex-direction:column;gap:6px}
+.frow{display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
+.frow .nm{font-weight:600;font-size:14px}
+.frow .nm small{display:block;font:400 11.5px var(--f-mono);color:var(--muted)}
+.fbw{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:center}
+.fbw .t{height:18px}
+.fbw .t i{display:block;height:100%;background:var(--acc);border-radius:3px}
+.fbw span{font:500 12px var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted)}
+.fbw span b{color:var(--ink);font-weight:500}
+.frow .q{grid-column:2;font-size:12.5px;color:var(--muted);margin-top:-2px}
+
+pre{margin:0;background:var(--sunk);border-radius:8px;padding:10px 12px;overflow-x:auto;font:13px/1.5 var(--f-mono)}
+pre .kw{color:var(--acc);font-weight:500}
+
+.storymap{display:grid;grid-template-columns:90px repeat(4,1fr);gap:4px;font-size:12px;min-width:480px}
+.storymap div{background:var(--surface);border-radius:4px;padding:5px 6px;line-height:1.3}
+.storymap .rl{background:transparent;font:500 10.5px var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;display:flex;align-items:center}
+.storymap .bb{background:var(--acc);color:var(--surface);font-weight:600}
+.storymap .ws{background:var(--acc-soft)}
+
+/* formulas */
+.fgroup td:first-child{white-space:nowrap}
+.formula{font:500 13px var(--f-mono);color:var(--acc);white-space:nowrap}
+
+/* quiz */
+.quiz{max-width:720px}
+.qmeta{display:flex;justify-content:space-between;font:500 12px var(--f-mono);color:var(--muted);margin-bottom:8px}
+.qtext{font:700 20px/1.3 var(--f-display);margin:6px 0 14px;text-wrap:balance}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{appearance:none;text-align:left;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font:15px/1.4 var(--f-body);padding:11px 14px;border-radius:9px;cursor:pointer;display:flex;gap:10px}
+.opt .l{font:500 13px var(--f-mono);color:var(--muted)}
+.opt:hover:not(:disabled){border-color:var(--acc)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.fb-box{margin-top:12px;padding:12px 14px;border-radius:9px;background:var(--sunk)}
+.btn{appearance:none;border:0;background:var(--acc);color:var(--surface);font:600 14px var(--f-body);padding:10px 16px;border-radius:8px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--acc);border:1.5px solid var(--acc)}
+.row-gap{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+
+.divider{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;border-top:2px solid var(--acc);padding-top:14px;margin-top:10px;scroll-margin-top:120px}
+.divider h3{font:800 24px/1.1 var(--f-display);color:var(--acc);margin:0;letter-spacing:-.01em}
+.divider p{margin:0;color:var(--muted);max-width:72ch}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) minmax(90px,140px) 28px;gap:10px;align-items:center;font-size:13.5px}
+.srow b{font:600 13px var(--f-mono);text-align:right;font-variant-numeric:tabular-nums}
+.srow.weak span{color:var(--bad);font-weight:600}
+.cm{display:grid;grid-template-columns:auto 1fr 1fr;gap:4px;font-size:12.5px;max-width:440px}
+.cm .h{font:500 10.5px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;justify-content:center;padding:4px;text-align:center}
+.cm .c{border-radius:8px;padding:8px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.cm .c.ok{background:var(--good-soft)} .cm .c.no{background:var(--bad-soft)}
+.cm .c label{font:600 11.5px var(--f-mono)}
+.sus{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:6px}
+.sus label{display:grid;grid-template-columns:22px minmax(0,1fr) 56px;gap:6px;align-items:center;font-size:13px;background:var(--sunk);border-radius:6px;padding:4px 6px}
+.sus label i{font:500 11px var(--f-mono);font-style:normal;color:var(--muted)}
+.sus select{padding:4px 6px}
+
+/* ---------- learning lens (shared repository stylesheet, mapped to this page's tokens) ---------- */
+/* Learning lens v1 (first principles, Pareto, visual, Feynman). See docs/learning-lens-standard.md */
+.lens-scope,.lens-block,.lens-visual,.lens-sketch{--lens-ink:var(--ink);--lens-muted:var(--muted);--lens-line:var(--line);--lens-surface:var(--surface);--lens-surface2:var(--sunk);--lens-accent:var(--acc);
+--lr-client:#4a7fe6;--lr-compute:#26946a;--lr-data:#c0820f;--lr-async:#8a62d8;--lr-risk:#cf4b4b;--lr-neutral:#7d8899;--lr-control:#2a95a8;--lr-model:#c25e9a;
+--lr-client:color-mix(in oklab,#4a7fe6 74%,var(--lens-ink));--lr-compute:color-mix(in oklab,#25a06f 74%,var(--lens-ink));--lr-data:color-mix(in oklab,#d68e10 78%,var(--lens-ink));--lr-async:color-mix(in oklab,#8e63e0 74%,var(--lens-ink));--lr-risk:color-mix(in oklab,#dc4f4f 76%,var(--lens-ink));--lr-neutral:color-mix(in oklab,#7d8899 70%,var(--lens-ink));--lr-control:color-mix(in oklab,#2a9fb4 74%,var(--lens-ink));--lr-model:color-mix(in oklab,#cf5fa3 74%,var(--lens-ink))}
+.lens-block{border-left:4px solid var(--lens-c,var(--lens-accent));padding:2px 0 2px 16px;margin:20px 0;display:grid;gap:10px;min-width:0}
+.lens-block>*{margin:0}
+.lens-tag{font:700 11px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--lens-c,var(--lens-accent))}
+.lens-fp{--lens-c:var(--lr-compute)} .lens-pareto{--lens-c:var(--lr-data)} .lens-visual{--lens-c:var(--lr-client)} .lens-feynman{--lens-c:var(--lr-async)}
+.lens-problem{max-width:72ch}
+.lens-acts{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--lens-muted)}
+.lens-chip{text-decoration:none;display:inline-block;font:600 11.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:1px 8px;border-radius:999px;border:1px solid var(--lr-c,var(--lens-line));color:var(--lr-c,var(--lens-ink))}
+.lens-chip.lr-client{--lr-c:var(--lr-client)} .lens-chip.lr-compute{--lr-c:var(--lr-compute)} .lens-chip.lr-data{--lr-c:var(--lr-data)} .lens-chip.lr-async{--lr-c:var(--lr-async)} .lens-chip.lr-control{--lr-c:var(--lr-control)} .lens-chip.lr-model{--lr-c:var(--lr-model)} .lens-chip.lr-risk{--lr-c:var(--lr-risk)}
+.lens-table-wrap{overflow-x:auto;max-width:100%}
+.lens-truths{width:100%;border-collapse:collapse;font-size:14.5px;min-width:440px}
+.lens-truths th{background:none;font:700 10.5px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--lens-muted);text-align:left;padding:8px 10px;border-bottom:1px solid var(--lens-line)}
+.lens-truths td{padding:9px 10px;border-bottom:1px solid var(--lens-line);vertical-align:top;color:var(--lens-ink)}
+.lens-truths tr:last-child td{border-bottom:0} .lens-truths td:first-child{font-weight:650;width:42%}
+.lens-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.lens-split>div{border:1px solid var(--lens-line);border-radius:10px;padding:12px 14px;background:var(--lens-surface2);min-width:0}
+.lens-split h4{margin:0 0 6px;font:700 10.5px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;color:var(--lens-muted)}
+.lens-split ul{margin:0;padding-left:18px;display:grid;gap:5px;font-size:14.5px}
+.lens-visual{margin:22px 0}
+.lens-controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lens-controls[hidden]{display:none!important}
+.lens-btn{font-weight:600;font-size:13px;line-height:1.2;font-family:inherit;padding:7px 12px;border-radius:8px;border:1px solid var(--lens-line);background:var(--lens-surface2);color:var(--lens-ink);cursor:pointer}
+.lens-btn:hover,.lens-btn:focus-visible{border-color:var(--lr-client);outline:none}
+.lens-btn:focus-visible{box-shadow:0 0 0 2px var(--lr-client)}
+.lens-status{font:12px/1.3 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--lens-muted)}
+.lens-svg-wrap{overflow-x:auto;border:1px solid var(--lens-line);border-radius:12px;background:var(--lens-surface2);padding:8px}
+.lens-svg{display:block;width:100%;height:auto;min-width:600px}
+.lens-svg text{fill:var(--lens-ink);font-family:inherit;font-size:14px}
+.lens-svg .lens-sub{fill:var(--lens-muted);font-size:11.5px}
+.lens-svg .lens-elabel{fill:var(--lens-muted);font-size:11.5px;paint-order:stroke;stroke:var(--lens-surface2);stroke-width:4px;stroke-linejoin:round}
+.lens-svg .lens-glabel{fill:var(--lens-muted);font-size:11.5px;font-weight:700;letter-spacing:.06em}
+.lens-svg .lens-group rect{fill:none;stroke:var(--lens-line);stroke-width:1.5;stroke-dasharray:5 5}
+.lens-node rect{stroke-width:2;fill:var(--lens-surface);stroke:var(--lr-neutral)}
+.lens-node.lr-client rect{stroke:var(--lr-client);fill:color-mix(in oklab,var(--lr-client) 13%,var(--lens-surface))}
+.lens-node.lr-compute rect{stroke:var(--lr-compute);fill:color-mix(in oklab,var(--lr-compute) 13%,var(--lens-surface))}
+.lens-node.lr-data rect{stroke:var(--lr-data);fill:color-mix(in oklab,var(--lr-data) 13%,var(--lens-surface))}
+.lens-node.lr-async rect{stroke:var(--lr-async);fill:color-mix(in oklab,var(--lr-async) 13%,var(--lens-surface))}
+.lens-node.lr-risk rect{stroke:var(--lr-risk);fill:color-mix(in oklab,var(--lr-risk) 13%,var(--lens-surface))}
+.lens-node.lr-control rect{stroke:var(--lr-control);fill:color-mix(in oklab,var(--lr-control) 13%,var(--lens-surface))}
+.lens-node.lr-model rect{stroke:var(--lr-model);fill:color-mix(in oklab,var(--lr-model) 13%,var(--lens-surface))}
+.lens-node.lr-neutral rect{stroke:var(--lr-neutral);stroke-dasharray:6 4}
+.lens-node .lens-label{font-weight:700}
+.lens-edge{--ec:var(--lr-neutral);transition:opacity .25s ease}
+.lens-edge.lr-client{--ec:var(--lr-client)} .lens-edge.lr-compute{--ec:var(--lr-compute)} .lens-edge.lr-data{--ec:var(--lr-data)} .lens-edge.lr-async{--ec:var(--lr-async)} .lens-edge.lr-risk{--ec:var(--lr-risk)} .lens-edge.lr-control{--ec:var(--lr-control)} .lens-edge.lr-model{--ec:var(--lr-model)}
+.lens-edge path{fill:none;stroke:var(--ec);stroke-width:2.4}
+.lens-edge.dashed path{stroke-dasharray:7 5}
+.lens-edge polygon,.lens-edge circle{fill:var(--ec);stroke:none}
+.lens-edge .lens-num{fill:var(--lens-surface);font-size:11.5px;font-weight:800}
+.lens-legend text{fill:var(--lens-muted);font-size:11.5px}
+.lens-legend rect{stroke:none}
+.lens-legend .lg-client{fill:var(--lr-client)} .lens-legend .lg-compute{fill:var(--lr-compute)} .lens-legend .lg-data{fill:var(--lr-data)} .lens-legend .lg-async{fill:var(--lr-async)} .lens-legend .lg-risk{fill:var(--lr-risk)} .lens-legend .lg-neutral{fill:var(--lr-neutral)} .lens-legend .lg-control{fill:var(--lr-control)} .lens-legend .lg-model{fill:var(--lr-model)}
+.lens-legend line{stroke:var(--lens-muted);stroke-width:2;stroke-dasharray:7 5}
+.lens-svg.stepping .lens-edge{opacity:.13} .lens-svg.stepping .lens-edge.done{opacity:.42} .lens-svg.stepping .lens-edge.on{opacity:1}
+.lens-svg.stepping .lens-edge.on path{stroke-width:3.4}
+.lens-steps{margin:0;padding-left:24px;display:grid;gap:5px;font-size:14.5px;max-width:78ch}
+.lens-steps li{padding:3px 8px;border-radius:6px}
+.lens-steps li.on{background:color-mix(in oklab,var(--lr-client) 16%,transparent);outline:1px solid var(--lr-client)}
+.lens-prompt{max-width:78ch;margin:0}
+.lens-feynman ol.lens-loop{margin:0;padding-left:22px;display:grid;gap:8px;font-size:15px;max-width:78ch}
+.lens-banned{display:inline-block;margin-top:4px;font-size:13px;color:var(--lens-muted)}
+.lens-banned i{font-style:normal;text-decoration:line-through;text-decoration-color:var(--lr-risk)}
+.lens-watch{font-size:14px;color:var(--lens-muted);display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline}
+.lens-watch b{color:var(--lens-ink)}
+details.lens-model,details.lens-sketch{border:1px solid var(--lens-line);border-radius:10px;padding:10px 14px;background:var(--lens-surface2);margin:0}
+details.lens-model>summary,details.lens-sketch>summary{cursor:pointer;font-weight:700}
+details.lens-model p{margin:8px 0 0;max-width:78ch}
+details.lens-sketch .lens-visual{margin:12px 0 4px}
+.lens-sketch .hint{color:var(--lens-muted);font-size:13px;margin:8px 0 0}
+.lens-core-badge{display:inline-block;font:700 10.5px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid var(--lr-data);color:var(--lr-data);vertical-align:middle}
+@media (max-width:640px){.lens-split{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.lens-truths{min-width:0}.lens-truths thead{display:none}.lens-truths tr{display:block;padding:8px 0;border-bottom:1px solid var(--lens-line)}.lens-truths tr:last-child{border-bottom:0}.lens-truths td{display:block;border:0;padding:2px 0;width:auto!important}}
+@media (prefers-reduced-motion:reduce){.lens-edge{transition:none}}
+@media print{.lens-scope,.lens-block,.lens-visual,.lens-sketch{--lens-ink:#111;--lens-muted:#444;--lens-line:#bbb;--lens-surface:#fff;--lens-surface2:#fff;color:#111}.lens-controls{display:none!important}.lens-svg.stepping .lens-edge{opacity:1!important}.lens-steps li.on{background:none;outline:0}.lens-svg{min-width:0}.lens-svg-wrap{overflow:visible}}
+
+.lens-intro{margin:0 0 18px}
+.lens-item{grid-column:1/-1;min-width:0}
+.lens-scope .lens-block{background:var(--surface);border-radius:0 12px 12px 0;padding:14px 16px 14px 18px;margin:0 0 14px}
+.lens-scope .lens-split>div{background:var(--sunk)}
+body.glance .lens-item{display:none}
+.edition{margin:10px 0 0;font:500 12.5px/1.5 var(--f-mono);color:var(--muted);max-width:80ch}
+.speak[hidden]{display:none!important}
+footer.refs{padding-block:8px 48px;border-top:1px solid var(--line)}
+footer.refs h2{font:800 20px/1.2 var(--f-display);margin:20px 0 10px}
+footer.refs ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:5px;font-size:14px;max-width:90ch}
+footer.refs a{color:var(--acc)}
+@media print{
+  :root:root:root{--bg:#fff;--surface:#fff;--sunk:#f1f3f6;--ink:#111;--muted:#444;--line:#c8ced8;--proj:#0A6A65;--proj-soft:#e3f1ef;--prod:#4A3FC4;--prod-soft:#ecebfb;--good:#1D7A3C;--good-soft:#e6f3ea;--warn:#935D00;--warn-soft:#f8efdc;--bad:#B42318;--bad-soft:#fae6e3;color-scheme:light}
+  body{background:#fff;color:#111;font-size:11pt}
+  .controls,.done,.toggle,.reveal,.row-gap{display:none!important}
+  .panel[hidden]{display:block!important}
+  .panel{break-before:page}
+  #project{break-before:auto}
+  .grid>.card[hidden]{display:flex!important}
+  .grid>.divider[hidden]{display:flex!important}
+  .lens-item[hidden],.lens-intro[hidden],body.glance .lens-item{display:block!important}
+  body.glance .detail{display:flex!important}
+  .card{break-inside:avoid}
+  .grid{display:block}.grid>*{margin-bottom:12px}
+  .diagram svg,.diagram.mw600 svg,.diagram.mw520 svg{min-width:0}
+  .tbl,.diagram{overflow:visible}
+  footer.refs a::after{content:" (" attr(href) ")";font-size:9pt;overflow-wrap:anywhere}
+}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:520px){.card{padding:14px}.hbar{grid-template-columns:40px 1fr 80px}.frow{grid-template-columns:86px 1fr}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <marker id="arw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker>
+    <marker id="arwA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--acc)"/></marker>
+  </defs>
+</svg>
+
+<header class="mast gut">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Revision guide · Edition v1 · 29 October 2026</div>
+      <h1><span class="p1">Project</span> &amp; <span class="p2">Product</span> Field Guide</h1>
+      <p class="lede">Frameworks, formulas and decision tools on one page. Study mode shows diagrams and calculators. Glance mode shrinks every card to its one-line takeaway for quick recall.</p>
+      <p class="edition">Edition v1, 29 October 2026: first repository edition. Project and product tracks, an Evaluation section, formula sheet and quiz, with first-principles, Pareto, step-through and Feynman blocks for each track. Time-sensitive facts (PMBOK 8, PMP exam outline) checked on this date.</p>
+    </div>
+    <div class="progress" aria-live="polite">
+      <div class="row"><span>Reviewed</span><span id="progTxt">0 / 0</span></div>
+      <div class="bar"><i id="progP" style="background:var(--proj);width:0"></i><i id="progQ" style="background:var(--prod);width:0"></i></div>
+    </div>
+  </div>
+</header>
+
+<nav class="controls gut" aria-label="Sections">
+  <div class="wrap">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-tab="project" data-track="project" id="t-project">Project <small id="c-project"></small></button>
+      <button class="tab" role="tab" data-tab="product" data-track="product" id="t-product">Product <small id="c-product"></small></button>
+      <button class="tab" role="tab" data-tab="formulas" data-track="project" id="t-formulas">Formulas</button>
+      <button class="tab" role="tab" data-tab="quiz" data-track="product" id="t-quiz">Quiz</button>
+    </div>
+    <div class="search"><input id="q" type="text" placeholder="Filter: e.g. risk, CPI, Kano, OKR" aria-label="Filter cards"></div>
+    <button class="toggle" id="glance" aria-pressed="false"><span class="sw"></span>Glance</button>
+    <button class="toggle speak" id="speak" type="button" aria-pressed="false" hidden>Read aloud</button>
+  </div>
+</nav>
+
+<main class="gut">
+<div class="wrap">
+
+<!-- ================= PROJECT ================= -->
+<section class="panel" id="project" data-lens-unit="" data-track="project" role="tabpanel" aria-labelledby="t-project">
+  <div class="panel-head">
+    <h2>Project management</h2>
+    <p>Delivering a defined outcome within constraints. PMBOK 8, Agile, PRINCE2 7 and the core control maths.</p>
+  </div>
+
+  <div class="lens-scope lens-intro">
+    <section class="lens-block lens-fp" data-lens-block="fp" aria-label="First principles"><p class="lens-tag">First principles</p>
+      <p class="lens-problem"><b>The problem it solves:</b> an organisation needs a defined change delivered to an agreed scope, date and budget, and the people paying for it need to see and steer progress.</p>
+      <div class="lens-table-wrap"><table class="lens-truths"><thead><tr><th scope="col">Truth</th><th scope="col">So what</th></tr></thead><tbody>
+        <tr><td>Scope, time, cost and quality are linked; one cannot change alone.</td><td>Every change request gets an impact assessment and a decision, not a quiet yes.</td></tr>
+        <tr><td>Uncertainty is highest at the start and falls as work is done.</td><td>Estimate in ranges, hold contingency against named risks, and re-forecast as evidence arrives.</td></tr>
+        <tr><td>People decide faster with clear authority and early bad news.</td><td>Agree tolerances and escalation routes up front; report by exception, with options.</td></tr>
+        <tr><td>A project ends; the benefit it was funded for usually arrives later.</td><td>Name a business owner for each benefit and plan the handover from the start.</td></tr>
+      </tbody></table></div>
+    </section>
+    <section class="lens-block lens-pareto" data-lens-block="pareto" aria-label="Pareto"><p class="lens-tag">Pareto · learn these first</p>
+      <div class="lens-split"><div><h4>The 20% (learn now)</h4><ul class="lens-learn">
+        <li>Constraints and tailoring: the triple constraint and choosing predictive, Agile or hybrid</li>
+        <li>Control maths: the critical path and earned value (CPI, SPI, EAC)</li>
+        <li>Risk and people: the risk matrix and responses, and the power/interest grid</li>
+      </ul></div><div><h4>Defer (second pass)</h4><ul class="lens-defer">
+        <li>PRINCE2 7 detail: when a role or employer uses it</li>
+        <li>Conflict modes, Tuckman and communication channels: before people-focused interviews</li>
+        <li>NPV, IRR and payback: when you write or review a business case</li>
+        <li>PMP exam weightings: only if you are sitting the exam</li>
+      </ul></div></div>
+    </section>
+  </div>
+  <div class="grid">
+
+    <article class="card wide" data-id="p-pmbok">
+      <header class="card-head"><div><span class="tag">Standard · PMBOK Guide 8th ed. (Nov 2025)</span><h3>PMBOK 8 in one view</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>6 principles shape behaviour, 7 performance domains organise the work, and 5 focus areas give the familiar lifecycle. Around 40 tailorable processes sit inside the domains.</span></p>
+      <div class="detail">
+        <div class="split">
+          <div>
+            <h4>6 principles</h4>
+            <div class="blocks" style="margin-top:8px">
+              <div class="blk"><strong>Think holistically</strong>The project is part of a wider system.</div>
+              <div class="blk"><strong>Prioritise value</strong>Success = outcomes stakeholders care about.</div>
+              <div class="blk"><strong>Build quality in</strong>From the start, not inspected in at the end.</div>
+              <div class="blk"><strong>Lead with accountability</strong>Own decisions and results.</div>
+              <div class="blk"><strong>Account for sustainability</strong>Environmental, economic and social effects.</div>
+              <div class="blk"><strong>Empowered culture</strong>Collaboration, trust, psychological safety.</div>
+            </div>
+          </div>
+          <div>
+            <h4>7 performance domains · tap one</h4>
+            <div class="blocks" id="domains" style="margin-top:8px"></div>
+            <div class="panelbox" id="domainOut" style="margin-top:8px"></div>
+          </div>
+        </div>
+        <h4>5 focus areas (the lifecycle) and what each produces</h4>
+        <div class="chev">
+          <div><span class="n">1</span><strong>Initiating</strong>Business case, charter, stakeholder register</div>
+          <div><span class="n">2</span><strong>Planning</strong>Scope, schedule and cost baselines; management plans</div>
+          <div><span class="n">3</span><strong>Executing</strong>Deliverables, team development, engagement</div>
+          <div><span class="n">4</span><strong>Monitoring &amp; Controlling</strong>Performance reports, change requests. Runs across all phases.</div>
+          <div><span class="n">5</span><strong>Closing</strong>Acceptance, lessons learned, release resources</div>
+        </div>
+        <div>
+          <h4>PMP exam from 9 July 2026</h4>
+          <div class="bar" style="height:26px;margin-top:8px;border-radius:6px" role="img" aria-label="People 33 percent, Process 41 percent, Business Environment 26 percent">
+            <i style="width:33%;background:var(--proj);color:var(--surface);font:500 12px/26px var(--f-mono);padding-left:8px;white-space:nowrap;overflow:hidden">People 33%</i>
+            <i style="width:41%;background:color-mix(in srgb,var(--proj) 60%,var(--surface));color:var(--ink);font:500 12px/26px var(--f-mono);padding-left:8px;white-space:nowrap;overflow:hidden">Process 41%</i>
+            <i style="width:26%;background:var(--prod);color:var(--surface);font:500 12px/26px var(--f-mono);padding-left:8px;white-space:nowrap;overflow:hidden">Business env. 26%</i>
+          </div>
+          <p class="note" style="margin-top:6px">180 questions (170 scored), 240 minutes. Business Environment rose from 8% to 26%, so expect more on strategy, value, governance and compliance. PMBOK 7 (2021) had 12 principles and 8 domains; older material may still quote those.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-triangle">
+      <header class="card-head"><div><span class="tag">Constraints</span><h3>Triple constraint</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Scope, time and cost trade off, with quality in the middle. Predictive fixes scope; Agile fixes time and cost and lets scope flex.</span></p>
+      <div class="detail">
+        <div class="seg" role="group" aria-label="Approach"><button aria-pressed="true" data-tri="pred">Predictive</button><button aria-pressed="false" data-tri="agile">Agile</button></div>
+        <div class="diagram"><svg viewBox="0 0 300 236" id="triSvg" role="img" aria-label="Iron triangle" aria-labelledby="dg1-t dg1-d"><title id="dg1-t">Iron triangle</title><desc id="dg1-d">Triangle with scope, time and cost at the corners and quality in the middle. The toggle shows which corners are fixed and which flex under predictive and Agile approaches.</desc></svg></div>
+        <p id="triTxt" class="note"></p>
+        <p class="note">Extended view: scope, schedule, cost, quality, resources, risk. A change to one forces a change to at least one other, which is why every change request needs an impact analysis.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="p-approach">
+      <header class="card-head"><div><span class="tag">Tailoring · Stacey matrix</span><h3>Choose a delivery approach</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>The more uncertain the requirements and the technology, the more you need short feedback loops. Low uncertainty suits predictive; high suits Agile; mixed suits hybrid.</span></p>
+      <div class="detail">
+        <div class="split">
+          <div>
+            <div class="diagram"><svg viewBox="0 0 300 300" id="staceySvg" role="img" aria-label="Stacey matrix" aria-labelledby="dg2-t dg2-d"><title id="dg2-t">Stacey matrix</title><desc id="dg2-d">Requirements uncertainty on the vertical axis and technology uncertainty on the horizontal axis, with zones for simple, complicated, complex and chaos. A dot marks the position set by the sliders.</desc></svg></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div class="fld"><label for="stX">Technology / how-to uncertainty</label><input type="range" id="stX" min="0" max="100" value="62"></div>
+            <div class="fld"><label for="stY">Requirements uncertainty</label><input type="range" id="stY" min="0" max="100" value="55"></div>
+            <div class="panelbox" id="stOut"></div>
+            <div class="tbl"><table>
+              <thead><tr><th></th><th>Predictive</th><th>Agile</th><th>Hybrid</th></tr></thead>
+              <tbody>
+                <tr><td>Scope</td><td>Fixed early</td><td>Emerges</td><td>Fixed core, flexible edges</td></tr>
+                <tr><td>Delivery</td><td>Once, at end</td><td>Every iteration</td><td>Phased</td></tr>
+                <tr><td>Change</td><td>Controlled via CCB</td><td>Welcomed via backlog</td><td>Both</td></tr>
+                <tr><td>Fits</td><td>Construction, regulated</td><td>Software, new products</td><td>Hardware + software</td></tr>
+              </tbody></table></div>
+          </div>
+        </div>
+        <h4>Agile Manifesto values (the left is valued more)</h4>
+        <div class="blocks">
+          <div class="blk"><strong>Individuals &amp; interactions</strong>over processes &amp; tools</div>
+          <div class="blk"><strong>Working software</strong>over comprehensive documentation</div>
+          <div class="blk"><strong>Customer collaboration</strong>over contract negotiation</div>
+          <div class="blk"><strong>Responding to change</strong>over following a plan</div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="p-scrum">
+      <header class="card-head"><div><span class="tag">Agile · Scrum Guide 2020 (still the official version)</span><h3>Scrum on one page</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>3 accountabilities, 5 events, 3 artifacts each with a commitment. Empiricism rests on transparency, inspection and adaptation.</span></p>
+      <div class="detail">
+        <div class="diagram mw600"><svg viewBox="0 0 720 230" role="img" aria-label="Scrum flow" aria-labelledby="dg3-t dg3-d"><title id="dg3-t">Scrum flow</title><desc id="dg3-d">Product Backlog feeds Sprint Planning, which produces the Sprint Backlog. The Sprint, with its Daily Scrum, produces an Increment; Sprint Review and Retrospective then feed the next Sprint.</desc>
+          <g class="s-muted" stroke-width="1.5" fill="none">
+            <path d="M110 98H128" marker-end="url(#arw)"/>
+            <path d="M226 98H244" marker-end="url(#arw)"/>
+            <path d="M346 98H380" marker-end="url(#arw)"/>
+            <path d="M490 98H504" marker-end="url(#arw)"/>
+            <path d="M596 98H610" marker-end="url(#arw)"/>
+            <path d="M662 118V156" marker-end="url(#arw)"/>
+            <path d="M612 176H178V122" marker-end="url(#arw)" stroke-dasharray="4 4"/>
+          </g>
+          <rect x="10" y="70" width="100" height="56" rx="6" class="f-surf s-line"/>
+          <text x="60" y="94" text-anchor="middle" font-size="13" font-weight="600">Product</text>
+          <text x="60" y="110" text-anchor="middle" font-size="13" font-weight="600">Backlog</text>
+          <text x="60" y="144" text-anchor="middle" font-size="10.5" class="t-a mono">Product Goal</text>
+          <rect x="130" y="78" width="96" height="40" rx="20" class="f-accs"/>
+          <text x="178" y="95" text-anchor="middle" font-size="12" font-weight="600">Sprint</text>
+          <text x="178" y="109" text-anchor="middle" font-size="12" font-weight="600">Planning</text>
+          <rect x="246" y="70" width="100" height="56" rx="6" class="f-surf s-line"/>
+          <text x="296" y="94" text-anchor="middle" font-size="13" font-weight="600">Sprint</text>
+          <text x="296" y="110" text-anchor="middle" font-size="13" font-weight="600">Backlog</text>
+          <text x="296" y="144" text-anchor="middle" font-size="10.5" class="t-a mono">Sprint Goal</text>
+          <circle cx="436" cy="98" r="52" class="f-acc"/>
+          <text x="436" y="96" text-anchor="middle" font-size="15" font-weight="700" class="t-s">Sprint</text>
+          <text x="436" y="113" text-anchor="middle" font-size="11" class="t-s mono">≤ 1 month</text>
+          <path d="M412 38a26 22 0 1 1 48 0" class="s-acc f-none" stroke-width="1.5" marker-end="url(#arwA)"/>
+          <text x="436" y="14" text-anchor="middle" font-size="11" class="t-a mono">Daily Scrum · 15 min</text>
+          <rect x="506" y="70" width="90" height="56" rx="6" class="f-surf s-line"/>
+          <text x="551" y="102" text-anchor="middle" font-size="13" font-weight="600">Increment</text>
+          <text x="551" y="144" text-anchor="middle" font-size="10.5" class="t-a mono">Definition of Done</text>
+          <rect x="612" y="78" width="100" height="40" rx="20" class="f-accs"/>
+          <text x="662" y="102" text-anchor="middle" font-size="12" font-weight="600">Sprint Review</text>
+          <rect x="612" y="158" width="100" height="40" rx="20" class="f-accs"/>
+          <text x="662" y="182" text-anchor="middle" font-size="12" font-weight="600">Retrospective</text>
+          <text x="395" y="194" text-anchor="middle" font-size="11" class="t-m">next Sprint starts immediately</text>
+        </svg></div>
+        <div class="split">
+          <div>
+            <h4>Accountabilities</h4>
+            <ul>
+              <li><b>Product Owner</b>: maximises product value, owns and orders the Product Backlog.</li>
+              <li><b>Scrum Master</b>: accountable for team effectiveness; coaches, removes impediments, serves the organisation.</li>
+              <li><b>Developers</b>: create the Increment, own the Sprint Backlog, hold each other to the DoD.</li>
+            </ul>
+            <h4 style="margin-top:10px">Values</h4>
+            <div class="chips"><span class="chip">Commitment</span><span class="chip">Focus</span><span class="chip">Openness</span><span class="chip">Respect</span><span class="chip">Courage</span></div>
+          </div>
+          <div>
+            <h4>Timeboxes for a 1-month Sprint</h4>
+            <div class="tbl" style="margin-top:8px"><table>
+              <thead><tr><th>Event</th><th class="num">Max</th><th>Inspects</th></tr></thead>
+              <tbody>
+                <tr><td>Sprint Planning</td><td class="num">8 h</td><td>Why, what, how</td></tr>
+                <tr><td>Daily Scrum</td><td class="num">15 min</td><td>Progress to Sprint Goal</td></tr>
+                <tr><td>Sprint Review</td><td class="num">4 h</td><td>Increment with stakeholders</td></tr>
+                <tr><td>Retrospective</td><td class="num">3 h</td><td>People, process, tools, DoD</td></tr>
+              </tbody></table></div>
+            <p class="note" style="margin-top:6px">Shorter Sprints get proportionally shorter events. Refinement is ongoing, not an event. Only the PO can cancel a Sprint, when the Sprint Goal becomes obsolete.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-kanban">
+      <header class="card-head"><div><span class="tag">Agile · Lean flow</span><h3>Kanban &amp; Little's Law</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Visualise work, limit WIP, manage flow. Cycle time = WIP ÷ throughput, so cutting WIP is the fastest way to speed up delivery.</span></p>
+      <div class="detail">
+        <div class="calc">
+          <div class="fld"><label for="lwWip">Avg WIP (items)</label><input id="lwWip" type="number" value="20" min="0"></div>
+          <div class="fld"><label for="lwTp">Throughput / week</label><input id="lwTp" type="number" value="5" min="0" step="0.5"></div>
+        </div>
+        <div class="tiles" id="lwOut"></div>
+        <h4>Practices</h4>
+        <div class="chips"><span class="chip">Visualise the workflow</span><span class="chip">Limit WIP</span><span class="chip">Manage flow</span><span class="chip">Explicit policies</span><span class="chip">Feedback loops</span><span class="chip">Improve collaboratively</span></div>
+        <h4>Flow metrics</h4>
+        <ul>
+          <li><b>Lead time</b>: request to delivery (customer view).</li>
+          <li><b>Cycle time</b>: work started to done (team view).</li>
+          <li><b>Throughput</b>: items finished per period.</li>
+          <li><b>CFD</b>: widening bands mean a bottleneck; flat lines mean blocked work.</li>
+        </ul>
+        <p class="note">Lean's 8 wastes, <b>DOWNTIME</b>: Defects, Overproduction, Waiting, Non-used talent, Transport, Inventory, Motion, Extra processing. Value stream mapping exposes them.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="p-cpm">
+      <header class="card-head"><div><span class="tag">Schedule · Critical Path Method</span><h3>Critical path, live</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>The critical path is the longest path through the network, so it sets the shortest possible duration. Activities on it have zero total float.</span></p>
+      <div class="detail">
+        <p class="note">Change any duration (days) to watch the forward pass, backward pass and critical path recalculate.</p>
+        <div class="calc" id="cpmIn"></div>
+        <div class="diagram mw600"><svg viewBox="0 0 628 250" id="cpmSvg" role="img" aria-label="Network diagram" aria-labelledby="dg4-t dg4-d"><title id="dg4-t">Critical path network</title><desc id="dg4-d">Six activities, A to F, with their dependencies. Each box shows duration, early and late start and finish, and float. Critical activities and arrows are highlighted.</desc></svg></div>
+        <div class="panelbox" id="cpmOut"></div>
+        <div class="split">
+          <ul>
+            <li><b>Forward pass</b>: ES = max(EF of predecessors); EF = ES + duration.</li>
+            <li><b>Backward pass</b>: LF = min(LS of successors); LS = LF − duration.</li>
+            <li><b>Total float</b> = LS − ES. <b>Free float</b> = ES of next − EF.</li>
+          </ul>
+          <ul>
+            <li><b>Crashing</b>: add resources to critical tasks. Costs money.</li>
+            <li><b>Fast-tracking</b>: overlap tasks in parallel. Adds risk and rework.</li>
+            <li><b>Dependencies</b>: FS (most common), SS, FF, SF. Lead = overlap, lag = wait.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="p-evm">
+      <header class="card-head"><div><span class="tag">Cost · Earned Value Management</span><h3>Earned value calculator</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>EV is the budgeted value of work actually done. Compare it with AC for cost (CPI) and with PV for schedule (SPI). Below 1 is bad, above 1 is good.</span></p>
+      <div class="detail">
+        <div class="calc">
+          <div class="fld"><label for="evBac">BAC £</label><input id="evBac" type="number" value="100000" step="1000"></div>
+          <div class="fld"><label for="evPv">PV £</label><input id="evPv" type="number" value="50000" step="1000"></div>
+          <div class="fld"><label for="evEv">EV £</label><input id="evEv" type="number" value="45000" step="1000"></div>
+          <div class="fld"><label for="evAc">AC £</label><input id="evAc" type="number" value="52000" step="1000"></div>
+        </div>
+        <div class="split">
+          <div class="tiles" id="evOut"></div>
+          <div style="display:flex;flex-direction:column;gap:8px">
+            <div class="lbl">Against BAC</div>
+            <div id="evBars" style="display:flex;flex-direction:column;gap:6px"></div>
+            <p class="note">Memory aid: <b>EV comes first</b> in every variance and index. Variance = EV minus something; index = EV divided by something.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-estimate">
+      <header class="card-head"><div><span class="tag">Estimating</span><h3>Three-point (PERT)</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>PERT weights the most likely value 4×: (O + 4M + P) ÷ 6. Standard deviation is (P − O) ÷ 6.</span></p>
+      <div class="detail">
+        <div class="calc">
+          <div class="fld"><label for="peO">Optimistic</label><input id="peO" type="number" value="4"></div>
+          <div class="fld"><label for="peM">Most likely</label><input id="peM" type="number" value="6"></div>
+          <div class="fld"><label for="peP">Pessimistic</label><input id="peP" type="number" value="14"></div>
+        </div>
+        <div class="tiles" id="peOut"></div>
+        <h4>Other techniques</h4>
+        <ul>
+          <li><b>Analogous</b>: top-down from a similar past project. Fast, least accurate.</li>
+          <li><b>Parametric</b>: unit rate × quantity (e.g. £/m², hours/screen).</li>
+          <li><b>Bottom-up</b>: sum the WBS work packages. Slow, most accurate.</li>
+          <li><b>Relative (Agile)</b>: story points via Planning Poker (Fibonacci), T-shirt sizes, affinity grouping.</li>
+          <li><b>Velocity forecast</b>: remaining points ÷ average velocity = Sprints left.</li>
+        </ul>
+        <p class="note">Rough order of magnitude: −25% to +75%. Definitive: −5% to +10%.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="p-risk">
+      <header class="card-head"><div><span class="tag">Uncertainty · Risk</span><h3>Risk matrix &amp; responses</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Risk = uncertain event with a positive (opportunity) or negative (threat) effect. Score probability × impact, then pick a response. An issue is a risk that has happened.</span></p>
+      <div class="detail">
+        <div class="split">
+          <div>
+            <div class="lbl" style="margin-bottom:6px">Tap a cell · probability (rows) × impact (columns)</div>
+            <div class="matrix" id="riskM"></div>
+            <div class="panelbox" id="riskOut" style="margin-top:8px"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="tbl"><table>
+              <thead><tr><th>Threat</th><th>Opportunity</th></tr></thead>
+              <tbody>
+                <tr><td><b>Avoid</b>: change the plan to remove it</td><td><b>Exploit</b>: make sure it happens</td></tr>
+                <tr><td><b>Transfer</b>: insurance, fixed-price contract</td><td><b>Share</b>: partner with a better-placed party</td></tr>
+                <tr><td><b>Mitigate</b>: reduce probability or impact</td><td><b>Enhance</b>: increase probability or impact</td></tr>
+                <tr><td colspan="2"><b>Accept</b> (active = contingency reserve; passive = do nothing) · <b>Escalate</b> when outside the project's authority</td></tr>
+              </tbody></table></div>
+            <div>
+              <div class="lbl" style="margin-bottom:6px">Expected monetary value · EMV = P × impact</div>
+              <div id="emv" style="display:flex;flex-direction:column;gap:6px"></div>
+              <p class="note" id="emvOut" style="margin-top:6px"></p>
+            </div>
+          </div>
+        </div>
+        <p class="note">Contingency reserve covers known-unknowns (identified risks, PM controls it, in the cost baseline). Management reserve covers unknown-unknowns (sponsor controls it, outside the baseline). Secondary risks arise from a response; residual risks remain after it.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-stake">
+      <header class="card-head"><div><span class="tag">Stakeholders</span><h3>Power / interest grid</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Manage closely the high-power, high-interest people. Keep powerful but uninterested people satisfied; keep interested but less powerful people informed.</span></p>
+      <div class="detail">
+        <div class="quad">
+          <div class="ax v">Power →</div>
+          <div class="q"><strong>Keep satisfied</strong>Exec summaries, no detail overload. e.g. CFO, regulator.</div>
+          <div class="q hot"><strong>Manage closely</strong>Involve in decisions, frequent contact. e.g. sponsor.</div>
+          <div class="ax v"></div>
+          <div class="q"><strong>Monitor</strong>Minimal effort, watch for change.</div>
+          <div class="q"><strong>Keep informed</strong>Regular updates, demos, newsletters. e.g. end users.</div>
+          <div></div><div class="ax" style="grid-column:2/4">Interest →</div>
+        </div>
+        <h4>Engagement levels (assessment matrix)</h4>
+        <div class="chips"><span class="chip">Unaware</span><span class="chip">Resistant</span><span class="chip">Neutral</span><span class="chip">Supportive</span><span class="chip">Leading</span></div>
+        <p class="note">Mark C (current) and D (desired) per stakeholder; the gap drives your engagement plan. Other models: salience (power, legitimacy, urgency), influence/impact.</p>
+        <h4>RACI</h4>
+        <div class="tbl"><table>
+          <thead><tr><th>Task</th><th>Sponsor</th><th>PM</th><th>Dev lead</th><th>Ops</th></tr></thead>
+          <tbody>
+            <tr><td>Approve budget</td><td>A</td><td>R</td><td>C</td><td>I</td></tr>
+            <tr><td>Release plan</td><td>I</td><td>A</td><td>R</td><td>C</td></tr>
+            <tr><td>Go-live</td><td>A</td><td>R</td><td>R</td><td>R</td></tr>
+          </tbody></table></div>
+        <p class="note">Responsible does it, Accountable owns it (exactly one A per row), Consulted gives input, Informed is told.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-team">
+      <header class="card-head"><div><span class="tag">People · leadership</span><h3>Teams, conflict &amp; comms</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Teams move through Forming → Storming → Norming → Performing → Adjourning. Collaborate/problem-solve is the preferred conflict mode. Channels = n(n−1)/2.</span></p>
+      <div class="detail">
+        <h4>Tuckman and the leader's style</h4>
+        <div class="stairs">
+          <div style="height:72px"><strong>Forming</strong>Direct</div>
+          <div style="height:88px"><strong>Storming</strong>Coach</div>
+          <div style="height:104px"><strong>Norming</strong>Support</div>
+          <div style="height:120px"><strong>Performing</strong>Delegate</div>
+          <div style="height:96px"><strong>Adjourning</strong>Recognise, release</div>
+        </div>
+        <h4>Conflict modes (Thomas-Kilmann)</h4>
+        <div class="tbl"><table><tbody>
+          <tr><td><b>Collaborate</b> / problem-solve</td><td>Win-win, lasting. Best default.</td></tr>
+          <tr><td><b>Compromise</b> / reconcile</td><td>Each gives something up.</td></tr>
+          <tr><td><b>Smooth</b> / accommodate</td><td>Stress agreement. Temporary.</td></tr>
+          <tr><td><b>Force</b> / direct</td><td>Win-lose. Emergencies only.</td></tr>
+          <tr><td><b>Withdraw</b> / avoid</td><td>Postpone. Cool-off or trivial issues.</td></tr>
+        </tbody></table></div>
+        <div class="calc">
+          <div class="fld"><label for="chN">Team size n</label><input id="chN" type="number" value="8" min="2"></div>
+        </div>
+        <div class="tiles" id="chOut"></div>
+        <p class="note">Motivation: Herzberg (hygiene factors stop dissatisfaction; motivators create satisfaction), Maslow, McGregor X/Y. Servant leadership and psychological safety are the modern defaults.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-prince2">
+      <header class="card-head"><div><span class="tag">Method · PRINCE2 7 (2023)</span><h3>PRINCE2: 7 × 3</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>7 principles, 7 practices, 7 processes, plus people and context. Manage by stages and by exception against agreed tolerances.</span></p>
+      <div class="detail">
+        <h4>Principles</h4>
+        <ul>
+          <li>Ensure continued business justification</li>
+          <li>Learn from experience</li>
+          <li>Define roles, responsibilities and relationships</li>
+          <li>Manage by stages</li>
+          <li>Manage by exception</li>
+          <li>Focus on products</li>
+          <li>Tailor to suit the project</li>
+        </ul>
+        <h4>Practices</h4>
+        <div class="chips"><span class="chip">Business case</span><span class="chip">Organizing</span><span class="chip">Plans</span><span class="chip">Quality</span><span class="chip">Risk</span><span class="chip">Issues</span><span class="chip">Progress</span></div>
+        <h4>Processes</h4>
+        <div class="chips"><span class="chip"><b>SU</b>Starting up</span><span class="chip"><b>DP</b>Directing</span><span class="chip"><b>IP</b>Initiating</span><span class="chip"><b>CS</b>Controlling a stage</span><span class="chip"><b>MP</b>Managing product delivery</span><span class="chip"><b>SB</b>Stage boundary</span><span class="chip"><b>CP</b>Closing</span></div>
+        <p class="note">Tolerances set for time, cost, scope, quality, benefits, risk and sustainability. Project Board = Executive (business), Senior User, Senior Supplier. Exceeding tolerance triggers an exception report to the board.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-quality">
+      <header class="card-head"><div><span class="tag">Quality · change control</span><h3>Quality &amp; change</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Prevention beats inspection. Every change request goes through impact analysis and a decision before baselines change.</span></p>
+      <div class="detail">
+        <h4>Integrated change control</h4>
+        <div class="chev">
+          <div><span class="n">1</span><strong>Raise</strong>Log change request</div>
+          <div><span class="n">2</span><strong>Analyse</strong>Impact on scope, time, cost, risk</div>
+          <div><span class="n">3</span><strong>Decide</strong>CCB or sponsor</div>
+          <div><span class="n">4</span><strong>Update</strong>Baselines, plans, log</div>
+          <div><span class="n">5</span><strong>Tell</strong>Communicate</div>
+        </div>
+        <h4>Cost of quality</h4>
+        <div class="cols3">
+          <div class="col"><strong>Conformance</strong><ul><li>Prevention: training, standards</li><li>Appraisal: testing, inspection</li></ul></div>
+          <div class="col"><strong>Non-conformance</strong><ul><li>Internal failure: rework, scrap</li><li>External failure: returns, liability, reputation</li></ul></div>
+        </div>
+        <h4>Tools</h4>
+        <ul>
+          <li><b>Pareto</b>: 80% of defects from 20% of causes.</li>
+          <li><b>Fishbone (Ishikawa)</b> and <b>5 Whys</b> for root cause.</li>
+          <li><b>Control chart</b>: rule of seven (7 points on one side of the mean = investigate).</li>
+          <li><b>PDCA</b>: Plan, Do, Check, Act.</li>
+        </ul>
+        <p class="note">Quality = fit for purpose and meets requirements. Grade = category of features. Low grade can be fine; low quality never is.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="p-business">
+      <header class="card-head"><div><span class="tag">Business case · benefits</span><h3>Project selection</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Pick the higher NPV, IRR, ROI and BCR, and the shorter payback. NPV wins when they disagree; project length is already priced in.</span></p>
+      <div class="detail">
+        <div class="tbl"><table>
+          <thead><tr><th>Measure</th><th>Rule</th></tr></thead>
+          <tbody>
+            <tr><td>NPV = Σ CF<sub>t</sub>/(1+r)<sup>t</sup> − investment</td><td>&gt; 0 accept; higher better</td></tr>
+            <tr><td>IRR (rate where NPV = 0)</td><td>&gt; cost of capital</td></tr>
+            <tr><td>ROI = (gain − cost) ÷ cost</td><td>Higher better</td></tr>
+            <tr><td>BCR = benefits ÷ costs</td><td>&gt; 1</td></tr>
+            <tr><td>Payback period</td><td>Shorter better; ignores later cash</td></tr>
+          </tbody></table></div>
+        <p class="note">Opportunity cost = value of the best option not chosen. Sunk costs are never a reason to continue. Benefits realisation often lands after the project closes, so name an owner.</p>
+      </div>
+    </article>
+
+
+    <div class="lens-scope lens-item">
+<figure class="lens-block lens-visual" data-lens-block="visual" data-steps="8" id="project-lens"><figcaption class="lens-tag">Visual · step through it</figcaption><div class="lens-controls" hidden=""><button type="button" class="lens-btn" data-lens-act="prev">&#9664; Back</button><button type="button" class="lens-btn" data-lens-act="next">Next step &#9654;</button><button type="button" class="lens-btn" data-lens-act="all">Show all</button><span class="lens-status" role="status" aria-live="polite"></span></div><div class="lens-svg-wrap"><svg class="lens-svg" viewBox="0 0 900 360" role="img" aria-label="How a project stays in control" aria-labelledby="project-lens-t project-lens-d"><title id="project-lens-t">How a project stays in control</title><desc id="project-lens-d">Boxes: business case and charter, baselines, deliver, measure, tolerance gate, exception and change, handover and close. Numbered arrows follow the steps listed under the diagram; dashed arrows are loop-back paths.</desc><g class="lens-node lr-client"><rect x="20" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="90.0" y="168" style="text-anchor:middle">Business case</text><text class="lens-sub" x="90.0" y="186" style="text-anchor:middle">charter, sponsor</text></g><g class="lens-node lr-data"><rect x="195" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="265.0" y="168" style="text-anchor:middle">Baselines</text><text class="lens-sub" x="265.0" y="186" style="text-anchor:middle">scope, time, cost</text></g><g class="lens-node lr-compute"><rect x="370" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="440.0" y="168" style="text-anchor:middle">Deliver</text><text class="lens-sub" x="440.0" y="186" style="text-anchor:middle">team + suppliers</text></g><g class="lens-node lr-data"><rect x="545" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="615.0" y="168" style="text-anchor:middle">Measure</text><text class="lens-sub" x="615.0" y="186" style="text-anchor:middle">EVM, RAID, milestones</text></g><g class="lens-node lr-control"><rect x="720" y="140" width="160" height="64" rx="10"/><text class="lens-label" x="800.0" y="168" style="text-anchor:middle">Tolerance gate</text><text class="lens-sub" x="800.0" y="186" style="text-anchor:middle">within limits?</text></g><g class="lens-node lr-risk"><rect x="545" y="262" width="140" height="64" rx="10"/><text class="lens-label" x="615.0" y="290" style="text-anchor:middle">Exception</text><text class="lens-sub" x="615.0" y="308" style="text-anchor:middle">options, change</text></g><g class="lens-node lr-compute"><rect x="720" y="20" width="160" height="64" rx="10"/><text class="lens-label" x="800.0" y="48" style="text-anchor:middle">Handover, close</text><text class="lens-sub" x="800.0" y="66" style="text-anchor:middle">accept, lessons</text></g><g class="lens-edge lr-client" data-step="1"><path d="M160.0 172.0 L186.0 172.0"/><polygon points="195.0,172.0 184.0,177.5 184.0,166.5"/><circle cx="177.5" cy="172.0" r="10.5"/><text class="lens-num" x="177.5" y="176.0" style="text-anchor:middle">1</text></g><g class="lens-edge lr-data" data-step="2"><path d="M335.0 172.0 L361.0 172.0"/><polygon points="370.0,172.0 359.0,177.5 359.0,166.5"/><circle cx="352.5" cy="172.0" r="10.5"/><text class="lens-num" x="352.5" y="176.0" style="text-anchor:middle">2</text></g><g class="lens-edge lr-compute" data-step="3"><path d="M510.0 172.0 L536.0 172.0"/><polygon points="545.0,172.0 534.0,177.5 534.0,166.5"/><circle cx="527.5" cy="172.0" r="10.5"/><text class="lens-num" x="527.5" y="176.0" style="text-anchor:middle">3</text></g><g class="lens-edge lr-data" data-step="4"><path d="M685.0 172.0 L711.0 172.0"/><polygon points="720.0,172.0 709.0,177.5 709.0,166.5"/><circle cx="702.5" cy="172.0" r="10.5"/><text class="lens-num" x="702.5" y="176.0" style="text-anchor:middle">4</text></g><g class="lens-edge lr-control dashed" data-step="5"><path d="M760.0 140.0 L760.0 108.0 L440.0 108.0 L440.0 131.0"/><polygon points="440.0,140.0 434.5,129.0 445.5,129.0"/><circle cx="600.0" cy="108.0" r="10.5"/><text class="lens-num" x="600.0" y="112.0" style="text-anchor:middle">5</text></g><g class="lens-edge lr-risk" data-step="6"><path d="M800.0 204.0 L800.0 294.0 L694.0 294.0"/><polygon points="685.0,294.0 696.0,288.5 696.0,299.5"/><circle cx="800.0" cy="250.0" r="10.5"/><text class="lens-num" x="800.0" y="254.0" style="text-anchor:middle">6</text></g><g class="lens-edge lr-risk dashed" data-step="7"><path d="M545.0 294.0 L265.0 294.0 L265.0 213.0"/><polygon points="265.0,204.0 270.5,215.0 259.5,215.0"/><circle cx="405.0" cy="294.0" r="10.5"/><text class="lens-num" x="405.0" y="298.0" style="text-anchor:middle">7</text></g><g class="lens-edge lr-control" data-step="8"><path d="M850.0 140.0 L850.0 93.0"/><polygon points="850.0,84.0 855.5,95.0 844.5,95.0"/><circle cx="850.0" cy="112.0" r="10.5"/><text class="lens-num" x="850.0" y="116.0" style="text-anchor:middle">8</text></g><g class="lens-legend"><rect class="lg-client" x="14.0" y="339" width="11" height="11" rx="2"/><text x="30.0" y="348" style="text-anchor:start">client / customer</text><rect class="lg-compute" x="164.2" y="339" width="11" height="11" rx="2"/><text x="180.2" y="348" style="text-anchor:start">work / delivery</text><rect class="lg-data" x="301.2" y="339" width="11" height="11" rx="2"/><text x="317.2" y="348" style="text-anchor:start">data / evidence</text><rect class="lg-control" x="438.2" y="339" width="11" height="11" rx="2"/><text x="454.2" y="348" style="text-anchor:start">control / gate</text><rect class="lg-risk" x="568.6" y="339" width="11" height="11" rx="2"/><text x="584.6" y="348" style="text-anchor:start">risk / exception</text><line x1="712.2" y1="344" x2="740.2" y2="344"/><text x="746.2" y="348" style="text-anchor:start">loop back</text></g></svg></div><ol class="lens-steps"><li>The sponsor approves the business case and charter; the project manager turns them into a plan.</li><li>Agreed scope, schedule and cost baselines direct the team and suppliers.</li><li>The work produces actuals: progress, spend, defects, new risks and issues.</li><li>Actuals are compared with the baselines through earned value, milestones and the RAID review.</li><li>Within tolerance: keep delivering and report by exception.</li><li>Outside tolerance: raise an exception with options and a recommendation.</li><li>An approved change updates the baselines, and delivery continues against the new plan.</li><li>When deliverables are accepted, hand over to operations, record lessons and close.</li></ol></figure>
+      <section class="lens-block lens-feynman" data-lens-block="feynman" aria-label="Feynman loop"><p class="lens-tag">Feynman loop</p>
+        <ol class="lens-loop">
+          <li><b>Blank page:</b> redraw the control loop from memory: business case, baselines, deliver, measure, tolerance gate, exception, close. Number the arrows.</li>
+          <li><b>Explain it to a junior:</b> a supplier says a key component will be four weeks late. Explain what you do next, and why.<br><span class="lens-banned">Banned words: <i>critical path</i>, <i>baseline</i>, <i>escalate</i></span></li>
+          <li><b>Gap hunt:</b> unsure whether the delay moves the end date? Reread <i>Critical path, live</i>. Unsure of the cost effect? Reread <i>Earned value calculator</i>. Unsure who decides? Reread tolerances in <i>PRINCE2: 7 × 3</i> and <i>Quality &amp; change</i>.</li>
+        </ol>
+        <details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>First I check whether that component sits on the chain of tasks that sets the finish date. If it has slack, the end date may not move: I record it and watch it. If it has none, the whole project slips unless we act. With the supplier and the team I work out options: run some work in parallel, add people, cut or postpone part of the scope, or accept the delay. Each has a cost and a risk. If the slip is bigger than the limits the sponsor agreed I could absorb, I take it to them straight away with the options and my recommendation, rather than waiting for the next report. Whatever is decided goes into the plan, so everyone works to the same dates.</p></details>
+      </section>
+    </div>
+  </div>
+  <p class="empty" hidden>No project cards match that filter.</p>
+</section>
+
+<!-- ================= PRODUCT ================= -->
+<section class="panel" id="product" data-lens-unit="" data-track="product" role="tabpanel" aria-labelledby="t-product" hidden>
+  <div class="panel-head">
+    <h2>Product management</h2>
+    <p>Finding the right problem, the right solution and evidence that it works. Discovery, prioritisation, metrics, economics and <a href="#evaluation" id="evJump" style="color:var(--acc)">evaluation</a>.</p>
+  </div>
+
+  <div class="lens-scope lens-intro">
+    <section class="lens-block lens-fp" data-lens-block="fp" aria-label="First principles"><p class="lens-tag">First principles</p>
+      <p class="lens-problem"><b>The problem it solves:</b> a team can build almost anything; the hard part is choosing what is worth building and proving that it made a difference.</p>
+      <div class="lens-table-wrap"><table class="lens-truths"><thead><tr><th scope="col">Truth</th><th scope="col">So what</th></tr></thead><tbody>
+        <tr><td>Customers pay for progress on their problem, not for features.</td><td>Start from an outcome and the customer's job, and judge every idea against them.</td></tr>
+        <tr><td>Many ideas do not deliver the value their authors expect.</td><td>Test the riskiest assumption cheaply before committing a team.</td></tr>
+        <tr><td>Capacity is always smaller than the backlog.</td><td>Prioritise explicitly and say what you will not do.</td></tr>
+        <tr><td>A product matters only if it moves a measurable outcome, at a sustainable cost.</td><td>Set a target and guardrails before release, measure after it, and check the unit economics.</td></tr>
+      </tbody></table></div>
+    </section>
+    <section class="lens-block lens-pareto" data-lens-block="pareto" aria-label="Pareto"><p class="lens-tag">Pareto · learn these first</p>
+      <div class="lens-split"><div><h4>The 20% (learn now)</h4><ul class="lens-learn">
+        <li>Discovery: the four product risks, the Opportunity Solution Tree and Jobs to be Done</li>
+        <li>Prioritisation: RICE and WSJF, with MoSCoW for release scope</li>
+        <li>Measurement: North Star, AARRR and the post-launch verdict</li>
+      </ul></div><div><h4>Defer (second pass)</h4><ul class="lens-defer">
+        <li>Lean Canvas and unit economics: when shaping a new product or business case</li>
+        <li>Kano and the adoption lifecycle: when planning positioning or go-to-market</li>
+        <li>A/B sample sizes, SUS and AI evals: when you run experiments, usability studies or AI features</li>
+      </ul></div></div>
+    </section>
+  </div>
+  <div class="grid">
+
+    <article class="card" data-id="pr-stack">
+      <header class="card-head"><div><span class="tag">Strategy</span><h3>From vision to backlog</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Each layer answers "why" for the layer below. A backlog item that can't be traced up to the vision is a candidate for deletion.</span></p>
+      <div class="detail">
+        <div class="pyr">
+          <div style="width:44%"><strong>Vision</strong><span>3–5 yrs</span></div>
+          <div style="width:56%"><strong>Strategy</strong><span>1–2 yrs</span></div>
+          <div style="width:68%"><strong>Goals / OKRs</strong><span>quarter</span></div>
+          <div style="width:80%"><strong>Roadmap</strong><span>now · next · later</span></div>
+          <div style="width:92%"><strong>Backlog</strong><span>sprints</span></div>
+          <div style="width:100%"><strong>Releases</strong><span>continuous</span></div>
+        </div>
+        <ul>
+          <li><b>Vision</b>: the change you want in the world, for whom.</li>
+          <li><b>Strategy</b>: where to play and how to win; what you will not do.</li>
+          <li><b>OKRs</b>: measurable outcomes, not outputs.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-diamond">
+      <header class="card-head"><div><span class="tag">Discovery · Design Council</span><h3>Double Diamond</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Diverge then converge twice: first on the problem, then on the solution. Most failed products skip the first diamond.</span></p>
+      <div class="detail">
+        <div class="diagram"><svg viewBox="0 0 640 220" role="img" aria-label="Double diamond" aria-labelledby="dg5-t dg5-d"><title id="dg5-t">Double Diamond</title><desc id="dg5-d">Two diamonds. Discover and Define cover the problem space; Develop and Deliver cover the solution space. Each diamond first diverges, then converges.</desc>
+          <polygon points="20,100 170,20 320,100 170,180" class="f-accs"/>
+          <polygon points="320,100 470,20 620,100 470,180" class="f-surf s-line"/>
+          <line x1="170" y1="20" x2="170" y2="180" class="s-line" stroke-dasharray="3 4"/>
+          <line x1="470" y1="20" x2="470" y2="180" class="s-line" stroke-dasharray="3 4"/>
+          <text x="105" y="104" text-anchor="middle" font-size="15" font-weight="700">Discover</text>
+          <text x="245" y="104" text-anchor="middle" font-size="15" font-weight="700">Define</text>
+          <text x="395" y="104" text-anchor="middle" font-size="15" font-weight="700">Develop</text>
+          <text x="545" y="104" text-anchor="middle" font-size="15" font-weight="700">Deliver</text>
+          <text x="95" y="14" text-anchor="middle" font-size="11" class="t-m mono">diverge</text>
+          <text x="245" y="14" text-anchor="middle" font-size="11" class="t-m mono">converge</text>
+          <text x="395" y="14" text-anchor="middle" font-size="11" class="t-m mono">diverge</text>
+          <text x="545" y="14" text-anchor="middle" font-size="11" class="t-m mono">converge</text>
+          <circle cx="320" cy="100" r="5" class="f-acc"/><circle cx="620" cy="100" r="5" class="f-acc"/>
+          <text x="170" y="204" text-anchor="middle" font-size="12" class="t-a" font-weight="600">Problem space</text>
+          <text x="470" y="204" text-anchor="middle" font-size="12" class="t-a" font-weight="600">Solution space</text>
+        </svg></div>
+        <ul>
+          <li><b>Discover</b>: interviews, observation, data. Don't solve yet.</li>
+          <li><b>Define</b>: one sharp problem statement; "How might we…?"</li>
+          <li><b>Develop</b>: many options, prototypes, co-design.</li>
+          <li><b>Deliver</b>: test, refine, launch, measure.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-risks">
+      <header class="card-head"><div><span class="tag">Discovery · Marty Cagan</span><h3>Four product risks</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Before building, test value, usability, feasibility and viability. The product trio (PM, designer, tech lead) splits ownership.</span></p>
+      <div class="detail">
+        <div class="blocks">
+          <div class="blk on"><strong>Value</strong>Will customers buy or choose it? <span class="muted">· PM</span></div>
+          <div class="blk on"><strong>Viability</strong>Does it work for the business: legal, finance, brand? <span class="muted">· PM</span></div>
+          <div class="blk"><strong>Usability</strong>Can users figure it out? <span class="muted">· Designer</span></div>
+          <div class="blk"><strong>Feasibility</strong>Can we build it with our time, skills and tech? <span class="muted">· Engineering</span></div>
+        </div>
+        <p class="note">Assumption mapping: plot assumptions by importance × evidence. Test the important, low-evidence ones first.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-ost">
+      <header class="card-head"><div><span class="tag">Continuous discovery · Teresa Torres</span><h3>Opportunity Solution Tree</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Start from one measurable outcome, map customer opportunities (needs, pains, desires), then compare several solutions per opportunity and test their assumptions.</span></p>
+      <div class="detail">
+        <div class="diagram mw600"><svg viewBox="0 0 640 300" role="img" aria-label="Opportunity solution tree example" aria-labelledby="dg6-t dg6-d"><title id="dg6-t">Opportunity Solution Tree example</title><desc id="dg6-d">One outcome at the top, three customer opportunities beneath it, two solutions under the first opportunity, and an assumption test under each solution.</desc>
+          <g class="s-muted" stroke-width="1.3" fill="none">
+            <path d="M320 54V72H105V90M320 72H320V90M320 72H535V90"/>
+            <path d="M105 134V152H55V170M105 152H155V170"/>
+            <path d="M55 214V250M155 214V250"/>
+          </g>
+          <rect x="200" y="10" width="240" height="44" rx="8" class="f-acc"/>
+          <text x="320" y="29" text-anchor="middle" font-size="11" class="t-s mono">OUTCOME</text>
+          <text x="320" y="45" text-anchor="middle" font-size="13" font-weight="600" class="t-s">30-day retention 25% → 35%</text>
+          <rect x="10" y="90" width="190" height="44" rx="8" class="f-accs"/>
+          <text x="105" y="117" text-anchor="middle" font-size="12.5">Reordering takes too long</text>
+          <rect x="225" y="90" width="190" height="44" rx="8" class="f-accs"/>
+          <text x="320" y="117" text-anchor="middle" font-size="12.5">Unsure when stock arrives</text>
+          <rect x="440" y="90" width="190" height="44" rx="8" class="f-accs"/>
+          <text x="535" y="117" text-anchor="middle" font-size="12.5">Onboarding feels long</text>
+          <rect x="10" y="170" width="90" height="44" rx="6" class="f-surf s-line"/>
+          <text x="55" y="189" text-anchor="middle" font-size="12">One-tap</text><text x="55" y="204" text-anchor="middle" font-size="12">reorder</text>
+          <rect x="110" y="170" width="90" height="44" rx="6" class="f-surf s-line"/>
+          <text x="155" y="189" text-anchor="middle" font-size="12">Smart</text><text x="155" y="204" text-anchor="middle" font-size="12">basket</text>
+          <rect x="10" y="250" width="90" height="40" rx="20" class="f-surf s-acc" stroke-dasharray="3 3"/>
+          <text x="55" y="274" text-anchor="middle" font-size="11.5">Fake-door test</text>
+          <rect x="110" y="250" width="90" height="40" rx="20" class="f-surf s-acc" stroke-dasharray="3 3"/>
+          <text x="155" y="274" text-anchor="middle" font-size="11.5">5 user tests</text>
+          <text x="240" y="188" font-size="11" class="t-m mono">SOLUTIONS</text>
+          <text x="240" y="204" font-size="12" class="t-m">Compare 2–3 per opportunity, never just one</text>
+          <text x="240" y="266" font-size="11" class="t-m mono">ASSUMPTION TESTS</text>
+          <text x="240" y="282" font-size="12" class="t-m">Small, fast experiments before building</text>
+        </svg></div>
+        <p class="note">Rhythm: weekly customer touchpoints by the product trio. Opportunities come from interviews, not from feature requests.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-jtbd">
+      <header class="card-head"><div><span class="tag">Customer insight</span><h3>Jobs to be Done</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>People "hire" a product to make progress in a situation. Design for the job and its context, not for a demographic persona.</span></p>
+      <div class="detail">
+        <pre><span class="kw">When</span> I'm planning dinner on a busy weeknight,
+<span class="kw">I want to</span> reorder what worked last time,
+<span class="kw">so I can</span> eat well without thinking about it.</pre>
+        <h4>Forces of progress</h4>
+        <div class="cols3">
+          <div class="col"><strong>Help the switch</strong><ul><li><b>Push</b> of the current situation</li><li><b>Pull</b> of the new solution</li></ul></div>
+          <div class="col"><strong>Block the switch</strong><ul><li><b>Anxiety</b> about the new</li><li><b>Habit</b> of the present</li></ul></div>
+        </div>
+        <p class="note">Jobs have functional, emotional and social dimensions. Switch interviews ask about the last time someone changed solution.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-lean">
+      <header class="card-head"><div><span class="tag">Lean Startup · Eric Ries</span><h3>Build–Measure–Learn</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Minimise the time round the loop. An MVP is the smallest thing that tests a hypothesis, not a smaller version of the final product.</span></p>
+      <div class="detail">
+        <div class="diagram"><svg viewBox="0 0 320 290" id="leanSvg" role="img" aria-label="Build measure learn loop" aria-labelledby="dg7-t dg7-d"><title id="dg7-t">Build–Measure–Learn loop</title><desc id="dg7-d">A circular loop: Build produces a product, Measure produces data, and Learn produces ideas that feed the next Build.</desc></svg></div>
+        <h4>MVP types</h4>
+        <div class="chips"><span class="chip">Landing page</span><span class="chip">Fake door</span><span class="chip">Concierge</span><span class="chip">Wizard of Oz</span><span class="chip">Single-feature</span><span class="chip">Explainer video</span></div>
+        <p class="note">Decide up front what result means pivot and what means persevere. Validated learning beats vanity metrics.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-prio">
+      <header class="card-head"><div><span class="tag">Prioritisation</span><h3>Prioritisation lab</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>RICE = Reach × Impact × Confidence ÷ Effort. WSJF = Cost of Delay ÷ Job size. Scores start a conversation; they don't replace one.</span></p>
+      <div class="detail">
+        <h4>RICE · edit any cell, the ranking updates</h4>
+        <div class="tbl"><table id="rice">
+          <thead><tr><th>#</th><th>Feature</th><th class="num">Reach /qtr</th><th>Impact</th><th>Confidence</th><th class="num">Effort (p-m)</th><th class="num">Score</th></tr></thead>
+          <tbody></tbody></table></div>
+        <p class="note">Impact: 3 massive · 2 high · 1 medium · 0.5 low · 0.25 minimal. Confidence: 100 / 80 / 50%. Effort in person-months.</p>
+        <div class="split">
+          <div>
+            <h4>WSJF (SAFe)</h4>
+            <div class="calc" style="margin-top:8px">
+              <div class="fld"><label for="wsBv">Business value</label><input id="wsBv" type="number" value="8"></div>
+              <div class="fld"><label for="wsTc">Time criticality</label><input id="wsTc" type="number" value="5"></div>
+              <div class="fld"><label for="wsRr">Risk red. / OE</label><input id="wsRr" type="number" value="3"></div>
+              <div class="fld"><label for="wsJs">Job size</label><input id="wsJs" type="number" value="5"></div>
+            </div>
+            <div class="tiles" id="wsOut" style="margin-top:8px"></div>
+            <p class="note" style="margin-top:6px">Score each on a relative Fibonacci scale (1, 2, 3, 5, 8, 13, 20). Highest WSJF goes first.</p>
+          </div>
+          <div>
+            <h4>MoSCoW</h4>
+            <div class="cols3" style="margin-top:8px">
+              <div class="col"><strong>Must</strong>Without it, release fails</div>
+              <div class="col"><strong>Should</strong>Important, has a workaround</div>
+              <div class="col"><strong>Could</strong>Nice to have</div>
+              <div class="col"><strong>Won't</strong>Not this time</div>
+            </div>
+            <p class="note" style="margin-top:6px">DSDM guideline: Musts ≤ 60% of effort, so Coulds act as contingency.</p>
+            <h4 style="margin-top:10px">Value vs effort</h4>
+            <div class="quad" style="margin-top:8px">
+              <div class="ax v">Value →</div>
+              <div class="q hot"><strong>Quick wins</strong>Do now</div>
+              <div class="q"><strong>Big bets</strong>Plan carefully</div>
+              <div class="ax v"></div>
+              <div class="q"><strong>Fill-ins</strong>When idle</div>
+              <div class="q"><strong>Money pits</strong>Avoid</div>
+              <div></div><div class="ax" style="grid-column:2/4">Effort →</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-kano">
+      <header class="card-head"><div><span class="tag">Customer satisfaction · Noriaki Kano</span><h3>Kano model</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Basics only prevent frustration; performance features scale satisfaction linearly; delighters surprise. Today's delighter is tomorrow's basic.</span></p>
+      <div class="detail">
+        <div class="chips" id="kanoChips"></div>
+        <div class="diagram"><svg viewBox="0 0 340 250" id="kanoSvg" role="img" aria-label="Kano model curves" aria-labelledby="dg8-t dg8-d"><title id="dg8-t">Kano model</title><desc id="dg8-d">Three curves of customer satisfaction against how fully a feature is implemented: basic features rise only to neutral, performance features rise in a straight line, and delighters rise sharply once present.</desc></svg></div>
+        <div class="panelbox" id="kanoOut"></div>
+        <p class="note">Also: <b>indifferent</b> (nobody cares) and <b>reverse</b> (some users dislike it). Classify with paired functional / dysfunctional survey questions.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-metrics">
+      <header class="card-head"><div><span class="tag">Measurement</span><h3>Metrics that matter</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>One North Star metric captures delivered customer value; input metrics are the levers that move it. AARRR finds the leak in the funnel; HEART measures experience.</span></p>
+      <div class="detail">
+        <div class="split">
+          <div>
+            <h4>AARRR pirate funnel (example month)</h4>
+            <div class="funnel" id="funnel" style="margin-top:8px"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <div>
+              <h4>North Star example</h4>
+              <div class="panelbox" style="margin-top:8px"><strong>Weekly households placing an order</strong><br><span class="note">Inputs: new households activated · orders per household · basket completion rate</span></div>
+            </div>
+            <div>
+              <h4>OKR example</h4>
+              <pre><span class="kw">O</span>  Make weekly ordering effortless
+<span class="kw">KR1</span> Repeat-order rate 38% → 50%
+<span class="kw">KR2</span> Median time to checkout 6m → 3m
+<span class="kw">KR3</span> Support tickets on orders −30%</pre>
+              <p class="note" style="margin-top:6px">Objectives inspire; key results are measurable outcomes (3–5), not tasks. 0.7 is a good score on stretch OKRs.</p>
+            </div>
+          </div>
+        </div>
+        <h4>Google HEART · Goals → Signals → Metrics</h4>
+        <div class="tbl"><table>
+          <thead><tr><th>Dimension</th><th>Example metric</th></tr></thead>
+          <tbody>
+            <tr><td><b>H</b>appiness</td><td>CSAT, NPS, survey score</td></tr>
+            <tr><td><b>E</b>ngagement</td><td>Sessions per user per week</td></tr>
+            <tr><td><b>A</b>doption</td><td>% of new users using the feature</td></tr>
+            <tr><td><b>R</b>etention</td><td>% still active after 30 days</td></tr>
+            <tr><td><b>T</b>ask success</td><td>Completion rate, time on task, errors</td></tr>
+          </tbody></table></div>
+        <p class="note">Leading metrics (activation) predict lagging ones (revenue). Vanity metrics (total sign-ups, page views) only go up; actionable metrics change decisions. NPS = % promoters (9–10) − % detractors (0–6).</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-pmf">
+      <header class="card-head"><div><span class="tag">Product–market fit</span><h3>Do we have PMF?</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Two signals: 40%+ of users would be "very disappointed" without the product (Sean Ellis), and the retention curve flattens instead of decaying to zero.</span></p>
+      <div class="detail">
+        <div class="fld"><label for="seV">"Very disappointed" responses: <span id="seVal">32</span>%</label><input id="seV" type="range" min="0" max="80" value="32"></div>
+        <div class="panelbox" id="seOut"></div>
+        <div class="diagram"><svg viewBox="0 0 320 230" id="retSvg" role="img" aria-label="Retention curves" aria-labelledby="dg9-t dg9-d"><title id="dg9-t">Retention curves</title><desc id="dg9-d">Two retention curves over twelve months. One flattens at about 35 per cent, a sign of product–market fit; the other decays towards zero.</desc></svg></div>
+        <p class="note">Ask the survey only of users who have experienced the core value (e.g. used it twice in the last two weeks).</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-unit">
+      <header class="card-head"><div><span class="tag">Economics</span><h3>Unit economics</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>LTV = ARPU × gross margin ÷ churn. Healthy SaaS benchmark: LTV:CAC ≥ 3 and CAC payback under 12 months.</span></p>
+      <div class="detail">
+        <div class="calc">
+          <div class="fld"><label for="ueArpu">ARPU £/mo</label><input id="ueArpu" type="number" value="30"></div>
+          <div class="fld"><label for="ueGm">Gross margin %</label><input id="ueGm" type="number" value="60"></div>
+          <div class="fld"><label for="ueCh">Churn %/mo</label><input id="ueCh" type="number" value="4" step="0.5"></div>
+          <div class="fld"><label for="ueCac">CAC £</label><input id="ueCac" type="number" value="250"></div>
+        </div>
+        <div class="tiles" id="ueOut"></div>
+        <p class="note">Average customer lifetime ≈ 1 ÷ churn. Levers: raise ARPU (pricing, upsell), cut churn (onboarding, value), cut CAC (referral, organic). Net revenue retention above 100% means expansion outpaces churn.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-canvas">
+      <header class="card-head"><div><span class="tag">Business model · Ash Maurya</span><h3>Lean Canvas</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>A one-page business plan built around problem and customer. Fill it in order: segments, problem, UVP, solution, channels, revenue, costs, metrics, unfair advantage.</span></p>
+      <div class="detail">
+        <div class="canvas">
+          <div style="grid-area:pr"><strong>Problem</strong>Top 3 problems; existing alternatives</div>
+          <div style="grid-area:so"><strong>Solution</strong>Top 3 features</div>
+          <div style="grid-area:km"><strong>Key metrics</strong>The numbers that show traction</div>
+          <div style="grid-area:uv;background:var(--acc-soft)"><strong>Unique value proposition</strong>Single clear message: why you are different and worth attention. Add a high-level concept ("X for Y").</div>
+          <div style="grid-area:ua"><strong>Unfair advantage</strong>Can't be easily copied or bought</div>
+          <div style="grid-area:ch"><strong>Channels</strong>Path to customers</div>
+          <div style="grid-area:cs"><strong>Customer segments</strong>Target customers; early adopters</div>
+          <div style="grid-area:co"><strong>Cost structure</strong>Acquisition, distribution, hosting, people</div>
+          <div style="grid-area:rv"><strong>Revenue streams</strong>Pricing model, LTV, gross margin</div>
+        </div>
+        <p class="note">Business Model Canvas (Osterwalder) swaps in Key partners, Key activities, Key resources and Customer relationships. It suits established businesses; Lean Canvas suits startups and new products.</p>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-stories">
+      <header class="card-head"><div><span class="tag">Backlog craft</span><h3>Stories, criteria &amp; story maps</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Good stories are INVEST. Acceptance criteria in Given/When/Then make them testable. Story maps slice releases across the user journey.</span></p>
+      <div class="detail">
+        <div class="split">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <pre><span class="kw">As a</span> returning customer
+<span class="kw">I want</span> to reorder last week's basket
+<span class="kw">so that</span> I save time on weekly shopping</pre>
+            <pre><span class="kw">Given</span> I have a previous order
+<span class="kw">When</span> I tap "Reorder"
+<span class="kw">Then</span> available items are added to my basket
+<span class="kw">And</span> unavailable items are flagged</pre>
+            <div class="blocks">
+              <div class="blk"><strong>I</strong>ndependent</div><div class="blk"><strong>N</strong>egotiable</div><div class="blk"><strong>V</strong>aluable</div>
+              <div class="blk"><strong>E</strong>stimable</div><div class="blk"><strong>S</strong>mall</div><div class="blk"><strong>T</strong>estable</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <h4>Story map (Jeff Patton)</h4>
+            <div class="diagram"><div class="storymap">
+              <div class="rl">Backbone</div><div class="bb">Browse</div><div class="bb">Build basket</div><div class="bb">Checkout</div><div class="bb">Track</div>
+              <div class="rl">Walking skeleton</div><div class="ws">List products</div><div class="ws">Add item</div><div class="ws">Card pay</div><div class="ws">Email status</div>
+              <div class="rl">Release 2</div><div>Search</div><div>Reorder</div><div>Apple Pay</div><div>Live map</div>
+              <div class="rl">Later</div><div>Filters</div><div>Smart basket</div><div>Saved cards</div><div>Push alerts</div>
+            </div></div>
+            <h4>Split big stories · SPIDR</h4>
+            <div class="chips"><span class="chip"><b>S</b>pike</span><span class="chip"><b>P</b>aths</span><span class="chip"><b>I</b>nterfaces</span><span class="chip"><b>D</b>ata</span><span class="chip"><b>R</b>ules</span></div>
+            <div class="tbl"><table>
+              <thead><tr><th>Definition of Ready</th><th>Definition of Done</th></tr></thead>
+              <tbody><tr><td>Clear value, criteria agreed, sized, dependencies known. Team practice, not a Scrum rule.</td><td>Quality bar for every Increment: tested, reviewed, documented, releasable. Required by Scrum.</td></tr></tbody>
+            </table></div>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-roadmap">
+      <header class="card-head"><div><span class="tag">Planning · go-to-market</span><h3>Roadmaps &amp; adoption</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Outcome-based Now / Next / Later roadmaps show intent without fake dates. Products cross the chasm by winning a beachhead niche of pragmatists after early adopters.</span></p>
+      <div class="detail">
+        <div class="cols3">
+          <div class="col"><strong>Now</strong><span class="note">Committed, detailed, this quarter</span><ul><li>Cut checkout time in half</li></ul></div>
+          <div class="col"><strong>Next</strong><span class="note">Shaped, in discovery</span><ul><li>Lift repeat orders</li></ul></div>
+          <div class="col"><strong>Later</strong><span class="note">Problems to explore</span><ul><li>Expand to trade customers</li></ul></div>
+        </div>
+        <h4>Technology adoption lifecycle (Rogers; chasm from Geoffrey Moore)</h4>
+        <div class="diagram mw520"><svg viewBox="0 0 640 236" id="adoptSvg" role="img" aria-label="Adoption curve with chasm" aria-labelledby="dg10-t dg10-d"><title id="dg10-t">Technology adoption lifecycle</title><desc id="dg10-d">A bell curve split into innovators, early adopters, early majority, late majority and laggards, with a gap marked as the chasm between early adopters and the early majority.</desc></svg></div>
+        <p class="note">Product lifecycle: Introduction (find fit) → Growth (scale, compete) → Maturity (optimise, defend) → Decline (harvest, sunset or reinvent).</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-exp">
+      <header class="card-head"><div><span class="tag">Experimentation</span><h3>A/B tests &amp; hypotheses</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Write the hypothesis and success threshold before the test. Small effects need large samples, roughly 16 · p(1−p) ÷ δ² users per variant.</span></p>
+      <div class="detail">
+        <pre><span class="kw">We believe</span> one-tap reorder
+<span class="kw">will</span> raise repeat orders
+<span class="kw">for</span> returning customers.
+<span class="kw">We'll know</span> when repeat rate rises 5pp
+in 4 weeks.</pre>
+        <div class="calc">
+          <div class="fld"><label for="abP">Baseline conv. %</label><input id="abP" type="number" value="10" step="0.5"></div>
+          <div class="fld"><label for="abD">Min. lift (pp)</label><input id="abD" type="number" value="2" step="0.5"></div>
+        </div>
+        <div class="tiles" id="abOut"></div>
+        <ul>
+          <li><b>Significance</b> 95% (p &lt; 0.05): false positive risk 5%.</li>
+          <li><b>Power</b> 80%: chance of detecting a real effect.</li>
+          <li><b>Guardrail metrics</b>: things that must not get worse (e.g. refunds).</li>
+          <li>Don't stop early when it "looks significant".</li>
+        </ul>
+      </div>
+    </article>
+
+    <div class="lens-scope lens-item">
+<figure class="lens-block lens-visual" data-lens-block="visual" data-steps="7" id="product-lens"><figcaption class="lens-tag">Visual · step through it</figcaption><div class="lens-controls" hidden=""><button type="button" class="lens-btn" data-lens-act="prev">&#9664; Back</button><button type="button" class="lens-btn" data-lens-act="next">Next step &#9654;</button><button type="button" class="lens-btn" data-lens-act="all">Show all</button><span class="lens-status" role="status" aria-live="polite"></span></div><div class="lens-svg-wrap"><svg class="lens-svg" viewBox="0 84 900 276" role="img" aria-label="From outcome to evidence" aria-labelledby="product-lens-t product-lens-d"><title id="product-lens-t">From outcome to evidence</title><desc id="product-lens-d">Boxes: outcome, opportunities, solutions, assumption tests, build and release, measure. Numbered arrows follow the steps listed under the diagram; dashed arrows are learning loops.</desc><g class="lens-node lr-client"><rect x="20" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="90.0" y="168" style="text-anchor:middle">Outcome</text><text class="lens-sub" x="90.0" y="186" style="text-anchor:middle">a metric to move</text></g><g class="lens-node lr-data"><rect x="195" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="265.0" y="168" style="text-anchor:middle">Opportunities</text><text class="lens-sub" x="265.0" y="186" style="text-anchor:middle">needs, pains</text></g><g class="lens-node lr-compute"><rect x="370" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="440.0" y="168" style="text-anchor:middle">Solutions</text><text class="lens-sub" x="440.0" y="186" style="text-anchor:middle">two or three</text></g><g class="lens-node lr-control"><rect x="545" y="140" width="140" height="64" rx="10"/><text class="lens-label" x="615.0" y="168" style="text-anchor:middle">Assumption test</text><text class="lens-sub" x="615.0" y="186" style="text-anchor:middle">cheap evidence</text></g><g class="lens-node lr-compute"><rect x="720" y="140" width="160" height="64" rx="10"/><text class="lens-label" x="800.0" y="168" style="text-anchor:middle">Build, release</text><text class="lens-sub" x="800.0" y="186" style="text-anchor:middle">smallest slice</text></g><g class="lens-node lr-data"><rect x="720" y="262" width="160" height="64" rx="10"/><text class="lens-label" x="800.0" y="290" style="text-anchor:middle">Measure</text><text class="lens-sub" x="800.0" y="308" style="text-anchor:middle">target, guardrails</text></g><g class="lens-edge lr-client" data-step="1"><path d="M160.0 172.0 L186.0 172.0"/><polygon points="195.0,172.0 184.0,177.5 184.0,166.5"/><circle cx="177.5" cy="172.0" r="10.5"/><text class="lens-num" x="177.5" y="176.0" style="text-anchor:middle">1</text></g><g class="lens-edge lr-data" data-step="2"><path d="M335.0 172.0 L361.0 172.0"/><polygon points="370.0,172.0 359.0,177.5 359.0,166.5"/><circle cx="352.5" cy="172.0" r="10.5"/><text class="lens-num" x="352.5" y="176.0" style="text-anchor:middle">2</text></g><g class="lens-edge lr-compute" data-step="3"><path d="M510.0 172.0 L536.0 172.0"/><polygon points="545.0,172.0 534.0,177.5 534.0,166.5"/><circle cx="527.5" cy="172.0" r="10.5"/><text class="lens-num" x="527.5" y="176.0" style="text-anchor:middle">3</text></g><g class="lens-edge lr-control" data-step="4"><path d="M685.0 172.0 L711.0 172.0"/><polygon points="720.0,172.0 709.0,177.5 709.0,166.5"/><circle cx="702.5" cy="172.0" r="10.5"/><text class="lens-num" x="702.5" y="176.0" style="text-anchor:middle">4</text></g><g class="lens-edge lr-compute" data-step="5"><path d="M800.0 204.0 L800.0 253.0"/><polygon points="800.0,262.0 794.5,251.0 805.5,251.0"/><circle cx="800.0" cy="233.0" r="10.5"/><text class="lens-num" x="800.0" y="237.0" style="text-anchor:middle">5</text></g><g class="lens-edge lr-data dashed" data-step="6"><path d="M720.0 294.0 L265.0 294.0 L265.0 213.0"/><polygon points="265.0,204.0 270.5,215.0 259.5,215.0"/><circle cx="490.0" cy="294.0" r="10.5"/><text class="lens-num" x="490.0" y="298.0" style="text-anchor:middle">6</text></g><g class="lens-edge lr-control dashed" data-step="7"><path d="M615.0 140.0 L615.0 108.0 L440.0 108.0 L440.0 131.0"/><polygon points="440.0,140.0 434.5,129.0 445.5,129.0"/><circle cx="527.0" cy="108.0" r="10.5"/><text class="lens-num" x="527.0" y="112.0" style="text-anchor:middle">7</text></g><g class="lens-legend"><rect class="lg-client" x="14.0" y="339" width="11" height="11" rx="2"/><text x="30.0" y="348" style="text-anchor:start">client / customer</text><rect class="lg-compute" x="164.2" y="339" width="11" height="11" rx="2"/><text x="180.2" y="348" style="text-anchor:start">work / delivery</text><rect class="lg-data" x="301.2" y="339" width="11" height="11" rx="2"/><text x="317.2" y="348" style="text-anchor:start">data / evidence</text><rect class="lg-control" x="438.2" y="339" width="11" height="11" rx="2"/><text x="454.2" y="348" style="text-anchor:start">control / gate</text><line x1="568.6" y1="344" x2="596.6" y2="344"/><text x="602.6" y="348" style="text-anchor:start">learning loop</text></g></svg></div><ol class="lens-steps"><li>Start from one measurable outcome, not a feature request.</li><li>Interviews and data reveal opportunities: customer needs, pains and desires.</li><li>For the chosen opportunity, compare two or three solutions and pick the riskiest assumption behind the leader.</li><li>The test supports the assumption: build the smallest slice that can be released.</li><li>Measure the release against the target and guardrails agreed beforehand.</li><li>Learn: update the opportunity map and choose what to do next.</li><li>The test fails: reshape or drop the solution before any production code is written.</li></ol></figure>
+      <section class="lens-block lens-feynman" data-lens-block="feynman" aria-label="Feynman loop"><p class="lens-tag">Feynman loop</p>
+        <ol class="lens-loop">
+          <li><b>Blank page:</b> redraw outcome, opportunities, solutions, assumption test, release and measure from memory, with both learning loops.</li>
+          <li><b>Explain it to a junior:</b> a senior stakeholder asks you to add their favourite feature to the next release. Explain how you decide.<br><span class="lens-banned">Banned words: <i>RICE</i>, <i>MVP</i>, <i>outcome</i></span></li>
+          <li><b>Gap hunt:</b> unsure how to compare it with planned work? Reread <i>Prioritisation lab</i>. Unsure how to test it cheaply? Reread <i>Four product risks</i> and <i>Build–Measure–Learn</i>. Unsure how you would know it worked? Reread <i>Metrics that matter</i>.</li>
+        </ol>
+        <details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>I start by asking what problem the feature solves, for whom, and what we would see change if it worked. Then I compare it roughly with what is already planned: how many people it helps, how much, how sure we are, and how much work it takes. If the case is uncertain, I look for a quick, cheap way to check the biggest guess, such as showing a mock-up to five customers or adding a button that measures interest before anything is built. If it earns its place, it goes in and something else moves out, and I explain that trade-off openly. If it does not, I explain why using the same comparison, and agree what evidence would change the answer.</p></details>
+      </section>
+    </div>
+
+    <div class="divider" id="evaluation">
+      <h3>Evaluation</h3>
+      <p>How you judge an idea, a design, a release or an AI feature, and what you decide as a result. Evaluate before you build, before you launch, after launch, and on an ongoing basis.</p>
+    </div>
+
+    <article class="card wide" data-id="pr-evlife">
+      <header class="card-head"><div><span class="tag">Evaluation · lifecycle</span><h3>Evaluate at every stage</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Each stage asks a different question and ends in a decision. Write the success threshold before you look at the results, or every outcome will look like a win.</span></p>
+      <div class="detail">
+        <div class="lbl">Tap a stage</div>
+        <div class="blocks" id="evStages"></div>
+        <div class="panelbox" id="evStageOut"></div>
+        <div class="tbl"><table>
+          <thead><tr><th>Evaluating…</th><th>Main question</th><th>Typical evidence</th></tr></thead>
+          <tbody>
+            <tr><td>An opportunity</td><td>Is the problem worth solving for us?</td><td>Interviews, market sizing, assumption tests</td></tr>
+            <tr><td>A design</td><td>Can people use it?</td><td>Usability tests, SUS, heuristic review</td></tr>
+            <tr><td>A release</td><td>Did it change behaviour or outcomes?</td><td>A/B test, holdout, adoption, guardrails</td></tr>
+            <tr><td>An AI feature</td><td>Is the output good enough, safely and reliably?</td><td>Eval set, precision/recall, human review, live feedback</td></tr>
+            <tr><td>The portfolio</td><td>Where should investment go next?</td><td>Usage audit, retention, cost to maintain, strategic fit</td></tr>
+          </tbody></table></div>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-opp">
+      <header class="card-head"><div><span class="tag">Evaluation · before build</span><h3>Opportunity scorecard</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Score an idea against consistent criteria before committing a team. The weakest criterion tells you which assumption to test next.</span></p>
+      <div class="detail">
+        <div class="lbl">Rate 1 (weak) to 5 (strong) · example idea: one-tap reorder</div>
+        <div id="oppRows" style="display:flex;flex-direction:column;gap:6px"></div>
+        <div class="tiles" id="oppOut"></div>
+        <div class="panelbox" id="oppWeak"></div>
+        <h4>Cagan's four questions (Inspired, 2nd ed.)</h4>
+        <ol>
+          <li><b>Business objective</b>: which objective does this serve?</li>
+          <li><b>Key results</b>: how will we know it succeeded?</li>
+          <li><b>Customer problem</b>: what problem does it solve for customers?</li>
+          <li><b>Target market</b>: which customers are we focused on?</li>
+        </ol>
+        <p class="note">The criteria here are a generic starting set. Adapt them, and weights if you use any, to your strategy.</p>
+      </div>
+    </article>
+
+    <article class="card" data-id="pr-postlaunch">
+      <header class="card-head"><div><span class="tag">Evaluation · after launch</span><h3>Post-launch verdict</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Compare the result with the target set before launch, check guardrails, then decide: scale, iterate or roll back.</span></p>
+      <div class="detail">
+        <div class="calc">
+          <div class="fld"><label for="plB">Baseline %</label><input id="plB" type="number" value="38" step="0.5"></div>
+          <div class="fld"><label for="plT">Target %</label><input id="plT" type="number" value="50" step="0.5"></div>
+          <div class="fld"><label for="plA">Actual %</label><input id="plA" type="number" value="44" step="0.5"></div>
+          <div class="fld"><label for="plG">Guardrail worse by (pp)</label><input id="plG" type="number" value="0.2" step="0.1"></div>
+          <div class="fld"><label for="plGt">Guardrail tolerance (pp)</label><input id="plGt" type="number" value="0.5" step="0.1"></div>
+        </div>
+        <div class="tiles" id="plOut"></div>
+        <div class="panelbox" id="plVerdict"></div>
+        <p class="note">Example: repeat-order rate as the primary metric, refund rate as the guardrail.</p>
+        <h4>Timing and traps</h4>
+        <ul>
+          <li><b>Adoption</b> in weeks 1–2; <b>outcome</b> at 4–8 weeks; <b>retention</b> at 3 months.</li>
+          <li><b>Novelty effect</b>: early spikes often fade, so re-measure.</li>
+          <li><b>Seasonality</b>: compare with a holdout group, not just last month.</li>
+          <li><b>Feature adoption</b> = users of the feature ÷ active users.</li>
+          <li>Pair numbers with <b>qualitative feedback</b> to learn why.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-usability">
+      <header class="card-head"><div><span class="tag">Evaluation · usability</span><h3>Usability evaluation</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>Watch real users attempt real tasks. Five users per round find most usability problems (Nielsen), so test small and often. On the System Usability Scale (SUS), 68 is average.</span></p>
+      <div class="detail">
+        <div class="split">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <div class="tbl"><table>
+              <thead><tr><th>Method</th><th>Tells you</th><th>When</th></tr></thead>
+              <tbody>
+                <tr><td><b>Moderated test</b></td><td>Task success, time, errors, and why people struggle</td><td>Prototype, pre-launch</td></tr>
+                <tr><td><b>Heuristic review</b></td><td>Expert check against design principles</td><td>Early and cheap</td></tr>
+                <tr><td><b>SUS survey</b></td><td>Perceived usability, 0–100</td><td>After a test or release; track over time</td></tr>
+                <tr><td><b>Tree / first-click test</b></td><td>Whether navigation and labels work</td><td>Information architecture changes</td></tr>
+                <tr><td><b>Analytics &amp; replay</b></td><td>Where real users drop off</td><td>Post-launch</td></tr>
+              </tbody></table></div>
+            <h4>Nielsen's 10 heuristics</h4>
+            <div class="chips">
+              <span class="chip">Visibility of system status</span><span class="chip">Match the real world</span><span class="chip">User control &amp; freedom</span><span class="chip">Consistency &amp; standards</span><span class="chip">Error prevention</span><span class="chip">Recognition over recall</span><span class="chip">Flexibility &amp; efficiency</span><span class="chip">Minimalist design</span><span class="chip">Help users recover from errors</span><span class="chip">Help &amp; documentation</span>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <h4>SUS calculator · 1 = strongly disagree, 5 = strongly agree</h4>
+            <div class="sus" id="sus"></div>
+            <div class="tiles" id="susOut"></div>
+            <p class="note">Odd items (positive) score answer − 1. Even items (negative) score 5 − answer. Sum × 2.5 gives 0–100. Roughly: below 51 poor, 68 average, above 80 excellent (top 10%).</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card wide" data-id="pr-aievals">
+      <header class="card-head"><div><span class="tag">Evaluation · AI features</span><h3>Evaluating AI features (evals)</h3></div><button class="done"></button></header>
+      <p class="key"><b>Key</b><span>AI output varies from run to run, so a good demo proves little. Build an eval set of real examples, set pass thresholds before release, and keep evaluating in production.</span></p>
+      <div class="detail">
+        <div class="diagram mw600"><svg viewBox="0 0 680 172" role="img" aria-label="Eval loop: define success, build eval set, run offline evals, release and monitor, then feed failures back into the eval set" aria-labelledby="dg11-t dg11-d"><title id="dg11-t">AI eval loop</title><desc id="dg11-d">Four steps: define success, build an eval set, run offline evals as a release gate, then release and monitor. Real failures and new edge cases loop back into the eval set.</desc>
+          <g class="s-muted" stroke-width="1.5" fill="none">
+            <path d="M150 58H178" marker-end="url(#arw)"/>
+            <path d="M320 58H348" marker-end="url(#arw)"/>
+            <path d="M490 58H518" marker-end="url(#arw)"/>
+          </g>
+          <path d="M590 92V128H250V94" class="f-none s-acc" stroke-width="1.8" stroke-dasharray="5 4" marker-end="url(#arwA)"/>
+          <rect x="10" y="22" width="140" height="70" rx="8" class="f-surf s-line"/>
+          <text x="22" y="44" font-size="11" class="t-a mono">1</text>
+          <text x="80" y="58" text-anchor="middle" font-size="13" font-weight="600">Define success</text>
+          <text x="80" y="76" text-anchor="middle" font-size="11" class="t-m">task, rubric, thresholds</text>
+          <rect x="180" y="22" width="140" height="70" rx="8" class="f-surf s-line"/>
+          <text x="192" y="44" font-size="11" class="t-a mono">2</text>
+          <text x="250" y="58" text-anchor="middle" font-size="13" font-weight="600">Build eval set</text>
+          <text x="250" y="76" text-anchor="middle" font-size="11" class="t-m">real cases + edge cases</text>
+          <rect x="350" y="22" width="140" height="70" rx="8" class="f-accs"/>
+          <text x="362" y="44" font-size="11" class="t-a mono">3</text>
+          <text x="420" y="58" text-anchor="middle" font-size="13" font-weight="600">Run offline evals</text>
+          <text x="420" y="76" text-anchor="middle" font-size="11" class="t-m">gate: thresholds met?</text>
+          <rect x="520" y="22" width="140" height="70" rx="8" class="f-surf s-line"/>
+          <text x="532" y="44" font-size="11" class="t-a mono">4</text>
+          <text x="590" y="58" text-anchor="middle" font-size="13" font-weight="600">Release &amp; monitor</text>
+          <text x="590" y="76" text-anchor="middle" font-size="11" class="t-m">flag, A/B, live metrics</text>
+          <text x="420" y="150" text-anchor="middle" font-size="12" class="t-a" font-weight="600">Add real failures and new edge cases to the eval set</text>
+        </svg></div>
+        <div class="split">
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <h4>What to measure</h4>
+            <div class="tbl"><table><tbody>
+              <tr><td><b>Quality</b></td><td>Task success, accuracy against expected answers, groundedness (claims supported by sources), hallucination rate</td></tr>
+              <tr><td><b>Classification</b></td><td>Precision, recall, F1 (calculator alongside)</td></tr>
+              <tr><td><b>User</b></td><td>Acceptance rate, edit rate, thumbs up/down, hand-offs to a human</td></tr>
+              <tr><td><b>Operational</b></td><td>Latency, cost per task, safety and policy violations</td></tr>
+            </tbody></table></div>
+            <h4>How to score outputs</h4>
+            <ul>
+              <li><b>Code checks</b>: deterministic tests such as valid format, required fields, citations present.</li>
+              <li><b>LLM-as-judge</b>: a model scores outputs against a rubric. Check it agrees with human labels before you trust it.</li>
+              <li><b>Human review</b>: experts grade samples or compare two versions side by side.</li>
+            </ul>
+            <p class="note">Re-run the full eval set whenever the model, prompt, data or retrieval changes. That makes it a regression test.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px">
+            <h4>Confusion matrix · example: flagging priority faults</h4>
+            <div class="cm">
+              <div></div><div class="h">Predicted yes</div><div class="h">Predicted no</div>
+              <div class="h">Actual yes</div>
+              <div class="c ok"><label for="cmTP">TP · caught</label><input id="cmTP" type="number" value="80" min="0"></div>
+              <div class="c no"><label for="cmFN">FN · missed</label><input id="cmFN" type="number" value="20" min="0"></div>
+              <div class="h">Actual no</div>
+              <div class="c no"><label for="cmFP">FP · false alarm</label><input id="cmFP" type="number" value="30" min="0"></div>
+              <div class="c ok"><label for="cmTN">TN · correctly ignored</label><input id="cmTN" type="number" value="870" min="0"></div>
+            </div>
+            <div class="tiles" id="cmOut"></div>
+            <p class="note" id="cmNote"></p>
+            <p class="note">Prioritise <b>recall</b> when a miss is costly, such as a vulnerable customer not flagged. Prioritise <b>precision</b> when false alarms waste scarce effort, such as crews sent to non-faults.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <div class="lens-scope lens-item">
+<figure class="lens-block lens-visual" data-lens-block="visual" data-steps="8" id="evaluation-lens"><figcaption class="lens-tag">Visual · step through it</figcaption><div class="lens-controls" hidden=""><button type="button" class="lens-btn" data-lens-act="prev">&#9664; Back</button><button type="button" class="lens-btn" data-lens-act="next">Next step &#9654;</button><button type="button" class="lens-btn" data-lens-act="all">Show all</button><span class="lens-status" role="status" aria-live="polite"></span></div><div class="lens-svg-wrap"><svg class="lens-svg" viewBox="0 84 900 286" role="img" aria-label="Evaluation gates from idea to scale" aria-labelledby="evaluation-lens-t evaluation-lens-d"><title id="evaluation-lens-t">Evaluation gates from idea to scale</title><desc id="evaluation-lens-d">Boxes: idea, opportunity gate, usability and evals gate, limited release, outcome review, scale, and park or roll back. Numbered arrows follow the steps listed under the diagram; dashed arrows are stop or iterate paths.</desc><g class="lens-node lr-client"><rect x="15" y="140" width="120" height="64" rx="10"/><text class="lens-label" x="75.0" y="168" style="text-anchor:middle">Idea</text><text class="lens-sub" x="75.0" y="186" style="text-anchor:middle">request, insight</text></g><g class="lens-node lr-control"><rect x="165" y="140" width="120" height="64" rx="10"/><text class="lens-label" x="225.0" y="168" style="text-anchor:middle">Opportunity</text><text class="lens-sub" x="225.0" y="186" style="text-anchor:middle">worth solving?</text></g><g class="lens-node lr-control"><rect x="315" y="140" width="120" height="64" rx="10"/><text class="lens-label" x="375.0" y="168" style="text-anchor:middle">Usability, evals</text><text class="lens-sub" x="375.0" y="186" style="text-anchor:middle">works for users?</text></g><g class="lens-node lr-compute"><rect x="465" y="140" width="120" height="64" rx="10"/><text class="lens-label" x="525.0" y="168" style="text-anchor:middle">Limited release</text><text class="lens-sub" x="525.0" y="186" style="text-anchor:middle">flag, A/B</text></g><g class="lens-node lr-control"><rect x="615" y="140" width="120" height="64" rx="10"/><text class="lens-label" x="675.0" y="168" style="text-anchor:middle">Outcome review</text><text class="lens-sub" x="675.0" y="186" style="text-anchor:middle">target met?</text></g><g class="lens-node lr-compute"><rect x="765" y="140" width="120" height="64" rx="10"/><text class="lens-label" x="825.0" y="168" style="text-anchor:middle">Scale</text><text class="lens-sub" x="825.0" y="186" style="text-anchor:middle">full rollout</text></g><g class="lens-node lr-risk"><rect x="390" y="262" width="150" height="64" rx="10"/><text class="lens-label" x="465.0" y="290" style="text-anchor:middle">Park / roll back</text><text class="lens-sub" x="465.0" y="308" style="text-anchor:middle">record learning</text></g><g class="lens-edge lr-client" data-step="1"><path d="M135.0 172.0 L156.0 172.0"/><polygon points="165.0,172.0 154.0,177.5 154.0,166.5"/><circle cx="150.0" cy="172.0" r="10.5"/><text class="lens-num" x="150.0" y="176.0" style="text-anchor:middle">1</text></g><g class="lens-edge lr-control" data-step="2"><path d="M285.0 172.0 L306.0 172.0"/><polygon points="315.0,172.0 304.0,177.5 304.0,166.5"/><circle cx="300.0" cy="172.0" r="10.5"/><text class="lens-num" x="300.0" y="176.0" style="text-anchor:middle">2</text></g><g class="lens-edge lr-control" data-step="3"><path d="M435.0 172.0 L456.0 172.0"/><polygon points="465.0,172.0 454.0,177.5 454.0,166.5"/><circle cx="450.0" cy="172.0" r="10.5"/><text class="lens-num" x="450.0" y="176.0" style="text-anchor:middle">3</text></g><g class="lens-edge lr-compute" data-step="4"><path d="M585.0 172.0 L606.0 172.0"/><polygon points="615.0,172.0 604.0,177.5 604.0,166.5"/><circle cx="600.0" cy="172.0" r="10.5"/><text class="lens-num" x="600.0" y="176.0" style="text-anchor:middle">4</text></g><g class="lens-edge lr-control" data-step="5"><path d="M735.0 172.0 L756.0 172.0"/><polygon points="765.0,172.0 754.0,177.5 754.0,166.5"/><circle cx="750.0" cy="172.0" r="10.5"/><text class="lens-num" x="750.0" y="176.0" style="text-anchor:middle">5</text></g><g class="lens-edge lr-control dashed" data-step="6"><path d="M675.0 140.0 L675.0 108.0 L375.0 108.0 L375.0 131.0"/><polygon points="375.0,140.0 369.5,129.0 380.5,129.0"/><circle cx="525.0" cy="108.0" r="10.5"/><text class="lens-num" x="525.0" y="112.0" style="text-anchor:middle">6</text></g><g class="lens-edge lr-risk dashed" data-step="7"><path d="M225.0 204.0 L225.0 294.0 L381.0 294.0"/><polygon points="390.0,294.0 379.0,299.5 379.0,288.5"/><circle cx="300.0" cy="294.0" r="10.5"/><text class="lens-num" x="300.0" y="298.0" style="text-anchor:middle">7</text></g><g class="lens-edge lr-risk" data-step="8"><path d="M675.0 204.0 L675.0 294.0 L549.0 294.0"/><polygon points="540.0,294.0 551.0,288.5 551.0,299.5"/><circle cx="610.0" cy="294.0" r="10.5"/><text class="lens-num" x="610.0" y="298.0" style="text-anchor:middle">8</text></g><g class="lens-legend"><rect class="lg-client" x="14.0" y="349" width="11" height="11" rx="2"/><text x="30.0" y="358" style="text-anchor:start">client / customer</text><rect class="lg-compute" x="164.2" y="349" width="11" height="11" rx="2"/><text x="180.2" y="358" style="text-anchor:start">work / delivery</text><rect class="lg-control" x="301.2" y="349" width="11" height="11" rx="2"/><text x="317.2" y="358" style="text-anchor:start">control / gate</text><rect class="lg-risk" x="431.6" y="349" width="11" height="11" rx="2"/><text x="447.6" y="358" style="text-anchor:start">risk / exception</text><line x1="575.2" y1="354" x2="603.2" y2="354"/><text x="609.2" y="358" style="text-anchor:start">stop or iterate</text></g></svg></div><ol class="lens-steps"><li>An idea arrives as a request, an insight or a metric that has moved.</li><li>Opportunity gate: the problem is worth solving for this segment and strategy.</li><li>Usability and eval gate: users complete the task and any AI output meets its thresholds.</li><li>Release to a limited group behind a flag or as an A/B test.</li><li>Outcome review: the target is met and guardrails hold, so scale to everyone.</li><li>Real movement but short of target: iterate on the design, then test again.</li><li>The opportunity is weak: park it before a team is committed.</li><li>No improvement, or a guardrail is breached: roll back, then record what you learned.</li></ol></figure>
+      <section class="lens-block lens-feynman" data-lens-block="feynman" aria-label="Explain it back"><p class="lens-tag">Feynman · explain it back</p>
+        <p class="lens-prompt">Explain to a sponsor why a feature that hit its launch target might still be rolled back.<br><span class="lens-banned">Banned words: <i>guardrail</i>, <i>A/B test</i>, <i>metric</i></span></p>
+        <details class="lens-model"><summary>Model answer (open after you have tried)</summary><p>Before launch we agree two kinds of number: the one we are trying to improve, and the ones that must not get worse, such as refunds, complaints or support calls. A feature can lift the first while quietly damaging the second. If the damage goes past the limit we agreed in advance, we pause or remove the feature, fix the cause and try again, because a gain in one place that costs more elsewhere is not a gain. We also check again after a few weeks, because early gains from novelty often fade.</p></details>
+      </section>
+    </div>
+  </div>
+  <p class="empty" hidden>No product cards match that filter.</p>
+</section>
+
+<!-- ================= FORMULAS ================= -->
+<section class="panel" id="formulas" data-track="project" role="tabpanel" aria-labelledby="t-formulas" hidden>
+  <div class="panel-head">
+    <h2>Formula sheet</h2>
+    <p>Every number you might need to calculate under exam or interview pressure. The filter box searches this table too.</p>
+  </div>
+  <div class="tbl"><table id="ftable">
+    <thead><tr><th>Area</th><th>Name</th><th>Formula</th><th>Read it as</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+  <p class="empty" hidden>No formulas match that filter.</p>
+</section>
+
+<!-- ================= QUIZ ================= -->
+<section class="panel" id="quiz" data-track="product" role="tabpanel" aria-labelledby="t-quiz" hidden>
+  <div class="panel-head">
+    <h2>Quick quiz</h2>
+    <p>24 questions across both tracks, shuffled each round. Each answer explains the reasoning.</p>
+  </div>
+  <div class="card quiz" id="quizBox"></div>
+</section>
+
+</div>
+</main>
+
+<footer class="refs gut" id="references">
+  <div class="wrap">
+    <h2>References</h2>
+    <ol>
+      <li>Project Management Institute. <a href="https://www.pmi.org/standards/pmbok">The PMBOK Guide</a> (8th edition, published November 2025).</li>
+      <li>PM Study Circle. <a href="https://pmstudycircle.com/pmbok-guide-8th-edition/">What is new in the PMBOK Guide 8th Edition?</a> Six principles, seven performance domains, five focus areas.</li>
+      <li>ProjectManagement.com. <a href="https://www.projectmanagement.com/articles/1134513/the-pmp--exam-is-evolving--what-s-changing-in-2026">The PMP exam is evolving: what's changing in 2026</a>. Domain weightings.</li>
+      <li>4PMTI. <a href="https://www.4pmti.com/?p=1000264">PMP Exam Update 2026</a>. Launch date, question count and duration.</li>
+      <li>Scrum.org. <a href="https://www.scrum.org/resources/scrum-guide">The Scrum Guide</a> (2020 edition, Schwaber and Sutherland).</li>
+      <li>Knowledge Train. <a href="https://knowledgetrain.co.uk/project-management/prince2/prince2-faqs/what-is-the-difference-between-prince2-6-and-7">What is the difference between PRINCE2 6 and 7?</a></li>
+      <li>Marty Cagan, SVPG. <a href="https://svpg.com/four-big-risks/">The Four Big Risks</a>.</li>
+      <li>Teresa Torres, Product Talk. <a href="https://www.producttalk.org/glossary-discovery-opportunity-solution-tree/">Opportunity Solution Tree</a>.</li>
+      <li>Jakob Nielsen, Nielsen Norman Group. <a href="https://nngroup.com/articles/why-you-only-need-to-test-with-5-users/">Why You Only Need to Test with 5 Users</a>.</li>
+      <li>Jakob Nielsen, Nielsen Norman Group. <a href="https://www.nngroup.com/articles/ten-usability-heuristics/">10 Usability Heuristics for User Interface Design</a>.</li>
+      <li>Jeff Sauro, MeasuringU. <a href="https://www.measuringu.com/sus/">Measuring Usability with the System Usability Scale (SUS)</a>. Scoring and the average of 68.</li>
+    </ol>
+    <p class="note" style="margin-top:12px">Other frameworks (Kano, AARRR, HEART, Lean Startup, Jobs to be Done, RICE, WSJF) are summarised from their widely published originals. Worked examples use invented figures.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const num=id=>{const v=parseFloat($('#'+id).value);return isFinite(v)?v:0};
+const fin=n=>isFinite(n)&&!isNaN(n);
+const f0=n=>fin(n)?n.toLocaleString('en-GB',{maximumFractionDigits:0}):'–';
+const f1=n=>fin(n)?n.toLocaleString('en-GB',{maximumFractionDigits:1}):'–';
+const f2=n=>fin(n)?n.toLocaleString('en-GB',{minimumFractionDigits:2,maximumFractionDigits:2}):'–';
+const gbp=n=>fin(n)?(n<0?'−£':'£')+Math.abs(n).toLocaleString('en-GB',{maximumFractionDigits:0}):'–';
+const pill=(t,k)=>`<span class="pill ${k}">${t}</span>`;
+const tile=(lbl,val,f,p)=>`<div class="tile"><span class="lbl">${lbl}</span><b>${val}</b>${f?`<span class="f">${f}</span>`:''}${p||''}</div>`;
+const on=(ids,fn)=>{ids.forEach(id=>$('#'+id).addEventListener('input',fn));fn()};
+const qIn=$('#q');
+/* keep each diagram's <title> and <desc> when its drawing is redrawn */
+const setSvg=(sel,s)=>{const el=$(sel);const keep=[...el.children].filter(n=>/^(title|desc)$/i.test(n.tagName)).map(n=>n.outerHTML).join('');el.innerHTML=keep+s};
+
+/* ---------- check buttons + progress ---------- */
+const CHECK='<svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5l3.2 3L13 4.5"/></svg>';
+let done=new Set(store.get('pmg-done',[]));
+const cards=$$('.card[data-id]');
+cards.forEach(c=>{
+  const b=$('.done',c); const t=$('h3',c).textContent;
+  b.innerHTML=CHECK; b.setAttribute('aria-label','Mark "'+t+'" as reviewed');
+  const sync=()=>{const d=done.has(c.dataset.id);b.setAttribute('aria-pressed',d);c.classList.toggle('is-done',d)};
+  b.addEventListener('click',()=>{done.has(c.dataset.id)?done.delete(c.dataset.id):done.add(c.dataset.id);store.set('pmg-done',[...done]);sync();prog()});
+  sync();
+});
+function prog(){
+  const P=cards.filter(c=>c.closest('#project')), Q=cards.filter(c=>c.closest('#product'));
+  const dp=P.filter(c=>done.has(c.dataset.id)).length, dq=Q.filter(c=>done.has(c.dataset.id)).length, tot=P.length+Q.length;
+  $('#progTxt').textContent=(dp+dq)+' / '+tot;
+  $('#progP').style.width=(dp/tot*100)+'%'; $('#progQ').style.width=(dq/tot*100)+'%';
+  $('#c-project').textContent=dp+'/'+P.length; $('#c-product').textContent=dq+'/'+Q.length;
+}
+prog();
+
+/* ---------- tabs, glance, search ---------- */
+const TABS=['project','product','formulas','quiz'];
+function show(id){
+  $$('.tab').forEach(t=>t.setAttribute('aria-selected',t.dataset.tab===id));
+  $$('.panel').forEach(p=>p.hidden=p.id!==id);
+  store.set('pmg-tab',id); filter();
+}
+$$('.tab').forEach(t=>t.addEventListener('click',()=>show(t.dataset.tab)));
+const hash=(location.hash||'').slice(1);
+show(TABS.includes(hash)?hash:hash==='evaluation'?'product':store.get('pmg-tab','project'));
+if(hash==='evaluation')setTimeout(()=>$('#evaluation').scrollIntoView(),0);
+$('#evJump').addEventListener('click',e=>{e.preventDefault();qIn.value='';filter();$('#evaluation').scrollIntoView({behavior:'smooth'})});
+
+const gl=$('#glance');
+function setGlance(v){document.body.classList.toggle('glance',v);gl.setAttribute('aria-pressed',v);store.set('pmg-glance',v)}
+gl.addEventListener('click',()=>setGlance(gl.getAttribute('aria-pressed')!=='true'));
+setGlance(!!store.get('pmg-glance',false));
+
+function filter(){
+  const q=qIn.value.trim().toLowerCase();
+  $$('.panel').forEach(p=>{
+    let shown=0;
+    const items=p.id==='formulas'?$$('#ftable tbody tr',p):$$('.grid > .card',p);
+    items.forEach(el=>{const m=!q||el.textContent.toLowerCase().includes(q);el.hidden=!m;if(m)shown++});
+    const e=$('.empty',p); if(e) e.hidden=!(items.length&&shown===0);
+  });
+  $$('.grid > .divider, .lens-item, .lens-intro').forEach(d=>d.hidden=!!q);
+}
+qIn.addEventListener('input',filter);
+
+/* ---------- PMBOK domains ---------- */
+const DOM=[
+ ['Governance','Decision rights, oversight, approvals and escalation paths. Keeps the project aligned to organisational strategy and compliance.'],
+ ['Scope','Define, decompose (WBS or backlog) and control what is in and out, through to acceptance of deliverables.'],
+ ['Schedule','Sequence, estimate and control time: critical path, milestones, iterations, release plans.'],
+ ['Finance','Budget, funding, cost baseline and value tracking, including earned value and reserves.'],
+ ['Stakeholders','Identify, analyse and engage the people who affect or are affected by the work; keep expectations aligned.'],
+ ['Resources','Acquire, develop and manage the team and physical resources; capacity, skills and suppliers.'],
+ ['Risk','Identify, analyse, respond to and monitor uncertainty, both threats and opportunities.']];
+const dWrap=$('#domains'), dOut=$('#domainOut');
+DOM.forEach((d,i)=>{const b=document.createElement('button');b.className='blk';b.innerHTML='<strong>'+d[0]+'</strong>';b.setAttribute('aria-pressed',i===0);
+  b.addEventListener('click',()=>{$$('button',dWrap).forEach(x=>x.setAttribute('aria-pressed',x===b));dOut.innerHTML='<strong>'+d[0]+'</strong> · '+d[1]});dWrap.appendChild(b)});
+dOut.innerHTML='<strong>'+DOM[0][0]+'</strong> · '+DOM[0][1];
+
+/* ---------- triangle ---------- */
+function tri(mode){
+  const fixed=mode==='pred'?['Scope']:['Time','Cost'];
+  const V=[['Scope',150,40],['Time',46,196],['Cost',254,196]];
+  let s='<polygon points="150,40 46,196 254,196" class="f-none s-line" stroke-width="2"/>';
+  s+='<text x="150" y="152" text-anchor="middle" font-size="13" font-weight="600" class="t-m">Quality</text>';
+  V.forEach(([n,x,y])=>{const f=fixed.includes(n);
+    s+=`<circle cx="${x}" cy="${y}" r="32" class="${f?'f-acc':'f-surf s-acc'}" stroke-width="2" ${f?'':'stroke-dasharray="4 3"'}/>`;
+    s+=`<text x="${x}" y="${y+1}" text-anchor="middle" font-size="13" font-weight="700" class="${f?'t-s':''}">${n}</text>`;
+    s+=`<text x="${x}" y="${y+15}" text-anchor="middle" font-size="9" class="mono ${f?'t-s':'t-m'}">${f?'FIXED':'FLEXES'}</text>`});
+  setSvg('#triSvg',s);
+  $('#triTxt').textContent=mode==='pred'?'Predictive: scope is fixed in the plan, so time and cost are estimated from it and flex when scope changes.':'Agile: the team (cost) and the timebox (time) are fixed, so scope is what flexes. The backlog absorbs change.';
+}
+$$('[data-tri]').forEach(b=>b.addEventListener('click',()=>{$$('[data-tri]').forEach(x=>x.setAttribute('aria-pressed',x===b));tri(b.dataset.tri)}));
+tri('pred');
+
+/* ---------- Stacey ---------- */
+const SX=40,SY=260,SK=2.2;
+function staceyBase(){
+  let s=`<defs><clipPath id="stClip"><rect x="${SX}" y="${SY-220}" width="220" height="220"/></clipPath></defs>`;
+  s+=`<rect x="${SX}" y="${SY-220}" width="220" height="220" class="f-surf"/>`;
+  s+=`<g clip-path="url(#stClip)">`;
+  [[105,'f-accs',0.5],[70,'f-accs',0.75],[35,'f-accs',1]].forEach(([r,c,o])=>{const R=r*SK;s+=`<path d="M${SX} ${SY}L${SX+R} ${SY}A${R} ${R} 0 0 0 ${SX} ${SY-R}Z" class="${c}" opacity="${o}"/>`});
+  [35,70,105].forEach(r=>{const R=r*SK;s+=`<path d="M${SX+R} ${SY}A${R} ${R} 0 0 0 ${SX} ${SY-R}" class="f-none s-acc" stroke-width="1" stroke-dasharray="3 3"/>`});
+  s+='</g>';
+  s+=`<path d="M${SX} ${SY-224}V${SY}H${SX+224}" class="f-none s-muted" stroke-width="1.5"/>`;
+  [['Simple',63,240],['Complicated',118,180],['Complex',178,124],['Chaos',236,66]].forEach(([t,x,y])=>s+=`<text x="${x}" y="${y}" text-anchor="middle" font-size="12" font-weight="600">${t}</text>`);
+  s+=`<text x="${SX+110}" y="290" text-anchor="middle" font-size="11" class="t-m">Technology uncertainty →</text>`;
+  s+=`<text transform="translate(16 ${SY-110}) rotate(-90)" text-anchor="middle" font-size="11" class="t-m">Requirements uncertainty →</text>`;
+  s+=`<circle id="stDot" r="9" class="f-acc" stroke-width="3" style="stroke:var(--surface)"/>`;
+  setSvg('#staceySvg',s);
+}
+staceyBase();
+function stacey(){
+  const x=num('stX'),y=num('stY'),r=Math.hypot(x,y);
+  const d=$('#stDot'); d.setAttribute('cx',SX+x*SK); d.setAttribute('cy',SY-y*SK);
+  const z=r<35?['Simple','Predictive. Plan up front, use standard practice. Sense → categorise → respond.']
+        :r<70?['Complicated','Predictive or hybrid. Expert analysis pays off; phase the work. Sense → analyse → respond.']
+        :r<105?['Complex','Agile / adaptive. Short iterations and frequent feedback. Probe → sense → respond.']
+        :['Chaos','Stabilise first, then move to adaptive. Act → sense → respond.'];
+  $('#stOut').innerHTML='<strong>'+z[0]+'</strong> · '+z[1];
+}
+on(['stX','stY'],stacey);
+
+/* ---------- Little's law ---------- */
+on(['lwWip','lwTp'],()=>{const w=num('lwWip'),t=num('lwTp');const ct=w/t;
+  $('#lwOut').innerHTML=tile('Avg cycle time',f1(ct)+' wk','WIP ÷ throughput')+tile('Halve WIP →',f1(ct/2)+' wk','same throughput',pill('2× faster','good'))});
+
+/* ---------- CPM ---------- */
+const T={A:{d:3,p:[],x:8,y:91},B:{d:4,p:['A'],x:168,y:20},C:{d:2,p:['A'],x:168,y:162},D:{d:5,p:['B'],x:328,y:20},E:{d:3,p:['C'],x:328,y:162},F:{d:2,p:['D','E'],x:488,y:91}};
+const order=['A','B','C','D','E','F'], NW=128, NH=68;
+const cpmIn=$('#cpmIn');
+order.forEach(k=>{const w=document.createElement('div');w.className='fld';w.innerHTML=`<label for="cpm${k}">${k} ← ${T[k].p.join(', ')||'start'}</label><input id="cpm${k}" type="number" min="0" value="${T[k].d}">`;cpmIn.appendChild(w)});
+function cpm(){
+  order.forEach(k=>T[k].d=Math.max(0,num('cpm'+k)));
+  order.forEach(k=>{const t=T[k];t.es=t.p.length?Math.max(...t.p.map(p=>T[p].ef)):0;t.ef=t.es+t.d});
+  const end=Math.max(...order.map(k=>T[k].ef));
+  [...order].reverse().forEach(k=>{const succ=order.filter(s=>T[s].p.includes(k));const t=T[k];t.lf=succ.length?Math.min(...succ.map(s=>T[s].ls)):end;t.ls=t.lf-t.d;t.fl=t.ls-t.es});
+  let s='';
+  order.forEach(k=>T[k].p.forEach(p=>{const a=T[p],b=T[k];const crit=a.fl===0&&b.fl===0&&a.ef===b.es;
+    const x1=a.x+NW,y1=a.y+NH/2,x2=b.x,y2=b.y+NH/2,mx=(x1+x2)/2;
+    s+=`<path d="M${x1} ${y1}C${mx} ${y1} ${mx} ${y2} ${x2-2} ${y2}" class="f-none ${crit?'s-acc':'s-muted'}" stroke-width="${crit?2.5:1.3}" marker-end="url(#${crit?'arwA':'arw'})"/>`}));
+  order.forEach(k=>{const t=T[k],c=t.fl===0;
+    s+=`<rect x="${t.x}" y="${t.y}" width="${NW}" height="${NH}" rx="8" class="${c?'f-acc':'f-surf s-line'}"/>`;
+    const tc=c?'t-s':'';const tm=c?'t-s':'t-m';
+    s+=`<text x="${t.x+10}" y="${t.y+19}" font-size="14" font-weight="700" class="${tc}">${k}<tspan font-size="11" font-weight="400" class="mono ${tm}" dx="6">${t.d}d</tspan></text>`;
+    s+=`<text x="${t.x+NW-10}" y="${t.y+19}" text-anchor="end" font-size="10.5" class="mono ${tc}">float ${t.fl}</text>`;
+    s+=`<text x="${t.x+10}" y="${t.y+40}" font-size="11" class="mono ${tm}">ES ${t.es} · EF ${t.ef}</text>`;
+    s+=`<text x="${t.x+10}" y="${t.y+57}" font-size="11" class="mono ${tm}">LS ${t.ls} · LF ${t.lf}</text>`});
+  setSvg('#cpmSvg',s);
+  const path=order.filter(k=>T[k].fl===0);
+  const nonc=order.filter(k=>T[k].fl>0).map(k=>k+' has '+T[k].fl+'d float').join(', ');
+  $('#cpmOut').innerHTML=`<strong>Critical path: ${path.join(' → ')} = ${end} days.</strong> ${nonc?nonc+'.':'Every activity is critical: no slack anywhere.'}`;
+}
+on(order.map(k=>'cpm'+k),cpm);
+
+/* ---------- EVM ---------- */
+on(['evBac','evPv','evEv','evAc'],()=>{
+  const bac=num('evBac'),pv=num('evPv'),ev=num('evEv'),ac=num('evAc');
+  const cv=ev-ac,sv=ev-pv,cpi=ev/ac,spi=ev/pv,eac=bac/cpi,etc=eac-ac,vac=bac-eac,tcpi=(bac-ev)/(bac-ac);
+  const g=(c,a,b)=>c?pill(a,'good'):pill(b,'bad');
+  $('#evOut').innerHTML=
+    tile('CV',gbp(cv),'EV − AC',g(cv>=0,'Under budget','Over budget'))+
+    tile('SV',gbp(sv),'EV − PV',g(sv>=0,'Ahead','Behind'))+
+    tile('CPI',f2(cpi),'EV ÷ AC',g(cpi>=1,'Efficient','Overspending'))+
+    tile('SPI',f2(spi),'EV ÷ PV',g(spi>=1,'On pace','Slipping'))+
+    tile('EAC',gbp(eac),'BAC ÷ CPI')+
+    tile('ETC',gbp(etc),'EAC − AC')+
+    tile('VAC',gbp(vac),'BAC − EAC',g(vac>=0,'Within budget','Overrun'))+
+    tile('TCPI',f2(tcpi),'(BAC−EV) ÷ (BAC−AC)',tcpi>1?pill(tcpi>1.1?'Unlikely to recover':'Must improve','warn'):pill('Achievable','good'));
+  const max=Math.max(bac,pv,ev,ac,eac)||1;
+  const row=(l,v,c)=>`<div class="hbar"><span>${l}</span><div class="t"><i style="width:${Math.max(0,v/max*100)}%;background:${c}"></i></div><span>${gbp(v)}</span></div>`;
+  $('#evBars').innerHTML=row('BAC',bac,'var(--muted)')+row('PV',pv,'color-mix(in srgb,var(--acc) 45%,var(--sunk))')+row('EV',ev,'var(--acc)')+row('AC',ac,ac>ev?'var(--bad)':'var(--good)')+row('EAC',eac,eac>bac?'var(--bad)':'var(--good)');
+});
+
+/* ---------- PERT ---------- */
+on(['peO','peM','peP'],()=>{const o=num('peO'),m=num('peM'),p=num('peP');const e=(o+4*m+p)/6,sd=(p-o)/6,tr=(o+m+p)/3;
+  $('#peOut').innerHTML=tile('PERT mean',f2(e),'(O+4M+P)÷6')+tile('Std dev σ',f2(sd),'(P−O)÷6')+tile('95% range',f1(e-2*sd)+'–'+f1(e+2*sd),'mean ± 2σ')+tile('Triangular',f2(tr),'(O+M+P)÷3')});
+
+/* ---------- Risk matrix ---------- */
+const M=$('#riskM');
+const band=s=>s>=15?['hi','High','Respond now: avoid or mitigate; owner and actions this week. Escalate if outside your authority.']:s>=5?['md','Medium','Plan a response and a trigger; review at each risk meeting.']:['lo','Low','Accept and monitor on the watch list.'];
+for(let p=5;p>=1;p--){const a=document.createElement('div');a.className='ax';a.textContent=p;M.appendChild(a);
+  for(let i=1;i<=5;i++){const s=p*i,b=document.createElement('button');b.className=band(s)[0];b.textContent=s;b.setAttribute('aria-label','Probability '+p+', impact '+i+', score '+s);b.setAttribute('aria-pressed',p===4&&i===4);
+    b.addEventListener('click',()=>{$$('button',M).forEach(x=>x.setAttribute('aria-pressed',x===b));riskSay(p,i)});M.appendChild(b)}}
+M.appendChild(Object.assign(document.createElement('div'),{className:'ax'}));
+for(let i=1;i<=5;i++)M.appendChild(Object.assign(document.createElement('div'),{className:'ax',textContent:i}));
+function riskSay(p,i){const s=p*i,b=band(s);$('#riskOut').innerHTML=`<strong>Score ${s} · ${b[1]}</strong> (P${p} × I${i}). ${b[2]}`}
+riskSay(4,4);
+const R=[['Supplier delay',30,-20000],['Key developer leaves',10,-40000],['Early API access (opportunity)',20,15000]];
+const emv=$('#emv');
+R.forEach((r,i)=>{const d=document.createElement('div');d.style.cssText='display:grid;grid-template-columns:minmax(0,1fr) 64px 92px 76px;gap:6px;align-items:center;font-size:13px';
+  d.innerHTML=`<span>${r[0]}</span><input type="number" id="emvP${i}" value="${r[1]}" aria-label="${r[0]} probability %"><input type="number" id="emvI${i}" value="${r[2]}" step="1000" aria-label="${r[0]} impact £"><b class="mono" id="emvV${i}" style="text-align:right;font-variant-numeric:tabular-nums"></b>`;emv.appendChild(d)});
+on(R.flatMap((r,i)=>['emvP'+i,'emvI'+i]),()=>{let t=0;R.forEach((r,i)=>{const v=num('emvP'+i)/100*num('emvI'+i);t+=v;$('#emvV'+i).textContent=gbp(v)});
+  $('#emvOut').innerHTML=`Columns: probability %, impact £, EMV. Total EMV <b class="mono">${gbp(t)}</b>${t<0?' → a contingency reserve of about '+gbp(-t)+' covers these on average.':' → net positive exposure.'}`});
+
+/* ---------- comms channels ---------- */
+on(['chN'],()=>{const n=Math.max(2,Math.round(num('chN')));const c=n*(n-1)/2,c2=(n+1)*n/2;
+  $('#chOut').innerHTML=tile('Channels',f0(c),'n(n−1)÷2')+tile('Add 1 person',f0(c2),'+'+f0(c2-c)+' channels',pill('grows ~n²','warn'))});
+
+/* ---------- RICE ---------- */
+const RI=[['One-tap reorder',4000,2,80,3],['Supplier portal',600,3,50,8],['Dark mode',6000,0.25,100,1],['Smart substitutions',2500,1,80,2]];
+const tb=$('#rice tbody');
+const IMP=[[3,'3 · massive'],[2,'2 · high'],[1,'1 · medium'],[0.5,'0.5 · low'],[0.25,'0.25 · minimal']], CON=[[100,'100%'],[80,'80%'],[50,'50%']];
+RI.forEach((r,i)=>{const tr=document.createElement('tr');
+  tr.innerHTML=`<td class="mono" id="rk${i}"></td><td style="min-width:130px">${r[0]}</td>
+  <td><input type="number" id="rR${i}" value="${r[1]}" style="min-width:76px" aria-label="${r[0]} reach"></td>
+  <td><select id="rI${i}" aria-label="${r[0]} impact">${IMP.map(([v,l])=>`<option value="${v}" ${v===r[2]?'selected':''}>${l}</option>`).join('')}</select></td>
+  <td><select id="rC${i}" aria-label="${r[0]} confidence">${CON.map(([v,l])=>`<option value="${v}" ${v===r[3]?'selected':''}>${l}</option>`).join('')}</select></td>
+  <td><input type="number" id="rE${i}" value="${r[4]}" step="0.5" style="min-width:60px" aria-label="${r[0]} effort"></td>
+  <td class="num mono" id="rS${i}"></td>`;tb.appendChild(tr)});
+const riceCalc=()=>{const sc=RI.map((r,i)=>({i,s:num('rR'+i)*num('rI'+i)*num('rC'+i)/100/num('rE'+i)}));
+  const sorted=[...sc].sort((a,b)=>(fin(b.s)?b.s:-1)-(fin(a.s)?a.s:-1));
+  sc.forEach(o=>{$('#rS'+o.i).textContent=f0(o.s);const rank=sorted.indexOf(o)+1;$('#rk'+o.i).innerHTML=rank===1?pill('1','acc'):rank});};
+RI.forEach((r,i)=>['rR','rI','rC','rE'].forEach(p=>{$('#'+p+i).addEventListener('input',riceCalc);$('#'+p+i).addEventListener('change',riceCalc)}));
+riceCalc();
+
+/* ---------- WSJF ---------- */
+on(['wsBv','wsTc','wsRr','wsJs'],()=>{const cod=num('wsBv')+num('wsTc')+num('wsRr');
+  $('#wsOut').innerHTML=tile('Cost of delay',f0(cod),'BV + TC + RR/OE')+tile('WSJF',f2(cod/num('wsJs')),'CoD ÷ job size')});
+
+/* ---------- Kano ---------- */
+const KX0=48,KX1=320,KY0=16,KY1=208,KYM=(KY0+KY1)/2,KX=t=>KX0+t*(KX1-KX0);
+const kPath=f=>{let d='';for(let i=0;i<=40;i++){const t=i/40;d+=(i?'L':'M')+KX(t).toFixed(1)+' '+f(t).toFixed(1)}return d};
+const KANO=[
+ {k:'basic',n:'Basic (must-be)',f:t=>KYM+(KY1-KYM)*Math.exp(-4*t),ex:'Expected. Missing it causes frustration; adding more gains nothing. e.g. secure payment, the app not crashing.'},
+ {k:'perf',n:'Performance',f:t=>KY1-t*(KY1-KY0),ex:'More is better, linearly. Customers ask for these and compare on them. e.g. delivery speed, price, battery life.'},
+ {k:'delight',n:'Delighter',f:t=>KYM-(KYM-KY0)*(Math.exp(3*t)-1)/(Math.exp(3)-1),ex:'Unexpected. Absence doesn\'t hurt; presence delights. Customers rarely ask for them. e.g. a handwritten note in the box.'}];
+let kSel='basic';
+function kano(){
+  let s=`<line x1="${KX0}" y1="${KYM}" x2="${KX1+8}" y2="${KYM}" class="s-muted" stroke-width="1.2" marker-end="url(#arw)"/>`;
+  s+=`<line x1="${KX0}" y1="${KY1+6}" x2="${KX0}" y2="${KY0-6}" class="s-muted" stroke-width="1.2" marker-end="url(#arw)"/>`;
+  s+=`<text x="${KX0-6}" y="${KY0+6}" text-anchor="end" font-size="10" class="t-m">Delighted</text><text x="${KX0-6}" y="${KY1}" text-anchor="end" font-size="10" class="t-m">Frustrated</text>`;
+  s+=`<text x="${KX1}" y="${KYM+16}" text-anchor="end" font-size="10" class="t-m">Fully implemented →</text><text x="${KX0+4}" y="${KYM+16}" font-size="10" class="t-m">Absent</text>`;
+  s+=`<text x="${KX0-6}" y="${KYM+4}" text-anchor="end" font-size="10" class="t-m">0</text>`;
+  KANO.forEach(c=>{const a=c.k===kSel;s+=`<path d="${kPath(c.f)}" class="f-none ${a?'s-acc':'s-muted'}" stroke-width="${a?3.5:1.5}" opacity="${a?1:.55}"/>`;
+    const lx=c.k==='basic'?KX(.55):c.k==='perf'?KX(.62):KX(.78), ly=c.f(c.k==='basic'?.55:c.k==='perf'?.62:.78)+(c.k==='delight'?-8:c.k==='basic'?16:-8);
+    s+=`<text x="${lx}" y="${ly}" font-size="11.5" font-weight="${a?700:500}" class="${a?'t-a':'t-m'}" text-anchor="${c.k==='perf'?'end':'start'}">${c.n.split(' ')[0]}</text>`});
+  setSvg('#kanoSvg',s);
+  const c=KANO.find(x=>x.k===kSel);$('#kanoOut').innerHTML='<strong>'+c.n+'</strong> · '+c.ex;
+}
+const kc=$('#kanoChips');
+KANO.forEach(c=>{const b=document.createElement('button');b.className='chip';b.textContent=c.n;b.setAttribute('aria-pressed',c.k===kSel);
+  b.addEventListener('click',()=>{kSel=c.k;$$('button',kc).forEach(x=>x.setAttribute('aria-pressed',x===b));kano()});kc.appendChild(b)});
+kano();
+
+/* ---------- Lean loop ---------- */
+(function(){const cx=160,cy=146,r=96;const P=a=>[cx+r*Math.cos(a*Math.PI/180),cy+r*Math.sin(a*Math.PI/180)];
+  const nodes=[['Build',-90],['Measure',30],['Learn',150]], arts=[['Product',-30],['Data',90],['Ideas',210]];
+  let s='';
+  nodes.forEach((n,i)=>{const a0=n[1]+22,a1=nodes[(i+1)%3][1]+(i===2?360:0)-22;const [x0,y0]=P(a0),[x1,y1]=P(a1);
+    s+=`<path d="M${x0.toFixed(1)} ${y0.toFixed(1)}A${r} ${r} 0 0 1 ${x1.toFixed(1)} ${y1.toFixed(1)}" class="f-none s-acc" stroke-width="2" marker-end="url(#arwA)"/>`});
+  arts.forEach(([t,a])=>{const [x,y]=[cx+(r+22)*Math.cos(a*Math.PI/180),cy+(r+22)*Math.sin(a*Math.PI/180)];s+=`<text x="${x.toFixed(1)}" y="${(y+4).toFixed(1)}" text-anchor="middle" font-size="11.5" class="t-m mono">${t}</text>`});
+  nodes.forEach(([t,a])=>{const [x,y]=P(a);s+=`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="32" class="f-acc"/><text x="${x.toFixed(1)}" y="${(y+5).toFixed(1)}" text-anchor="middle" font-size="13" font-weight="700" class="t-s">${t}</text>`});
+  s+=`<text x="${cx}" y="${cy-4}" text-anchor="middle" font-size="12" class="t-m">minimise</text><text x="${cx}" y="${cy+12}" text-anchor="middle" font-size="12" class="t-m">total loop time</text>`;
+  setSvg('#leanSvg',s)})();
+
+/* ---------- AARRR funnel ---------- */
+const F=[['Acquisition','How do they find us?','Sign-ups',10000],['Activation','Great first experience?','First order placed',3200],['Retention','Do they come back?','Ordered again in 30 days',1400],['Referral','Do they tell others?','Invited a friend',420],['Revenue','Do we make money?','Became subscribers',260]];
+$('#funnel').innerHTML=F.map((f,i)=>{const pct=f[3]/F[0][3]*100,prev=i?Math.round(f[3]/F[i-1][3]*100)+'% of prev':'100%';
+  return `<div class="frow"><div class="nm">${f[0]}<small>${f[2]}</small></div><div class="fbw"><div class="t"><i style="width:${pct}%"></i></div><span><b>${f0(f[3])}</b> · ${prev}</span></div><div class="q">${f[1]}</div></div>`}).join('')+
+  '<p class="note">Biggest drop here is acquisition → activation (32%). Fix the leakiest stage first; more traffic into a leaky funnel wastes CAC.</p>';
+
+/* ---------- Sean Ellis + retention ---------- */
+on(['seV'],()=>{const v=num('seV');$('#seVal').textContent=v;
+  $('#seOut').innerHTML=v>=40?'<strong>Signal of PMF.</strong> Focus on growth, but keep watching retention by cohort.':v>=25?'<strong>Close.</strong> Study the "very disappointed" group: who they are and what they value. Narrow the product to them.':'<strong>Not yet.</strong> Keep iterating on value for a narrower segment before spending on growth.'});
+(function(){const X=m=>40+m/12*260,Y=v=>200-v*1.8;const p=f=>{let d='';for(let m=0;m<=12;m+=0.25)d+=(m?'L':'M')+X(m).toFixed(1)+' '+Y(f(m)).toFixed(1);return d};
+  let s=`<path d="M40 20V200H300" class="f-none s-muted" stroke-width="1.2"/>`;
+  [0,50,100].forEach(v=>s+=`<text x="34" y="${Y(v)+4}" text-anchor="end" font-size="10" class="t-m mono">${v}%</text>`);
+  [0,3,6,9,12].forEach(m=>s+=`<text x="${X(m)}" y="216" text-anchor="middle" font-size="10" class="t-m mono">${m}</text>`);
+  s+=`<text x="300" y="228" text-anchor="end" font-size="10" class="t-m">months since sign-up</text>`;
+  s+=`<path d="${p(m=>35+65*Math.exp(-.6*m))}" class="f-none s-acc" stroke-width="3"/>`;
+  s+=`<path d="${p(m=>100*Math.exp(-.35*m))}" class="f-none s-muted" stroke-width="2" stroke-dasharray="5 4"/>`;
+  s+=`<line x1="150" y1="28" x2="174" y2="28" class="s-acc" stroke-width="3"/><text x="180" y="32" font-size="11.5" font-weight="700" class="t-a">Flattens: PMF</text>`;
+  s+=`<line x1="150" y1="46" x2="174" y2="46" class="s-muted" stroke-width="2" stroke-dasharray="5 4"/><text x="180" y="50" font-size="11.5" class="t-m">Decays to zero: no PMF</text>`;
+  setSvg('#retSvg',s)})();
+
+/* ---------- unit economics ---------- */
+on(['ueArpu','ueGm','ueCh','ueCac'],()=>{const a=num('ueArpu'),gm=num('ueGm')/100,ch=num('ueCh')/100,cac=num('ueCac');
+  const ltv=a*gm/ch,ratio=ltv/cac,pay=cac/(a*gm),life=1/ch;
+  $('#ueOut').innerHTML=tile('LTV',gbp(ltv),'ARPU × GM ÷ churn')+tile('Lifetime',f1(life)+' mo','1 ÷ churn')+
+    tile('LTV : CAC',f1(ratio)+' : 1','',ratio>=3?pill('Healthy','good'):ratio>=1?pill('Below 3:1','warn'):pill('Losing money','bad'))+
+    tile('CAC payback',f1(pay)+' mo','CAC ÷ (ARPU × GM)',pay<=12?pill('Under 12 mo','good'):pill('Over 12 mo','warn'))});
+
+/* ---------- adoption curve ---------- */
+(function(){const X=z=>20+(z+3)/6*600,B=176,Y=z=>B-Math.exp(-z*z/2)*150;
+  const segs=[[-3,-2,'Innovators','2.5%'],[-2,-1,'Early adopters','13.5%'],[-1,0,'Early majority','34%'],[0,1,'Late majority','34%'],[1,3,'Laggards','16%']];
+  let s='';
+  segs.forEach(([a,b],i)=>{let d=`M${X(a)} ${B}`;for(let z=a;z<=b+1e-9;z+=0.05)d+=`L${X(z).toFixed(1)} ${Y(z).toFixed(1)}`;d+=`L${X(b)} ${B}Z`;s+=`<path d="${d}" class="${i%2?'f-accs':'f-surf'}"/>`});
+  let c='';for(let z=-3;z<=3.001;z+=0.05)c+=(z===-3?'M':'L')+X(z).toFixed(1)+' '+Y(z).toFixed(1);s+=`<path d="${c}" class="f-none s-acc" stroke-width="2.5"/>`;
+  s+=`<line x1="20" y1="${B}" x2="620" y2="${B}" class="s-muted" stroke-width="1"/>`;
+  s+=`<rect x="${X(-1)-6}" y="20" width="12" height="${B-20}" class="f-sunk"/>`;
+  s+=`<text x="${X(-1)}" y="14" text-anchor="middle" font-size="11" font-weight="700" class="t-a">the chasm</text>`;
+  segs.forEach(([a,b,n,p])=>{const m=X((Math.max(a,-2.7)+Math.min(b,2.7))/2);s+=`<text x="${m}" y="${B+20}" text-anchor="middle" font-size="11.5" font-weight="600">${n}</text><text x="${m}" y="${B+36}" text-anchor="middle" font-size="11" class="t-m mono">${p}</text>`});
+  s+=`<text x="${X(-2.2)}" y="${Y(-1.5)-28}" text-anchor="middle" font-size="10.5" class="t-m">visionaries</text><text x="${X(0.5)}" y="${Y(0)+22}" text-anchor="middle" font-size="10.5" class="t-m">pragmatists want proof</text>`;
+  setSvg('#adoptSvg',s)})();
+
+/* ---------- A/B sample size ---------- */
+on(['abP','abD'],()=>{const p=num('abP')/100,d=num('abD')/100;const n=16*p*(1-p)/(d*d);
+  $('#abOut').innerHTML=tile('Per variant',f0(Math.ceil(n)),'16·p(1−p)÷δ²')+tile('Total (A+B)',f0(Math.ceil(n)*2),'80% power, α 0.05')});
+
+/* ---------- Evaluation: lifecycle stages ---------- */
+const EVS=[
+ ['Before build','Is this worth solving?','Opportunity assessment, customer interviews, assumption tests, market sizing, fake-door tests.','Go, explore further, or park. Park most ideas here, where saying no is cheapest.'],
+ ['Before launch','Does it work for users?','Usability tests, prototype tests, beta or internal use, offline evals for AI features, QA against acceptance criteria.','Fix what fails, then release to a small group behind a feature flag.'],
+ ['After launch','Did it move the outcome?','A/B test or holdout group, adoption and outcome metrics against the pre-agreed target, guardrail metrics, user feedback.','Scale, iterate or roll back, using the threshold written before launch.'],
+ ['Ongoing','Keep, improve or retire?','Feature usage audit, retention by cohort, cost to maintain, fit with current strategy.','Invest, maintain or sunset. Retiring low-value features reduces complexity and cost.']];
+const evW=$('#evStages'),evO=$('#evStageOut');
+const evSay=s=>{evO.innerHTML=`<strong>${s[0]}: ${s[1]}</strong><br><b>Methods</b> · ${s[2]}<br><b>Decision</b> · ${s[3]}`};
+EVS.forEach((s,i)=>{const b=document.createElement('button');b.className='blk';b.innerHTML=`<span class="mono muted" style="font-size:11px">${i+1}</span><strong>${s[0]}</strong>${s[1]}`;b.setAttribute('aria-pressed',i===2);
+  b.addEventListener('click',()=>{$$('button',evW).forEach(x=>x.setAttribute('aria-pressed',x===b));evSay(s)});evW.appendChild(b)});
+evSay(EVS[2]);
+
+/* ---------- Opportunity scorecard ---------- */
+const OPP=[['Problem severity',4],['Size of target segment',4],['Strategic fit',5],['Strength of evidence',2],['Differentiation',3],['Ease of delivery',3],['Business viability',4],['Why now',3]];
+const oppW=$('#oppRows');
+OPP.forEach(([n,v],i)=>{const r=document.createElement('div');r.className='srow';r.id='oppR'+i;
+  r.innerHTML=`<span>${n}</span><input type="range" id="opp${i}" min="1" max="5" step="1" value="${v}" aria-label="${n}"><b id="oppV${i}">${v}</b>`;oppW.appendChild(r)});
+on(OPP.map((o,i)=>'opp'+i),()=>{
+  const v=OPP.map((o,i)=>num('opp'+i));v.forEach((x,i)=>$('#oppV'+i).textContent=x);
+  const pct=v.reduce((a,b)=>a+b,0)/(5*v.length)*100, lo=Math.min(...v), wi=v.indexOf(lo);
+  OPP.forEach((o,i)=>$('#oppR'+i).classList.toggle('weak',v[i]===lo&&lo<=2));
+  const verdict=pct>=75?pill('Go: into discovery and delivery','good'):pct>=50?pill('Explore: test the weak spots','warn'):pill('Park it','bad');
+  $('#oppOut').innerHTML=tile('Score',f0(pct)+'%','sum ÷ max',verdict);
+  $('#oppWeak').innerHTML=lo<=2?`<strong>Weakest: ${OPP[wi][0]} (${lo}/5).</strong> Run a cheap test on this before committing a team.`:`<strong>No criterion below 3.</strong> Check the scores are backed by evidence rather than opinion.`;
+});
+
+/* ---------- Post-launch verdict ---------- */
+on(['plB','plT','plA','plG','plGt'],()=>{
+  const b=num('plB'),t=num('plT'),a=num('plA'),g=num('plG'),gt=num('plGt');
+  const lift=a-b, prog=(a-b)/(t-b);
+  $('#plOut').innerHTML=tile('Lift',(lift>=0?'+':'−')+f1(Math.abs(lift))+' pp','actual − baseline')+tile('Target reached',fin(prog)?f0(prog*100)+'%':'–','(actual − base) ÷ (target − base)')+tile('Guardrail',f1(g)+' pp','tolerance '+f1(gt)+' pp',g>gt?pill('Breached','bad'):pill('Within tolerance','good'));
+  let v;
+  if(g>gt) v=['bad','Hold the rollout','A guardrail is breached. Fix it or roll back before scaling, even though the primary metric may have moved.'];
+  else if(!fin(prog)) v=['warn','Set a target','Target equals baseline, so success is undefined. Agree a target before judging.'];
+  else if(prog>=1) v=['good','Scale','Target met with guardrails intact. Roll out fully and re-measure later in case early gains were novelty.'];
+  else if(prog>=0.5) v=['warn','Iterate','Real movement, but short of target. Find where users drop off and iterate before scaling.'];
+  else if(prog>0) v=['warn','Weak signal','Little movement. Sharpen the hypothesis and try one focused iteration; stop if nothing changes.'];
+  else v=['bad','Roll back or sunset','No improvement, or worse. Remove it so you do not carry the complexity, and record what you learned.'];
+  $('#plVerdict').innerHTML=`${pill(v[1],v[0])} <span style="margin-left:6px">${v[2]}</span>`;
+});
+
+/* ---------- SUS ---------- */
+const SUS=[['Would use frequently',4],['Unnecessarily complex',2],['Easy to use',4],['Need technical support',2],['Functions well integrated',5],['Too inconsistent',1],['Quick to learn',4],['Cumbersome to use',3],['Felt confident',4],['Lots to learn first',2]];
+const susW=$('#sus');
+SUS.forEach(([n,v],i)=>{const l=document.createElement('label');l.setAttribute('for','sus'+i);
+  l.innerHTML=`<i>${i+1}${i%2?'−':'+'}</i><span>${n}</span><select id="sus${i}">${[1,2,3,4,5].map(x=>`<option ${x===v?'selected':''}>${x}</option>`).join('')}</select>`;susW.appendChild(l)});
+on(SUS.map((s,i)=>'sus'+i),()=>{
+  const sc=SUS.reduce((a,s,i)=>{const x=num('sus'+i);return a+(i%2?5-x:x-1)},0)*2.5;
+  const g=sc>80.3?['Excellent','good']:sc>=68?['Above average','good']:sc>=51?['Below average','warn']:['Poor','bad'];
+  $('#susOut').innerHTML=tile('SUS score',f1(sc),'0–100 · average 68',pill(g[0],g[1]));
+});
+/* ---------- Confusion matrix ---------- */
+on(['cmTP','cmFP','cmFN','cmTN'],()=>{
+  const tp=num('cmTP'),fp=num('cmFP'),fn=num('cmFN'),tn=num('cmTN');
+  const p=tp/(tp+fp),r=tp/(tp+fn),f=2*p*r/(p+r),acc=(tp+tn)/(tp+fp+fn+tn);
+  const pc=x=>fin(x)?f1(x*100)+'%':'–';
+  $('#cmOut').innerHTML=tile('Precision',pc(p),'TP ÷ (TP + FP)')+tile('Recall',pc(r),'TP ÷ (TP + FN)')+tile('F1',fin(f)?f2(f):'–','2PR ÷ (P + R)')+tile('Accuracy',pc(acc),'(TP + TN) ÷ all');
+  $('#cmNote').innerHTML=fin(acc)&&fin(f)&&acc-f>0.1?`<b>Accuracy looks strong (${pc(acc)})</b> only because most cases are negatives. Precision and recall show how well the model handles the cases you care about.`:'With balanced classes, accuracy and F1 tell a similar story.';
+});
+
+/* ---------- formulas ---------- */
+const FX=[
+ ['Cost (EVM)','Cost variance','CV = EV − AC','Negative = over budget'],
+ ['Cost (EVM)','Schedule variance','SV = EV − PV','Negative = behind schedule'],
+ ['Cost (EVM)','Cost performance index','CPI = EV ÷ AC','£ of value earned per £ spent'],
+ ['Cost (EVM)','Schedule performance index','SPI = EV ÷ PV','Rate of progress vs plan'],
+ ['Cost (EVM)','EAC · typical variance','EAC = BAC ÷ CPI','Current cost efficiency continues'],
+ ['Cost (EVM)','EAC · atypical variance','EAC = AC + (BAC − EV)','Rest of work goes to plan'],
+ ['Cost (EVM)','EAC · cost & schedule','EAC = AC + (BAC − EV) ÷ (CPI × SPI)','Both indices drag the remainder'],
+ ['Cost (EVM)','Estimate to complete','ETC = EAC − AC','Money still needed'],
+ ['Cost (EVM)','Variance at completion','VAC = BAC − EAC','Negative = forecast overrun'],
+ ['Cost (EVM)','To-complete performance index','TCPI = (BAC − EV) ÷ (BAC − AC)','Efficiency needed on the rest; > 1 is harder'],
+ ['Estimating','PERT (beta) mean','E = (O + 4M + P) ÷ 6','Weighted toward most likely'],
+ ['Estimating','PERT standard deviation','σ = (P − O) ÷ 6','±1σ 68%, ±2σ 95%, ±3σ 99.7%'],
+ ['Estimating','Triangular mean','E = (O + M + P) ÷ 3','Simple average of three points'],
+ ['Estimating','Velocity forecast','Sprints = remaining points ÷ velocity','Use a range of past velocities'],
+ ['Schedule','Total float','TF = LS − ES = LF − EF','Zero = critical path'],
+ ['Schedule','Free float','FF = ES(next) − EF','Delay possible without moving successors'],
+ ['Flow','Little\'s Law','Cycle time = WIP ÷ throughput','Lower WIP → faster delivery'],
+ ['Risk','Expected monetary value','EMV = P × impact','Sum EMVs to size contingency'],
+ ['People','Communication channels','n(n − 1) ÷ 2','Grows with the square of team size'],
+ ['Business case','Net present value','NPV = Σ CFt ÷ (1 + r)^t − investment','> 0 creates value'],
+ ['Business case','Present value','PV = FV ÷ (1 + r)^n','Money today is worth more'],
+ ['Business case','Return on investment','ROI = (gain − cost) ÷ cost','Express as %'],
+ ['Business case','Benefit-cost ratio','BCR = benefits ÷ costs','> 1 is worthwhile'],
+ ['Prioritisation','RICE','Reach × Impact × Confidence ÷ Effort','Higher first'],
+ ['Prioritisation','WSJF','(BV + TC + RR/OE) ÷ job size','Cost of delay per unit of size'],
+ ['Prioritisation','ICE','Impact × Confidence × Ease','Fast, lighter than RICE'],
+ ['Economics','Customer lifetime value','LTV = ARPU × GM% ÷ churn','Monthly ARPU with monthly churn'],
+ ['Economics','LTV : CAC','LTV ÷ CAC','≥ 3 healthy'],
+ ['Economics','CAC payback','CAC ÷ (ARPU × GM%)','Months to recover acquisition cost'],
+ ['Economics','Churn rate','Customers lost ÷ customers at start','Per period'],
+ ['Economics','Net revenue retention','(Start MRR + expansion − contraction − churn) ÷ start MRR','> 100% = growth from existing base'],
+ ['Metrics','Net Promoter Score','NPS = % promoters (9–10) − % detractors (0–6)','Range −100 to +100'],
+ ['Metrics','Conversion rate','Completed ÷ entered stage','Per funnel step'],
+ ['Metrics','Sean Ellis PMF test','% "very disappointed"','≥ 40% signals fit'],
+ ['Experiments','Sample size per variant','n ≈ 16 · p(1 − p) ÷ δ²','80% power, 5% significance'],
+ ['Evaluation','Target attainment','(actual − baseline) ÷ (target − baseline)','≥ 100% = target met'],
+ ['Evaluation','Feature adoption rate','Feature users ÷ active users','Per period, by cohort'],
+ ['Evaluation','SUS score','(Σ odd (x − 1) + Σ even (5 − x)) × 2.5','68 average; > 80 excellent'],
+ ['Evaluation','Precision','TP ÷ (TP + FP)','Of everything flagged, how much was right'],
+ ['Evaluation','Recall','TP ÷ (TP + FN)','Of everything real, how much was caught'],
+ ['Evaluation','F1 score','2 × P × R ÷ (P + R)','Balances precision and recall'],
+ ['Evaluation','Accuracy','(TP + TN) ÷ all cases','Misleading when classes are imbalanced']];
+$('#ftable tbody').innerHTML=FX.map((r,i)=>{const prod=['Prioritisation','Economics','Metrics','Experiments','Evaluation'].includes(r[0]);
+  return `<tr><td><span class="pill ${prod?'':'acc'}" style="${prod?'background:var(--prod-soft);color:var(--prod)':''}">${r[0]}</span></td><td>${r[1]}</td><td class="formula" style="${prod?'color:var(--prod)':''}">${r[2]}</td><td class="muted">${r[3]}</td></tr>`}).join('');
+
+/* ---------- quiz ---------- */
+const QZ=[
+ ['A project has CPI 0.8 and SPI 1.1. What is its status?',['Over budget, ahead of schedule','Under budget, behind schedule','Over budget, behind schedule','Under budget, ahead of schedule'],0,'CPI below 1 means spending more than the value earned. SPI above 1 means progressing faster than planned.'],
+ ['Optimistic 4, most likely 6, pessimistic 14 days. What is the PERT estimate?',['8','7','6','9'],1,'(4 + 4×6 + 14) ÷ 6 = 42 ÷ 6 = 7 days. The triangular estimate would be 8.'],
+ ['A team grows from 8 to 9 people. How many communication channels does it now have?',['28','36','45','8'],1,'9 × 8 ÷ 2 = 36. At 8 people it was 28, so one person added 8 channels.'],
+ ['An activity has zero total float. What does that tell you?',['It is on the critical path','It can slip by one day','It has no predecessors','It must be crashed'],0,'Zero float means any delay pushes out the project end date. That is the definition of being on the critical path.'],
+ ['Who is accountable for maximising the value of the product in Scrum?',['Scrum Master','Developers','Product Owner','The sponsor'],2,'The Product Owner owns the Product Backlog and its ordering, and is accountable for value.'],
+ ['What is the timebox for the Daily Scrum?',['30 minutes','15 minutes','10 minutes','It depends on Sprint length'],1,'Always 15 minutes, whatever the Sprint length. Other events scale down with shorter Sprints.'],
+ ['Buying insurance against a fire at the supplier\'s warehouse is which risk response?',['Mitigate','Avoid','Transfer','Accept'],2,'Transfer shifts the financial impact to a third party. The risk itself still exists.'],
+ ['A stakeholder has high power but low interest. The usual strategy is…',['Manage closely','Keep informed','Monitor','Keep satisfied'],3,'Keep them satisfied with concise updates, so they don\'t become an unexpected blocker.'],
+ ['A newly formed team is arguing about roles and approach. Which Tuckman stage?',['Forming','Storming','Norming','Adjourning'],1,'Storming is marked by conflict over roles, working styles and direction. Coach rather than direct.'],
+ ['Reach 1,000, impact 2, confidence 80%, effort 4. What is the RICE score?',['400','500','1,600','320'],0,'1,000 × 2 × 0.8 ÷ 4 = 400.'],
+ ['On the Kano model, a feature whose absence frustrates users but whose presence earns no praise is a…',['Delighter','Performance feature','Basic (must-be)','Indifferent feature'],2,'Basics are expected. Getting them right only prevents dissatisfaction.'],
+ ['What "very disappointed" share does the Sean Ellis test treat as a PMF signal?',['25%','40%','50%','70%'],1,'At least 40% of engaged users saying they would be very disappointed without the product.'],
+ ['What is the commonly cited healthy LTV:CAC ratio?',['1:1','2:1','3:1','10:1'],2,'Around 3:1. Below that you may be overspending to acquire; far above it you may be under-investing in growth.'],
+ ['Which of Cagan\'s four risks does the product designer usually own?',['Value','Usability','Feasibility','Viability'],1,'Designers own usability. PMs own value and viability; engineers own feasibility.'],
+ ['WIP averages 20 items and throughput is 5 items per week. Average cycle time?',['4 weeks','100 weeks','0.25 weeks','25 weeks'],0,'Little\'s Law: 20 ÷ 5 = 4 weeks.'],
+ ['How many performance domains does the PMBOK Guide 8th edition define?',['8','10','7','12'],2,'Seven: Governance, Scope, Schedule, Finance, Stakeholders, Resources, Risk. PMBOK 7 had eight.'],
+ ['TCPI against BAC is 1.25. What does that mean?',['The project is 25% under budget','Remaining work must be done 25% more efficiently to finish on budget','The project is 25% ahead of schedule','EAC equals BAC'],1,'TCPI is the cost efficiency needed on the remaining work. Above about 1.1 recovery is unlikely; re-baseline with an EAC instead.'],
+ ['What does fast-tracking a schedule do?',['Adds resources to critical tasks','Runs activities in parallel that were planned in sequence','Removes scope','Extends the deadline'],1,'Fast-tracking overlaps activities and adds risk. Crashing adds resources and adds cost.'],
+ ['What is the correct order of the AARRR funnel?',['Awareness, Activation, Revenue, Retention, Referral','Acquisition, Activation, Retention, Referral, Revenue','Acquisition, Adoption, Retention, Revenue, Referral','Activation, Acquisition, Retention, Revenue, Referral'],1,'Acquisition, Activation, Retention, Referral, Revenue (Dave McClure).'],
+ ['Which Scrum artifact is the Definition of Done the commitment for?',['Product Backlog','Sprint Backlog','Increment','Sprint Goal'],2,'Increment → Definition of Done. Product Backlog → Product Goal. Sprint Backlog → Sprint Goal.'],
+ ['A model flags 140 cases, of which 70 are correct, and misses 30 real cases. What is its recall?',['70%','50%','58%','30%'],0,'Recall = TP ÷ (TP + FN) = 70 ÷ 100 = 70%. Precision is 70 ÷ 140 = 50%, and F1 is about 0.58.'],
+ ['What is the average System Usability Scale (SUS) score?',['50','68','80','90'],1,'68 is the 50th percentile. Above about 80 is excellent; below about 51 is poor.'],
+ ['A feature beats its target, but refunds rise beyond the agreed guardrail tolerance. What next?',['Scale it, since the primary metric won','Hold the rollout and fix or roll back','Change the guardrail tolerance','Run the test for longer'],1,'Guardrails exist to stop a win in one metric causing harm elsewhere. Hold, fix the cause, and only then scale.'],
+ ['Before relying on an LLM-as-judge to score outputs, you should…',['Use the largest available model','Check its scores agree with human-labelled examples','Ask it to explain each score','Average several runs'],1,'An automated judge is itself a model that can be wrong. Calibrate it against human judgements on a sample first.']];
+let deck=[],qi=0,score=0,missed=[];
+const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const box=$('#quizBox');
+function start(list){deck=shuffle(list||QZ);qi=0;score=0;missed=[];ask()}
+function ask(){
+  const q=deck[qi];
+  box.innerHTML=`<div class="qmeta"><span>Question ${qi+1} of ${deck.length}</span><span>Score ${score}</span></div>
+  <div class="bar" style="height:4px"><i style="width:${qi/deck.length*100}%;background:var(--acc)"></i></div>
+  <div class="qtext">${q[0]}</div>
+  <div class="opts">${q[1].map((o,i)=>`<button class="opt" data-i="${i}"><span class="l">${'ABCD'[i]}</span><span>${o}</span></button>`).join('')}</div><div id="qfb"></div>`;
+  $$('.opt',box).forEach(b=>b.addEventListener('click',()=>{
+    const i=+b.dataset.i,ok=i===q[2];if(ok)score++;else missed.push(q);
+    $$('.opt',box).forEach(x=>{x.disabled=true;if(+x.dataset.i===q[2])x.classList.add('right')});if(!ok)b.classList.add('wrong');
+    $('.qmeta span:last-child',box).textContent='Score '+score;
+    $('#qfb').innerHTML=`<div class="fb-box">${ok?pill('Correct','good'):pill('Not quite','bad')} <span style="margin-left:6px">${q[3]}</span></div><div class="row-gap"><button class="btn" id="qnext">${qi+1<deck.length?'Next question':'See result'}</button></div>`;
+    $('#qnext').addEventListener('click',()=>{qi++;qi<deck.length?ask():end()});$('#qnext').focus();
+  }));
+}
+function end(){
+  const pct=Math.round(score/deck.length*100);
+  box.innerHTML=`<div class="qmeta"><span>Round complete</span><span>${score} / ${deck.length}</span></div>
+  <div class="qtext">${pct>=80?'Strong recall.':pct>=60?'Solid, with gaps to close.':'Worth another pass through the cards.'} You scored ${pct}%.</div>
+  ${missed.length?`<h4 class="muted" style="font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase">Review these</h4><ul style="padding-left:20px;display:flex;flex-direction:column;gap:6px;margin:8px 0 0">${missed.map(m=>`<li><b>${m[0]}</b><br><span class="muted">${m[1][m[2]]}. ${m[3]}</span></li>`).join('')}</ul>`:''}
+  <div class="row-gap"><button class="btn" id="qagain">New round</button>${missed.length?'<button class="btn ghost" id="qmiss">Retry missed only</button>':''}</div>`;
+  $('#qagain').addEventListener('click',()=>start());
+  const m=$('#qmiss');if(m){const mm=[...missed];m.addEventListener('click',()=>start(mm))}
+}
+start();
+
+/* ---------- read aloud (Web Speech API; hidden where unsupported) ---------- */
+(function(){
+  const btn=$('#speak');
+  if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance!=='function')return;
+  btn.hidden=false;
+  const stop=()=>{try{speechSynthesis.cancel()}catch(e){}btn.setAttribute('aria-pressed','false');btn.textContent='Read aloud'};
+  const text=()=>{
+    const p=$$('.panel').find(x=>!x.hidden);if(!p)return '';
+    const parts=[$('.panel-head h2',p).textContent+'.',$('.panel-head p',p).textContent];
+    if(p.id==='formulas')$$('#ftable tbody tr',p).filter(r=>!r.hidden).forEach(r=>parts.push(r.cells[1].textContent+'. '+r.cells[3].textContent+'.'));
+    else if(p.id==='quiz')parts.push($('.qtext',p)?$('.qtext',p).textContent:'');
+    else $$('.grid > .card',p).filter(c=>!c.hidden).forEach(c=>parts.push($('h3',c).textContent+'. '+$('.key span',c).textContent));
+    return parts.join(' ');
+  };
+  btn.addEventListener('click',()=>{
+    if(btn.getAttribute('aria-pressed')==='true'){stop();return}
+    const u=new SpeechSynthesisUtterance(text());u.lang='en-GB';u.onend=stop;u.onerror=stop;
+    try{speechSynthesis.cancel();speechSynthesis.speak(u);btn.setAttribute('aria-pressed','true');btn.textContent='Stop reading'}catch(e){stop()}
+  });
+  $$('.tab').forEach(t=>t.addEventListener('click',stop));
+})();
+})();
+</script>
+<script>
+/* Learning lens v1: step-through diagrams and print support. */
+(function(){
+  document.querySelectorAll('.lens-visual[data-steps]').forEach(function(fig){
+    var n=Number(fig.getAttribute('data-steps'))||0, svg=fig.querySelector('svg'), ctr=fig.querySelector('.lens-controls');
+    if(!n||!svg||!ctr)return;
+    var items=[].slice.call(fig.querySelectorAll('.lens-steps>li')), edges=[].slice.call(svg.querySelectorAll('[data-step]'));
+    var status=ctr.querySelector('.lens-status'), step=0;
+    function render(){
+      svg.classList.toggle('stepping',step>0);
+      edges.forEach(function(e){var s=Number(e.getAttribute('data-step'));e.classList.toggle('on',s===step);e.classList.toggle('done',step>0&&s<step);});
+      items.forEach(function(li,i){li.classList.toggle('on',i+1===step);});
+      status.textContent=step?('Step '+step+' of '+n+': '+(items[step-1]?items[step-1].textContent:'')):('All '+n+' steps shown');
+    }
+    ctr.hidden=false;
+    ctr.querySelector('[data-lens-act="next"]').addEventListener('click',function(){step=step>=n?1:step+1;render();});
+    ctr.querySelector('[data-lens-act="prev"]').addEventListener('click',function(){step=step<=1?n:step-1;render();});
+    ctr.querySelector('[data-lens-act="all"]').addEventListener('click',function(){step=0;render();});
+    render();
+  });
+  window.addEventListener('beforeprint',function(){
+    document.querySelectorAll('details.lens-model,details.lens-sketch').forEach(function(d){d.open=true;});
+    document.querySelectorAll('.lens-svg.stepping').forEach(function(s){s.classList.remove('stepping');});
+  });
+})();
+</script>
+</body>
+</html>
