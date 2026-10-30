@@ -15,6 +15,7 @@ const files = {
   saa:'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html',
   aiarch:'handbooks/ai-architecture/ai-architects-handbook-v1.3.html',
   evals:'handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html',
+  pmprod:'handbooks/project-product/project-product-field-guide-v1.html',
 };
 (async()=>{
   await fs.mkdir(output,{recursive:true});
@@ -71,7 +72,7 @@ const files = {
         await page.evaluate(()=>window.dispatchEvent(new Event('beforeprint')));
         assert.equal(await page.locator('[id="41h-dr"] details').getAttribute('open'),'');
       }
-      const selector={system:'.chapter',interview:'.resource-card',ai:'.scenario-content',saa:'.chapter,.topic-card'}[name];
+      const selector={system:'.chapter',interview:'.resource-card',ai:'.scenario-content',saa:'.chapter,.topic-card',pmprod:'.panel,.grid > .card'}[name];
       if(selector)assert.equal(await page.locator(selector).evaluateAll(nodes=>nodes.every(n=>getComputedStyle(n).display!=='none')),true,`${name}: print omitted filtered or inactive content`);
       await page.pdf({path:path.join(output,`${name}-print.pdf`),format:'A4'});
       await page.emulateMedia({media:'screen'});

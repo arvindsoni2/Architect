@@ -113,3 +113,4 @@ Each handbook carries one copy of the lens stylesheet and the small step-through
 | AI Engineering Handbook v3.3 | Weeks | Why-this-works block per week, 3 new diagrams |
 | Agent Engineering Master Manual v2.9 | 49 lessons | A first-principles truths table per lesson |
 | AWS SAA-C03 Visual Handbook | Decision lens | First-principles opener tied to the decision trees |
+| PM & Product Field Guide v1 | 2 tracks (project, product) plus the Evaluation section | First principles and Pareto per track, 3 step-through diagrams, 2 Feynman loops and 1 explain-it-back prompt |

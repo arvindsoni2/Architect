@@ -2,7 +2,7 @@
 
 **Status:** Approved design  
 **Repository:** `arvindsoni2/Architect`  
-**Date:** 2026-09-03 · **Amended:** 2026-10-13 (HTML-first learning), 2026-10-21 (learning lens)\
+**Date:** 2026-09-03 · **Amended:** 2026-10-13 (HTML-first learning), 2026-10-21 (learning lens), 2026-10-29 (project and product field guide)\
 **Visibility:** Public, curated
 
 ## 1. Purpose
@@ -28,6 +28,8 @@ Architecture-adjacent course or certification material may contribute distilled 
 **Scoped amendment approved 7 September 2026:** include the AWS SAA-C03 Visual Handbook and its companion *The $170 Cloud* Lab Manual under `handbooks/aws-saa-c03/`, together with supporting validation. This is a two-resource exception; it does not broaden the general certification/course-material boundary.
 
 **Scoped amendment approved 1 October 2026:** curated role-based interview preparation is maintained under `interview-prep/`, with shared methods, a public-safe factual evidence bank, role guides and vacancy supplements. Stable Markdown sources generate a tabbed HTML reading view and one HTML page per guide. Private recruitment feedback and personal eligibility records remain excluded.
+
+**Scoped amendment approved 29 October 2026:** include one interactive revision guide to project and product management frameworks under `handbooks/project-product/`, supporting the delivery, project and product roles in the interview collection. This is a single-resource exception; it does not admit general project-management course material or certification packs.
 
 Unrelated project files, general technical learning material, job-search material outside that collection, and personal records are excluded.
 
@@ -92,6 +94,7 @@ Architect/
 │   ├── ai-evaluation/
 │   ├── aws-saa-c03/
 │   ├── fde/
+│   ├── project-product/
 │   └── system-design/
 ├── interview-prep/
 └── learning-paths/
