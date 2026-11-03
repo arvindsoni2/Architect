@@ -24,7 +24,7 @@ A confident opening: “I turn operational problems into products people actuall
 5. **What if work is incomplete near sprint end?** Inspect the Sprint Goal and evidence with the Developers. Clarify scope without weakening quality. Do not mark unfinished work Done or unilaterally add work. Review what caused the gap and adapt future planning.
 6. **How do you measure value after release?** Establish a baseline, cohort, time window and owner before rollout. Pair an outcome measure with adoption and guardrails. Separate delivered functionality from realised benefits.
 7. **How do you act as a proxy PO?** Agree which decisions are delegated, how priorities are approved and when the client PO must decide. Maintain a transparent backlog and decision log. Proxy arrangements must preserve a clear accountable decision-maker.
-8. **How have you mentored a PO or BA?** Prepare one real coaching example: observed gap, agreed practice, feedback and resulting improvement. If you have coached team members without formally mentoring a PO, say that and explain the transferable approach.
+8. **How have you mentored a PO or BA?** Prepare one real coaching example: observed gap, agreed practice, feedback and resulting improvement. If you have coached team members without formally mentoring a PO, say that and explain the transferable approach. Your examples are in [B3](../shared/evidence-bank.md#behavioural-stories-owner-supplied-13-october-2026): the ball-passing estimation game with NPg BAs, the Iron Man MVP session and story mapping with Natoora's junior POs.
 
 ## Worked answer and follow-up
 
