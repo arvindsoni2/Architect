@@ -20,7 +20,7 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 
 **Owner-supplied (3 November 2026),** from Arvind's system overview diagram and notes. Use it when a panel asks you to sketch the platform, or to place S1, S2 or S11 in context. The diagram itself stays private; this is the level of detail to say aloud.
 
-**Core:** WS, Natoora's warehouse system, is the hub, with its own database. Three microservices sit beside it — Purchases, Suppliers and Products — each with its own database. The platform is hosted on Google Cloud.
+**Core:** WS, Natoora's warehouse system, is the hub, with its own database. WS is made up of modules. At the time, three of them — Purchases, Suppliers and Products — had been moved out into microservices, each with its own database, and the plan was to convert every module the same way. The platform is hosted on Google Cloud.
 
 **How orders reach WS:**
 
@@ -32,12 +32,12 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 
 **Third-party integrations:**
 
-| Integration | What it does | Where it touches |
-| --- | --- | --- |
-| Stripe | Payments | B2B, B2C and the brand website, where it mainly handles subscriptions |
-| Maxoptra | Optimises van routes | Service delivery |
-| Commerce Layer | Commerce layer behind the brand website | Orders pulled into WS daily |
-| Suppliers portal | Suppliers submit food-safety certifications for auditing | Feeds WS |
+| Integration | What it does | How it connects | Business owner |
+| --- | --- | --- | --- |
+| Stripe | Payments for B2B, B2C and the brand website, where it mainly handles subscriptions | API, with WS | Accounts department |
+| Maxoptra | Takes delivery addresses and plans van routes to optimise deliveries | API, with WS | Operations |
+| Commerce Layer | Commerce layer behind the brand website | Orders pulled into WS by a daily scheduled task | Not recorded |
+| Suppliers portal | Suppliers submit food-safety certifications for auditing | Feeds WS | Not recorded |
 
 **Stock in:** purchasing raises purchase orders with suppliers → operations process the POs at goods-in → the Stock App saves goods-in data to WS.
 
@@ -47,9 +47,15 @@ The role lens used in a portfolio URL is a way to explain the work. It is not a 
 
 **Whiteboard in 60 seconds.** Draw WS in the middle. Put the four order channels above it (PRO App, HD App, brand website through Commerce Layer, customer care) and the email-to-order pipeline beside them. Draw stock in on the right (POs → goods-in → Stock App) and stock out on the left (picking → QC → delivery, with Maxoptra on the van routes). Add Stripe across the payment channels and the three microservices beneath WS.
 
-**Integration styles to name if asked:** two-way data sync (PRO and HD apps with WS), a daily batch pull (brand website orders), API calls (the GenAI pipeline into WS) and third-party SaaS (Stripe, Maxoptra). The daily pull means brand-website orders can reach WS up to a day late, and two-way sync needs a clear rule for which side wins a conflict: be ready to say how each was handled, or that it was the engineers' design.
+**Integration styles to name if asked:** two-way data sync (PRO and HD apps with WS), a daily batch pull (brand website orders), API calls (the GenAI pipeline, Stripe and Maxoptra with WS) and third-party SaaS (Stripe, Maxoptra). The daily pull means brand-website orders can reach WS up to a day late, and two-way sync needs a clear rule for which side wins a conflict: be ready to say how each was handled, or that it was the engineers' design.
 
-**To confirm before quoting:** how Stripe and Maxoptra connect to WS (API, webhooks or file exchange) and what data each receives; why purchases, suppliers and products were split out as microservices while WS stayed central; who owned each integration.
+**Likely probes:**
+
+- **Why only three microservices?** “WS is built from modules. Purchases, Suppliers and Products had been moved out first, and the plan was to convert every module the same way.” That is an incremental, one-module-at-a-time migration, often called the strangler fig pattern; name it only if asked, and leave the choice of order to the engineers unless you know why those three went first.
+- **Who owned the integrations?** The business owners were the accounts department for Stripe and operations for Maxoptra. Say who owned the technical side only if you know.
+- **Delivery addresses go to Maxoptra. Is that a data-protection issue?** Home-delivery addresses are personal data, so a third party processing them needs a contract covering it. Know who approved it, or say it wasn't your decision.
+
+**Still to confirm:** who owned the Commerce Layer and suppliers-portal integrations.
 
 ## S1 GenAI order automation
 
