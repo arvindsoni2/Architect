@@ -243,7 +243,7 @@ blockquote{margin:20px 0;padding:10px 18px;border-left:4px solid var(--accent);b
 <li><a href="https://www.gov.uk/service-manual/helping-people-to-use-your-service/understanding-wcag">GOV.UK: Understanding WCAG 2.2</a> — current government accessibility guidance.</li>
 </ol></section>
 <section class="panel" id="evidence" aria-label="Evidence bank"><h1 id="evidence--shared-evidence-bank">Shared evidence bank</h1>
-<p><strong>Status:</strong> Owner-reviewed · <strong>Last reviewed:</strong> 28 October 2026</p>
+<p><strong>Status:</strong> Owner-reviewed · <strong>Last reviewed:</strong> 3 November 2026</p>
 <p>This is the factual base for all eight role guides. On 13 October 2026 the owner confirmed that the portfolio case-study narratives (written early in 2026) are accurate, including the personal decisions they describe. Figures are self-reported professional outcomes, not an independent audit: know how each was measured, then state it plainly. Public portfolio links are the reader-facing references. On 26–28 October 2026 the owner also confirmed decision rights and architecture details for each story; these are marked “Owner-confirmed” below and set out story by story in the <a href="#decisions">decision lists</a>, using the method in <a href="#connect">Connect the dots</a>.</p>
 <h2 id="evidence--employment-chronology">Employment chronology</h2>
 <div class="table-wrap"><table><thead><tr><th>Period</th><th>Actual role and context</th><th>Boundary</th></tr></thead><tbody>
@@ -254,6 +254,30 @@ blockquote{margin:20px 0;padding:10px 18px;border-left:4px solid var(--accent);b
 <tr><td>April 2026–present</td><td>Job search; no long-term role or contract secured yet</td><td>Use the agreed wording in the Accenture playbook (Q2)</td></tr>
 </tbody></table></div>
 <p>The role lens used in a portfolio URL is a way to explain the work. It is not a retrospective change of job title or an assertion that every architecture or engineering task was personally implemented.</p>
+<h2 id="evidence--natoora-system-map-and-integration-points">Natoora system map and integration points</h2>
+<p><strong>Owner-supplied (3 November 2026),</strong> from Arvind&#x27;s system overview diagram and notes. Use it when a panel asks you to sketch the platform, or to place S1, S2 or S11 in context. The diagram itself stays private; this is the level of detail to say aloud.</p>
+<p><strong>Core:</strong> WS, Natoora&#x27;s warehouse system, is the hub, with its own database. Three microservices sit beside it — Purchases, Suppliers and Products — each with its own database. The platform is hosted on Google Cloud.</p>
+<p><strong>How orders reach WS:</strong></p>
+<ul>
+<li><strong>Wholesale (B2B) customers</strong> order through the <strong>PRO App</strong>, which has its own database and syncs data with WS.</li>
+<li><strong>Home-delivery (B2C) customers</strong> order through the <strong>HD App</strong>, which also has its own database and syncs with WS.</li>
+<li><strong>Brand website</strong> orders go through <strong>Commerce Layer</strong> and are pulled into WS every day by a scheduled task.</li>
+<li><strong>Customer care</strong> places orders directly in WS for wholesale customers who phone in.</li>
+<li><strong>Emailed orders</strong> from procurement systems (Marketman in London, Lightspeed in Paris) are extracted by the GenAI pipeline and created in WS through its API (S1).</li>
+</ul>
+<p><strong>Third-party integrations:</strong></p>
+<div class="table-wrap"><table><thead><tr><th>Integration</th><th>What it does</th><th>Where it touches</th></tr></thead><tbody>
+<tr><td>Stripe</td><td>Payments</td><td>B2B, B2C and the brand website, where it mainly handles subscriptions</td></tr>
+<tr><td>Maxoptra</td><td>Optimises van routes</td><td>Service delivery</td></tr>
+<tr><td>Commerce Layer</td><td>Commerce layer behind the brand website</td><td>Orders pulled into WS daily</td></tr>
+<tr><td>Suppliers portal</td><td>Suppliers submit food-safety certifications for auditing</td><td>Feeds WS</td></tr>
+</tbody></table></div>
+<p><strong>Stock in:</strong> purchasing raises purchase orders with suppliers → operations process the POs at goods-in → the Stock App saves goods-in data to WS.</p>
+<p><strong>Stock out:</strong> operations pick orders at picking stations, by shift → quality control checks the products and processes the orders → service delivery loads the vans by run and delivers → the customer receives the order.</p>
+<p><strong>Where your stories sit:</strong> S1 is the email-to-WS order path; S2 sold WS and the PRO App to other food businesses as a separate stack per client; S11 (computer vision QA) targets the quality checks at goods-in and QC.</p>
+<p><strong>Whiteboard in 60 seconds.</strong> Draw WS in the middle. Put the four order channels above it (PRO App, HD App, brand website through Commerce Layer, customer care) and the email-to-order pipeline beside them. Draw stock in on the right (POs → goods-in → Stock App) and stock out on the left (picking → QC → delivery, with Maxoptra on the van routes). Add Stripe across the payment channels and the three microservices beneath WS.</p>
+<p><strong>Integration styles to name if asked:</strong> two-way data sync (PRO and HD apps with WS), a daily batch pull (brand website orders), API calls (the GenAI pipeline into WS) and third-party SaaS (Stripe, Maxoptra). The daily pull means brand-website orders can reach WS up to a day late, and two-way sync needs a clear rule for which side wins a conflict: be ready to say how each was handled, or that it was the engineers&#x27; design.</p>
+<p><strong>To confirm before quoting:</strong> how Stripe and Maxoptra connect to WS (API, webhooks or file exchange) and what data each receives; why purchases, suppliers and products were split out as microservices while WS stayed central; who owned each integration.</p>
 <h2 id="evidence--s1-genai-order-automation">S1 GenAI order automation</h2>
 <p><strong>Context:</strong> Natoora email-to-order workflow. Customer support previously read each incoming order email and manually entered it into the system, typically taking 2–3 minutes per order.</p>
 <p><strong>Owner-confirmed outcome:</strong> approximately <strong>90% reduction in manual effort</strong>. Exceptions remained when the agent could not complete an order. This is not a claim of 90% model accuracy or 90% of orders completed without intervention.</p>
@@ -444,6 +468,7 @@ blockquote{margin:20px 0;padding:10px 18px;border-left:4px solid var(--accent);b
 <h2 id="decisions--s1-genai-order-automation">S1 GenAI order automation</h2>
 <p>Natoora · Mar–Sep 2025 · delivery lead for the London and Paris rollout · 1 developer · CTO sponsor.</p>
 <p><strong>Flow:</strong> 1. Order emails → Scheduled job; 2. Scheduled job → GPT-4o-mini; 3. GPT-4o-mini → Validation (risky arrow); 4. Validation → WS (risky arrow); 5. Validation → Human review; 6. Human review → WS. 3–4: model output becoming a real order. Validation, duplicate rules and human review sit on that path.</p>
+<p><strong>Where it sits:</strong> the <a href="#evidence--natoora-system-map-and-integration-points">Natoora system map</a> shows WS, the order channels and the third-party integrations around it.</p>
 <div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
 <tr><td>Limit the rollout to London and Paris</td><td>CTO</td><td>Accepted</td><td>Evidence bank</td></tr>
 <tr><td>Use an LLM instead of rules</td><td>Discussion you were part of; the CTO backed it</td><td>Shaped</td><td>Owner answer, Oct 2026</td></tr>
@@ -471,6 +496,7 @@ blockquote{margin:20px 0;padding:10px 18px;border-left:4px solid var(--accent);b
 <h2 id="decisions--s2-saas-transformation">S2 SaaS transformation</h2>
 <p>Natoora · Jan 2024–May 2025 · delivery lead · 9 people across the UK and Brazil · CTO sponsor.</p>
 <p><strong>Flow:</strong> 1. Client staff → WS, per client; 2. B2B customers → PRO App; 3. PRO App → WS, per client; 4. WS, per client → Client&#x27;s own database (risky arrow); 5. Terraform templates → WS, per client. A separate stack per client (the silo model): strongest isolation, highest cost per client.</p>
+<p><strong>Where it sits:</strong> the <a href="#evidence--natoora-system-map-and-integration-points">Natoora system map</a> shows WS, the order channels and the third-party integrations around it.</p>
 <div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
 <tr><td>Turn the internal warehouse platform into a SaaS product</td><td>Natoora board and CTO</td><td>Accepted</td><td>Evidence bank</td></tr>
 <tr><td>Architecture: a separate database, schema and cloud environment for each client</td><td>CTO and tech lead</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>

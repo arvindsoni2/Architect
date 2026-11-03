@@ -65,6 +65,7 @@ footer{font-size:13px;color:var(--muted);margin:20px 0}
 <h2 id="s1-genai-order-automation">S1 GenAI order automation</h2>
 <p>Natoora · Mar–Sep 2025 · delivery lead for the London and Paris rollout · 1 developer · CTO sponsor.</p>
 <p><strong>Flow:</strong> 1. Order emails → Scheduled job; 2. Scheduled job → GPT-4o-mini; 3. GPT-4o-mini → Validation (risky arrow); 4. Validation → WS (risky arrow); 5. Validation → Human review; 6. Human review → WS. 3–4: model output becoming a real order. Validation, duplicate rules and human review sit on that path.</p>
+<p><strong>Where it sits:</strong> the <a href="evidence-bank.html#natoora-system-map-and-integration-points">Natoora system map</a> shows WS, the order channels and the third-party integrations around it.</p>
 <div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
 <tr><td>Limit the rollout to London and Paris</td><td>CTO</td><td>Accepted</td><td>Evidence bank</td></tr>
 <tr><td>Use an LLM instead of rules</td><td>Discussion you were part of; the CTO backed it</td><td>Shaped</td><td>Owner answer, Oct 2026</td></tr>
@@ -95,6 +96,7 @@ footer{font-size:13px;color:var(--muted);margin:20px 0}
 <h2 id="s2-saas-transformation">S2 SaaS transformation</h2>
 <p>Natoora · Jan 2024–May 2025 · delivery lead · 9 people across the UK and Brazil · CTO sponsor.</p>
 <p><strong>Flow:</strong> 1. Client staff → WS, per client; 2. B2B customers → PRO App; 3. PRO App → WS, per client; 4. WS, per client → Client&#x27;s own database (risky arrow); 5. Terraform templates → WS, per client. A separate stack per client (the silo model): strongest isolation, highest cost per client.</p>
+<p><strong>Where it sits:</strong> the <a href="evidence-bank.html#natoora-system-map-and-integration-points">Natoora system map</a> shows WS, the order channels and the third-party integrations around it.</p>
 <div class="table-wrap"><table><thead><tr><th>Decision</th><th>Owner</th><th>Your part</th><th>Source</th></tr></thead><tbody>
 <tr><td>Turn the internal warehouse platform into a SaaS product</td><td>Natoora board and CTO</td><td>Accepted</td><td>Evidence bank</td></tr>
 <tr><td>Architecture: a separate database, schema and cloud environment for each client</td><td>CTO and tech lead</td><td>Accepted</td><td>Owner answer, Oct 2026</td></tr>

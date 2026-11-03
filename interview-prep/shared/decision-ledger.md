@@ -42,6 +42,8 @@ Natoora · Mar–Sep 2025 · delivery lead for the London and Paris rollout · 1
 
 **Flow:** 1. Order emails → Scheduled job; 2. Scheduled job → GPT-4o-mini; 3. GPT-4o-mini → Validation (risky arrow); 4. Validation → WS (risky arrow); 5. Validation → Human review; 6. Human review → WS. 3–4: model output becoming a real order. Validation, duplicate rules and human review sit on that path.
 
+**Where it sits:** the [Natoora system map](evidence-bank.md#natoora-system-map-and-integration-points) shows WS, the order channels and the third-party integrations around it.
+
 | Decision | Owner | Your part | Source |
 | --- | --- | --- | --- |
 | Limit the rollout to London and Paris | CTO | Accepted | Evidence bank |
@@ -78,6 +80,8 @@ Natoora · Mar–Sep 2025 · delivery lead for the London and Paris rollout · 1
 Natoora · Jan 2024–May 2025 · delivery lead · 9 people across the UK and Brazil · CTO sponsor.
 
 **Flow:** 1. Client staff → WS, per client; 2. B2B customers → PRO App; 3. PRO App → WS, per client; 4. WS, per client → Client's own database (risky arrow); 5. Terraform templates → WS, per client. A separate stack per client (the silo model): strongest isolation, highest cost per client.
+
+**Where it sits:** the [Natoora system map](evidence-bank.md#natoora-system-map-and-integration-points) shows WS, the order channels and the third-party integrations around it.
 
 | Decision | Owner | Your part | Source |
 | --- | --- | --- | --- |

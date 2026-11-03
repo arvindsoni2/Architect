@@ -1,6 +1,6 @@
 # Shared evidence bank
 
-**Status:** Owner-reviewed · **Last reviewed:** 28 October 2026
+**Status:** Owner-reviewed · **Last reviewed:** 3 November 2026
 
 This is the factual base for all eight role guides. On 13 October 2026 the owner confirmed that the portfolio case-study narratives (written early in 2026) are accurate, including the personal decisions they describe. Figures are self-reported professional outcomes, not an independent audit: know how each was measured, then state it plainly. Public portfolio links are the reader-facing references. On 26–28 October 2026 the owner also confirmed decision rights and architecture details for each story; these are marked “Owner-confirmed” below and set out story by story in the [decision lists](decision-ledger.md), using the method in [Connect the dots](connect-the-dots.md).
 
@@ -15,6 +15,41 @@ This is the factual base for all eight role guides. On 13 October 2026 the owner
 | April 2026–present | Job search; no long-term role or contract secured yet | Use the agreed wording in the Accenture playbook (Q2) |
 
 The role lens used in a portfolio URL is a way to explain the work. It is not a retrospective change of job title or an assertion that every architecture or engineering task was personally implemented.
+
+## Natoora system map and integration points
+
+**Owner-supplied (3 November 2026),** from Arvind's system overview diagram and notes. Use it when a panel asks you to sketch the platform, or to place S1, S2 or S11 in context. The diagram itself stays private; this is the level of detail to say aloud.
+
+**Core:** WS, Natoora's warehouse system, is the hub, with its own database. Three microservices sit beside it — Purchases, Suppliers and Products — each with its own database. The platform is hosted on Google Cloud.
+
+**How orders reach WS:**
+
+- **Wholesale (B2B) customers** order through the **PRO App**, which has its own database and syncs data with WS.
+- **Home-delivery (B2C) customers** order through the **HD App**, which also has its own database and syncs with WS.
+- **Brand website** orders go through **Commerce Layer** and are pulled into WS every day by a scheduled task.
+- **Customer care** places orders directly in WS for wholesale customers who phone in.
+- **Emailed orders** from procurement systems (Marketman in London, Lightspeed in Paris) are extracted by the GenAI pipeline and created in WS through its API (S1).
+
+**Third-party integrations:**
+
+| Integration | What it does | Where it touches |
+| --- | --- | --- |
+| Stripe | Payments | B2B, B2C and the brand website, where it mainly handles subscriptions |
+| Maxoptra | Optimises van routes | Service delivery |
+| Commerce Layer | Commerce layer behind the brand website | Orders pulled into WS daily |
+| Suppliers portal | Suppliers submit food-safety certifications for auditing | Feeds WS |
+
+**Stock in:** purchasing raises purchase orders with suppliers → operations process the POs at goods-in → the Stock App saves goods-in data to WS.
+
+**Stock out:** operations pick orders at picking stations, by shift → quality control checks the products and processes the orders → service delivery loads the vans by run and delivers → the customer receives the order.
+
+**Where your stories sit:** S1 is the email-to-WS order path; S2 sold WS and the PRO App to other food businesses as a separate stack per client; S11 (computer vision QA) targets the quality checks at goods-in and QC.
+
+**Whiteboard in 60 seconds.** Draw WS in the middle. Put the four order channels above it (PRO App, HD App, brand website through Commerce Layer, customer care) and the email-to-order pipeline beside them. Draw stock in on the right (POs → goods-in → Stock App) and stock out on the left (picking → QC → delivery, with Maxoptra on the van routes). Add Stripe across the payment channels and the three microservices beneath WS.
+
+**Integration styles to name if asked:** two-way data sync (PRO and HD apps with WS), a daily batch pull (brand website orders), API calls (the GenAI pipeline into WS) and third-party SaaS (Stripe, Maxoptra). The daily pull means brand-website orders can reach WS up to a day late, and two-way sync needs a clear rule for which side wins a conflict: be ready to say how each was handled, or that it was the engineers' design.
+
+**To confirm before quoting:** how Stripe and Maxoptra connect to WS (API, webhooks or file exchange) and what data each receives; why purchases, suppliers and products were split out as microservices while WS stayed central; who owned each integration.
 
 ## S1 GenAI order automation
 
