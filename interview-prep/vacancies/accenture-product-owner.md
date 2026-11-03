@@ -18,7 +18,7 @@ This is the single place to prepare for this interview. It replaces the earlier 
 | S7 | Agile operating model and Jira, Natoora | Proved the change with a free pilot before asking for approval | Time-to-market 5+ weeks → under 3 |
 | B1 | Conflict: one senior engineer, two launches | Neither side would move; I made the dependency visible | Agreed sequence; GenAI first |
 | B2 | Setback: a feature nobody used | Built to spec, not for users | Lesson: measure adoption after release |
-| B3 | Mentoring | Games and coaching, not lectures | 20+ associates; 5 aspiring PMs |
+| B3 | Mentoring | Games and coaching, not lectures | 20+ associates; 5 aspiring PMs; 5+ BAs (NPg); junior POs on MVPs (Natoora) |
 
 **Three things to sharpen, and the fix:**
 
@@ -237,15 +237,27 @@ Say this calmly and briefly. Showing that you learn from a process is a strength
 
 ### Q12 How have you mentored Product Owners or BAs?
 
-**Structure:** scale first, then one specific example. 90 seconds.
+**Structure:** scale first, then one BA example and one PO example, then how you'd do it here. About 2 minutes. If time is short, keep the scale line and the Natoora MVP example.
 
-> “I've mentored more than 20 associates in Agile ways of working and coached five aspiring project managers into doing the job well. I use games and hands-on techniques rather than lectures, because people remember what they've experienced.”
+> “I've mentored more than 20 associates in Agile ways of working and coached five aspiring project managers into doing the job well. I use games and hands-on exercises rather than lectures, because people remember what they've experienced.”
 
-> “Insert one example here: who the person was, what they found hard, what you did together over several weeks, and what they then did on their own.”
+> “For BAs: at Northern Powergrid I trained five or more BAs in Agile ways of working, using games. In one, everyone stands in a circle and passes a ball, and before each two-minute round I ask how many complete circles they think they'll finish. The first guesses are all over the place. After round one they've seen the real number, so the next estimate is much closer. That one exercise teaches iteration, the feedback loop and estimating from evidence rather than guesswork.”
 
-> “At Natoora I also coached engineers in test-first development, pairing and DevOps practices. In this role I'd mentor POs and BAs the same way: pair on real backlog decisions, let them lead the next one, and give specific feedback.”
+> “For POs: at Natoora I was asked to help junior POs who struggled to define an MVP. I ran a working session built on the first three Iron Man films. Mark 1 is the MVP: the problem is escaping the cave, with limited resources and time, so Stark builds only what that needs — a power source, heavy armour from whatever metal is to hand, a one-time flight and just enough weaponry to get out. Mark 2 and Mark 3 are iterations driven by what he learned: sustained flight, then the icing problem at altitude, then portability. Then each of them built a simple prototype in Figma or a similar tool, so they had to decide for themselves what to leave out.”
 
-**Before the interview:** fill in the named-role example. Without it, this answer sounds generic. It matters because the advert lists mentoring as a key requirement.
+> “I've also used story mapping with junior POs: write the high-level workflow across the top, then the activities under each step, until the whole user journey is covered.”
+
+> “In this role I'd mentor POs and BAs the same way: an exercise to make the idea stick, then pair on real backlog decisions, let them lead the next one, and give specific feedback.”
+
+**Probes:**
+
+- **Was that formal mentoring?** Say what it was: training sessions with the NPg BAs, and working sessions with Natoora's junior POs that you were asked to run. Formal mentoring, peer coaching and facilitation are different; don't blur them.
+- **Isn't Iron Man a gimmick?** “It's the hook, not the lesson. The film makes the constraint obvious; building the prototype makes them practise it.”
+- **What's the difference between an MVP, an MMP and an MLP?** “An MVP is the smallest thing that tests the idea. A minimum lovable product adds enough design care to delight. A minimum marketable product is the version you can actually sell. They usually come in that order.”
+- **What did a junior PO do differently afterwards?** Prepare one sentence before the interview: an MVP or story map one of them produced on their own after the session. Without an outcome, the answer stops at the training.
+- **Anything beyond POs and BAs?** At Natoora you also coached engineers in test-first development, pairing and DevOps practices.
+
+**Boundaries:** “five or more BAs” and “more than 20 associates” may overlap; don't add them together.
 
 ### Q13 How would you act as a proxy Product Owner for a client?
 
@@ -350,7 +362,7 @@ These are practice cases, not events from your history. Answer each with the fiv
 3. **Day −5:** section 3 — say each cost case aloud; practise the illustrative arithmetic with new numbers.
 4. **Day −4:** scenarios SC1–SC3 aloud with a timer; keep each under three minutes.
 5. **Day −3:** scenarios SC4–SC6; Q9 and Q14.
-6. **Day −2:** Q6, Q10, Q11 and Q12. Write the Q12 mentoring example.
+6. **Day −2:** Q6, Q10, Q11 and Q12. Rehearse Q12 aloud and add the one-sentence junior PO outcome.
 7. **Day −1:** mock interview with probes; reread the night-before page only.
 
 ## Appendix — boundaries that keep you credible
