@@ -33,7 +33,7 @@ An end-to-end deadline bounds how long one request may consume resources. Alloca
 - **Control admission and pressure.** Rate limits decide who enters, priority shedding preserves valuable work, and backpressure asks upstream producers to slow down. Bound every queue by count or age and define rejection semantics; otherwise waiting destroys latency predictability.
 - **Choose failure behaviour per capability.** Fail closed when proceeding could violate authorization, money, safety, privacy, or inventory invariants. Fail open only when the cost of denial is greater and the residual risk is explicit. Degrade when a smaller, clearly labelled result remains useful. A fallback that is stale, less safe, or semantically different needs an expiry, eligibility rule, and user-visible status.
 - **Define SLIs, SLOs, and error-budget policy.** An SLI measures user-observed behaviour; an SLO sets its target over a window. The error budget is the tolerated shortfall, used to balance reliability work against change [2, 3]. Specify exclusions and degraded-response treatment so teams cannot redefine success.
-- **Set RPO and RTO from impact.** Recovery point objective is the maximum tolerable data loss measured in time; recovery time objective is the maximum tolerable time to restore service. Lower targets cost more replication, automation, testing, and operational skill, so they follow business impact and data semantics.
+- **Set RPO and RTO from impact.** Recovery point objective is the maximum tolerable data loss measured in time; recovery time objective is the maximum tolerable time to restore service. Lower targets cost more replication, automation, testing, and operational skill, so they follow business impact and data semantics. Data residency limits where those copies may go: personal data under UK or EU GDPR can be replicated, backed up or accessed remotely outside those regimes only under specific conditions, so choose standby regions, backup locations, log stores and support access the data is allowed to reach.
 
 ## Failure modes and warning signs
 
@@ -93,7 +93,7 @@ Service recovery and data recovery are different. The breaker may close and norm
 
 Repository sources:
 
-- [System Design Concept Handbook v6](../../handbooks/system-design/system-design-concept-handbook-v6.html)
+- [System Design Concept Handbook v7](../../handbooks/system-design/system-design-concept-handbook-v7.html)
 - [Software Architect Grooming Programme v6](../../learning-paths/software-architect/software-architect-grooming-programme-v6.html)
 - [The AI Architect's Handbook v1.3](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html)
 - [Forward Deployed AI Engineer Handbook v1.6](../../handbooks/fde/fde-handbook-v1.6.html)
@@ -108,4 +108,4 @@ External references (verified 2026-09-05):
 
 **Edition:** Living
 
-**Last reviewed:** 2026-09-05
+**Last reviewed:** 2026-11-04
