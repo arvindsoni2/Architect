@@ -1,6 +1,6 @@
 # Shared evidence bank
 
-**Status:** Owner-reviewed · **Last reviewed:** 3 November 2026
+**Status:** Owner-reviewed · **Last reviewed:** 4 November 2026
 
 This is the factual base for all eight role guides. On 13 October 2026 the owner confirmed that the portfolio case-study narratives (written early in 2026) are accurate, including the personal decisions they describe. Figures are self-reported professional outcomes, not an independent audit: know how each was measured, then state it plainly. Public portfolio links are the reader-facing references. On 26–28 October 2026 the owner also confirmed decision rights and architecture details for each story; these are marked “Owner-confirmed” below and set out story by story in the [decision lists](decision-ledger.md), using the method in [Connect the dots](connect-the-dots.md).
 
@@ -188,6 +188,14 @@ Do not call click-through or add-to-order measures **85% recommendation accuracy
 **Still to prepare:** one outcome — what a junior PO then did on their own (for example, an MVP or story map they produced after the session). The NPg BA count and the 20+ associates may overlap; do not add them.
 
 **B4 Leadership mistake — backup (from the owner's v9 guide).** At Natoora, Arvind rolled out Scrum through team-wide announcements without first consulting a respected senior engineer, who then disengaged and influenced junior colleagues. He recovered through one-to-ones and a structural concession (no-meeting Fridays); the engineer became an advocate. Lesson: secure respected senior voices before announcing change. Use only if the panel asks specifically for a people or leadership mistake.
+
+**B5 Vendor escalation — brand website defects (Natoora; owner-supplied, 4 November 2026).** Natoora outsourced its brand e-commerce website to a third-party vendor. Arvind joined late in the build phase. He was responsible for managing testing of the website and its integration with WS. Testers found five high-severity defects, and the vendor rejected them as outside its current contract. Arvind checked the contract, took the scope it set out back to the vendor and made clear that Natoora could not sign off the test phase until these defects were fixed. The vendor fixed three. It refused to fix the other two under the current contract, so Arvind escalated to Natoora's senior management. After management intervened, the vendor fixed both, and testing was signed off within the agreed timeframe.
+
+**Use for:** vendor or supplier management, escalation, using the contract as evidence, and protecting quality at sign-off. Pair it with [S5](#s5-regulated-banking-delivery) when a panel wants breadth: S5 shows five suppliers under one governance route, and B5 shows one vendor under commercial pressure.
+
+**Boundary:** don't describe how management resolved it (a paid change request, a different reading of the contract, goodwill or withheld payment) until the owner confirms it. Don't say the vendor accepted that the last two defects were in scope. Brand-website orders reach WS through Commerce Layer and a daily scheduled pull (see the [system map](#natoora-system-map-and-integration-points)), so know which side of that integration each defect was on.
+
+**Still to confirm:** dates and the length of the test window; which senior manager the issue was escalated to, and what they did that Arvind could not; what the two refused defects affected (for example, orders failing to reach WS); whether Arvind or someone else signed off the test phase; and the lesson he now applies, for example agreeing acceptance criteria and severity definitions before testing starts.
 
 ## S8 Hatch — personal open-source project
 

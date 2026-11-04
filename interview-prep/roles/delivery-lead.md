@@ -1,6 +1,6 @@
 # Delivery Lead interview guide
 
-**Status:** Draft for owner review · **Last reviewed:** 1 October 2026
+**Status:** Draft for owner review · **Last reviewed:** 4 November 2026
 
 Show how you create dependable delivery across teams, clients and operations. A senior answer connects delivery health, decisions, commercial constraints and business outcomes. Reporting status is useful only when it changes what happens next.
 
@@ -14,6 +14,7 @@ A useful opening: “I have led product and technology delivery across utilities
 | [S2 SaaS](../shared/evidence-bank.md#s2-saas-transformation) | Commercial trade-offs, distributed teams, repeatable onboarding | Separate implementation cost, elapsed time, revenue and profit |
 | [S1 order automation](../shared/evidence-bank.md#s1-genai-order-automation) | Pilot, adoption, exception handling and rollout | Personal rollout scope was London and Paris |
 | [S5 banking](../shared/evidence-bank.md#s5-regulated-banking-delivery) | Supplier coordination and regulated readiness | Use one specific initiative and defensible authority |
+| [B5 vendor escalation](../shared/evidence-bank.md#behavioural-stories-owner-supplied-13-october-2026) | Vendor management, contract-based negotiation and escalation | Don't describe how management resolved it until confirmed |
 
 ## Questions to rehearse
 
@@ -31,6 +32,18 @@ A useful opening: “I have led product and technology delivery across utilities
 The SaaS case connects a nine-person UK/Brazil team with client onboarding and launch constraints. A defensible answer explains a particular decision: how you narrowed launch scope, managed competing capacity or applied learning to a subsequent implementation. The portfolio reports implementation cost falling from £9k to £7k and elapsed delivery from four months to two. Present these as separate comparisons and acknowledge scope differences.
 
 The £28k setup fee and £1.6k monthly recurring revenue were revenue; recurring revenue supported ongoing customer costs. The £29k reported profit covers the first five months after rollout, and your responsibility ended after that period. Prepare the relevant customer/period and cost definition rather than inventing a margin calculation.
+
+## Worked supplier escalation answer
+
+**Question:** “Have you managed vendors, and how do you escalate?” It has two parts. Show that you have managed vendors, tell one story, then state your escalation rule so the panel hears a method as well as an anecdote.
+
+**Model answer:** Use [B5](../shared/evidence-bank.md#behavioural-stories-owner-supplied-13-october-2026). "Yes. On Nationwide's GDPR programme I coordinated five suppliers, and most recently, at Natoora, I managed the vendor that built our brand e-commerce website. I joined late, to run testing of the site and its integration with WS, our warehouse system. Testing found five high-severity defects, and the vendor rejected them as out of scope. Going live with them open wasn't an option, so I didn't trade opinions. I went back to the contract, matched each defect to the scope written there, and told the vendor we couldn't sign off the test phase until they were fixed. That got three fixed. The vendor refused the other two under the current contract. A commercial dispute wasn't mine to settle, so I escalated to Natoora's senior management with the evidence and the risk to sign-off. After they stepped in, the vendor fixed both, and we signed off testing within the agreed timeframe. My rule for escalation: resolve it at working level first, with evidence; escalate as soon as the decision is beyond my authority or the date is at risk; bring facts, impact and options rather than a complaint; and tell the vendor before I go over their head, because we still have to work together afterwards."
+
+Keep only the parts of the closing rule that you actually practise, and have one real example ready for each.
+
+**Probes to prepare:** What did management do that you couldn't? Were the last two defects really in scope? Point to the clause. What would you have done if the vendor had still refused? Put options to the sponsor, for example a change request, an in-house fix, or launching with a workaround and a named risk owner. Who decided severity? What would you do differently, having joined late?
+
+**Weak answers:** blaming the vendor; escalating before checking the contract; implying you could approve a commercial change yourself; or telling the story without stating your escalation rule.
 
 ## Recovery scenario — illustrative, not historical
 
