@@ -105,7 +105,7 @@ Each handbook carries one copy of the lens stylesheet and the small step-through
 
 | Handbook | Units | What it carries |
 | --- | --- | --- |
-| System Design Concept Handbook v6 | 18 concept chapters | Opening first-principles page, core-path toggle, all four blocks per chapter, 15 new step-through diagrams, reference sketches for 8 labs and 11 cases |
+| System Design Concept Handbook v7 | 29 concept chapters | Opening first-principles page, core-path toggle, all four blocks per chapter, 26 step-through diagrams (11 added in v7 for chapters 19–29), reference sketches for 8 labs and 11 cases |
 | AI Architect's Handbook v1.3 | 14 chapters (`until-next`) | AI first-principles spine, chapter on a page, 7 new step-through diagrams, Feynman loop before Key Takeaways |
 | Software Architect Grooming Programme v6 | 10 units | First principles and Pareto per unit, recall check per unit, free video curriculum in Pareto order |
 | FDE Handbook v1.6 | Sections | What the role reduces to, core path, 4 diagrams, 17 explain-it-back prompts |

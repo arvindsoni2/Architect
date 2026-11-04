@@ -4,7 +4,7 @@ This is the authoritative index of current material in the repository.
 
 | Title | Domain | Path | Format | Status | Edition | Last reviewed |
 | --- | --- | --- | --- | --- | --- | --- |
-| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v6.html](handbooks/system-design/system-design-concept-handbook-v6.html) | HTML | Current | v6 | 2026-10-21 |
+| System Design Concept Handbook | System design | [handbooks/system-design/system-design-concept-handbook-v7.html](handbooks/system-design/system-design-concept-handbook-v7.html) | HTML | Current | v7 (senior-depth chapters 19–29) | 2026-11-04 |
 | Agent Engineering Master Manual | Agent architecture | [handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html](handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html) | HTML | Current | v2.9 | 2026-10-21 |
 | AI Engineering Handbook | AI architecture | [handbooks/ai-engineering/ai-engineering-handbook-v3.3.html](handbooks/ai-engineering/ai-engineering-handbook-v3.3.html) | HTML | Current | v3.3 | 2026-10-21 |
 | AI Evaluation Field Guide | AI architecture | [handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html](handbooks/ai-evaluation/ai-evaluation-field-guide-2026.html) | HTML | Current | 2026.10 (learning lens 21 Oct) | 2026-10-21 |
@@ -26,8 +26,8 @@ This is the authoritative index of current material in the repository.
 | The AI Architect's Handbook | AI architecture | [handbooks/ai-architecture/ai-architects-handbook-v1.3.html](handbooks/ai-architecture/ai-architects-handbook-v1.3.html) | HTML | Current | v1.3 | 2026-10-21 |
 | Interview Resource Accelerator | AI/ML interview preparation | [learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html](learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html) | HTML | Current | v4.4 | 2026-10-05 |
 | Architecture Decision Method | Software architecture | [docs/software-architecture/architecture-decision-method.md](docs/software-architecture/architecture-decision-method.md) | Markdown | Current | Living | 2026-09-05 |
-| Reliability and Failure Control | System design | [docs/system-design/reliability-and-failure-control.md](docs/system-design/reliability-and-failure-control.md) | Markdown | Current | Living | 2026-09-05 |
-| Durable Workflows and Idempotency | Cross-cutting patterns | [docs/cross-cutting-patterns/durable-workflows-and-idempotency.md](docs/cross-cutting-patterns/durable-workflows-and-idempotency.md) | Markdown | Current | Living | 2026-09-05 |
+| Reliability and Failure Control | System design | [docs/system-design/reliability-and-failure-control.md](docs/system-design/reliability-and-failure-control.md) | Markdown | Current | Living | 2026-11-04 |
+| Durable Workflows and Idempotency | Cross-cutting patterns | [docs/cross-cutting-patterns/durable-workflows-and-idempotency.md](docs/cross-cutting-patterns/durable-workflows-and-idempotency.md) | Markdown | Current | Living | 2026-11-04 |
 | Production AI Assurance | AI architecture | [docs/ai-architecture/production-ai-assurance.md](docs/ai-architecture/production-ai-assurance.md) | Markdown | Current | Living | 2026-09-05 |
 | LLM Inference Systems | AI architecture | [docs/ai-architecture/llm-inference-systems.md](docs/ai-architecture/llm-inference-systems.md) | Markdown | Current | Living | 2026-10-13 |
 | Reasoning System Design | AI architecture | [docs/ai-architecture/reasoning-system-design.md](docs/ai-architecture/reasoning-system-design.md) | Markdown | Current | Living | 2026-09-06 |

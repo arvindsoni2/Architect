@@ -6,7 +6,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const {parseHTML} = require('linkedom');
 const root = path.join(__dirname, '..');
-const system = 'handbooks/system-design/system-design-concept-handbook-v6.html';
+const system = 'handbooks/system-design/system-design-concept-handbook-v7.html';
 const interview = 'learning-paths/ai-ml-interview/interview-resource-accelerator-v4.4.html';
 const saa = 'handbooks/aws-saa-c03/saa-c03-visual-handbook-2026.09.html';
 
@@ -54,7 +54,7 @@ test('SAA print reveals explanations and restores the previous recall state',()=
 test('system design search and progress work with blocked storage',()=>{
   const {document:d,event} = page(system,denied);
   const box=d.querySelector('.done');box.checked=true;event(box,'change');
-  assert.match(d.getElementById('ptxt').textContent,/1 \/ 18/);
+  assert.match(d.getElementById('ptxt').textContent,/1 \/ 29/);
   const search=d.getElementById('search');search.value='zz-no-match-zz';event(search,'input');
   assert.equal(d.querySelectorAll('.chapter:not(.hidden)').length,0);
   assert.match(d.getElementById('storageStatus').textContent,/tab only/i);

@@ -88,7 +88,7 @@ footer{font-size:13px;color:var(--muted);margin:20px 0}
 <p><strong>Show.</strong> “We measured average handling time per order before, then after, including the time people still spent on exceptions. That came to about ninety per cent less manual effort, which I presented to the stakeholders. It&#x27;s effort released, not model accuracy.”</p>
 <p><strong>One level down:</strong></p>
 <ol>
-<li class="qa-li"><strong>Could the same email create two orders?</strong> <span class="qa-ans">No: the pipeline checks the order reference and the order items, and WS flags likely duplicates as a second line. That&#x27;s an idempotency key. System Design v6, chapter 11.</span></li>
+<li class="qa-li"><strong>Could the same email create two orders?</strong> <span class="qa-ans">No: the pipeline checks the order reference and the order items, and WS flags likely duplicates as a second line. That&#x27;s an idempotency key. System Design v7, chapter 11.</span></li>
 <li class="qa-li"><strong>How did you know extraction was good enough?</strong> <span class="qa-ans">Your answer: two to three months of experiments per procurement system, with exceptions logged and timed. Name it in evaluation terms: a sample of real emails, the exception rate per system, and time per order.</span></li>
 <li class="qa-li"><strong>Order emails went to OpenAI. Who approved that?</strong> <span class="qa-ans">The CTO and lead developer reviewed it, and people&#x27;s names and addresses were stripped or randomised before the model saw anything. Say exactly that. It&#x27;s data minimisation, the same principle as the three fields on Smart Timesheet.</span></li>
 </ol>

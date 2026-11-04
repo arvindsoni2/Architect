@@ -33,7 +33,8 @@ The operation ID names the business intent, not one HTTP attempt or queue delive
 - **Inbox or deduplication:** a consumer can atomically insert a message or effect ID into an inbox alongside its business update. A uniqueness constraint makes racing deliveries converge on one committed transition. Broker deduplication is useful but cannot replace a business-level invariant when its scope or time window is narrower.
 - **Transactional outbox:** commit business state and an outbox event in one local transaction, then let a relay publish committed rows. This closes the database-success/message-failure dual-write gap [2]. The relay can still publish twice, so events need stable IDs and consumers remain idempotent.
 - **State machine and checkpoints:** model legal states, transitions, terminal outcomes, waits, timeouts, and owners explicitly. Checkpoint only durable, validated state at a defined boundary. Replay must be deterministic from recorded history: use replay-safe APIs whose time and randomness values are recorded, and put external interactions in activities whose results are recorded and reused rather than re-executed during replay [1]. Version workflow logic so old executions can still resume safely.
-- **Compensation and reconciliation:** when one transaction cannot span systems, define forward recovery. Compensation is a new business action—release a reservation or mark a case for correction—not time travel, and it can fail. Irreversible or legally meaningful effects require status inquiry, reconciliation, and sometimes a named human decision rather than an invented inverse.
+- **Compensation and reconciliation:** when one transaction cannot span systems, define forward recovery. Compensation is a new business action—release a reservation or mark a case for correction—not time travel, and it can fail. Irreversible or legally meaningful effects require status inquiry, reconciliation, and sometimes a named human decision rather than an invented inverse. Order the steps so reversible ones (hold stock, authorise a card) run first and irreversible ones (capture payment, send the confirmation, dispatch) run last.
+- **Concurrency inside one store:** duplicate-safe steps can still race. A check followed by a write needs a constraint, a row lock, an atomic conditional update, or serializable isolation; snapshot isolation alone still allows write skew. Two-phase commit across services blocks on coordinator failure, so prefer local transactions plus a saga.
 
 ## Failure modes and warning signs
 
@@ -94,7 +95,7 @@ Suppose the notice provider times out and cannot query by key. The workflow imme
 
 Repository sources:
 
-- [System Design Concept Handbook v6](../../handbooks/system-design/system-design-concept-handbook-v6.html)
+- [System Design Concept Handbook v7](../../handbooks/system-design/system-design-concept-handbook-v7.html)
 - [Agent Engineering Master Manual v2.9](../../handbooks/agent-engineering/agent-engineering-master-manual-v2.9.html)
 - [The AI Architect's Handbook v1.3](../../handbooks/ai-architecture/ai-architects-handbook-v1.3.html)
 - [Forward Deployed AI Engineer Handbook v1.6](../../handbooks/fde/fde-handbook-v1.6.html)
@@ -109,4 +110,4 @@ External references (verified 2026-09-05):
 
 **Edition:** Living
 
-**Last reviewed:** 2026-09-05
+**Last reviewed:** 2026-11-04

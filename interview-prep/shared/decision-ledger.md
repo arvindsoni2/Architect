@@ -71,7 +71,7 @@ Natoora · Mar–Sep 2025 · delivery lead for the London and Paris rollout · 1
 
 **One level down:**
 
-1. **Could the same email create two orders?** No: the pipeline checks the order reference and the order items, and WS flags likely duplicates as a second line. That's an idempotency key. System Design v6, chapter 11.
+1. **Could the same email create two orders?** No: the pipeline checks the order reference and the order items, and WS flags likely duplicates as a second line. That's an idempotency key. System Design v7, chapter 11.
 2. **How did you know extraction was good enough?** Your answer: two to three months of experiments per procurement system, with exceptions logged and timed. Name it in evaluation terms: a sample of real emails, the exception rate per system, and time per order.
 3. **Order emails went to OpenAI. Who approved that?** The CTO and lead developer reviewed it, and people's names and addresses were stripped or randomised before the model saw anything. Say exactly that. It's data minimisation, the same principle as the three fields on Smart Timesheet.
 
